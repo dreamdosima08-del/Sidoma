@@ -16,6 +16,7 @@ img{max-width:100%;height:auto}
 p{line-height:1.6}
 .w{max-width:1100px;margin:0 auto;padding:0 1.25rem}
 @media(max-width:600px){.w{padding:0 20px}}
+@media(max-width:600px){#sehir .sehir-grid{grid-template-columns:1fr!important}}
 
 /* SNAV */
 .snav{position:sticky;top:0;z-index:100;background:rgba(10,26,18,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;gap:.1rem;overflow-x:auto;padding:.55rem 1rem}
@@ -589,6 +590,49 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     </nav>
   </div>
   <div class="hero-scroll"><span>Kaydır</span><div class="hero-scroll-line"></div></div>
+</section>
+
+<!-- ŞEHİR BİLGİLERİ -->
+<section id="sehir" style="padding:3rem 0 2rem">
+  <div class="w">
+    <p class="slbl">Genel Bilgiler</p>
+    <h2 class="stitle">Artvin Şehir Bilgileri</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;align-items:start">
+      <div>
+        <img src="https://i.ibb.co/XkzBCmsj/artvin-ili-haritasi.png" alt="Artvin İl Haritası" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.75rem">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:.9rem 1.1rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.78rem;color:rgba(255,255,255,.5)">Yüzölçümü</span>
+          <span style="font-size:.9rem;font-weight:600;color:var(--gold)">7.436 km²</span>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:.9rem 1.1rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.78rem;color:rgba(255,255,255,.5)">Nüfus</span>
+          <span style="font-size:.9rem;font-weight:600;color:var(--gold)">167.531</span>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:.9rem 1.1rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.78rem;color:rgba(255,255,255,.5)">İlçe Sayısı</span>
+          <span style="font-size:.9rem;font-weight:600;color:var(--gold)">8</span>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:.9rem 1.1rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.78rem;color:rgba(255,255,255,.5)">Mahalle Sayısı</span>
+          <span style="font-size:.9rem;font-weight:600;color:var(--gold)">41</span>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:.9rem 1.1rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.78rem;color:rgba(255,255,255,.5)">Köy Sayısı</span>
+          <span style="font-size:.9rem;font-weight:600;color:var(--gold)">323</span>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:.9rem 1.1rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.78rem;color:rgba(255,255,255,.5)">Telefon Kodu</span>
+          <span style="font-size:.9rem;font-weight:600;color:var(--gold)">0466</span>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:.9rem 1.1rem;border-radius:6px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.78rem;color:rgba(255,255,255,.5)">Plaka Kodu</span>
+          <span style="font-size:.9rem;font-weight:600;color:var(--gold)">08</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ECZANE -->
