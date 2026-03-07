@@ -228,6 +228,216 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   .wgrid{grid-template-columns:repeat(2,1fr)}
   .hero-pills{max-width:360px}
 }
+
+/* ═══════════════════════════════════════
+   DİNAMİK ANİMASYONLAR & EFEKTLER
+═══════════════════════════════════════ */
+
+/* Hero parıltı animasyonu */
+@keyframes shimmer{
+  0%{background-position:-200% center}
+  100%{background-position:200% center}
+}
+@keyframes glow-pulse{
+  0%,100%{text-shadow:0 0 20px rgba(240,192,64,0),0 0 40px rgba(240,192,64,0)}
+  50%{text-shadow:0 0 20px rgba(240,192,64,.25),0 0 60px rgba(240,192,64,.1)}
+}
+@keyframes float-up{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes border-glow{
+  0%,100%{border-color:rgba(61,219,138,.09)}
+  50%{border-color:rgba(61,219,138,.35)}
+}
+@keyframes gradient-shift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes scanline{
+  0%{transform:translateY(-100%)}
+  100%{transform:translateY(100vh)}
+}
+
+/* Hero şehir adı parlaması */
+.hero-city{
+  animation:glow-pulse 4s ease-in-out infinite;
+}
+
+/* Hero subtitle shimmer */
+.hero-sub{
+  background:linear-gradient(90deg,var(--gold) 0%,#fff8e0 40%,var(--gold) 60%,#ffe090 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmer 5s linear infinite;
+}
+
+/* Hero içerik float-up */
+.hero-content{
+  animation:float-up .9s ease both;
+}
+.hero-pills{
+  animation:float-up 1.1s ease both;
+}
+
+/* Nav aktif bölüm göstergesi */
+.snav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,26,18,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;gap:.1rem;overflow-x:auto;padding:.55rem 1rem;
+}
+.snav a.active{
+  color:var(--gold)!important;
+  border-bottom:2px solid var(--gold);
+}
+
+/* Kart hover parlaması — tüm kartlar */
+.ezcard,.fcard,.rocard,.hcard,.tc,.oc,.elcard,.mvcard,.blog-card{
+  transition:all .3s cubic-bezier(.25,.8,.25,1);
+  position:relative;
+  overflow:hidden;
+}
+.ezcard::after,.fcard::after,.rocard::after,.hcard::after,.tc::after,.oc::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(61,219,138,0) 0%,rgba(61,219,138,.06) 50%,rgba(240,192,64,.04) 100%);
+  opacity:0;
+  transition:opacity .3s ease;
+  pointer-events:none;
+}
+.ezcard:hover::after,.fcard:hover::after,.rocard:hover::after,.hcard:hover::after,.tc:hover::after,.oc:hover::after{
+  opacity:1;
+}
+.ezcard:hover,.fcard:hover,.hcard:hover,.tc:hover,.oc:hover{
+  border-color:rgba(61,219,138,.4)!important;
+  transform:translateY(-4px);
+  box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 1px rgba(61,219,138,.1);
+}
+
+/* Blog kart geliştirilmiş hover */
+.blog-card:hover{
+  box-shadow:0 16px 48px rgba(0,0,0,.5),0 0 0 1px rgba(61,219,138,.15);
+}
+
+/* Section başlıkları fade-in (IntersectionObserver ile) */
+.section-animate{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.section-animate.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Rota kartı resim zoom */
+.rocard{
+  transition:all .35s ease;
+}
+.rocard:hover{
+  border-color:rgba(61,219,138,.35)!important;
+  transform:translateY(-5px);
+  box-shadow:0 12px 40px rgba(0,0,0,.45);
+}
+.rocard:hover .rocard-img{
+  transform:scale(1.05);
+  filter:brightness(.95) saturate(1.1);
+}
+.rocard-img{
+  transition:transform .5s ease,filter .4s ease;
+}
+
+/* Taksimetre kutu animasyonu */
+.tkbox,.rcard{
+  position:relative;
+  animation:border-glow 3s ease-in-out infinite;
+}
+
+/* Navigasyon pill hover */
+.hp{
+  position:relative;
+  overflow:hidden;
+}
+.hp::before{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);
+  transition:left .4s ease;
+}
+.hp:hover::before{
+  left:100%;
+}
+
+/* Altın rengi buton parlaması */
+.map-btn,.btn-g{
+  position:relative;
+  overflow:hidden;
+}
+.map-btn::after,.btn-g::after{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  transform:skewX(-20deg);
+  transition:left .5s ease;
+}
+.map-btn:hover::after,.btn-g:hover::after{
+  left:150%;
+}
+
+/* Altın rakam büyüme */
+.tkresult-val,.rnum{
+  transition:transform .3s ease,color .3s ease;
+}
+.tkresult-val:hover,.rnum:hover{
+  transform:scale(1.05);
+}
+
+/* Eczane kart - renkli sınır animasyonu */
+@keyframes rainbow-border{
+  0%{border-color:rgba(61,219,138,.2)}
+  33%{border-color:rgba(240,192,64,.2)}
+  66%{border-color:rgba(100,180,255,.15)}
+  100%{border-color:rgba(61,219,138,.2)}
+}
+.ezcard:nth-child(odd){
+  animation:rainbow-border 6s ease-in-out infinite;
+}
+
+/* Genel section başlıkları */
+.stitle{
+  position:relative;
+}
+.stitle::after{
+  content:'';
+  position:absolute;
+  bottom:-8px;left:0;
+  width:40px;height:2px;
+  background:linear-gradient(90deg,var(--vivid),transparent);
+  border-radius:1px;
+}
+
+/* Scroll progress bar */
+#scroll-bar{
+  position:fixed;top:0;left:0;
+  width:0%;height:2px;
+  background:linear-gradient(90deg,var(--vivid),var(--gold));
+  z-index:9999;
+  transition:width .1s linear;
+}
+</style>
+
+<style>
+/* IntersectionObserver animasyon JS */
 </style>
 
 <!-- Blog Tipografi -->
@@ -550,6 +760,9 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS BAR -->
+<div id="scroll-bar"></div>
 
 <!-- STICKY NAV -->
 <nav class="snav">
@@ -2241,5 +2454,68 @@ yorumGoster();
 </div>
 
 </div>
+<script>
+/* ═══ SCROLL PROGRESS BAR ═══ */
+window.addEventListener('scroll',()=>{
+  const bar=document.getElementById('scroll-bar');
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  if(bar)bar.style.width=Math.min(pct,100)+'%';
+});
+
+/* ═══ INTERSECTION OBSERVER — Section Animate ═══ */
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('section').forEach(s=>{
+  s.classList.add('section-animate');
+  observer.observe(s);
+});
+
+/* ═══ NAV AKTİF BÖLÜM ═══ */
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.snav a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-120)cur=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
+  });
+},{passive:true});
+
+/* ═══ HERO PARALLAX (hafif) ═══ */
+const heroBg=document.querySelector('.hero-bg');
+window.addEventListener('scroll',()=>{
+  if(!heroBg)return;
+  const y=window.scrollY;
+  heroBg.style.transform=`translateY(${y*0.3}px)`;
+},{passive:true});
+
+/* ═══ KART RIPPLE EFEKTİ ═══ */
+document.querySelectorAll('.ezcard,.rocard,.blog-card,.hp').forEach(card=>{
+  card.addEventListener('click',function(e){
+    const ripple=document.createElement('span');
+    const rect=this.getBoundingClientRect();
+    const size=Math.max(rect.width,rect.height);
+    ripple.style.cssText=`position:absolute;width:${size}px;height:${size}px;
+      border-radius:50%;background:rgba(61,219,138,.15);
+      top:${e.clientY-rect.top-size/2}px;left:${e.clientX-rect.left-size/2}px;
+      transform:scale(0);animation:ripple-anim .6s ease forwards;pointer-events:none;z-index:10`;
+    this.style.position='relative';this.style.overflow='hidden';
+    this.appendChild(ripple);
+    setTimeout(()=>ripple.remove(),600);
+  });
+});
+</script>
+<style>
+@keyframes ripple-anim{to{transform:scale(2.5);opacity:0}}
+</style>
+
 </body>
 </html>
