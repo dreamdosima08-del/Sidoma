@@ -261,7 +261,15 @@ tr:hover td{background:rgba(255,255,255,.02)}
 #copyToast{position:fixed;bottom:5rem;right:1.5rem;z-index:600;background:rgba(10,26,18,.95);border:1px solid var(--vivid);color:var(--offwhite);font-size:.78rem;padding:.6rem 1.1rem;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .3s ease;white-space:nowrap}
 
 
-/* UYDU CTA KARTI */
+/* VİDEOLAR */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+@media(max-width:700px){.video-grid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
+.video-card{background:var(--card);border:1px solid var(--border);overflow:hidden;transition:.3s}
+.video-card:hover{border-color:rgba(255,0,0,.3);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.video-wrap{position:relative;padding-bottom:177.78%;height:0;overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+
 .uydu-cta{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(61,219,138,.08),rgba(240,192,64,.06));border:1px solid rgba(61,219,138,.25);padding:1.25rem 1.75rem;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:pointer}
 .uydu-cta:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 12px 40px rgba(61,219,138,.15);border-color:rgba(61,219,138,.5)}
 .uydu-cta-left{display:flex;align-items:center;gap:1.1rem}
@@ -854,6 +862,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   <a href="#rota">🥾 Rota</a>
   <a href="#havas">✈️ Havaş</a>
   <a href="#misyon">🎯 Misyon</a>
+  <a href="#videolar">🎬 Video</a>
   <a href="#uydu">🛰️ Uydu</a>
   <a href="#blog">✍️ Blog</a><a href="#iletisim">📬 İletişim</a>
 </nav>
@@ -1363,6 +1372,42 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   </div>
   <img id="uydulightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;object-fit:contain;cursor:default" onclick="event.stopPropagation()">
 </div>
+
+<!-- VİDEOLAR -->
+<section id="videolar">
+  <div class="w">
+    <p class="slbl">🎬 YouTube</p>
+    <h2 class="stitle">Artvin'den Kısa Videolar</h2>
+    <p class="sdesc">Artvin Rehberi YouTube kanalından seçme kısa videolar.</p>
+    <div class="video-grid">
+
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/pIcURzDvzFU" title="Artvin Video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/aT9L-_UHj9Y" title="Artvin Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/pvGSdVATQNI" title="Artvin Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:1.75rem">
+      <a href="https://www.youtube.com/@ArtvinRehberi" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;background:#ff0000;color:#fff;text-decoration:none;padding:.75rem 1.5rem;font-size:.8rem;font-weight:700;letter-spacing:.05em;transition:.2s">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="white"><path d="M19.582 2.186A2.506 2.506 0 0 0 17.824.421C16.27 0 10 0 10 0S3.73 0 2.176.421A2.506 2.506 0 0 0 .418 2.186 26.33 26.33 0 0 0 0 7a26.33 26.33 0 0 0 .418 4.814 2.506 2.506 0 0 0 1.758 1.765C3.73 14 10 14 10 14s6.27 0 7.824-.421a2.506 2.506 0 0 0 1.758-1.765A26.33 26.33 0 0 0 20 7a26.33 26.33 0 0 0-.418-4.814zM8 10V4l5.2 3L8 10z"/></svg>
+        YouTube Kanalımıza Abone Ol
+      </a>
+    </div>
+  </div>
+</section>
 
 <section id="blog">
   <div class="w">
