@@ -263,11 +263,16 @@ tr:hover td{background:rgba(255,255,255,.02)}
 
 /* VİDEOLAR */
 .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
-@media(max-width:700px){.video-grid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
-.video-card{background:var(--card);border:1px solid var(--border);overflow:hidden;transition:.3s}
-.video-card:hover{border-color:rgba(255,0,0,.3);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.4)}
-.video-wrap{position:relative;padding-bottom:177.78%;height:0;overflow:hidden}
-.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+@media(max-width:700px){.video-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){.video-grid{grid-template-columns:1fr;max-width:280px;margin-left:auto;margin-right:auto}}
+.video-card{display:block;text-decoration:none;background:var(--card);border:1px solid var(--border);overflow:hidden;transition:.3s;position:relative}
+.video-card:hover{border-color:rgba(255,0,0,.5);transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.video-thumb{position:relative;padding-bottom:177.78%;background:#000;overflow:hidden}
+.video-thumb img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:.4s}
+.video-card:hover .video-thumb img{transform:scale(1.05);opacity:.8}
+.video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(255,0,0,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;padding-left:4px;transition:.3s;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.video-card:hover .video-play{background:#ff0000;transform:translate(-50%,-50%) scale(1.15)}
+.video-shorts-badge{position:absolute;top:.5rem;left:.5rem;background:rgba(255,0,0,.9);color:#fff;font-size:.55rem;font-weight:800;letter-spacing:.08em;padding:.18rem .5rem}
 
 
 .uydu-cta{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(61,219,138,.08),rgba(240,192,64,.06));border:1px solid rgba(61,219,138,.25);padding:1.25rem 1.75rem;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:pointer}
@@ -1381,23 +1386,29 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <p class="sdesc">Artvin Rehberi YouTube kanalından seçme kısa videolar.</p>
     <div class="video-grid">
 
-      <div class="video-card">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/pIcURzDvzFU" title="Artvin Video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <a class="video-card" href="https://youtube.com/shorts/pIcURzDvzFU" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/pIcURzDvzFU/maxresdefault.jpg" alt="Artvin Video 1" onerror="this.src='https://img.youtube.com/vi/pIcURzDvzFU/hqdefault.jpg'">
+          <div class="video-play">▶</div>
+          <div class="video-shorts-badge">Shorts</div>
         </div>
-      </div>
+      </a>
 
-      <div class="video-card">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/aT9L-_UHj9Y" title="Artvin Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <a class="video-card" href="https://youtube.com/shorts/aT9L-_UHj9Y" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/aT9L-_UHj9Y/maxresdefault.jpg" alt="Artvin Video 2" onerror="this.src='https://img.youtube.com/vi/aT9L-_UHj9Y/hqdefault.jpg'">
+          <div class="video-play">▶</div>
+          <div class="video-shorts-badge">Shorts</div>
         </div>
-      </div>
+      </a>
 
-      <div class="video-card">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/pvGSdVATQNI" title="Artvin Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <a class="video-card" href="https://youtube.com/shorts/pvGSdVATQNI" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/pvGSdVATQNI/maxresdefault.jpg" alt="Artvin Video 3" onerror="this.src='https://img.youtube.com/vi/pvGSdVATQNI/hqdefault.jpg'">
+          <div class="video-play">▶</div>
+          <div class="video-shorts-badge">Shorts</div>
         </div>
-      </div>
+      </a>
 
     </div>
     <div style="text-align:center;margin-top:1.75rem">
