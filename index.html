@@ -316,6 +316,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 @media(max-width:600px){
   .wgrid{grid-template-columns:repeat(2,1fr)}
   .hero-pills{max-width:360px}
+  .cta-grid{grid-template-columns:1fr!important}
 }
 
 /* ═══════════════════════════════════════
@@ -979,19 +980,34 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   </div>
 </section>
 
-<!-- UYDU CTA KARTI -->
+<!-- UYDU & VİDEO CTA KARTLARI -->
 <section style="padding:0 0 2rem">
   <div class="w">
-    <a href="#uydu" class="uydu-cta" onclick="event.preventDefault();document.getElementById('uydu').scrollIntoView({behavior:'smooth'})">
-      <div class="uydu-cta-left">
-        <div class="uydu-cta-ico">🛰️</div>
-        <div>
-          <div class="uydu-cta-title">Artvin'i Yukarıdan Gör</div>
-          <div class="uydu-cta-sub">9 ilçenin uydu görüntüleri — tıkla, keşfet</div>
+    <div class="cta-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+
+      <a href="#uydu" class="uydu-cta" onclick="event.preventDefault();document.getElementById('uydu').scrollIntoView({behavior:'smooth'})">
+        <div class="uydu-cta-left">
+          <div class="uydu-cta-ico">🛰️</div>
+          <div>
+            <div class="uydu-cta-title">Artvin'i Yukarıdan Gör</div>
+            <div class="uydu-cta-sub">9 ilçenin uydu görüntüleri</div>
+          </div>
         </div>
-      </div>
-      <div class="uydu-cta-arrow">→</div>
-    </a>
+        <div class="uydu-cta-arrow">→</div>
+      </a>
+
+      <a href="#videolar" class="uydu-cta" onclick="event.preventDefault();document.getElementById('videolar').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(135deg,rgba(255,0,0,.08),rgba(240,192,64,.05));border-color:rgba(255,0,0,.25)">
+        <div class="uydu-cta-left">
+          <div class="uydu-cta-ico">🎬</div>
+          <div>
+            <div class="uydu-cta-title">Videoları İzle</div>
+            <div class="uydu-cta-sub">YouTube Shorts — Artvin</div>
+          </div>
+        </div>
+        <div class="uydu-cta-arrow" style="color:#ff4444">→</div>
+      </a>
+
+    </div>
   </div>
 </section>
 
