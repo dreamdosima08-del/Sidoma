@@ -251,6 +251,40 @@ tr:hover td{background:rgba(255,255,255,.02)}
 #floatShare:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(61,219,138,.55)}
 #copyToast{position:fixed;bottom:5rem;right:1.5rem;z-index:600;background:rgba(10,26,18,.95);border:1px solid var(--vivid);color:var(--offwhite);font-size:.78rem;padding:.6rem 1.1rem;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .3s ease;white-space:nowrap}
 
+
+/* UYDU CTA KARTI */
+.uydu-cta{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(61,219,138,.08),rgba(240,192,64,.06));border:1px solid rgba(61,219,138,.25);padding:1.25rem 1.75rem;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:pointer}
+.uydu-cta:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 12px 40px rgba(61,219,138,.15);border-color:rgba(61,219,138,.5)}
+.uydu-cta-left{display:flex;align-items:center;gap:1.1rem}
+.uydu-cta-ico{font-size:2rem}
+.uydu-cta-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--offwhite);margin-bottom:.2rem}
+.uydu-cta-sub{font-size:.75rem;color:rgba(255,255,255,.45)}
+.uydu-cta-arrow{font-size:1.5rem;color:var(--vivid);transition:transform .3s ease}
+.uydu-cta:hover .uydu-cta-arrow{transform:translateX(6px)}
+
+/* HAVA DURUMU */
+.hava-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-top:1.5rem}
+@media(max-width:600px){.hava-grid{grid-template-columns:repeat(2,1fr)}}
+.hava-card{background:var(--card);border:1px solid var(--border);padding:1.1rem;transition:.25s;position:relative;overflow:hidden}
+.hava-card:hover{border-color:rgba(61,219,138,.3);transform:translateY(-3px)}
+.hava-ilce{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.4rem}
+.hava-ico{font-size:2rem;margin-bottom:.3rem;display:block}
+.hava-temp{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.hava-desc{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:.3rem;line-height:1.4}
+.hava-meta{display:flex;gap:.6rem;margin-top:.65rem;flex-wrap:wrap}
+.hava-meta-item{font-size:.6rem;color:rgba(255,255,255,.35);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:.18rem .45rem}
+.hava-loading{color:rgba(255,255,255,.4);font-size:.85rem;padding:2rem;text-align:center;grid-column:1/-1}
+.hava-err{color:rgba(248,113,113,.7);font-size:.78rem;padding:1.5rem;text-align:center;grid-column:1/-1;border:1px dashed rgba(248,113,113,.2)}
+
+/* SOSYAL MEDYA SVG BUTONLAR */
+.pbtn{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;flex-shrink:0}
+.pbtn:hover{transform:scale(1.18);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.pbtn-fb{background:#1877f2}
+.pbtn-tw{background:#000;border:1px solid rgba(255,255,255,.15)}
+.pbtn-wa{background:#25d366}
+.pbtn-tg{background:#229ed9}
+.pbtn svg{width:20px;height:20px;fill:#fff;display:block}
+
 footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;text-align:center}
 .flinks{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:1.25rem}
 .flinks a{font-size:.7rem;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:.05em}
@@ -799,6 +833,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 
 <!-- STICKY NAV -->
 <nav class="snav">
+  <a href="#hava">🌤️ Hava</a>
   <a href="#eczane">💊 Eczane</a>
   <a href="#taksi">🚕 Taksi</a>
   <a href="#rakim">⛰ Rakım</a>
@@ -901,6 +936,34 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
         <p style="margin-bottom:1.5rem">Artvin; kalabalıktan kaçmak isteyenler için bir sığınak, macera arayanlar için bir meydan okuma, huzur isteyenler içinse bitmek bilmeyen bir masaldır. Dört mevsimin de kendine has bir şiiri olan bu kadim şehir, sizi bulutların üzerine, gerçek bir rüyaya davet ediyor.</p>
         <p style="font-style:italic;color:var(--gold);font-size:1rem">Artvin seni bekliyor. Bu eşsiz hikayenin bir parçası olmaya hazır mısın?</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- UYDU CTA KARTI -->
+<section style="padding:0 0 2rem">
+  <div class="w">
+    <a href="#uydu" class="uydu-cta" onclick="event.preventDefault();document.getElementById('uydu').scrollIntoView({behavior:'smooth'})">
+      <div class="uydu-cta-left">
+        <div class="uydu-cta-ico">🛰️</div>
+        <div>
+          <div class="uydu-cta-title">Artvin'i Yukarıdan Gör</div>
+          <div class="uydu-cta-sub">9 ilçenin uydu görüntüleri — tıkla, keşfet</div>
+        </div>
+      </div>
+      <div class="uydu-cta-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<!-- HAVA DURUMU -->
+<section id="hava">
+  <div class="w">
+    <p class="slbl">🌤️ Anlık Veriler</p>
+    <h2 class="stitle">İlçe Hava Durumları</h2>
+    <p class="sdesc">Artvin merkez ve 8 ilçesi için anlık hava durumu. Veriler Open-Meteo API'den alınmaktadır.</p>
+    <div class="hava-grid" id="havaGrid">
+      <div class="hava-loading">⏳ Hava verileri yükleniyor...</div>
     </div>
   </div>
 </section>
@@ -1369,10 +1432,18 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <!-- BLOG PAYLAŞIM -->
     <div class="paylasim-bar" style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
       <span class="paylasim-lbl">Bu sayfayı paylaş:</span>
-      <a class="pbtn pbtn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://artvinrehber.com" target="_blank" title="Facebook'ta Paylaş">&#x1F426;</a>
-      <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https://artvinrehber.com&text=Artvin%20Şehir%20Rehberi%20-%20Eczane%2C%20Taksi%2C%20Hava%20Durumu%20ve%20daha%20fazlası!" target="_blank" title="X'te Paylaş" style="color:#fff;font-size:.75rem;font-weight:800;letter-spacing:-.02em">𝕏</a>
-      <a class="pbtn pbtn-wa" href="https://api.whatsapp.com/send?text=Artvin%20Şehir%20Rehberi%3A%20https://artvinrehber.com" target="_blank" title="WhatsApp'ta Paylaş">📱</a>
-      <a class="pbtn pbtn-tg" href="https://t.me/share/url?url=https://artvinrehber.com&text=Artvin%20Şehir%20Rehberi" target="_blank" title="Telegram'da Paylaş">✈️</a>
+      <a class="pbtn pbtn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fartvinrehber.com" target="_blank" rel="noopener" title="Facebook'ta Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fartvinrehber.com&text=Artvin%20%C5%9Eehir%20Rehberi%20%E2%80%94%20Eczane%2C%20Taksi%2C%20Hava%20Durumu%20ve%20daha%20fazlas%C4%B1!" target="_blank" rel="noopener" title="X'te Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a class="pbtn pbtn-wa" href="https://api.whatsapp.com/send?text=Artvin%20%C5%9Eehir%20Rehberi%3A%20https%3A%2F%2Fartvinrehber.com" target="_blank" rel="noopener" title="WhatsApp'ta Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      </a>
+      <a class="pbtn pbtn-tg" href="https://t.me/share/url?url=https%3A%2F%2Fartvinrehber.com&text=Artvin%20%C5%9Eehir%20Rehberi" target="_blank" rel="noopener" title="Telegram'da Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
     </div>
 
   </div>
@@ -1446,24 +1517,50 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 </footer>
 
 <script>
+/* ═══ TAKSİMETRE — 2026 Artvin Tarifesi ═══
+   Açılış: 75₺ | Km başı: 60₺ | İndi-bindi: 240₺ (kısa mesafe <2km)
+*/
 function taxiCalc() {
-  var km = parseFloat(document.getElementById('tkKm').value) || 0;
-  if (km <= 0) return;
-  var total = 75 + (km * 60);
-  document.getElementById('tkVal').textContent = Math.round(total) + ' \u20BA';
+  var km = parseFloat(document.getElementById('tkKm').value);
+  if (!km || km <= 0) {
+    document.getElementById('tkResult').style.display = 'none';
+    return;
+  }
+  var acilis = 75;
+  var kmBasi = 60;
+  var indiBindiEsik = 2;
+  var indiBindiUcret = 240;
+
+  var total;
+  if (km < indiBindiEsik) {
+    // Kısa mesafe: indirimli sabit ücret
+    total = Math.max(acilis + (km * kmBasi), indiBindiUcret);
+  } else {
+    // Normal tarife: açılış + km başı
+    total = acilis + (km * kmBasi);
+  }
+
+  var el = document.getElementById('tkVal');
+  el.textContent = total.toFixed(2).replace('.', ',') + ' \u20BA';
   document.getElementById('tkResult').style.display = 'block';
 }
 
+/* ═══ RAKIM ANİMASYONU ═══ */
 function animBars(val) {
   var bars = document.querySelectorAll('.mbar');
   var mx = Math.min(Math.max(Number(val) / 12, 10), 100);
-  [18,34,55,78,mx,78,55,34,18].forEach(function(h, i) { bars[i].style.height = h + 'px'; });
+  [18,34,55,78,mx,78,55,34,18].forEach(function(h, i) {
+    if (bars[i]) bars[i].style.height = h + 'px';
+  });
 }
 
 function setElev(val, src, acc, lat, lon) {
   var el = document.getElementById('rnum');
   el.style.opacity = '0';
-  setTimeout(function() { el.textContent = Math.round(val); el.style.opacity = '1'; }, 180);
+  setTimeout(function() {
+    el.textContent = Math.round(val).toLocaleString('tr-TR');
+    el.style.opacity = '1';
+  }, 180);
   animBars(val);
   document.getElementById('rsrc').textContent = src || '-';
   document.getElementById('racc').textContent = acc || '-';
@@ -1472,13 +1569,16 @@ function setElev(val, src, acc, lat, lon) {
   document.getElementById('rdets').style.display = 'grid';
 }
 
-function setMsg(txt) { document.getElementById('rst').textContent = txt; }
+function setMsg(txt) {
+  var el = document.getElementById('rst');
+  if (el) el.textContent = txt;
+}
 
 function districtElev(val) {
   if (!val) return;
   var p = val.split('|');
-  setElev(parseInt(p[0]), 'Manuel Secim', 'Ilce ortalamasi', null, null);
-  setMsg('Secilen ilce: ' + p[1]);
+  setElev(parseInt(p[0]), 'Manuel Seçim', 'İlçe ortalaması', null, null);
+  setMsg('Seçilen ilçe: ' + p[1]);
 }
 
 function fetchElev(lat, lon, cb) {
@@ -1488,66 +1588,98 @@ function fetchElev(lat, lon, cb) {
       if (d && d.elevation && d.elevation[0] != null) cb(null, d.elevation[0]);
       else cb('veri yok');
     })
-    .catch(cb);
+    .catch(function(e) { cb(e); });
 }
 
 function tryIP() {
-  setRst('🌐 IP konumu alınıyor...');
+  setMsg('🌐 IP konumu alınıyor...');
   var svcs = [
     { url:'https://ipwho.is/', fn: function(d) { return d && d.success ? {lat:d.latitude,lon:d.longitude,city:d.city} : null; } },
     { url:'https://ipapi.co/json/', fn: function(d) { return d && d.latitude ? {lat:d.latitude,lon:d.longitude,city:d.city} : null; } }
   ];
   var i = 0;
   function next() {
-    if (i >= svcs.length) { setRst('⬇️ Konum alınamadı. Aşağıdan ilçe seçin.'); return; }
+    if (i >= svcs.length) { setMsg('⬇️ Konum alınamadı. Aşağıdan ilçe seçin.'); return; }
     var s = svcs[i++];
     fetch(s.url).then(function(r){return r.json();}).then(function(d) {
       var r2 = s.fn(d);
       if (!r2) { next(); return; }
-      setRst('📍 ' + (r2.city||'Bölge') + ' tespit edildi. Yükseklik hesaplanıyor...');
+      setMsg('📍 ' + (r2.city||'Bölge') + ' tespit edildi. Yükseklik hesaplanıyor...');
       fetchElev(r2.lat, r2.lon, function(err, elev) {
         if (err) { next(); return; }
-        setRakim(elev, 'IP + Harita', '~1-5 km', r2.lat, r2.lon);
-        setRst('✅ Yaklaşık rakım (IP tabanlı): ' + (r2.city||'') + '. ±50m hassasiyet.');
+        setElev(elev, 'IP + Harita', '~1-5 km', r2.lat, r2.lon);
+        setMsg('✅ Yaklaşık rakım (IP tabanlı): ' + (r2.city||'') + '. ±50m hassasiyet.');
       });
     }).catch(next);
   }
   next();
 }
 
+/* ═══ RAKIM GPS — Düzeltilmiş ═══ */
 function getAlt() {
-  setRst('⏳ Konum alınıyor...');
+  setMsg('⏳ Konum izni bekleniyor...');
   document.getElementById('rnum').textContent = '...';
-  if (location.protocol === 'file:') { setRst('ℹ️ Yerel dosya: IP konum deneniyor...'); tryIP(); return; }
-  if (!navigator.geolocation) { tryIP(); return; }
-  var timer = setTimeout(function() { tryIP(); }, 8000);
+
+  if (!navigator.geolocation) {
+    setMsg('⚠️ Tarayıcınız konum desteklemiyor. İlçe seçin.');
+    tryIP();
+    return;
+  }
+
+  // Önce izin durumunu sorgula
+  if (navigator.permissions) {
+    navigator.permissions.query({name:'geolocation'}).then(function(perm) {
+      if (perm.state === 'denied') {
+        setMsg('🚫 Konum izni reddedildi. Tarayıcı ayarlarından izin verin veya ilçe seçin.');
+        return;
+      }
+      doGetPosition();
+    }).catch(function() { doGetPosition(); });
+  } else {
+    doGetPosition();
+  }
+}
+
+function doGetPosition() {
+  setMsg('📡 GPS sinyali bekleniyor...');
+  var timer = setTimeout(function() {
+    setMsg('⏱ GPS zaman aşımı. IP konumu deneniyor...');
+    tryIP();
+  }, 10000);
+
   navigator.geolocation.getCurrentPosition(
-    function(p) {
+    function(pos) {
       clearTimeout(timer);
-      var lat = p.coords.latitude, lon = p.coords.longitude;
-      var gpsAlt = p.coords.altitude;
-      if (gpsAlt && Math.abs(gpsAlt) > 0) {
-        setRakim(gpsAlt, 'GPS', '±' + Math.round(p.coords.accuracy) + 'm', lat, lon);
-        setRst('✅ GPS rakımı alındı (en hassas).');
+      var lat = pos.coords.latitude;
+      var lon = pos.coords.longitude;
+      var gpsAlt = pos.coords.altitude;
+
+      if (gpsAlt !== null && !isNaN(gpsAlt) && Math.abs(gpsAlt) >= 0) {
+        setElev(gpsAlt, 'GPS (Doğrudan)', '\u00B1' + Math.round(pos.coords.altitudeAccuracy || pos.coords.accuracy) + 'm', lat, lon);
+        setMsg('✅ GPS rakımı alındı! En yüksek hassasiyet.');
       } else {
-        setRst('📍 GPS konumu alındı. Harita yüksekliği hesaplanıyor...');
-        fetchElev(lat, lon, function(err, e
+        setMsg('📍 GPS konumu alındı. Harita yüksekliği sorgulanıyor...');
         fetchElev(lat, lon, function(err, elev) {
           if (!err && elev != null) {
-            setRakim(elev, 'GPS+Harita', '±' + Math.round(p.coords.accuracy) + 'm', lat, lon);
-            setRst('✅ GPS konumu ve harita yüksekliği alındı.');
+            setElev(elev, 'GPS + Open-Meteo', '\u00B1' + Math.round(pos.coords.accuracy) + 'm', lat, lon);
+            setMsg('✅ GPS + harita yüksekliği alındı. ±30m hassasiyet.');
           } else {
-            setRakim(595, 'GPS Yaklaşık', '~', lat, lon);
-            setRst('📍 GPS alındı, harita verisi yok. Merkez rakımı gösteriliyor.');
+            setElev(595, 'GPS (Yaklaşık)', '~', lat, lon);
+            setMsg('📍 GPS alındı fakat harita verisi yüklenemedi.');
           }
         });
       }
     },
     function(err) {
-      setRst('❌ GPS alınamadı: ' + (err.message || 'İzin verilmedi'));
-      tryIP();
+      clearTimeout(timer);
+      var mesaj = '❌ Konum alınamadı';
+      if (err.code === 1) mesaj = '🚫 Konum izni gerekiyor. Tarayıcı adres çubuğundaki kilit ikonundan izin verin.';
+      else if (err.code === 2) mesaj = '📡 Konum sinyali alınamadı. Dışarıdaysanız tekrar deneyin.';
+      else if (err.code === 3) mesaj = '⏱ Konum zaman aşımı. IP konumu deneniyor...';
+      setMsg(mesaj);
+      if (err.code !== 1) tryIP();
     },
-    { timeout: 8000, maximumAge: 60000 }
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
   );
 }
 
@@ -1577,6 +1709,92 @@ function yorumGoster() {
   });
 }
 yorumGoster();
+
+/* ═══ HAVA DURUMU — Open-Meteo API (ücretsiz, API key gerektirmez) ═══ */
+var ILCELER = [
+  {ad:'Artvin Merkez', lat:41.1828, lon:41.8183},
+  {ad:'Arhavi',        lat:41.3545, lon:41.2975},
+  {ad:'Borçka',        lat:41.3639, lon:41.6836},
+  {ad:'Hopa',          lat:41.4111, lon:41.4278},
+  {ad:'Kemalpaşa',     lat:41.3947, lon:41.3403},
+  {ad:'Murgul',        lat:41.1731, lon:41.5567},
+  {ad:'Şavşat',        lat:41.2381, lon:42.3639},
+  {ad:'Ardanuç',       lat:41.1139, lon:42.0678},
+  {ad:'Yusufeli',      lat:40.8256, lon:41.5325}
+];
+
+var HAVA_KODLARI = {
+  0:  {ico:'☀️', ad:'Açık'},
+  1:  {ico:'🌤️', ad:'Az Bulutlu'},
+  2:  {ico:'⛅', ad:'Parçalı Bulutlu'},
+  3:  {ico:'☁️', ad:'Kapalı'},
+  45: {ico:'🌫️', ad:'Sisli'},
+  48: {ico:'🌫️', ad:'Kırağılı Sis'},
+  51: {ico:'🌦️', ad:'Hafif Çisenti'},
+  53: {ico:'🌦️', ad:'Çisenti'},
+  55: {ico:'🌧️', ad:'Yoğun Çisenti'},
+  61: {ico:'🌧️', ad:'Hafif Yağmur'},
+  63: {ico:'🌧️', ad:'Yağmur'},
+  65: {ico:'🌧️', ad:'Şiddetli Yağmur'},
+  71: {ico:'🌨️', ad:'Hafif Kar'},
+  73: {ico:'❄️', ad:'Kar'},
+  75: {ico:'❄️', ad:'Yoğun Kar'},
+  77: {ico:'🌨️', ad:'Kar Taneleri'},
+  80: {ico:'🌦️', ad:'Sağanak'},
+  81: {ico:'⛈️', ad:'Kuvvetli Sağanak'},
+  82: {ico:'⛈️', ad:'Çok Kuvvetli Sağanak'},
+  85: {ico:'🌨️', ad:'Kar Sağanağı'},
+  86: {ico:'❄️', ad:'Yoğun Kar Sağanağı'},
+  95: {ico:'⛈️', ad:'Fırtına'},
+  96: {ico:'⛈️', ad:'Dolu Fırtınası'},
+  99: {ico:'⛈️', ad:'Şiddetli Fırtına'}
+};
+
+function havaKod(kod) {
+  return HAVA_KODLARI[kod] || {ico:'🌡️', ad:'Bilinmiyor'};
+}
+
+function havaYukle() {
+  var grid = document.getElementById('havaGrid');
+  if (!grid) return;
+
+  var lats = ILCELER.map(function(i){return i.lat;}).join(',');
+  var lons = ILCELER.map(function(i){return i.lon;}).join(',');
+  var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lats +
+    '&longitude=' + lons +
+    '&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weathercode' +
+    '&wind_speed_unit=kmh&timezone=Europe%2FIstanbul';
+
+  fetch(url)
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      // Tek ilçe döndüğünde array olmayabilir
+      var results = Array.isArray(data) ? data : [data];
+      grid.innerHTML = '';
+      results.forEach(function(d, idx) {
+        var ilce = ILCELER[idx];
+        if (!ilce || !d.current) return;
+        var c = d.current;
+        var hk = havaKod(c.weathercode);
+        var card = document.createElement('div');
+        card.className = 'hava-card';
+        card.innerHTML =
+          '<div class="hava-ilce">' + ilce.ad + '</div>' +
+          '<span class="hava-ico">' + hk.ico + '</span>' +
+          '<div class="hava-temp">' + Math.round(c.temperature_2m) + '°</div>' +
+          '<div class="hava-desc">' + hk.ad + '</div>' +
+          '<div class="hava-meta">' +
+            '<span class="hava-meta-item">💧 ' + Math.round(c.relative_humidity_2m) + '%</span>' +
+            '<span class="hava-meta-item">💨 ' + Math.round(c.wind_speed_10m) + ' km/s</span>' +
+          '</div>';
+        grid.appendChild(card);
+      });
+    })
+    .catch(function() {
+      grid.innerHTML = '<div class="hava-err">⚠️ Hava verileri yüklenemedi. İnternet bağlantınızı kontrol edin.</div>';
+    });
+}
+havaYukle();
 </script>
 <div id="blogModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#0c1a10;z-index:9999;overflow-y:auto">
 
