@@ -227,7 +227,30 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .blog-empty-ico{font-size:3rem;margin-bottom:1rem}
 .blog-empty-txt{font-size:.88rem;color:rgba(255,255,255,.3);line-height:1.7}
 
-/* FOOTER */
+/* UYDU GALERİSİ */
+.uydu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-top:1.5rem}
+@media(max-width:600px){.uydu-grid{grid-template-columns:1fr}}
+.uydu-card{position:relative;cursor:zoom-in;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3}
+.uydu-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease,filter .3s ease;filter:brightness(.85) saturate(1.1)}
+.uydu-card:hover img{transform:scale(1.06);filter:brightness(1) saturate(1.2)}
+.uydu-label{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);background:rgba(0,0,0,.52);backdrop-filter:blur(4px);text-align:center;padding:.6rem 1rem;font-size:clamp(.7rem,2.5vw,.85rem);font-weight:800;letter-spacing:.2em;color:#fff;pointer-events:none;transition:background .3s ease}
+.uydu-card:hover .uydu-label{background:rgba(10,26,18,.7)}
+
+/* PAYLAŞIM BUTONLARI */
+.paylasim-bar{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;margin:2rem 0}
+.paylasim-lbl{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-right:.25rem}
+.pbtn{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:transform .2s ease,opacity .2s ease;text-decoration:none}
+.pbtn:hover{transform:scale(1.15);opacity:.9}
+.pbtn-fb{background:#1877f2}
+.pbtn-tw{background:#000}
+.pbtn-wa{background:#25d366}
+.pbtn-tg{background:#229ed9}
+
+/* FLOATING PAYLAŞ BUTONU */
+#floatShare{position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;background:linear-gradient(135deg,var(--vivid),#2fc97a);border:none;color:#0a1a12;width:52px;height:52px;border-radius:50%;cursor:pointer;font-size:1.3rem;box-shadow:0 4px 20px rgba(61,219,138,.4);transition:transform .2s ease,box-shadow .2s ease;display:flex;align-items:center;justify-content:center}
+#floatShare:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(61,219,138,.55)}
+#copyToast{position:fixed;bottom:5rem;right:1.5rem;z-index:600;background:rgba(10,26,18,.95);border:1px solid var(--vivid);color:var(--offwhite);font-size:.78rem;padding:.6rem 1.1rem;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .3s ease;white-space:nowrap}
+
 footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;text-align:center}
 .flinks{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:1.25rem}
 .flinks a{font-size:.7rem;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:.05em}
@@ -787,6 +810,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   <a href="#rota">🥾 Rota</a>
   <a href="#havas">✈️ Havaş</a>
   <a href="#misyon">🎯 Misyon</a>
+  <a href="#uydu">🛰️ Uydu</a>
   <a href="#blog">✍️ Blog</a><a href="#iletisim">📬 İletişim</a>
 </nav>
 
@@ -1196,6 +1220,62 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 
 
 <!-- BLOG -->
+<!-- UYDU GÖRÜNTÜLERİ -->
+<section id="uydu">
+  <div class="w">
+    <p class="slbl">🛰️ Kuşbakışı Artvin</p>
+    <h2 class="stitle">İlçe Uydu Görüntüleri</h2>
+    <p class="sdesc">Artvin'in 9 ilçesini yukarıdan keşfet. Görsele tıklayarak tam ekran görüntüleyebilirsin.</p>
+    <div class="uydu-grid">
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/WWmP2HVG/Screenshot-2026-03-08-02-32-20-717-com-android-chrome-edit.jpg','HOPA')">
+        <img src="https://i.ibb.co/WWmP2HVG/Screenshot-2026-03-08-02-32-20-717-com-android-chrome-edit.jpg" alt="Hopa Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">HOPA</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/0jpq4pk1/Screenshot-2026-03-08-02-33-00-832-com-android-chrome-edit.jpg','KEMALPAŞA')">
+        <img src="https://i.ibb.co/0jpq4pk1/Screenshot-2026-03-08-02-33-00-832-com-android-chrome-edit.jpg" alt="Kemalpaşa Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">KEMALPAŞA</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/ZzDbQ1gJ/Screenshot-2026-03-08-02-34-13-903-com-android-chrome-edit.jpg','BORÇKA')">
+        <img src="https://i.ibb.co/ZzDbQ1gJ/Screenshot-2026-03-08-02-34-13-903-com-android-chrome-edit.jpg" alt="Borçka Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">BORÇKA</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/9DdbGF6/Screenshot-2026-03-08-02-34-54-129-com-android-chrome-edit.jpg','MURGUL')">
+        <img src="https://i.ibb.co/9DdbGF6/Screenshot-2026-03-08-02-34-54-129-com-android-chrome-edit.jpg" alt="Murgul Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">MURGUL</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/PZyN7Xhz/Screenshot-2026-03-08-02-35-40-629-com-android-chrome-edit.jpg','MERKEZ')">
+        <img src="https://i.ibb.co/PZyN7Xhz/Screenshot-2026-03-08-02-35-40-629-com-android-chrome-edit.jpg" alt="Artvin Merkez Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">MERKEZ</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/Hp3WvBS0/Screenshot-2026-03-08-02-36-50-113-com-android-chrome-edit.jpg','ARHAVİ')">
+        <img src="https://i.ibb.co/Hp3WvBS0/Screenshot-2026-03-08-02-36-50-113-com-android-chrome-edit.jpg" alt="Arhavi Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">ARHAVİ</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/4rpdvT0/Screenshot-2026-03-08-02-37-55-293-com-android-chrome-edit.jpg','YUSUFELİ')">
+        <img src="https://i.ibb.co/4rpdvT0/Screenshot-2026-03-08-02-37-55-293-com-android-chrome-edit.jpg" alt="Yusufeli Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">YUSUFELİ</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/m52m7K0Y/Screenshot-2026-03-08-02-39-20-316-com-android-chrome-edit.jpg','ARDANUÇ')">
+        <img src="https://i.ibb.co/m52m7K0Y/Screenshot-2026-03-08-02-39-20-316-com-android-chrome-edit.jpg" alt="Ardanuç Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">ARDANUÇ</div>
+      </div>
+      <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/pjSfwqrc/Screenshot-2026-03-08-02-40-36-075-com-android-chrome-edit.jpg','ŞAVŞAT')">
+        <img src="https://i.ibb.co/pjSfwqrc/Screenshot-2026-03-08-02-40-36-075-com-android-chrome-edit.jpg" alt="Şavşat Uydu Görüntüsü" loading="lazy">
+        <div class="uydu-label">ŞAVŞAT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="uydulightbox" onclick="uydukapat()" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;cursor:zoom-out">
+  <button onclick="uydukapat()" style="position:absolute;top:1.2rem;right:1.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.4rem;width:44px;height:44px;cursor:pointer;border-radius:2px;z-index:9001">✕</button>
+  <div style="position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);padding:.4rem 1.2rem;z-index:9001">
+    <span id="uydulightbox-label" style="font-size:.7rem;font-weight:700;letter-spacing:.2em;color:#fff"></span>
+  </div>
+  <img id="uydulightbox-img" src="" alt="" style="max-width:92vw;max-height:88vh;object-fit:contain;cursor:default" onclick="event.stopPropagation()">
+</div>
+
 <section id="blog">
   <div class="w">
     <p class="slbl">✍️ Artvin'i Keşfet</p>
@@ -1285,10 +1365,18 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
       </a>
 
     </div>
+
+    <!-- BLOG PAYLAŞIM -->
+    <div class="paylasim-bar" style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+      <span class="paylasim-lbl">Bu sayfayı paylaş:</span>
+      <a class="pbtn pbtn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://artvinrehber.com" target="_blank" title="Facebook'ta Paylaş">&#x1F426;</a>
+      <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https://artvinrehber.com&text=Artvin%20Şehir%20Rehberi%20-%20Eczane%2C%20Taksi%2C%20Hava%20Durumu%20ve%20daha%20fazlası!" target="_blank" title="X'te Paylaş" style="color:#fff;font-size:.75rem;font-weight:800;letter-spacing:-.02em">𝕏</a>
+      <a class="pbtn pbtn-wa" href="https://api.whatsapp.com/send?text=Artvin%20Şehir%20Rehberi%3A%20https://artvinrehber.com" target="_blank" title="WhatsApp'ta Paylaş">📱</a>
+      <a class="pbtn pbtn-tg" href="https://t.me/share/url?url=https://artvinrehber.com&text=Artvin%20Şehir%20Rehberi" target="_blank" title="Telegram'da Paylaş">✈️</a>
+    </div>
+
   </div>
 </section>
-
-<!-- MİSYON -->
 <section id="misyon">
   <div class="w">
     <p class="slbl">🎯 Biz Kimiz</p>
@@ -2464,6 +2552,10 @@ yorumGoster();
 </div>
 
 </div>
+<!-- FLOATING PAYLAŞ -->
+<button id="floatShare" title="Sayfayı Paylaş" onclick="sayfaPaylas()">🔗</button>
+<div id="copyToast">✅ Link kopyalandı!</div>
+
 <script>
 /* ═══ SCROLL PROGRESS BAR ═══ */
 window.addEventListener('scroll',()=>{
@@ -2472,13 +2564,9 @@ window.addEventListener('scroll',()=>{
   if(bar)bar.style.width=Math.min(pct,100)+'%';
 });
 
-/* ═══ INTERSECTION OBSERVER — Section Animate ═══ */
+/* ═══ INTERSECTION OBSERVER ═══ */
 const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-    }
-  });
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:.1});
 document.querySelectorAll('section').forEach(s=>{
   s.classList.add('section-animate');
@@ -2490,38 +2578,61 @@ const sections=document.querySelectorAll('section[id]');
 const navLinks=document.querySelectorAll('.snav a');
 window.addEventListener('scroll',()=>{
   let cur='';
-  sections.forEach(s=>{
-    if(window.scrollY>=s.offsetTop-120)cur=s.id;
-  });
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});
   navLinks.forEach(a=>{
     a.classList.remove('active');
     if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
   });
 },{passive:true});
 
-/* ═══ HERO PARALLAX (hafif) ═══ */
+/* ═══ HERO PARALLAX ═══ */
 const heroBg=document.querySelector('.hero-bg');
 window.addEventListener('scroll',()=>{
   if(!heroBg)return;
-  const y=window.scrollY;
-  heroBg.style.transform=`translateY(${y*0.3}px)`;
+  heroBg.style.transform=`translateY(${window.scrollY*0.3}px)`;
 },{passive:true});
 
-/* ═══ KART RIPPLE EFEKTİ ═══ */
+/* ═══ RIPPLE EFEKTİ ═══ */
 document.querySelectorAll('.ezcard,.rocard,.blog-card,.hp').forEach(card=>{
   card.addEventListener('click',function(e){
     const ripple=document.createElement('span');
     const rect=this.getBoundingClientRect();
     const size=Math.max(rect.width,rect.height);
-    ripple.style.cssText=`position:absolute;width:${size}px;height:${size}px;
-      border-radius:50%;background:rgba(61,219,138,.15);
-      top:${e.clientY-rect.top-size/2}px;left:${e.clientX-rect.left-size/2}px;
-      transform:scale(0);animation:ripple-anim .6s ease forwards;pointer-events:none;z-index:10`;
+    ripple.style.cssText=`position:absolute;width:${size}px;height:${size}px;border-radius:50%;background:rgba(61,219,138,.15);top:${e.clientY-rect.top-size/2}px;left:${e.clientX-rect.left-size/2}px;transform:scale(0);animation:ripple-anim .6s ease forwards;pointer-events:none;z-index:10`;
     this.style.position='relative';this.style.overflow='hidden';
     this.appendChild(ripple);
     setTimeout(()=>ripple.remove(),600);
   });
 });
+
+/* ═══ UYDU LİGHTBOX ═══ */
+function uyduAc(src,isim){
+  const lb=document.getElementById('uydulightbox');
+  document.getElementById('uydulightbox-img').src=src;
+  document.getElementById('uydulightbox-label').textContent=isim;
+  lb.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function uydukapat(){
+  document.getElementById('uydulightbox').style.display='none';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')uydukapat()});
+
+/* ═══ FLOATING PAYLAŞ ═══ */
+function sayfaPaylas(){
+  const url='https://artvinrehber.com';
+  const text='Artvin Şehir Rehberi — Eczane, Taksi, Hava Durumu ve daha fazlası!';
+  if(navigator.share){
+    navigator.share({title:'Artvin Rehberi',text,url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url).then(()=>{
+      const t=document.getElementById('copyToast');
+      t.style.opacity='1';
+      setTimeout(()=>t.style.opacity='0',2500);
+    });
+  }
+}
 </script>
 <style>
 @keyframes ripple-anim{to{transform:scale(2.5);opacity:0}}
