@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Ana Sayfa -->
+  <url>
+    <loc>https://artvinrehber.com/</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Blog: Artvin'e Geliyorsanız -->
+  <url>
+    <loc>https://artvinrehber.com/#blogModal</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: Artvinliye Sorulmaz -->
+  <url>
+    <loc>https://artvinrehber.com/#blogModal2</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: Ulaşım Rehberi -->
+  <url>
+    <loc>https://artvinrehber.com/#blogModal3</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: Tescilli Lezzetler -->
+  <url>
+    <loc>https://artvinrehber.com/#blogModal4</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: Artvin Ne Zaman İl Oldu -->
+  <url>
+    <loc>https://artvinrehber.com/#blogModal5</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: Boğa Güreşleri Takvimi -->
+  <url>
+    <loc>https://artvinrehber.com/#blogModal6</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Bölümler -->
+  <url>
+    <loc>https://artvinrehber.com/#hava</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://artvinrehber.com/#eczane</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://artvinrehber.com/#taksi</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://artvinrehber.com/#rakim</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://artvinrehber.com/#rota</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://artvinrehber.com/#uydu</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
