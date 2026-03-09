@@ -1485,7 +1485,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <p class="sdesc">Artvin'in gizli köşeleri, doğası, tarihi ve yerel yaşamından hikayeler.</p>
     <div class="blog-grid" id="blogGrid">
 
-      <a class="blog-card" href="javascript:void(0)" onclick="document.getElementById('blogModal6').style.display='block';window.scrollTo(0,0)">
+      <a class="blog-card" href="javascript:void(0)" onclick="modalAc('blogModal6')">
         <div class="blog-card-badge">YENİ</div>
         <img class="blog-card-img" src="https://i.ibb.co/bT3nkHD/kafkasor-festivali-boga-barisi.jpg" alt="Artvin Boğa Güreşleri Kafkasör Festivali">
         <div class="blog-card-body">
@@ -1499,7 +1499,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
         </div>
       </a>
 
-      <a class="blog-card" href="javascript:void(0)" onclick="document.getElementById('blogModal5').style.display='block';window.scrollTo(0,0)">
+      <a class="blog-card" href="javascript:void(0)" onclick="modalAc('blogModal5')">
         <div class="blog-card-badge">YENİ</div>
         <img class="blog-card-img" src="https://i.ibb.co/W4yYCfW4/1772656217998.png" alt="Artvin ne zaman il oldu">
         <div class="blog-card-body">
@@ -1513,7 +1513,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
         </div>
       </a>
 
-      <a class="blog-card" href="javascript:void(0)" onclick="document.getElementById('blogModal4').style.display='block';window.scrollTo(0,0)">
+      <a class="blog-card" href="javascript:void(0)" onclick="modalAc('blogModal4')">
         <div class="blog-card-badge">YENİ</div>
         <img class="blog-card-img" src="https://i.ibb.co/Kz0bTbKV/MG-20260304-101611.jpg" alt="Artvin Coğrafi İşaret">
         <div class="blog-card-body">
@@ -1526,7 +1526,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
           </div>
         </div>
       </a>
-      <a class="blog-card" href="javascript:void(0)" onclick="document.getElementById('blogModal3').style.display='block';window.scrollTo(0,0)">
+      <a class="blog-card" href="javascript:void(0)" onclick="modalAc('blogModal3')">
         <div class="blog-card-badge">YENİ</div>
         <img class="blog-card-img" src="https://i.ibb.co/fz7Lt08b/1772545454067.png" alt="Artvin Ulaşım">
         <div class="blog-card-body">
@@ -1539,7 +1539,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
           </div>
         </div>
       </a>
-      <a class="blog-card" href="javascript:void(0)" onclick="document.getElementById('blogModal2').style.display='block';window.scrollTo(0,0)">
+      <a class="blog-card" href="javascript:void(0)" onclick="modalAc('blogModal2')">
         <div class="blog-card-badge">YENİ</div>
         <img class="blog-card-img" src="https://i.ibb.co/VWrnR99j/MG-20260221-130134.jpg" alt="Artvin">
         <div class="blog-card-body">
@@ -1552,7 +1552,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
           </div>
         </div>
       </a>
-      <a class="blog-card" href="javascript:void(0)" onclick="document.getElementById('blogModal').style.display='block';window.scrollTo(0,0)">
+      <a class="blog-card" href="javascript:void(0)" onclick="modalAc('blogModal')">
         <div class="blog-card-badge">YENİ</div>
         <img class="blog-card-img" src="https://i.ibb.co/SXstYhQ5/artvin-merkez-notlar.png" alt="Artvin Merkez">
         <div class="blog-card-body">
@@ -1859,26 +1859,6 @@ function acikModalVar() {
   });
 }
 
-// Blog kartlarındaki onclick'leri history ile sar
-document.addEventListener('DOMContentLoaded', function() {
-  MODALLER.forEach(function(id) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    // Modal açılışını izle
-    var observer = new MutationObserver(function(muts) {
-      muts.forEach(function(m) {
-        if (m.attributeName === 'style') {
-          var visible = el.style.display !== 'none' && el.style.display !== '';
-          if (visible && history.state && !history.state.modal) {
-            history.pushState({modal: id}, '', '#' + id);
-          }
-        }
-      });
-    });
-    observer.observe(el, {attributes: true});
-  });
-});
-
 window.addEventListener('popstate', function(e) {
   var acik = acikModalVar();
   if (acik) {
@@ -1886,7 +1866,14 @@ window.addEventListener('popstate', function(e) {
   }
 });
 
-history.replaceState({modal: null}, '', window.location.pathname);
+// Modal açma fonksiyonu — history ile
+function modalAc(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = 'block';
+  window.scrollTo(0, 0);
+  history.pushState({modal: id}, '', window.location.pathname);
+}
 
 /* ═══ HAVA DURUMU — Open-Meteo API (ücretsiz, API key gerektirmez) ═══ */
 var ILCELER = [
