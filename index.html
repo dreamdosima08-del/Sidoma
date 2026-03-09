@@ -259,6 +259,14 @@ tr:hover td{background:rgba(255,255,255,.02)}
 #floatShare{position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;background:linear-gradient(135deg,var(--vivid),#2fc97a);border:none;color:#0a1a12;width:52px;height:52px;border-radius:50%;cursor:pointer;font-size:1.3rem;box-shadow:0 4px 20px rgba(61,219,138,.4);transition:transform .2s ease,box-shadow .2s ease;display:flex;align-items:center;justify-content:center}
 #floatShare:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(61,219,138,.55)}
 #copyToast{position:fixed;bottom:5rem;right:1.5rem;z-index:600;background:rgba(10,26,18,.95);border:1px solid var(--vivid);color:var(--offwhite);font-size:.78rem;padding:.6rem 1.1rem;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .3s ease;white-space:nowrap}
+#pwa-banner{position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(10,20,14,.96);border-top:1px solid rgba(61,219,138,.2);backdrop-filter:blur(12px);padding:.85rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transform:translateY(100%);transition:transform .4s ease;box-shadow:0 -4px 20px rgba(0,0,0,.4)}
+#pwa-banner.show{transform:translateY(0)}
+#pwa-banner-left{display:flex;align-items:center;gap:.75rem}
+#pwa-banner-ico{font-size:1.6rem;flex-shrink:0}
+#pwa-banner-txt{font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.4}
+#pwa-banner-txt strong{display:block;color:var(--offwhite);font-size:.82rem;margin-bottom:.1rem}
+#pwa-banner-btn{background:var(--vivid);color:#0a1a12;border:none;padding:.5rem 1rem;font-size:.75rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+#pwa-banner-close{background:none;border:none;color:rgba(255,255,255,.3);font-size:1.1rem;cursor:pointer;padding:.2rem .4rem;flex-shrink:0}
 
 
 /* VİDEOLAR */
@@ -853,6 +861,19 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 
 <!-- SCROLL PROGRESS BAR -->
 <div id="scroll-bar"></div>
+
+<!-- PWA BANNER -->
+<div id="pwa-banner">
+  <div id="pwa-banner-left">
+    <div id="pwa-banner-ico">📲</div>
+    <div id="pwa-banner-txt">
+      <strong>Ana ekrana ekle</strong>
+      Artvin Rehberi'ni uygulama gibi kullan
+    </div>
+  </div>
+  <button id="pwa-banner-btn" onclick="pwaBannerKur()">Ekle</button>
+  <button id="pwa-banner-close" onclick="pwaBannerKapat()" title="Kapat">✕</button>
+</div>
 
 <!-- STICKY NAV -->
 <nav class="snav">
@@ -2927,6 +2948,38 @@ havaYukle();
 <div id="copyToast">✅ Link kopyalandı!</div>
 
 <script>
+/* ═══ PWA BANNER ═══ */
+var pwaPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  pwaPrompt = e;
+  // 3 saniye sonra göster — sırıtmadan
+  setTimeout(function() {
+    if (!localStorage.getItem('pwa-dismissed')) {
+      document.getElementById('pwa-banner').classList.add('show');
+    }
+  }, 3000);
+});
+
+function pwaBannerKur() {
+  if (pwaPrompt) {
+    pwaPrompt.prompt();
+    pwaPrompt.userChoice.then(function(r) {
+      if (r.outcome === 'accepted') localStorage.setItem('pwa-dismissed', '1');
+      pwaBannerKapat();
+    });
+  } else {
+    // iOS için manuel yönlendirme
+    alert('Safari\'de: Paylaş → Ana Ekrana Ekle adımlarını takip edin.');
+    pwaBannerKapat();
+  }
+}
+
+function pwaBannerKapat() {
+  document.getElementById('pwa-banner').classList.remove('show');
+  localStorage.setItem('pwa-dismissed', '1');
+}
+
 /* ═══ SCROLL PROGRESS BAR ═══ */
 window.addEventListener('scroll',()=>{
   const bar=document.getElementById('scroll-bar');
