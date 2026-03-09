@@ -1861,20 +1861,12 @@ function acikModalVar() {
   });
 }
 
-window.addEventListener('popstate', function(e) {
-  var acik = acikModalVar();
-  if (acik) {
-    document.getElementById(acik).style.display = 'none';
-  }
-});
-
-// Modal açma fonksiyonu — history ile
+// Modal açma - sade versiyon
 function modalAc(id) {
   var el = document.getElementById(id);
   if (!el) return;
   el.style.display = 'block';
   window.scrollTo(0, 0);
-  history.pushState({modal: id}, '', window.location.pathname);
 }
 
 /* ═══ HAVA DURUMU — Open-Meteo API (ücretsiz, API key gerektirmez) ═══ */
