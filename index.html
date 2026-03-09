@@ -14,6 +14,19 @@
   gtag('js', new Date());
   gtag('config', 'G-TX994TW4PJ');
 </script>
+<script>
+// Blog modal aç/kapat - en üstte tanımla
+function modalAc(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = 'block';
+  window.scrollTo(0, 0);
+}
+function modalKapat(id) {
+  var el = document.getElementById(id);
+  if (el) el.style.display = 'none';
+}
+</script>
 
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
@@ -1859,14 +1872,6 @@ function acikModalVar() {
     var el = document.getElementById(id);
     return el && el.style.display !== 'none' && el.style.display !== '';
   });
-}
-
-// Modal açma - sade versiyon
-function modalAc(id) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  el.style.display = 'block';
-  window.scrollTo(0, 0);
 }
 
 /* ═══ HAVA DURUMU — Open-Meteo API (ücretsiz, API key gerektirmez) ═══ */
