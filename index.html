@@ -1444,6 +1444,14 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <p class="sdesc">Artvin Rehberi YouTube kanalından seçme kısa videolar.</p>
     <div class="video-grid">
 
+      <a class="video-card" href="https://youtube.com/shorts/iZQBvNunz40" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/iZQBvNunz40/maxresdefault.jpg" alt="Artvin Video" onerror="this.src='https://img.youtube.com/vi/iZQBvNunz40/hqdefault.jpg'">
+          <div class="video-play">▶</div>
+          <div class="video-shorts-badge">Shorts</div>
+        </div>
+      </a>
+
       <a class="video-card" href="https://youtube.com/shorts/pIcURzDvzFU" target="_blank" rel="noopener">
         <div class="video-thumb">
           <img src="https://img.youtube.com/vi/pIcURzDvzFU/maxresdefault.jpg" alt="Artvin Video 1" onerror="this.src='https://img.youtube.com/vi/pIcURzDvzFU/hqdefault.jpg'">
@@ -1614,9 +1622,9 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <div class="ilet-grid">
       <div class="ilet-box">
         <h3>İletişim</h3>
-        <a class="ilet-row" href="/cdn-cgi/l/email-protection#22435056544b4c51474a4b5050474a4047504b62454f434b4e0c414d4f">
+        <a class="ilet-row" href="/cdn-cgi/l/email-protection#a3c2d1d7d5cacdd0c6cbcad1d1c6cbc1c6d1cae3c4cec2cacf8dc0ccce">
           <span style="font-size:1.2rem">📧</span>
-          <div><div class="ilet-lbl">E-Posta</div><div class="ilet-val"><span class="__cf_email__" data-cfemail="4e2f3c3a3827203d2b26273c3c2b262c2b3c270e29232f2722602d2123">[email&#160;protected]</span></div></div>
+          <div><div class="ilet-lbl">E-Posta</div><div class="ilet-val"><span class="__cf_email__" data-cfemail="0d6c7f797b64637e6865647f7f68656f687f644d6a606c6461236e6260">[email&#160;protected]</span></div></div>
         </a>
         <a class="ilet-row" href="https://instagram.com/artvindeen" target="_blank" rel="noopener">
           <span style="font-size:1.2rem">📸</span>
@@ -1936,7 +1944,6 @@ function havaYukle() {
 havaYukle();
 </script>
 
-<!-- FLOATING PAYLAŞ -->
 <button id="floatShare" title="Sayfayı Paylaş" onclick="sayfaPaylas()">🔗</button>
 <div id="copyToast">✅ Link kopyalandı!</div>
 
@@ -2070,7 +2077,8 @@ function sayfaPaylas(){
   if(navigator.share){
     navigator.share({title:'Artvin Rehberi',text,url}).catch(()=>{});
   } else {
-    navigator.clipboard.writeText('https://artvinrehber.com').catch(()=>{});
+    navigator.clipboard.writeTex
+t('https://artvinrehber.com').catch(()=>{});
   }
 }
 </script>
