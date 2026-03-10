@@ -2962,7 +2962,6 @@ havaYukle();
 
 </div>
 
-</div>
 <!-- FLOATING PAYLAŞ -->
 <button id="floatShare" title="Sayfayı Paylaş" onclick="sayfaPaylas()">🔗</button>
 <div id="copyToast">✅ Link kopyalandı!</div>
@@ -3097,4 +3096,10 @@ function sayfaPaylas(){
   if(navigator.share){
     navigator.share({title:'Artvin Rehberi',text,url}).catch(()=>{});
   } else {
-    navigator.clipboard.writeTex
+    navigator.clipboard.writeText('https://artvinrehber.com').catch(()=>{});
+  }
+}
+</script>
+
+</body>
+</html>
