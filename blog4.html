@@ -4,73 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Artvin'in Tescilli Lezzetleri | Artvin Rehberi</title>
-<meta name="description" content="Artvin'in Tescilli Lezzetleri - artvinrehber.com">
+<meta name="description" content="Artvin'in Tescilli Lezzetleri — artvinrehber.com">
+<meta property="og:title" content="Artvin'in Tescilli Lezzetleri">
+<meta property="og:description" content="Artvin Rehberi — artvinrehber.com">
+<meta property="og:url" content="https://artvinrehber.com/blog4.html">
+<meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Playfair+Display:wght@700;800&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Playfair+Display:wght@700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a1a12;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.09);--gold:#f0c040;--vivid:#3ddb8a;--offwhite:#e8ede9}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--offwhite);font-family:'Source Serif 4',Georgia,serif;font-weight:300;min-height:100vh}
-.snav{position:sticky;top:0;z-index:100;background:rgba(10,26,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem}
-.snav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:800;color:#e8b84b;text-decoration:none}
-.snav-back{font-size:.75rem;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.15);padding:.38rem .9rem;border-radius:4px;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:.4rem}
+body{background:var(--bg);color:var(--offwhite);font-family:'Source Serif 4',Georgia,serif;font-weight:300;min-height:100vh;-webkit-text-size-adjust:100%}
+/* NAV */
+.snav{position:sticky;top:0;z-index:100;background:rgba(10,26,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem}
+.snav-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:800;color:#e8b84b;text-decoration:none;white-space:nowrap}
+.snav-back{font-size:.72rem;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12);padding:.35rem .85rem;border-radius:4px;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap}
 .snav-back:hover{color:var(--vivid);border-color:var(--vivid)}
-.post-hero{width:100%;height:45vw;max-height:380px;object-fit:cover;display:block}
-.w{max-width:720px;margin:0 auto;padding:0 1.5rem}
-.post-header{padding:3rem 0 0}
-.cat-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(61,219,138,.08);border:1px solid rgba(61,219,138,.18);color:#3ddb8a;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .9rem;margin-bottom:1.5rem}
-.post-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:1.1rem}
-.post-subtitle{font-size:1.05rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.42);line-height:1.75;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08)}
-.post-meta{display:flex;flex-wrap:wrap;gap:1.25rem;padding-bottom:2rem;margin-bottom:2.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
-.post-meta-item{font-size:.68rem;color:rgba(255,255,255,.42);display:flex;align-items:center;gap:.35rem}
-.post-meta-item strong{color:rgba(255,255,255,.5)}
-.post-text{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:2}
-.post-text p{margin-bottom:1.85rem}
-.post-text h2{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:700;color:#eceee8;margin:4rem 0 1.25rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.08);line-height:1.25}
-.post-text h3{font-size:.72rem;font-weight:600;color:#e8b84b;margin:2.5rem 0 .75rem;letter-spacing:.14em;text-transform:uppercase}
+/* HERO */
+.post-hero{width:100%;height:45vw;max-height:380px;min-height:180px;object-fit:cover;display:block}
+/* WRAPPER */
+.w{max-width:720px;margin:0 auto;padding:0 1.25rem}
+/* BAŞLIK */
+.post-header{padding:2.5rem 0 0}
+.cat-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(61,219,138,.08);border:1px solid rgba(61,219,138,.18);color:#3ddb8a;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .85rem;margin-bottom:1.4rem}
+.post-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:1rem}
+.post-subtitle{font-size:1rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.4);line-height:1.8;margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.post-meta{display:flex;flex-wrap:wrap;gap:1rem;padding-bottom:1.75rem;margin-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.post-meta-item{font-size:.67rem;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:.35rem}
+/* YAZAR */
+.yazar-kutu{display:flex;align-items:center;gap:1.1rem;padding:1.4rem;margin:2.5rem 0 1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);border-radius:6px}
+.yazar-foto{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(232,184,75,.4)}
+.yazar-isim{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:#eceee8;margin-bottom:.2rem}
+.yazar-bio{font-size:.76rem;color:rgba(255,255,255,.38);line-height:1.6}
+/* YAZI İÇERİK */
+.post-text{color:rgba(255,255,255,.73);font-size:1.05rem;line-height:2}
+.post-text p{margin-bottom:1.75rem}
+.post-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,4vw,1.55rem);font-weight:700;color:#eceee8;margin:3.5rem 0 1.2rem;padding-bottom:.7rem;border-bottom:1px solid rgba(255,255,255,.07);line-height:1.25}
+.post-text h3{font-size:.7rem;font-weight:700;color:#e8b84b;margin:2.25rem 0 .7rem;letter-spacing:.14em;text-transform:uppercase}
 .post-text strong{color:#fff;font-weight:600}
-.note{display:flex;gap:1rem;padding:1.5rem 1.6rem;margin:2.25rem 0;border-left:3px solid}
-.note-txt{font-size:.95rem;line-height:1.9;color:rgba(255,255,255,.62)}
+.post-text ul,.post-text ol{padding-left:1.5rem;margin-bottom:1.75rem}
+.post-text li{margin-bottom:.5rem;color:rgba(255,255,255,.68)}
+/* NOTLAR */
+.note{display:flex;gap:.85rem;padding:1.25rem 1.4rem;margin:2rem 0;border-left:3px solid;border-radius:0 4px 4px 0}
+.note-txt{font-size:.93rem;line-height:1.9;color:rgba(255,255,255,.6)}
 .note.yes{border-color:#3ddb8a;background:rgba(61,219,138,.04)}
 .note.no{border-color:#f87171;background:rgba(248,113,113,.04)}
 .note.tip{border-color:#e8b84b;background:rgba(232,184,75,.04)}
-.note.info{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.02)}
-.soru-kart{margin:2.5rem 0;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025)}
-.soru-baslik{display:flex;align-items:flex-start;gap:1rem;padding:1.5rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.06)}
-.soru-no{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:#e8b84b;line-height:1;flex-shrink:0}
-.soru-metin{font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.48);padding-top:.4rem;line-height:1.65}
-.soru-cevap{padding:1.5rem 1.6rem;font-size:.96rem;line-height:1.95;color:rgba(255,255,255,.7);border-left:3px solid #3ddb8a}
-.summary-box{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);padding:2rem;margin:3rem 0}
-.summary-title{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:#3ddb8a;font-weight:700;margin-bottom:1.25rem}
-.summary-list{list-style:none;display:flex;flex-direction:column;gap:.75rem}
-.summary-list li{font-size:.92rem;color:rgba(255,255,255,.62);padding-left:1.25rem;position:relative;line-height:1.7}
+.note.info{border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.02)}
+/* SORU KARTLARI */
+.soru-kart{margin:2rem 0;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);border-radius:6px;overflow:hidden}
+.soru-baslik{display:flex;align-items:flex-start;gap:1rem;padding:1.4rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.soru-no{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:#e8b84b;line-height:1;flex-shrink:0}
+.soru-metin{font-size:.97rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.45);padding-top:.4rem;line-height:1.65}
+.soru-cevap{padding:1.4rem 1.5rem;font-size:.95rem;line-height:1.95;color:rgba(255,255,255,.68);border-left:3px solid #3ddb8a}
+/* ÖZET */
+.summary-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);padding:1.75rem;margin:2.5rem 0;border-radius:6px}
+.summary-title{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#3ddb8a;font-weight:700;margin-bottom:1.1rem}
+.summary-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.summary-list li{font-size:.91rem;color:rgba(255,255,255,.6);padding-left:1.25rem;position:relative;line-height:1.7}
 .summary-list li::before{content:"→";position:absolute;left:0;color:#3ddb8a}
-.summary-row{display:flex;align-items:flex-start;gap:.75rem;padding:.5rem 0;font-size:.92rem;color:rgba(255,255,255,.62);border-bottom:1px solid rgba(255,255,255,.04)}
+.summary-row{display:flex;align-items:flex-start;gap:.75rem;padding:.45rem 0;font-size:.91rem;color:rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.04)}
 .summary-ico{color:#3ddb8a;flex-shrink:0}
-.post-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:3rem 0 2rem}
-.post-tag{font-size:.65rem;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1);padding:.25rem .65rem}
-.blog-paylasim{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin:2rem 0;padding:1rem 1.2rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
-.blog-paylasim-lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-right:.25rem}
-.pbtn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:4px;font-size:.72rem;font-weight:600;text-decoration:none;transition:.2s;border:none;cursor:pointer}
+/* TAGS */
+.post-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin:2.5rem 0 1.75rem}
+.post-tag{font-size:.63rem;color:rgba(255,255,255,.32);border:1px solid rgba(255,255,255,.09);padding:.22rem .6rem;border-radius:2px}
+/* DİĞER */
+.urun-kart{margin:1.75rem 0;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);border-radius:6px;overflow:hidden}
+.urun-baslik{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#e8b84b;padding:1.1rem 1.4rem .45rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.urun-aciklama{padding:.9rem 1.4rem 1.1rem;font-size:.95rem;line-height:1.9;color:rgba(255,255,255,.65)}
+.ipucu-liste{list-style:none;padding:.85rem 1.4rem;display:flex;flex-direction:column;gap:.6rem}
+.ipucu-liste li{padding-left:1.65rem;position:relative;font-size:.91rem;line-height:1.8;color:rgba(255,255,255,.63)}
+.tablo-sarici{overflow-x:auto;margin:2rem 0;border-radius:6px}
+.takvim-tablo{width:100%;border-collapse:collapse;font-size:.88rem}
+.takvim-tablo th{background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.08)}
+.takvim-tablo td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.65);font-size:.9rem}
+.takvim-tablo tr:hover td{background:rgba(255,255,255,.02)}
+.foto-ikili{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:2rem 0}
+.foto-ikili img{width:100%;border-radius:4px;display:block;object-fit:cover;height:160px}
+/* PAYLAŞIM */
+.blog-paylasim{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;margin:2.5rem 0;padding:1.1rem 1.2rem;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:8px}
+.blog-paylasim-lbl{font-size:.59rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);width:100%;margin-bottom:.15rem}
+.pbtn{display:inline-flex;align-items:center;gap:.38rem;padding:.48rem .95rem;border-radius:6px;font-size:.71rem;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer;letter-spacing:.01em;min-height:36px}
+.pbtn:hover{transform:translateY(-1px);filter:brightness(1.12)}
 .pbtn-wa{background:#25D366;color:#000}
 .pbtn-fb{background:#1877F2;color:#fff}
-.pbtn-tw{background:#000;color:#fff}
-.pbtn-kopyala{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2)!important}
-.back-btn{display:inline-flex;align-items:center;gap:.5rem;margin:2rem 0 4rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:.85rem 1.6rem;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.4);text-decoration:none;transition:.2s}
-.back-btn:hover{border-color:var(--vivid);color:var(--vivid)}
-.tavsiye-bolum{margin:3rem 0;padding:2rem 0;border-top:1px solid rgba(255,255,255,.08)}
-.tavsiye-baslik-ana{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.25rem}
-.tavsiye-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.tavsiye-kart{text-decoration:none;background:var(--card);border:1px solid var(--border);display:block;transition:.2s;overflow:hidden}
-.tavsiye-kart:hover{border-color:rgba(61,219,138,.35)}
-.tavsiye-foto{width:100%;height:100px;object-fit:cover;display:block}
-.tavsiye-body{padding:.75rem}
-.tavsiye-cat{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--vivid);margin-bottom:.3rem}
-.tavsiye-baslik{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--offwhite);line-height:1.3}
-footer{margin-top:4rem;padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center;font-size:.72rem;color:rgba(255,255,255,.25)}
-footer a{color:rgba(255,255,255,.35);text-decoration:none}
-@media(max-width:600px){.tavsiye-grid{grid-template-columns:1fr}}
+.pbtn-tw{background:#111;color:#fff;border:1px solid rgba(255,255,255,.12)!important}
+.pbtn-kopyala{background:rgba(255,255,255,.06);color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.12)!important}
+/* BLOG NAVİGASYON */
+.blog-nav{display:flex;justify-content:space-between;align-items:stretch;margin:3rem 0 2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07);gap:.75rem}
+.blog-nav-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.1rem;font-size:.74rem;font-weight:600;color:rgba(255,255,255,.38);text-decoration:none;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.025);transition:.2s;border-radius:6px;flex:1;max-width:46%}
+.blog-nav-btn:hover{color:var(--vivid);border-color:rgba(61,219,138,.35);background:rgba(61,219,138,.04)}
+.blog-nav-btn.next{justify-content:flex-end;text-align:right}
+.blog-nav-btn span{display:block;font-size:.62rem;color:rgba(255,255,255,.22);font-weight:400;margin-bottom:.15rem}
+.blog-nav-btn strong{display:block;font-size:.76rem;color:rgba(255,255,255,.55)}
+.blog-nav-home{font-size:.72rem;color:rgba(255,255,255,.28);text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;padding:.5rem .8rem;border:1px solid rgba(255,255,255,.06);border-radius:6px;transition:.2s;flex-shrink:0}
+.blog-nav-home:hover{color:var(--gold);border-color:rgba(240,192,64,.3)}
+/* TAVSİYE */
+.tavsiye-bolum{margin:3rem 0;padding:2rem 0;border-top:1px solid rgba(255,255,255,.07)}
+.tavsiye-baslik-ana{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.1rem}
+.tavsiye-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.tavsiye-kart{text-decoration:none;background:var(--card);border:1px solid var(--border);display:block;transition:.2s;overflow:hidden;border-radius:4px}
+.tavsiye-kart:hover{border-color:rgba(61,219,138,.3);transform:translateY(-2px)}
+.tavsiye-foto{width:100%;height:95px;object-fit:cover;display:block}
+.tavsiye-body{padding:.7rem}
+.tavsiye-cat{font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--vivid);margin-bottom:.25rem}
+.tavsiye-baslik{font-family:'Playfair Display',serif;font-size:.87rem;color:var(--offwhite);line-height:1.3}
+footer{margin-top:4rem;padding:2rem 1.25rem;border-top:1px solid var(--border);text-align:center;font-size:.7rem;color:rgba(255,255,255,.22)}
+footer a{color:rgba(255,255,255,.32);text-decoration:none}
+@media(max-width:600px){
+  .tavsiye-grid{grid-template-columns:1fr}
+  .blog-nav{flex-wrap:wrap}
+  .blog-nav-btn{max-width:100%;flex:1 1 100%}
+  .blog-nav-home{display:none}
+  .foto-ikili{grid-template-columns:1fr}
+  .post-hero{height:55vw;max-height:280px}
+  .pbtn{font-size:.68rem;padding:.45rem .75rem}
+}
 </style>
 </head>
 <body>
@@ -231,16 +281,30 @@ footer a{color:rgba(255,255,255,.35);text-decoration:none}
       <button class="pbtn pbtn-kopyala" onclick="linkKopyala(this)" title="Linki Kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
     </div>
   
-
 <div class="blog-paylasim">
   <span class="blog-paylasim-lbl">Bu yazıyı paylaş</span>
-  <a class="pbtn pbtn-wa" href="https://api.whatsapp.com/send?text=Artvin%27in%20Tescilli%20Lezzetleri%20%E2%80%94%20https%3A%2F%2Fartvinrehber.com%2Fblog4.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg> WhatsApp</a>
-  <a class="pbtn pbtn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fartvinrehber.com%2Fblog4.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Facebook</a>
-  <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fartvinrehber.com%2Fblog4.html&text=Artvin%27in%20Tescilli%20Lezzetleri" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> X</a>
-  <button class="pbtn pbtn-kopyala" onclick="navigator.clipboard.writeText(window.location.href)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala</button>
+  <a class="pbtn pbtn-wa" href="https://api.whatsapp.com/send?text=Artvin%27in%20Tescilli%20Lezzetleri%20%E2%80%94%20https%3A%2F%2Fartvinrehber.com%2Fblog4.html" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    WhatsApp</a>
+  <a class="pbtn pbtn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fartvinrehber.com%2Fblog4.html" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    Facebook</a>
+  <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fartvinrehber.com%2Fblog4.html&text=Artvin%27in%20Tescilli%20Lezzetleri" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    X</a>
+  <button class="pbtn pbtn-kopyala" onclick="var b=this;navigator.clipboard.writeText(window.location.href).then(function(){b.textContent='✅ Kopyalandı!';setTimeout(function(){b.innerHTML='<svg viewBox=\'0 0 24 24\' width=\'15\' height=\'15\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\'><rect x=\'9\' y=\'9\' width=\'13\' height=\'13\' rx=\'2\'/><path d=\'M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\'/></svg> Bağlantıyı Kopyala\'},2000)})">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    Bağlantıyı Kopyala</button>
 </div>
-
-<a class="back-btn" href="index.html">← Ana Sayfaya Dön</a>
+<div class="blog-nav"><a class="blog-nav-btn prev" href="blog3.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    <div><span>Önceki Yazı</span><strong>Ulaşım Rehberi</strong></div>
+  </a><a class="blog-nav-home" href="index.html">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Ana Sayfa</a><a class="blog-nav-btn next" href="blog5.html">
+    <div><span>Sonraki Yazı</span><strong>Artvin Ne Zaman İl Oldu</strong></div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </a></div>
 </div>
 
 <footer>
