@@ -127,7 +127,7 @@ footer a{color:rgba(255,255,255,.32);text-decoration:none}
 
 <nav class="snav">
   <a class="snav-logo" href="index.html">ARTVİN REHBERİ</a>
-  <a class="snav-back" href="index.html">← Geri Dön</a>
+  <a class="snav-back" href="#" onclick="history.back();return false;">← Geri Dön</a>
 </nav>
 
 <img class="post-hero" src="https://i.ibb.co/bT3nkHD/kafkasor-festivali-boga-barisi.jpg" alt="Artvin Kafkasör Boğa Güreşleri Festivali">
@@ -354,7 +354,7 @@ footer a{color:rgba(255,255,255,.32);text-decoration:none}
   <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fartvinrehber.com%2Fblog6.html&text=Artvin%20Boğa%20Güreşleri:%20Nerede%20İzlenir,%20Ne%20Zaman%20Başlar?" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     X</a>
-  <button class="pbtn pbtn-kopyala" onclick="var b=this;navigator.clipboard.writeText(window.location.href).then(function(){b.textContent='✅ Kopyalandı!';setTimeout(function(){b.innerHTML='<svg viewBox=\'0 0 24 24\' width=\'15\' height=\'15\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\'><rect x=\'9\' y=\'9\' width=\'13\' height=\'13\' rx=\'2\'/><path d=\'M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\'/></svg> Bağlantıyı Kopyala\'},2000)})">
+  <button class="pbtn pbtn-kopyala" id="kopyalaBtn" onclick="blogKopyala(this)">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
     Bağlantıyı Kopyala</button>
 </div>
@@ -370,5 +370,21 @@ footer a{color:rgba(255,255,255,.32);text-decoration:none}
   <p>© 2026 <a href="index.html">Artvin Rehberi</a> · artvinrehber.com</p>
 </footer>
 
+<script>
+function blogKopyala(btn){
+  var url=window.location.href;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var orig=btn.innerHTML;
+      btn.textContent='✅ Kopyalandı!';
+      setTimeout(function(){btn.innerHTML=orig;},2000);
+    }).catch(function(){
+      prompt('Linki kopyala:',url);
+    });
+  } else {
+    prompt('Linki kopyala:',url);
+  }
+}
+</script>
 </body>
 </html>
