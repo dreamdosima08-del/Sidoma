@@ -2427,15 +2427,19 @@ function sayfaPaylas(){
   }
 }
 
-// ── NAMAZ VAKİTLERİ ──────────────────────────────────────────────────────
-const NAMAZ_CACHE = {};
-const VAKIT_META = [
-  {key:'Imsak',   ad:'İmsak',  ico:'🌙'},
-  {key:'Gunes',   ad:'Güneş',  ico:'🌅'},
-  {key:'Ogle',    ad:'Öğle',   ico:'☀️'},
-  {key:'Ikindi',  ad:'İkindi', ico:'🌤️'},
-  {key:'Aksam',   ad:'Akşam',  ico:'🌇'},
-  {key:'Yatsi',   ad:'Yatsı',  ico:'⭐'},
+// ── NAMAZ VAKİTLERİ ─────────────────────────────────────────────────────────
+// Kaynak: ezanvakti.emushaf.net (Diyanet verileri, CORS serbest)
+// Artvin ilçe ID'leri: Merkez=9246, Ardanuç=9247, Arhavi=9248
+// Borçka=9249, Hopa=9250, Murgul=9252, Şavşat=9253, Yusufeli=9254
+
+const NV_CACHE = {};
+const NV_META = [
+  {key:'Imsak',  ad:'İmsak',  ico:'🌙'},
+  {key:'Sabah',  ad:'Sabah',  ico:'🌅'},
+  {key:'Ogle',   ad:'Öğle',   ico:'☀️'},
+  {key:'Ikindi', ad:'İkindi', ico:'🌤️'},
+  {key:'Aksam',  ad:'Akşam',  ico:'🌇'},
+  {key:'Yatsi',  ad:'Yatsı',  ico:'⭐'},
 ];
 
 async function namazIlce(btn, ilceId) {
@@ -2443,53 +2447,62 @@ async function namazIlce(btn, ilceId) {
   btn.classList.add('active');
   const grid = document.getElementById('namazGrid');
   grid.innerHTML = '<div class="namaz-loading">⏳ Yükleniyor...</div>';
+
   try {
-    let data;
-    if (NAMAZ_CACHE[ilceId]) {
-      data = NAMAZ_CACHE[ilceId];
+    let vakitler;
+    if (NV_CACHE[ilceId]) {
+      vakitler = NV_CACHE[ilceId];
     } else {
-      const res = await fetch(`https://awqatsalah.diyanet.gov.tr/api/TimesOfDay/${ilceId}`);
-      data = await res.json();
-      NAMAZ_CACHE[ilceId] = data;
+      // ezanvakti.emushaf.net — Diyanet verilerini CORS'suz sunan açık API
+      const res = await fetch(
+        'https://ezanvakti.emushaf.net/vakitler/' + ilceId,
+        { headers: { 'Accept': 'application/json' } }
+      );
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      // API bugünün vakitlerini döndürüyor, dizi formatında
+      // Her eleman: {MiladiTarihKisa, Imsak, Sabah, Ogle, Ikindi, Aksam, Yatsi, ...}
+      const bugun = new Date().toLocaleDateString('tr-TR', {day:'2-digit',month:'2-digit',year:'numeric'});
+      // Bugünü bul ya da ilk kaydı al
+      vakitler = Array.isArray(data)
+        ? (data.find(d => d.MiladiTarihKisa === bugun) || data[0])
+        : data;
+      NV_CACHE[ilceId] = vakitler;
     }
-    const vakitler = data?.data || data;
+
+    // Şu anki aktif vakti hesapla
     const simdi = new Date();
     const simdDk = simdi.getHours() * 60 + simdi.getMinutes();
-    
-    const saatler = {
-      Imsak:  vakitler.Imsak  || vakitler.imsak,
-      Gunes:  vakitler.Gunes  || vakitler.gunes,
-      Ogle:   vakitler.Ogle   || vakitler.ogle,
-      Ikindi: vakitler.Ikindi || vakitler.ikindi,
-      Aksam:  vakitler.Aksam  || vakitler.aksam,
-      Yatsi:  vakitler.Yatsi  || vakitler.yatsi,
-    };
-    
-    // Aktif vakti bul
-    const dakikalar = VAKIT_META.map(v => {
-      const s = saatler[v.key] || '';
-      const [h,m] = s.split(':').map(Number);
-      return (h||0)*60+(m||0);
+    const dakikalar = NV_META.map(v => {
+      const s = vakitler[v.key] || '00:00';
+      const [h, m] = s.split(':').map(Number);
+      return h * 60 + m;
     });
-    let aktifIdx = 0;
-    for (let i = dakikalar.length-1; i >= 0; i--) {
+    let aktifIdx = 5; // varsayılan yatsı
+    for (let i = dakikalar.length - 1; i >= 0; i--) {
       if (simdDk >= dakikalar[i]) { aktifIdx = i; break; }
     }
-    
-    grid.innerHTML = VAKIT_META.map((v,i) => `
-      <div class="nkart${i===aktifIdx?' aktif-vakit':''}">
-        <div class="nkart-ico">${v.ico}</div>
-        <div class="nkart-ad">${v.ad}</div>
-        <div class="nkart-saat">${saatler[v.key] || '--:--'}</div>
-      </div>`).join('');
+
+    grid.innerHTML = NV_META.map((v, i) => {
+      const saat = vakitler[v.key] || '--:--';
+      return '<div class="nkart' + (i === aktifIdx ? ' aktif-vakit' : '') + '">' +
+        '<div class="nkart-ico">' + v.ico + '</div>' +
+        '<div class="nkart-ad">' + v.ad + '</div>' +
+        '<div class="nkart-saat">' + saat + '</div>' +
+        '</div>';
+    }).join('');
+
   } catch(e) {
-    grid.innerHTML = '<div class="namaz-loading" style="color:rgba(248,113,113,.7)">⚠️ Veri alınamadı. Diyanet API'ye bağlanılamıyor.</div>';
+    console.error('Namaz vakti hatası:', e);
+    grid.innerHTML = '<div class="namaz-loading" style="color:rgba(248,113,113,.7);grid-column:1/-1">' +
+      '⚠️ Veri alınamadı. <a href="https://namazvakitleri.diyanet.gov.tr/tr-TR/9246/artvin-icin-namaz-vakti" ' +
+      'target="_blank" style="color:var(--gold)">Diyanet sitesini ziyaret edin →</a></div>';
   }
 }
 
-// Sayfa açılışında merkez yükle
-document.addEventListener('DOMContentLoaded', () => {
-  const ilkTab = document.querySelector('.ntab');
+// Sayfa yüklenince Merkez'i otomatik göster
+document.addEventListener('DOMContentLoaded', function() {
+  var ilkTab = document.querySelector('.ntab');
   if (ilkTab) namazIlce(ilkTab, '9246');
 });
 
