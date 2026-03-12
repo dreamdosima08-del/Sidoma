@@ -551,82 +551,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 .nav-bayrak svg{display:block;border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .nav-bayrak-yazi{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);font-family:'Playfair Display',serif}
 
-/* ═══ NAMAZ VAKİTLERİ ═══ */
-.namaz-tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
-.ntab{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.45);font-size:.65rem;font-weight:600;letter-spacing:.06em;padding:.38rem .8rem;cursor:pointer;transition:.2s;border-radius:4px}
-.ntab:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)}
-.ntab.active{background:rgba(61,219,138,.1);border-color:rgba(61,219,138,.35);color:var(--vivid)}
-.namaz-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem}
-.nkart{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:.7rem .5rem;text-align:center;border-radius:6px;transition:.2s;position:relative}
-.nkart.aktif-vakit{border-color:rgba(240,192,64,.4);background:rgba(240,192,64,.06)}
-.nkart.aktif-vakit::before{content:'▶';position:absolute;top:4px;right:5px;font-size:.5rem;color:var(--gold);opacity:.7}
-.nkart-ico{font-size:1.1rem;margin-bottom:.3rem}
-.nkart-ad{font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.3rem}
-.nkart-saat{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:700;color:#e8ede9;line-height:1}
-.namaz-loading{color:rgba(255,255,255,.3);font-size:.8rem;padding:1rem 0;grid-column:1/-1}
-@media(max-width:480px){
-  .namaz-grid{grid-template-columns:repeat(3,1fr)}
-  .ntab{font-size:.6rem;padding:.32rem .65rem}
-}
 
-.hero-bayrak{position:absolute;top:1rem;left:1.2rem;z-index:4;display:flex;align-items:center;gap:.45rem;animation:fadeUp .6s ease both .05s}
-.hero-bayrak svg{display:block;border-radius:2px;box-shadow:0 2px 8px rgba(0,0,0,.4);filter:drop-shadow(0 0 4px rgba(0,0,0,.3))}
-.hero-bayrak-yazi{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);font-family:"Playfair Display",serif;text-shadow:0 1px 4px rgba(0,0,0,.5)}
-</style>
-
-<style>
-/* IntersectionObserver animasyon JS */
-</style>
-
-<!-- Blog Tipografi -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
-<style>
-#blogModal,#blogModal2{font-family:'Source Serif 4',Georgia,serif;font-weight:300;background:#0c1a10}
-#blogModal .snav,#blogModal2 .snav{background:rgba(12,26,16,.96);border-bottom:1px solid rgba(255,255,255,.08);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(14px)}
-#blogModal .snav-logo,#blogModal2 .snav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:800;color:#e8b84b}
-#blogModal .post-hero,#blogModal2 .post-hero{width:100%;height:58vw;max-height:500px;object-fit:cover;display:block}
-#blogModal .w,#blogModal2 .w{max-width:720px;margin:0 auto;padding:0 1.5rem}
-#blogModal .cat-badge,#blogModal2 .cat-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(61,219,138,.08);border:1px solid rgba(61,219,138,.18);color:#3ddb8a;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .9rem;margin-bottom:1.5rem}
-#blogModal .post-header,#blogModal2 .post-header{padding:3rem 0 0}
-#blogModal .post-title,#blogModal2 .post-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,6.5vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:1.1rem}
-#blogModal .post-subtitle,#blogModal2 .post-subtitle{font-size:1.05rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.42);line-height:1.75;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08)}
-#blogModal .post-meta,#blogModal2 .post-meta{display:flex;flex-wrap:wrap;gap:1.25rem;padding-bottom:2rem;margin-bottom:2.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
-#blogModal .post-meta-item,#blogModal2 .post-meta-item{font-size:.68rem;color:rgba(255,255,255,.42);display:flex;align-items:center;gap:.35rem}
-#blogModal .post-meta-item strong,#blogModal2 .post-meta-item strong{color:rgba(255,255,255,.5)}
-#blogModal .post-text,#blogModal2 .post-text{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:2}
-#blogModal .post-text p,#blogModal2 .post-text p{margin-bottom:1.85rem}
-#blogModal .post-text h2,#blogModal2 .post-text h2{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:700;color:#eceee8;margin:4rem 0 1.25rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.08);line-height:1.25}
-#blogModal .post-text h3,#blogModal2 .post-text h3{font-size:.72rem;font-weight:600;color:#e8b84b;margin:2.5rem 0 .75rem;letter-spacing:.14em;text-transform:uppercase}
-#blogModal .post-text strong,#blogModal2 .post-text strong{color:#fff;font-weight:600}
-#blogModal .note,#blogModal2 .note{display:flex;gap:1rem;padding:1.5rem 1.6rem;margin:2.25rem 0;border-left:3px solid}
-#blogModal .note-txt,#blogModal2 .note-txt{font-size:.95rem;line-height:1.9;color:rgba(255,255,255,.62)}
-#blogModal .note.yes,#blogModal2 .note.yes{border-color:#3ddb8a;background:rgba(61,219,138,.04)}
-#blogModal .note.no,#blogModal2 .note.no{border-color:#f87171;background:rgba(248,113,113,.04)}
-#blogModal .note.tip,#blogModal2 .note.tip{border-color:#e8b84b;background:rgba(232,184,75,.04)}
-#blogModal .note.info,#blogModal2 .note.info{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.02)}
-#blogModal .soru-kart,#blogModal2 .soru-kart{margin:2.5rem 0;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025)}
-#blogModal .soru-baslik,#blogModal2 .soru-baslik{display:flex;align-items:flex-start;gap:1rem;padding:1.5rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.06)}
-#blogModal .soru-no,#blogModal2 .soru-no{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:#e8b84b;line-height:1;flex-shrink:0}
-#blogModal .soru-metin,#blogModal2 .soru-metin{font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.48);padding-top:.4rem;line-height:1.65}
-#blogModal .soru-cevap,#blogModal2 .soru-cevap{padding:1.5rem 1.6rem;font-size:.96rem;line-height:1.95;color:rgba(255,255,255,.7);border-left:3px solid #3ddb8a}
-#blogModal .summary-box,#blogModal2 .summary-box{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);padding:2rem;margin:3rem 0}
-#blogModal .summary-title,#blogModal2 .summary-title{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:#3ddb8a;font-weight:700;margin-bottom:1.25rem}
-#blogModal .summary-row,#blogModal2 .summary-row{display:flex;gap:.75rem;font-size:.9rem;margin-bottom:.75rem;color:rgba(255,255,255,.52);line-height:1.55}
-#blogModal .post-tags,#blogModal2 .post-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:3.5rem 0 1rem}
-#blogModal .post-tag,#blogModal2 .post-tag{font-size:.65rem;border:1px solid rgba(255,255,255,.1);padding:.25rem .75rem;color:rgba(255,255,255,.28)}
-#blogModal .back-btn,#blogModal2 .back-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:.5rem;margin-bottom:5rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:.85rem 1.6rem;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.4);transition:.2s}
-#blogModal footer,#blogModal2 footer{background:#070e09;border-top:1px solid rgba(255,255,255,.08);padding:2.5rem;text-align:center}
-#blogModal footer p,#blogModal2 footer p{font-size:.68rem;color:rgba(255,255,255,.16)}
-@media(max-width:600px){#blogModal .post-title,#blogModal2 .post-title{font-size:1.8rem}#blogModal .soru-baslik,#blogModal2 .soru-baslik{flex-direction:column}}
-
-/* YAZAR KUTUSU */
-#blogModal .yazar-kutu,#blogModal2 .yazar-kutu{
-  display:flex;align-items:center;gap:1.25rem;
-  padding:1.75rem;
-  margin:3rem 0 1rem;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.025);
-}
 #blogModal .yazar-foto,#blogModal2 .yazar-foto{
   width:64px;height:64px;
   border-radius:50%;
@@ -1278,36 +1203,6 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   </div>
 </section>
 
-<!-- NAMAZ VAKİTLERİ -->
-<section id="namaz" style="padding:3rem 0">
-  <div class="w">
-    <p class="slbl">🕌 Diyanet Verileri</p>
-    <h2 class="stitle">Namaz Vakitleri</h2>
-    <p class="sdesc">Artvin merkez ve tüm ilçeleri için bugünkü namaz vakitleri. Her gün Diyanet İşleri Başkanlığı verilerinden otomatik güncellenir.</p>
-
-    <!-- İlçe sekmeleri -->
-    <div class="namaz-tabs" id="namazTabs">
-      <button class="ntab active" onclick="namazIlce(this,'9246')">Merkez</button>
-      <button class="ntab" onclick="namazIlce(this,'9247')">Ardanuç</button>
-      <button class="ntab" onclick="namazIlce(this,'9248')">Arhavi</button>
-      <button class="ntab" onclick="namazIlce(this,'9249')">Borçka</button>
-      <button class="ntab" onclick="namazIlce(this,'9250')">Hopa</button>
-      <button class="ntab" onclick="namazIlce(this,'9252')">Murgul</button>
-      <button class="ntab" onclick="namazIlce(this,'9253')">Şavşat</button>
-      <button class="ntab" onclick="namazIlce(this,'9254')">Yusufeli</button>
-    </div>
-
-    <!-- Vakitler grid -->
-    <div class="namaz-grid" id="namazGrid">
-      <div class="namaz-loading">⏳ Yükleniyor...</div>
-    </div>
-
-    <!-- Kaynak notu -->
-    <p style="font-size:.62rem;color:rgba(255,255,255,.22);margin-top:1rem;text-align:center">
-      Kaynak: <a href="https://namazvakitleri.diyanet.gov.tr" target="_blank" rel="noopener" style="color:rgba(255,255,255,.35)">Diyanet İşleri Başkanlığı</a>
-    </p>
-  </div>
-</section>
 
 
 <!-- ECZANE -->
@@ -2427,84 +2322,11 @@ function sayfaPaylas(){
   }
 }
 
-// ── NAMAZ VAKİTLERİ ─────────────────────────────────────────────────────────
-// Kaynak: ezanvakti.emushaf.net (Diyanet verileri, CORS serbest)
-// Artvin ilçe ID'leri: Merkez=9246, Ardanuç=9247, Arhavi=9248
-// Borçka=9249, Hopa=9250, Murgul=9252, Şavşat=9253, Yusufeli=9254
 
-const NV_CACHE = {};
-const NV_META = [
-  {key:'Imsak',  ad:'İmsak',  ico:'🌙'},
-  {key:'Sabah',  ad:'Sabah',  ico:'🌅'},
-  {key:'Ogle',   ad:'Öğle',   ico:'☀️'},
-  {key:'Ikindi', ad:'İkindi', ico:'🌤️'},
-  {key:'Aksam',  ad:'Akşam',  ico:'🌇'},
-  {key:'Yatsi',  ad:'Yatsı',  ico:'⭐'},
-];
-
-async function namazIlce(btn, ilceId) {
-  document.querySelectorAll('.ntab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const grid = document.getElementById('namazGrid');
-  grid.innerHTML = '<div class="namaz-loading">⏳ Yükleniyor...</div>';
-
-  try {
-    let vakitler;
-    if (NV_CACHE[ilceId]) {
-      vakitler = NV_CACHE[ilceId];
-    } else {
-      // ezanvakti.emushaf.net — Diyanet verilerini CORS'suz sunan açık API
-      const res = await fetch(
-        'https://ezanvakti.emushaf.net/vakitler/' + ilceId,
-        { headers: { 'Accept': 'application/json' } }
-      );
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      // API bugünün vakitlerini döndürüyor, dizi formatında
-      // Her eleman: {MiladiTarihKisa, Imsak, Sabah, Ogle, Ikindi, Aksam, Yatsi, ...}
-      const bugun = new Date().toLocaleDateString('tr-TR', {day:'2-digit',month:'2-digit',year:'numeric'});
       // Bugünü bul ya da ilk kaydı al
       vakitler = Array.isArray(data)
         ? (data.find(d => d.MiladiTarihKisa === bugun) || data[0])
         : data;
-      NV_CACHE[ilceId] = vakitler;
-    }
-
-    // Şu anki aktif vakti hesapla
-    const simdi = new Date();
-    const simdDk = simdi.getHours() * 60 + simdi.getMinutes();
-    const dakikalar = NV_META.map(v => {
-      const s = vakitler[v.key] || '00:00';
-      const [h, m] = s.split(':').map(Number);
-      return h * 60 + m;
-    });
-    let aktifIdx = 5; // varsayılan yatsı
-    for (let i = dakikalar.length - 1; i >= 0; i--) {
-      if (simdDk >= dakikalar[i]) { aktifIdx = i; break; }
-    }
-
-    grid.innerHTML = NV_META.map((v, i) => {
-      const saat = vakitler[v.key] || '--:--';
-      return '<div class="nkart' + (i === aktifIdx ? ' aktif-vakit' : '') + '">' +
-        '<div class="nkart-ico">' + v.ico + '</div>' +
-        '<div class="nkart-ad">' + v.ad + '</div>' +
-        '<div class="nkart-saat">' + saat + '</div>' +
-        '</div>';
-    }).join('');
-
-  } catch(e) {
-    console.error('Namaz vakti hatası:', e);
-    grid.innerHTML = '<div class="namaz-loading" style="color:rgba(248,113,113,.7);grid-column:1/-1">' +
-      '⚠️ Veri alınamadı. <a href="https://namazvakitleri.diyanet.gov.tr/tr-TR/9246/artvin-icin-namaz-vakti" ' +
-      'target="_blank" style="color:var(--gold)">Diyanet sitesini ziyaret edin →</a></div>';
-  }
-}
-
-// Sayfa yüklenince Merkez'i otomatik göster
-document.addEventListener('DOMContentLoaded', function() {
-  var ilkTab = document.querySelector('.ntab');
-  if (ilkTab) namazIlce(ilkTab, '9246');
-});
 
 </script>
 
