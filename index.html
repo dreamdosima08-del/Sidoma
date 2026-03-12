@@ -31,6 +31,7 @@ function linkKopyala(b){navigator.clipboard&&navigator.clipboard.writeText('http
 <link rel="icon" type="image/png" href="https://i.ibb.co/XxphkxWp/file-0000000062a4720aadec767e04ac0fa1.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a1a12;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.09);--gold:#f0c040;--vivid:#3ddb8a;--offwhite:#e8ede9}
@@ -59,7 +60,7 @@ p{line-height:1.6}
 .hero-city{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,15vw,10rem);font-weight:700;line-height:.85;color:#fff;letter-spacing:-.03em}
 .hero-sub{font-size:clamp(1rem,3vw,1.6rem);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:.75rem;opacity:.85}
 .hero-pills{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;max-width:440px;margin:2.5rem auto 0}
-.hp{text-transform:uppercase;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.8);text-decoration:none;font-size:.74rem;font-weight:500;padding:.65rem .9rem;transition:.2s;text-align:center;display:block}
+.hp{text-transform:uppercase;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.8);text-decoration:none;font-size:.74rem;font-weight:500;padding:.65rem .9rem;transition:.2s;text-align:center;display:blockborder-radius:20px;}
 .hp:hover{background:var(--gold);color:#1a0e00;border-color:var(--gold)}
 .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;text-align:center;animation:bob 2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
@@ -146,15 +147,15 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .elcard a{color:var(--gold);font-size:.8rem;text-decoration:none}
 
 /* FOTO */
-.fotogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
-.fcard{background:var(--card);border:1px solid var(--border);padding:1.4rem;transition:.2s}
-.fcard:hover{border-color:rgba(61,219,138,.25);transform:translateY(-2px)}
-.fcard-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:rgba(61,219,138,.25);margin-bottom:.3rem}
-.fcard-name{font-size:.95rem;font-weight:700;color:var(--offwhite);margin-bottom:.4rem}
-.fcard-desc{font-size:.77rem;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:.75rem}
-.fcard-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+
+
+
+
+
+
+
 .ftag{font-size:.6rem;border:1px solid rgba(255,255,255,.1);padding:.15rem .5rem;color:rgba(255,255,255,.35)}
-.fcard-link{display:inline-block;margin-top:.75rem;font-size:.7rem;color:var(--vivid);text-decoration:none;font-weight:600}
+
 
 /* ROTA */
 .rogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
@@ -409,28 +410,10 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 }
 
 /* Kart hover parlaması — tüm kartlar */
-.ezcard,.fcard,.rocard,.hcard,.tc,.oc,.elcard,.mvcard,.blog-card{
-  transition:all .3s cubic-bezier(.25,.8,.25,1);
-  position:relative;
-  overflow:hidden;
-}
-.ezcard::after,.fcard::after,.rocard::after,.hcard::after,.tc::after,.oc::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,rgba(61,219,138,0) 0%,rgba(61,219,138,.06) 50%,rgba(240,192,64,.04) 100%);
-  opacity:0;
-  transition:opacity .3s ease;
-  pointer-events:none;
-}
-.ezcard:hover::after,.fcard:hover::after,.rocard:hover::after,.hcard:hover::after,.tc:hover::after,.oc:hover::after{
-  opacity:1;
-}
-.ezcard:hover,.fcard:hover,.hcard:hover,.tc:hover,.oc:hover{
-  border-color:rgba(61,219,138,.4)!important;
-  transform:translateY(-4px);
-  box-shadow:0 8px 32px rgba(0,0,0,.4),0 0 0 1px rgba(61,219,138,.1);
-}
+.ezcard,
+.ezcard::after,
+.ezcard:hover::after,
+.ezcard:hover,
 
 /* Blog kart geliştirilmiş hover */
 .blog-card:hover{
@@ -475,7 +458,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 .hp{text-transform:uppercase;
   position:relative;
   overflow:hidden;
-}
+border-radius:20px;}
 .hp::before{
   content:'';
   position:absolute;
@@ -1007,6 +990,16 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 
 <!-- STICKY NAV -->
 <nav class="snav">
+  <div class="nav-bayrak">
+      <svg viewBox="0 0 30 20" width="24" height="16" xmlns="http://www.w3.org/2000/svg">
+        <rect width="30" height="20" fill="#E30A17"/>
+        <circle cx="10" cy="10" r="6" fill="white"/>
+        <circle cx="11.5" cy="10" r="4.8" fill="#E30A17"/>
+        <polygon points="17,7.5 18.8,10 17,12.5 19.5,10.8 19.5,9.2" fill="white"/>
+        <polygon points="20,8.5 21.5,10 20,11.5 21,10.5 21,9.5" fill="white"/>
+      </svg>
+      <span class="nav-bayrak-yazi">T.C. Artvin</span>
+    </div>
   <a href="#hava">🌤️ Hava</a>
   <a href="#eczane">💊 Eczane</a>
   <a href="#taksi">🚕 Taksi</a>
@@ -1053,8 +1046,8 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
       <a class="hp" href="#tasimaci">🚐 Taşımacılık</a>
       <a class="hp" href="#otobus">🎫 Otobüs Bileti</a>
       <a class="hp" href="#elektrik">⚡ Elektrik Kesintisi</a>
-      <a class="hp" href="#foto">📸 Fotoğraf Noktaları</a>
       <a class="hp" href="#rota">🥾 Yürüyüş Rotaları</a>
+      <a class="hp" href="kayipbuluntu.html">🔍 Kayıp & Buluntu</a>
       <a class="hp" href="https://havas.net/otobus-hizmetleri" target="_blank" rel="noopener">✈️ Havaş Servisi</a>
       <a class="hp" href="#blog">✍️ Artvin'i Keşfet</a><a class="hp" href="#iletisim">📬 İletişim</a>
     </nav>
@@ -1140,25 +1133,21 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 <section style="padding:0 0 3rem">
   <div class="w">
     <div style="max-width:760px;margin:0 auto;border-top:1px solid rgba(255,255,255,.08);padding-top:2.5rem">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:#fff;margin-bottom:1.25rem;line-height:1.2">Göğe Komşu Topraklar: Artvin'in Büyülü Mirası</h2>
-      <img src="https://i.ibb.co/GQNpnSLs/goge-komsu-topraklar-artvinden-bulut-denizi-manzaralari-45384.jpg" alt="Artvin Bulut Denizi Manzarası" style="width:100%;max-height:380px;object-fit:cover;border:1px solid rgba(255,255,255,.1);margin-bottom:1.75rem;display:block">
-      <div style="color:rgba(255,255,255,.72);font-size:.97rem;line-height:1.85">
-        <p style="margin-bottom:1.25rem">Bazı şehirler vardır, içinden geçip gidersiniz; bazı şehirler vardır, ruhunuzda derin izler bırakır. Artvin, Türkiye'nin kuzeydoğu ucunda, doğanın dikey bir hiyerarşiyle göğe tırmandığı, bulutların yeryüzüyle kucaklaştığı o benzersiz coğrafyanın adıdır. Burası sadece bir şehir değil; tarihin, kültürün ve sonsuz bir yeşilin birleştiği bir <strong style="color:var(--gold)">"yeryüzü cenneti"</strong>dir.</p>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin:2rem 0 .75rem">Tarihin Taşlara Kazınmış İmzası</h3>
-        <p style="margin-bottom:1.25rem">Artvin'in hikayesi, Orta Çağ'ın ihtişamlı taş işçiliğiyle başlar. Şavşat'tan Yusufeli'ne uzanan vadilerde, İşhan ve Barhal gibi manastırlar, sanki doğanın bir parçasıymışçasına kayalarla bütünleşmiştir. Bu topraklar, Kolhis Krallığı'ndan Osmanlı İmparatorluğu'na kadar pek çok medeniyete ev sahipliği yapmış, her biri Artvin'in karakterine birer mühür vurmuştur. 93 Harbi'nin o meşhur direniş ruhu, bugün Artvin insanının mertliğinde ve hürriyetine olan tutkusunda hala ilk günkü gibi canlıdır.</p>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin:2rem 0 .75rem">Doğanın En Saf Hali: Karagöller ve Vadiler</h3>
-        <p style="margin-bottom:1.25rem">Artvin, bitmek bilmeyen orman deniziyle sizi sarmalarken, Borçka ve Şavşat Karagöl'ün aynasında size hayatın durduğu o büyülü anı sunar. Dünyanın en hızlı akan nehirlerinden biri olan Çoruh, hırçın sularıyla macera tutkunlarını selamlarken; binlerce bitki türüne ev sahipliği yapan Hatila Vadisi, biyoçeşitlilikte dünyanın sayılı noktalarından biridir. Burada her nefes, doğanın en saf halini ciğerlerinize çeker.</p>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin:2rem 0 .75rem">Kültürel Bir Şölen: Boğaların ve Tulumun Sesi</h3>
-        <p style="margin-bottom:1.25rem">Artvin'de kültür, sadece müzede değil, yaylanın tam kalbindedir. Kafkasör'de yankılanan boğa sesleri, asırlık bir barış ve geleneksel üstünlük ritüelini simgeler. Tulumun o karakteristik sesi ormanların içinde yankılanırken, Atabarı ile el ele tutuşan insanlar, birliğin ve beraberliğin en güzel koreografisini sergiler. Burada her yayla şenliği, Kafkasya'nın zarafetiyle Anadolu'nun samimiyetinin buluştuğu bir festivaldir.</p>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin:2rem 0 .75rem">Lezzet Durakları: Damağınızda Kalacak Bir İz</h3>
-        <p style="margin-bottom:1.25rem">Artvin'i sadece görmek yetmez, onu tatmalısınız. Odun ateşinde ağır ağır pişen meşhur Artvin Döneri'nden, mısır ekmeğinin sıcaklığına; yayla ballarının o eşsiz rayihasına kadar her lezzet, bu coğrafyanın bereketini sofranıza taşır. Her bir lokma, binlerce yıllık birikimin ve tertemiz bir doğanın meyvesidir.</p>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin:2rem 0 .75rem">Neden Şimdi Artvin?</h3>
-        <p style="margin-bottom:1.5rem">Artvin; kalabalıktan kaçmak isteyenler için bir sığınak, macera arayanlar için bir meydan okuma, huzur isteyenler içinse bitmek bilmeyen bir masaldır. Dört mevsimin de kendine has bir şiiri olan bu kadim şehir, sizi bulutların üzerine, gerçek bir rüyaya davet ediyor.</p>
-        <p style="font-style:italic;color:var(--gold);font-size:1rem">Artvin seni bekliyor. Bu eşsiz hikayenin bir parçası olmaya hazır mısın?</p>
+      <h2 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(2.2rem,6vw,3.5rem);font-weight:400;letter-spacing:.06em;color:#fff;margin-bottom:1.25rem;line-height:1.05;text-shadow:0 2px 24px rgba(0,0,0,.4)">Göğe Komşu Topraklar: Artvin'in Büyülü Mirası</h2>
+      <img src="https://i.ibb.co/GQNpnSLs/goge-komsu-topraklar-artvinden-bulut-denizi-manzaralari-45384.jpg" alt="Artvin Bulut Denizi Manzarası" style="width:100%;max-height:340px;object-fit:cover;border:1px solid rgba(255,255,255,.1);margin-bottom:1.75rem;display:block">
+      <div style="color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.85">
+        <p style="margin-bottom:1.1rem">Türkiye'nin kuzeydoğu ucunda, doğanın göğe tırmandığı, bulutların yeryüzüyle kucaklaştığı benzersiz bir coğrafya: <strong style="color:#fff">Artvin.</strong> Tarihin, kültürün ve sonsuz yeşilin birleştiği bu topraklar; geçip gidilecek değil, içinde kaybolunacak bir şehirdir.</p>
+        <h3 style="font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#f0c040;margin:1.5rem 0 .6rem">Tarihin İzleri</h3>
+        <p style="margin-bottom:1.1rem">Şavşat'tan Yusufeli'ne uzanan vadilerde İşhan ve Barhal manastırları doğayla bütünleşmiş durumda. Kolhis Krallığı'ndan Osmanlı'ya kadar pek çok medeniyet bu topraklarda iz bırakmış.</p>
+        <h3 style="font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#f0c040;margin:1.5rem 0 .6rem">Doğa</h3>
+        <p style="margin-bottom:1.1rem">Karagöl-Sahara Milli Parkı, Borçka Barajı, Hatila Vadisi — her biri ayrı bir tablo. Rakımın yükseldikçe değişen flora, Kaçkar zirvelerinde yılın büyük bölümü karla kaplı yaşam.</p>
+        <h3 style="font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#e8b84b;margin:1.5rem 0 .6rem">Lezzetler</h3>
+        <p style="margin-bottom:0">Muhlama, karalahana çorbası, köy peyniri, Borçka balı ve Artvin'e özgü kavurmalı hinkal — sofranızda bulunmayı hak eden lezzetler.</p>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- UYDU & VİDEO CTA KARTLARI -->
 <section style="padding:0 0 2rem">
@@ -1279,6 +1268,141 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   </div>
 </section>
 
+<section id="blog">
+  <div class="w">
+    <p class="slbl">✍️ Artvin'i Keşfet</p>
+    <h2 class="stitle">Hikayeler &amp; Keşifler</h2>
+    <p class="sdesc">Artvin'in gizli köşeleri, doğası, tarihi ve yerel yaşamından hikayeler.</p>
+    <div class="blog-grid" id="blogGrid">
+
+      <a class="blog-card" href="blog8.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/3Y7wYbML/1773309751666.png" alt="Demirkent kavurmalı hinkal" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🍽️ Yöresel Lezzetler</div>
+          <div class="blog-card-title">Kırk Hinkal Yiyip Doymamak: Demirkent Köyü'nün Efsane Lezzeti</div>
+          <div class="blog-card-desc">Artvin Yusufeli'nin Demirkent köyüne özgü kavurmalı hinkal — şiirlere geçmiş, dillerden düşmeyen bir damak tadı.</div>
+          <div class="blog-card-meta"><span>12 Mart 2026</span><span>5 dk okuma</span></div>
+        </div>
+      </a>
+
+      <a class="blog-card" href="blog7.html">
+        <div class="blog-card-badge" style="opacity:.6">7</div>
+        <img class="blog-card-img" src="https://i.ibb.co/353xBxPD/Kackar-Dagi-from-North-hory.jpg" alt="Kaçkar Dağı — Artvin'in En Yüksek Yeri">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">⛰️ Doğa & Coğrafya</div>
+          <div class="blog-card-title">Artvin'in En Yüksek Yeri Neresi? Kaçkar Dağı</div>
+          <div class="blog-card-desc">3.937 metre ile Türkiye'nin 4. yüksek zirvesi. Tırmanış rotaları, buzul gölleri ve Heveg Köyü güzergahı.</div>
+          <div class="blog-card-footer">
+            <span class="blog-card-date">11 Mart 2026 · 5 dk okuma</span>
+            <span class="blog-card-link">Devamını Oku →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="blog-card" href="blog6.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/bT3nkHD/kafkasor-festivali-boga-barisi.jpg" alt="Artvin Boğa Güreşleri Kafkasör Festivali">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🐂 Festival & Gelenek</div>
+          <div class="blog-card-title">Artvin Boğa Güreşleri: Nerede İzlenir, Ne Zaman Başlar?</div>
+          <div class="blog-card-desc">200 yıllık geleneğin Temmuz'daki buluşması: Kafkasör. Sarıgöl'den Türkiye Şampiyonası'na, Artvin'in tüm güreş lokasyonları.</div>
+          <div class="blog-card-footer">
+            <span class="blog-card-date">5 Mart 2026 · 5 dk okuma</span>
+            <span class="blog-card-link">Devamını Oku →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="blog-card" href="blog5.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/W4yYCfW4/1772656217998.png" alt="Artvin ne zaman il oldu">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🏛️ Tarih</div>
+          <div class="blog-card-title">Artvin Ne Zaman İl Oldu?</div>
+          <div class="blog-card-desc">1924'te vilayet, 1933'te kaza, 1936'da yeniden merkez, 1956'da Artvin. Bir ilin kimliğini kazanma hikayesi.</div>
+          <div class="blog-card-footer">
+            <span class="blog-card-date">4 Mart 2026 · 5 dk okuma</span>
+            <span class="blog-card-link">Devamını Oku →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="blog-card" href="blog4.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/Kz0bTbKV/MG-20260304-101611.jpg" alt="Artvin Coğrafi İşaret">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🏆 Coğrafi İşaret</div>
+          <div class="blog-card-title">Artvin'in Tescilli Lezzetleri</div>
+          <div class="blog-card-desc">Arhavi kestane balından Hopa laz böreğine, Şavşat ketesinden pucukoya — devlet güvencesiyle tescil edilmiş Artvin lezzetleri.</div>
+          <div class="blog-card-footer">
+            <span class="blog-card-date">4 Mart 2026 · 4 dk okuma</span>
+            <span class="blog-card-link">Devamını Oku →</span>
+          </div>
+        </div>
+      </a>
+      <a class="blog-card" href="blog3.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/fz7Lt08b/1772545454067.png" alt="Artvin Ulaşım">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">✈️ Ulaşım Rehberi</div>
+          <div class="blog-card-title">Artvin'den Her Yere: Havalimanı ve Otobüs Rehberi</div>
+          <div class="blog-card-desc">4 havalimanı, 2 otobüs terminali. Hangisi sana daha yakın, ring servisi var mı, kışın ne olur? Hepsini anlattık.</div>
+          <div class="blog-card-footer">
+            <span class="blog-card-date">3 Mart 2026 · 5 dk okuma</span>
+            <span class="blog-card-link">Devamını Oku →</span>
+          </div>
+        </div>
+      </a>
+      <a class="blog-card" href="blog2.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/VWrnR99j/MG-20260221-130134.jpg" alt="Artvin">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">😄 Kültür & Mizah</div>
+          <div class="blog-card-title">Artvinliye Sorulmaz: Tepkisel Cevap Alacağınız 10 Soru</div>
+          <div class="blog-card-desc">Bir Artvinliyle sohbet kurmadan önce şu listeye bir göz atın. Bazı sorular var ki sabır taşını çatlatmaya yeter.</div>
+          <div class="blog-card-footer">
+            <span class="blog-card-date">3 Mart 2026 · 5 dk okuma</span>
+            <span class="blog-card-link">Devamını Oku →</span>
+          </div>
+        </div>
+      </a>
+      <a class="blog-card" href="blog1.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/SXstYhQ5/artvin-merkez-notlar.png" alt="Artvin Merkez">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">📣 Tanitim & Yaşam Rehberi</div>
+          <div class="blog-card-title">Artvin'e Geliyorsanız Bunları Mutlaka Bilin</div>
+          <div class="blog-card-desc">Okul ya da iş için Artvin'e taşınmayı düşünüyorsanız, bu satırlar tam size göre. Süslü kelimeler yok, samimi notlar var.</div>
+          <div class="blog-card-footer">
+            <span class="blog-card-date">1 Mart 2026 · 6 dk okuma</span>
+            <span class="blog-card-link">Devamını Oku →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- BLOG PAYLAŞIM -->
+    <div class="paylasim-bar" style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+      <span class="paylasim-lbl">Bu sayfayı paylaş:</span>
+      <a class="pbtn pbtn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fartvinrehber.com" target="_blank" rel="noopener" title="Facebook'ta Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fartvinrehber.com&text=Artvin%20%C5%9Eehir%20Rehberi%20%E2%80%94%20Eczane%2C%20Taksi%2C%20Hava%20Durumu%20ve%20daha%20fazlas%C4%B1!" target="_blank" rel="noopener" title="X'te Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a class="pbtn pbtn-wa" href="https://api.whatsapp.com/send?text=Artvin%20%C5%9Eehir%20Rehberi%3A%20https%3A%2F%2Fartvinrehber.com" target="_blank" rel="noopener" title="WhatsApp'ta Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      </a>
+      <a class="pbtn pbtn-tg" href="https://t.me/share/url?url=https%3A%2F%2Fartvinrehber.com&text=Artvin%20%C5%9Eehir%20Rehberi" target="_blank" rel="noopener" title="Telegram'da Paylaş">
+        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <!-- TAKSİMETRE -->
 <section id="taksi">
   <div class="w">
@@ -1349,23 +1473,23 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <p class="sdesc">Artvin'den başlıca şehirlere ve ilçelere karayolu mesafeleri.</p>
     <div class="tblw">
       <table>
-        <thead><tr><th>Güzergah</th><th>Mesafe</th><th>Tahmini Süre</th></tr></thead>
+        <thead><tr><th>Güzergah</th><th style="color:#f0c040">Mesafe</th><th style="color:#3ddb8a">Tahmini Süre</th></tr></thead>
         <tbody>
-          <tr><td>Artvin → İstanbul</td><td>1.305 km</td><td>~22 sa</td></tr>
-          <tr><td>Artvin → Ankara</td><td>1.000 km</td><td>~17 sa</td></tr>
-          <tr><td>Artvin → Bursa</td><td>1.315 km</td><td>~22 sa</td></tr>
-          <tr><td>Artvin → Trabzon</td><td>229 km</td><td>~3 sa</td></tr>
-          <tr><td>Artvin → Erzurum</td><td>194 km</td><td>~2 sa 30 dk</td></tr>
-          <tr><td>Artvin → Samsun</td><td>550 km</td><td>~6 sa</td></tr>
-          <tr><td>Artvin → Hopa</td><td>75 km</td><td>~50 dk</td></tr>
-          <tr><td>Artvin → Borçka</td><td>30 km</td><td>~30 dk</td></tr>
-          <tr><td>Artvin → Yusufeli</td><td>65 km</td><td>~1 sa</td></tr>
-          <tr><td>Artvin → Şavşat</td><td>72 km</td><td>~1 sa 15 dk</td></tr>
-          <tr><td>Artvin → Ardanuç</td><td>35 km</td><td>~35 dk</td></tr>
-          <tr><td>Artvin → Arhavi</td><td>66 km</td><td>~1 sa</td></tr>
-          <tr><td>Artvin → Murgul</td><td>58 km</td><td>~1 sa</td></tr>
-          <tr><td>Artvin → Kemalpaşa</td><td>71 km</td><td>~1 sa 10 dk</td></tr>
-          <tr><td>Artvin → Sarp</td><td>74 km</td><td>~1 sa 20 dk</td></tr>
+          <tr><td>Artvin → İstanbul</td><td style="color:#f0c040;font-weight:600">1.305 km</td><td style="color:#3ddb8a;font-weight:600">~22 sa</td></tr>
+          <tr><td>Artvin → Ankara</td><td style="color:#f0c040;font-weight:600">1.000 km</td><td style="color:#3ddb8a;font-weight:600">~17 sa</td></tr>
+          <tr><td>Artvin → Bursa</td><td style="color:#f0c040;font-weight:600">1.315 km</td><td style="color:#3ddb8a;font-weight:600">~22 sa</td></tr>
+          <tr><td>Artvin → Trabzon</td><td style="color:#f0c040;font-weight:600">229 km</td><td style="color:#3ddb8a;font-weight:600">~3 sa</td></tr>
+          <tr><td>Artvin → Erzurum</td><td style="color:#f0c040;font-weight:600">194 km</td><td style="color:#3ddb8a;font-weight:600">~2 sa 30 dk</td></tr>
+          <tr><td>Artvin → Samsun</td><td style="color:#f0c040;font-weight:600">550 km</td><td style="color:#3ddb8a;font-weight:600">~6 sa</td></tr>
+          <tr><td>Artvin → Hopa</td><td style="color:#f0c040;font-weight:600">75 km</td><td style="color:#3ddb8a;font-weight:600">~50 dk</td></tr>
+          <tr><td>Artvin → Borçka</td><td style="color:#f0c040;font-weight:600">30 km</td><td style="color:#3ddb8a;font-weight:600">~30 dk</td></tr>
+          <tr><td>Artvin → Yusufeli</td><td style="color:#f0c040;font-weight:600">65 km</td><td style="color:#3ddb8a;font-weight:600">~1 sa</td></tr>
+          <tr><td>Artvin → Şavşat</td><td style="color:#f0c040;font-weight:600">72 km</td><td style="color:#3ddb8a;font-weight:600">~1 sa 15 dk</td></tr>
+          <tr><td>Artvin → Ardanuç</td><td style="color:#f0c040;font-weight:600">35 km</td><td style="color:#3ddb8a;font-weight:600">~35 dk</td></tr>
+          <tr><td>Artvin → Arhavi</td><td style="color:#f0c040;font-weight:600">66 km</td><td style="color:#3ddb8a;font-weight:600">~1 sa</td></tr>
+          <tr><td>Artvin → Murgul</td><td style="color:#f0c040;font-weight:600">58 km</td><td style="color:#3ddb8a;font-weight:600">~1 sa</td></tr>
+          <tr><td>Artvin → Kemalpaşa</td><td style="color:#f0c040;font-weight:600">71 km</td><td style="color:#3ddb8a;font-weight:600">~1 sa 10 dk</td></tr>
+          <tr><td>Artvin → Sarp</td><td style="color:#f0c040;font-weight:600">74 km</td><td style="color:#3ddb8a;font-weight:600">~1 sa 20 dk</td></tr>
         </tbody>
       </table>
     </div>
@@ -1428,7 +1552,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <h2 class="stitle">Elektrik Kesintileri</h2>
     <p class="sdesc">Artvin ve ilçeleri için planlı elektrik kesintisi sorgulama. Çoruh Elektrik A.Ş. üzerinden güncel bilgiye ulaşın.</p>
     <div class="elgrid">
-      <div class="elcard"><div class="elcard-il">Kesinti Sorgula</div><a href="https://belsis.coruhelektrik.com.tr" target="_blank" rel="noopener">belsis.coruhelektrik.com.tr →</a></div>
+      <div class="elcard"><div class="elcard-il">Kesinti Sorgula</div><a href="https://www.coruhelektrik.com.tr/kesinti-sorgula"  target="_blank" rel="noopener">belsis.coruhelektrik.com.tr →</a></div>
       <div class="elcard"><div class="elcard-il">Genel Merkez</div><a href="https://www.coruhelektrik.com.tr" target="_blank" rel="noopener">coruhelektrik.com.tr →</a></div>
       <div class="elcard"><div class="elcard-il">Arıza / Acil Hat</div><a href="tel:186" style="color:var(--vivid);font-size:1.2rem;font-weight:700">📞 186</a></div>
     </div>
@@ -1436,68 +1560,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 </section>
 
 <!-- FOTOĞRAF -->
-<section id="foto">
-  <div class="w">
-    <p class="slbl">Keşfet</p>
-    <h2 class="stitle">Fotoğraf Noktaları</h2>
-    <p class="sdesc">Artvin'in en etkileyici fotoğraf lokasyonları.</p>
-        <div class="fotogrid">
 
-      <div class="fcard">
-        <img class="fcard-img" src="https://i.ibb.co/FFPbNLb/Screenshot-2026-03-11-22-43-50-606-com-instagram-android-edit.jpg" alt="Artvin Panoraması">
-        <div class="fcard-num">01</div>
-        <div class="fcard-name">Artvin Panoraması</div>
-        <div class="fcard-desc">Şehir merkezinden muhteşem vadi ve dağ manzarası. Gün batımında altın ışık.</div>
-        <div class="fcard-tags"><span class="ftag">Kolay</span><span class="ftag">Tüm Yıl</span><span class="ftag">Gün Batımı</span></div>
-        <a class="fcard-link" href="https://maps.google.com/?q=Artvin+Merkez+Panorama" target="_blank" rel="noopener">Google Maps →</a>
-      </div>
-
-      <div class="fcard">
-        <img class="fcard-img" src="https://i.ibb.co/Z1YwNPgP/thumbs-b-c-5e60d5f6deb88039b39700b970af7280.jpg" alt="Borçka Barajı">
-        <div class="fcard-num">02</div>
-        <div class="fcard-name">Borçka Barajı</div>
-        <div class="fcard-desc">Turkuaz rengi yapay göl ve çevreleyen ormanlar. Sonbaharda görsel şölen.</div>
-        <div class="fcard-tags"><span class="ftag">Kolay</span><span class="ftag">Sonbahar</span><span class="ftag">Göl</span></div>
-        <a class="fcard-link" href="https://maps.google.com/?q=Borcka+Baraji+Artvin" target="_blank" rel="noopener">Google Maps →</a>
-      </div>
-
-      <div class="fcard">
-        <img class="fcard-img" src="https://i.ibb.co/jP1vyTd6/FB-MG-1773258430424.jpg" alt="Şavşat Karagöl - Sahara">
-        <div class="fcard-num">03</div>
-        <div class="fcard-name">Şavşat — Karagöl Sahara</div>
-        <div class="fcard-desc">Şavşat ilçesindeki Sahara Dağı eteklerinde doğal göl. Sonbaharda renk cümbüşü.</div>
-        <div class="fcard-tags"><span class="ftag">Orta</span><span class="ftag">Sonbahar</span><span class="ftag">Göl</span></div>
-        <a class="fcard-link" href="https://maps.google.com/?q=Karagol+Sahara+Savsат" target="_blank" rel="noopener">Google Maps →</a>
-      </div>
-
-      <div class="fcard">
-        <img class="fcard-img" src="https://i.ibb.co/WvMgLyFt/thumbs-b-c-f2bcc46bc3696a2e08a251afcf7191dd.jpg" alt="Artvin Kalesi">
-        <div class="fcard-num">04</div>
-        <div class="fcard-name">Artvin Kalesi</div>
-        <div class="fcard-desc">Tarihi kale ve Çoruh Vadisi manzarası. Artvin'in simgesi, her mevsim farklı güzellikte.</div>
-        <div class="fcard-tags"><span class="ftag">Kolay</span><span class="ftag">Tüm Yıl</span><span class="ftag">Tarihi</span></div>
-        <a class="fcard-link" href="https://maps.google.com/?q=Artvin+Kalesi" target="_blank" rel="noopener">Google Maps →</a>
-      </div>
-
-      <div class="fcard">
-        <img class="fcard-img" src="https://i.ibb.co/XxbntT35/oruh-Nehri-2.jpg" alt="Çoruh Nehri">
-        <div class="fcard-num">05</div>
-        <div class="fcard-name">Çoruh Nehri</div>
-        <div class="fcard-desc">Dünya'nın en hızlı akan nehirlerinden biri. Rafting sezonu boyunca eşsiz aksiyon kareleri.</div>
-        <div class="fcard-tags"><span class="ftag">Yaz</span><span class="ftag">Rafting</span><span class="ftag">Nehir</span></div>
-        <a class="fcard-link" href="https://maps.google.com/?q=Coruh+Nehri+Artvin" target="_blank" rel="noopener">Google Maps →</a>
-      </div>
-
-      <div class="fcard">
-        <img class="fcard-img" src="https://i.ibb.co/chFD07Fh/ATATURK-ATATEPE.jpg" alt="Atatepe Atatürk Heykeli">
-        <div class="fcard-num">06</div>
-        <div class="fcard-name">Atatepe — Atatürk Heykeli</div>
-        <div class="fcard-desc">Artvin'e hâkim tepedeki Atatürk heykeli. Şehrin kuş bakışı manzarası için favori nokta.</div>
-        <div class="fcard-tags"><span class="ftag">Kolay</span><span class="ftag">Tüm Yıl</span><span class="ftag">Panorama</span></div>
-        <a class="fcard-link" href="https://maps.google.com/?q=Atatepe+Artvin" target="_blank" rel="noopener">Google Maps →</a>
-      </div>
-  </div>
-</section>
 
 <!-- ROTA -->
 <section id="rota">
@@ -1699,140 +1762,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   </div>
 </section>
 
-<section id="blog">
-  <div class="w">
-    <p class="slbl">✍️ Artvin'i Keşfet</p>
-    <h2 class="stitle">Hikayeler &amp; Keşifler</h2>
-    <p class="sdesc">Artvin'in gizli köşeleri, doğası, tarihi ve yerel yaşamından hikayeler.</p>
-    <div class="blog-grid" id="blogGrid">
 
-      <a class="blog-card" href="blog8.html">
-        <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/3Y7wYbML/1773309751666.png" alt="Demirkent kavurmalı hinkal" loading="lazy">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">🍽️ Yöresel Lezzetler</div>
-          <div class="blog-card-title">Kırk Hinkal Yiyip Doymamak: Demirkent Köyü'nün Efsane Lezzeti</div>
-          <div class="blog-card-desc">Artvin Yusufeli'nin Demirkent köyüne özgü kavurmalı hinkal — şiirlere geçmiş, dillerden düşmeyen bir damak tadı.</div>
-          <div class="blog-card-meta"><span>12 Mart 2026</span><span>5 dk okuma</span></div>
-        </div>
-      </a>
-
-      <a class="blog-card" href="blog7.html">
-        <div class="blog-card-badge" style="opacity:.6">7</div>
-        <img class="blog-card-img" src="https://i.ibb.co/353xBxPD/Kackar-Dagi-from-North-hory.jpg" alt="Kaçkar Dağı — Artvin'in En Yüksek Yeri">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">⛰️ Doğa & Coğrafya</div>
-          <div class="blog-card-title">Artvin'in En Yüksek Yeri Neresi? Kaçkar Dağı</div>
-          <div class="blog-card-desc">3.937 metre ile Türkiye'nin 4. yüksek zirvesi. Tırmanış rotaları, buzul gölleri ve Heveg Köyü güzergahı.</div>
-          <div class="blog-card-footer">
-            <span class="blog-card-date">11 Mart 2026 · 5 dk okuma</span>
-            <span class="blog-card-link">Devamını Oku →</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="blog-card" href="blog6.html">
-        <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/bT3nkHD/kafkasor-festivali-boga-barisi.jpg" alt="Artvin Boğa Güreşleri Kafkasör Festivali">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">🐂 Festival & Gelenek</div>
-          <div class="blog-card-title">Artvin Boğa Güreşleri: Nerede İzlenir, Ne Zaman Başlar?</div>
-          <div class="blog-card-desc">200 yıllık geleneğin Temmuz'daki buluşması: Kafkasör. Sarıgöl'den Türkiye Şampiyonası'na, Artvin'in tüm güreş lokasyonları.</div>
-          <div class="blog-card-footer">
-            <span class="blog-card-date">5 Mart 2026 · 5 dk okuma</span>
-            <span class="blog-card-link">Devamını Oku →</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="blog-card" href="blog5.html">
-        <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/W4yYCfW4/1772656217998.png" alt="Artvin ne zaman il oldu">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">🏛️ Tarih</div>
-          <div class="blog-card-title">Artvin Ne Zaman İl Oldu?</div>
-          <div class="blog-card-desc">1924'te vilayet, 1933'te kaza, 1936'da yeniden merkez, 1956'da Artvin. Bir ilin kimliğini kazanma hikayesi.</div>
-          <div class="blog-card-footer">
-            <span class="blog-card-date">4 Mart 2026 · 5 dk okuma</span>
-            <span class="blog-card-link">Devamını Oku →</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="blog-card" href="blog4.html">
-        <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/Kz0bTbKV/MG-20260304-101611.jpg" alt="Artvin Coğrafi İşaret">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">🏆 Coğrafi İşaret</div>
-          <div class="blog-card-title">Artvin'in Tescilli Lezzetleri</div>
-          <div class="blog-card-desc">Arhavi kestane balından Hopa laz böreğine, Şavşat ketesinden pucukoya — devlet güvencesiyle tescil edilmiş Artvin lezzetleri.</div>
-          <div class="blog-card-footer">
-            <span class="blog-card-date">4 Mart 2026 · 4 dk okuma</span>
-            <span class="blog-card-link">Devamını Oku →</span>
-          </div>
-        </div>
-      </a>
-      <a class="blog-card" href="blog3.html">
-        <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/fz7Lt08b/1772545454067.png" alt="Artvin Ulaşım">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">✈️ Ulaşım Rehberi</div>
-          <div class="blog-card-title">Artvin'den Her Yere: Havalimanı ve Otobüs Rehberi</div>
-          <div class="blog-card-desc">4 havalimanı, 2 otobüs terminali. Hangisi sana daha yakın, ring servisi var mı, kışın ne olur? Hepsini anlattık.</div>
-          <div class="blog-card-footer">
-            <span class="blog-card-date">3 Mart 2026 · 5 dk okuma</span>
-            <span class="blog-card-link">Devamını Oku →</span>
-          </div>
-        </div>
-      </a>
-      <a class="blog-card" href="blog2.html">
-        <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/VWrnR99j/MG-20260221-130134.jpg" alt="Artvin">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">😄 Kültür & Mizah</div>
-          <div class="blog-card-title">Artvinliye Sorulmaz: Tepkisel Cevap Alacağınız 10 Soru</div>
-          <div class="blog-card-desc">Bir Artvinliyle sohbet kurmadan önce şu listeye bir göz atın. Bazı sorular var ki sabır taşını çatlatmaya yeter.</div>
-          <div class="blog-card-footer">
-            <span class="blog-card-date">3 Mart 2026 · 5 dk okuma</span>
-            <span class="blog-card-link">Devamını Oku →</span>
-          </div>
-        </div>
-      </a>
-      <a class="blog-card" href="blog1.html">
-        <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/SXstYhQ5/artvin-merkez-notlar.png" alt="Artvin Merkez">
-        <div class="blog-card-body">
-          <div class="blog-card-cat">📣 Tanitim & Yaşam Rehberi</div>
-          <div class="blog-card-title">Artvin'e Geliyorsanız Bunları Mutlaka Bilin</div>
-          <div class="blog-card-desc">Okul ya da iş için Artvin'e taşınmayı düşünüyorsanız, bu satırlar tam size göre. Süslü kelimeler yok, samimi notlar var.</div>
-          <div class="blog-card-footer">
-            <span class="blog-card-date">1 Mart 2026 · 6 dk okuma</span>
-            <span class="blog-card-link">Devamını Oku →</span>
-          </div>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- BLOG PAYLAŞIM -->
-    <div class="paylasim-bar" style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
-      <span class="paylasim-lbl">Bu sayfayı paylaş:</span>
-      <a class="pbtn pbtn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fartvinrehber.com" target="_blank" rel="noopener" title="Facebook'ta Paylaş">
-        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </a>
-      <a class="pbtn pbtn-tw" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fartvinrehber.com&text=Artvin%20%C5%9Eehir%20Rehberi%20%E2%80%94%20Eczane%2C%20Taksi%2C%20Hava%20Durumu%20ve%20daha%20fazlas%C4%B1!" target="_blank" rel="noopener" title="X'te Paylaş">
-        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a class="pbtn pbtn-wa" href="https://api.whatsapp.com/send?text=Artvin%20%C5%9Eehir%20Rehberi%3A%20https%3A%2F%2Fartvinrehber.com" target="_blank" rel="noopener" title="WhatsApp'ta Paylaş">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-      </a>
-      <a class="pbtn pbtn-tg" href="https://t.me/share/url?url=https%3A%2F%2Fartvinrehber.com&text=Artvin%20%C5%9Eehir%20Rehberi" target="_blank" rel="noopener" title="Telegram'da Paylaş">
-        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      </a>
-    </div>
-
-  </div>
-</section>
 <section id="misyon">
   <div class="w">
     <p class="slbl">🎯 Biz Kimiz</p>
@@ -1860,7 +1790,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
     <div class="ilet-grid">
       <div class="ilet-box">
         <h3>İletişim</h3>
-        <a class="ilet-row" href="/cdn-cgi/l/email-protection#22435056544b4c51474a4b5050474a4047504b62454f434b4e0c414d4f">
+        <a class="ilet-row" href="/cdn-cgi/l/email-protection#04657670726d6a77616c6d7676616c6661766d446369656d682a676b69">
           <span style="font-size:1.2rem">📧</span>
           <div><div class="ilet-lbl">E-Posta</div><div class="ilet-val"><span class="__cf_email__" data-cfemail="b2d3c0c6c4dbdcc1d7dadbc0c0d7dad0d7c0dbf2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></div></div>
         </a>
@@ -1914,7 +1844,7 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══ TAKSİMETRE — 2026 Artvin Tarifesi ═══
    Açılış: 75₺ | Km başı: 60₺ | İndi-bindi: 240₺ (kısa mesafe <2km)
 */
@@ -2356,8 +2286,3 @@ function sayfaPaylas(){
       <circle cx="10" cy="10" r="6" fill="white"/>
       <circle cx="11.5" cy="10" r="4.8" fill="#E30A17"/>
       <polygon points="16.5,10 18.8,7.2 18.8,12.8" fill="white" transform="rotate(0,17,10)"/>
-      <polygon fill="white" points="19.2,8.2 21,10 19.2,11.8 20.2,9.5 20.2,10.5"/>
-    </svg>
-    <span class="nav-bayrak-yazi">T.C. Artvin</span>
-  </div>
-  
