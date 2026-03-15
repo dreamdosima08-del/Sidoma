@@ -69,8 +69,7 @@ p{line-height:1.6}
 /* GEZİ BANNER */
 .gezi-banner{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(61,219,138,.12) 0%,rgba(240,192,64,.08) 100%);border-top:1px solid rgba(61,219,138,.2);border-bottom:1px solid rgba(61,219,138,.2);padding:1.1rem 1.5rem;cursor:pointer;transition:.3s}
 .gezi-banner:hover{background:linear-gradient(135deg,rgba(61,219,138,.18) 0%,rgba(240,192,64,.12) 100%)}
-.gezi-pulse{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(61,219,138,.08),transparent);animation:gezipulse 2.5s ease-in-out infinite}
-@keyframes gezipulse{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.gezi-pulse{display:none}
 .gezi-icerik{position:relative;max-width:960px;margin:0 auto;display:flex;align-items:center;gap:1rem}
 .gezi-ikon{font-size:1.6rem;flex-shrink:0}
 .gezi-baslik{font-family:'Bebas Neue','Playfair Display',serif;font-size:clamp(1.1rem,3vw,1.5rem);letter-spacing:.06em;color:#fff;line-height:1.1}
@@ -1073,7 +1072,6 @@ border-radius:20px;}
 <!-- GEZİ REHBERİ BANNER -->
 <a href="gezi.html" style="display:block;text-decoration:none;margin:0">
   <div class="gezi-banner">
-    <div class="gezi-pulse"></div>
     <div class="gezi-icerik">
       <span class="gezi-ikon">🗺️</span>
       <div style="flex:1">

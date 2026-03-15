@@ -330,7 +330,11 @@ const YERLER = [
     kategori: "kultur",
     kategoriLabel: "Kültür & Lezzet",
     ilce: "Yusufeli",
-    foto: null,
+    foto: "https://i.ibb.co/6cW95VFf/MG-20260312-WA0011.jpg",
+    foto2: "https://i.ibb.co/ZzYtW2Kg/MG-20260312-WA0008.jpg",
+    foto3: "https://i.ibb.co/XkM7FgBV/thumbs-b-c-1a053136e1e69b90f4e75999bf1f8835.jpg",
+    foto4: "https://i.ibb.co/pv7nCr2W/MG-20260312-140540-917.jpg",
+    foto5: "https://i.ibb.co/TBBX8YKL/MG-20260312-130931-391.jpg",
     ikon: "🍽️",
     ozet: "Ödüllü butko zeytini, kavurmalı hinkal ve baraj gölü manzarasıyla tarihi bir Yusufeli köyü.",
     metin: "<p>Demirkent, Yusufeli'nin Erkinis bölgesinde yer alan, tarih ve lezzetiyle öne çıkan özgün bir köydür. Köy, <strong>ödüllü butko zeytini</strong> üretimiyle Türkiye genelinde tanınmaktadır — bu zeytinin tadı ve kalitesi bölgeye özgüdür.</p><p>Demirkent'i ziyaret edenlerin mutlaka tatması gereken bir lezzet var: <strong>kavurmalı hinkal.</strong> Artvin'e özgü bu yöresel yemek, Demirkent'te en otantik haliyle yapılmaktadır. Şiirler yazılmış, destanlar anlatılmış bu lezzet, köyü ziyaret etmek için tek başına yeterli bir sebeptir.</p><p>Yusufeli Barajı'nın tamamlanmasıyla köy çevresinde oluşan göl manzarası, tarihi dokusuyla birleşince Demirkent'i görsel açıdan da zengin bir nokta haline getirmiştir.</p>",
@@ -345,7 +349,7 @@ const sliderIndex = {};
 
 function sliderGit(id, yon){
   const yer = YERLER.find(y => y.id === id);
-  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4].filter(Boolean);
+  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4, yer.foto5].filter(Boolean);
   if(!sliderIndex[id]) sliderIndex[id] = 0;
   sliderIndex[id] = (sliderIndex[id] + yon + fotolar.length) % fotolar.length;
   sliderUygula(id, fotolar.length);
@@ -353,7 +357,7 @@ function sliderGit(id, yon){
 
 function sliderSec(id, i){
   const yer = YERLER.find(y => y.id === id);
-  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4].filter(Boolean);
+  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4, yer.foto5].filter(Boolean);
   sliderIndex[id] = i;
   sliderUygula(id, fotolar.length);
 }
@@ -424,7 +428,7 @@ function modalAc(id){
   const url = 'https://artvinrehber.com/gezi.html#' + id;
   
   // Fotoğrafları topla
-  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4].filter(Boolean);
+  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4, yer.foto5].filter(Boolean);
   
   let fotoHtml = '';
   if(fotolar.length === 0){
