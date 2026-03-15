@@ -106,7 +106,17 @@ body{background:var(--bg);color:var(--offwhite);font-family:'Montserrat',sans-se
 .mp-x{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff}
 .kopyalandi-msg{font-size:.65rem;color:var(--vivid);display:none;align-self:center}
 
-/* İNGİLİZCE */
+/* SLIDER */
+.slider{position:relative;overflow:hidden;width:100%;background:#000}
+.slider-track{display:flex;transition:transform .35s ease}
+.slider-img{min-width:100%;width:100%;max-height:280px;object-fit:cover;display:block}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);border:none;color:#fff;font-size:1.5rem;width:2.2rem;height:2.2rem;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+.slider-btn:hover{background:rgba(0,0,0,.8)}
+.slider-prev{left:.5rem}
+.slider-next{right:.5rem}
+.slider-dots{position:absolute;bottom:.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.35rem}
+.dot{width:.45rem;height:.45rem;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.2s}
+.dot.aktif{background:#fff}
 .en-ozet{margin-top:1rem;padding:.85rem 1rem;background:rgba(255,255,255,.03);border-left:2px solid rgba(255,255,255,.1);border-radius:0 4px 4px 0}
 .en-ozet-baslik{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.35rem}
 .en-ozet-metin{font-size:.78rem;color:rgba(255,255,255,.38);line-height:1.7;font-style:italic}
@@ -246,8 +256,82 @@ const YERLER = [
     benzer: ["Kafkasör Yaylası", "Mersivan Yaylası", "Yalnızçam (Ardahan)"],
     harita: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d41.7600!3d41.1400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406899xyz%3A0x1!2sAtabar%C4%B1+Kayak+Merkezi+Artvin!5e0!3m2!1str!2str!4v1",
     en: "Atabarı Ski Resort is 16 km from Artvin at 1,750m altitude. Taxi fare: ~1,300-1,500 TL from bus terminal, ~1,100-1,200 TL from city center (2026). Ski season mid-December to late March. Chairlift, equipment rental, cafeteria. Dolmuş during ski season; 4x4 with winter tires recommended."
+  },
+  {
+    id: "delikkaya-selalesi",
+    baslik: "Murgul Delikkaya Şelalesi",
+    kategori: "doga",
+    kategoriLabel: "Doğa & Şelale",
+    ilce: "Murgul",
+    foto: "https://i.ibb.co/JRx0SN3J/MG-20260315-WA0052.jpg",
+    foto2: "https://i.ibb.co/cqpzY6T/MG-20260315-WA0054.jpg",
+    ikon: "💧",
+    ozet: "Ortasından su akan delikli kaya yapısıyla eşsiz bir doğa harikası. Murgul'un en büyük turizm keşfi.",
+    metin: "<p>Murgul'un dar vadilerinin arasına gizlenmiş Delikkaya Şelalesi, son yılların en büyük doğa keşiflerinden biri olarak öne çıkmaktadır. Adını ortasındaki doğal delikten alan kaya yapısının içinden geçen şelale, Türkiye'de eşine az rastlanan bir görünüm sunmaktadır.</p><p>Sanayi kenti olarak bilinen Murgul'un bu saklı güzelliği, doğaseverlerin ve fotoğraf tutkunlarının yeni rotası haline gelmiştir. Çevresi yoğun ormanlarla kaplı olan şelale, her mevsim farklı bir tablo sunar; ilkbahar aylarında su debisi en yüksek seviyeye ulaşır.</p><p>Ziyaret için en uygun dönem <strong>Nisan–Haziran</strong> arası olup bu dönemde şelale en güçlü halindedir.</p>",
+    nasil: "Hususi araç veya ticari taksi ile ulaşılır. Toplu taşıma bulunmamaktadır.",
+    benzer: ["Hatila Vadisi Milli Parkı", "Cehennem Deresi Kanyonu", "Kafkasör Yaylası"],
+    harita: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12000!2d41.5200!3d41.0700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMurgul+Delikkaya+%C5%9Eelalesi!5e0!3m2!1str!2str!4v1",
+    en: "Delikkaya Waterfall in Murgul is one of the region's most remarkable natural attractions, featuring a waterfall flowing through a naturally formed hole in the rock. Best visited April–June when water flow is at its peak. Access by private car or taxi only."
+  },
+  {
+    id: "sacinka-yaylasi",
+    baslik: "Saçinka Yaylası",
+    kategori: "yayla",
+    kategoriLabel: "Doğa & Yaylalar",
+    ilce: "Artvin Merkez",
+    foto: "https://i.ibb.co/TqPH5xLr/20140705-170319.jpg",
+    foto2: "https://i.ibb.co/JwPYFp9y/20141007-165748.jpg",
+    ikon: "⛰️",
+    ozet: "Artvin'in sakin ve el değmemiş yaylalarından biri. Yaz ve sonbaharda muhteşem renk geçişleri.",
+    metin: "<p>Saçinka Yaylası, kalabalıktan uzaklaşmak isteyenlerin gözde durağı haline gelmiş, Artvin'in az bilinen ama eşsiz güzellikte yaylalarından biridir. Yoğun orman örtüsü içinde yer alan yaylanın havası, yaz aylarında bile serin ve ferah kalır.</p><p>Sonbahar aylarında sarı-turuncu renk tonlarıyla adeta yanmaya başlayan yayla, fotoğrafçılar için açık hava stüdyosu niteliğindedir. Yaz aylarında ise piknik ve kamp için ideal bir ortam sunar.</p><p>Çevresindeki orman yollarında kısa yürüyüşler yapılabilir; sessizlik ve doğayla baş başa kalmanın en saf hali burada yaşanır.</p>",
+    nasil: "Hususi araç veya ticari taksi ile ulaşılır. Toplu taşıma bulunmamaktadır.",
+    benzer: ["Kafkasör Yaylası", "Berta Duğanala Yaylası", "Mersivan Yaylası"],
+    harita: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12000!2d41.8000!3d41.2000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSa%C3%A7inka+Yayla+Artvin!5e0!3m2!1str!2str!4v1",
+    en: "Saçinka Plateau is one of Artvin's hidden gems, offering serene forest scenery year-round. Spectacular autumn colors make it a favorite for photographers. Access by private car or taxi only. Ideal for picnics and camping in summer."
+  },
+  {
+    id: "berta-duganala",
+    baslik: "Berta Duğanala Yaylası",
+    kategori: "yayla",
+    kategoriLabel: "Doğa & Yaylalar",
+    ilce: "Artvin Merkez",
+    foto: "https://i.ibb.co/LD1Sfthb/20140803-172515.jpg",
+    foto2: "https://i.ibb.co/DHsDGSrc/20140803-172533.jpg",
+    foto3: "https://i.ibb.co/dscQVtB7/20140803-133428.jpg",
+    foto4: "https://i.ibb.co/8g157Bth/20140803-123924.jpg",
+    ikon: "🏔️",
+    ozet: "Artvin'in en gözde yaylalarından biri. Geniş platolar, serin hava ve panoramik dağ manzarası.",
+    metin: "<p>Berta Duğanala Yaylası, Artvin halkının yüzyıllardır yaz mevsimini geçirdiği kadim bir yaşam alanıdır. Geniş yeşil platolar, serin esen yeli ve çepeçevre kuşatan dağ silüetiyle her ziyaretçide derin bir iz bırakır.</p><p>Yaylada geleneksel yayla evleri hâlâ ayaktadır; bazı aileler her yaz hayvancılık için buraya çıkmaya devam etmektedir. Bu özgün yaşam biçimi, Berta'yı yalnızca bir doğa noktası değil, yaşayan bir kültür mirası haline getirmektedir.</p><p>Çevresindeki yürüyüş güzergahları ve panoramik bakış noktaları, doğa tutkunları için ayrı bir cazibe taşır. <strong>Temmuz–Ağustos</strong> ayları ziyaret için en ideal dönemdir.</p>",
+    nasil: "Hususi araç veya ticari taksi ile ulaşılır. Toplu taşıma bulunmamaktadır.",
+    benzer: ["Kafkasör Yaylası", "Saçinka Yaylası", "Mersivan Yaylası"],
+    harita: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12000!2d41.7500!3d41.1500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBerta+Du%C4%9Fanala+Yayla+Artvin!5e0!3m2!1str!2str!4v1",
+    en: "Berta Duğanala Plateau is one of Artvin's most beloved highland areas, where locals have spent summers for generations. Traditional yayla houses, wide green meadows and panoramic mountain views. Best visited July–August. Access by private car or taxi only."
   }
 ];
+
+const sliderIndex = {};
+
+function sliderGit(id, yon){
+  const yer = YERLER.find(y => y.id === id);
+  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4].filter(Boolean);
+  if(!sliderIndex[id]) sliderIndex[id] = 0;
+  sliderIndex[id] = (sliderIndex[id] + yon + fotolar.length) % fotolar.length;
+  sliderUygula(id, fotolar.length);
+}
+
+function sliderSec(id, i){
+  const yer = YERLER.find(y => y.id === id);
+  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4].filter(Boolean);
+  sliderIndex[id] = i;
+  sliderUygula(id, fotolar.length);
+}
+
+function sliderUygula(id, toplam){
+  const track = document.getElementById('track_' + id);
+  if(track) track.style.transform = `translateX(-${sliderIndex[id] * 100}%)`;
+  const dots = document.querySelectorAll(`#dots_${id} .dot`);
+  dots.forEach((d,i) => d.classList.toggle('aktif', i === sliderIndex[id]));
+}
 
 let aktifKat = "tumu";
 
@@ -306,10 +390,30 @@ function modalAc(id){
   const yer = YERLER.find(y => y.id === id);
   if(!yer) return;
   const url = 'https://artvinrehber.com/gezi.html#' + id;
+  
+  // Fotoğrafları topla
+  const fotolar = [yer.foto, yer.foto2, yer.foto3, yer.foto4].filter(Boolean);
+  
+  let fotoHtml = '';
+  if(fotolar.length === 0){
+    fotoHtml = `<div class="modal-foto-placeholder">${yer.ikon}</div>`;
+  } else if(fotolar.length === 1){
+    fotoHtml = `<img class="modal-foto" src="${fotolar[0]}" alt="${yer.baslik}">`;
+  } else {
+    fotoHtml = `<div class="slider" id="slider_${id}">
+      <div class="slider-track" id="track_${id}">
+        ${fotolar.map(f => `<img class="slider-img" src="${f}" alt="${yer.baslik}" loading="lazy">`).join('')}
+      </div>
+      <button class="slider-btn slider-prev" onclick="sliderGit('${id}',-1)">&#8249;</button>
+      <button class="slider-btn slider-next" onclick="sliderGit('${id}',1)">&#8250;</button>
+      <div class="slider-dots" id="dots_${id}">
+        ${fotolar.map((_,i) => `<span class="dot ${i===0?'aktif':''}" onclick="sliderSec('${id}',${i})"></span>`).join('')}
+      </div>
+    </div>`;
+  }
+
   document.getElementById('modalBody').innerHTML = `
-    ${yer.foto
-      ? `<img class="modal-foto" src="${yer.foto}" alt="${yer.baslik}">`
-      : `<div class="modal-foto-placeholder">${yer.ikon}</div>`}
+    ${fotoHtml}
     <div class="modal-icerik">
       <div class="modal-kategori">${yer.kategoriLabel}</div>
       <div class="modal-baslik">${yer.baslik}</div>
@@ -331,6 +435,7 @@ function modalAc(id){
     </div>`;
   document.getElementById('modalOverlay').classList.add('acik');
   document.body.style.overflow = 'hidden';
+  sliderIndex[id] = 0;
 }
 
 function modalKapat(e){
