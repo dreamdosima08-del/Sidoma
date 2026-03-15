@@ -65,7 +65,20 @@ p{line-height:1.6}
 .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;text-align:center;animation:bob 2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 .hero-scroll span{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:.3rem}
-.hero-scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,.2),transparent);margin:0 auto}
+.
+/* GEZİ BANNER */
+.gezi-banner{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(61,219,138,.12) 0%,rgba(240,192,64,.08) 100%);border-top:1px solid rgba(61,219,138,.2);border-bottom:1px solid rgba(61,219,138,.2);padding:1.1rem 1.5rem;cursor:pointer;transition:.3s}
+.gezi-banner:hover{background:linear-gradient(135deg,rgba(61,219,138,.18) 0%,rgba(240,192,64,.12) 100%)}
+.gezi-pulse{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(61,219,138,.08),transparent);animation:gezipulse 2.5s ease-in-out infinite}
+@keyframes gezipulse{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.gezi-icerik{position:relative;max-width:960px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+.gezi-ikon{font-size:1.6rem;flex-shrink:0}
+.gezi-baslik{font-family:'Bebas Neue','Playfair Display',serif;font-size:clamp(1.1rem,3vw,1.5rem);letter-spacing:.06em;color:#fff;line-height:1.1}
+.gezi-alt{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:.2rem;letter-spacing:.03em}
+.gezi-ok{flex-shrink:0;background:rgba(61,219,138,.15);border:1px solid rgba(61,219,138,.35);color:var(--vivid);padding:.4rem .9rem;border-radius:4px;font-size:.75rem;font-weight:700;letter-spacing:.06em;white-space:nowrap;transition:.2s}
+.gezi-banner:hover .gezi-ok{background:rgba(61,219,138,.25)}
+
+hero-scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,.2),transparent);margin:0 auto}
 
 /* SECTIONS */
 section{padding:5rem 0}
@@ -1056,6 +1069,21 @@ border-radius:20px;}
   </div>
   <div class="hero-scroll"><span>Kaydır</span><div class="hero-scroll-line"></div></div>
 </section>
+
+<!-- GEZİ REHBERİ BANNER -->
+<a href="gezi.html" style="display:block;text-decoration:none;margin:0">
+  <div class="gezi-banner">
+    <div class="gezi-pulse"></div>
+    <div class="gezi-icerik">
+      <span class="gezi-ikon">🗺️</span>
+      <div style="flex:1">
+        <div class="gezi-baslik">Artvin'de Gezilecek Yerler</div>
+        <div class="gezi-alt">Cam teras · Yaylalar · Kaleler · Şelaleler — tümü tek sayfada</div>
+      </div>
+      <span class="gezi-ok">Keşfet →</span>
+    </div>
+  </div>
+</a>
 
 <!-- VİDEO CTA -->
 <div style="background:linear-gradient(135deg,rgba(255,0,0,.07),rgba(10,26,18,.9));border-bottom:1px solid rgba(255,0,0,.15)">
