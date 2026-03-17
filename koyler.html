@@ -67,6 +67,25 @@ body{background:var(--bg);color:var(--offwhite);font-family:'Montserrat',sans-se
 .bos-mesaj .bos-ikon{font-size:2.5rem;margin-bottom:.75rem}
 footer{border-top:1px solid var(--border);padding:1.5rem 1.25rem;text-align:center;font-size:.7rem;color:var(--muted);margin-top:3rem}
 footer a{color:var(--vivid);text-decoration:none}
+
+/* KÖY MODAL */
+.koy-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:300;display:none;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;overflow-y:auto}
+.koy-modal-overlay.acik{display:flex}
+.koy-modal{background:#0d2218;border:1px solid var(--border);border-radius:10px;max-width:600px;width:100%;position:relative;overflow:hidden}
+.km-kapat{position:absolute;top:.75rem;right:.75rem;background:rgba(255,255,255,.07);border:none;color:#fff;width:2rem;height:2rem;border-radius:50%;font-size:1rem;cursor:pointer;z-index:1;display:flex;align-items:center;justify-content:center}
+.km-foto{width:100%;height:220px;object-fit:cover;display:block}
+.km-foto-placeholder{width:100%;height:160px;background:linear-gradient(135deg,rgba(61,219,138,.06),rgba(240,192,64,.04));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.1)}
+.km-body{padding:1.25rem}
+.km-baslik{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.06em;color:#fff;margin-bottom:.25rem}
+.km-yerel{font-size:.7rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+.km-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.km-chip{font-size:.65rem;font-weight:700;padding:.25rem .7rem;border-radius:3px;letter-spacing:.06em}
+.km-rakim{background:rgba(240,192,64,.1);color:var(--gold);border:1px solid rgba(240,192,64,.2)}
+.km-nufus{background:rgba(61,219,138,.1);color:var(--vivid);border:1px solid rgba(61,219,138,.2)}
+.km-uzaklik{background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)}
+.km-harita{width:100%;height:240px;border:none;border-radius:6px;margin-top:.75rem}
+.koy-etk.detayli{cursor:pointer;border-color:rgba(240,192,64,.3);color:var(--gold)}
+.koy-etk.detayli:hover{background:rgba(240,192,64,.1)}
 </style>
 </head>
 <body>
@@ -87,7 +106,7 @@ footer a{color:var(--vivid);text-decoration:none}
   </div>
 </section>
 <div class="w" style="padding-top:.5rem">
-  <div class="uyari">&#9888;&#65039; Bu liste resmi kaynaklara dayanmaktadır. Hata veya eksik gördüğünüzde <a href="mailto:artvinsehirrehberi@gmail.com">bize bildirin</a>.</div>
+  <div class="uyari">&#9888;&#65039; Bu liste resmi kaynaklara dayanmaktadır. Hata veya eksik gördüğünüzde <a href="/cdn-cgi/l/email-protection#5f3e2d2b2936312c3a37362d2d3a373d3a2d361f38323e3633713c3032">bize bildirin</a>.</div>
   <div class="search-bar">
     <input class="search-input" type="text" id="aramaInput" placeholder="&#128269;  Köy adı ara..." oninput="filtrele()">
     <select class="filter-select" id="ilceFiltre" onchange="filtrele()">
@@ -101,8 +120,16 @@ footer a{color:var(--vivid);text-decoration:none}
   <div id="koyListesi"></div>
   <div class="bos-mesaj" id="bosMesaj"><div class="bos-ikon">&#127956;&#65039;</div><div>Bu aramaya uygun köy bulunamadı.</div></div>
 </div>
-<footer><div class="w"><a href="/">artvinrehber.com</a> &nbsp;·&nbsp; Artvin Şehir Rehberi &nbsp;·&nbsp; <a href="mailto:artvinsehirrehberi@gmail.com">artvinsehirrehberi@gmail.com</a></div></footer>
-<script>
+<footer><div class="w"><a href="/">artvinrehber.com</a> &nbsp;·&nbsp; Artvin Şehir Rehberi &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#a5c4d7d1d3cccbd6c0cdccd7d7c0cdc7c0d7cce5c2c8c4ccc98bc6cac8"><span class="__cf_email__" data-cfemail="79180b0d0f10170a1c11100b0b1c111b1c0b10391e14181015571a1614">[email&#160;protected]</span></a></div></footer>
+
+<!-- KÖY MODAL -->
+<div class="koy-modal-overlay" id="koyModalOverlay" onclick="koyModalKapat(event)">
+  <div class="koy-modal">
+    <button class="km-kapat" onclick="koyModalKapat()">&#10005;</button>
+    <div id="koyModalBody"></div>
+  </div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const KOYLER = {
   "Merkez":["Ağıllar","Ahlat","Alabalık","Aşağımaden","Bağcılar","Bakırköy","Ballıüzüm","Beşağıl","Çimenli","Derinköy","Dikmenli","Dokuzoğul","Erenler","Fıstıklı","Hamamlı","Hızarlı","Kalburlu","Köseler","Okumuşlar","Ormanlı","Ortaköy","Oruçlu","Pırnallı","Sakalar","Salkımlı","Sarıbudak","Seyitler","Sümbüllü","Şehitlik","Taşlıca","Tütüncüler","Varlık","Vezirköy","Yanıklı","Yukarımaden","Zeytinlik"],
   "Ardanuç":["Akarsu","Anaçlı","Aşağıirmaklar","Aşıklar","Avcılar","Aydınköy","Bağlıca","Ballı","Beratlı","Bereket","Boyalı","Bulanık","Cevizlik","Çakıllar","Çıralar","Ekşinar","Ferhatlı","Geçitli","Gökçe","Güleş","Gümüşhane","Hamurlu","Harmanlı","Hisarlı","İncilli","Kapıköy","Karlı","Kaşıkçı","Kızılcık","Konaklı","Kutlu","Meşeköy","Müezzinler","Naldöken","Ovacık","Örtülü","Peynirli","Sakarya","Soğanlı","Tepedüzü","Torbalı","Tosunlu","Tütünlü","Ustalar","Yaylacık","Yolağzı","Yolüstü","Yukarıirmaklar","Zekeriyaköy"],
@@ -138,6 +165,62 @@ function filtrele(){
   document.getElementById('bosMesaj').style.display=toplam===0?'block':'none';
   document.getElementById('toplamKoy').textContent=toplam;
 }
+
+const KOY_DETAY = {
+  "Ağıllar": {
+    yerel: "Agara", rakim: 1788, nufus: 57, merkez_km: 25, merkez_sure: "~35 dk",
+    foto: "https://i.ibb.co/4RKKMrNc/Screenshot-2026-03-16-20-33-48-197-com-google-android-googlequicksearchbox-edit.jpg",
+    harita: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12000!2d41.2500!3d41.1800!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40687ab37ac8fc51%3A0x5d661f797f33a054!2sA%C4%9F%C4%B1llar!5e0!3m2!1str!2str!4v1"
+  },
+  "Ahlat": {
+    yerel: "Ağlaha", rakim: 1020, nufus: 103, merkez_km: 15, merkez_sure: "~22 dk",
+    foto: "https://i.ibb.co/wF6WNN4P/Screenshot-2026-03-17-09-33-35-698-com-google-android-googlequicksearchbox-edit.jpg",
+    harita: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12000!2d41.2200!3d41.2100!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406875e967abbcc7%3A0xba66b490b6105898!2sAhlat!5e0!3m2!1str!2str!4v1"
+  },
+  "Alabalık": {
+    yerel: "Kaçkal", rakim: 1532, nufus: 125, merkez_km: 30, merkez_sure: "~40 dk",
+    foto: null,
+    harita: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12000!2d41.3500!3d41.3000!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4068090a104dd12b%3A0xb96a53d8c3cdf9b8!2sAlabalk!5e0!3m2!1str!2str!4v1"
+  },
+  "Aşağımaden": {
+    yerel: "Hod", rakim: 700, nufus: 475, merkez_km: 18, merkez_sure: "~28 dk",
+    foto: "https://i.ibb.co/0jWqgrsr/Screenshot-2026-03-17-10-43-08-098-com-google-android-googlequicksearchbox-edit.jpg",
+    harita: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12000!2d41.5000!3d41.0500!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4068637b5bdc0c37%3A0xb8e83420ae1ef3a3!2sA%C5%9Fa%C4%9F%C4%B1+Maden!5e0!3m2!1str!2str!4v1"
+  },
+  "Bağcılar": {
+    yerel: "Opiza", rakim: 615, nufus: 88, merkez_km: 12, merkez_sure: "~18 dk",
+    foto: "https://i.ibb.co/8n1PwT2w/Screenshot-2026-03-17-10-46-17-475-com-google-android-googlequicksearchbox-edit.jpg",
+    harita: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12000!2d41.4800!3d41.1200!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40680c9ed0f33f1d%3A0x44ad027f7171cda!2sBa%C4%9Fc%C4%B1lar!5e0!3m2!1str!2str!4v1"
+  }
+};
+
+
+function koyModalAc(ad) {
+  const d = KOY_DETAY[ad];
+  if (!d) return;
+  document.getElementById('koyModalBody').innerHTML = `
+    ${d.foto ? `<img class="km-foto" src="${d.foto}" alt="${ad}">` : '<div class="km-foto-placeholder">🏘️</div>'}
+    <div class="km-body">
+      <div class="km-baslik">${ad}</div>
+      ${d.yerel ? `<div class="km-yerel">Yerel adı: ${d.yerel}</div>` : ''}
+      <div class="km-chips">
+        <span class="km-chip km-rakim">⛰ ${d.rakim} m</span>
+        <span class="km-chip km-nufus">👥 ${d.nufus} kişi</span>
+        <span class="km-chip km-uzaklik">🏙️ Merkeze ${d.merkez_km} km · ${d.merkez_sure}</span>
+      </div>
+      <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-bottom:.5rem;letter-spacing:.06em">📍 Artvin Merkez İlçesi</div>
+      <iframe class="km-harita" src="${d.harita}" allowfullscreen loading="lazy"></iframe>
+    </div>`;
+  document.getElementById('koyModalOverlay').classList.add('acik');
+  document.body.style.overflow = 'hidden';
+}
+
+function koyModalKapat(e) {
+  if (e && e.target !== document.getElementById('koyModalOverlay') && !e.target.classList.contains('km-kapat')) return;
+  document.getElementById('koyModalOverlay').classList.remove('acik');
+  document.body.style.overflow = '';
+}
+
 function render(){
   const liste=document.getElementById('koyListesi');
   let html='';let toplam=0;
@@ -145,7 +228,14 @@ function render(){
     const sirali=[...koyler].sort((a,b)=>a.localeCompare(b,'tr'));
     toplam+=sirali.length;
     html+=`<div class="ilce-grup" data-ilce="${ilce}"><div class="ilce-header"><h2 class="ilce-adi">${ilce}</h2><span class="ilce-sayi">${sirali.length} köy</span></div><div class="koy-etiketler">`;
-    for(const k of sirali){html+=`<span class="koy-etk">${k}</span>`;}
+    for(const k of sirali){
+      const detay = KOY_DETAY[k];
+      if(detay){
+        html+=`<span class="koy-etk detayli" onclick="koyModalAc('${k}')">${k} ℹ️</span>`;
+      } else {
+        html+=`<span class="koy-etk">${k}</span>`;
+      }
+    }
     html+='</div></div>';
   }
   liste.innerHTML=html;
