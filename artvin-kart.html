@@ -34,6 +34,8 @@ body{background:#080e09;min-height:100vh;display:flex;flex-direction:column;alig
 .k-hava-detay{display:flex;flex-direction:column;gap:.05rem}
 .k-hava-sicak{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.06em;color:#fff;line-height:1;text-shadow:0 2px 6px rgba(0,0,0,.7)}
 .k-hava-durum{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.k-instagram{font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.85);font-family:'Bebas Neue',sans-serif;text-shadow:0 1px 5px rgba(0,0,0,.95)}
+.k-konum{font-size:.62rem;letter-spacing:.07em;color:rgba(255,255,255,.88);font-family:'Bebas Neue',sans-serif;display:flex;align-items:center;gap:.22rem;text-shadow:0 1px 5px rgba(0,0,0,.95);margin-bottom:.22rem}
 
 .panel{width:400px;background:#0f1810;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:1.35rem;display:flex;flex-direction:column;gap:.85rem}
 .p-baslik{font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.15em;color:rgba(255,255,255,.28)}
@@ -118,6 +120,11 @@ body{background:#080e09;min-height:100vh;display:flex;flex-direction:column;alig
   <div class="ayrac"></div>
 
   <div class="p-satir">
+    <div class="p-label">📍 Fotoğraf Konumu <span style="opacity:.4;font-size:.52rem">(boşsa gizlenir)</span></div>
+    <input class="p-input" id="inKonum" placeholder="Kafkasör Yaylası, Hatila Vadisi..." oninput="guncelle('konum')">
+  </div>
+
+  <div class="p-satir">
     <div class="p-label">✍️ Günlük Başlık / Slogan</div>
     <input class="p-input" id="inBaslik" value="Göğe Komşu Topraklar" oninput="guncelle('baslik')">
   </div>
@@ -195,6 +202,12 @@ function guncelle(alan){
     const h=document.getElementById('inHava').value;
     document.getElementById('kHavaSicak').textContent=s||'—';
     document.getElementById('kHavaDurum').textContent=h||'';
+  }
+  if(alan==='konum'){
+    const v=document.getElementById('inKonum').value.trim();
+    const el=document.getElementById('kartKonum');
+    el.style.display=v?'flex':'none';
+    document.getElementById('konumAdi').textContent=v;
   }
   if(alan==='eczane'){
     const v=document.getElementById('inEczane').value.trim();
