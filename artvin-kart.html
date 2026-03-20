@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artvin Günlük Kart</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080e09;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:2rem 1rem 3rem;font-family:'Source Serif 4',serif;gap:1.5rem}
+
+#kart{width:400px;height:400px;position:relative;overflow:hidden;border-radius:4px;flex-shrink:0;box-shadow:0 24px 64px rgba(0,0,0,.85)}
+.k-foto{position:absolute;inset:0;background:url('https://i.ibb.co/b5WTQ0dy/MG-20260320-055734.jpg') center/cover no-repeat;transition:.4s}
+.k-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,0) 38%,rgba(0,0,0,0) 48%,rgba(0,0,0,.88) 100%)}
+.k-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,#f0c040 40%,#f0c040 60%,transparent)}
+
+.k-ust{position:absolute;top:0;left:0;right:0;padding:1rem 1.1rem .8rem 1.3rem;display:flex;align-items:flex-start;justify-content:space-between}
+.k-logo{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.18em;color:rgba(255,255,255,.9);text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.k-logo span{color:#f0c040}
+.k-tarih-sag{text-align:right}
+.k-gun-no{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;line-height:1;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+.k-ay-yil{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:.1rem}
+
+.k-alt{position:absolute;bottom:0;left:0;right:0;padding:.85rem 1.1rem .95rem 1.3rem}
+.k-gun-adi{font-family:'Playfair Display',serif;font-style:italic;font-size:.68rem;color:rgba(240,192,64,.8);letter-spacing:.1em;margin-bottom:.25rem}
+.k-baslik{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:.07em;color:#fff;line-height:1.15;text-shadow:0 2px 10px rgba(0,0,0,.8);margin-bottom:.55rem}
+.k-chiplar{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.4rem}
+.k-chip{display:flex;align-items:center;gap:.28rem;font-size:.58rem;letter-spacing:.06em;color:rgba(255,255,255,.8);background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.13);padding:.2rem .55rem;border-radius:2px;backdrop-filter:blur(6px)}
+.k-chip.altin{color:#f0c040;border-color:rgba(240,192,64,.28);background:rgba(240,192,64,.09)}
+.k-chip.yesil{color:#3ddb8a;border-color:rgba(61,219,138,.25);background:rgba(61,219,138,.07)}
+.k-chip.kirmizi{color:#ff8080;border-color:rgba(255,128,128,.25);background:rgba(255,128,128,.07)}
+.k-instagram{font-size:.55rem;letter-spacing:.1em;color:rgba(255,255,255,.32);font-family:'Bebas Neue',sans-serif}
+
+.panel{width:400px;background:#0f1810;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:1.35rem;display:flex;flex-direction:column;gap:.85rem}
+.p-baslik{font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.15em;color:rgba(255,255,255,.28)}
+.p-satir{display:flex;flex-direction:column;gap:.28rem}
+.p-label{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.p-input{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:#e8ede9;padding:.48rem .7rem;border-radius:4px;font-family:'Source Serif 4',serif;font-size:.8rem;outline:none;transition:.2s;width:100%}
+.p-input:focus{border-color:rgba(240,192,64,.38);background:rgba(240,192,64,.04)}
+.p-row{display:flex;gap:.55rem}
+.p-row .p-satir{flex:1}
+
+.foto-alan{border:2px dashed rgba(255,255,255,.1);border-radius:6px;padding:.9rem;text-align:center;cursor:pointer;transition:.2s;background:rgba(255,255,255,.02);position:relative;overflow:hidden}
+.foto-alan:hover{border-color:rgba(240,192,64,.3);background:rgba(240,192,64,.03)}
+.foto-alan input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.foto-ikon{font-size:1.3rem;margin-bottom:.25rem}
+.foto-metin{font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.05em;line-height:1.5}
+.foto-metin span{color:#f0c040}
+
+.btn{font-family:'Bebas Neue',sans-serif;font-size:.92rem;letter-spacing:.14em;padding:.7rem;border-radius:4px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:.5rem;border:1px solid;width:100%}
+.btn-indir{background:linear-gradient(135deg,rgba(240,192,64,.12),rgba(240,192,64,.06));border-color:rgba(240,192,64,.3);color:#f0c040}
+.btn-indir:hover{background:linear-gradient(135deg,rgba(240,192,64,.2),rgba(240,192,64,.1))}
+.btn-hava{background:rgba(61,219,138,.06);border-color:rgba(61,219,138,.22);color:#3ddb8a}
+.btn-hava:hover{background:rgba(61,219,138,.12)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.ayrac{height:1px;background:rgba(255,255,255,.06)}
+.not{font-size:.6rem;color:rgba(255,255,255,.2);text-align:center;letter-spacing:.04em}
+
+#yukleniyor{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:.75rem}
+#yukleniyor.aktif{display:flex}
+.yk-d{width:36px;height:36px;border:3px solid rgba(240,192,64,.2);border-top-color:#f0c040;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.yk-m{font-family:'Bebas Neue',sans-serif;letter-spacing:.12em;color:#f0c040;font-size:.9rem}
+</style>
+</head>
+<body>
+
+<div id="yukleniyor"><div class="yk-d"></div><div class="yk-m">Kart Hazırlanıyor...</div></div>
+
+<div id="kart">
+  <div class="k-foto" id="kFoto"></div>
+  <div class="k-overlay"></div>
+  <div class="k-accent"></div>
+  <div class="k-ust">
+    <div class="k-logo">ARTVİN<span>REHBERİ</span></div>
+    <div class="k-tarih-sag">
+      <div class="k-gun-no" id="gunNo">—</div>
+      <div class="k-ay-yil" id="ayYil">—</div>
+    </div>
+  </div>
+  <div class="k-alt">
+    <div class="k-gun-adi" id="gunAdi">—</div>
+    <div class="k-baslik" id="kartBaslik">Göğe Komşu Topraklar</div>
+    <div class="k-chiplar">
+      <div class="k-chip altin" id="cHava">🌡️ Yükleniyor...</div>
+      <div class="k-chip" id="cEczane" style="display:none"></div>
+      <div class="k-chip kirmizi" id="cElektrik" style="display:none"></div>
+      <div class="k-chip yesil" id="cEtkinlik" style="display:none"></div>
+    </div>
+    <div class="k-instagram">@artvindeen · artvinrehber.com</div>
+  </div>
+</div>
+
+<div class="panel">
+
+  <div class="p-satir">
+    <div class="p-label">📷 Arka Plan Fotoğrafı</div>
+    <div class="foto-alan">
+      <input type="file" accept="image/*" onchange="fotoDegistir(this)">
+      <div class="foto-ikon">🖼️</div>
+      <div class="foto-metin">Dokunarak fotoğraf seç<br><span>Seçmezsen varsayılan Artvin fotoğrafı kalır</span></div>
+    </div>
+  </div>
+
+  <div class="ayrac"></div>
+
+  <div class="p-satir">
+    <div class="p-label">✍️ Günlük Başlık / Slogan</div>
+    <input class="p-input" id="inBaslik" value="Göğe Komşu Topraklar" oninput="guncelle('baslik')">
+  </div>
+
+  <div class="ayrac"></div>
+
+  <div class="p-baslik">🌡️ HAVA DURUMU</div>
+  <div class="p-row">
+    <div class="p-satir">
+      <div class="p-label">Sıcaklık</div>
+      <input class="p-input" id="inSicaklik" placeholder="8°C" oninput="guncelle('hava')">
+    </div>
+    <div class="p-satir">
+      <div class="p-label">Durum</div>
+      <input class="p-input" id="inHava" placeholder="Parçalı Bulutlu" oninput="guncelle('hava')">
+    </div>
+  </div>
+  <button class="btn btn-hava" id="btnHava" onclick="havaCek()">🔄 Artvin Hava Durumunu Getir</button>
+
+  <div class="ayrac"></div>
+
+  <div class="p-satir">
+    <div class="p-label">🏥 Nöbetçi Eczane <span style="opacity:.4;font-size:.52rem">(boşsa gizlenir)</span></div>
+    <input class="p-input" id="inEczane" placeholder="Eczane adı ve mahalle..." oninput="guncelle('eczane')">
+  </div>
+
+  <div class="p-satir">
+    <div class="p-label">⚡ Elektrik Kesintisi <span style="opacity:.4;font-size:.52rem">(boşsa gizlenir)</span></div>
+    <input class="p-input" id="inElektrik" placeholder="Mahalle ve saat..." oninput="guncelle('elektrik')">
+  </div>
+
+  <div class="p-satir">
+    <div class="p-label">📣 Etkinlik / Duyuru <span style="opacity:.4;font-size:.52rem">(boşsa gizlenir)</span></div>
+    <input class="p-input" id="inEtkinlik" placeholder="Festival, güreş, tören..." oninput="guncelle('etkinlik')">
+  </div>
+
+  <div class="ayrac"></div>
+
+  <button class="btn btn-indir" onclick="karti_indir()">📥 Kartı PNG Olarak İndir</button>
+  <div class="not">1200×1200px · Instagram için ideal boyut</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+const GUNLER=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+const AYLAR=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const API='927cf038efc1913452922dfa90c3f59d';
+const EMOJI={'clear sky':'☀️','few clouds':'🌤️','scattered clouds':'⛅','broken clouds':'☁️','overcast clouds':'☁️','light rain':'🌧️','rain':'🌧️','moderate rain':'🌧️','shower rain':'🌦️','heavy intensity rain':'🌧️','thunderstorm':'⛈️','snow':'❄️','light snow':'🌨️','heavy snow':'❄️','mist':'🌫️','fog':'🌫️','haze':'🌫️','drizzle':'🌦️'};
+const TR={'clear sky':'Açık','few clouds':'Az Bulutlu','scattered clouds':'Parçalı Bulutlu','broken clouds':'Çok Bulutlu','overcast clouds':'Kapalı','light rain':'Hafif Yağmur','rain':'Yağmurlu','moderate rain':'Yağmurlu','shower rain':'Sağanak','heavy intensity rain':'Şiddetli Yağmur','thunderstorm':'Fırtınalı','snow':'Karlı','light snow':'Hafif Kar','heavy snow':'Yoğun Kar','mist':'Sisli','fog':'Yoğun Sis','haze':'Puslu','drizzle':'Çiseleyen'};
+
+function tarih(){
+  const b=new Date();
+  document.getElementById('gunNo').textContent=b.getDate();
+  document.getElementById('ayYil').textContent=AYLAR[b.getMonth()]+' '+b.getFullYear();
+  document.getElementById('gunAdi').textContent=GUNLER[b.getDay()];
+}
+
+function fotoDegistir(inp){
+  if(!inp.files||!inp.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{
+    document.getElementById('kFoto').style.backgroundImage=`url('${e.target.result}')`;
+    document.querySelector('.foto-metin').innerHTML='✅ <span>Fotoğraf yüklendi</span>';
+  };
+  r.readAsDataURL(inp.files[0]);
+}
+
+function guncelle(alan){
+  if(alan==='baslik'){
+    document.getElementById('kartBaslik').textContent=document.getElementById('inBaslik').value||'Artvin';
+  }
+  if(alan==='hava'){
+    const s=document.getElementById('inSicaklik').value;
+    const h=document.getElementById('inHava').value;
+    document.getElementById('cHava').textContent='🌡️ '+(s||'—')+(h?' · '+h:'');
+  }
+  if(alan==='eczane'){
+    const v=document.getElementById('inEczane').value.trim();
+    const el=document.getElementById('cEczane');
+    el.style.display=v?'flex':'none';
+    el.textContent='🏥 '+v;
+  }
+  if(alan==='elektrik'){
+    const v=document.getElementById('inElektrik').value.trim();
+    const el=document.getElementById('cElektrik');
+    el.style.display=v?'flex':'none';
+    el.textContent='⚡ '+v;
+  }
+  if(alan==='etkinlik'){
+    const v=document.getElementById('inEtkinlik').value.trim();
+    const el=document.getElementById('cEtkinlik');
+    el.style.display=v?'flex':'none';
+    el.textContent='📣 '+v;
+  }
+}
+
+async function havaCek(){
+  const btn=document.getElementById('btnHava');
+  btn.textContent='⏳ Yükleniyor...';btn.disabled=true;
+  try{
+    const r=await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=41.1833&lon=41.8167&appid=${API}&units=metric`);
+    const d=await r.json();
+    const desc=d.weather[0].description.toLowerCase();
+    const s=Math.round(d.main.temp);
+    const em=EMOJI[desc]||'🌡️';
+    const tr=TR[desc]||d.weather[0].main;
+    document.getElementById('inSicaklik').value=s+'°C';
+    document.getElementById('inHava').value=tr;
+    document.getElementById('cHava').textContent=em+' '+s+'°C · '+tr;
+    btn.textContent='✅ Güncellendi';
+    setTimeout(()=>{btn.textContent='🔄 Artvin Hava Durumunu Getir';btn.disabled=false;},2500);
+  }catch(e){
+    document.getElementById('cHava').textContent='🌡️ Veri alınamadı';
+    btn.textContent='❌ Tekrar Dene';btn.disabled=false;
+  }
+}
+
+function karti_indir(){
+  const yk=document.getElementById('yukleniyor');
+  yk.classList.add('aktif');
+  html2canvas(document.getElementById('kart'),{scale:3,useCORS:true,allowTaint:true,backgroundColor:null,logging:false})
+  .then(c=>{
+    yk.classList.remove('aktif');
+    const l=document.createElement('a');
+    const b=new Date();
+    l.download='artvin-'+b.getDate()+'-'+(b.getMonth()+1)+'-'+b.getFullYear()+'.png';
+    l.href=c.toDataURL('image/png');l.click();
+  }).catch(()=>yk.classList.remove('aktif'));
+}
+
+tarih();
+havaCek();
+</script>
+</body>
+</html>
