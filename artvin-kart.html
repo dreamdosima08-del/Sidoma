@@ -94,6 +94,13 @@ body{
   color:rgba(255,255,255,.5);
   margin-top:1px;
 }
+.k-gun-adi{
+  font-family:'Montserrat',sans-serif;
+  font-size:.5rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(240,192,64,.7);
+  margin-top:2px;
+}
 
 /* ── BLOK 2: ORTA %50 ── */
 /* Slogan ortada konumlanmış, fotoğrafın üzerine büyük */
@@ -134,19 +141,30 @@ body{
 
 /* Bilgi satırları */
 .k-bilgiler{display:flex;flex-direction:column;gap:4px}
+.k-bilgiler{display:flex;flex-direction:column;gap:5px}
 .k-bilgi-satir{
-  display:flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:3px;
+  padding:3px 8px 3px 6px;
+  backdrop-filter:blur(8px);
   font-family:'Montserrat',sans-serif;
-  font-size:.58rem;font-weight:500;
-  color:rgba(255,255,255,.82);
-  text-shadow:0 1px 4px rgba(0,0,0,.9);
+  font-size:.58rem;font-weight:600;
+  color:rgba(255,255,255,.88);
+  text-shadow:none;
+  width:fit-content;
 }
 .k-bilgi-satir.gizle{display:none}
-.k-bilgi-ikon{font-size:.62rem;width:14px;text-align:center}
+.k-bilgi-satir.eczane{border-color:rgba(61,219,138,.25);background:rgba(61,219,138,.1)}
+.k-bilgi-satir.elektrik{border-color:rgba(255,200,50,.25);background:rgba(255,200,50,.09)}
+.k-bilgi-satir.etkinlik{border-color:rgba(100,160,255,.25);background:rgba(100,160,255,.09)}
+.k-bilgi-ikon{font-size:.7rem;width:16px;text-align:center}
 .k-bilgi-label{
   font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);font-size:.5rem;
-  margin-right:2px;
+  color:rgba(255,255,255,.4);font-size:.48rem;
+  border-right:1px solid rgba(255,255,255,.15);
+  padding-right:6px;margin-right:2px;
 }
 
 /* Marka — alt sağ */
@@ -244,6 +262,10 @@ body{
 .ayrac{height:1px;background:rgba(255,255,255,.06)}
 .not{font-size:.58rem;font-weight:500;color:rgba(255,255,255,.2);text-align:center;letter-spacing:.05em}
 
+/* QR */
+.k-qr{position:absolute;bottom:14px;right:16px;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.k-qr canvas{border-radius:3px;box-shadow:0 2px 8px rgba(0,0,0,.6)}
+.k-qr-label{font-family:'Montserrat',sans-serif;font-size:.42rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:right}
 /* Loading */
 #yk{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:12px}
 #yk.aktif{display:flex}
@@ -274,6 +296,7 @@ body{
     <div class="k-tarih">
       <div class="k-gun-no" id="kGunNo">—</div>
       <div class="k-ay" id="kAy">—</div>
+      <div class="k-gun-adi" id="kGunAdi">—</div>
     </div>
   </div>
 
@@ -291,17 +314,17 @@ body{
   <div class="k-alt">
     <div class="k-slogan" id="kSlogan">Göğe Komşu Topraklar</div>
     <div class="k-bilgiler">
-      <div class="k-bilgi-satir gizle" id="bEczane">
+      <div class="k-bilgi-satir eczane gizle" id="bEczane">
         <span class="k-bilgi-ikon">🏥</span>
         <span class="k-bilgi-label">Nöbetçi</span>
         <span id="bEczaneTxt"></span>
       </div>
-      <div class="k-bilgi-satir gizle" id="bElektrik">
+      <div class="k-bilgi-satir elektrik gizle" id="bElektrik">
         <span class="k-bilgi-ikon">⚡</span>
         <span class="k-bilgi-label">Kesinti</span>
         <span id="bElektrikTxt"></span>
       </div>
-      <div class="k-bilgi-satir gizle" id="bEtkinlik">
+      <div class="k-bilgi-satir etkinlik gizle" id="bEtkinlik">
         <span class="k-bilgi-ikon">📣</span>
         <span class="k-bilgi-label">Etkinlik</span>
         <span id="bEtkinlikTxt"></span>
@@ -313,6 +336,12 @@ body{
   <div class="k-marka">
     <span class="k-marka-ana">ARTVİN REHBERİ</span>
     <span class="k-marka-alt">@artvindeen</span>
+  </div>
+
+  <!-- QR KOD -->
+  <div class="k-qr">
+    <canvas id="qrCanvas" width="56" height="56"></canvas>
+    <div class="k-qr-label">artvinrehber.com</div>
   </div>
 </div>
 
@@ -383,6 +412,7 @@ body{
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 const G=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 const A=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
@@ -391,10 +421,35 @@ const API='927cf038efc1913452922dfa90c3f59d';
 const EM={'clear sky':'☀️','few clouds':'🌤️','scattered clouds':'⛅','broken clouds':'☁️','overcast clouds':'☁️','light rain':'🌧️','rain':'🌧️','moderate rain':'🌧️','shower rain':'🌦️','heavy intensity rain':'🌧️','thunderstorm':'⛈️','snow':'❄️','light snow':'🌨️','heavy snow':'❄️','mist':'🌫️','fog':'🌫️','haze':'🌫️','drizzle':'🌦️'};
 const TR={'clear sky':'Açık','few clouds':'Az Bulutlu','scattered clouds':'Parçalı Bulutlu','broken clouds':'Çok Bulutlu','overcast clouds':'Kapalı','light rain':'Hafif Yağmur','rain':'Yağmurlu','moderate rain':'Yağmurlu','shower rain':'Sağanak','heavy intensity rain':'Şiddetli Yağmur','thunderstorm':'Fırtınalı','snow':'Karlı','light snow':'Hafif Kar','heavy snow':'Yoğun Kar','mist':'Sisli','fog':'Yoğun Sis','haze':'Puslu','drizzle':'Çiseleyen'};
 
+function qrOlustur(){
+  const canvas=document.getElementById('qrCanvas');
+  const ctx=canvas.getContext('2d');
+  // QR arkaplan beyaz
+  ctx.fillStyle='#ffffff';
+  ctx.fillRect(0,0,56,56);
+  // qrcode.js ile oluştur
+  const qr=new QRCode(document.createElement('div'),{
+    text:'https://artvinrehber.com',
+    width:56,height:56,
+    colorDark:'#000000',colorLight:'#ffffff',
+    correctLevel:QRCode.CorrectLevel.M
+  });
+  setTimeout(()=>{
+    const img=qr._el.querySelector('img')||qr._el.querySelector('canvas');
+    if(img){
+      const tmp=new Image();
+      tmp.crossOrigin='anonymous';
+      tmp.onload=()=>ctx.drawImage(tmp,0,0,56,56);
+      tmp.src=img.src||img.toDataURL();
+    }
+  },200);
+}
+
 function tarih(){
   const b=new Date();
   document.getElementById('kGunNo').textContent=b.getDate();
   document.getElementById('kAy').textContent=A[b.getMonth()]+' '+b.getFullYear();
+  document.getElementById('kGunAdi').textContent=G[b.getDay()];
 }
 
 function fotoDegistir(inp){
@@ -423,17 +478,17 @@ function guncelle(a){
   }
   if(a==='eczane'){
     const v=document.getElementById('inEczane').value.trim();
-    document.getElementById('bEczane').className='k-bilgi-satir'+(v?'':' gizle');
+    document.getElementById('bEczane').className='k-bilgi-satir eczane'+(v?'':' gizle');
     document.getElementById('bEczaneTxt').textContent=v;
   }
   if(a==='elektrik'){
     const v=document.getElementById('inElektrik').value.trim();
-    document.getElementById('bElektrik').className='k-bilgi-satir'+(v?'':' gizle');
+    document.getElementById('bElektrik').className='k-bilgi-satir elektrik'+(v?'':' gizle');
     document.getElementById('bElektrikTxt').textContent=v;
   }
   if(a==='etkinlik'){
     const v=document.getElementById('inEtkinlik').value.trim();
-    document.getElementById('bEtkinlik').className='k-bilgi-satir'+(v?'':' gizle');
+    document.getElementById('bEtkinlik').className='k-bilgi-satir etkinlik'+(v?'':' gizle');
     document.getElementById('bEtkinlikTxt').textContent=v;
   }
 }
@@ -477,6 +532,7 @@ function karti_indir(){
 
 tarih();
 havaCek();
+qrOlustur();
 </script>
 </body>
 </html>
