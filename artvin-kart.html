@@ -18,6 +18,28 @@ body{
   gap:1.5rem;
 }
 
+
+/* FORMAT SEÇİCİ */
+.format-sec{
+  width:400px;display:flex;gap:8px;
+}
+.fmt-btn{
+  flex:1;font-family:'Bebas Neue',sans-serif;
+  font-size:.85rem;letter-spacing:.12em;
+  padding:10px;border-radius:5px;cursor:pointer;
+  transition:.2s;border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);color:rgba(255,255,255,.45);
+}
+.fmt-btn.aktif{
+  background:rgba(240,192,64,.12);
+  border-color:rgba(240,192,64,.35);
+  color:#f0c040;
+}
+.fmt-btn:hover:not(.aktif){
+  background:rgba(255,255,255,.07);
+  color:rgba(255,255,255,.7);
+}
+
 /* ══════════════════════════════
    KART  400×400
 ══════════════════════════════ */
@@ -27,6 +49,7 @@ body{
   border-radius:6px;
   box-shadow:0 28px 72px rgba(0,0,0,.9);
   flex-shrink:0;
+  transition:height .3s ease;
 }
 
 /* Arka plan fotoğraf */
@@ -109,6 +132,7 @@ body{
   top:80px;left:0;right:0;bottom:120px;
   display:flex;align-items:flex-end;
   padding:0 20px 16px 20px;
+  transition:bottom .3s ease;
 }
 .k-konum-satir{
   display:flex;align-items:center;gap:5px;
@@ -137,6 +161,7 @@ body{
   color:#fff;line-height:1.1;
   text-shadow:0 3px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.8);
   margin-bottom:8px;
+  transition:font-size .3s ease;
 }
 
 /* Bilgi satırları */
@@ -272,6 +297,12 @@ body{
 </head>
 <body>
 
+<!-- FORMAT SEÇİCİ -->
+<div class="format-sec">
+  <button class="fmt-btn aktif" id="btnAkis" onclick="formatSec('akis')">📸 Akış (1:1)</button>
+  <button class="fmt-btn" id="btnStory" onclick="formatSec('story')">📱 Story (9:16)</button>
+</div>
+
 <div id="yk"><div class="yk-c"></div><div class="yk-t">Kart Hazırlanıyor...</div></div>
 
 <!-- ══ KART ══ -->
@@ -404,6 +435,32 @@ body{
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
+
+let mevcutFormat = 'akis';
+
+function formatSec(fmt){
+  mevcutFormat = fmt;
+  const kart = document.getElementById('kart');
+  const slogan = document.getElementById('kSlogan');
+  const orta = document.querySelector('.k-orta');
+  const btnAkis = document.getElementById('btnAkis');
+  const btnStory = document.getElementById('btnStory');
+
+  if(fmt === 'story'){
+    kart.style.height = '711px';
+    slogan.style.fontSize = '2.2rem';
+    orta.style.bottom = '160px';
+    btnStory.classList.add('aktif');
+    btnAkis.classList.remove('aktif');
+  } else {
+    kart.style.height = '400px';
+    slogan.style.fontSize = '1.6rem';
+    orta.style.bottom = '120px';
+    btnAkis.classList.add('aktif');
+    btnStory.classList.remove('aktif');
+  }
+}
+
 const G=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 const A=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 const API='927cf038efc1913452922dfa90c3f59d';
@@ -491,7 +548,8 @@ function karti_indir(){
     yk.classList.remove('aktif');
     const l=document.createElement('a');
     const b=new Date();
-    l.download='artvin-'+b.getDate()+'-'+(b.getMonth()+1)+'-'+b.getFullYear()+'.png';
+    const ek = mevcutFormat==='story' ? '-story' : '';
+    l.download='artvin-'+b.getDate()+'-'+(b.getMonth()+1)+'-'+b.getFullYear()+ek+'.png';
     l.href=c.toDataURL('image/png');l.click();
   }).catch(()=>yk.classList.remove('aktif'));
 }
