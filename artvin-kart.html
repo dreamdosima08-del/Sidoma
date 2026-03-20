@@ -29,7 +29,11 @@ body{background:#080e09;min-height:100vh;display:flex;flex-direction:column;alig
 .k-chip.altin{color:#f0c040;border-color:rgba(240,192,64,.28);background:rgba(240,192,64,.09)}
 .k-chip.yesil{color:#3ddb8a;border-color:rgba(61,219,138,.25);background:rgba(61,219,138,.07)}
 .k-chip.kirmizi{color:#ff8080;border-color:rgba(255,128,128,.25);background:rgba(255,128,128,.07)}
-.k-instagram{font-size:.55rem;letter-spacing:.1em;color:rgba(255,255,255,.32);font-family:'Bebas Neue',sans-serif}
+.k-hava-blok{display:flex;align-items:center;gap:.4rem;margin-top:.4rem}
+.k-hava-emoji{font-size:1.6rem;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.k-hava-detay{display:flex;flex-direction:column;gap:.05rem}
+.k-hava-sicak{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.06em;color:#fff;line-height:1;text-shadow:0 2px 6px rgba(0,0,0,.7)}
+.k-hava-durum{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 
 .panel{width:400px;background:#0f1810;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:1.35rem;display:flex;flex-direction:column;gap:.85rem}
 .p-baslik{font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:.15em;color:rgba(255,255,255,.28)}
@@ -73,7 +77,16 @@ body{background:#080e09;min-height:100vh;display:flex;flex-direction:column;alig
   <div class="k-overlay"></div>
   <div class="k-accent"></div>
   <div class="k-ust">
-    <div class="k-logo">ARTVİN<span>REHBERİ</span></div>
+    <div>
+      <div class="k-logo">ARTVİN<span>REHBERİ</span></div>
+      <div class="k-hava-blok" id="kHavaBlok">
+        <span class="k-hava-emoji" id="kHavaEmoji">🌤️</span>
+        <div class="k-hava-detay">
+          <span class="k-hava-sicak" id="kHavaSicak">—</span>
+          <span class="k-hava-durum" id="kHavaDurum">Yükleniyor</span>
+        </div>
+      </div>
+    </div>
     <div class="k-tarih-sag">
       <div class="k-gun-no" id="gunNo">—</div>
       <div class="k-ay-yil" id="ayYil">—</div>
@@ -83,7 +96,6 @@ body{background:#080e09;min-height:100vh;display:flex;flex-direction:column;alig
     <div class="k-gun-adi" id="gunAdi">—</div>
     <div class="k-baslik" id="kartBaslik">Göğe Komşu Topraklar</div>
     <div class="k-chiplar">
-      <div class="k-chip altin" id="cHava">🌡️ Yükleniyor...</div>
       <div class="k-chip" id="cEczane" style="display:none"></div>
       <div class="k-chip kirmizi" id="cElektrik" style="display:none"></div>
       <div class="k-chip yesil" id="cEtkinlik" style="display:none"></div>
@@ -181,7 +193,8 @@ function guncelle(alan){
   if(alan==='hava'){
     const s=document.getElementById('inSicaklik').value;
     const h=document.getElementById('inHava').value;
-    document.getElementById('cHava').textContent='🌡️ '+(s||'—')+(h?' · '+h:'');
+    document.getElementById('kHavaSicak').textContent=s||'—';
+    document.getElementById('kHavaDurum').textContent=h||'';
   }
   if(alan==='eczane'){
     const v=document.getElementById('inEczane').value.trim();
@@ -215,7 +228,9 @@ async function havaCek(){
     const tr=TR[desc]||d.weather[0].main;
     document.getElementById('inSicaklik').value=s+'°C';
     document.getElementById('inHava').value=tr;
-    document.getElementById('cHava').textContent=em+' '+s+'°C · '+tr;
+    document.getElementById('kHavaEmoji').textContent=em;
+    document.getElementById('kHavaSicak').textContent=s+'°C';
+    document.getElementById('kHavaDurum').textContent=tr;
     btn.textContent='✅ Güncellendi';
     setTimeout(()=>{btn.textContent='🔄 Artvin Hava Durumunu Getir';btn.disabled=false;},2500);
   }catch(e){
