@@ -297,6 +297,75 @@ body{
 .ayrac{height:1px;background:rgba(255,255,255,.06)}
 .not{font-size:.58rem;font-weight:500;color:rgba(255,255,255,.2);text-align:center;letter-spacing:.05em}
 
+
+/* HABER MODU */
+.k-haber-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(0,20,60,.82) 0%,
+    rgba(0,10,40,.55) 40%,
+    rgba(0,10,40,.75) 70%,
+    rgba(0,5,30,.92) 100%
+  );
+  display:none;
+}
+.k-haber-ust{
+  position:absolute;top:0;left:0;right:0;
+  padding:16px 16px 0 20px;
+  display:none;align-items:center;justify-content:space-between;
+}
+.k-haber-etiket{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.72rem;letter-spacing:.2em;
+  background:rgba(30,100,255,.7);
+  border:1px solid rgba(80,140,255,.4);
+  color:#fff;padding:3px 10px;border-radius:2px;
+}
+.k-haber-tarih{
+  font-family:'Montserrat',sans-serif;
+  font-size:.52rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.k-haber-icerik{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  padding:0 20px 16px 20px;
+  display:none;flex-direction:column;gap:8px;
+}
+.k-haber-baslik{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.55rem;letter-spacing:.04em;
+  color:#fff;line-height:1.12;
+  text-shadow:0 3px 16px rgba(0,0,50,.9);
+}
+.k-haber-metin{
+  font-family:'Montserrat',sans-serif;
+  font-size:.62rem;font-weight:500;
+  color:rgba(255,255,255,.8);
+  line-height:1.6;
+  text-shadow:0 1px 6px rgba(0,0,0,.9);
+  display:none;
+}
+.k-haber-marka{
+  position:absolute;bottom:14px;right:16px;
+  text-align:right;display:none;
+}
+.k-haber-marka-ana{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.75rem;letter-spacing:.12em;
+  color:rgba(255,255,255,.9);
+  text-shadow:0 1px 5px rgba(0,0,0,.95);
+  display:block;
+}
+.k-haber-marka-alt{
+  font-family:'Montserrat',sans-serif;
+  font-size:.45rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(150,180,255,.6);
+  display:block;margin-top:1px;
+}
+
 /* Loading */
 #yk{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:12px}
 #yk.aktif{display:flex}
@@ -311,6 +380,7 @@ body{
 <div class="format-sec">
   <button class="fmt-btn aktif" id="btnAkis" onclick="formatSec('akis')">📸 Akış (1:1)</button>
   <button class="fmt-btn" id="btnStory" onclick="formatSec('story')">📱 Story (9:16)</button>
+  <button class="fmt-btn" id="btnHaber" onclick="modSec('haber')">📰 Haber</button>
 </div>
 
 <div id="yk"><div class="yk-c"></div><div class="yk-t">Kart Hazırlanıyor...</div></div>
@@ -368,6 +438,27 @@ body{
         <span id="bEtkinlikTxt"></span>
       </div>
     </div>
+  </div>
+
+  <!-- HABER OVERLAY -->
+  <div class="k-haber-overlay" id="kHaberOverlay"></div>
+
+  <!-- HABER ÜST -->
+  <div class="k-haber-ust" id="kHaberUst">
+    <div class="k-haber-etiket">📰 HABER</div>
+    <div class="k-haber-tarih" id="kHaberTarih"></div>
+  </div>
+
+  <!-- HABER İÇERİK -->
+  <div class="k-haber-icerik" id="kHaberIcerik">
+    <div class="k-haber-baslik" id="kHaberBaslik">Haber başlığı buraya gelecek</div>
+    <div class="k-haber-metin" id="kHaberMetin"></div>
+  </div>
+
+  <!-- HABER MARKA -->
+  <div class="k-haber-marka" id="kHaberMarka">
+    <span class="k-haber-marka-ana">@artvindeen</span>
+    <span class="k-haber-marka-alt">artvinrehber.com</span>
   </div>
 
   <!-- MARKA -->
@@ -444,6 +535,28 @@ body{
 
   <div class="ayrac"></div>
 
+
+  <!-- HABER PANELİ -->
+  <div id="haberPanel" style="display:none;flex-direction:column;gap:16px">
+    <div class="p-grup-baslik">📰 HABER İÇERİĞİ</div>
+    <div class="p-satir">
+      <div class="p-label">📌 Haber Başlığı</div>
+      <textarea class="p-input" id="inHaberBaslik" rows="2" placeholder="Haber başlığını buraya yaz..." oninput="haberGuncelle('baslik')" style="resize:none;line-height:1.5"></textarea>
+    </div>
+    <div class="p-satir">
+      <div class="p-label">📝 Kısa Metin <span style="opacity:.4">(boşsa gizlenir)</span></div>
+      <textarea class="p-input" id="inHaberMetin" rows="3" placeholder="Haberin kısa açıklaması..." oninput="haberGuncelle('metin')" style="resize:none;line-height:1.5"></textarea>
+    </div>
+    <div class="p-satir">
+      <div class="p-label">📷 Arka Plan Fotoğrafı</div>
+      <div class="foto-alan">
+        <input type="file" accept="image/*" onchange="fotoDegistir(this)">
+        <div class="foto-ikon">🖼️</div>
+        <div class="foto-yazi">Dokunarak fotoğraf seç</div>
+      </div>
+    </div>
+  </div>
+
   <button class="btn btn-indir" onclick="karti_indir()">📥 Kartı PNG Olarak İndir</button>
   <div class="not">1200 × 1200 px · Instagram post için ideal</div>
 
@@ -452,9 +565,68 @@ body{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 
+
+let mevcutMod = 'kart'; // 'kart' veya 'haber'
+
+function modSec(mod){
+  mevcutMod = mod;
+  const btnHaber = document.getElementById('btnHaber');
+  const btnAkis = document.getElementById('btnAkis');
+  const btnStory = document.getElementById('btnStory');
+  const haberEls = ['kHaberOverlay','kHaberUst','kHaberIcerik','kHaberMarka'];
+  const kartEls = ['k-ust','k-alt','k-marka'];
+
+  if(mod === 'haber'){
+    // Haber modunu aç
+    haberEls.forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){ el.style.display = id==='kHaberIcerik' ? 'flex' : 'block'; }
+    });
+    // Kart elementlerini gizle
+    document.querySelector('.k-ust').style.display='none';
+    document.querySelector('.k-alt').style.display='none';
+    document.querySelector('.k-marka').style.display='none';
+    // Paneller
+    document.getElementById('haberPanel').style.display='flex';
+    document.getElementById('haberPanel').style.flexDirection='column';
+    // Buton
+    btnHaber.classList.add('aktif');
+    btnAkis.classList.remove('aktif');
+    btnStory.classList.remove('aktif');
+    // Tarih
+    const b=new Date();
+    document.getElementById('kHaberTarih').textContent=b.getDate()+' '+A[b.getMonth()]+' '+b.getFullYear();
+  } else {
+    // Kart moduna dön
+    haberEls.forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) el.style.display='none';
+    });
+    document.querySelector('.k-ust').style.display='flex';
+    document.querySelector('.k-alt').style.display='flex';
+    document.querySelector('.k-marka').style.display='block';
+    document.getElementById('haberPanel').style.display='none';
+    btnHaber.classList.remove('aktif');
+  }
+}
+
+function haberGuncelle(alan){
+  if(alan==='baslik'){
+    const v=document.getElementById('inHaberBaslik').value;
+    document.getElementById('kHaberBaslik').textContent=v||'Haber başlığı';
+  }
+  if(alan==='metin'){
+    const v=document.getElementById('inHaberMetin').value.trim();
+    const el=document.getElementById('kHaberMetin');
+    el.textContent=v;
+    el.style.display=v?'block':'none';
+  }
+}
+
 let mevcutFormat = 'akis';
 
 function formatSec(fmt){
+  if(mevcutMod==='haber'){ modSec('kart'); }
   mevcutFormat = fmt;
   const kart = document.getElementById('kart');
   const slogan = document.getElementById('kSlogan');
