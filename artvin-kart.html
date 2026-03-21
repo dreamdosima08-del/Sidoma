@@ -325,25 +325,29 @@ body{
 }
 .k-haber-icerik{
   position:absolute;
-  left:0;right:0;bottom:0;
-  padding:0 20px 16px 20px;
+  left:0;right:0;
+  top:50%;bottom:auto;
+  transform:translateY(-50%);
+  padding:0 24px;
   display:none;
   flex-direction:column;
-  gap:8px;
+  gap:10px;
+  text-align:center;
 }
 .k-haber-baslik{
   font-family:'Bebas Neue',sans-serif;
-  font-size:1.55rem;letter-spacing:.04em;
-  color:#fff;line-height:1.12;
-  text-shadow:0 3px 16px rgba(0,0,50,.9);
+  font-size:1.75rem;letter-spacing:.05em;
+  color:#fff;line-height:1.15;
+  text-shadow:0 2px 12px rgba(0,0,0,.95),0 0 30px rgba(0,0,0,.8);
 }
 .k-haber-metin{
   font-family:'Montserrat',sans-serif;
-  font-size:.62rem;font-weight:500;
-  color:rgba(255,255,255,.8);
-  line-height:1.6;
-  text-shadow:0 1px 6px rgba(0,0,0,.9);
+  font-size:.78rem;font-weight:600;
+  color:rgba(255,255,255,.92);
+  line-height:1.65;
+  text-shadow:0 1px 8px rgba(0,0,0,1),0 0 20px rgba(0,0,0,.9);
   display:none;
+  letter-spacing:.01em;
 }
 .k-haber-marka{
   position:absolute;bottom:14px;right:16px;
@@ -444,6 +448,7 @@ body{
   <!-- HABER İÇERİK -->
   <div class="k-haber-icerik" id="kHaberIcerik">
     <div class="k-haber-baslik" id="kHaberBaslik"></div>
+    <div id="kHaberCizgi" style="width:40px;height:2px;background:#f0c040;margin:2px auto;border-radius:1px;display:none"></div>
     <div class="k-haber-metin" id="kHaberMetin"></div>
   </div>
 
@@ -611,6 +616,7 @@ function haberGuncelle(alan){
     const el=document.getElementById('kHaberMetin');
     el.textContent=v;
     el.style.display=v?'block':'none';
+    document.getElementById('kHaberCizgi').style.display=v?'block':'none';
   }
 }
 
