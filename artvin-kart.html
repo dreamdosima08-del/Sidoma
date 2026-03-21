@@ -441,7 +441,7 @@ body{
 
   <!-- HABER İÇERİK -->
   <div class="k-haber-icerik" id="kHaberIcerik">
-    <div class="k-haber-baslik" id="kHaberBaslik">Haber başlığı buraya gelecek</div>
+    <div class="k-haber-baslik" id="kHaberBaslik"></div>
     <div class="k-haber-metin" id="kHaberMetin"></div>
   </div>
 
@@ -602,7 +602,7 @@ function modSec(mod){
 function haberGuncelle(alan){
   if(alan==='baslik'){
     const v=document.getElementById('inHaberBaslik').value;
-    document.getElementById('kHaberBaslik').textContent=v||'Haber başlığı';
+    document.getElementById('kHaberBaslik').textContent=v||'';
   }
   if(alan==='metin'){
     const v=document.getElementById('inHaberMetin').value.trim();
