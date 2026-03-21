@@ -362,6 +362,22 @@ body{
 }
 .k-haber-marka-alt{display:none}
 
+
+/* POZİSYON SEÇİCİ */
+.poz-sec{display:flex;gap:6px}
+.poz-btn{
+  flex:1;font-family:'Bebas Neue',sans-serif;
+  font-size:.75rem;letter-spacing:.1em;
+  padding:8px 4px;border-radius:4px;cursor:pointer;
+  transition:.2s;border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);color:rgba(255,255,255,.4);
+}
+.poz-btn.aktif{
+  background:rgba(240,192,64,.12);
+  border-color:rgba(240,192,64,.35);
+  color:#f0c040;
+}
+
 /* Loading */
 #yk{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:12px}
 #yk.aktif{display:flex}
@@ -534,7 +550,13 @@ body{
 
   <!-- HABER PANELİ -->
   <div id="haberPanel" style="display:none;flex-direction:column;gap:16px">
-    <div class="p-grup-baslik">📰 HABER İÇERİĞİ</div>
+    <div class="p-grup-baslik">📍 METİN KONUMU</div>
+    <div class="poz-sec">
+      <button class="poz-btn" id="pzUst" onclick="pozSec('ust')">⬆️ Üst</button>
+      <button class="poz-btn aktif" id="pzOrta" onclick="pozSec('orta')">⬛ Orta</button>
+      <button class="poz-btn" id="pzAlt" onclick="pozSec('alt')">⬇️ Alt</button>
+    </div>
+    <div class="p-grup-baslik" style="margin-top:4px">📰 HABER İÇERİĞİ</div>
     <div class="p-satir">
       <div class="p-label">📌 Haber Başlığı</div>
       <textarea class="p-input" id="inHaberBaslik" rows="2" placeholder="Haber başlığını buraya yaz..." oninput="haberGuncelle('baslik')" style="resize:none;line-height:1.5"></textarea>
@@ -561,6 +583,34 @@ body{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 
+
+
+let mevcutPoz = 'orta';
+
+function pozSec(poz){
+  mevcutPoz = poz;
+  const icerik = document.getElementById('kHaberIcerik');
+  document.getElementById('pzUst').classList.toggle('aktif', poz==='ust');
+  document.getElementById('pzOrta').classList.toggle('aktif', poz==='orta');
+  document.getElementById('pzAlt').classList.toggle('aktif', poz==='alt');
+
+  if(poz==='ust'){
+    icerik.style.top='16px';
+    icerik.style.bottom='auto';
+    icerik.style.transform='none';
+    icerik.style.textAlign='left';
+  } else if(poz==='orta'){
+    icerik.style.top='50%';
+    icerik.style.bottom='auto';
+    icerik.style.transform='translateY(-50%)';
+    icerik.style.textAlign='center';
+  } else {
+    icerik.style.top='auto';
+    icerik.style.bottom='16px';
+    icerik.style.transform='none';
+    icerik.style.textAlign='left';
+  }
+}
 
 let mevcutMod = 'kart'; // 'kart' veya 'haber'
 
