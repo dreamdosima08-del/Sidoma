@@ -256,7 +256,7 @@ const sldrIdx = {};
 function sldr(id, yon){
   const track = document.getElementById(id+'t');
   const imgs = track.querySelectorAll('img');
-  if(!sldrIdx[id]) sldrIdx[id] = 0;
+  if(sldrIdx[id] === undefined) sldrIdx[id] = 0;
   sldrIdx[id] = (sldrIdx[id] + yon + imgs.length) % imgs.length;
   track.style.transform = 'translateX(-' + (sldrIdx[id] * 100) + '%)';
   sldrDots(id, imgs.length);
