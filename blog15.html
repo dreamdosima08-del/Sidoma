@@ -122,13 +122,13 @@ footer a{color:var(--vivid);text-decoration:none}
     <img src="https://i.ibb.co/bR3LJ5fj/MG-20260322-124648.png" alt="Sabah saatlerinde pus hâkimdir">
     <img src="https://i.ibb.co/KxrGYcZ1/MG-20260322-124713.png" alt="Yine başı dumanlı bir Artvin">
   </div>
-  <button class="slider-btn prev" onclick="sldr('s1',-1)">&#8249;</button>
-  <button class="slider-btn next" onclick="sldr('s1',1)">&#8250;</button>
+  <button class="slider-btn prev">&#8249;</button>
+  <button class="slider-btn next">&#8250;</button>
 </div>
 <div class="slider-dots" id="s1d">
-  <span class="slider-dot aktif" onclick="sldrGo('s1',0)"></span>
-  <span class="slider-dot" onclick="sldrGo('s1',1)"></span>
-  <span class="slider-dot" onclick="sldrGo('s1',2)"></span>
+  <span class="slider-dot aktif"></span>
+  <span class="slider-dot"></span>
+  <span class="slider-dot"></span>
 </div>
 <div class="slider-aciklama">Artvin'in sisli sabah manzaraları</div>
 
@@ -157,13 +157,13 @@ footer a{color:var(--vivid);text-decoration:none}
     <img src="https://i.ibb.co/fGBDTssk/MG-20260322-124934.png" alt="Atatepe'den şehre bakış">
     <img src="https://i.ibb.co/Qv6cT3SZ/MG-20260322-125329.png" alt="Atatepe'den Çoruh Vadisi'ne bakış">
   </div>
-  <button class="slider-btn prev" onclick="sldr('s2',-1)">&#8249;</button>
-  <button class="slider-btn next" onclick="sldr('s2',1)">&#8250;</button>
+  <button class="slider-btn prev">&#8249;</button>
+  <button class="slider-btn next">&#8250;</button>
 </div>
 <div class="slider-dots" id="s2d">
-  <span class="slider-dot aktif" onclick="sldrGo('s2',0)"></span>
-  <span class="slider-dot" onclick="sldrGo('s2',1)"></span>
-  <span class="slider-dot" onclick="sldrGo('s2',2)"></span>
+  <span class="slider-dot aktif"></span>
+  <span class="slider-dot"></span>
+  <span class="slider-dot"></span>
 </div>
 <div class="slider-aciklama">Atatepe'den Artvin ve Çoruh Vadisi</div>
 
@@ -251,32 +251,36 @@ footer a{color:var(--vivid);text-decoration:none}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
-const sldrIdx = {};
+// SLIDER
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.slider').forEach(function(sl){
+    var id = sl.id;
+    var track = sl.querySelector('.slider-track');
+    var imgs = track.querySelectorAll('img');
+    var dots = document.getElementById(id+'d');
+    var cur = 0;
+    var total = imgs.length;
 
-function sldr(id, yon){
-  const track = document.getElementById(id+'t');
-  const imgs = track.querySelectorAll('img');
-  if(sldrIdx[id] === undefined) sldrIdx[id] = 0;
-  sldrIdx[id] = (sldrIdx[id] + yon + imgs.length) % imgs.length;
-  track.style.transform = 'translateX(-' + (sldrIdx[id] * 100) + '%)';
-  sldrDots(id, imgs.length);
-}
+    function git(n){
+      cur = (n + total) % total;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      if(dots){
+        dots.querySelectorAll('.slider-dot').forEach(function(d,i){
+          d.classList.toggle('aktif', i===cur);
+        });
+      }
+    }
 
-function sldrGo(id, idx){
-  const track = document.getElementById(id+'t');
-  const imgs = track.querySelectorAll('img');
-  sldrIdx[id] = idx;
-  track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-  sldrDots(id, imgs.length);
-}
+    sl.querySelector('.prev').addEventListener('click', function(){ git(cur-1); });
+    sl.querySelector('.next').addEventListener('click', function(){ git(cur+1); });
 
-function sldrDots(id, total){
-  const dots = document.getElementById(id+'d');
-  if(!dots) return;
-  dots.querySelectorAll('.slider-dot').forEach((d,i) => {
-    d.classList.toggle('aktif', i === sldrIdx[id]);
+    if(dots){
+      dots.querySelectorAll('.slider-dot').forEach(function(d,i){
+        d.addEventListener('click', function(){ git(i); });
+      });
+    }
   });
-}
+});
 
 function baglantiKopyala(){
   na
