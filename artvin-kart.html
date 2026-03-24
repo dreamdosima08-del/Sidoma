@@ -21,7 +21,7 @@ body{
 
 /* FORMAT SEÇİCİ */
 .format-sec{
-  width:400px;display:flex;gap:8px;
+  width:min(500px, 96vw);display:flex;gap:8px;
 }
 .fmt-btn{
   flex:1;font-family:'Bebas Neue',sans-serif;
@@ -44,7 +44,7 @@ body{
    KART  400×400
 ══════════════════════════════ */
 #kart{
-  width:400px;height:400px;
+  width:min(500px, 96vw);height:min(500px, 96vw);
   position:relative;overflow:hidden;
   border-radius:6px;
   box-shadow:0 28px 72px rgba(0,0,0,.9);
@@ -226,7 +226,7 @@ body{
    PANEL
 ══════════════════════════════ */
 .panel{
-  width:400px;
+  width:min(500px, 96vw);
   background:#0c1510;
   border:1px solid rgba(255,255,255,.07);
   border-radius:10px;
@@ -378,6 +378,19 @@ body{
   color:#f0c040;
 }
 
+
+@media(max-width:520px){
+  #kart{width:96vw;height:96vw}
+  .panel{width:96vw}
+  .format-sec{width:96vw}
+  .k-slogan{font-size:1.2rem}
+  .k-gun-no{font-size:1.7rem}
+  .k-hava-sicak{font-size:1rem}
+  .k-chip{font-size:.52rem;padding:.18rem .45rem}
+  .btn{font-size:.82rem;padding:11px}
+  .p-input{font-size:.75rem}
+}
+
 /* Loading */
 #yk{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:12px}
 #yk.aktif{display:flex}
@@ -410,6 +423,7 @@ body{
       <div class="k-hava-info">
         <div class="k-hava-sicak" id="kSicak">—</div>
         <div class="k-hava-desc" id="kDesc">Yükleniyor</div>
+        <div class="k-hava-not" id="kHavaNot"></div>
       </div>
     </div>
     <div class="k-tarih">
@@ -526,7 +540,12 @@ body{
       <input class="p-input" id="inHava" placeholder="Parçalı Bulutlu" oninput="guncelle('hava')">
     </div>
   </div>
-  <button class="btn btn-hava" id="btnHava" onclick="havaCek()">🔄 Artvin Hava Durumunu Getir</button>
+  <button class="btn btn-hava" id="btnHava" onclick="havaCek()">🔄 Anlık Hava Durumunu Getir</button>
+  <div style="font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.04em;text-align:center">⚡ Anlık veri — tahmin değildir</div>
+  <div class="p-satir">
+    <div class="p-label">📝 Günlük Hava Tahminin <span style="opacity:.4">(boşsa gizlenir)</span></div>
+    <input class="p-input" id="inHavaNot" placeholder="Öğleden sonra yağmur bekleniyor..." oninput="guncelle('havanot')">
+  </div>
 
   <div class="ayrac"></div>
 
@@ -576,7 +595,7 @@ body{
   </div>
 
   <button class="btn btn-indir" onclick="karti_indir()">📥 Kartı PNG Olarak İndir</button>
-  <div class="not">1200 × 1200 px · Instagram post için ideal</div>
+  <div class="not">2000 × 2000 px · Instagram için yüksek kalite</div>
 
 </div>
 
@@ -682,13 +701,13 @@ function formatSec(fmt){
   const btnStory = document.getElementById('btnStory');
 
   if(fmt === 'story'){
-    kart.style.height = '711px';
+    kart.style.height = '889px';
     slogan.style.fontSize = '2.2rem';
     orta.style.bottom = '160px';
     btnStory.classList.add('aktif');
     btnAkis.classList.remove('aktif');
   } else {
-    kart.style.height = '400px';
+    kart.style.height = '500px';
     slogan.style.fontSize = '1.6rem';
     orta.style.bottom = '120px';
     btnAkis.classList.add('aktif');
@@ -721,6 +740,12 @@ function fotoDegistir(inp){
 }
 
 function guncelle(a){
+  if(a==='havanot'){
+    const v=document.getElementById('inHavaNot').value.trim();
+    const el=document.getElementById('kHavaNot');
+    el.textContent=v;
+    el.style.display=v?'block':'none';
+  }
   if(a==='slogan') document.getElementById('kSlogan').textContent=document.getElementById('inSlogan').value||'Artvin';
   if(a==='aciklama'){
     const v=document.getElementById('inAciklama').value.trim();
@@ -752,6 +777,12 @@ function guncelle(a){
     } else {
       havaBlok.classList.add('gizle');
     }
+  }
+  if(a==='tahmin'){
+    const v=document.getElementById('inTahmin').value.trim();
+    const el=document.getElementById('kTahmin');
+    el.textContent = v ? '🌂 ' + v : '';
+    el.style.display = v ? 'block' : 'none';
   }
   if(a==='eczane'){
     const v=document.getElementById('inEczane').value.trim();
@@ -798,7 +829,7 @@ function karti_indir(){
   const yk=document.getElementById('yk');
   yk.classList.add('aktif');
   html2canvas(document.getElementById('kart'),{
-    scale:3,useCORS:true,allowTaint:true,backgroundColor:null,logging:false
+    scale:4,useCORS:true,allowTaint:true,backgroundColor:null,logging:false
   }).then(c=>{
     yk.classList.remove('aktif');
     const l=document.createElement('a');
