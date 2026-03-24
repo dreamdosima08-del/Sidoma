@@ -7,19 +7,13 @@
 <!-- v3.1 -->
 <meta name="description" content="Artvin Şehir Rehberi — nöbetçi eczane, taksimetre, anlık hava durumu, Havaş saatleri, elektrik kesintileri, yürüyüş rotaları, uydu görüntüleri. Reklamsız, ücretsiz. Artvin'de her şey tek sayfada.">
 
-<!-- Google Analytics — defer ile yükleniyor (FCP/LCP kazanımı) -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TX994TW4PJ"></script>
 <script>
-  window.addEventListener('load', function() {
-    var s = document.createElement('script');
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TX994TW4PJ';
-    s.async = true;
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-TX994TW4PJ');
-  });
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TX994TW4PJ');
 </script>
 <script>
 function modalAc(id){document.getElementById(id).style.display='block';}
@@ -349,7 +343,6 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .pbtn svg{width:20px;height:20px;fill:#fff;display:block}
 
 footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;text-align:center}
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .flinks{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:1.25rem}
 .flinks a{font-size:.7rem;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:.05em}
 .flinks a:hover{color:var(--gold)}
@@ -1120,8 +1113,8 @@ border-radius:20px;}
     <h2 class="stitle">Artvin Şehir Bilgileri</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;align-items:start">
       <div>
-        <img src="https://i.ibb.co/1fvDNMzP/MG-20260307-111336.jpg" alt="Artvin İl Haritası" width="800" height="600" fetchpriority="high" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);margin-bottom:.75rem">
-        <img src="https://i.ibb.co/pjYMdGHX/5f63f9045542831e90db1de9.jpg" alt="Artvin Coğrafi Harita" width="800" height="600" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);margin-bottom:.75rem">
+        <img src="https://i.ibb.co/1fvDNMzP/MG-20260307-111336.jpg" alt="Artvin İl Haritası" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);margin-bottom:.75rem">
+        <img src="https://i.ibb.co/pjYMdGHX/5f63f9045542831e90db1de9.jpg" alt="Artvin Coğrafi Harita" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);margin-bottom:.75rem">
         <!-- KOORDİNATLAR -->
         <div style="background:rgba(255,255,255,.03);border:1px solid rgba(61,219,138,.18);padding:.9rem 1.1rem;border-radius:6px">
           <div style="font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vivid);margin-bottom:.6rem">📍 Coğrafi Koordinatlar</div>
@@ -1176,7 +1169,7 @@ border-radius:20px;}
   <div class="w">
     <div style="max-width:760px;margin:0 auto;border-top:1px solid rgba(255,255,255,.08);padding-top:2.5rem">
       <h2 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(2.2rem,6vw,3.5rem);font-weight:400;letter-spacing:.06em;color:#fff;margin-bottom:1.25rem;line-height:1.05;text-shadow:0 2px 24px rgba(0,0,0,.4)">Göğe Komşu Topraklar: Artvin'in Büyülü Mirası</h2>
-      <img src="https://i.ibb.co/GQNpnSLs/goge-komsu-topraklar-artvinden-bulut-denizi-manzaralari-45384.jpg" alt="Artvin Bulut Denizi Manzarası" width="1200" height="340" fetchpriority="high" style="width:100%;max-height:340px;object-fit:cover;border:1px solid rgba(255,255,255,.1);margin-bottom:1.75rem;display:block">
+      <img src="https://i.ibb.co/GQNpnSLs/goge-komsu-topraklar-artvinden-bulut-denizi-manzaralari-45384.jpg" alt="Artvin Bulut Denizi Manzarası" style="width:100%;max-height:340px;object-fit:cover;border:1px solid rgba(255,255,255,.1);margin-bottom:1.75rem;display:block">
       <div style="color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.85">
         <p style="margin-bottom:1.1rem">Türkiye'nin kuzeydoğu ucunda, doğanın göğe tırmandığı, bulutların yeryüzüyle kucaklaştığı benzersiz bir coğrafya: <strong style="color:#fff">Artvin.</strong> Tarihin, kültürün ve sonsuz yeşilin birleştiği bu topraklar; geçip gidilecek değil, içinde kaybolunacak bir şehirdir.</p>
         <h3 style="font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#f0c040;margin:1.5rem 0 .6rem">Tarihin İzleri</h3>
@@ -1317,9 +1310,19 @@ border-radius:20px;}
     <p class="sdesc">Artvin'in gizli köşeleri, doğası, tarihi ve yerel yaşamından hikayeler.</p>
     <div class="blog-grid" id="blogGrid">
 
-      <a class="blog-card" href="blog15.html">
+      <a class="blog-card" href="blog16.html">
         <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/fG22H4TD/file-00000000f1e07246b9684fafcb21b26a.png" alt="Artvin'de Bir Gün Nasıl Geçer" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/fG22H4TD/file-00000000f1e07246b9684fafcb21b26a.png" alt="Artvin'de Hayat Pahalı mı" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">💰 Yaşam Rehberi</div>
+          <div class="blog-card-title">Artvin'de Hayat Pahalı mı? 2026 Güncel Fiyat Rehberi</div>
+          <div class="blog-card-desc">Kira, market, ulaşım — öğrenciler ve tayinciler için Artvin'de yaşam maliyeti.</div>
+        </div>
+      </a>
+
+      <a class="blog-card" href="blog15.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/fG22H4TD/file-00000000f1e07246b9684fafcb21b26a.png" alt="Artvin'de Bir Gün Nasıl Geçer" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">📍 Gezi Rehberi</div>
           <div class="blog-card-title">Artvin'de Bir Gün Nasıl Geçer?</div>
@@ -1329,7 +1332,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog14.html">
         <div class="blog-card-badge" style="display:none"></div>
-        <img class="blog-card-img" src="https://i.ibb.co/C51B0yyX/1773819651960.png" alt="Artvin'den Batum'a Ne Kadar Tutar" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/C51B0yyX/1773819651960.png" alt="Artvin'den Batum'a Ne Kadar Tutar" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">&#9992;&#65039; Gezi</div>
           <div class="blog-card-title">Artvin'den Batum'a Ne Kadar Tutar? Sarp Sınır Kapısı Gerçek Maliyet Rehberi 2026</div>
@@ -1339,7 +1342,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog13.html">
         <div class="blog-card-badge" style="display:none"></div>
-        <img class="blog-card-img" src="https://i.ibb.co/k6BmSrH9/1773812868531.png" alt="Artvin Otobüs Bilet Fiyatları 2026" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/k6BmSrH9/1773812868531.png" alt="Artvin Otobüs Bilet Fiyatları 2026" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">&#128652; Ulaşım</div>
           <div class="blog-card-title">Artvin Otobüs Bilet Fiyatları 2026</div>
@@ -1349,7 +1352,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog12.html">
         <div class="blog-card-badge" style="display:none"></div>
-        <img class="blog-card-img" src="https://i.ibb.co/7J0G9S2Z/MG-20260315-053747.png" alt="Artvin İklimi" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/7J0G9S2Z/MG-20260315-053747.png" alt="Artvin İklimi" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">&#127807; İklim &amp; Doğa</div>
           <div class="blog-card-title">Artvin İklimi: Karadeniz'in Yeşili ile Dağların Sertliği Bir Arada</div>
@@ -1359,7 +1362,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog11.html">
         <div class="blog-card-badge" style="display:none"></div>
-        <img class="blog-card-img" src="https://i.ibb.co/t7xTyx0/MG-20260315-030009.png" alt="Artvin Yöresel Sözlük" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/t7xTyx0/MG-20260315-030009.png" alt="Artvin Yöresel Sözlük" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">&#128218; Yöresel Sözlük</div>
           <div class="blog-card-title">Artvin Yöresel Sözlük</div>
@@ -1369,7 +1372,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog10.html">
         <div class="blog-card-badge" style="display:none"></div>
-        <img class="blog-card-img" src="https://i.ibb.co/xS1xzdmS/image-1773518784953.jpg" alt="2026 Artvin Boğa Güreşi Takvimi" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/xS1xzdmS/image-1773518784953.jpg" alt="2026 Artvin Boğa Güreşi Takvimi" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">&#128004; Boğa Güreşi</div>
           <div class="blog-card-title">2026 Artvin Boğa Güreşi Takvimi</div>
@@ -1379,7 +1382,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog9.html">
         <div class="blog-card-badge" style="display:none"></div>
-        <img class="blog-card-img" src="https://i.ibb.co/DH4c22k9/1773478832399.png" alt="Artvin İlçe Rehberi 2026" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/DH4c22k9/1773478832399.png" alt="Artvin İlçe Rehberi 2026" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">📍 İlçe Rehberi</div>
           <div class="blog-card-title">Artvin İlçe Rehberi 2026</div>
@@ -1389,7 +1392,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog8.html">
         <div class="blog-card-badge" style="display:none"></div>
-        <img class="blog-card-img" src="https://i.ibb.co/3Y7wYbML/1773309751666.png" alt="Demirkent kavurmalı hinkal" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/3Y7wYbML/1773309751666.png" alt="Demirkent kavurmalı hinkal" loading="lazy">
         <div class="blog-card-body">
           <div class="blog-card-cat">🍽️ Yöresel Lezzetler</div>
           <div class="blog-card-title">Kırk Hinkal Yiyip Doymamak: Demirkent Köyü'nün Efsane Lezzeti</div>
@@ -1400,7 +1403,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog7.html">
         <div class="blog-card-badge" style="opacity:.6">7</div>
-        <img class="blog-card-img" src="https://i.ibb.co/353xBxPD/Kackar-Dagi-from-North-hory.jpg" alt="Kaçkar Dağı — Artvin'in En Yüksek Yeri" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/353xBxPD/Kackar-Dagi-from-North-hory.jpg" alt="Kaçkar Dağı — Artvin'in En Yüksek Yeri">
         <div class="blog-card-body">
           <div class="blog-card-cat">⛰️ Doğa & Coğrafya</div>
           <div class="blog-card-title">Artvin'in En Yüksek Yeri Neresi? Kaçkar Dağı</div>
@@ -1414,7 +1417,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog6.html">
         <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/bT3nkHD/kafkasor-festivali-boga-barisi.jpg" alt="Artvin Boğa Güreşleri Kafkasör Festivali" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/bT3nkHD/kafkasor-festivali-boga-barisi.jpg" alt="Artvin Boğa Güreşleri Kafkasör Festivali">
         <div class="blog-card-body">
           <div class="blog-card-cat">🐂 Festival & Gelenek</div>
           <div class="blog-card-title">Artvin Boğa Güreşleri: Nerede İzlenir, Ne Zaman Başlar?</div>
@@ -1428,7 +1431,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog5.html">
         <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/W4yYCfW4/1772656217998.png" alt="Artvin ne zaman il oldu" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/W4yYCfW4/1772656217998.png" alt="Artvin ne zaman il oldu">
         <div class="blog-card-body">
           <div class="blog-card-cat">🏛️ Tarih</div>
           <div class="blog-card-title">Artvin Ne Zaman İl Oldu?</div>
@@ -1442,7 +1445,7 @@ border-radius:20px;}
 
       <a class="blog-card" href="blog4.html">
         <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/Kz0bTbKV/MG-20260304-101611.jpg" alt="Artvin Coğrafi İşaret" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/Kz0bTbKV/MG-20260304-101611.jpg" alt="Artvin Coğrafi İşaret">
         <div class="blog-card-body">
           <div class="blog-card-cat">🏆 Coğrafi İşaret</div>
           <div class="blog-card-title">Artvin'in Tescilli Lezzetleri</div>
@@ -1455,7 +1458,7 @@ border-radius:20px;}
       </a>
       <a class="blog-card" href="blog3.html">
         <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/fz7Lt08b/1772545454067.png" alt="Artvin Ulaşım" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/fz7Lt08b/1772545454067.png" alt="Artvin Ulaşım">
         <div class="blog-card-body">
           <div class="blog-card-cat">✈️ Ulaşım Rehberi</div>
           <div class="blog-card-title">Artvin'den Her Yere: Havalimanı ve Otobüs Rehberi</div>
@@ -1468,7 +1471,7 @@ border-radius:20px;}
       </a>
       <a class="blog-card" href="blog2.html">
         <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/VWrnR99j/MG-20260221-130134.jpg" alt="Artvin" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/VWrnR99j/MG-20260221-130134.jpg" alt="Artvin">
         <div class="blog-card-body">
           <div class="blog-card-cat">😄 Kültür & Mizah</div>
           <div class="blog-card-title">Artvinliye Sorulmaz: Tepkisel Cevap Alacağınız 10 Soru</div>
@@ -1481,7 +1484,7 @@ border-radius:20px;}
       </a>
       <a class="blog-card" href="blog1.html">
         <div class="blog-card-badge">YENİ</div>
-        <img class="blog-card-img" src="https://i.ibb.co/SXstYhQ5/artvin-merkez-notlar.png" alt="Artvin Merkez" width="400" height="220" loading="lazy">
+        <img class="blog-card-img" src="https://i.ibb.co/SXstYhQ5/artvin-merkez-notlar.png" alt="Artvin Merkez">
         <div class="blog-card-body">
           <div class="blog-card-cat">📣 Tanitim & Yaşam Rehberi</div>
           <div class="blog-card-title">Artvin'e Geliyorsanız Bunları Mutlaka Bilin</div>
@@ -1562,8 +1565,7 @@ border-radius:20px;}
       <div class="rnum" id="rnum">—</div>
       <div class="ru">metre · m</div>
       <p class="rst" id="rst">Aşağıdan ilçenizi seçin.</p>
-      <label for="rilce-select" class="visually-hidden">İlçe Seçin</label>
-      <select id="rilce-select" class="rilce-select" onchange="districtElev(this.value)">
+      <select class="rilce-select" onchange="districtElev(this.value)">
         <option value="">— Veya ilçe seçin —</option>
         <option value="595|Artvin Merkez">Artvin Merkez (~595 m)</option>
         <option value="5|Hopa">Hopa (~5 m · Kıyı)</option>
@@ -1703,12 +1705,12 @@ border-radius:20px;}
     <h2 class="stitle">Yürüyüş Rotaları</h2>
     <p class="sdesc">Artvin'in en güzel yürüyüş parkurları.</p>
     <div class="rogrid">
-      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/KxP0Q9D1/cf1dc0c413db9c745dd2eb51c91c7f6f-870x490.jpg" alt="Hatila Vadisi Kanyonu" width="870" height="490" loading="lazy"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Hatila Vadisi Kanyonu</div><span class="robadge easy">Kolay</span></div><div class="rostats"><span class="rostat">📏 6 km</span><span class="rostat">⏱ 2-3 sa</span><span class="rostat">📈 450 m</span></div><div class="rodesc">Şelale ve orman manzarası. Tüm seviyelere uygun.</div></div></div>
-      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/ksvHBSsj/savsat-karagol-4.webp" alt="Karagöl Orman Döngüsü" width="800" height="500" loading="lazy"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Karagöl Orman Döngüsü</div><span class="robadge easy">Kolay</span></div><div class="rostats"><span class="rostat">📏 4 km</span><span class="rostat">⏱ 1.5-2 sa</span><span class="rostat">📈 180 m</span></div><div class="rodesc">Göl çevresi yürüyüş. Fotoğraf için ideal.</div></div></div>
-      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/KBm0gST/54.jpg" alt="Şavşat Yaylaları" width="800" height="500" loading="lazy"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Şavşat Yaylaları</div><span class="robadge med">Orta</span></div><div class="rostats"><span class="rostat">📏 14 km</span><span class="rostat">⏱ 5-6 sa</span><span class="rostat">📈 2100 m</span></div><div class="rodesc">Yüksek yayla rotası. Panoramik manzara.</div></div></div>
-      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/5g5NCSVV/1-1027.jpg" alt="Cehennem Deresi Kanyonu" width="800" height="500" loading="lazy"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Cehennem Deresi</div><span class="robadge hard">Zor</span></div><div class="rostats"><span class="rostat">📏 9 km</span><span class="rostat">⏱ 4-5 sa</span><span class="rostat">📈 800 m</span></div><div class="rodesc">Derin kanyon. Rehber önerilir.</div></div></div>
-      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/twLxzCxC/5f1e7a89d3806c15f48823f4.jpg" alt="Çoruh Vadisi" width="800" height="500" loading="lazy"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Çoruh Vadisi</div><span class="robadge easy">Kolay</span></div><div class="rostats"><span class="rostat">📏 8 km</span><span class="rostat">⏱ 2.5-3 sa</span><span class="rostat">📈 320 m</span></div><div class="rodesc">Nehir boyunca yürüyüş. Rafting manzarası.</div></div></div>
-      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/LzKrp903/gevhernik-kalesi-wmuk.webp" alt="Ardanuç Tarihi Rota Gevhernik Kalesi" width="800" height="500" loading="lazy"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Ardanuç Tarihi Rota</div><span class="robadge med">Orta</span></div><div class="rostats"><span class="rostat">📏 11 km</span><span class="rostat">⏱ 4-5 sa</span><span class="rostat">📈 650 m</span></div><div class="rodesc">Tarihi kilise ve kale ziyareti.</div></div></div>
+      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/KxP0Q9D1/cf1dc0c413db9c745dd2eb51c91c7f6f-870x490.jpg" alt="Hatila Vadisi Kanyonu"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Hatila Vadisi Kanyonu</div><span class="robadge easy">Kolay</span></div><div class="rostats"><span class="rostat">📏 6 km</span><span class="rostat">⏱ 2-3 sa</span><span class="rostat">📈 450 m</span></div><div class="rodesc">Şelale ve orman manzarası. Tüm seviyelere uygun.</div></div></div>
+      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/ksvHBSsj/savsat-karagol-4.webp" alt="Karagöl Orman Döngüsü"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Karagöl Orman Döngüsü</div><span class="robadge easy">Kolay</span></div><div class="rostats"><span class="rostat">📏 4 km</span><span class="rostat">⏱ 1.5-2 sa</span><span class="rostat">📈 180 m</span></div><div class="rodesc">Göl çevresi yürüyüş. Fotoğraf için ideal.</div></div></div>
+      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/KBm0gST/54.jpg" alt="Şavşat Yaylaları"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Şavşat Yaylaları</div><span class="robadge med">Orta</span></div><div class="rostats"><span class="rostat">📏 14 km</span><span class="rostat">⏱ 5-6 sa</span><span class="rostat">📈 2100 m</span></div><div class="rodesc">Yüksek yayla rotası. Panoramik manzara.</div></div></div>
+      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/5g5NCSVV/1-1027.jpg" alt="Cehennem Deresi Kanyonu"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Cehennem Deresi</div><span class="robadge hard">Zor</span></div><div class="rostats"><span class="rostat">📏 9 km</span><span class="rostat">⏱ 4-5 sa</span><span class="rostat">📈 800 m</span></div><div class="rodesc">Derin kanyon. Rehber önerilir.</div></div></div>
+      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/twLxzCxC/5f1e7a89d3806c15f48823f4.jpg" alt="Çoruh Vadisi"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Çoruh Vadisi</div><span class="robadge easy">Kolay</span></div><div class="rostats"><span class="rostat">📏 8 km</span><span class="rostat">⏱ 2.5-3 sa</span><span class="rostat">📈 320 m</span></div><div class="rodesc">Nehir boyunca yürüyüş. Rafting manzarası.</div></div></div>
+      <div class="rocard"><img class="rocard-img" src="https://i.ibb.co/LzKrp903/gevhernik-kalesi-wmuk.webp" alt="Ardanuç Tarihi Rota Gevhernik Kalesi"><div class="rocard-inner"><div class="rocard-head"><div class="rocard-name">Ardanuç Tarihi Rota</div><span class="robadge med">Orta</span></div><div class="rostats"><span class="rostat">📏 11 km</span><span class="rostat">⏱ 4-5 sa</span><span class="rostat">📈 650 m</span></div><div class="rodesc">Tarihi kilise ve kale ziyareti.</div></div></div>
     </div>
   </div>
 </section>
@@ -1772,39 +1774,39 @@ border-radius:20px;}
     <p class="sdesc">Artvin'in 9 ilçesini yukarıdan keşfet. Görsele tıklayarak tam ekran görüntüleyebilirsin.</p>
     <div class="uydu-grid">
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/WWmP2HVG/Screenshot-2026-03-08-02-32-20-717-com-android-chrome-edit.jpg','HOPA')">
-        <img src="https://i.ibb.co/WWmP2HVG/Screenshot-2026-03-08-02-32-20-717-com-android-chrome-edit.jpg" alt="Hopa Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/WWmP2HVG/Screenshot-2026-03-08-02-32-20-717-com-android-chrome-edit.jpg" alt="Hopa Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">HOPA</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/0jpq4pk1/Screenshot-2026-03-08-02-33-00-832-com-android-chrome-edit.jpg','KEMALPAŞA')">
-        <img src="https://i.ibb.co/0jpq4pk1/Screenshot-2026-03-08-02-33-00-832-com-android-chrome-edit.jpg" alt="Kemalpaşa Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/0jpq4pk1/Screenshot-2026-03-08-02-33-00-832-com-android-chrome-edit.jpg" alt="Kemalpaşa Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">KEMALPAŞA</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/ZzDbQ1gJ/Screenshot-2026-03-08-02-34-13-903-com-android-chrome-edit.jpg','BORÇKA')">
-        <img src="https://i.ibb.co/ZzDbQ1gJ/Screenshot-2026-03-08-02-34-13-903-com-android-chrome-edit.jpg" alt="Borçka Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/ZzDbQ1gJ/Screenshot-2026-03-08-02-34-13-903-com-android-chrome-edit.jpg" alt="Borçka Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">BORÇKA</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/9DdbGF6/Screenshot-2026-03-08-02-34-54-129-com-android-chrome-edit.jpg','MURGUL')">
-        <img src="https://i.ibb.co/9DdbGF6/Screenshot-2026-03-08-02-34-54-129-com-android-chrome-edit.jpg" alt="Murgul Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/9DdbGF6/Screenshot-2026-03-08-02-34-54-129-com-android-chrome-edit.jpg" alt="Murgul Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">MURGUL</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/PZyN7Xhz/Screenshot-2026-03-08-02-35-40-629-com-android-chrome-edit.jpg','MERKEZ')">
-        <img src="https://i.ibb.co/PZyN7Xhz/Screenshot-2026-03-08-02-35-40-629-com-android-chrome-edit.jpg" alt="Artvin Merkez Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/PZyN7Xhz/Screenshot-2026-03-08-02-35-40-629-com-android-chrome-edit.jpg" alt="Artvin Merkez Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">MERKEZ</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/Hp3WvBS0/Screenshot-2026-03-08-02-36-50-113-com-android-chrome-edit.jpg','ARHAVİ')">
-        <img src="https://i.ibb.co/Hp3WvBS0/Screenshot-2026-03-08-02-36-50-113-com-android-chrome-edit.jpg" alt="Arhavi Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/Hp3WvBS0/Screenshot-2026-03-08-02-36-50-113-com-android-chrome-edit.jpg" alt="Arhavi Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">ARHAVİ</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/4rpdvT0/Screenshot-2026-03-08-02-37-55-293-com-android-chrome-edit.jpg','YUSUFELİ')">
-        <img src="https://i.ibb.co/4rpdvT0/Screenshot-2026-03-08-02-37-55-293-com-android-chrome-edit.jpg" alt="Yusufeli Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/4rpdvT0/Screenshot-2026-03-08-02-37-55-293-com-android-chrome-edit.jpg" alt="Yusufeli Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">YUSUFELİ</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/m52m7K0Y/Screenshot-2026-03-08-02-39-20-316-com-android-chrome-edit.jpg','ARDANUÇ')">
-        <img src="https://i.ibb.co/m52m7K0Y/Screenshot-2026-03-08-02-39-20-316-com-android-chrome-edit.jpg" alt="Ardanuç Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/m52m7K0Y/Screenshot-2026-03-08-02-39-20-316-com-android-chrome-edit.jpg" alt="Ardanuç Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">ARDANUÇ</div>
       </div>
       <div class="uydu-card" onclick="uyduAc('https://i.ibb.co/pjSfwqrc/Screenshot-2026-03-08-02-40-36-075-com-android-chrome-edit.jpg','ŞAVŞAT')">
-        <img src="https://i.ibb.co/pjSfwqrc/Screenshot-2026-03-08-02-40-36-075-com-android-chrome-edit.jpg" alt="Şavşat Uydu Görüntüsü" width="800" height="600" loading="lazy">
+        <img src="https://i.ibb.co/pjSfwqrc/Screenshot-2026-03-08-02-40-36-075-com-android-chrome-edit.jpg" alt="Şavşat Uydu Görüntüsü" loading="lazy">
         <div class="uydu-label">ŞAVŞAT</div>
       </div>
     </div>
@@ -1832,7 +1834,7 @@ border-radius:20px;}
 
       <a class="video-card" href="https://youtube.com/shorts/sO2ziBgWuSE" target="_blank" rel="noopener">
         <div class="video-thumb">
-          <img loading="lazy" src="https://img.youtube.com/vi/sO2ziBgWuSE/hqdefault.jpg" alt="Artvin Video" width="480" height="360">
+          <img loading="lazy" src="https://img.youtube.com/vi/sO2ziBgWuSE/hqdefault.jpg" alt="Artvin Video">
           <div class="video-play">▶</div>
           <div class="video-shorts-badge">Shorts</div>
         </div>
@@ -1840,7 +1842,7 @@ border-radius:20px;}
 
       <a class="video-card" href="https://youtube.com/shorts/iZQBvNunz40" target="_blank" rel="noopener">
         <div class="video-thumb">
-          <img loading="lazy" src="https://img.youtube.com/vi/iZQBvNunz40/hqdefault.jpg" alt="Artvin Video" width="480" height="360">
+          <img loading="lazy" src="https://img.youtube.com/vi/iZQBvNunz40/hqdefault.jpg" alt="Artvin Video">
           <div class="video-play">▶</div>
           <div class="video-shorts-badge">Shorts</div>
         </div>
@@ -1853,7 +1855,7 @@ border-radius:20px;}
 
       <a class="video-card" href="https://youtube.com/shorts/pIcURzDvzFU" target="_blank" rel="noopener">
         <div class="video-thumb">
-          <img loading="lazy" src="https://img.youtube.com/vi/pIcURzDvzFU/hqdefault.jpg" alt="Artvin Video" width="480" height="360">
+          <img loading="lazy" src="https://img.youtube.com/vi/pIcURzDvzFU/hqdefault.jpg" alt="Artvin Video">
           <div class="video-play">▶</div>
           <div class="video-shorts-badge">Shorts</div>
         </div>
@@ -1861,7 +1863,7 @@ border-radius:20px;}
 
       <a class="video-card" href="https://youtube.com/shorts/aT9L-_UHj9Y" target="_blank" rel="noopener">
         <div class="video-thumb">
-          <img loading="lazy" src="https://img.youtube.com/vi/aT9L-_UHj9Y/hqdefault.jpg" alt="Artvin Video" width="480" height="360">
+          <img loading="lazy" src="https://img.youtube.com/vi/aT9L-_UHj9Y/hqdefault.jpg" alt="Artvin Video">
           <div class="video-play">▶</div>
           <div class="video-shorts-badge">Shorts</div>
         </div>
@@ -1869,7 +1871,7 @@ border-radius:20px;}
 
       <a class="video-card" href="https://youtube.com/shorts/pvGSdVATQNI" target="_blank" rel="noopener">
         <div class="video-thumb">
-          <img loading="lazy" src="https://img.youtube.com/vi/pvGSdVATQNI/hqdefault.jpg" alt="Artvin Video" width="480" height="360">
+          <img loading="lazy" src="https://img.youtube.com/vi/pvGSdVATQNI/hqdefault.jpg" alt="Artvin Video">
           <div class="video-play">▶</div>
           <div class="video-shorts-badge">Shorts</div>
         </div>
