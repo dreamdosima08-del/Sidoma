@@ -1000,40 +1000,19 @@ border-radius:20px;}
 </div>
 
 <!-- STICKY NAV -->
-<!-- BAYRAM BANNER -->
-<div id="bayramBanner" style="background:linear-gradient(90deg,#1a0a00,#3d1a00,#1a0a00);border-bottom:1px solid rgba(240,160,40,.3);padding:.55rem 1rem;display:flex;align-items:center;justify-content:center;gap:.75rem;position:relative">
-  <span style="font-size:1rem">🌙</span>
-  <span style="font-family:'Playfair Display',serif;font-size:.82rem;color:#f5d080;letter-spacing:.06em">Ramazan Bayramınız Mübarek Olsun</span>
-  <span style="font-size:1rem">🌙</span>
-  <button onclick="document.getElementById('bayramBanner').style.display='none'" style="position:absolute;right:.75rem;background:none;border:none;color:rgba(245,208,128,.4);font-size:1rem;cursor:pointer;line-height:1">✕</button>
-</div>
-<!-- /BAYRAM BANNER -->
 <nav class="snav">
-  <div class="nav-bayrak">
-      <svg viewBox="0 0 30 20" width="24" height="16" xmlns="http://www.w3.org/2000/svg">
-        <rect width="30" height="20" fill="#E30A17"/>
-        <circle cx="10" cy="10" r="6" fill="white"/>
-        <circle cx="11.5" cy="10" r="4.8" fill="#E30A17"/>
-        <polygon points="17,7.5 18.8,10 17,12.5 19.5,10.8 19.5,9.2" fill="white"/>
-        <polygon points="20,8.5 21.5,10 20,11.5 21,10.5 21,9.5" fill="white"/>
-      </svg>
-      <span class="nav-bayrak-yazi">T.C. Artvin</span>
-    </div>
-  <a href="#hava">🌤️ Hava</a>
+  <a href="#sehir">🏔️ Artvin</a>
   <a href="#eczane">💊 Eczane</a>
   <a href="#taksi">🚕 Taksi</a>
-  <a href="#rakim">⛰ Rakım</a>
+  <a href="#rakim">⛰️ Rakım</a>
   <a href="#mesafe">📏 Mesafe</a>
   <a href="#tasimaci">🚐 Dolmuş</a>
   <a href="#otobus">🎫 Otobüs</a>
   <a href="#elektrik">⚡ Elektrik</a>
-  <a href="#foto">📸 Foto</a>
-  <a href="#rota">🥾 Rota</a>
-  <a href="https://havas.net/otobus-hizmetleri" target="_blank" rel="noopener">✈️ Havaş</a>
-  <a href="#misyon">🎯 Misyon</a>
-  <a href="#videolar">🎬 Video</a>
-  <a href="#uydu">🛰️ Uydu</a>
-  <a href="#blog">✍️ Blog</a><a href="#iletisim">📬 İletişim</a>
+  <a href="#havas">✈️ Havaş</a>
+  <a href="#rota">🥾 Rotalar</a>
+  <a href="#blog">📰 Blog</a>
+  <a href="#iletisim">📬 İletişim</a>
 </nav>
 
 <!-- HERO -->
@@ -1573,7 +1552,8 @@ border-radius:20px;}
   <div class="w">
     <p class="slbl">GPS · IP · Manuel</p>
     <h2 class="stitle">Rakım Ölçer</h2>
-    <p class="sdesc">İlçe seçerek ortalama rakım bilgisine ulaşın.</p>
+    <p class="sdesc">GPS ile bulunduğunuz noktanın gerçek rakımını ölçün.</p>
+    <button onclick="gpsRakimOlc()" style="background:rgba(61,219,138,.12);border:1px solid rgba(61,219,138,.3);color:var(--vivid);padding:.7rem 1.4rem;font-size:.82rem;font-weight:700;letter-spacing:.08em;cursor:pointer;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem" id="gpsBtn">📍 GPS ile Rakımımı Ölç</button>
     <div class="rcard">
       <div class="mbars" id="mbars">
         <div class="mbar" style="height:18px"></div><div class="mbar" style="height:34px"></div>
@@ -1708,10 +1688,12 @@ border-radius:20px;}
     <h2 class="stitle">Elektrik Kesintileri</h2>
     <p class="sdesc">Artvin ve ilçeleri için planlı elektrik kesintisi sorgulama. Çoruh Elektrik A.Ş. üzerinden güncel bilgiye ulaşın.</p>
     <div class="elgrid">
-      <div class="elcard"><div class="elcard-il">Kesinti Sorgula</div><a href="https://www.coruhelektrik.com.tr/kesinti-sorgula"  target="_blank" rel="noopener">belsis.coruhelektrik.com.tr →</a></div>
-      <div class="elcard"><div class="elcard-il">Genel Merkez</div><a href="https://www.coruhelektrik.com.tr" target="_blank" rel="noopener">coruhelektrik.com.tr →</a></div>
+      <div class="elcard"><div class="elcard-il">Kesinti Sorgula (TEDAŞ)</div><a href="https://www.tedas.gov.tr/Sayfalar/Basvurular/PlanlıKesinti.aspx" target="_blank" rel="noopener">tedas.gov.tr →</a></div>
+      <div class="elcard"><div class="elcard-il">Çoruh Elektrik A.Ş.</div><a href="https://www.coruhelektrik.com.tr" target="_blank" rel="noopener">coruhelektrik.com.tr →</a></div>
       <div class="elcard"><div class="elcard-il">Arıza / Acil Hat</div><a href="tel:186" style="color:var(--vivid);font-size:1.2rem;font-weight:700">📞 186</a></div>
+      <div class="elcard"><div class="elcard-il">ALO Elektrik</div><a href="tel:186" style="color:var(--vivid);font-size:1.2rem;font-weight:700">📞 186</a></div>
     </div>
+    <p style="margin-top:.85rem;font-size:.75rem;color:rgba(255,255,255,.3);background:rgba(255,200,50,.04);border:1px solid rgba(255,200,50,.12);padding:.75rem 1rem">⚠️ Çoruh Elektrik sitesi zaman zaman erişim sorunu yaşayabilir. Planlı kesintiler için <strong style="color:rgba(255,255,255,.6)">186'yı</strong> arayabilirsiniz.</p>
   </div>
 </section>
 
@@ -1744,11 +1726,23 @@ border-radius:20px;}
     <div class="havas-grid">
       <a class="hcard" href="https://havas.net/otobus-hizmetleri" target="_blank" rel="noopener">
         <div class="hcard-top"><div class="hcard-route">Artvin ⇄ Rize Havalimanı</div><span>✈️</span></div>
-        <div style="text-align:center;padding:1rem 0">
-          <div style="font-size:2.5rem;margin-bottom:.6rem">🚌</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.4rem">Güncel Sefer Saatlerini Gör</div>
-          <div style="font-size:.76rem;color:rgba(255,255,255,.38);line-height:1.65">Saatler uçuş tarifesine göre değişir.<br>Resmi siteden teyit edin.</div>
-          <div style="margin-top:1rem;display:inline-block;background:var(--vivid);color:#0a1a12;padding:.55rem 1.2rem;font-size:.74rem;font-weight:700;letter-spacing:.05em">🌐 HAVAŞ.NET →</div>
+        <div style="padding:.5rem 0">
+          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.75rem">Artvin Otogarı Kalkış Saatleri</div>
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.04);border-radius:4px">
+              <span style="font-size:.85rem;color:rgba(255,255,255,.7)">☀️ Sabah Seferi</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);letter-spacing:.08em">07:00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.04);border-radius:4px">
+              <span style="font-size:.85rem;color:rgba(255,255,255,.7)">🌤️ Öğleden Sonra</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);letter-spacing:.08em">13:00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.04);border-radius:4px">
+              <span style="font-size:.85rem;color:rgba(255,255,255,.7)">🌙 Akşam Seferi</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);letter-spacing:.08em">18:30</span>
+            </div>
+          </div>
+          <div style="margin-top:.75rem;text-align:center"><a href="https://havas.net/otobus-hizmetleri" target="_blank" rel="noopener" style="font-size:.72rem;color:var(--vivid);text-decoration:none">🌐 havas.net'te teyit et →</a></div>
         </div>
       </a>
       <div class="hcard" style="cursor:default">
@@ -1957,9 +1951,9 @@ border-radius:20px;}
     <div class="ilet-grid">
       <div class="ilet-box">
         <h3>İletişim</h3>
-        <a class="ilet-row" href="/cdn-cgi/l/email-protection#04657670726d6a77616c6d7676616c6661766d446369656d682a676b69">
+        <a class="ilet-row" href="mailto:artvinsehirrehberi@gmail.com">
           <span style="font-size:1.2rem">📧</span>
-          <div><div class="ilet-lbl">E-Posta</div><div class="ilet-val"><span class="__cf_email__" data-cfemail="b2d3c0c6c4dbdcc1d7dadbc0c0d7dad0d7c0dbf2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></div></div>
+          <div><div class="ilet-lbl">E-Posta</div><div class="ilet-val">artvinsehirrehberi@gmail.com</div></div>
         </a>
         <a class="ilet-row" href="https://instagram.com/artvindeen" target="_blank" rel="noopener">
           <span style="font-size:1.2rem">📸</span>
@@ -2067,6 +2061,53 @@ function setElev(val, src, acc, lat, lon) {
 function setMsg(txt) {
   var el = document.getElementById('rst');
   if (el) el.textContent = txt;
+}
+
+function gpsRakimOlc(){
+  var btn = document.getElementById('gpsBtn');
+  btn.innerHTML = '⏳ GPS alınıyor...';
+  btn.disabled = true;
+  if(!navigator.geolocation){
+    document.getElementById('rst').textContent = 'GPS desteklenmiyor.';
+    btn.innerHTML = '📍 GPS ile Rakımımı Ölç';
+    btn.disabled = false;
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var lat = pos.coords.latitude;
+    var lon = pos.coords.longitude;
+    var alt = pos.coords.altitude;
+    document.getElementById('rlat').textContent = lat.toFixed(5) + '°';
+    document.getElementById('rlon').textContent = lon.toFixed(5) + '°';
+    document.getElementById('racc').textContent = pos.coords.accuracy ? Math.round(pos.coords.accuracy) + ' m' : '—';
+    document.getElementById('rdets').style.display = 'flex';
+    if(alt !== null && alt !== undefined){
+      document.getElementById('rnum').textContent = Math.round(alt);
+      document.getElementById('rst').textContent = 'GPS rakım ölçümü tamamlandı.';
+      document.getElementById('rsrc').textContent = 'GPS (anlık)';
+      btn.innerHTML = '✅ Rakım ölçüldü';
+    } else {
+      // Altitude yok, Open-Meteo'dan al
+      fetch('https://api.open-meteo.com/v1/elevation?latitude='+lat+'&longitude='+lon)
+        .then(function(r){return r.json();})
+        .then(function(d){
+          var rakim = d.elevation ? Math.round(d.elevation[0]) : '—';
+          document.getElementById('rnum').textContent = rakim;
+          document.getElementById('rst').textContent = 'GPS konumunuz için rakım bulundu.';
+          document.getElementById('rsrc').textContent = 'GPS + Open-Meteo';
+          btn.innerHTML = '✅ Rakım ölçüldü';
+        })
+        .catch(function(){
+          document.getElementById('rst').textContent = 'Rakım verisi alınamadı.';
+          btn.innerHTML = '📍 GPS ile Rakımımı Ölç';
+          btn.disabled = false;
+        });
+    }
+  }, function(err){
+    document.getElementById('rst').textContent = 'GPS erişimi reddedildi. Lütfen konum iznine izin verin.';
+    btn.innerHTML = '📍 GPS ile Rakımımı Ölç';
+    btn.disabled = false;
+  }, {enableHighAccuracy: true, timeout: 10000});
 }
 
 function districtElev(val) {

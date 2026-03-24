@@ -481,7 +481,7 @@ function koyModalAc(ad) {
       <div class="km-chips">
         <span class="km-chip km-rakim">⛰ ${d.rakim} m</span>
         <span class="km-chip km-nufus">👥 ${d.nufus} kişi</span>
-        <span class="km-chip km-uzaklik">🏙️ Artvin ${d.merkez_km} km · ${d.merkez_sure}</span>${d.ardanuc_km ? '<span class="km-chip km-uzaklik" style="background:rgba(240,192,64,.07);border-color:rgba(240,192,64,.2);color:rgba(240,192,64,.7)">📍 Ardanuç ' + d.ardanuc_km + ' km · ' + d.ardanuc_sure + '</span>' : ''}
+        <span class="km-chip km-uzaklik">🏙️ Artvin ${d.merkez_km} km · ${d.merkez_sure}</span>${d.ardanuc_km ? '<span class="km-chip km-uzaklik" style="background:rgba(240,192,64,.07);border-color:rgba(240,192,64,.2);color:rgba(240,192,64,.7)">📍 ' + (d.ilce||'Ardanuç') + ' ' + d.ardanuc_km + ' km · ' + d.ardanuc_sure + '</span>' : ''}
       </div>
       <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-bottom:.5rem;letter-spacing:.06em">📍 ${d.ilce || "Artvin Merkez"} İlçesi</div>
       ${d.ardanuc_km ? '<span class="km-chip km-uzaklik" style="background:rgba(240,192,64,.07);border-color:rgba(240,192,64,.2);color:rgba(240,192,64,.7)">📍 ' + (d.ilce||"") + " " + d.ardanuc_km + ' km · ' + d.ardanuc_sure + '</span>' : ''}
