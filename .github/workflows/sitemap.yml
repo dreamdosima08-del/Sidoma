@@ -1,0 +1,60 @@
+name: Sitemap Otomatik Güncelle
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.html'
+
+permissions:
+  contents: write
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repo'yu indir
+        uses: actions/checkout@v4
+
+      - name: Sitemap oluştur
+        run: |
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          TARIH=$(date +%Y-%m-%d)
+          for f in $(ls *.html | sort); do
+            if [[ "$f" == "404.html" || "$f" == "offline.html" ]]; then
+              continue
+            fi
+            if [[ "$f" == "index.html" ]]; then
+              PRIORITY="1.0"
+              FREQ="daily"
+            elif [[ "$f" == "gezi.html" || "$f" == "koyler.html" ]]; then
+              PRIORITY="0.9"
+              FREQ="monthly"
+            else
+              PRIORITY="0.8"
+              FREQ="monthly"
+            fi
+            if [[ "$f" == "index.html" ]]; then
+              URL="https://artvinrehber.com/"
+            else
+              URL="https://artvinrehber.com/${f}"
+            fi
+            echo "  <url>" >> sitemap.xml
+            echo "    <loc>${URL}</loc>" >> sitemap.xml
+            echo "    <lastmod>${TARIH}</lastmod>" >> sitemap.xml
+            echo "    <changefreq>${FREQ}</changefreq>" >> sitemap.xml
+            echo "    <priority>${PRIORITY}</priority>" >> sitemap.xml
+            echo "  </url>" >> sitemap.xml
+          done
+          echo '</urlset>' >> sitemap.xml
+
+      - name: Sitemap'i kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git diff --staged --quiet || git commit -m "sitemap guncellendi"
+          git push
