@@ -434,8 +434,8 @@ footer{background:#060f0a;border-top:1px solid var(--border);padding:2.5rem 0;te
 /* Section başlıkları fade-in (IntersectionObserver ile) */
 .section-animate{
   opacity:0;
-  transform:translateY(24px);
-  transition:opacity .7s ease,transform .7s ease;
+  transform:translateY(16px);
+  transition:opacity .4s ease,transform .4s ease;
 }
 .section-animate.visible{
   opacity:1;
@@ -1282,7 +1282,7 @@ border-radius:20px;}
   </div>
 </section>
 
-<section id="blog" style="display:block;visibility:visible">
+<section id="blog" style="display:block;visibility:visible;opacity:1;transform:none">
   <div class="w">
     <p class="slbl">✍️ Artvin'i Keşfet</p>
     <h2 class="stitle">Hikayeler &amp; Keşifler</h2>
@@ -2360,7 +2360,7 @@ window.addEventListener('scroll',()=>{
 /* ═══ INTERSECTION OBSERVER ═══ */
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:.1});
+},{threshold:0,rootMargin:"0px 0px -50px 0px"});
 document.querySelectorAll('section').forEach(s=>{
   s.classList.add('section-animate');
   observer.observe(s);
