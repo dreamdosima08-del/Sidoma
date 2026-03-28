@@ -205,7 +205,11 @@ footer a{color:var(--vivid);text-decoration:none}
 
 <script>
 function baglantiKopyala(){
-  nav
+  navigator.clipboard.writeText('https://artvinrehber.com/blog19.html').then(function(){
+    var el=document.getElementById('kopyalandiMesaj');
+    el.style.display='block';
+    setTimeout(function(){el.style.display='none'},2500);
+  });
 }
 </script>
 </body>
