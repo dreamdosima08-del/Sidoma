@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Ne Kadar Artvinlisin? — Artvin Quiz | artvinrehber.com</title>
+<meta name="description" content="Artvin kültürünü, yemeklerini, şivesini ve yaşam tarzını ne kadar biliyorsun? 15 soruluk eğlenceli Artvin quizini çöz!">
+<meta name="keywords" content="artvin quiz, ne kadar artvinlisin, artvin bilgi yarışması, artvin kültür">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://artvinrehber.com/quiz.html">
+<meta property="og:title" content="Ne Kadar Artvinlisin? 🏔️">
+<meta property="og:description" content="Artvin kültürünü, yemeklerini ve şivesini ne kadar biliyorsun? Hemen test et!">
+<meta property="og:url" content="https://artvinrehber.com/quiz.html">
+<meta property="og:image" content="https://i.ibb.co/b5WTQ0dy/MG-20260320-055734.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@artvindeen">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060d08;
+  --card:#0d1a0f;
+  --border:rgba(255,255,255,.1);
+  --gold:#f0c040;
+  --vivid:#3ddb8a;
+  --off:#e8ede9;
+  --red:#ff6b6b;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  background:var(--bg);
+  color:var(--off);
+  font-family:'Nunito',sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* NAV */
+.nav{
+  width:100%;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.25rem;
+  border-bottom:1px solid var(--border);
+  max-width:600px;
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.85rem;letter-spacing:.14em;
+  color:var(--gold);text-decoration:none;
+}
+.nav-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;letter-spacing:.1em;color:rgba(255,255,255,.5);
+}
+
+/* WRAPPER */
+.wrap{width:100%;max-width:600px;padding:0 1.25rem 3rem;flex:1}
+
+/* BAŞLANGIÇ EKRANI */
+.ekran-baslangic{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:2rem 0;gap:1.25rem;
+}
+.quiz-emoji{font-size:4rem;line-height:1;animation:salla 2s ease-in-out infinite}
+@keyframes salla{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.quiz-baslik{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,8vw,3rem);
+  letter-spacing:.1em;color:#fff;line-height:1.1;
+}
+.quiz-baslik span{color:var(--gold)}
+.quiz-alt{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:400px}
+.quiz-info{
+  display:flex;gap:1.5rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:10px;padding:.85rem 1.5rem;
+}
+.qi{text-align:center}
+.qi-no{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;color:var(--vivid);display:block;
+}
+.qi-lbl{font-size:.62rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase}
+.btn-baslat{
+  background:linear-gradient(135deg,var(--vivid),#2bc478);
+  color:#060d08;border:none;
+  padding:1rem 2.5rem;border-radius:50px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;letter-spacing:.15em;
+  cursor:pointer;transition:.2s;
+  box-shadow:0 8px 32px rgba(61,219,138,.3);
+  width:100%;max-width:280px;
+}
+.btn-baslat:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(61,219,138,.4)}
+.btn-baslat:active{transform:translateY(0)}
+
+/* SORU EKRANI */
+.ekran-soru{display:none}
+.ilerleme-wrap{margin:1.5rem 0 .5rem}
+.ilerleme-ust{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:.5rem;
+}
+.ilerleme-no{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.85rem;letter-spacing:.1em;color:rgba(255,255,255,.4);
+}
+.ilerleme-puan{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.85rem;letter-spacing:.1em;color:var(--gold);
+}
+.ilerleme-bar{
+  height:5px;background:rgba(255,255,255,.08);
+  border-radius:3px;overflow:hidden;
+}
+.ilerleme-ic{
+  height:100%;background:linear-gradient(90deg,var(--vivid),var(--gold));
+  border-radius:3px;transition:width .4s ease;
+}
+
+/* SORU KARTI */
+.soru-kart{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.5rem 1.25rem;
+  margin-bottom:1rem;
+}
+.soru-kategori{
+  font-size:.62rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--vivid);margin-bottom:.75rem;display:block;
+}
+.soru-metin{
+  font-size:1.05rem;font-weight:700;
+  color:#fff;line-height:1.5;
+  min-height:60px;
+}
+.soru-emoji{font-size:1.4rem;margin-right:.5rem}
+
+/* ŞIKLAR */
+.siklar{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
+.sik{
+  background:rgba(255,255,255,.04);
+  border:2px solid rgba(255,255,255,.09);
+  border-radius:10px;
+  padding:.85rem 1.1rem;
+  cursor:pointer;
+  transition:.15s;
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.92rem;font-weight:600;
+  color:rgba(255,255,255,.8);
+  text-align:left;width:100%;
+}
+.sik:hover:not(:disabled){
+  background:rgba(61,219,138,.07);
+  border-color:rgba(61,219,138,.3);
+  color:#fff;
+}
+.sik:active:not(:disabled){transform:scale(.98)}
+.sik-harf{
+  width:28px;height:28px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.85rem;letter-spacing:.05em;
+  flex-shrink:0;color:rgba(255,255,255,.5);
+  transition:.15s;
+}
+.sik.dogru{
+  background:rgba(61,219,138,.12);
+  border-color:var(--vivid);
+  color:#fff;
+}
+.sik.dogru .sik-harf{background:var(--vivid);color:#060d08}
+.sik.yanlis{
+  background:rgba(255,107,107,.08);
+  border-color:var(--red);
+  color:rgba(255,255,255,.5);
+}
+.sik.yanlis .sik-harf{background:var(--red);color:#fff}
+.sik.gri{opacity:.4}
+.sik:disabled{cursor:default}
+
+/* AÇIKLAMA */
+.aciklama-kutu{
+  background:rgba(240,192,64,.06);
+  border:1px solid rgba(240,192,64,.2);
+  border-radius:10px;
+  padding:.85rem 1rem;
+  margin-top:.75rem;
+  font-size:.82rem;
+  color:rgba(255,255,255,.65);
+  line-height:1.65;
+  display:none;
+}
+.aciklama-kutu.on{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.aciklama-ikon{font-size:1rem;margin-right:.4rem}
+
+/* İLERLE BUTONU */
+.btn-ileri{
+  width:100%;padding:.85rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:10px;
+  color:#fff;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;letter-spacing:.12em;
+  cursor:pointer;transition:.15s;
+  display:none;margin-top:.5rem;
+}
+.btn-ileri.on{display:block}
+.btn-ileri:hover{background:rgba(255,255,255,.12)}
+
+/* SONUÇ EKRANI */
+.ekran-sonuc{display:none;text-align:center;padding:2rem 0;gap:1.25rem;flex-direction:column;align-items:center}
+.sonuc-rozet{
+  width:110px;height:110px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;
+  border:3px solid;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.sonuc-puan-wrapper{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.25rem 2rem;width:100%;
+}
+.sonuc-puan{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;letter-spacing:.1em;display:block;line-height:1;
+}
+.sonuc-puan-lbl{font-size:.7rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase}
+.sonuc-unvan{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:.08em;color:#fff;
+}
+.sonuc-mesaj{
+  font-size:.9rem;color:rgba(255,255,255,.6);
+  line-height:1.7;max-width:400px;
+}
+.sonuc-istatistik{
+  display:flex;gap:1rem;width:100%;
+}
+.si{
+  flex:1;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:10px;
+  padding:.85rem .5rem;text-align:center;
+}
+.si-no{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;display:block;letter-spacing:.05em;
+}
+.si-lbl{font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
+.paylasim-metin{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:10px;padding:1rem;
+  font-size:.78rem;color:rgba(255,255,255,.6);
+  line-height:1.7;width:100%;text-align:left;
+  font-family:'Nunito',sans-serif;
+  white-space:pre-wrap;
+}
+.btn-row{display:flex;flex-direction:column;gap:.6rem;width:100%}
+.btn{
+  padding:.85rem;border-radius:10px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;letter-spacing:.12em;
+  cursor:pointer;transition:.15s;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  border:none;width:100%;
+}
+.btn-paylasWP{background:#25D366;color:#fff}
+.btn-paylasX{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff}
+.btn-tekrar{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);color:var(--vivid)}
+.btn-wordle{background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.25);color:var(--gold)}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
+  <div class="nav-title">QUIZ</div>
+</nav>
+
+<div class="wrap">
+
+  <!-- BAŞLANGIÇ -->
+  <div class="ekran-baslangic" id="ekranBaslangic">
+    <div class="quiz-emoji">🏔️</div>
+    <div class="quiz-baslik">Ne Kadar<br><span>Artvinlisin?</span></div>
+    <div class="quiz-alt">Artvin'in kültürünü, yemeklerini, şivesini ve yaşam tarzını ne kadar biliyorsun? Hemen test et!</div>
+    <div class="quiz-info">
+      <div class="qi"><span class="qi-no">15</span><span class="qi-lbl">Soru</span></div>
+      <div class="qi"><span class="qi-no">150</span><span class="qi-lbl">Maks Puan</span></div>
+      <div class="qi"><span class="qi-no">~3</span><span class="qi-lbl">Dakika</span></div>
+    </div>
+    <button class="btn-baslat" onclick="baslat()">🎯 BAŞLA</button>
+  </div>
+
+  <!-- SORU -->
+  <div class="ekran-soru" id="ekranSoru">
+    <div class="ilerleme-wrap">
+      <div class="ilerleme-ust">
+        <span class="ilerleme-no" id="ilerlemeNo">Soru 1 / 15</span>
+        <span class="ilerleme-puan" id="ilerlemePuan">0 puan</span>
+      </div>
+      <div class="ilerleme-bar"><div class="ilerleme-ic" id="ilerlemeIc" style="width:0%"></div></div>
+    </div>
+
+    <div class="soru-kart">
+      <span class="soru-kategori" id="soruKategori"></span>
+      <div class="soru-metin" id="soruMetin"></div>
+    </div>
+
+    <div class="siklar" id="siklar"></div>
+    <div class="aciklama-kutu" id="aciklamaKutu"></div>
+    <button class="btn-ileri" id="btnIleri" onclick="sonraki()">Sonraki Soru →</button>
+  </div>
+
+  <!-- SONUÇ -->
+  <div class="ekran-sonuc" id="ekranSonuc">
+    <div class="sonuc-rozet" id="sonucRozet"></div>
+    <div class="sonuc-unvan" id="sonucUnvan"></div>
+    <div class="sonuc-puan-wrapper">
+      <span class="sonuc-puan" id="sonucPuan"></span>
+      <span class="sonuc-puan-lbl">Toplam Puan</span>
+    </div>
+    <div class="sonuc-mesaj" id="sonucMesaj"></div>
+    <div class="sonuc-istatistik">
+      <div class="si"><span class="si-no" id="siDogru"></span><span class="si-lbl">Doğru</span></div>
+      <div class="si"><span class="si-no" id="siYanlis"></span><span class="si-lbl">Yanlış</span></div>
+      <div class="si"><span class="si-no" id="siYuzde"></span><span class="si-lbl">Başarı</span></div>
+    </div>
+    <div class="paylasim-metin" id="paylasimMetin"></div>
+    <div class="btn-row">
+      <button class="btn btn-paylasWP" onclick="paylasWP()">📱 WhatsApp'ta Paylaş</button>
+      <button class="btn btn-paylasX" onclick="paylasX()">𝕏 X'te Paylaş</button>
+      <button class="btn btn-wordle" onclick="window.location.href='/wordle.html'">🎮 Artvin Wordle'ı Dene!</button>
+      <button class="btn btn-tekrar" onclick="tekrar()">🔄 Tekrar Oyna</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const SORULAR = [
+  {
+    kategori: '🍲 Artvin Mutfağı',
+    soru: 'Artvin\'in coğrafi işaretli, tescilli yemeği hangisidir?',
+    siklar: ['Kuymak', 'Puçuko', 'Mıhlama', 'Karalahana Çorbası'],
+    dogru: 1,
+    aciklama: 'Puçuko, 2017\'de Türk Patent Kurumu tarafından tescillenen, kurutulmuş fasulyeden yapılan geleneksel bir Artvin yemeğidir.'
+  },
+  {
+    kategori: '🗣️ Artvin Şivesi',
+    soru: '"Badya" kelimesi Artvin\'de ne anlama gelir?',
+    siklar: ['Küçük çocuk', 'Büyük toprak testi veya kap', 'Eski bina', 'Dağ keçisi'],
+    dogru: 1,
+    aciklama: 'Badya, Artvin ve çevresinde büyük toprak kaplar için kullanılan yerel bir kelimedir. Köylerde hâlâ kullanılır.'
+  },
+  {
+    kategori: '🏔️ Artvin Coğrafyası',
+    soru: 'Artvin\'in ilçelerinden hangisi Türkiye\'nin en yüksek konumdaki ilçelerinden biridir?',
+    siklar: ['Hopa', 'Borçka', 'Şavşat', 'Arhavi'],
+    dogru: 2,
+    aciklama: 'Şavşat, deniz seviyesinden yaklaşık 1.215 metre yüksekte kurulu olup Artvin\'in en yüksek ilçelerinden biridir.'
+  },
+  {
+    kategori: '😄 Artvinli Refleksleri',
+    soru: 'Artvin\'de biri sana "Çay var mı?" diye sorsa ne yaparsın?',
+    siklar: ['Yok derim geçerim', 'Komşuyu da çağırırım, tek kişiye çay olmaz', 'Çayı döker, semaveri yakarım zaten kaynar üstündedir', 'Çayı dökerken "seker mi şekersiz mi" diye de sorarım'],
+    dogru: 2,
+    aciklama: 'Artvin\'de misafirperver olmak DNA\'dadır. Semaver her zaman hazırdır, çay her zaman dökülür! 🫖'
+  },
+  {
+    kategori: '🏔️ Artvin Coğrafyası',
+    soru: 'Çoruh Nehri hangi ülkeye geçerek Karadeniz\'e dökülür?',
+    siklar: ['Ermenistan', 'Azerbaycan', 'Gürcistan', 'Rusya'],
+    dogru: 2,
+    aciklama: 'Çoruh Nehri, Türkiye sınırını geçtikten sonra Gürcistan topraklarından Batum yakınlarında Karadeniz\'e dökülür.'
+  },
+  {
+    kategori: '🍲 Artvin Mutfağı',
+    soru: 'Demirkent köyü hangi yemeğiyle meşhurdur?',
+    siklar: ['Puçuko', 'Karalahana sarması', 'Kavurmalı hinkal', 'Mısır ekmeği'],
+    dogru: 2,
+    aciklama: 'Demirkent\'in kavurmalı hinkali, Artvin\'e gelenlerin mutlaka tatması gereken bir lezzettir. Yöresel kavurma ile servis edilir.'
+  },
+  {
+    kategori: '🌿 Yayla Kültürü',
+    soru: 'Kafkasör\'de her yıl hangi gelenek yaşatılır?',
+    siklar: ['Zeybek festivali', 'Boğa güreşleri ve Kafkasör Festivali', 'Çay toplama şenliği', 'Horon yarışması'],
+    dogru: 1,
+    aciklama: 'Kafkasör Festivali, her yıl Haziran ayında düzenlenen ve geleneksel boğa güreşlerinin öne çıktığı Artvin\'in en ünlü şenliidir.'
+  },
+  {
+    kategori: '🗣️ Artvin Şivesi',
+    soru: 'Artvin'de birine "hele bir gel bakim" denildiğinde ne anlaşılır?',
+    siklar: ['"Hemen gel" demek', '"Uzaktan bak" demek', '"Gel, sohbet edelim" demek', '"Git" demek'],
+    dogru: 2,
+    aciklama: '"Hele bir gel bakım" Artvin ağzında ısrarcı ama sıcak bir davet ifadesidir. Acelesi yoktur ama samimiyeti sonsuzdur.'
+  },
+  {
+    kategori: '⚡ Artvin & Enerji',
+    soru: 'Dünyanın 6. en yüksek barajı Artvin\'in hangi ilçesindedir?',
+    siklar: ['Yusufeli', 'Borçka', 'Artvin Merkez', 'Murgul'],
+    dogru: 2,
+    aciklama: 'Deriner Barajı, 249 metre yüksekliğiyle Artvin Merkez sınırları içinde yer alır ve dünyanın 6. en yüksek barajıdır.'
+  },
+  {
+    kategori: '😄 Artvinli Refleksleri',
+    soru: 'Artvin\'e ilk gelen biri şehrin yokuşlarını görünce ne der?',
+    siklar: ['"Vay be, ne güzel manzara!"', '"Burada teleferik yapılmalı"', '"Allahım bu ne yokuş, dizlerim tutuştu"', '"Bu şehirde düz yol yok mu hiç?"'],
+    dogru: 2,
+    aciklama: 'Artvin\'in yokuşları meşhurdur! Artvinliler bu yokuşlara o kadar alışmıştır ki, düz yol görseler şaşırırlar. 😄'
+  },
+  {
+    kategori: '🏔️ Artvin Doğası',
+    soru: 'Borçka\'nın simgesi haline gelen efsanevi heyelan gölü hangisidir?',
+    siklar: ['Uzungöl', 'Karagöl', 'Sera Gölü', 'Tortum Gölü'],
+    dogru: 1,
+    aciklama: 'Karagöl, sonbaharda altın sarısına bürünen çam ormanlarıyla çevrilmiş, Borçka\'nın doğa harikası krater gölüdür.'
+  },
+  {
+    kategori: '🏛️ Artvin Tarihi',
+    soru: 'Artvin\'in eski tarihsel adı nedir?',
+    siklar: ['Lazistan', 'Kolhis', 'Livane', 'Çoruh'],
+    dogru: 2,
+    aciklama: 'Artvin, tarihte "Livane" adıyla bilinirdi. Livane Kalesi hâlâ şehre tepeden bakmaktadır.'
+  },
+  {
+    kategori: '🌿 Yayla Kültürü',
+    soru: 'Artvinliler yazın yaylaya çıkarken ne götürmeden gidemez?',
+    siklar: ['Televizyon', 'Kara demlik ve çay takımı', 'Laptop', 'Araba'],
+    dogru: 1,
+    aciklama: 'Kara demlik Artvin yayla kültürünün vazgeçilmezidir. Yaylada demliğin üstünde çay kaynarken doğanın sesi eşlik eder. ☕'
+  },
+  {
+    kategori: '😄 Artvinli Refleksleri',
+    soru: 'Artvin\'de hava nasıl olursa olursa "yağmur yağar" denir, peki Artvin yılda kaç gün yağmur alır?',
+    siklar: ['50-80 gün', '80-110 gün', 'Yaklaşık 140 gün', '200+ gün'],
+    dogru: 2,
+    aciklama: 'Artvin\'in bazı ilçeleri yılda 150-200 günü aşkın yağışlı gün görebilir. Bu yüzden Artvinliler yağmura aldırmaz! 🌧️'
+  },
+  {
+    kategori: '🏔️ Artvin Coğrafyası',
+    soru: 'Artvin\'in Kaçkar\'dan sonra ikinci en yüksek dağı hangisidir?',
+    siklar: ['Cerattepe', 'Karçal Dağları', 'Mescit Dağı', 'Yalnızçam'],
+    dogru: 1,
+    aciklama: 'Karçal Dağları, 3.428 metre ile Artvin\'in ikinci en yüksek noktasıdır ve Gürcistan sınırına kadar uzanır.'
+  }
+];
+
+let mevcutSoru = 0;
+let puan = 0;
+let dogru = 0;
+let cevaplandi = false;
+
+function baslat(){
+  mevcutSoru=0; puan=0; dogru=0; cevaplandi=false;
+  document.getElementById('ekranBaslangic').style.display='none';
+  document.getElementById('ekranSonuc').style.display='none';
+  document.getElementById('ekranSoru').style.display='block';
+  soruGoster();
+}
+
+function soruGoster(){
+  cevaplandi=false;
+  const s = SORULAR[mevcutSoru];
+
+  document.getElementById('ilerlemeNo').textContent = 'Soru '+(mevcutSoru+1)+' / '+SORULAR.length;
+  document.getElementById('ilerlemePuan').textContent = puan+' puan';
+  document.getElementById('ilerlemeIc').style.width = ((mevcutSoru/SORULAR.length)*100)+'%';
+  document.getElementById('soruKategori').textContent = s.kategori;
+  document.getElementById('soruMetin').textContent = s.soru;
+  document.getElementById('aciklamaKutu').classList.remove('on');
+  document.getElementById('aciklamaKutu').textContent='';
+  document.getElementById('btnIleri').classList.remove('on');
+
+  const siklar = document.getElementById('siklar');
+  siklar.innerHTML='';
+  const harfler=['A','B','C','D'];
+  s.siklar.forEach(function(sik,i){
+    const btn = document.createElement('button');
+    btn.className='sik';
+    btn.innerHTML='<span class="sik-harf">'+harfler[i]+'</span>'+sik;
+    btn.onclick=function(){ cevapSec(i,btn); };
+    siklar.appendChild(btn);
+  });
+}
+
+function cevapSec(idx, btn){
+  if(cevaplandi) return;
+  cevaplandi=true;
+  const s = SORULAR[mevcutSoru];
+  const tumSiklar = document.querySelectorAll('.sik');
+
+  tumSiklar.forEach(function(b){ b.disabled=true; });
+
+  if(idx===s.dogru){
+    btn.classList.add('dogru');
+    puan+=10; dogru++;
+  } else {
+    btn.classList.add('yanlis');
+    tumSiklar[s.dogru].classList.add('dogru');
+    tumSiklar.forEach(function(b,i){
+      if(i!==idx && i!==s.dogru) b.classList.add('gri');
+    });
+  }
+
+  // Açıklama göster
+  const ac = document.getElementById('aciklamaKutu');
+  ac.innerHTML='<span class="aciklama-ikon">💡</span>'+s.aciklama;
+  ac.classList.add('on');
+
+  document.getElementById('ilerlemePuan').textContent = puan+' puan';
+
+  const btnIleri = document.getElementById('btnIleri');
+  btnIleri.textContent = mevcutSoru < SORULAR.length-1 ? 'Sonraki Soru →' : 'Sonucu Gör 🏆';
+  btnIleri.classList.add('on');
+}
+
+function sonraki(){
+  mevcutSoru++;
+  if(mevcutSoru>=SORULAR.length){
+    sonucGoster();
+  } else {
+    soruGoster();
+  }
+}
+
+function sonucGoster(){
+  document.getElementById('ekranSoru').style.display='none';
+  const sonuc = document.getElementById('ekranSonuc');
+  sonuc.style.display='flex';
+
+  const yuzde = Math.round((puan/150)*100);
+  let rozet, unvan, mesaj, rozetRenk;
+
+  if(puan<=40){
+    rozet='🗺️'; unvan='Artvin Turist 😄';
+    mesaj='Sen daha Artvin\'i Google Maps\'ten görmüşsün! Ama merak etme, her yolculuk bir adımla başlar. Artvin seni bekliyor!';
+    rozetRenk='rgba(255,200,50,.3)';
+  } else if(puan<=70){
+    rozet='🌱'; unvan='Yavaş Yavaş Artvinleşiyorsun';
+    mesaj='Artvin\'i tanımaya başlıyorsun! Bir de Kafkasör\'e çıksan, bir de Demirkent\'in hinkalını yesen... O zaman konuşuruz!';
+    rozetRenk='rgba(80,180,120,.3)';
+  } else if(puan<=110){
+    rozet='🏔️'; unvan='Artvin Havası Var Sende!';
+    mesaj='Artvin\'i iyi tanıyorsun! Şiveni biraz geliştir, bir de semaverin başına geç. Az kaldı tam Artvinli sayılmana!';
+    rozetRenk='rgba(61,219,138,.3)';
+  } else if(puan<=130){
+    rozet='🌟'; unvan='Neredeyse Tam Artvinlisin!';
+    mesaj='Artvin\'in sırlarını iyi biliyorsun. Kafkasör\'de seni çay içerken görseler "bu Artvinli" derler! 👏';
+    rozetRenk='rgba(240,192,64,.3)';
+  } else {
+    rozet='🔥'; unvan='Helal! Bildiğin Artvinlisin!';
+    mesaj='Tam Artvinli! Hem badyayı bilirsin hem puçukoyu, hem Kafkasör\'ü hem Deriner\'i. Seni Artvin\'e kadar alkışlıyoruz! 🎉';
+    rozetRenk='rgba(240,192,64,.4)';
+  }
+
+  const rozetEl = document.getElementById('sonucRozet');
+  rozetEl.textContent=rozet;
+  rozetEl.style.background=rozetRenk;
+  rozetEl.style.borderColor=rozetRenk.replace('.3','1').replace('.4','1');
+
+  document.getElementById('sonucUnvan').textContent=unvan;
+  document.getElementById('sonucPuan').textContent=puan+'/150';
+  document.getElementById('sonucPuan').style.color = puan>=90 ? 'var(--gold)' : puan>=50 ? 'var(--vivid)' : 'var(--off)';
+  document.getElementById('sonucMesaj').textContent=mesaj;
+  document.getElementById('siDogru').textContent=dogru;
+  document.getElementById('siDogru').style.color='var(--vivid)';
+  document.getElementById('siYanlis').textContent=(SORULAR.length-dogru);
+  document.getElementById('siYanlis').style.color='var(--red)';
+  document.getElementById('siYuzde').textContent='%'+yuzde;
+
+  const paylasimTxt = '🏔️ "Ne Kadar Artvinlisin?" quizini çözdüm!\n\n'+
+    rozet+' '+unvan+'\n'+
+    '📊 Puan: '+puan+'/150 (%'+yuzde+')\n'+
+    '✅ Doğru: '+dogru+'/'+SORULAR.length+'\n\n'+
+    'Sen de dene 👇\nartvinrehber.com/quiz.html';
+  document.getElementById('paylasimMetin').textContent=paylasimTxt;
+}
+
+function paylasWP(){
+  const metin = document.getElementById('paylasimMetni') ?
+    document.getElementById('paylasimMetni').textContent :
+    document.getElementById('paylasimMetin').textContent;
+  window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(metin),'_blank');
+}
+
+function paylasX(){
+  const metin = document.getElementById('paylasimMetin').textContent;
+  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(metin),'_blank');
+}
+
+function tekrar(){
+  document.getElementById('ekranSonuc').style.display='none';
+  baslat();
+}
+</script>
+</body>
+</html>
