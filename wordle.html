@@ -375,6 +375,7 @@ body{
     <div class="btn-row">
       <button class="btn btn-devam" onclick="devamEt()">Devam Et — Sonraki Bölge 🗺️</button>
       <button class="btn btn-paylas" onclick="paylasTek()">📤 Bu Sonucu Paylaş</button>
+      <button class="btn btn-paylas" onclick="paylasTekKopyala()" style="font-size:.8rem">📋 Kopyala</button>
     </div>
   </div>
 </div>
@@ -408,6 +409,8 @@ body{
     <div class="btn-row">
       <button class="btn btn-devam" onclick="paylasWP()">📱 WhatsApp'ta Paylaş</button>
       <button class="btn btn-paylas" onclick="paylasX()">𝕏 X'te Paylaş</button>
+      <button class="btn btn-paylas" onclick="paylasIG()" style="background:linear-gradient(135deg,rgba(131,58,180,.3),rgba(253,29,29,.2),rgba(252,176,69,.2));border-color:rgba(131,58,180,.4)">📸 Instagram'a Kopyala</button>
+      <button class="btn btn-paylas" onclick="kopyala()">📋 Kopyala</button>
       <button class="btn btn-ikincil" onclick="window.location.href='/quiz.html'">🏔️ Quiz'i de Dene!</button>
       <button class="btn btn-kapat" onclick="tekrar()">🔄 Tekrar Oyna</button>
     </div>
@@ -967,6 +970,16 @@ function bitisGoster(){
   document.getElementById('bitisOverlay').classList.add('on');
 }
 
+function paylasIG(){
+  const m=document.getElementById('paylasimKutu').textContent;
+  navigator.clipboard.writeText(m).then(function(){
+    msg('Instagram için kopyalandı! Story'ne yapıştır 📸');
+  });
+}
+function kopyala(){
+  const m=document.getElementById('paylasimKutu').textContent;
+  navigator.clipboard.writeText(m).then(function(){ msg('Kopyalandı! 📋'); });
+}
 function paylasWP(){
   const m=document.getElementById('paylasimKutu').textContent;
   window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(m),'_blank');
@@ -974,6 +987,12 @@ function paylasWP(){
 function paylasX(){
   const m=document.getElementById('paylasimKutu').textContent;
   window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(m),'_blank');
+}
+function paylasTekKopyala(){
+  const bugun=new Date();
+  const t=bugun.getDate()+'.'+(bugun.getMonth()+1)+'.'+bugun.getFullYear();
+  const m='🏔️ Artvin'i Çöz — '+t+'\n📍 '+HEDEF_OBJ.bolge+'\n⭐ +'+turPuan+' puan\n\nartvinrehber.com/wordle.html';
+  navigator.clipboard.writeText(m).then(function(){ msg('Kopyalandı! 📋'); });
 }
 function paylasTek(){
   const bugun=new Date();

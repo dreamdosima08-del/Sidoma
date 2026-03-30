@@ -344,6 +344,8 @@ body{
     <div class="btn-row">
       <button class="btn btn-paylasWP" onclick="paylasWP()">📱 WhatsApp'ta Paylaş</button>
       <button class="btn btn-paylasX" onclick="paylasX()">𝕏 X'te Paylaş</button>
+      <button class="btn btn-paylasX" onclick="paylasIG()" style="background:linear-gradient(135deg,rgba(131,58,180,.3),rgba(253,29,29,.2),rgba(252,176,69,.2));border-color:rgba(131,58,180,.4)">📸 Instagram'a Kopyala</button>
+      <button class="btn btn-paylasX" onclick="kopyala()">📋 Kopyala</button>
       <button class="btn btn-wordle" onclick="window.location.href='/wordle.html'">🎮 Artvin Wordle'ı Dene!</button>
       <button class="btn btn-tekrar" onclick="tekrar()">🔄 Tekrar Oyna</button>
     </div>
@@ -591,6 +593,18 @@ function sonucGoster(){
   document.getElementById('paylasimMetin').textContent=paylasimTxt;
 }
 
+function paylasIG(){
+  const m=document.getElementById('paylasimMetin').textContent;
+  navigator.clipboard.writeText(m).then(function(){
+    alert('Instagram için kopyalandı! Story veya gönderi olarak yapıştır 📸');
+  });
+}
+function kopyala(){
+  const m=document.getElementById('paylasimMetin').textContent;
+  navigator.clipboard.writeText(m).then(function(){
+    alert('Kopyalandı! 📋');
+  });
+}
 function paylasWP(){
   const metin = document.getElementById('paylasimMetni') ?
     document.getElementById('paylasimMetni').textContent :
