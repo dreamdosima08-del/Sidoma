@@ -1013,6 +1013,7 @@ border-radius:20px;}
   <a href="#rota">🥾 Rotalar</a>
   <a href="#blog">📰 Blog</a>
   <a href="#iletisim">📬 İletişim</a>
+  <a href="/wordle.html">🎮 Wordle</a>
 </nav>
 
 <!-- HERO -->
@@ -1279,6 +1280,21 @@ border-radius:20px;}
         <div class="ezcard-link">Sorgula →</div>
       </a>
     </div>
+  </div>
+</section>
+
+
+<!-- WORDLE BANNER -->
+<section style="padding:1.25rem 0;background:linear-gradient(135deg,rgba(61,219,138,.05),rgba(240,192,64,.03));border-bottom:1px solid rgba(61,219,138,.12)">
+  <div class="w" style="max-width:1100px">
+    <a href="/wordle.html" style="display:flex;align-items:center;gap:1rem;text-decoration:none;padding:.25rem 0">
+      <div style="font-size:2.4rem;flex-shrink:0;line-height:1">🎮</div>
+      <div style="flex:1">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.14em;color:#fff;margin-bottom:.2rem">ARTVİN WORDLE <span style="font-size:.7rem;background:rgba(61,219,138,.15);border:1px solid rgba(61,219,138,.3);color:#3ddb8a;padding:.15rem .5rem;border-radius:3px;letter-spacing:.08em">YENİ</span></div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.5">Artvin köyleri, yaylaları ve nehirlerinden günlük kelime oyunu — Her gün yeni kelime!</div>
+      </div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;color:#3ddb8a;flex-shrink:0;background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);padding:.45rem 1rem;border-radius:5px">OYNA →</div>
+    </a>
   </div>
 </section>
 
@@ -2298,8 +2314,12 @@ function havaYukle() {
     '&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weathercode' +
     '&wind_speed_unit=kmh&timezone=Europe%2FIstanbul';
 
-  fetch(url)
-    .then(function(r){ return r.json(); })
+  // Timeout ile fetch
+  var controller = new AbortController();
+  var timeout = setTimeout(function(){ controller.abort(); }, 8000);
+
+  fetch(url, {signal: controller.signal})
+    .then(function(r){ clearTimeout(timeout); return r.json(); })
     .then(function(data) {
       // Tek ilçe döndüğünde array olmayabilir
       var results = Array.isArray(data) ? data : [data];
@@ -2324,7 +2344,7 @@ function havaYukle() {
       });
     })
     .catch(function() {
-      grid.innerHTML = '<div class="hava-err">⚠️ Hava verileri yüklenemedi. İnternet bağlantınızı kontrol edin.</div>';
+      grid.innerHTML = '<div class="hava-err" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;padding:1.5rem">⚠️ Hava verileri yüklenemedi.<button onclick="havaYukle()" style="background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.3);color:#3ddb8a;padding:.5rem 1rem;border-radius:4px;cursor:pointer;font-size:.8rem">🔄 Tekrar Dene</button></div>';
     });
 }
 havaYukle();

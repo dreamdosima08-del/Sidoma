@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Artvin Wordle — Günlük Kelime Oyunu | artvinrehber.com</title>
+<meta name="description" content="Artvin köyleri, yaylaları ve doğasından günlük kelime tahmin oyunu. Her gün yeni bir Artvin kelimesi — 6 hakkın var!">
+<meta name="keywords" content="artvin wordle, artvin oyun, artvin kelime oyunu, artvin köyleri oyun">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://artvinrehber.com/wordle.html">
+<meta property="og:title" content="Artvin Wordle — Günlük Kelime Oyunu">
+<meta property="og:description" content="Artvin köyleri ve doğasından günlük kelime oyunu. Her gün yeni kelime!">
+<meta property="og:url" content="https://artvinrehber.com/wordle.html">
+<meta property="og:image" content="https://i.ibb.co/b5WTQ0dy/MG-20260320-055734.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@artvindeen">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060d08;
+  --card:#0c1a0e;
+  --border:rgba(255,255,255,.09);
+  --gold:#f0c040;
+  --vivid:#3ddb8a;
+  --off:#e8ede9;
+  --correct:#3ddb8a;
+  --present:#f0c040;
+  --absent:#1e2e20;
+  --absent-border:#2a3c2c;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{
+  background:var(--bg);
+  color:var(--off);
+  font-family:'Montserrat',sans-serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  max-width:500px;
+  margin:0 auto;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* ── NAV ── */
+.nav{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:.75rem 1rem .6rem;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.nav-left{display:flex;align-items:center;gap:.5rem}
+.nav-home{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.75rem;letter-spacing:.14em;
+  color:rgba(255,255,255,.35);
+  text-decoration:none;transition:.2s;
+}
+.nav-home:hover{color:var(--gold)}
+.nav-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:.18em;
+  color:#fff;text-align:center;
+}
+.nav-title span{color:var(--gold)}
+.nav-right{display:flex;justify-content:flex-end;gap:.4rem}
+.icon-btn{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--border);
+  background:none;color:rgba(255,255,255,.45);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:.2s;
+}
+.icon-btn:hover{border-color:rgba(255,255,255,.3);color:#fff}
+
+/* ── ÖZET BAR ── */
+.ozet{
+  display:flex;gap:1.5rem;padding:.4rem 0;
+  flex-shrink:0;
+}
+.ozet-item{text-align:center}
+.ozet-sayi{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;color:#fff;letter-spacing:.05em;display:block;line-height:1;
+}
+.ozet-label{font-size:.52rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
+
+/* ── MESAJ ── */
+.mesaj-wrap{height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mesaj{
+  background:rgba(255,255,255,.92);color:#060d08;
+  font-size:.72rem;font-weight:800;letter-spacing:.06em;
+  padding:.3rem 1rem;border-radius:4px;
+  opacity:0;transition:opacity .2s;pointer-events:none;
+}
+.mesaj.on{opacity:1}
+
+/* ── GRİD ── */
+.grid{
+  display:flex;flex-direction:column;gap:5px;
+  padding:.2rem 0 .4rem;flex-shrink:0;
+}
+.satir{display:flex;gap:5px}
+.kare{
+  width:52px;height:52px;
+  border:2px solid rgba(255,255,255,.14);
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.55rem;color:#fff;
+  transition:border-color .08s;
+  position:relative;
+}
+.kare.pop{animation:pop .1s ease}
+.kare.salla{animation:salla .45s ease}
+.kare.flip{animation:flip .5s ease forwards}
+.kare.zıpla{animation:zıpla .6s ease forwards}
+.kare.dogru{background:var(--correct);border-color:var(--correct);color:#060d08}
+.kare.yakin{background:var(--present);border-color:var(--present);color:#060d08}
+.kare.yok{background:var(--absent);border-color:var(--absent-border)}
+
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes salla{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-5px)}30%,60%,90%{transform:translateX(5px)}}
+@keyframes flip{0%{transform:rotateX(0);background:transparent}49%{transform:rotateX(-90deg);background:transparent}50%{transform:rotateX(-90deg)}100%{transform:rotateX(0)}}
+@keyframes zıpla{0%,100%{transform:translateY(0)}40%{transform:translateY(-18px)}70%{transform:translateY(-8px)}}
+
+/* ── KLAVYE ── */
+.klavye{
+  width:100%;padding:.3rem .4rem .5rem;
+  display:flex;flex-direction:column;gap:5px;
+  flex-shrink:0;
+}
+.klv-satir{display:flex;gap:4px;justify-content:center}
+.tus{
+  height:48px;min-width:30px;flex:1;max-width:38px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:4px;
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.72rem;font-weight:700;
+  cursor:pointer;
+  transition:background .15s, transform .08s;
+  display:flex;align-items:center;justify-content:center;
+  letter-spacing:.02em;
+  user-select:none;
+}
+.tus:active{transform:scale(.9)}
+.tus.wide{flex:1.6;max-width:52px;font-size:.6rem}
+.tus.dogru{background:var(--correct)!important;border-color:var(--correct)!important;color:#060d08!important}
+.tus.yakin{background:var(--present)!important;border-color:var(--present)!important;color:#060d08!important}
+.tus.yok{background:var(--absent)!important;border-color:var(--absent-border)!important;opacity:.55}
+
+/* ── OVERLAY ── */
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(6,13,8,.88);backdrop-filter:blur(6px);
+  z-index:50;align-items:center;justify-content:center;
+  padding:1rem;
+}
+.overlay.on{display:flex}
+.panel{
+  background:var(--card);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:1.75rem 1.5rem;
+  max-width:360px;width:100%;
+}
+
+/* ── SONUÇ ── */
+.sonuc-emoji{font-size:2.8rem;text-align:center;margin-bottom:.5rem}
+.sonuc-baslik{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:.12em;color:#fff;
+  text-align:center;margin-bottom:.25rem;
+}
+.sonuc-kelime{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.2rem;letter-spacing:.25em;color:var(--gold);
+  text-align:center;margin-bottom:.5rem;
+}
+.sonuc-aciklama{
+  font-size:.78rem;color:rgba(255,255,255,.5);
+  text-align:center;line-height:1.65;margin-bottom:1rem;
+}
+.sonuc-ist{
+  display:flex;gap:1rem;justify-content:center;
+  background:rgba(255,255,255,.04);border-radius:8px;
+  padding:.85rem;margin-bottom:1rem;
+}
+.si-item{text-align:center}
+.si-no{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;color:#fff;display:block;letter-spacing:.05em;
+}
+.si-label{font-size:.52rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
+.sonuc-emoji-grid{
+  font-size:.9rem;line-height:1.4;
+  background:rgba(255,255,255,.04);border-radius:6px;
+  padding:.65rem;text-align:center;margin-bottom:.85rem;
+  letter-spacing:.1em;color:rgba(255,255,255,.7);
+  font-family:'Montserrat',sans-serif;font-size:.68rem;
+}
+.btn-row{display:flex;flex-direction:column;gap:.5rem}
+.btn{
+  padding:.75rem;border-radius:6px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.95rem;letter-spacing:.12em;
+  cursor:pointer;transition:.15s;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  text-decoration:none;border:none;width:100%;
+}
+.btn-paylas{background:var(--vivid);color:#060d08}
+.btn-paylas:hover{opacity:.88}
+.btn-blog{
+  background:rgba(240,192,64,.1);
+  border:1px solid rgba(240,192,64,.28);color:var(--gold);
+}
+.btn-blog:hover{background:rgba(240,192,64,.18)}
+.btn-kapat{
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--border);color:rgba(255,255,255,.55);
+}
+.btn-kapat:hover{color:#fff}
+.sonuc-sure{
+  font-size:.62rem;color:rgba(255,255,255,.25);
+  text-align:center;letter-spacing:.06em;margin-top:.5rem;
+}
+
+/* ── YARDIM ── */
+.yardim-baslik{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.2rem;letter-spacing:.12em;color:#fff;
+  margin-bottom:.85rem;
+}
+.yardim-row{display:flex;gap:4px;margin:.5rem 0}
+.yardim-kare{
+  width:38px;height:38px;border:2px solid rgba(255,255,255,.15);
+  border-radius:3px;display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:#fff;
+}
+.yardim-metin{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:.35rem}
+
+/* ── UZUNLUK SEÇİCİ ── */
+.uzunluk-bar{
+  display:flex;gap:5px;
+  padding:.3rem .4rem;flex-shrink:0;
+}
+.uzl-btn{
+  flex:1;padding:.35rem 0;
+  border-radius:5px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.35);
+  font-family:'Montserrat',sans-serif;
+  font-size:.65rem;font-weight:700;
+  cursor:pointer;transition:.15s;
+  letter-spacing:.05em;
+}
+.uzl-btn.on{
+  background:rgba(240,192,64,.12);
+  border-color:rgba(240,192,64,.38);
+  color:var(--gold);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-left">
+    <a class="nav-home" href="/">ARTVİN<br>REHBERİ</a>
+  </div>
+  <div class="nav-title">ART<span>VİN</span><br style="display:none">WORDLE</div>
+  <div class="nav-right">
+    <button class="icon-btn" onclick="yardimAc()" title="Nasıl oynanır?">?</button>
+    <button class="icon-btn" onclick="istatistikAc()" title="İstatistikler">📊</button>
+  </div>
+</div>
+
+<!-- UZUNLUK SEÇİCİ -->
+<div class="uzunluk-bar" id="uzlBar"></div>
+
+<!-- MESAJ -->
+<div class="mesaj-wrap"><div class="mesaj" id="mesaj"></div></div>
+
+<!-- GRİD -->
+<div class="grid" id="grid"></div>
+
+<!-- KLAVYE -->
+<div class="klavye">
+  <div class="klv-satir" id="klv0"></div>
+  <div class="klv-satir" id="klv1"></div>
+  <div class="klv-satir" id="klv2"></div>
+</div>
+
+<!-- SONUÇ OVERLAY -->
+<div class="overlay" id="sonucOverlay">
+  <div class="panel">
+    <div class="sonuc-emoji" id="sEmoji"></div>
+    <div class="sonuc-baslik" id="sBaslik"></div>
+    <div class="sonuc-kelime" id="sKelime"></div>
+    <div class="sonuc-aciklama" id="sAciklama"></div>
+    <div class="sonuc-ist">
+      <div class="si-item"><span class="si-no" id="siO">0</span><span class="si-label">Oynanan</span></div>
+      <div class="si-item"><span class="si-no" id="siK">0</span><span class="si-label">Kazanılan</span></div>
+      <div class="si-item"><span class="si-no" id="siS">0</span><span class="si-label">Seri 🔥</span></div>
+    </div>
+    <div class="sonuc-emoji-grid" id="sEmojiGrid"></div>
+    <div class="btn-row">
+      <button class="btn btn-paylas" onclick="paylas()">📤 Paylaş</button>
+      <a class="btn btn-blog" id="sBlogLink" href="/koyler.html">📖 Bu Kelime Hakkında →</a>
+      <button class="btn btn-kapat" onclick="document.getElementById('sonucOverlay').classList.remove('on')">✕ Kapat</button>
+    </div>
+    <div class="sonuc-sure" id="sSure"></div>
+  </div>
+</div>
+
+<!-- YARDIM OVERLAY -->
+<div class="overlay" id="yardimOverlay">
+  <div class="panel">
+    <div class="yardim-baslik">📖 NASIL OYNANIR?</div>
+    <div class="yardim-metin">Gizli Artvin kelimesini <strong style="color:#fff">6 denemede</strong> bulmaya çalış. Tüm kelimeler Artvin köyleri, ilçeleri, yaylaları ve doğasından seçilir.</div>
+    <div class="yardim-row">
+      <div class="yardim-kare" style="background:#3ddb8a;border-color:#3ddb8a;color:#060d08">K</div>
+      <div class="yardim-kare">A</div><div class="yardim-kare">R</div><div class="yardim-kare">C</div><div class="yardim-kare">A</div><div class="yardim-kare">L</div>
+    </div>
+    <div class="yardim-metin"><strong style="color:#3ddb8a">Yeşil</strong> — Doğru harf, doğru konum</div>
+    <div class="yardim-row">
+      <div class="yardim-kare">H</div>
+      <div class="yardim-kare" style="background:#f0c040;border-color:#f0c040;color:#060d08">A</div>
+      <div class="yardim-kare">T</div><div class="yardim-kare">I</div><div class="yardim-kare">L</div><div class="yardim-kare">A</div>
+    </div>
+    <div class="yardim-metin"><strong style="color:#f0c040">Sarı</strong> — Doğru harf, yanlış konum</div>
+    <div class="yardim-row">
+      <div class="yardim-kare">A</div><div class="yardim-kare">R</div>
+      <div class="yardim-kare" style="background:#1e2e20;border-color:#2a3c2c">T</div>
+      <div class="yardim-kare">V</div><div class="yardim-kare">I</div><div class="yardim-kare">N</div>
+    </div>
+    <div class="yardim-metin"><strong style="color:rgba(255,255,255,.35)">Koyu</strong> — Bu harf kelimede yok</div>
+    <div class="yardim-metin" style="margin-top:.5rem;font-size:.7rem">Türkçe özel karakterler (Ş→S, Ç→C, Ğ→G, Ü→U, Ö→O, İ→I) basitleştirilmiş halde kullanılır.</div>
+    <button class="btn btn-kapat" style="margin-top:1rem" onclick="document.getElementById('yardimOverlay').classList.remove('on')">TAMAM</button>
+  </div>
+</div>
+
+<!-- İSTATİSTİK OVERLAY -->
+<div class="overlay" id="istOverlay">
+  <div class="panel">
+    <div class="yardim-baslik">📊 İSTATİSTİKLERİN</div>
+    <div class="sonuc-ist">
+      <div class="si-item"><span class="si-no" id="istO">0</span><span class="si-label">Oynanan</span></div>
+      <div class="si-item"><span class="si-no" id="istK">0</span><span class="si-label">Kazanılan</span></div>
+      <div class="si-item"><span class="si-no" id="istS">0</span><span class="si-label">En Uzun Seri</span></div>
+    </div>
+    <button class="btn btn-kapat" onclick="document.getElementById('istOverlay').classList.remove('on')">KAPAT</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// 159 KELİME LİSTESİ — Artvin köyleri + doğa
+// ══════════════════════════════════════════
+const KELIMELER = [
+  {k:'HOPA',a:"Artvin'in en hareketli ilçesi, Karadeniz kıyısında",l:'/blog18.html'},
+  {k:'AHLAT',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'BALLI',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'CORUH',a:"Türkiye'nin en hızlı akan nehri, Artvin'in simgesi",l:'/blog21.html'},
+  {k:'CUKUR',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'DUTLU',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'HANLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ILICA',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'MADEN',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SALCI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SAVAS',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SUSUZ',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'YAGLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'YASAR',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ARHAVI',a:"Karadeniz kıyısında dengeli yaşamıyla öne çıkan ilçe",l:'/blog18.html'},
+  {k:'ARPALI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ARTVIN',a:"Göğe Komşu Topraklar — Karadeniz'in incisi",l:'/'},
+  {k:'ATALAR',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'BARHAL',a:"Yusufeli'nde tarihi kilisesiyle ünlü köy",l:'/koyler.html'},
+  {k:'BORCKA',a:"Karagöl ve ormanlarıyla Artvin'in doğa incisi",l:'/blog18.html'},
+  {k:'BOYALI',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'CERMIK',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ELMALI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ERIKLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'HATILA',a:"Artvin'in milli parkı, cam terası ve kanyonuyla ünlü",l:'/blog15.html'},
+  {k:'KARCAL',a:"Artvin'in ikinci en yüksek dağı, 3.428 metre",l:'/blog19.html'},
+  {k:'LIVANE',a:"Artvin'in tarihi adı, Livane Kalesi hâlâ ayakta",l:'/blog15.html'},
+  {k:'MESELI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'MURGUL',a:"Bakır madeniyle bilinen Artvin ilçesi",l:'/blog18.html'},
+  {k:'ORUCLU',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'OTLUCA',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'OVACIK',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'SAVSAT',a:"Artvin'in en yüksek ilçelerinden biri, yaylalarıyla ünlü",l:'/blog18.html'},
+  {k:'UZUMLU',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'VARLIK',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'AGILLAR',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'AKDAMLA',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ARDANUC',a:"Tarihi kale ve köklü yerleşimiyle Artvin ilçesi",l:'/blog18.html'},
+  {k:'ATATEPE',a:"Artvin'in sembolik tepesi, Türkiye'nin en yüksek Atatürk heykeli",l:'/blog15.html'},
+  {k:'AVCILAR',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'BAGLICA',a:"Ardanuç ilçesinde bir köy",l:'/koyler.html'},
+  {k:'BALIKLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'BEREKET',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'BESAGIL',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'BULANIK',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'CAMLICA',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'CAYAGZI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'CEVIZLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'CIFTLIK',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'CIMENLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'CORAKLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'DEMIRCI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'DERINER',a:"Dünyanın 6. en yüksek barajı, 249 metre",l:'/blog22.html'},
+  {k:'DUZENLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ERENLER',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'HAMAMLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'HIZARLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'KAPIKOY',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'KARAGOL',a:"Borçka'nın efsanevi krater gölü, sonbaharda altın rengi",l:'/blog18.html'},
+  {k:'KARAKOY',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KIRAZLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KIRECLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KOCABEY',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KOPRULU',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KOSELER',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'KUPLUCE',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'MACAHEL',a:"Artvin-Gürcistan sınırında el değmemiş eşsiz vadi",l:'/gezi.html'},
+  {k:'MISIRLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'MURATLI',a:"Türkiye-Gürcistan sınırındaki son Çoruh barajı",l:'/blog22.html'},
+  {k:'ORMANLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'ORTAKOY',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'PINARLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SAKALAR',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'SAYLICA',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SEBZELI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SENOCAK',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SOGANLI',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'TASLICA',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'TEPEKOY',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'VELIKOY',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'YAMACLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'YANIKLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'YESILCE',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'YONCALI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ZIYARET',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'ALABALIK',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'BAGCILAR',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'BAKIRKOY',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'CAGLIYAN',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'CAVDARLI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'DERINKOY',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'DIKMENLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'ESKIKALE',a:"Şavşat ilçesinde tarihi kalesiyle bilinen köy",l:'/koyler.html'},
+  {k:'FISTIKLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'KAFKASOR',a:"Artvin'in ünlü yaylası, geleneksel boğa güreşlerinin merkezi",l:'/blog15.html'},
+  {k:'KALBURLU',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'KARAAGAC',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KAYABASI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KAYADIBI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'KURUDERE',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'PEYNIRLI',a:"Artvin'de bir köy",l:'/koyler.html'},
+  {k:'PIRNALLI',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'SALKIMLI',a:"Artvin Merkez'de, Karçal Dağları eteklerinde bir köy",l:'/koyler.html'},
+  {k:'SEHITLIK',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'SEYITLER',a:"Artvin Çoruh Üniversitesi'nin bulunduğu semt",l:'/blog17.html'},
+  {k:'TASKOPRU',a:"Şavşat ilçesinde tarihi köprüsüyle bilinen köy",l:'/koyler.html'},
+  {k:'TEPEBASI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'VEZIRKOY',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'YAVUZKOY',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'YUSUFELI',a:"Baraj için yer değiştiren Artvin ilçesi, göl manzaralı yeni kent",l:'/blog22.html'},
+  {k:'BALLIUZUM',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'CIRITDUZU',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'DALKIRMAZ',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'DEMIRKAPI',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'DEMIRKENT',a:"Artvin'e özgü kavurmalı hinkal yemeğiyle meşhur köy",l:'/koyler.html'},
+  {k:'DOKUZOGUL',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'KOPRUYAKA',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'MEYDANCIK',a:"Şavşat ilçesinde bir köy",l:'/koyler.html'},
+  {k:'SARIBUDAK',a:"Artvin Merkez'de bir köy",l:'/koyler.html'},
+  {k:'ZEYTINLIK',a:"Artvin Merkez'de bir köy",l:'/koyler.html'}
+];
+
+// Uzunluğa göre grupla
+function kelimelerByUzunluk(u){ return KELIMELER.filter(function(k){ return k.k.length===u; }); }
+
+// ══════════════════════════════════════════
+// OYUN DURUMU
+// ══════════════════════════════════════════
+let UZUNLUK=6, HEDEF_OBJ, HEDEF;
+let deneme=0, kolon=0, bitti=false;
+let tahminler;
+
+const KLV = [
+  ['Q','W','E','R','T','Y','U','I','O','P'],
+  ['A','S','D','F','G','H','J','K','L'],
+  ['SİL','Z','X','C','V','B','N','M','ENTER']
+];
+
+// ── Günlük kelime ──
+function gunlukKelime(u){
+  const liste = kelimelerByUzunluk(u);
+  if(!liste.length) return kelimelerByUzunluk(6)[0];
+  const base = new Date('2026-03-28'); base.setHours(0,0,0,0);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const idx = Math.floor((today-base)/86400000);
+  return liste[Math.abs(idx) % liste.length];
+}
+
+// ── BAŞLAT ──
+function baslat(u){
+  UZUNLUK = u||6;
+  HEDEF_OBJ = gunlukKelime(UZUNLUK);
+  HEDEF = HEDEF_OBJ.k;
+  deneme=0; kolon=0; bitti=false;
+  tahminler = Array(6).fill(0).map(function(){ return Array(UZUNLUK).fill(''); });
+
+  // Uzunluk butonları
+  const bar = document.getElementById('uzlBar');
+  bar.innerHTML='';
+  [4,5,6,7,8,9].forEach(function(n){
+    if(kelimelerByUzunluk(n).length===0) return;
+    const b=document.createElement('button');
+    b.className='uzl-btn'+(n===UZUNLUK?' on':'');
+    b.textContent=n+' Harf';
+    b.onclick=function(){baslat(n)};
+    bar.appendChild(b);
+  });
+
+  gridOlustur(); klavyeOlustur();
+  mesajGizle();
+  document.getElementById('sonucOverlay').classList.remove('on');
+}
+
+// ── GRİD ──
+function gridOlustur(){
+  const g=document.getElementById('grid');
+  g.innerHTML='';
+  // Hücre boyutunu kelime uzunluğuna göre ayarla
+  const boyut = UZUNLUK<=6?52:UZUNLUK===7?46:UZUNLUK===8?40:36;
+  const aralik = UZUNLUK<=7?5:4;
+  g.style.gap = aralik+'px';
+  for(let d=0;d<6;d++){
+    const s=document.createElement('div');
+    s.className='satir'; s.id='s'+d;
+    s.style.gap=aralik+'px';
+    for(let k=0;k<UZUNLUK;k++){
+      const h=document.createElement('div');
+      h.className='kare'; h.id='k'+d+'_'+k;
+      h.style.width=boyut+'px'; h.style.height=boyut+'px';
+      h.style.fontSize=(boyut*0.55)+'px';
+      s.appendChild(h);
+    }
+    g.appendChild(s);
+  }
+}
+
+// ── KLAVYE ──
+function klavyeOlustur(){
+  KLV.forEach(function(row,i){
+    const el=document.getElementById('klv'+i);
+    el.innerHTML='';
+    row.forEach(function(h){
+      const b=document.createElement('button');
+      b.className='tus'+(h.length>1?' wide':'');
+      b.textContent=h; b.id='t_'+h;
+      b.setAttribute('data-durum','');
+      b.addEventListener('click',function(){tusBasildi(h);});
+      el.appendChild(b);
+    });
+  });
+}
+
+// ── KLAVYE INPUT ──
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  const k=e.key.toUpperCase();
+  if(k==='ENTER') tusBasildi('ENTER');
+  else if(k==='BACKSPACE') tusBasildi('SİL');
+  else if(/^[A-ZÇŞĞÜÖİI]$/.test(k)) tusBasildi(k);
+});
+
+function tusBasildi(h){
+  if(bitti) return;
+  if(h==='ENTER'){ gonder(); return; }
+  if(h==='SİL'){
+    if(kolon>0){
+      kolon--;
+      tahminler[deneme][kolon]='';
+      const el=document.getElementById('k'+deneme+'_'+kolon);
+      el.textContent='';
+      el.classList.remove('pop');
+    }
+    return;
+  }
+  if(kolon<UZUNLUK){
+    tahminler[deneme][kolon]=h;
+    const el=document.getElementById('k'+deneme+'_'+kolon);
+    el.textContent=h;
+    el.classList.remove('pop');
+    void el.offsetWidth;
+    el.classList.add('pop');
+    kolon++;
+  }
+}
+
+// ── GÖNDER ──
+function gonder(){
+  if(kolon<UZUNLUK){ msg('Kelime '+UZUNLUK+' harf olmalı'); sallaSatir(deneme); return; }
+  const tahmin=tahminler[deneme].join('');
+  const gecerli=KELIMELER.some(function(o){return o.k===tahmin;})||tahmin===HEDEF;
+  if(!gecerli){ msg('Listede yok!'); sallaSatir(deneme); return; }
+
+  const sonuclar=hesapla(tahmin,HEDEF);
+  const d=deneme;
+
+  sonuclar.forEach(function(durum,i){
+    setTimeout(function(){
+      const el=document.getElementById('k'+d+'_'+i);
+      el.classList.add('flip');
+      setTimeout(function(){
+        el.classList.remove('flip');
+        el.classList.add(durum);
+      },240);
+    },i*110);
+  });
+
+  setTimeout(function(){
+    klavyeGuncelle(tahmin,sonuclar);
+  },sonuclar.length*110+300);
+
+  const kazandi=sonuclar.every(function(s){return s==='dogru';});
+  deneme++; kolon=0;
+
+  setTimeout(function(){
+    if(kazandi){
+      bitti=true;
+      // Zıplama animasyonu
+      tahminler[d].forEach(function(_,i){
+        setTimeout(function(){
+          document.getElementById('k'+d+'_'+i).classList.add('zıpla');
+        },i*80);
+      });
+      istGuncelle(true,d+1);
+      setTimeout(function(){sonucGoster(true,d+1);},700);
+    } else if(deneme>=6){
+      bitti=true;
+      istGuncelle(false,0);
+      setTimeout(function(){sonucGoster(false,0);},400);
+    }
+  },sonuclar.length*110+400);
+}
+
+function hesapla(tahmin,hedef){
+  const s=Array(hedef.length).fill('yok');
+  const sayac={};
+  hedef.split('').forEach(function(h){sayac[h]=(sayac[h]||0)+1;});
+  tahmin.split('').forEach(function(h,i){
+    if(h===hedef[i]){s[i]='dogru';sayac[h]--;}
+  });
+  tahmin.split('').forEach(function(h,i){
+    if(s[i]!=='dogru'&&sayac[h]>0){s[i]='yakin';sayac[h]--;}
+  });
+  return s;
+}
+
+function klavyeGuncelle(tahmin,sonuclar){
+  const onc={dogru:3,yakin:2,yok:1};
+  tahmin.split('').forEach(function(h,i){
+    const b=document.getElementById('t_'+h);
+    if(!b) return;
+    const cur=onc[b.getAttribute('data-durum')]||0;
+    const yeni=onc[sonuclar[i]]||0;
+    if(yeni>cur){
+      b.classList.remove('dogru','yakin','yok');
+      b.classList.add(sonuclar[i]);
+      b.setAttribute('data-durum',sonuclar[i]);
+    }
+  });
+}
+
+function sallaSatir(d){
+  document.getElementById('s'+d).querySelectorAll('.kare').forEach(function(el){
+    el.classList.remove('salla'); void el.offsetWidth; el.classList.add('salla');
+    setTimeout(function(){el.classList.remove('salla');},450);
+  });
+}
+
+// ── MESAJ ──
+let msgTimer;
+function msg(txt){
+  const m=document.getElementById('mesaj');
+  m.textContent=txt; m.classList.add('on');
+  clearTimeout(msgTimer);
+  msgTimer=setTimeout(function(){m.classList.remove('on');},1600);
+}
+function mesajGizle(){ document.getElementById('mesaj').classList.remove('on'); }
+
+// ── SONUÇ ──
+function sonucGoster(kazandi,d){
+  const emoji_list=['🎯','🏆','✨','🌟','💪','😅'];
+  document.getElementById('sEmoji').textContent = kazandi ? (emoji_list[d-1]||'🎯') : '😔';
+  document.getElementById('sBaslik').textContent = kazandi ? 'KAZANDIN!' : 'OLMADI!';
+  document.getElementById('sKelime').textContent = HEDEF;
+  document.getElementById('sAciklama').textContent = HEDEF_OBJ.a;
+
+  // Emoji grid
+  const bugun=new Date();
+  const tarih=bugun.getDate()+'.'+(bugun.getMonth()+1)+'.'+bugun.getFullYear();
+  let emojiSatirlar='Artvin Wordle '+tarih+' '+(kazandi?d+'/6':'X/6')+' ('+UZUNLUK+' harf)\n\n';
+  for(let i=0;i<Math.min(deneme,6);i++){
+    const t=tahminler[i].join('');
+    if(!t||t.length<UZUNLUK) break;
+    emojiSatirlar+=hesapla(t,HEDEF).map(function(s){
+      return s==='dogru'?'🟩':s==='yakin'?'🟨':'⬛';
+    }).join('')+'\n';
+  }
+  emojiSatirlar+='\nartvinrehber.com/wordle.html';
+  document.getElementById('sEmojiGrid').textContent=emojiSatirlar;
+
+  document.getElementById('sBlogLink').href=HEDEF_OBJ.l;
+
+  const ist=istAl();
+  document.getElementById('siO').textContent=ist.o;
+  document.getElementById('siK').textContent=ist.k;
+  document.getElementById('siS').textContent=ist.s;
+  document.getElementById('sSure').textContent='⏰ Yarın yeni kelime geliyor!';
+
+  document.getElementById('sonucOverlay').classList.add('on');
+}
+
+function paylas(){
+  const metin=document.getElementById('sEmojiGrid').textContent;
+  if(navigator.share){
+    navigator.share({text:metin,url:'https://artvinrehber.com/wordle.html'}).catch(function(){});
+  } else {
+    navigator.clipboard.writeText(metin).then(function(){msg('Kopyalandı! 📋');});
+  }
+}
+
+// ── İSTATİSTİK ──
+function istAl(){ return JSON.parse(localStorage.getItem('avw_ist')||'{"o":0,"k":0,"s":0,"ms":0}'); }
+function istGuncelle(kazandi,d){
+  const ist=istAl();
+  ist.o++;
+  if(kazandi){ist.k++;ist.s++;ist.ms=Math.max(ist.ms,ist.s);}
+  else{ist.s=0;}
+  localStorage.setItem('avw_ist',JSON.stringify(ist));
+}
+function istatistikAc(){
+  const ist=istAl();
+  document.getElementById('istO').textContent=ist.o;
+  document.getElementById('istK').textContent=ist.k;
+  document.getElementById('istS').textContent=ist.ms;
+  document.getElementById('istOverlay').classList.add('on');
+}
+function yardimAc(){ document.getElementById('yardimOverlay').classList.add('on'); }
+
+// BAŞLAT
+baslat(6);
+</script>
+</body>
+</html>
