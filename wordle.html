@@ -944,10 +944,10 @@ function siradaki() {
   tahminler = Array(6).fill(null).map(() => Array(UZUNLUK).fill(''));
   gosterilen_ip = [];
   jokerSifirla();
-
   hikayeGuncelle();
   ilerlemeGuncelle();
   pasHakkiGuncelle();
+  jokerBarGuncelle();
   gridOlustur();
   klavyeOlustur();
   ipucuSifirla();
@@ -992,7 +992,6 @@ function ilerlemeGuncelle() {
   document.getElementById('ilSay').textContent = (SIRA + 1) + ' / ' + (toplam + pasEklendi);
   document.getElementById('ilBarIc').style.width = Math.min((SIRA / toplam) * 100, 100) + '%';
   document.getElementById('puanNo').textContent = PUAN;
-  jokerBarGuncelle();
 }
 
 function pasHakkiGuncelle() {
@@ -1127,8 +1126,9 @@ function gonder(){
       },i*70));
       const ipM=gosterilen_ip.reduce((acc,idx)=>acc+[8,6,4,5][idx],0);
       const kaz=Math.max(10,60-Math.max(0,d*5)-ipM);
-      PUAN+=kaz;
-      jokerBarGuncelle();level_puan+=kaz;level_dogru++;
+      PUAN+=kaz;level_puan+=kaz;level_dogru++;
+      jokerBarGuncelle();
+      jokerBarGuncelle();
       gecmis.push({kelime:HEDEF,obj:HEDEF_OBJ,durum:'dogru',puan:kaz,deneme:d+1});
       durumKaydet();
       kutla();
@@ -1441,6 +1441,132 @@ function oncekiGunTarih(){const d=new Date();d.setDate(d.getDate()-1);return `${
 /* ════════════════════════════════════════════════
    BAŞLAT
 ════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════
+   JOKER SİSTEMİ
+════════════════════════════════════════════════ */
+let jokerKonumAktif = false;
+let jokerAcikKareler = [];
+let sorulmusHarfler = {};
+const JOKER_KONUM_MALIYET = 50;
+const JOKER_HARF_MALIYET  = 30;
+
+function jokerBarGuncelle() {
+  const el = document.getElementById('jokerPuanNo');
+  if(el) el.textContent = PUAN;
+  const btnK = document.getElementById('jBtnKonum');
+  const btnH = document.getElementById('jBtnHarf');
+  if(btnK) btnK.disabled = (PUAN < JOKER_KONUM_MALIYET || BİTTİ);
+  if(btnH) btnH.disabled = (PUAN < JOKER_HARF_MALIYET  || BİTTİ);
+}
+
+function jokerSifirla() {
+  jokerKonumAktif = false;
+  jokerAcikKareler = [];
+  sorulmusHarfler = {};
+  document.querySelectorAll('.kare').forEach(k => {
+    k.classList.remove('joker-mod','joker-acik');
+    k.onclick = null;
+  });
+  jokerBarGuncelle();
+}
+
+function jokerKonumMod() {
+  if(PUAN < JOKER_KONUM_MALIYET || BİTTİ) { msg('Yeterli puan yok! En az '+JOKER_KONUM_MALIYET+'p gerekli.'); return; }
+  if(jokerKonumAktif) {
+    jokerKonumAktif = false;
+    for(let k=0;k<UZUNLUK;k++){
+      const el=document.getElementById('k'+DENEME+'_'+k);
+      if(el){el.classList.remove('joker-mod');el.onclick=null;}
+    }
+    msg('Joker iptal edildi.');
+    return;
+  }
+  jokerKonumAktif = true;
+  for(let k=0;k<UZUNLUK;k++){
+    const el=document.getElementById('k'+DENEME+'_'+k);
+    if(el){
+      el.classList.add('joker-mod');
+      const kolon=k;
+      el.onclick=()=>jokerKareSecildi(kolon);
+    }
+  }
+  msg('🃏 Bir kareye tıkla, harf açılacak!');
+}
+
+function jokerKareSecildi(kolon) {
+  if(!jokerKonumAktif) return;
+  jokerKonumAktif=false;
+  for(let k=0;k<UZUNLUK;k++){
+    const el=document.getElementById('k'+DENEME+'_'+k);
+    if(el){el.classList.remove('joker-mod');el.onclick=null;}
+  }
+  PUAN-=JOKER_KONUM_MALIYET;
+  if(PUAN<0) PUAN=0;
+  const harf=HEDEF[kolon];
+  const el=document.getElementById('k'+DENEME+'_'+kolon);
+  if(el){
+    el.textContent=harf;
+    el.classList.add('joker-acik');
+    tahminler[DENEME][kolon]=harf;
+    if(KOLON<=kolon) KOLON=kolon+1;
+  }
+  jokerAcikKareler.push({satir:DENEME,kolon,harf});
+  jokerBarGuncelle();
+  msg('🃏 "'+harf+'" harfi açıldı! (-'+JOKER_KONUM_MALIYET+'p)');
+}
+
+const HARF_SATIRLARI = [
+  ['E','R','T','Y','U','İ','O','P','Ğ','Ü'],
+  ['A','S','D','F','G','H','J','K','L','Ş','I'],
+  ['Z','X','C','V','B','N','M','Ö','Ç']
+];
+
+function jokerHarfSorAc() {
+  if(PUAN < JOKER_HARF_MALIYET || BİTTİ) { msg('Yeterli puan yok! En az '+JOKER_HARF_MALIYET+'p gerekli.'); return; }
+  const grid=document.getElementById('harfSorGrid');
+  if(!grid) return;
+  grid.innerHTML='';
+  HARF_SATIRLARI.forEach(satir=>{
+    const div=document.createElement('div');
+    div.className='harf-sor-satir';
+    satir.forEach(h=>{
+      const b=document.createElement('button');
+      b.className='hs-tus';
+      b.textContent=h;
+      const sonuc=sorulmusHarfler[h];
+      if(sonuc!==undefined){b.classList.add('soruldu',sonuc?'var':'yok');}
+      b.onclick=()=>harfSor(h,b);
+      div.appendChild(b);
+    });
+    grid.appendChild(div);
+  });
+  const sr=document.getElementById('harfSorSonuc');
+  if(sr) sr.style.display='none';
+  document.getElementById('harfSorOvr').classList.add('on');
+}
+
+function harfSor(harf,btn) {
+  if(PUAN<JOKER_HARF_MALIYET){msg('Yeterli puan yok!');return;}
+  if(btn.classList.contains('soruldu')) return;
+  PUAN-=JOKER_HARF_MALIYET;
+  if(PUAN<0) PUAN=0;
+  jokerBarGuncelle();
+  const varMi=HEDEF.includes(harf);
+  sorulmusHarfler[harf]=varMi;
+  btn.classList.add('soruldu',varMi?'var':'yok');
+  const sr=document.getElementById('harfSorSonuc');
+  if(sr){
+    sr.style.display='block';
+    sr.className='harf-sor-sonuc '+(varMi?'hs-var':'hs-yok');
+    sr.textContent=varMi?'✅ "'+harf+'" bu kelimede VAR!':'❌ "'+harf+'" bu kelimede YOK.';
+  }
+  const kt=document.getElementById('tus_'+harf);
+  if(kt&&!kt.classList.contains('dogru')&&!kt.classList.contains('yakin')&&!varMi){
+    kt.classList.add('yok');kt.dataset.d='yok';
+  }
+}
+
+
 anaEkranGoster();
 history.pushState({ekran:'ana'}, '');
 </script>
