@@ -282,6 +282,26 @@ body{
 .btn-wordle{background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.25);color:var(--gold)}
 .btn:hover{opacity:.85;transform:translateY(-1px)}
 .btn:active{transform:translateY(0)}
+
+/* SAYFANIN ALTINDAKİ PAYLAŞIM */
+.alt-paylasim{
+  width:100%;max-width:600px;
+  padding:.6rem 1.25rem .4rem;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+}
+.alt-p-lbl{font-size:.6rem;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.25);text-transform:uppercase;flex-shrink:0}
+.alt-p-btn{
+  display:flex;align-items:center;gap:.3rem;
+  padding:.3rem .65rem;border-radius:5px;
+  font-size:.68rem;font-weight:700;cursor:pointer;
+  text-decoration:none;border:none;transition:.15s;
+}
+.alt-p-btn:active{transform:scale(.93)}
+.apb-wp{background:#25D366;color:#fff}
+.apb-x{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff}
+.apb-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff}
+.apb-kopyala{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6)}
 </style>
 </head>
 <body>
@@ -621,6 +641,18 @@ function tekrar(){
   document.getElementById('ekranSonuc').style.display='none';
   baslat();
 }
+
+function igKopyala(){
+  navigator.clipboard.writeText("Ne Kadar Artvinlisin? 🏔️ Test et! artvinrehber.com/quiz.html").then(function(){
+    alert("Instagram için kopyalandı! Story'ne yapıştır 📸");
+  });
+}
+function linkKopyala(){
+  navigator.clipboard.writeText("https://artvinrehber.com/quiz.html").then(function(){
+    alert("Bağlantı kopyalandı! 🔗");
+  });
+}
+
 </script>
 </body>
 </html>
