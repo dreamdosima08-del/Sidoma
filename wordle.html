@@ -450,8 +450,8 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
     <button class="jbtn jbtn-konum" id="jBtnKonum" onclick="jokerKonumMod()" title="Bir kareyi tıkla, harf açılır">
       🃏 Konum Aç <span class="jbtn-maliyet">-50p</span>
     </button>
-    <button class="jbtn jbtn-harf" id="jBtnHarf" onclick="jokerHarfSorAc()" title="Bir harf seç, var mı yok mu göster">
-      🔍 Harf Sor <span class="jbtn-maliyet">-30p</span>
+    <button class="jbtn jbtn-harf" id="jBtnHarf" onclick="jokerHarfSorAc()" title="Rastgele bir harf açılır">
+      🎲 Rastgele Harf <span class="jbtn-maliyet">-30p</span>
     </button>
   </div>
 
@@ -1523,47 +1523,35 @@ const HARF_SATIRLARI = [
 
 function jokerHarfSorAc() {
   if(PUAN < JOKER_HARF_MALIYET || BİTTİ) { msg('Yeterli puan yok! En az '+JOKER_HARF_MALIYET+'p gerekli.'); return; }
-  const grid=document.getElementById('harfSorGrid');
-  if(!grid) return;
-  grid.innerHTML='';
-  HARF_SATIRLARI.forEach(satir=>{
-    const div=document.createElement('div');
-    div.className='harf-sor-satir';
-    satir.forEach(h=>{
-      const b=document.createElement('button');
-      b.className='hs-tus';
-      b.textContent=h;
-      const sonuc=sorulmusHarfler[h];
-      if(sonuc!==undefined){b.classList.add('soruldu',sonuc?'var':'yok');}
-      b.onclick=()=>harfSor(h,b);
-      div.appendChild(b);
-    });
-    grid.appendChild(div);
-  });
-  const sr=document.getElementById('harfSorSonuc');
-  if(sr) sr.style.display='none';
-  document.getElementById('harfSorOvr').classList.add('on');
-}
 
-function harfSor(harf,btn) {
-  if(PUAN<JOKER_HARF_MALIYET){msg('Yeterli puan yok!');return;}
-  if(btn.classList.contains('soruldu')) return;
-  PUAN-=JOKER_HARF_MALIYET;
+  // Henüz açılmamış, tahmin edilmemiş konumları bul
+  const kapaliKonumlar = [];
+  for(let k=0;k<UZUNLUK;k++){
+    const zatenAcik = jokerAcikKareler.some(x=>x.satir===DENEME&&x.kolon===k);
+    const zatenYazili = tahminler[DENEME][k] !== '';
+    if(!zatenAcik && !zatenYazili) kapaliKonumlar.push(k);
+  }
+
+  if(kapaliKonumlar.length===0){ msg('Tüm harfler zaten açık!'); return; }
+
+  // Rastgele bir kapalı konumu aç
+  const rastgeleKolon = kapaliKonumlar[Math.floor(Math.random()*kapaliKonumlar.length)];
+  const harf = HEDEF[rastgeleKolon];
+
+  PUAN -= JOKER_HARF_MALIYET;
   if(PUAN<0) PUAN=0;
+
+  const el = document.getElementById('k'+DENEME+'_'+rastgeleKolon);
+  if(el){
+    el.textContent=harf;
+    el.classList.add('joker-acik');
+    tahminler[DENEME][rastgeleKolon]=harf;
+    if(KOLON<=rastgeleKolon) KOLON=rastgeleKolon+1;
+  }
+
+  jokerAcikKareler.push({satir:DENEME,kolon:rastgeleKolon,harf});
   jokerBarGuncelle();
-  const varMi=HEDEF.includes(harf);
-  sorulmusHarfler[harf]=varMi;
-  btn.classList.add('soruldu',varMi?'var':'yok');
-  const sr=document.getElementById('harfSorSonuc');
-  if(sr){
-    sr.style.display='block';
-    sr.className='harf-sor-sonuc '+(varMi?'hs-var':'hs-yok');
-    sr.textContent=varMi?'✅ "'+harf+'" bu kelimede VAR!':'❌ "'+harf+'" bu kelimede YOK.';
-  }
-  const kt=document.getElementById('tus_'+harf);
-  if(kt&&!kt.classList.contains('dogru')&&!kt.classList.contains('yakin')&&!varMi){
-    kt.classList.add('yok');kt.dataset.d='yok';
-  }
+  msg('🔍 "'+harf+'" harfi açıldı! (-'+JOKER_HARF_MALIYET+'p)');
 }
 
 
