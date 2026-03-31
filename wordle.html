@@ -297,6 +297,69 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 @keyframes flipAnim{0%{transform:rotateX(0)}49%{transform:rotateX(-90deg)}50%{transform:rotateX(-90deg)}100%{transform:rotateX(0)}}
 @keyframes zipla{0%,100%{transform:translateY(0)}35%{transform:translateY(-16px)}65%{transform:translateY(-6px)}}
 @keyframes konfetiDus{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+/* ── JOKER ── */
+.joker-bar{display:flex;gap:.4rem;align-items:center}
+.joker-puan-chip{
+  font-size:.62rem;font-weight:800;letter-spacing:.06em;
+  color:var(--gold);white-space:nowrap;
+  background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.2);
+  padding:.2rem .55rem;border-radius:4px;
+}
+.jbtn{
+  display:flex;align-items:center;gap:.3rem;
+  padding:.35rem .75rem;border-radius:6px;
+  font-family:'Nunito',sans-serif;font-size:.65rem;font-weight:800;
+  cursor:pointer;transition:.15s;border:none;user-select:none;
+}
+.jbtn:active{transform:scale(.92)}
+.jbtn:disabled{opacity:.3;cursor:default}
+.jbtn-konum{background:rgba(200,150,255,.1);border:1px solid rgba(200,150,255,.25);color:var(--purple)}
+.jbtn-konum:hover:not(:disabled){background:rgba(200,150,255,.2)}
+.jbtn-harf{background:rgba(122,176,255,.1);border:1px solid rgba(122,176,255,.25);color:var(--blue)}
+.jbtn-harf:hover:not(:disabled){background:rgba(122,176,255,.2)}
+.jbtn-maliyet{
+  font-size:.52rem;background:rgba(0,0,0,.2);
+  padding:.05rem .3rem;border-radius:3px;margin-left:.1rem;
+}
+
+/* Joker mod aktif */
+.kare.joker-mod{
+  border-color:rgba(200,150,255,.6)!important;
+  cursor:pointer;
+  animation:jokerPulse 1s ease-in-out infinite;
+}
+@keyframes jokerPulse{0%,100%{box-shadow:0 0 0 0 rgba(200,150,255,.3)}50%{box-shadow:0 0 8px 3px rgba(200,150,255,.3)}}
+.kare.joker-acik{
+  background:rgba(200,150,255,.15)!important;
+  border-color:rgba(200,150,255,.5)!important;
+  color:var(--purple)!important;
+}
+
+/* Harf sor modal */
+.harf-sor-grid{
+  display:flex;flex-direction:column;gap:4px;margin:1rem 0;
+}
+.harf-sor-satir{display:flex;gap:4px;justify-content:center}
+.hs-tus{
+  width:34px;height:34px;border-radius:4px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+  color:#fff;font-family:'Nunito',sans-serif;
+  font-size:.7rem;font-weight:800;cursor:pointer;transition:.15s;
+  display:flex;align-items:center;justify-content:center;
+}
+.hs-tus:hover{background:rgba(122,176,255,.2);border-color:rgba(122,176,255,.4)}
+.hs-tus.soruldu{opacity:.35;cursor:default;pointer-events:none}
+.hs-tus.var{background:rgba(61,219,138,.2)!important;border-color:var(--vivid)!important;color:var(--vivid)!important}
+.hs-tus.yok{background:rgba(255,107,107,.1)!important;border-color:var(--red)!important;color:var(--red)!important}
+.harf-sor-sonuc{
+  text-align:center;font-size:.85rem;font-weight:800;
+  padding:.65rem;border-radius:8px;margin-top:.5rem;
+}
+.hs-var{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.3);color:var(--vivid)}
+.hs-yok{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:var(--red)}
+
 </style>
 </head>
 <body>
@@ -378,6 +441,18 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
     <button class="ip-btn" id="ib1" onclick="ipucu(1)"><span>🧠</span><span>Kültürel</span><span class="ip-maliyet">-6p</span></button>
     <button class="ip-btn" id="ib2" onclick="ipucu(2)"><span>🗣️</span><span>Yerel</span><span class="ip-maliyet">-4p</span></button>
     <button class="ip-btn" id="ib3" onclick="ipucu(3)"><span>🌄</span><span>Yaşam</span><span class="ip-maliyet">-5p</span></button>
+  </div>
+
+
+  <!-- JOKER BARI -->
+  <div class="joker-bar" id="jokerBar">
+    <span class="joker-puan-chip">💰 <span id="jokerPuanNo">0</span> puan</span>
+    <button class="jbtn jbtn-konum" id="jBtnKonum" onclick="jokerKonumMod()" title="Bir kareyi tıkla, harf açılır">
+      🃏 Konum Aç <span class="jbtn-maliyet">-50p</span>
+    </button>
+    <button class="jbtn jbtn-harf" id="jBtnHarf" onclick="jokerHarfSorAc()" title="Bir harf seç, var mı yok mu göster">
+      🔍 Harf Sor <span class="jbtn-maliyet">-30p</span>
+    </button>
   </div>
 
   <div class="aksiyon-bar">
@@ -478,6 +553,23 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
   </div>
 </div>
 
+
+<!-- HARF SOR PANELİ -->
+<div class="overlay" id="harfSorOvr">
+  <div class="panel">
+    <div class="p-baslik">🔍 HARF SOR</div>
+    <div style="font-size:.78rem;color:var(--muted);margin-bottom:.5rem">
+      Bir harfe tıkla — kelimede var mı yok mu söyleyelim.<br>
+      <span style="font-size:.68rem;color:var(--red)">Her soru -30 puan</span>
+    </div>
+    <div class="harf-sor-grid" id="harfSorGrid"></div>
+    <div class="harf-sor-sonuc" id="harfSorSonuc" style="display:none"></div>
+    <div class="btn-row" style="margin-top:.75rem">
+      <button class="btn btn-kapat" onclick="kapat('harfSorOvr')">Kapat</button>
+    </div>
+  </div>
+</div>
+
 <!-- YARDIM -->
 <div class="overlay" id="yardimOvr">
   <div class="panel">
@@ -521,7 +613,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 ════════════════════════════════════════════════ */
 const HAVUZ = [
   // LEVEL 1 — İLÇELER (kolay)
-  {k:"ARTVIN",bolge:"Artvin İl Merkezi",ikon:"🏙️",zorluk:"kolay",level:1,
+  {k:"ARTVİN",bolge:"Artvin İl Merkezi",ikon:"🏙️",zorluk:"kolay",level:1,
    hikaye:"Karadeniz'in doğusunda, dağların arasına sıkışmış bir şehir.",
    ogretici:["Türkiye'nin kuzeydoğusunda, Gürcistan sınırına yakın il merkezi.","Tarihte 'Livane' adıyla bilinirdi; 1921'de Türkiye'ye katıldı.","Deniz seviyesinden yaklaşık 595 metre yüksekte kurulmuştur.","Türkiye'nin en az nüfuslu illerinden; ~167.000 kişi yaşar."],
    ipuclar:["📍 Karadeniz bölgesinin en doğusunda, Gürcistan sınırına 45 km mesafede il merkezi.","🧠 Osmanlı döneminde 'Livane Sancağı' adıyla anılan şehir 1921'de Türkiye'ye katıldı.","🗣️ Yöre halkı şehir merkezine 'aşağı' der; çevre köyler daha yüksek rakımda.","🌄 Artvin'de yokuş kaçınılmazdır; şehrin neredeyse her noktası bir eğim üzerindedir."]},
@@ -529,19 +621,19 @@ const HAVUZ = [
    hikaye:"Karadeniz kıyısında, Gürcistan sınırına yakın ilçe.",
    ogretici:["Artvin'in Karadeniz kıyısındaki en kalabalık ilçesidir.","Sarp Sınır Kapısı bu ilçe sınırları içindedir.","Çay ve fındık tarımının yoğun olduğu ilçede deniz seviyesinde yaşanır.","Hopa'dan Gürcistan sınırına ~20 km mesafe vardır."],
    ipuclar:["📍 Artvin'in batısında, Karadeniz kıyısında, deniz seviyesinde ilçe.","🧠 Sarp Sınır Kapısı bu ilçe sınırları içindedir; Türkiye-Gürcistan ticareti buradan.","🗣️ 'Hopalı' olarak anılır; Laz kültürünün yoğun yaşandığı ilçelerden.","🌄 Çay toplama sezonu Mayıs-Ekim; yamaçlar çay bahçesiyle kaplı."]},
-  {k:"BORCKA",bolge:"Borçka İlçesi",ikon:"🌲",zorluk:"kolay",level:1,
+  {k:"BORÇKA",bolge:"Borçka İlçesi",ikon:"🌲",zorluk:"kolay",level:1,
    hikaye:"Orman ilçesi. Sonbaharda renkler değiştiğinde başka bir yere dönüşür.",
    ogretici:["Borçka, Artvin'e bağlı ormanlarıyla ünlü ilçedir.","Karagöl, ilçe sınırları içinde heyelanla oluşmuş nadir göldür.","Camili (Maçahel) bölgesi UNESCO biyosfer rezervidir.","Borçka Barajı ilçe merkezinin yanında yer alır."],
    ipuclar:["📍 Karadeniz ile dağ iklimi arasında geçiş bölgesinde yer alır.","🧠 Camili köyü (Maçahel) Borçka'ya bağlı; UNESCO biyosfer rezervi statüsünde.","🗣️ İlçe adı Gürcüce kökenlidir.","🌄 Sonbaharda Karagöl çevresi sarı-altın rengiyle Türkiye'nin en çok fotoğraflanan noktası."]},
-  {k:"SAVSAT",bolge:"Şavşat İlçesi",ikon:"❄️",zorluk:"kolay",level:1,
+  {k:"ŞAVŞAT",bolge:"Şavşat İlçesi",ikon:"❄️",zorluk:"kolay",level:1,
    hikaye:"Yüksekte bir ilçe. Kar erken gelir, geç gider.",
    ogretici:["Şavşat, ~1.215 metre rakımda Artvin ilçesidir.","Ardahan'a sınır komşusu; doğal ormanlarla çevrili.","Yaylaları yaz aylarında hayvancılık için kullanılır.","Kışın kar kalınlığı 2 metreyi aşabilir."],
    ipuclar:["📍 Ardahan'a sınır, ~1.215 m rakımda Artvin'in en yüksek ilçelerinden.","🧠 Veliköy, Dishora yaylaları yüzyıllardır hayvancılık merkezidir.","🗣️ Yerel halk 'Savşat' der; standart yazılıştan farklı telaffuz edilir.","🌄 Nisan ayına kadar kar kalabilir; köylüler kışı aşağıda geçirir."]},
-  {k:"ARDANUC",bolge:"Ardanuç İlçesi",ikon:"🏰",zorluk:"kolay",level:1,
+  {k:"ARDANUÇ",bolge:"Ardanuç İlçesi",ikon:"🏰",zorluk:"kolay",level:1,
    hikaye:"Tepedeki kale her şeyi izliyor. Asırlık taşlar konuşuyor.",
    ogretici:["Ardanuç, tarihi kalesiyle tanınan Artvin ilçesidir.","Kale, Orta Çağ'dan kalma ve hâlâ ayakta.","Çoruh Nehri vadisinde yer alır.","Gürcü dönemi kilise kalıntıları bulunmaktadır."],
    ipuclar:["📍 Çoruh vadisinde, Artvin merkezine ~40 km ilçe.","🧠 Ardanuç Kalesi Gürcü Krallığı döneminde inşa edildi.","🗣️ Yöre halkı 'Ardanıç' da der; ardıç ağacından gelir.","🌄 Ceviz ve dut bahçeleri önemli geçim kaynağıdır."]},
-  {k:"ARHAVI",bolge:"Arhavi İlçesi",ikon:"🌿",zorluk:"kolay",level:1,
+  {k:"ARHAVİ",bolge:"Arhavi İlçesi",ikon:"🌿",zorluk:"kolay",level:1,
    hikaye:"Karadeniz kıyısında sakin bir köşe. Yeşilin her tonu burada.",
    ogretici:["Arhavi, Hopa ile Borçka arasında kıyı ilçesidir.","Çay ve fındık tarımı öne çıkar.","Artvin'in en az göç veren ilçelerinden.","Deniz seviyesinde tarım yapılır."],
    ipuclar:["📍 Hopa ile Borçka arasında, Karadeniz kıyısında, deniz seviyesi.","🧠 Lazların yoğun yaşadığı Artvin ilçelerinden biri.","🗣️ Adı Lazca kökenli; 'arha' dere/nehir anlamında.","🌄 Fındık hasadı ilçenin en yoğun dönemini oluşturur."]},
@@ -549,47 +641,47 @@ const HAVUZ = [
    hikaye:"Dağların içinde hazineler var. Sanayi ve doğa iç içe.",
    ogretici:["Murgul, Türkiye'nin önemli bakır rezervlerini barındırır.","Murgul Bakır İşletmesi ilçe ekonomisinin temelidir.","Borçka'ya sınır; dağlık ve ormanlık yapı.","Artvin'in en küçük ilçelerinden."],
    ipuclar:["📍 Borçka'ya komşu, iç kesimlerde dağlık ilçe.","🧠 Murgul Bakır Madeni 1970'lerden bu yana faaliyette.","🗣️ Adı Gürcüce kökenli olduğu düşünülür.","🌄 Madenciliğe karşın çevre yoğun ormanlarla kaplı."]},
-  {k:"YUSUFELI",bolge:"Yusufeli İlçesi",ikon:"💧",zorluk:"kolay",level:1,
+  {k:"YUSUFELİ",bolge:"Yusufeli İlçesi",ikon:"💧",zorluk:"kolay",level:1,
    hikaye:"Tarihi suyun altında kaldı. Yeni hayat, aynı insanlar.",
    ogretici:["Yusufeli, baraj nedeniyle yer değiştiren ender ilçelerden.","Yusufeli Barajı 275 metreyle Türkiye'nin en yüksek barajı.","Eski merkez 2022'de baraj sularının altında kaldı.","Yeni Yusufeli daha yüksek noktaya kuruldu."],
    ipuclar:["📍 Çoruh vadisi üst kesiminde, Artvin merkezine ~70 km.","🧠 275 metrelik baraj 2022'de faaliyete geçti; eski merkezi su altında bıraktı.","🗣️ Eski merkez 'aşağı', yeni merkez 'yukarı' olarak anılır.","🌄 Eski ilçe rafting turizmiyle ünlüydü; Çoruh dünyanın en zorlu güzergahlarından biriydi."]},
 
   // LEVEL 2 — YAYLALAR & DOĞA (orta)
-  {k:"KAFKASOR",bolge:"Kafkasör Yaylası",ikon:"🐂",zorluk:"orta",level:2,
+  {k:"KAFKASÖR",bolge:"Kafkasör Yaylası",ikon:"🐂",zorluk:"orta",level:2,
    hikaye:"Her Haziran, asırlık gelenek burada canlanır.",
    ogretici:["Artvin merkezine ~6 km, ~2.400 metre rakımda yayla.","Her yıl Haziran'da Kafkasör Festivali düzenlenir.","Geleneksel boğa güreşleri en çok ilgi gören etkinlik.","Artvin'in simgesi haline gelmiş ünlü yayla."],
    ipuclar:["📍 Artvin merkezine 6 km, 2.400 m rakımda kolaylıkla ulaşılan yayla.","🧠 Festival 1000 yılı aşkın geçmişiyle Türkiye'nin en köklü yöresel etkinliklerinden.","🗣️ 'Kafkasör' adı 'Kafkas önü' anlamına gelir.","🌄 Festivalde yöresel kıyafetler giyilir, horon oynanır ve boğa güreşleri izlenir."]},
-  {k:"HATILA",bolge:"Hatila Vadisi Milli Parkı",ikon:"🏞️",zorluk:"orta",level:2,
+  {k:"HATİLA",bolge:"Hatila Vadisi Milli Parkı",ikon:"🏞️",zorluk:"orta",level:2,
    hikaye:"Derin bir kanyon. Cam terası var, ama asıl manzara doğanın kendisi.",
    ogretici:["Artvin merkezine yürüme mesafesindeki milli park.","Cam terası, şelale ve yoğun orman örtüsü içinde.","Vadi derinliği bazı noktalarda 200 metreyi aşar.","Hatila Çayı vadi içinden akarak Çoruh'a katılır."],
    ipuclar:["📍 Artvin merkezine ~2 km, Çoruh'a paralel derin kanyon.","🧠 1994'te milli park ilan edildi.","🗣️ Vadi adını içindeki 'Hatila Çayı'ndan alır.","🌄 Sabah erken saatlerde cam terastaki sis manzarası eşsizdir."]},
-  {k:"KARAGOL",bolge:"Borçka Karagöl",ikon:"🍂",zorluk:"orta",level:2,
+  {k:"KARAGÖL",bolge:"Borçka Karagöl",ikon:"🍂",zorluk:"orta",level:2,
    hikaye:"Sonbaharda rengi değişir, sesi hiç çıkmaz.",
    ogretici:["Borçka'ya bağlı heyelan gölü; krater değildir.","Sonbaharda Türkiye'nin en çok fotoğraflanan noktalarından.","Deniz seviyesinden ~1.350 m yüksekte.","Çevresi yaban hayatı açısından zengin."],
    ipuclar:["📍 Borçka'ya bağlı, ~1.350 m rakımda heyelanla oluşmuş göl.","🧠 17. yüzyıl heyelanıyla oluştuğu düşünülür; krater gölü değildir.","🗣️ 'Kara göl' adı gölün koyu, derin suyundan gelir.","🌄 Ekim ayında sarı yapraklar ve göldeki yansıma eşsiz manzara yaratır."]},
-  {k:"KARCAL",bolge:"Karçal Dağları",ikon:"🏔️",zorluk:"orta",level:2,
+  {k:"KARÇAL",bolge:"Karçal Dağları",ikon:"🏔️",zorluk:"orta",level:2,
    hikaye:"Artvin'in gökyüzüne en yakın noktası.",
    ogretici:["Artvin'in en yüksek ikinci dağ kütlesi.","Zirve 3.428 m; Gürcistan sınırına kadar uzanır.","Boz ayı ve Anadolu vaşağı gibi nadir türlere ev sahipliği.","Kaçkar'dan sonra bölgenin ikinci en yüksek dağı."],
    ipuclar:["📍 Artvin'in güneydoğusunda, Gürcistan sınırına uzanan dağ kütlesi. Zirve 3.428 m.","🧠 Boz ayı ve Anadolu vaşağı gibi nesli tehlikede türler yaşar.","🗣️ 'Karçal'a çıkmak' ciddi dağcılık bilgisi gerektirir.","🌄 Yazın zirvede kar kalıntıları bulunur; krater gölleri yüksek rakımda gizlenmiş."]},
-  {k:"MACAHEL",bolge:"Maçahel (Camili) Vadisi",ikon:"🌺",zorluk:"orta",level:2,
+  {k:"MAÇAHEL",bolge:"Maçahel (Camili) Vadisi",ikon:"🌺",zorluk:"orta",level:2,
    hikaye:"Haritanın ucunda bir yer. Doğa orada işini bitirmemiş.",
    ogretici:["Borçka'ya bağlı; Türkiye-Gürcistan sınırında.","UNESCO biyosfer rezervi; 1.000+ bitki türü.","Geleneksel ahşap ev mimarisini koruyan nadir köy.","Camili bölgenin merkezi köyüdür."],
    ipuclar:["📍 Borçka'ya bağlı, Gürcistan sınırına dayanan vadi.","🧠 UNESCO Biyosfer Rezervi statüsü 2005'te verildi.","🗣️ Halk Lazca ve Gürcüce karışımı konuşur; ad Gürcüce kökenli.","🌄 Geleneksel ahşap ev mimarisi korunmakta; araçla ulaşmak güç."]},
-  {k:"CORUH",bolge:"Çoruh Nehri",ikon:"🌊",zorluk:"orta",level:2,
+  {k:"ÇORUH",bolge:"Çoruh Nehri",ikon:"🌊",zorluk:"orta",level:2,
    hikaye:"Artvin'den geçen, sınırı aşan bir güç.",
    ogretici:["Türkiye'nin en hızlı akan nehirlerinden.","Barajlardan önce dünyanın en zorlu rafting güzergahıydı.","Gürcistan'a geçip Batum'da Karadeniz'e dökülür.","Havzada 5 baraj inşa edilmiştir."],
    ipuclar:["📍 Erzurum'dan doğan, Artvin üzerinden Gürcistan'a geçen nehir.","🧠 Çoruh havzasındaki 5 baraj önemli miktarda hidroelektrik üretir.","🗣️ 'Çoruh' adının Gürcüce 'tuzlu su' anlamındaki 'çoro'dan geldiği düşünülür.","🌄 Barajlardan önce rafting sezonu Mayıs-Eylül; hız bazı noktalarda 30 km/s'yi geçiyordu."]},
-  {k:"DERINER",bolge:"Deriner Barajı",ikon:"⚡",zorluk:"orta",level:2,
+  {k:"DERİNER",bolge:"Deriner Barajı",ikon:"⚡",zorluk:"orta",level:2,
    hikaye:"Artvin'in yanı başında devasa yapı. Dünya listesindeki yeri var.",
    ogretici:["Deriner Barajı 249 metreyle Türkiye'nin en yüksek ikinci barajı.","Dünya sıralamasında 6. en yüksek baraj.","Çift eğrilikli beton kemer tasarımı.","Artvin Merkez sınırlarında, Çoruh üzerinde."],
    ipuclar:["📍 Artvin merkezine ~7 km, Çoruh Nehri üzerinde.","🧠 249 m ile Türkiye'nin 2., dünyanın 6. en yüksek barajı.","🗣️ Yakınındaki Deriner köyünün adını taşır.","🌄 Baraj gölü vadinin manzarasını kökten değiştirdi."]},
-  {k:"LIVANE",bolge:"Artvin'in Tarihi Adı",ikon:"🏛️",zorluk:"orta",level:2,
+  {k:"LİVANE",bolge:"Artvin'in Tarihi Adı",ikon:"🏛️",zorluk:"orta",level:2,
    hikaye:"Bu şehir eskiden başka bir adla bilinirdi.",
    ogretici:["Livane, Artvin'in Osmanlı dönemindeki tarihsel adı.","Livane Sancağı 19. yüzyılda Osmanlı'nın idari birimi.","Üst kesimde 'Livane Kalesi' kalıntıları mevcut.","1921'de Kars Antlaşmasıyla Türkiye'ye katıldı; adı 'Artvin' oldu."],
    ipuclar:["📍 Artvin şehir merkezinin üst kesimindeki tarihi kalenin ve şehrin eski adı.","🧠 'Livane Sancağı' 1921'e kadar bu coğrafyanın idari adıydı.","🗣️ Yaşlı halk arasında hâlâ 'Livane' diyenler var.","🌄 Livane Kalesi, merkezden bakıldığında tepeye gömülmüş görünür."]},
 
   // LEVEL 3 — KÖYLER (zor)
-  {k:"DEMIRKENT",bolge:"Demirkent Köyü, Artvin Merkez",ikon:"🍽️",zorluk:"zor",level:3,
+  {k:"DEMİRKENT",bolge:"Demirkent Köyü, Artvin Merkez",ikon:"🍽️",zorluk:"zor",level:3,
    hikaye:"Artvin'de bir köy var ki mutfağı yüzyıllardır anlatılır.",
    ogretici:["Artvin Merkez'e bağlı köy.","Kavurmalı hinkal bu köyle özdeşleşmiştir.","Hinkal, et ve hamurla hazırlanan Artvin'e özgü yemek.","Şehir merkezine yakın mesafededir."],
    ipuclar:["📍 Artvin Merkez'e bağlı, şehre yakın dağ köyü.","🧠 Kavurmalı hinkal, et kavurması ile hamur katmanından oluşan yöreye özgü yemek.","🗣️ 'Hinkal' Kafkas kökenli; Gürcistan ve Dağıstan mutfaklarında benzer yemekler var.","🌄 Geleneksel hayvancılık hâlâ sürdürülmekte; kavurma bu geleneğin mutfaktaki yansıması."]},
@@ -597,7 +689,7 @@ const HAVUZ = [
    hikaye:"Karçal eteklerinde, bulutlarla komşu bir köy.",
    ogretici:["Artvin Merkez'e bağlı, Karçal Dağları eteklerinde köy.","Yaylacılık geleneği sürdürülmektedir.","Yüksek rakımlı köy; kış sert geçer.","Ad çevresindeki salkım ağaçlarından gelir."],
    ipuclar:["📍 Artvin Merkez'e bağlı, Karçal eteklerinde yüksek rakımlı köy.","🧠 Yüzyıllardır yayla kültürüne dayalı hayvancılıkla geçimini sağlayan köy.","🗣️ 'Salkım' Türkçede üzüm salkımı veya çiçek gruplarını anlatır.","🌄 Karçal zirvelerine yürüyüşler için iyi başlangıç noktası."]},
-  {k:"KAFKASOR",bolge:"Kafkasör Yaylası — Zor",ikon:"🐂",zorluk:"zor",level:3,
+  {k:"KAFKASÖR",bolge:"Kafkasör Yaylası — Zor",ikon:"🐂",zorluk:"zor",level:3,
    hikaye:"Her Haziran bu yerde Artvin'in kalbi atar.",
    ogretici:["Artvin merkezine 6 km, ~2.400 m yayla.","Kafkasör Festivali Türkiye'nin en eski yöresel festivallerinden.","Boğa güreşleri geleneksel kıyafetler eşliğinde yapılır.","Kışın kayak imkânı da sunar."],
    ipuclar:["📍 Artvin merkezine 6 km, 2.400 m rakımda yayla.","🧠 Festival yüzyıllardır süren boğa güreşi geleneğinin resmileşmiş hâli.","🗣️ 'Kafkasör' = 'Kafkas önü'; coğrafi konumu tanımlar.","🌄 Kışın ~2 m kar alır; yaz aylarında Artvin'in en yeşil noktalarından."]},
@@ -605,7 +697,7 @@ const HAVUZ = [
    hikaye:"Vadinin içinde tarihin taşlara işlendiği yer.",
    ogretici:["Barhal, Yusufeli'ne bağlı Altıparmak köyünün eski adı.","10. yüzyıldan kalma Barhal Kilisesi Gürcü mimarisinin önemli örneği.","Kaçkar Dağları eteklerinde, Barhal Çayı kıyısı.","Kaçkar trekking rotaları buradan başlar."],
    ipuclar:["📍 Yusufeli'ne bağlı Altıparmak köyü; Kaçkar eteklerinde Barhal Çayı kenarı.","🧠 10. yüzyılda inşa edilen kilise, Gürcü mimarisinin en iyi korunmuş örneklerinden.","🗣️ 'Altıparmak' altı parmak anlamında; dağ silüetiyle ilişkilendirilir.","🌄 Yazın Kaçkar trekking gruplarıyla dolar; yöresel alabalık yetiştiriciliği sürdürülür."]},
-  {k:"ZEYTINLIK",bolge:"Zeytinlik Köyü, Artvin Merkez",ikon:"🌿",zorluk:"zor",level:3,
+  {k:"ZEYTİNLİK",bolge:"Zeytinlik Köyü, Artvin Merkez",ikon:"🌿",zorluk:"zor",level:3,
    hikaye:"Adı doğadan gelir. Artvin'in saklı köylerinden.",
    ogretici:["Artvin Merkez'e bağlı köy.","Adı çevredeki bitki örtüsünden gelir.","Yüksek rakımlı Artvin köyleri arasında.","Hayvancılık ve arıcılık geleneksel geçim kaynağı."],
    ipuclar:["📍 Artvin Merkez'e bağlı, uzakta konumlanan dağ köyü.","🧠 Bu yükseklikte zeytinlik nadir olsa da ad bitkisel özelliğe referans verir.","🗣️ Tamamen Türkçe kökenli; bitki topluluğunu tanımlar.","🌄 Küçük dağ köylerinde topluluk bağları güçlüdür; şenlikler yaşamın merkezinde."]},
@@ -617,7 +709,7 @@ const HAVUZ = [
    hikaye:"Göl kenarında, ormanın içinde saklı bir köy.",
    ogretici:["Artvin Merkez'e bağlı; Borçka Baraj Gölü kıyısında.","Adı fıstık çamı ağaçlarından geliyor.","Baraj yapımından sonra bir bölümü su altında kaldı.","Balıkçılık ve tarım başlıca geçim kaynağı."],
    ipuclar:["📍 Artvin Merkez'e bağlı, Borçka Baraj Gölü kıyısında köy.","🧠 Baraj öncesi vadide kuruluydu; su yükselmesiyle yer değişikliği oldu.","🗣️ 'Fıstıklı' adı doğal yetişen fıstık çamından geliyor.","🌄 Göl kıyısındaki konum yaz aylarında serinlik getiriyor."]},
-  {k:"SEHITLIK",bolge:"Şehitlik Köyü, Artvin Merkez",ikon:"🏡",zorluk:"zor",level:3,
+  {k:"ŞEHİTLİK",bolge:"Şehitlik Köyü, Artvin Merkez",ikon:"🏡",zorluk:"zor",level:3,
    hikaye:"Tarihi bir köprüsü var. Geçerken hafifçe sallanır.",
    ogretici:["Artvin şehir merkezine yakın, Çoruh kıyısında köy.","Tarihi asma köprüsüyle ziyaretçi çekiyor.","Çoruh Vadisi içinde konumlanmış.","Nehir manzarası egemendir."],
    ipuclar:["📍 Artvin merkezine 5 km, Çoruh kıyısında köy.","🧠 Tarihi asma köprü, Çoruh üzerindeki geleneksel köprülerin nadir örneklerinden.","🗣️ Ad savaş döneminde şehit düşen kişilere ithafen verildiği düşünülür.","🌄 Çoruh Vadisi'nin dar ve derin yapısı bu köyde en belirgin şekilde hissedilir."]},
@@ -851,6 +943,7 @@ function siradaki() {
   DENEME = 0; KOLON = 0; BİTTİ = false;
   tahminler = Array(6).fill(null).map(() => Array(UZUNLUK).fill(''));
   gosterilen_ip = [];
+  jokerSifirla();
 
   hikayeGuncelle();
   ilerlemeGuncelle();
@@ -899,6 +992,7 @@ function ilerlemeGuncelle() {
   document.getElementById('ilSay').textContent = (SIRA + 1) + ' / ' + (toplam + pasEklendi);
   document.getElementById('ilBarIc').style.width = Math.min((SIRA / toplam) * 100, 100) + '%';
   document.getElementById('puanNo').textContent = PUAN;
+  jokerBarGuncelle();
 }
 
 function pasHakkiGuncelle() {
@@ -962,6 +1056,16 @@ function klavyeOlustur() {
   });
 }
 
+// Fiziksel klavye → oyun harfi dönüşümü
+const FIZIK_MAP = {
+  'I':'İ','İ':'İ',
+  'C':'Ç','Ç':'Ç',
+  'S':'Ş','Ş':'Ş',
+  'G':'Ğ','Ğ':'Ğ',
+  'U':'Ü','Ü':'Ü',
+  'O':'Ö','Ö':'Ö'
+};
+
 document.addEventListener('keydown',e=>{
   if(!OYUN_AKTIF||e.ctrlKey||e.metaKey||e.altKey) return;
   const k=e.key.toUpperCase();
@@ -995,7 +1099,10 @@ function tusBasildi(h){
 function gonder(){
   if(KOLON<UZUNLUK){msg('Kelime '+UZUNLUK+' harf olmalı! 📏');salla(DENEME);return;}
   const tahmin=tahminler[DENEME].join('');
-  if(!HAVUZ.some(o=>o.k===tahmin)&&tahmin!==HEDEF){msg('Bu kelime listede yok! 🤔');salla(DENEME);return;}
+  // Türkçe veya Latin versiyonuyla geçerlilik kontrolü
+  function latinVers(s){return s.replace(/Ş/g,'S').replace(/Ç/g,'C').replace(/Ğ/g,'G').replace(/Ü/g,'U').replace(/Ö/g,'O').replace(/İ/g,'I').replace(/I/g,'I');}
+  const gecerli=HAVUZ.some(o=>o.k===tahmin||latinVers(o.k)===latinVers(tahmin))||tahmin===HEDEF||latinVers(tahmin)===latinVers(HEDEF);
+  if(!gecerli){msg('Bu kelime listede yok! 🤔');salla(DENEME);return;}
 
   const res=hesapla(tahmin,HEDEF);
   const d=DENEME;
@@ -1020,7 +1127,8 @@ function gonder(){
       },i*70));
       const ipM=gosterilen_ip.reduce((acc,idx)=>acc+[8,6,4,5][idx],0);
       const kaz=Math.max(10,60-Math.max(0,d*5)-ipM);
-      PUAN+=kaz;level_puan+=kaz;level_dogru++;
+      PUAN+=kaz;
+      jokerBarGuncelle();level_puan+=kaz;level_dogru++;
       gecmis.push({kelime:HEDEF,obj:HEDEF_OBJ,durum:'dogru',puan:kaz,deneme:d+1});
       durumKaydet();
       kutla();
@@ -1035,22 +1143,37 @@ function gonder(){
 }
 
 function hesapla(t,h){
-  const s=Array(h.length).fill('yok');
+  // Türkçe karakter normalize — hem Türkçe hem Latin kabul
+  function norm(s){
+    return s.toUpperCase()
+      .replace(/I/g,'İ')  // Latin I → Türkçe İ
+      .replace(/i/g,'İ');
+  }
+  const tn=t.split('').map(norm);
+  const hn=h.split('').map(norm);
+  const s=Array(hn.length).fill('yok');
   const say={};
-  h.split('').forEach(c=>{say[c]=(say[c]||0)+1;});
-  t.split('').forEach((c,i)=>{if(c===h[i]){s[i]='dogru';say[c]--;}});
-  t.split('').forEach((c,i)=>{if(s[i]!=='dogru'&&say[c]>0){s[i]='yakin';say[c]--;}});
+  hn.forEach(c=>{say[c]=(say[c]||0)+1;});
+  tn.forEach((c,i)=>{if(c===hn[i]){s[i]='dogru';say[c]--;}});
+  tn.forEach((c,i)=>{if(s[i]!=='dogru'&&say[c]>0){s[i]='yakin';say[c]--;}});
   return s;
 }
 
 function klavyeGuncelle(t,res){
   const onc={dogru:3,yakin:2,yok:1};
   t.split('').forEach((c,i)=>{
-    const b=document.getElementById('tus_'+c);
-    if(!b) return;
-    const cur=onc[b.dataset.d]||0;
-    const yeni=onc[res[i]]||0;
-    if(yeni>cur){b.classList.remove('dogru','yakin','yok');b.classList.add(res[i]);b.dataset.d=res[i];}
+    // Hem normal hem Türkçe versiyonu dene
+    const denemeler=[c];
+    // Latin → Türkçe
+    const ltMap={'S':'Ş','C':'Ç','G':'Ğ','U':'Ü','O':'Ö','I':'İ'};
+    if(ltMap[c]) denemeler.push(ltMap[c]);
+    denemeler.forEach(harf=>{
+      const b=document.getElementById('tus_'+harf);
+      if(!b) return;
+      const cur=onc[b.dataset.d]||0;
+      const yeni=onc[res[i]]||0;
+      if(yeni>cur){b.classList.remove('dogru','yakin','yok');b.classList.add(res[i]);b.dataset.d=res[i];}
+    });
   });
 }
 
