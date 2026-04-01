@@ -10,10 +10,10 @@
   --bg:        #0a1a12;
   --bg2:       #0d1f13;
   --bg3:       #060d08;
-  --card:      rgba(255,255,255,.04);
-  --card2:     rgba(255,255,255,.07);
-  --border:    rgba(255,255,255,.09);
-  --border2:   rgba(255,255,255,.16);
+  --card:      rgba(var(--w),.04);
+  --card2:     rgba(var(--w),.07);
+  --border:    rgba(var(--w),.09);
+  --border2:   rgba(var(--w),.16);
   --text:      #e8ede9;
   --text2:     rgba(232,237,233,.65);
   --text3:     rgba(232,237,233,.40);
@@ -24,8 +24,10 @@
   --nav-bg:    rgba(10,26,18,.96);
   --modal-bg:  rgba(6,13,8,.92);
   --shadow:    0 4px 20px rgba(0,0,0,.35);
-  --toggler-bg: rgba(255,255,255,.08);
-  --toggler-bd: rgba(255,255,255,.15);
+  --toggler-bg: rgba(var(--w),.08);
+  --toggler-bd: rgba(var(--w),.15);
+  --w: 255,255,255;
+  --dk: 10,26,18;
 }
 
 /* ── LIGHT ── */
@@ -49,6 +51,8 @@
   --shadow:    0 4px 20px rgba(0,0,0,.10);
   --toggler-bg: rgba(0,0,0,.07);
   --toggler-bd: rgba(0,0,0,.14);
+  --w: 26,46,31;
+  --dk: 242,246,243;
 }
 
 /* ── GEÇIŞ — oyun animasyonlarını hariç tut ── */
