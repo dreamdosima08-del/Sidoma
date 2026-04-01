@@ -1,0 +1,261 @@
+/* ═══════════════════════════════════════════════════════════════
+   ARTVIN REHBERİ — GLOBAL TEMA SİSTEMİ v1.0
+   Her sayfanın <head> sonuna ekle:
+     <link rel="stylesheet" href="/theme.css">
+     <script src="/theme.js" defer></script>
+═══════════════════════════════════════════════════════════════ */
+
+/* ── DARK (varsayılan) ── */
+:root {
+  --bg:        #0a1a12;
+  --bg2:       #0d1f13;
+  --bg3:       #060d08;
+  --card:      rgba(255,255,255,.04);
+  --card2:     rgba(255,255,255,.07);
+  --border:    rgba(255,255,255,.09);
+  --border2:   rgba(255,255,255,.16);
+  --text:      #e8ede9;
+  --text2:     rgba(232,237,233,.65);
+  --text3:     rgba(232,237,233,.40);
+  --text4:     rgba(232,237,233,.22);
+  --gold:      #f0c040;
+  --vivid:     #3ddb8a;
+  --red:       #ff6b6b;
+  --nav-bg:    rgba(10,26,18,.96);
+  --modal-bg:  rgba(6,13,8,.92);
+  --shadow:    0 4px 20px rgba(0,0,0,.35);
+  --toggler-bg: rgba(255,255,255,.08);
+  --toggler-bd: rgba(255,255,255,.15);
+}
+
+/* ── LIGHT ── */
+[data-theme="light"] {
+  --bg:        #f2f6f3;
+  --bg2:       #ffffff;
+  --bg3:       #e8efe9;
+  --card:      rgba(0,0,0,.04);
+  --card2:     rgba(0,0,0,.065);
+  --border:    rgba(0,0,0,.09);
+  --border2:   rgba(0,0,0,.16);
+  --text:      #1a2e1f;
+  --text2:     rgba(26,46,31,.68);
+  --text3:     rgba(26,46,31,.45);
+  --text4:     rgba(26,46,31,.28);
+  --gold:      #b07800;
+  --vivid:     #1a8a52;
+  --red:       #d93025;
+  --nav-bg:    rgba(242,246,243,.97);
+  --modal-bg:  rgba(232,239,233,.95);
+  --shadow:    0 4px 20px rgba(0,0,0,.10);
+  --toggler-bg: rgba(0,0,0,.07);
+  --toggler-bd: rgba(0,0,0,.14);
+}
+
+/* ── GEÇIŞ — oyun animasyonlarını hariç tut ── */
+body,
+body *:not(.kare):not(.konfeti) {
+  transition:
+    background-color .28s ease,
+    color            .28s ease,
+    border-color     .28s ease,
+    box-shadow       .28s ease !important;
+}
+
+/* ── TOGGLE BUTONU ── */
+#temaToggle {
+  position: fixed;
+  bottom: 1.1rem;
+  left:   1.1rem;
+  z-index: 9999;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--toggler-bd);
+  background: var(--toggler-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  line-height: 1;
+  padding: 0;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .18s ease, opacity .18s ease !important;
+}
+#temaToggle:hover  { transform: scale(1.14); opacity: .9; }
+#temaToggle:active { transform: scale(.90); }
+
+/* ── GENEL ── */
+body {
+  background-color: var(--bg)   !important;
+  color:            var(--text) !important;
+}
+
+/* ── NAV ── */
+.snav, .nav {
+  background: var(--nav-bg) !important;
+  border-bottom-color: var(--border) !important;
+}
+.snav a, .nav a, .nav-logo, .snav-logo, .snav-back {
+  color: var(--text) !important;
+}
+
+/* ── KARTLAR ── */
+.blog-card, .tc, .hcard, .ezcard, .rocard,
+.tkbox, .otel-item, .ilgili-kart, .yorum-item,
+.hikaye, .panel, .gunluk-kart, .level-kart,
+.pas-item, .ozet-item, .oz-item, .oi,
+.ogr-kutu, .ogretici, .ogretici-kutu,
+.puan-kaz, .soru-kutu, .sik, .sonuc-kart,
+.ip-acik, .ipucu-info, .vurgu, .son-not,
+.koy-kart, .koy-detay, .modal-icerik,
+.paylasim, .yorum-bolum, .ilce-bolum-wrap {
+  background:   var(--card)   !important;
+  border-color: var(--border) !important;
+  color:        var(--text)   !important;
+}
+
+/* ── INPUTLAR ── */
+input, textarea, select, .yorum-input {
+  background:   var(--card)   !important;
+  border-color: var(--border) !important;
+  color:        var(--text)   !important;
+}
+input::placeholder, textarea::placeholder {
+  color: var(--text3) !important;
+}
+input:focus, textarea:focus {
+  border-color: var(--vivid) !important;
+}
+
+/* ── TABLOLAR ── */
+table, th, td { border-color: var(--border) !important; }
+
+/* ── OVERLAY ── */
+.overlay { background: var(--modal-bg) !important; }
+
+/* ── SECTION LABELS ── */
+.slbl    { color: var(--vivid) !important; }
+.stitle  { color: var(--text)  !important; }
+.sdesc   { color: var(--text2) !important; }
+
+/* ── BLOG ── */
+.blog-card-title  { color: var(--text)  !important; }
+.blog-card-desc   { color: var(--text2) !important; }
+.blog-card-cat    { color: var(--vivid) !important; }
+.post-text, .post-text p { color: var(--text2) !important; }
+.hero-title, .hero-cat   { color: var(--text)  !important; }
+.hero-desc               { color: var(--text2) !important; }
+.gun-baslik              { color: var(--text)  !important; }
+
+/* ── WORDLE ── */
+.kare:not(.dogru):not(.yakin):not(.yok) {
+  border-color: var(--border2) !important;
+  color:        var(--text)    !important;
+}
+.kare.dolu   { border-color: var(--text3) !important; }
+.tus {
+  background:   var(--card2)  !important;
+  border-color: var(--border) !important;
+  color:        var(--text)   !important;
+}
+.tus.yok { background: var(--card) !important; opacity: .5; }
+.hikaye-metin, .h-metin { color: var(--text2) !important; }
+.lk-ad, .oi-no, .d-kelime { color: var(--text) !important; }
+.lk-alt, .oi-lbl           { color: var(--text3) !important; }
+
+/* ── QUIZ ── */
+.soru-soru  { color: var(--text)  !important; }
+.sik .sik-metin { color: var(--text2) !important; }
+
+/* ── OTEL ── */
+.otel-ad    { color: var(--text)  !important; }
+.otel-adres { color: var(--text2) !important; }
+.ilce-ad    { color: var(--text)  !important; }
+.ilce-sayi  { color: var(--text3) !important; }
+
+/* ── FOOTER ── */
+footer {
+  border-top-color: var(--border) !important;
+  color:            var(--text3)  !important;
+}
+footer a { color: var(--vivid) !important; }
+
+/* ══════════════════════════════════════════
+   LIGHT MODUNA ÖZEL DÜZELTMELER
+══════════════════════════════════════════ */
+[data-theme="light"] .blog-card {
+  background: var(--bg2)    !important;
+  box-shadow: var(--shadow) !important;
+}
+
+[data-theme="light"] .hero {
+  background: linear-gradient(160deg,#dff0e6,#e8f4ec,#f2f6f3) !important;
+}
+[data-theme="light"] .hero-bg,
+[data-theme="light"] .hero-overlay { opacity: .1 !important; }
+
+[data-theme="light"] .hcard,
+[data-theme="light"] .tc,
+[data-theme="light"] .ezcard,
+[data-theme="light"] .tkbox {
+  background: var(--bg2)    !important;
+  box-shadow: var(--shadow) !important;
+}
+
+[data-theme="light"] .tkk  { color: var(--text2) !important; }
+[data-theme="light"] .tkv  { color: var(--text)  !important; font-weight:700; }
+
+[data-theme="light"] .otel-item { background: var(--bg2) !important; }
+[data-theme="light"] .otel-tel  {
+  background:   rgba(26,138,82,.12) !important;
+  border-color: rgba(26,138,82,.25) !important;
+  color: var(--vivid) !important;
+}
+
+[data-theme="light"] .filtre-btn {
+  background:   var(--bg2)     !important;
+  border-color: var(--border)  !important;
+  color:        var(--text2)   !important;
+}
+[data-theme="light"] .filtre-btn.aktif {
+  background:   rgba(26,138,82,.1)  !important;
+  border-color: rgba(26,138,82,.3)  !important;
+  color:        var(--vivid)        !important;
+}
+
+[data-theme="light"] .bar-dis,
+[data-theme="light"] .il-bar,
+[data-theme="light"] .mini-bar { background: rgba(0,0,0,.08) !important; }
+
+[data-theme="light"] .kare:not(.dogru):not(.yakin):not(.yok) {
+  background:   var(--bg2)             !important;
+  border-color: rgba(0,0,0,.18)        !important;
+}
+[data-theme="light"] .kare.yok {
+  background:   rgba(0,0,0,.09) !important;
+  border-color: rgba(0,0,0,.12) !important;
+}
+[data-theme="light"] .tus {
+  background:   rgba(0,0,0,.07) !important;
+  border-color: rgba(0,0,0,.11) !important;
+}
+[data-theme="light"] .tus.yok { background: rgba(0,0,0,.13) !important; }
+
+[data-theme="light"] .level-kart { background: var(--bg2) !important; }
+[data-theme="light"] .ozet-paylasim {
+  background: var(--bg3)  !important;
+  color:      var(--text2) !important;
+}
+[data-theme="light"] .btn-devam { background: var(--vivid) !important; color: #fff !important; }
+
+[data-theme="light"] ::-webkit-scrollbar-track { background: var(--bg3); }
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.18);
+  border-radius: 4px;
+}
