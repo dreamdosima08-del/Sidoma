@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Ne Kadar Artvinlisin? — Artvin Quiz | artvinrehber.com</title>
-<meta name="description" content="Artvin kültürünü, yemeklerini, şivesini ve yaşam tarzını ne kadar biliyorsun? 15 soruluk eğlenceli Artvin quizini çöz!">
+<meta name="description" content="Artvin kültürünü, yemeklerini, şivesini ve yaşam tarzını ne kadar biliyorsun? 21 soruluk eğlenceli Artvin quizini çöz!">
 <meta name="keywords" content="artvin quiz, ne kadar artvinlisin, artvin bilgi yarışması, artvin kültür">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://artvinrehber.com/quiz.html">
@@ -18,8 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#060d08;
-  --card:#0d1a0f;
+  --bg:#0a1a12;
+  --card:var(--bg);
   --border:rgba(255,255,255,.1);
   --gold:#f0c040;
   --vivid:#3ddb8a;
@@ -86,7 +86,7 @@ body{
 .qi-lbl{font-size:.62rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase}
 .btn-baslat{
   background:linear-gradient(135deg,var(--vivid),#2bc478);
-  color:#060d08;border:none;
+  color:var(--bg);border:none;
   padding:1rem 2.5rem;border-radius:50px;
   font-family:'Bebas Neue',sans-serif;
   font-size:1.3rem;letter-spacing:.15em;
@@ -176,7 +176,7 @@ body{
   border-color:var(--vivid);
   color:#fff;
 }
-.sik.dogru .sik-harf{background:var(--vivid);color:#060d08}
+.sik.dogru .sik-harf{background:var(--vivid);color:var(--bg)}
 .sik.yanlis{
   background:rgba(255,107,107,.08);
   border-color:var(--red);
@@ -302,8 +302,7 @@ body{
 .apb-x{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff}
 .apb-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff}
 .apb-kopyala{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6)}
-</style>
-</head>
+</style></head>
 <body>
 
 <nav class="nav">
@@ -319,9 +318,9 @@ body{
     <div class="quiz-baslik">Ne Kadar<br><span>Artvinlisin?</span></div>
     <div class="quiz-alt">Artvin'in kültürünü, yemeklerini, şivesini ve yaşam tarzını ne kadar biliyorsun? Hemen test et!</div>
     <div class="quiz-info">
-      <div class="qi"><span class="qi-no">15</span><span class="qi-lbl">Soru</span></div>
-      <div class="qi"><span class="qi-no">150</span><span class="qi-lbl">Maks Puan</span></div>
-      <div class="qi"><span class="qi-no">~3</span><span class="qi-lbl">Dakika</span></div>
+      <div class="qi"><span class="qi-no">21</span><span class="qi-lbl">Soru</span></div>
+      <div class="qi"><span class="qi-no">100</span><span class="qi-lbl">Maks Puan</span></div>
+      <div class="qi"><span class="qi-no">~5</span><span class="qi-lbl">Dakika</span></div>
     </div>
     <button class="btn-baslat" onclick="baslat()">🎯 BAŞLA</button>
   </div>
@@ -376,109 +375,151 @@ body{
 <script>
 const SORULAR = [
   {
-    kategori: '🍲 Artvin Mutfağı',
-    soru: "Artvin\'in coğrafi işaretli, tescilli yemeği hangisidir?",
-    siklar: ['Kuymak', 'Puçuko', 'Mıhlama', 'Karalahana Çorbası'],
+    kategori: "🏔️ Artvin Coğrafyası",
+    soru: "Artvin'in ilçelerinden hangisi Türkiye'nin en yüksek konumdaki ilçelerinden biridir?",
+    siklar: ["Ardanuç", "Şavşat", "Arhavi", "Murgul"],
     dogru: 1,
-    aciklama: "Puçuko, 2017\'de Türk Patent Kurumu tarafından tescillenen, kurutulmuş fasulyeden yapılan geleneksel bir Artvin yemeğidir."
+    aciklama: "Şavşat, deniz seviyesinden yaklaşık 1.215 metre yüksekte kurulu olup Artvin'in en yüksek ilçelerinden biridir."
   },
   {
-    kategori: '🗣️ Artvin Şivesi',
-    soru: "\"Badya\" kelimesi Artvin\'de ne anlama gelir?",
-    siklar: ['Küçük çocuk', 'Büyük toprak testi veya kap', 'Eski bina', 'Dağ keçisi'],
+    kategori: "🌊 Artvin Doğası",
+    soru: "Mençuna Şelalesi Artvin'in hangi ilçesindedir?",
+    siklar: ["Hopa", "Arhavi", "Borçka", "Kemalpaşa"],
     dogru: 1,
-    aciklama: 'Badya, Artvin ve çevresinde büyük toprak kaplar için kullanılan yerel bir kelimedir. Köylerde hâlâ kullanılır.'
+    aciklama: "Mençuna Şelalesi, Arhavi ilçesine bağlı, doğasıyla ünlü bir Artvin güzelliğidir."
   },
   {
-    kategori: '🏔️ Artvin Coğrafyası',
-    soru: "Artvin\'in ilçelerinden hangisi Türkiye\'nin en yüksek konumdaki ilçelerinden biridir?",
-    siklar: ['Hopa', 'Borçka', 'Şavşat', 'Arhavi'],
-    dogru: 2,
-    aciklama: "Şavşat, deniz seviyesinden yaklaşık 1.215 metre yüksekte kurulu olup Artvin\'in en yüksek ilçelerinden biridir."
+    kategori: "🍲 Artvin Mutfağı",
+    soru: "Artvin'in coğrafi işaretli, tescilli yemeği hangisidir?",
+    siklar: ["Puçuko", "Silor", "Muhlama", "Hinkal"],
+    dogru: 0,
+    aciklama: "Puçuko, 2017'de Türk Patent Kurumu tarafından tescillenen, kurutulmuş fasulyeden yapılan geleneksel bir Artvin yemeğidir."
   },
   {
-    kategori: '😄 Artvinli Refleksleri',
-    soru: "Artvin\'de biri sana \"Çay var mı?\" diye sorsa ne yaparsın?",
-    siklar: ['Yok derim geçerim', 'Komşuyu da çağırırım, tek kişiye çay olmaz', 'Çayı döker, semaveri yakarım zaten kaynar üstündedir', 'Çayı dökerken "seker mi şekersiz mi" diye de sorarım'],
-    dogru: 2,
-    aciklama: "Artvin\'de misafirperver olmak DNA\'dadır. Semaver her zaman hazırdır, çay her zaman dökülür! 🫖"
+    kategori: "😄 Artvinli Refleksleri",
+    soru: "Artvin'in şoförü neden meşhurdur?",
+    siklar: ["Türkiye'nin en hızlı sürücüleri oldukları için", "Şoförlüğü çok sevdikleri için", "Her virajı gözü kapalı bildikleri için", "İkinci bir şansları olmadığı için ustalaştılar"],
+    dogru: 3,
+    aciklama: "Artvin yolları dik, virajlar kör, aşağısı vadi. Artvinli şoför hata affetmez bir coğrafyada büyüdüğü için kendiliğinden usta olur. 😄"
   },
   {
-    kategori: '🏔️ Artvin Coğrafyası',
-    soru: "Çoruh Nehri hangi ülkeye geçerek Karadeniz\'e dökülür?",
-    siklar: ['Ermenistan', 'Azerbaycan', 'Gürcistan', 'Rusya'],
-    dogru: 2,
-    aciklama: "Çoruh Nehri, Türkiye sınırını geçtikten sonra Gürcistan topraklarından Batum yakınlarında Karadeniz\'e dökülür."
+    kategori: "🌿 Yayla Kültürü",
+    soru: "Kafkasör'de her yıl hangi gelenek yaşatılır?",
+    siklar: ["Geleneksel boğa güreşleri", "Horon festivali", "Çay hasadı şenliği", "Yağlı güreş"],
+    dogru: 0,
+    aciklama: "Kafkasör Festivali, her yıl Haziran ayında düzenlenen ve geleneksel boğa güreşlerinin öne çıktığı Artvin'in en ünlü şenliğidir."
   },
   {
-    kategori: '🍲 Artvin Mutfağı',
+    kategori: "⚡ Artvin & Enerji",
+    soru: "Dünyanın 6. en yüksek barajı Artvin'in hangi ilçesindedir?",
+    siklar: ["Yusufeli", "Artvin Merkez", "Borçka", "Ardanuç"],
+    dogru: 1,
+    aciklama: "Deriner Barajı, 249 metre yüksekliğiyle Artvin Merkez ilçesi sınırları içinde, Çoruh Nehri üzerinde yer alır."
+  },
+  {
+    kategori: "🗣️ Artvin Şivesi",
+    soru: "Badya kelimesi Artvin'de ne anlama gelir?",
+    siklar: ["Küçük çocuk", "Büyük toprak testi veya kap", "Eski bina", "Dağ keçisi"],
+    dogru: 1,
+    aciklama: "Badya, Artvin ve çevresinde büyük toprak kaplar için kullanılan yerel bir kelimedir. Köylerde hâlâ kullanılır."
+  },
+  {
+    kategori: "🏔️ Artvin Coğrafyası",
+    soru: "Çoruh Nehri hangi ülkeye geçerek Karadeniz'e dökülür?",
+    siklar: ["Ermenistan", "Gürcistan", "Azerbaycan", "Rusya"],
+    dogru: 1,
+    aciklama: "Çoruh Nehri, Türkiye sınırını geçtikten sonra Gürcistan topraklarından Batum yakınlarında Karadeniz'e dökülür."
+  },
+  {
+    kategori: "🗣️ Artvin Şivesi",
+    soru: "Artvin yöresinde birine bec denildiğinde aslında ne ima edilir?",
+    siklar: ["Çok konuşkan", "Saf, biraz beceriksiz", "Sinirli ve agresif", "Çalışkan"],
+    dogru: 1,
+    aciklama: "Bec, Artvin yöresel ağzında saf, biraz toy anlamında kullanılan sevimli bir ifadedir."
+  },
+  {
+    kategori: "🍲 Artvin Mutfağı",
     soru: "Demirkent köyü hangi yemeğiyle meşhurdur?",
-    siklar: ['Puçuko', 'Karalahana sarması', 'Kavurmalı hinkal', 'Mısır ekmeği'],
-    dogru: 2,
-    aciklama: "Demirkent\'in kavurmalı hinkali, Artvin\'e gelenlerin mutlaka tatması gereken bir lezzettir. Yöresel kavurma ile servis edilir."
-  },
-  {
-    kategori: '🌿 Yayla Kültürü',
-    soru: "Kafkasör\'de her yıl hangi gelenek yaşatılır?",
-    siklar: ['Zeybek festivali', 'Boğa güreşleri ve Kafkasör Festivali', 'Çay toplama şenliği', 'Horon yarışması'],
+    siklar: ["Puçuko", "Kavurmalı hinkal", "Silor", "Muhlama"],
     dogru: 1,
-    aciklama: "Kafkasör Festivali, her yıl Haziran ayında düzenlenen ve geleneksel boğa güreşlerinin öne çıktığı Artvin\'in en ünlü şenliidir."
+    aciklama: "Demirkent'in kavurmalı hinkali, Artvin'e gelenlerin mutlaka tatması gereken bir lezzettir. Yöresel kavurma ile servis edilir."
   },
   {
-    kategori: '🗣️ Artvin Şivesi',
-    soru: "Artvin\'de birine \"hele bir gel bakim\" denildiğinde ne anlaşılır?",
-    siklar: ['"Hemen gel" demek', '"Uzaktan bak" demek', '"Gel, sohbet edelim" demek', '"Git" demek'],
-    dogru: 2,
-    aciklama: '"Hele bir gel bakım" Artvin ağzında ısrarcı ama sıcak bir davet ifadesidir. Acelesi yoktur ama samimiyeti sonsuzdur.'
-  },
-  {
-    kategori: '⚡ Artvin & Enerji',
-    soru: "Dünyanın 6. en yüksek barajı Artvin\'in hangi ilçesindedir?",
-    siklar: ['Yusufeli', 'Borçka', 'Artvin Merkez', 'Murgul'],
-    dogru: 2,
-    aciklama: 'Deriner Barajı, 249 metre yüksekliğiyle Artvin Merkez sınırları içinde yer alır ve dünyanın 6. en yüksek barajıdır.'
-  },
-  {
-    kategori: '😄 Artvinli Refleksleri',
-    soru: "Artvin\'e ilk gelen biri şehrin yokuşlarını görünce ne der?",
-    siklar: ['"Vay be, ne güzel manzara!"', '"Burada teleferik yapılmalı"', '"Allahım bu ne yokuş, dizlerim tutuştu"', '"Bu şehirde düz yol yok mu hiç?"'],
-    dogru: 2,
-    aciklama: "Artvin\'in yokuşları meşhurdur! Artvinliler bu yokuşlara o kadar alışmıştır ki, düz yol görseler şaşırırlar. 😄"
-  },
-  {
-    kategori: '🏔️ Artvin Doğası',
-    soru: "Borçka\'nın simgesi haline gelen efsanevi heyelan gölü hangisidir?",
-    siklar: ['Uzungöl', 'Karagöl', 'Sera Gölü', 'Tortum Gölü'],
+    kategori: "🏛️ Artvin Tarihi",
+    soru: "Artvin'in eski tarihsel adı nedir?",
+    siklar: ["Çoruheli", "Livane", "Lazistan", "Gürcistan"],
     dogru: 1,
-    aciklama: "Karagöl, sonbaharda altın sarısına bürünen çam ormanlarıyla çevrilmiş, Borçka\'nın doğa harikası krater gölüdür."
+    aciklama: "Livane, Artvin'in Osmanlı dönemindeki tarihsel adıdır. 1921'de Kars Antlaşması ile Türkiye'ye katılmış ve adı Artvin olmuştur."
   },
   {
-    kategori: '🏛️ Artvin Tarihi',
-    soru: "Artvin\'in eski tarihsel adı nedir?",
-    siklar: ['Lazistan', 'Kolhis', 'Livane', 'Çoruh'],
+    kategori: "⚡ Artvin & Enerji",
+    soru: "Yusufeli Barajı dünyanın kaçıncı en yüksek barajıdır?",
+    siklar: ["1.", "2.", "3.", "4."],
     dogru: 2,
-    aciklama: 'Artvin, tarihte "Livane" adıyla bilinirdi. Livane Kalesi hâlâ şehre tepeden bakmaktadır.'
+    aciklama: "275 metre yüksekliğiyle Yusufeli Barajı, Türkiye'nin en yüksek, dünyanın 3. en yüksek barajıdır."
   },
   {
-    kategori: '🌿 Yayla Kültürü',
-    soru: 'Artvinliler yazın yaylaya çıkarken ne götürmeden gidemez?',
-    siklar: ['Televizyon', 'Kara demlik ve çay takımı', 'Laptop', 'Araba'],
+    kategori: "🌿 Yayla Kültürü",
+    soru: "Artvinliler yazın yaylaya çıkarken ne götürmeden gidemez?",
+    siklar: ["Televizyon", "Kara demlik ve çay takımı", "Laptop", "Araba"],
     dogru: 1,
-    aciklama: 'Kara demlik Artvin yayla kültürünün vazgeçilmezidir. Yaylada demliğin üstünde çay kaynarken doğanın sesi eşlik eder. ☕'
+    aciklama: "Kara demlik Artvin yayla kültürünün vazgeçilmezidir. Yaylada demliğin üstünde çay kaynarken doğanın sesi eşlik eder. ☕"
   },
   {
-    kategori: '😄 Artvinli Refleksleri',
-    soru: "Artvin\'de hava nasıl olursa olursa \"yağmur yağar\" denir, peki Artvin yılda kaç gün yağmur alır?",
-    siklar: ['50-80 gün', '80-110 gün', 'Yaklaşık 140 gün', '200+ gün'],
+    kategori: "🏔️ Artvin Doğası",
+    soru: "Borçka'nın simgesi haline gelen heyelan gölü hangisidir?",
+    siklar: ["Karagöl", "Tortum Gölü", "Balık Gölü", "Çıldır Gölü"],
+    dogru: 0,
+    aciklama: "Karagöl, sonbaharda altın sarısına bürünen çam ormanlarıyla çevrilmiş, Borçka'nın doğa harikası heyelan gölüdür."
+  },
+  {
+    kategori: "🗺️ Artvin Coğrafyası",
+    soru: "Artvin'in Gürcistan'a açılan sınır kapısı hangi köydedir?",
+    siklar: ["Sarp", "Balcı", "Köprücü", "Uğur"],
+    dogru: 0,
+    aciklama: "Sarp Sınır Kapısı, Hopa ilçesine bağlı Sarp köyünde bulunur. Türkiye'nin Gürcistan'a açılan en önemli karayolu kapısıdır."
+  },
+  {
+    kategori: "😄 Artvinli Refleksleri",
+    soru: "Artvin'de yağmurlu gün sayısı yılda kaç güne ulaşır?",
+    siklar: ["50-80 gün", "80-110 gün", "130-140 gün", "200+ gün"],
     dogru: 2,
-    aciklama: "Artvin\'in bazı ilçeleri yılda 150-200 günü aşkın yağışlı gün görebilir. Bu yüzden Artvinliler yağmura aldırmaz! 🌧️"
+    aciklama: "Artvin merkez yılda ortalama 130-140 gün yağış alır. Karadeniz iklimiyle yaşayan Artvinliler yağmuru hava saymaz! 🌧️"
   },
   {
-    kategori: '🏔️ Artvin Coğrafyası',
-    soru: "Artvin\'in Kaçkar\'dan sonra ikinci en yüksek dağı hangisidir?",
-    siklar: ['Cerattepe', 'Karçal Dağları', 'Mescit Dağı', 'Yalnızçam'],
-    dogru: 1,
-    aciklama: "Karçal Dağları, 3.428 metre ile Artvin\'in ikinci en yüksek noktasıdır ve Gürcistan sınırına kadar uzanır."
+    kategori: "🌿 Doğa & Çevre",
+    soru: "Dünyanın 100 biyosfer rezerv alanından biri Artvin'de hangisidir?",
+    siklar: ["Sahara", "Hatila Vadisi", "Karçal Dağları", "Macahel (Camili)"],
+    dogru: 3,
+    aciklama: "Macahel (Camili), 2005'te UNESCO tarafından biyosfer rezervi ilan edilmiştir. 1.000'den fazla bitki türüne ev sahipliği yapar."
+  },
+  {
+    kategori: "🍲 Artvin Mutfağı",
+    soru: "Yufkanın açılmasıyla yapılan, tepsiye dizilip yoğurtlanarak fırınlanan Artvin yemeği hangisidir?",
+    siklar: ["Hinkal", "Muhlama", "Börek", "Silor"],
+    dogru: 3,
+    aciklama: "Silor, ince yufkanın tepsiye dizilip üzerine yoğurt dökülerek fırınlanmasıyla yapılan, Artvin'e özgü geleneksel bir yemektir."
+  },
+  {
+    kategori: "🏔️ Artvin Coğrafyası",
+    soru: "Artvin'in Kaçkar'dan sonra ikinci en yüksek dağı hangisidir?",
+    siklar: ["Karçal Dağları", "Yalnızçam Dağları", "Mescit Dağı", "Karadağ"],
+    dogru: 0,
+    aciklama: "Karçal Dağları, 3.428 metre ile Artvin'in ikinci en yüksek noktasıdır ve Gürcistan sınırına kadar uzanır."
+  },
+  {
+    kategori: "🌿 Yayla Kültürü",
+    soru: "Bilbilan (Bülbülan) Yaylası Artvin'in hangi ilçesine bağlıdır?",
+    siklar: ["Ardanuç", "Şavşat", "Yusufeli", "Borçka"],
+    dogru: 0,
+    aciklama: "Bilbilan (Bülbülan) Yaylası, Ardanuç ilçesine bağlı, yüksek rakımıyla bilinen geleneksel bir Artvin yaylasıdır."
+  },
+  {
+    kategori: "😄 Yorum Sorusu",
+    soru: "Artvin'de en iyi cağ döner nerede yenir? (Görüşünü paylaş!)",
+    siklar: ["Merkezde", "Yusufeli'nde", "Ardanuç'ta", "Yorumsuz"],
+    dogru: -1,
+    aciklama: "Bu sorunun doğru cevabı yok — herkesin fikri farklı! Artvin'de cağ döner tartışması bitmez. 😄"
   }
 ];
 
@@ -499,7 +540,7 @@ function soruGoster(){
   cevaplandi=false;
   const s = SORULAR[mevcutSoru];
 
-  document.getElementById('ilerlemeNo').textContent = 'Soru '+(mevcutSoru+1)+' / '+SORULAR.length;
+  document.getElementById('ilerlemeNo').textContent = 'Soru '+(mevcutSoru+1)+' / '+(SORULAR.length-1);
   document.getElementById('ilerlemePuan').textContent = puan+' puan';
   document.getElementById('ilerlemeIc').style.width = ((mevcutSoru/SORULAR.length)*100)+'%';
   document.getElementById('soruKategori').textContent = s.kategori;
@@ -528,9 +569,12 @@ function cevapSec(idx, btn){
 
   tumSiklar.forEach(function(b){ b.disabled=true; });
 
-  if(idx===s.dogru){
+  if(s.dogru===-1){
     btn.classList.add('dogru');
-    puan+=10; dogru++;
+    // Yorum sorusu — puan yok
+  } else if(idx===s.dogru){
+    btn.classList.add('dogru');
+    puan+=5; dogru++;
   } else {
     btn.classList.add('yanlis');
     tumSiklar[s.dogru].classList.add('dogru');
@@ -565,7 +609,7 @@ function sonucGoster(){
   const sonuc = document.getElementById('ekranSonuc');
   sonuc.style.display='flex';
 
-  const yuzde = Math.round((puan/150)*100);
+  const yuzde = Math.round((puan/100)*100);
   let rozet, unvan, mesaj, rozetRenk;
 
   if(puan<=40){
@@ -596,7 +640,7 @@ function sonucGoster(){
   rozetEl.style.borderColor=rozetRenk.replace('.3','1').replace('.4','1');
 
   document.getElementById('sonucUnvan').textContent=unvan;
-  document.getElementById('sonucPuan').textContent=puan+'/150';
+  document.getElementById('sonucPuan').textContent=puan+'/100';
   document.getElementById('sonucPuan').style.color = puan>=90 ? 'var(--gold)' : puan>=50 ? 'var(--vivid)' : 'var(--off)';
   document.getElementById('sonucMesaj').textContent=mesaj;
   document.getElementById('siDogru').textContent=dogru;
@@ -607,7 +651,7 @@ function sonucGoster(){
 
   const paylasimTxt = '🏔️ "Ne Kadar Artvinlisin?" quizini çözdüm!\n\n'+
     rozet+' '+unvan+'\n'+
-    '📊 Puan: '+puan+'/150 (%'+yuzde+')\n'+
+    '📊 Puan: '+puan+'/100 (%'+yuzde+')\n'+
     '✅ Doğru: '+dogru+'/'+SORULAR.length+'\n\n'+
     'Sen de dene 👇\nartvinrehber.com/quiz.html';
   document.getElementById('paylasimMetin').textContent=paylasimTxt;
