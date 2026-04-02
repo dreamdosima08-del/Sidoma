@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#060d08;--card:#0d1a0f;--card2:#111f13;
+  --bg:#0a1a12;--card:var(--bg);--card2:#111f13;
   --border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.16);
   --gold:#f0c040;--vivid:#3ddb8a;--red:#ff6b6b;--blue:#7ab0ff;--purple:#c896ff;
   --off:#e8ede9;--muted:rgba(255,255,255,.45);--dim:rgba(255,255,255,.22);
@@ -28,7 +28,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 /* ── NAV ── */
 .nav{width:100%;max-width:580px;display:grid;grid-template-columns:1fr auto 1fr;
   align-items:center;padding:.65rem 1rem;border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:60;background:rgba(6,13,8,.97);backdrop-filter:blur(12px)}
+  position:sticky;top:0;z-index:60;background:rgba(10,26,18,.97);backdrop-filter:blur(12px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:.75rem;letter-spacing:.14em;color:var(--gold);text-decoration:none;line-height:1.2}
 .nav-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.14em;color:#fff;text-align:center}
 .nav-title span{color:var(--vivid)}
@@ -93,8 +93,11 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 .l3 .lk-no{color:var(--red)}
 .l3 .mini-bar-ic{background:var(--red)}
 .l4 .lk-sol{border-color:rgba(200,150,255,.5);background:rgba(200,150,255,.1);color:var(--purple)}
+.l5 .lk-sol{border-color:rgba(122,176,255,.5);background:rgba(122,176,255,.1);color:var(--blue)}
 .l4 .lk-no{color:var(--purple)}
+.l5 .lk-no{color:var(--blue)}
 .l4 .mini-bar-ic{background:var(--purple)}
+.l5 .mini-bar-ic{background:var(--blue)}
 
 /* ── OYUN EKRANI ── */
 .oyun-ekran{width:100%;max-width:580px;padding:0 .9rem 2rem;
@@ -135,7 +138,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 
 /* Mesaj */
 .mesaj-wrap{height:24px;display:flex;align-items:center;justify-content:center}
-.mesaj{background:rgba(255,255,255,.92);color:#060d08;font-size:.7rem;font-weight:800;
+.mesaj{background:rgba(255,255,255,.92);color:var(--bg);font-size:.7rem;font-weight:800;
   letter-spacing:.05em;padding:.25rem .85rem;border-radius:4px;
   opacity:0;transition:opacity .2s;pointer-events:none}
 .mesaj.on{opacity:1}
@@ -151,8 +154,8 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 .kare.salla{animation:salla .45s ease}
 .kare.flip{animation:flipAnim .5s ease forwards}
 .kare.zipla{animation:zipla .6s ease forwards}
-.kare.dogru{background:var(--dogru);border-color:var(--dogru);color:#060d08}
-.kare.yakin{background:var(--yakin);border-color:var(--yakin);color:#060d08}
+.kare.dogru{background:var(--dogru);border-color:var(--dogru);color:var(--bg)}
+.kare.yakin{background:var(--yakin);border-color:var(--yakin);color:var(--bg)}
 .kare.yok{background:var(--yok);border-color:#253d27}
 
 /* İpucu bar */
@@ -189,12 +192,12 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
   display:flex;align-items:center;justify-content:center;user-select:none}
 .tus:active{transform:scale(.88)}
 .tus.wide{flex:1.6;max-width:46px;font-size:.55rem}
-.tus.dogru{background:var(--dogru)!important;border-color:var(--dogru)!important;color:#060d08!important}
-.tus.yakin{background:var(--yakin)!important;border-color:var(--yakin)!important;color:#060d08!important}
+.tus.dogru{background:var(--dogru)!important;border-color:var(--dogru)!important;color:var(--bg)!important}
+.tus.yakin{background:var(--yakin)!important;border-color:var(--yakin)!important;color:var(--bg)!important}
 .tus.yok{background:var(--yok)!important;border-color:#253d27!important;opacity:.5}
 
 /* ── OVERLAY ── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(6,13,8,.9);
+.overlay{display:none;position:fixed;inset:0;background:rgba(10,26,18,.9);
   backdrop-filter:blur(8px);z-index:100;align-items:center;justify-content:center;padding:1rem}
 .overlay.on{display:flex}
 .panel{background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:16px;
@@ -277,7 +280,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
   display:flex;align-items:center;justify-content:center;gap:.45rem;width:100%}
 .btn:hover{opacity:.87;transform:translateY(-1px)}
 .btn:active{transform:translateY(0)}
-.btn-devam{background:var(--vivid);color:#060d08}
+.btn-devam{background:var(--vivid);color:var(--bg)}
 .btn-paylas{background:rgba(255,255,255,.07);border:1px solid var(--border2);color:#fff}
 .btn-wp{background:#25D366;color:#fff}
 .btn-x{background:rgba(255,255,255,.07);border:1px solid var(--border2);color:#fff}
@@ -360,8 +363,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 .hs-var{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.3);color:var(--vivid)}
 .hs-yok{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:var(--red)}
 
-</style>
-</head>
+</style></head>
 <body>
 
 <!-- NAV -->
@@ -437,10 +439,10 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
   <div class="grid-wrap" id="grid"></div>
 
   <div class="ipucu-bar">
-    <button class="ip-btn" id="ib0" onclick="ipucu(0)"><span>📍</span><span>Coğrafi</span><span class="ip-maliyet">-8p</span></button>
-    <button class="ip-btn" id="ib1" onclick="ipucu(1)"><span>🧠</span><span>Kültürel</span><span class="ip-maliyet">-6p</span></button>
-    <button class="ip-btn" id="ib2" onclick="ipucu(2)"><span>🗣️</span><span>Yerel</span><span class="ip-maliyet">-4p</span></button>
-    <button class="ip-btn" id="ib3" onclick="ipucu(3)"><span>🌄</span><span>Yaşam</span><span class="ip-maliyet">-5p</span></button>
+    <button class="ip-btn" id="ib0" onclick="ipucu(0)"><span>📍</span><span>Coğrafi</span><span class="ip-maliyet">-4p</span></button>
+    <button class="ip-btn" id="ib1" onclick="ipucu(1)"><span>🧠</span><span>Kültürel</span><span class="ip-maliyet">-4p</span></button>
+    <button class="ip-btn" id="ib2" onclick="ipucu(2)"><span>🗣️</span><span>Yerel</span><span class="ip-maliyet">-3p</span></button>
+    <button class="ip-btn" id="ib3" onclick="ipucu(3)"><span>🌄</span><span>Yaşam</span><span class="ip-maliyet">-4p</span></button>
   </div>
 
 
@@ -593,10 +595,10 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
     </div>
     <div class="p-acik"><strong style="color:var(--dim)">Koyu</strong> — Bu harf kelimede yok</div>
     <div class="ip-acik">
-      📍 <strong>Coğrafi</strong> — Gerçek konum bilgisi (-8p)<br>
-      🧠 <strong>Kültürel</strong> — Tarihi/kültürel bilgi (-6p)<br>
-      🗣️ <strong>Yerel Ağız</strong> — Yöresel söyleyiş (-4p)<br>
-      🌄 <strong>Yaşam</strong> — Yaşam tarzı ipucu (-5p)
+      📍 <strong>Coğrafi</strong> — Gerçek konum bilgisi (-6p)<br>
+      🧠 <strong>Kültürel</strong> — Tarihi/kültürel bilgi (-5p)<br>
+      🗣️ <strong>Yerel Ağız</strong> — Yöresel söyleyiş (-3p)<br>
+      🌄 <strong>Yaşam</strong> — Yaşam tarzı ipucu (-4p)
     </div>
     <div class="p-acik" style="margin-top:.45rem;font-size:.68rem;color:var(--dim)">
       ⏭️ <strong>Pas Geç</strong> — 3 hak. Pas geçilen sorular nav'daki ⏭️ butonundan erişilebilir.<br>
@@ -612,131 +614,257 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
    KELIME HAVUZU
 ════════════════════════════════════════════════ */
 const HAVUZ = [
-  // LEVEL 1 — İLÇELER (kolay)
-  {k:"ARTVİN",bolge:"Artvin İl Merkezi",ikon:"🏙️",zorluk:"kolay",level:1,
-   hikaye:"Karadeniz'in doğusunda, dağların arasına sıkışmış bir şehir.",
-   ogretici:["Türkiye'nin kuzeydoğusunda, Gürcistan sınırına yakın il merkezi.","Tarihte 'Livane' adıyla bilinirdi; 1921'de Türkiye'ye katıldı.","Deniz seviyesinden yaklaşık 595 metre yüksekte kurulmuştur.","Türkiye'nin en az nüfuslu illerinden; ~167.000 kişi yaşar."],
-   ipuclar:["📍 Karadeniz bölgesinin en doğusunda, Gürcistan sınırına 45 km mesafede il merkezi.","🧠 Osmanlı döneminde 'Livane Sancağı' adıyla anılan şehir 1921'de Türkiye'ye katıldı.","🗣️ Yöre halkı şehir merkezine 'aşağı' der; çevre köyler daha yüksek rakımda.","🌄 Artvin'de yokuş kaçınılmazdır; şehrin neredeyse her noktası bir eğim üzerindedir."]},
-  {k:"HOPA",bolge:"Hopa İlçesi",ikon:"🌊",zorluk:"kolay",level:1,
-   hikaye:"Karadeniz kıyısında, Gürcistan sınırına yakın ilçe.",
-   ogretici:["Artvin'in Karadeniz kıyısındaki en kalabalık ilçesidir.","Sarp Sınır Kapısı bu ilçe sınırları içindedir.","Çay ve fındık tarımının yoğun olduğu ilçede deniz seviyesinde yaşanır.","Hopa'dan Gürcistan sınırına ~20 km mesafe vardır."],
-   ipuclar:["📍 Artvin'in batısında, Karadeniz kıyısında, deniz seviyesinde ilçe.","🧠 Sarp Sınır Kapısı bu ilçe sınırları içindedir; Türkiye-Gürcistan ticareti buradan.","🗣️ 'Hopalı' olarak anılır; Laz kültürünün yoğun yaşandığı ilçelerden.","🌄 Çay toplama sezonu Mayıs-Ekim; yamaçlar çay bahçesiyle kaplı."]},
-  {k:"BORÇKA",bolge:"Borçka İlçesi",ikon:"🌲",zorluk:"kolay",level:1,
-   hikaye:"Orman ilçesi. Sonbaharda renkler değiştiğinde başka bir yere dönüşür.",
-   ogretici:["Borçka, Artvin'e bağlı ormanlarıyla ünlü ilçedir.","Karagöl, ilçe sınırları içinde heyelanla oluşmuş nadir göldür.","Camili (Maçahel) bölgesi UNESCO biyosfer rezervidir.","Borçka Barajı ilçe merkezinin yanında yer alır."],
-   ipuclar:["📍 Karadeniz ile dağ iklimi arasında geçiş bölgesinde yer alır.","🧠 Camili köyü (Maçahel) Borçka'ya bağlı; UNESCO biyosfer rezervi statüsünde.","🗣️ İlçe adı Gürcüce kökenlidir.","🌄 Sonbaharda Karagöl çevresi sarı-altın rengiyle Türkiye'nin en çok fotoğraflanan noktası."]},
-  {k:"ŞAVŞAT",bolge:"Şavşat İlçesi",ikon:"❄️",zorluk:"kolay",level:1,
-   hikaye:"Yüksekte bir ilçe. Kar erken gelir, geç gider.",
-   ogretici:["Şavşat, ~1.215 metre rakımda Artvin ilçesidir.","Ardahan'a sınır komşusu; doğal ormanlarla çevrili.","Yaylaları yaz aylarında hayvancılık için kullanılır.","Kışın kar kalınlığı 2 metreyi aşabilir."],
-   ipuclar:["📍 Ardahan'a sınır, ~1.215 m rakımda Artvin'in en yüksek ilçelerinden.","🧠 Veliköy, Dishora yaylaları yüzyıllardır hayvancılık merkezidir.","🗣️ Yerel halk 'Savşat' der; standart yazılıştan farklı telaffuz edilir.","🌄 Nisan ayına kadar kar kalabilir; köylüler kışı aşağıda geçirir."]},
-  {k:"ARDANUÇ",bolge:"Ardanuç İlçesi",ikon:"🏰",zorluk:"kolay",level:1,
-   hikaye:"Tepedeki kale her şeyi izliyor. Asırlık taşlar konuşuyor.",
-   ogretici:["Ardanuç, tarihi kalesiyle tanınan Artvin ilçesidir.","Kale, Orta Çağ'dan kalma ve hâlâ ayakta.","Çoruh Nehri vadisinde yer alır.","Gürcü dönemi kilise kalıntıları bulunmaktadır."],
-   ipuclar:["📍 Çoruh vadisinde, Artvin merkezine ~40 km ilçe.","🧠 Ardanuç Kalesi Gürcü Krallığı döneminde inşa edildi.","🗣️ Yöre halkı 'Ardanıç' da der; ardıç ağacından gelir.","🌄 Ceviz ve dut bahçeleri önemli geçim kaynağıdır."]},
-  {k:"ARHAVİ",bolge:"Arhavi İlçesi",ikon:"🌿",zorluk:"kolay",level:1,
-   hikaye:"Karadeniz kıyısında sakin bir köşe. Yeşilin her tonu burada.",
-   ogretici:["Arhavi, Hopa ile Borçka arasında kıyı ilçesidir.","Çay ve fındık tarımı öne çıkar.","Artvin'in en az göç veren ilçelerinden.","Deniz seviyesinde tarım yapılır."],
-   ipuclar:["📍 Hopa ile Borçka arasında, Karadeniz kıyısında, deniz seviyesi.","🧠 Lazların yoğun yaşadığı Artvin ilçelerinden biri.","🗣️ Adı Lazca kökenli; 'arha' dere/nehir anlamında.","🌄 Fındık hasadı ilçenin en yoğun dönemini oluşturur."]},
-  {k:"MURGUL",bolge:"Murgul İlçesi",ikon:"⛏️",zorluk:"kolay",level:1,
-   hikaye:"Dağların içinde hazineler var. Sanayi ve doğa iç içe.",
-   ogretici:["Murgul, Türkiye'nin önemli bakır rezervlerini barındırır.","Murgul Bakır İşletmesi ilçe ekonomisinin temelidir.","Borçka'ya sınır; dağlık ve ormanlık yapı.","Artvin'in en küçük ilçelerinden."],
-   ipuclar:["📍 Borçka'ya komşu, iç kesimlerde dağlık ilçe.","🧠 Murgul Bakır Madeni 1970'lerden bu yana faaliyette.","🗣️ Adı Gürcüce kökenli olduğu düşünülür.","🌄 Madenciliğe karşın çevre yoğun ormanlarla kaplı."]},
-  {k:"YUSUFELİ",bolge:"Yusufeli İlçesi",ikon:"💧",zorluk:"kolay",level:1,
-   hikaye:"Tarihi suyun altında kaldı. Yeni hayat, aynı insanlar.",
-   ogretici:["Yusufeli, baraj nedeniyle yer değiştiren ender ilçelerden.","Yusufeli Barajı 275 metreyle Türkiye'nin en yüksek barajı.","Eski merkez 2022'de baraj sularının altında kaldı.","Yeni Yusufeli daha yüksek noktaya kuruldu."],
-   ipuclar:["📍 Çoruh vadisi üst kesiminde, Artvin merkezine ~70 km.","🧠 275 metrelik baraj 2022'de faaliyete geçti; eski merkezi su altında bıraktı.","🗣️ Eski merkez 'aşağı', yeni merkez 'yukarı' olarak anılır.","🌄 Eski ilçe rafting turizmiyle ünlüydü; Çoruh dünyanın en zorlu güzergahlarından biriydi."]},
-
-  // LEVEL 2 — YAYLALAR & DOĞA (orta)
-  {k:"KAFKASÖR",bolge:"Kafkasör Yaylası",ikon:"🐂",zorluk:"orta",level:2,
-   hikaye:"Her Haziran, asırlık gelenek burada canlanır.",
-   ogretici:["Artvin merkezine ~6 km, ~2.400 metre rakımda yayla.","Her yıl Haziran'da Kafkasör Festivali düzenlenir.","Geleneksel boğa güreşleri en çok ilgi gören etkinlik.","Artvin'in simgesi haline gelmiş ünlü yayla."],
-   ipuclar:["📍 Artvin merkezine 6 km, 2.400 m rakımda kolaylıkla ulaşılan yayla.","🧠 Festival 1000 yılı aşkın geçmişiyle Türkiye'nin en köklü yöresel etkinliklerinden.","🗣️ 'Kafkasör' adı 'Kafkas önü' anlamına gelir.","🌄 Festivalde yöresel kıyafetler giyilir, horon oynanır ve boğa güreşleri izlenir."]},
-  {k:"HATİLA",bolge:"Hatila Vadisi Milli Parkı",ikon:"🏞️",zorluk:"orta",level:2,
-   hikaye:"Derin bir kanyon. Cam terası var, ama asıl manzara doğanın kendisi.",
-   ogretici:["Artvin merkezine yürüme mesafesindeki milli park.","Cam terası, şelale ve yoğun orman örtüsü içinde.","Vadi derinliği bazı noktalarda 200 metreyi aşar.","Hatila Çayı vadi içinden akarak Çoruh'a katılır."],
-   ipuclar:["📍 Artvin merkezine ~2 km, Çoruh'a paralel derin kanyon.","🧠 1994'te milli park ilan edildi.","🗣️ Vadi adını içindeki 'Hatila Çayı'ndan alır.","🌄 Sabah erken saatlerde cam terastaki sis manzarası eşsizdir."]},
-  {k:"KARAGÖL",bolge:"Borçka Karagöl",ikon:"🍂",zorluk:"orta",level:2,
-   hikaye:"Sonbaharda rengi değişir, sesi hiç çıkmaz.",
-   ogretici:["Borçka'ya bağlı heyelan gölü; krater değildir.","Sonbaharda Türkiye'nin en çok fotoğraflanan noktalarından.","Deniz seviyesinden ~1.350 m yüksekte.","Çevresi yaban hayatı açısından zengin."],
-   ipuclar:["📍 Borçka'ya bağlı, ~1.350 m rakımda heyelanla oluşmuş göl.","🧠 17. yüzyıl heyelanıyla oluştuğu düşünülür; krater gölü değildir.","🗣️ 'Kara göl' adı gölün koyu, derin suyundan gelir.","🌄 Ekim ayında sarı yapraklar ve göldeki yansıma eşsiz manzara yaratır."]},
-  {k:"KARÇAL",bolge:"Karçal Dağları",ikon:"🏔️",zorluk:"orta",level:2,
-   hikaye:"Artvin'in gökyüzüne en yakın noktası.",
-   ogretici:["Artvin'in en yüksek ikinci dağ kütlesi.","Zirve 3.428 m; Gürcistan sınırına kadar uzanır.","Boz ayı ve Anadolu vaşağı gibi nadir türlere ev sahipliği.","Kaçkar'dan sonra bölgenin ikinci en yüksek dağı."],
-   ipuclar:["📍 Artvin'in güneydoğusunda, Gürcistan sınırına uzanan dağ kütlesi. Zirve 3.428 m.","🧠 Boz ayı ve Anadolu vaşağı gibi nesli tehlikede türler yaşar.","🗣️ 'Karçal'a çıkmak' ciddi dağcılık bilgisi gerektirir.","🌄 Yazın zirvede kar kalıntıları bulunur; krater gölleri yüksek rakımda gizlenmiş."]},
-  {k:"MAÇAHEL",bolge:"Maçahel (Camili) Vadisi",ikon:"🌺",zorluk:"orta",level:2,
-   hikaye:"Haritanın ucunda bir yer. Doğa orada işini bitirmemiş.",
-   ogretici:["Borçka'ya bağlı; Türkiye-Gürcistan sınırında.","UNESCO biyosfer rezervi; 1.000+ bitki türü.","Geleneksel ahşap ev mimarisini koruyan nadir köy.","Camili bölgenin merkezi köyüdür."],
-   ipuclar:["📍 Borçka'ya bağlı, Gürcistan sınırına dayanan vadi.","🧠 UNESCO Biyosfer Rezervi statüsü 2005'te verildi.","🗣️ Halk Lazca ve Gürcüce karışımı konuşur; ad Gürcüce kökenli.","🌄 Geleneksel ahşap ev mimarisi korunmakta; araçla ulaşmak güç."]},
-  {k:"ÇORUH",bolge:"Çoruh Nehri",ikon:"🌊",zorluk:"orta",level:2,
-   hikaye:"Artvin'den geçen, sınırı aşan bir güç.",
-   ogretici:["Türkiye'nin en hızlı akan nehirlerinden.","Barajlardan önce dünyanın en zorlu rafting güzergahıydı.","Gürcistan'a geçip Batum'da Karadeniz'e dökülür.","Havzada 5 baraj inşa edilmiştir."],
-   ipuclar:["📍 Erzurum'dan doğan, Artvin üzerinden Gürcistan'a geçen nehir.","🧠 Çoruh havzasındaki 5 baraj önemli miktarda hidroelektrik üretir.","🗣️ 'Çoruh' adının Gürcüce 'tuzlu su' anlamındaki 'çoro'dan geldiği düşünülür.","🌄 Barajlardan önce rafting sezonu Mayıs-Eylül; hız bazı noktalarda 30 km/s'yi geçiyordu."]},
-  {k:"DERİNER",bolge:"Deriner Barajı",ikon:"⚡",zorluk:"orta",level:2,
-   hikaye:"Artvin'in yanı başında devasa yapı. Dünya listesindeki yeri var.",
-   ogretici:["Deriner Barajı 249 metreyle Türkiye'nin en yüksek ikinci barajı.","Dünya sıralamasında 6. en yüksek baraj.","Çift eğrilikli beton kemer tasarımı.","Artvin Merkez sınırlarında, Çoruh üzerinde."],
-   ipuclar:["📍 Artvin merkezine ~7 km, Çoruh Nehri üzerinde.","🧠 249 m ile Türkiye'nin 2., dünyanın 6. en yüksek barajı.","🗣️ Yakınındaki Deriner köyünün adını taşır.","🌄 Baraj gölü vadinin manzarasını kökten değiştirdi."]},
-  {k:"LİVANE",bolge:"Artvin'in Tarihi Adı",ikon:"🏛️",zorluk:"orta",level:2,
-   hikaye:"Bu şehir eskiden başka bir adla bilinirdi.",
-   ogretici:["Livane, Artvin'in Osmanlı dönemindeki tarihsel adı.","Livane Sancağı 19. yüzyılda Osmanlı'nın idari birimi.","Üst kesimde 'Livane Kalesi' kalıntıları mevcut.","1921'de Kars Antlaşmasıyla Türkiye'ye katıldı; adı 'Artvin' oldu."],
-   ipuclar:["📍 Artvin şehir merkezinin üst kesimindeki tarihi kalenin ve şehrin eski adı.","🧠 'Livane Sancağı' 1921'e kadar bu coğrafyanın idari adıydı.","🗣️ Yaşlı halk arasında hâlâ 'Livane' diyenler var.","🌄 Livane Kalesi, merkezden bakıldığında tepeye gömülmüş görünür."]},
-
-  // LEVEL 3 — KÖYLER (zor)
-  {k:"DEMİRKENT",bolge:"Demirkent Köyü, Artvin Merkez",ikon:"🍽️",zorluk:"zor",level:3,
-   hikaye:"Artvin'de bir köy var ki mutfağı yüzyıllardır anlatılır.",
-   ogretici:["Artvin Merkez'e bağlı köy.","Kavurmalı hinkal bu köyle özdeşleşmiştir.","Hinkal, et ve hamurla hazırlanan Artvin'e özgü yemek.","Şehir merkezine yakın mesafededir."],
-   ipuclar:["📍 Artvin Merkez'e bağlı, şehre yakın dağ köyü.","🧠 Kavurmalı hinkal, et kavurması ile hamur katmanından oluşan yöreye özgü yemek.","🗣️ 'Hinkal' Kafkas kökenli; Gürcistan ve Dağıstan mutfaklarında benzer yemekler var.","🌄 Geleneksel hayvancılık hâlâ sürdürülmekte; kavurma bu geleneğin mutfaktaki yansıması."]},
-  {k:"SALKIMLI",bolge:"Salkımlı Köyü, Artvin Merkez",ikon:"🌿",zorluk:"zor",level:3,
-   hikaye:"Karçal eteklerinde, bulutlarla komşu bir köy.",
-   ogretici:["Artvin Merkez'e bağlı, Karçal Dağları eteklerinde köy.","Yaylacılık geleneği sürdürülmektedir.","Yüksek rakımlı köy; kış sert geçer.","Ad çevresindeki salkım ağaçlarından gelir."],
-   ipuclar:["📍 Artvin Merkez'e bağlı, Karçal eteklerinde yüksek rakımlı köy.","🧠 Yüzyıllardır yayla kültürüne dayalı hayvancılıkla geçimini sağlayan köy.","🗣️ 'Salkım' Türkçede üzüm salkımı veya çiçek gruplarını anlatır.","🌄 Karçal zirvelerine yürüyüşler için iyi başlangıç noktası."]},
-  {k:"KAFKASÖR",bolge:"Kafkasör Yaylası — Zor",ikon:"🐂",zorluk:"zor",level:3,
-   hikaye:"Her Haziran bu yerde Artvin'in kalbi atar.",
-   ogretici:["Artvin merkezine 6 km, ~2.400 m yayla.","Kafkasör Festivali Türkiye'nin en eski yöresel festivallerinden.","Boğa güreşleri geleneksel kıyafetler eşliğinde yapılır.","Kışın kayak imkânı da sunar."],
-   ipuclar:["📍 Artvin merkezine 6 km, 2.400 m rakımda yayla.","🧠 Festival yüzyıllardır süren boğa güreşi geleneğinin resmileşmiş hâli.","🗣️ 'Kafkasör' = 'Kafkas önü'; coğrafi konumu tanımlar.","🌄 Kışın ~2 m kar alır; yaz aylarında Artvin'in en yeşil noktalarından."]},
-  {k:"BARHAL",bolge:"Barhal — Altıparmak, Yusufeli",ikon:"⛪",zorluk:"zor",level:3,
-   hikaye:"Vadinin içinde tarihin taşlara işlendiği yer.",
-   ogretici:["Barhal, Yusufeli'ne bağlı Altıparmak köyünün eski adı.","10. yüzyıldan kalma Barhal Kilisesi Gürcü mimarisinin önemli örneği.","Kaçkar Dağları eteklerinde, Barhal Çayı kıyısı.","Kaçkar trekking rotaları buradan başlar."],
-   ipuclar:["📍 Yusufeli'ne bağlı Altıparmak köyü; Kaçkar eteklerinde Barhal Çayı kenarı.","🧠 10. yüzyılda inşa edilen kilise, Gürcü mimarisinin en iyi korunmuş örneklerinden.","🗣️ 'Altıparmak' altı parmak anlamında; dağ silüetiyle ilişkilendirilir.","🌄 Yazın Kaçkar trekking gruplarıyla dolar; yöresel alabalık yetiştiriciliği sürdürülür."]},
-  {k:"ZEYTİNLİK",bolge:"Zeytinlik Köyü, Artvin Merkez",ikon:"🌿",zorluk:"zor",level:3,
-   hikaye:"Adı doğadan gelir. Artvin'in saklı köylerinden.",
-   ogretici:["Artvin Merkez'e bağlı köy.","Adı çevredeki bitki örtüsünden gelir.","Yüksek rakımlı Artvin köyleri arasında.","Hayvancılık ve arıcılık geleneksel geçim kaynağı."],
-   ipuclar:["📍 Artvin Merkez'e bağlı, uzakta konumlanan dağ köyü.","🧠 Bu yükseklikte zeytinlik nadir olsa da ad bitkisel özelliğe referans verir.","🗣️ Tamamen Türkçe kökenli; bitki topluluğunu tanımlar.","🌄 Küçük dağ köylerinde topluluk bağları güçlüdür; şenlikler yaşamın merkezinde."]},
-  {k:"SARIBUDAK",bolge:"Sarıbudak Köyü, Artvin Merkez",ikon:"🌾",zorluk:"zor",level:3,
-   hikaye:"Rengi adında gizli. Dağın sarı yamacında bir köy.",
-   ogretici:["Artvin Merkez'e bağlı köy.","Ad, dağ yamaçlarındaki mevsimsel bitki örtüsüyle ilişkili.","Hayvancılık ve tahıl tarımı yapılır.","Kışları sert ve karlı geçen yüksek rakımlı köy."],
-   ipuclar:["📍 Artvin Merkez'e bağlı, dağ yamacına kurulmuş köy.","🧠 'Budak' dal/filiz anlamında; 'Sarıbudak' sarı dallı bitkiye referans verir.","🗣️ Tamamen Türkçe kökenli; coğrafi ve bitkisel özelliği tanımlar.","🌄 Yaz aylarında yayla göçü geleneği hâlâ sürdürülür."]},
-  {k:"FISTIKLI",bolge:"Fıstıklı Köyü, Artvin Merkez",ikon:"🌳",zorluk:"zor",level:3,
-   hikaye:"Göl kenarında, ormanın içinde saklı bir köy.",
-   ogretici:["Artvin Merkez'e bağlı; Borçka Baraj Gölü kıyısında.","Adı fıstık çamı ağaçlarından geliyor.","Baraj yapımından sonra bir bölümü su altında kaldı.","Balıkçılık ve tarım başlıca geçim kaynağı."],
-   ipuclar:["📍 Artvin Merkez'e bağlı, Borçka Baraj Gölü kıyısında köy.","🧠 Baraj öncesi vadide kuruluydu; su yükselmesiyle yer değişikliği oldu.","🗣️ 'Fıstıklı' adı doğal yetişen fıstık çamından geliyor.","🌄 Göl kıyısındaki konum yaz aylarında serinlik getiriyor."]},
-  {k:"ŞEHİTLİK",bolge:"Şehitlik Köyü, Artvin Merkez",ikon:"🏡",zorluk:"zor",level:3,
-   hikaye:"Tarihi bir köprüsü var. Geçerken hafifçe sallanır.",
-   ogretici:["Artvin şehir merkezine yakın, Çoruh kıyısında köy.","Tarihi asma köprüsüyle ziyaretçi çekiyor.","Çoruh Vadisi içinde konumlanmış.","Nehir manzarası egemendir."],
-   ipuclar:["📍 Artvin merkezine 5 km, Çoruh kıyısında köy.","🧠 Tarihi asma köprü, Çoruh üzerindeki geleneksel köprülerin nadir örneklerinden.","🗣️ Ad savaş döneminde şehit düşen kişilere ithafen verildiği düşünülür.","🌄 Çoruh Vadisi'nin dar ve derin yapısı bu köyde en belirgin şekilde hissedilir."]},
-  {k:"MURATLI",bolge:"Muratlı Barajı",ikon:"🔋",zorluk:"zor",level:3,
-   hikaye:"Çoruh'un son durağı Türkiye'de. Sonrası başka ülke.",
-   ogretici:["Muratlı Barajı, Türkiye-Gürcistan sınırına en yakın baraj.","Çoruh üzerindeki 5 barajın mansap noktası.","44 metre; kaya dolgu tipi.","1999-2005 yılları arasında inşa edildi."],
-   ipuclar:["📍 Hopa yakınlarında, Gürcistan sınırına 15 km mesafede baraj.","🧠 Çoruh kaskad sisteminin mansap barajı; nehrin Türkiye'deki son mühendislik yapısı.","🗣️ Yakınındaki Muratlı köyünün adını taşır.","🌄 Buradan salınan sular Türkiye sınırını geçerek Gürcistan'a girer."]},
-
-  // LEVEL 4 — KARMA (tümü)
-  {k:"ERENLER",bolge:"Erenler Köyü, Artvin Merkez",ikon:"🌲",zorluk:"zor",level:4,
-   hikaye:"Ormanın derinlerinde, şehir gürültüsünün ulaşamadığı köy.",
-   ogretici:["Artvin Merkez'e bağlı köy.","Borçka Baraj Gölü çevresinde yer alır.","Orman köyü geleneği sürdürülmektedir.","Yüksek rakımlı dağ köyü."],
-   ipuclar:["📍 Artvin Merkez'e bağlı; ormanlarla çevrili dağ köyü.","🧠 Borçka Baraj Gölü çevresindeki yerleşimlerden biri.","🗣️ 'Erenler' evliyalara/ermişlere verilen unvandan gelir.","🌄 Orman içindeki konumu köye derin bir sessizlik kazandırır."]},
-  {k:"HAMAMLI",bolge:"Hamamlı Köyü, Artvin Merkez",ikon:"♨️",zorluk:"zor",level:4,
-   hikaye:"Tarihi hamam kalıntısından adını alan köy.",
-   ogretici:["Artvin Merkez'e bağlı köy.","Tarihi hamam kalıntısı bulunmaktadır.","Vadinin içinde kurulmuş.","Geleneksel köy yapısı korunmaktadır."],
-   ipuclar:["📍 Artvin Merkez'e bağlı; vadi içinde konumlanan köy.","🧠 Tarihi hamam kalıntısından adını almış; Osmanlı dönemi izleri taşıyor.","🗣️ 'Hamamlı' Türkçede hamam bulunan yer anlamına gelir.","🌄 Vadinin dar yapısı köye özgün bir mikro iklim kazandırır."]}
+  {
+    k:"ARTVIN",bolge:"Artvin İl Merkezi",ikon:"🏙️",zorluk:"kolay",level:1,
+    hikaye:"Bulutlar bazen şehrin içinden geçer. Yokuşsuz bir yer yok.",
+    ogretici:["Türkiye'nin kuzeydoğusunda, Gürcistan sınırına 45 km mesafede il merkezi.", "Tarihte 'Livane' adıyla bilinirdi; 1921'de Türkiye'ye katıldı.", "Deniz seviyesinden yaklaşık 595 metre yüksekte kurulmuştur.", "Türkiye'nin en az nüfuslu illerinden biri; yaklaşık 167.000 kişi yaşar."],
+    ipuclar:["📍 Karadeniz'in en doğusunda, Gürcistan sınırına yakın bir il merkezi. Rakım ~595 m.", "🧠 Osmanlı döneminde farklı bir adla yönetilen bu şehir 1921 sonrası Türkiye'ye katıldı.", "🗣️ Yöre halkı şehir merkezine 'aşağı' der çünkü çevre köyler daha yüksektedir.", "🌄 Şehirde düz yol neredeyse yoktur; her semt bir eğim üzerine kurulmuştur."]
+  },
+  {
+    k:"HOPA",bolge:"Hopa İlçesi",ikon:"🌊",zorluk:"kolay",level:1,
+    hikaye:"Karadeniz kıyısında, sınıra yakın. Deniz sesi hiç kesilmez.",
+    ogretici:["Artvin'in Karadeniz kıyısındaki en kalabalık ilçesidir.", "Sarp Sınır Kapısı aracılığıyla Gürcistan'a açılan önemli bir ticaret noktasıdır.", "Çay ve fındık tarımının yoğun olduğu ilçede deniz seviyesinde yaşanır.", "Gürcistan sınırına yalnızca 20 km mesafededir."],
+    ipuclar:["📍 Artvin'in batısında, Karadeniz kıyısında, deniz seviyesinde bir ilçe.", "🧠 Türkiye'nin Gürcistan'a açılan en işlek kara sınır kapısı bu ilçe sınırları içindedir.", "🗣️ 'Hopalı' olarak anılır; Laz kültürünün güçlü yaşandığı yerlerden biridir.", "🌄 Çay toplama sezonu Mayıs'tan Ekim'e uzanır; yamaçlar çay bahçesiyle kaplıdır."]
+  },
+  {
+    k:"BORCKA",bolge:"Borçka İlçesi",ikon:"🌲",zorluk:"kolay",level:1,
+    hikaye:"Sonbahar burada başka bir anlam taşır. Ormanlar yanar gibi görünür.",
+    ogretici:["Artvin'in ormanlarıyla öne çıkan ilçesidir.", "Sınırları içindeki heyelan gölü sonbaharda Türkiye'nin en çok fotoğraflanan noktalarından biri olur.", "Camili (Maçahel) bölgesi ilçeye bağlıdır ve UNESCO biyosfer rezervidir.", "Büyük bir baraj ilçe merkezinin hemen yanında yer almaktadır."],
+    ipuclar:["📍 Karadeniz ile dağ iklimi arasındaki geçiş bölgesinde, ormanlarla çevrili ilçe.", "🧠 Sınırları içindeki Camili köyü (Maçahel) 2005'te UNESCO biyosfer rezervi statüsü kazanmıştır.", "🗣️ İlçe adının Gürcüce kökenli olduğu düşünülmektedir.", "🌄 Sonbaharda heyelan gölü çevresindeki sarı-altın kavak ormanları eşsiz bir tablo oluşturur."]
+  },
+  {
+    k:"SAVSAT",bolge:"Şavşat İlçesi",ikon:"❄️",zorluk:"kolay",level:1,
+    hikaye:"Yüksekte bir ilçe. Kar erken gelir, geç gider. Hava her zaman tazedir.",
+    ogretici:["Deniz seviyesinden yaklaşık 1.215 metre yüksekte kurulu bir ilçedir.", "Ardahan iline sınır komşusudur ve doğal ormanlarıyla tanınır.", "Çevresindeki yaylalar yaz aylarında hayvancılık için kullanılır.", "Kış aylarında kar kalınlığı 2 metreyi aşabilen sert bir iklime sahiptir."],
+    ipuclar:["📍 Ardahan'a sınır, ~1.215 m rakımlı, Artvin'in en yüksek ilçelerinden biri.", "🧠 Veliköy ve Dishora gibi yaylalar yüzyıllardır bölgedeki hayvancılığın merkezidir.", "🗣️ Yerel halk 'Savşat' diye söyler; standart yazılıştan farklı telaffuz edilir.", "🌄 Nisan ayına dek kar kalabilir; köylüler kış boyunca aşağı iner, yazın yaylaya çıkar."]
+  },
+  {
+    k:"ARDANUC",bolge:"Ardanuç İlçesi",ikon:"🏰",zorluk:"kolay",level:1,
+    hikaye:"Tepedeki kale her şeyi izliyor. Asırlık taşlar konuşuyor.",
+    ogretici:["Tarihi kalesiyle tanınan, Çoruh Nehri vadisinde kurulu bir ilçedir.", "Kalesi Orta Çağ'dan günümüze ulaşmış önemli bir yapıdır.", "Çevresinde Gürcü dönemine ait kilise kalıntıları bulunmaktadır.", "Ceviz ve dut bahçeleri ilçenin geçim kaynaklarından biridir."],
+    ipuclar:["📍 Çoruh vadisinde, il merkezine yaklaşık 40 km mesafede konumlanan ilçe.", "🧠 İlçedeki kale, Gürcü Krallığı döneminde inşa edilmiş, Osmanlı döneminde de kullanılmıştır.", "🗣️ Yöre halkı ilçeyi bazen 'Ardanıç' diye de söyler; ardıç ağacıyla ilişkilendirilir.", "🌄 Vadi içindeki köylerde geleneksel hayvancılık ve meyve bahçeciliği sürdürülmektedir."]
+  },
+  {
+    k:"ARHAVI",bolge:"Arhavi İlçesi",ikon:"🌿",zorluk:"kolay",level:1,
+    hikaye:"Karadeniz kıyısında sakin bir köşe. Yeşilin her tonu burada.",
+    ogretici:["Hopa ile Borçka arasında Karadeniz kıyısında yer alır.", "Çay ve fındık tarımı ilçe ekonomisinin temelini oluşturur.", "Artvin'in en az göç veren ilçelerinden biri olarak öne çıkar.", "Deniz seviyesinde tarım yapılan kıyı ilçelerinden biridir."],
+    ipuclar:["📍 Karadeniz kıyısında, iki büyük ilçe arasında sıkışmış küçük ama yeşil bir ilçe.", "🧠 Lazların yoğun olarak yaşadığı bu ilçe, yerel kültürünü güçlü biçimde korumuştur.", "🗣️ İlçe adının Lazca 'dere' veya 'nehir' anlamına gelen kökten geldiği düşünülmektedir.", "🌄 Fındık hasadı, çay sezonunun ardından ilçenin en yoğun dönemini oluşturur."]
+  },
+  {
+    k:"MURGUL",bolge:"Murgul İlçesi",ikon:"⛏️",zorluk:"kolay",level:1,
+    hikaye:"Dağların içinde hazineler var. Sanayi ve doğa iç içe.",
+    ogretici:["Türkiye'nin en önemli bakır rezervlerinden birine ev sahipliği yapar.", "Bakır işletmesi 1970'lerden bu yana faaliyettedir.", "Borçka'ya sınır olan bu ilçe dağlık ve ormanlık bir yapıya sahiptir.", "Artvin'in en küçük ilçelerinden biridir."],
+    ipuclar:["📍 Borçka'ya komşu, iç kesimlerde dağlık bir alanda konumlanan küçük ilçe.", "🧠 İlçedeki maden işletmesi Türkiye'nin en büyük bakır üreticilerinden biri sayılır.", "🗣️ Adının Gürcüce kökenli olduğu düşünülmektedir.", "🌄 Madencilik faaliyetlerine karşın çevre yoğun ormanlarla kaplıdır."]
+  },
+  {
+    k:"YUSUFELI",bolge:"Yusufeli İlçesi",ikon:"💧",zorluk:"kolay",level:1,
+    hikaye:"Tarihi suyun altında kaldı. Yeni hayat, aynı insanlar.",
+    ogretici:["Baraj yapımı nedeniyle yer değiştiren ender Türk ilçelerinden biridir.", "275 metrelik barajı Türkiye'nin en yükseği, dünyanın 3. en yüksek barajıdır.", "Eski ilçe merkezi 2022'de baraj sularının altında kalmıştır.", "Yeni merkez daha yüksek bir noktaya kurulmuştur."],
+    ipuclar:["📍 Çoruh vadisinin üst kesiminde, il merkezine yaklaşık 70 km mesafede ilçe.", "🧠 275 metrelik baraj 2022'de faaliyete geçti; eski merkezi su altında bıraktı.", "🗣️ Eski merkez 'aşağı', yeni merkez ise 'yukarı' olarak anılmaktadır.", "🌄 Eski ilçe, dünyanın en zorlu rafting güzergahlarından birini barındırıyordu."]
+  },
+  {
+    k:"KAFKASOR",bolge:"Kafkasör Yaylası",ikon:"🐂",zorluk:"orta",level:2,
+    hikaye:"Her yıl Haziran'da binlerce kişi burada buluşur. Gelenek asırlık.",
+    ogretici:["İl merkezine yaklaşık 6 km mesafede, ~2.400 metre rakımda bir yayladır.", "Her yıl Haziran ayında geleneksel kültür festivali burada düzenlenir.", "Geleneksel boğa güreşleri festivalin en çok ilgi gören etkinliğidir.", "Artvin'in simgesi haline gelmiş bu yayla şehirden kolayca ulaşılabilir."],
+    ipuclar:["📍 İl merkezine yalnızca 6 km mesafede, 2.400 m rakımda ulaşması kolay bir yayla.", "🧠 Buradaki festival 1.000 yılı aşkın geçmişiyle Türkiye'nin en köklü yöresel etkinliklerinden sayılır.", "🗣️ 'Kafkasör' adı 'Kafkas dağlarının önü' anlamına gelen coğrafi bir tanımlamadan gelir.", "🌄 Haziran festivalinde yöresel kıyafetler giyilir, horon oynanır ve boğa güreşleri izlenir."]
+  },
+  {
+    k:"HATILA",bolge:"Hatila Vadisi Milli Parkı",ikon:"🏞️",zorluk:"orta",level:2,
+    hikaye:"Derin bir kanyon. Cam terası var, ama asıl manzara doğanın kendisi.",
+    ogretici:["İl merkezine yürüme mesafesindeki milli parktır.", "Cam terası, şelale ve yoğun orman örtüsüyle öne çıkar.", "Bazı noktalarda vadinin derinliği 200 metreyi aşmaktadır.", "İçindeki dere vadiden akarak Çoruh Nehri'ne kavuşur."],
+    ipuclar:["📍 İl merkezine yalnızca 2 km mesafede, Çoruh'a paralel uzanan derin kanyon vadisi.", "🧠 1994'te milli park ilan edilmiştir; cam teras daha sonra eklenen bir ziyaretçi unsurудur.", "🗣️ Vadi adını içinden akan dereden almaktadır.", "🌄 Sabahın erken saatlerinde cam terastan bakıldığında vadi çoğu zaman sis içinde kalır."]
+  },
+  {
+    k:"KARAGOL",bolge:"Borçka Karagöl",ikon:"🍂",zorluk:"orta",level:2,
+    hikaye:"Sonbaharda rengi değişir, sesi hiç çıkmaz.",
+    ogretici:["Borçka ilçesine bağlı, heyelan sonucu oluşmuş doğal bir göldür.", "Sonbaharda çevresindeki ormanlar altın sarısına büründüğünde Türkiye'nin en çok fotoğraflanan noktalarından biri olur.", "Deniz seviyesinden yaklaşık 1.350 metre yüksekte yer almaktadır.", "Çevresi yaban hayatı açısından oldukça zengindir."],
+    ipuclar:["📍 Borçka ilçesine bağlı, ~1.350 m rakımda heyelanla oluşmuş doğal göl.", "🧠 Gölün oluşumunun 17. yüzyıldaki büyük bir heyelana dayandığı düşünülmektedir; krater değildir.", "🗣️ 'Kara göl' adı suyun koyu renginden ve derinliğinden gelmektedir.", "🌄 Ekim ayında sarı yapraklı ağaçların göl yüzeyine yansıması eşsiz bir manzara oluşturur."]
+  },
+  {
+    k:"KARCAL",bolge:"Karçal Dağları",ikon:"🏔️",zorluk:"orta",level:2,
+    hikaye:"Artvin'in gökyüzüne en yakın noktası. Oradan bakınca her yer küçülür.",
+    ogretici:["Artvin'in ikinci en yüksek dağ kütlesini oluşturmaktadır.", "En yüksek noktası 3.428 metre olup Gürcistan sınırına kadar uzanır.", "Krater gölleri, boz ayı ve Anadolu vaşağı gibi nadir türlere ev sahipliği yapar.", "Kaçkar Dağları'ndan sonra bölgenin ikinci en yüksek dağ sistemidir."],
+    ipuclar:["📍 İlin güneydoğusunda, Gürcistan sınırına uzanan dağ kütlesi. Zirve 3.428 m.", "🧠 Bu dağlarda boz ayı ve Anadolu vaşağı gibi nesli tehlikede olan türler yaşamaktadır.", "🗣️ Yöre halkı zirveye çıkmayı ciddi bir girişim olarak görür; deneyim gerektirir.", "🌄 Yazın bile zirvede kar kalıntılarına rastlanır; yüksek rakımlı krater gölleri gizli bir hazine gibidir."]
+  },
+  {
+    k:"MACAHEL",bolge:"Maçahel (Camili) Vadisi",ikon:"🌺",zorluk:"orta",level:2,
+    hikaye:"Haritanın ucunda bir yer. Doğa orada işini bitirmemiş gibi.",
+    ogretici:["Borçka ilçesine bağlı, Türkiye-Gürcistan sınırında yer alan vadi.", "UNESCO biyosfer rezervi statüsündedir ve 1.000'den fazla bitki türü barındırır.", "Geleneksel ahşap ev mimarisini koruyan ender köylerden biridir.", "Camili bölgenin merkezi köyüdür."],
+    ipuclar:["📍 Borçka'ya bağlı, Gürcistan sınırına dayanan ve Türkiye'nin en ücra coğrafyalarından biri.", "🧠 2005'te UNESCO Biyosfer Rezervi ilan edilmiştir; 1.000'den fazla bitki türü kayıt altındadır.", "🗣️ Bölge halkı Lazca ve Gürcüce karışımı bir dil konuşur; bölge adı Gürcüce kökenlidir.", "🌄 Geleneksel ahşap ev mimarisi korunmaktadır; araçla ulaşmak oldukça güçtür."]
+  },
+  {
+    k:"CORUH",bolge:"Çoruh Nehri",ikon:"🌊",zorluk:"orta",level:2,
+    hikaye:"Artvin'den geçen, sınırı aşan, denize dökülen bir güç.",
+    ogretici:["Türkiye'nin en hızlı akan nehirlerinden biri olarak kabul edilmektedir.", "Büyük barajlar yapılmadan önce dünyanın en zorlu rafting güzergahlarından biriydi.", "Gürcistan'a geçerek Batum yakınlarında Karadeniz'e dökülür.", "Havzasında 5 büyük baraj inşa edilmiştir."],
+    ipuclar:["📍 Erzurum'dan doğan, ilin içinden geçen ve Gürcistan üzerinden Karadeniz'e dökülen nehir.", "🧠 Havzadaki 5 baraj Türkiye'nin hidroelektrik üretiminde önemli bir paya sahiptir.", "🗣️ Adının Gürcüce'de 'tuzlu su' anlamına gelen bir kökten geldiği düşünülmektedir.", "🌄 Barajlardan önce rafting sezonu Mayıs-Eylül'dü; bazı noktalarda hız saatte 30 km'yi geçiyordu."]
+  },
+  {
+    k:"DERINER",bolge:"Deriner Barajı",ikon:"⚡",zorluk:"orta",level:2,
+    hikaye:"Artvin'in yanı başında devasa bir yapı. Dünya listesinde yeri var.",
+    ogretici:["249 metre yüksekliğiyle Türkiye'nin en yüksek ikinci barajıdır.", "Dünya sıralamasında 6. en yüksek baraj unvanını taşımaktadır.", "Çift eğrilikli beton kemer tasarımıyla inşa edilmiştir.", "İl merkezi sınırları içinde, Çoruh Nehri üzerinde yer almaktadır."],
+    ipuclar:["📍 İl merkezine yaklaşık 7 km mesafede, Çoruh Nehri üzerinde yükselen yapı.", "🧠 249 m yüksekliğiyle ülkenin 2., dünyanın 6. en yüksek barajı unvanını taşımaktadır.", "🗣️ Adını yakınındaki bir köyden almaktadır.", "🌄 Baraj gölü vadiyi köklü biçimde değiştirmiş; çevredeki bazı köylerin tarım arazileri su altında kalmıştır."]
+  },
+  {
+    k:"LIVANE",bolge:"Artvin'in Tarihi Adı",ikon:"🏛️",zorluk:"orta",level:2,
+    hikaye:"Bu şehir eskiden başka bir adla bilinirdi. Taşlar hâlâ o adı hatırlıyor.",
+    ogretici:["Artvin'in Osmanlı dönemindeki tarihsel adıdır.", "19. yüzyılda Osmanlı İmparatorluğu'nun bir idari birimi olarak yönetilmiştir.", "Şehrin üst kesiminde bu adla anılan tarihi kale kalıntıları mevcuttur.", "1921'de Kars Antlaşması ile Türkiye'ye katıldıktan sonra bugünkü adını almıştır."],
+    ipuclar:["📍 İl merkezinin üst kesimindeki tarihi kale kalıntıları bu isimle anılmaktadır.", "🧠 1921 öncesinde bu coğrafyanın idari adıydı; Osmanlı belgelerinde sıkça geçmektedir.", "🗣️ Yaşlı nesil arasında şehre hâlâ bu eski adıyla seslenildiği görülür.", "🌄 Tepedeki kale kalıntıları günümüzde şehir merkezinden bakıldığında net biçimde görülmektedir."]
+  },
+  {
+    k:"DOLISHANE",bolge:"Dolişhane Kilisesi, Artvin Merkez",ikon:"⛪",zorluk:"zor",level:3,
+    hikaye:"Asırlık taşlar, Gürcü ustaların eseri. Hâlâ ayakta.",
+    ogretici:["10. yüzyılda Gürcü Krallığı döneminde inşa edilmiş tarihi bir kilisedir.", "Artvin Merkez ilçesine bağlı Hamamlı köyü yakınlarında yer almaktadır.", "Gürcü mimarisinin Artvin'deki en iyi korunmuş örneklerinden biri kabul edilir.", "Yapı, Türkiye'nin kültürel miras tescil listesinde yer almaktadır."],
+    ipuclar:["📍 İl merkezine yakın Hamamlı köyü çevresinde, vadiye hâkim bir konumda tarihi yapı.", "🧠 Gürcü Krallığı'nın altın çağında 10. yüzyılda inşa edilmiştir; bu dönem Gürcü mimarisi için önemlidir.", "🗣️ Adı Gürcüce'de 'küçük dua evi' anlamına gelen bir kökten gelmektedir.", "🌄 Çevre köylüler yapıyı uzun yıllar ahır olarak kullanmış, ancak restore edilerek koruma altına alınmıştır."]
+  },
+  {
+    k:"TBETI",bolge:"Tbeti Manastırı, Şavşat",ikon:"🕌",zorluk:"zor",level:3,
+    hikaye:"Yüksek dağlarda sessiz bir yapı. Gürcü ustaların yüzyıllık mirası.",
+    ogretici:["9-10. yüzyıllarda Gürcü Krallığı döneminde inşa edilmiş manastırdır.", "Şavşat ilçesine bağlı Cevizli köyü yakınlarında, dağlık bir arazide bulunmaktadır.", "Gürcü manastır mimarisinin bölgedeki önemli örneklerinden biridir.", "Yıllardır süren restorasyon çalışmalarıyla kısmen ayağa kaldırılmıştır."],
+    ipuclar:["📍 Şavşat ilçesine bağlı, dağlık ve zorlu arazide yer alan tarihi manastır.", "🧠 9-10. yüzyıllarda inşa edilen bu yapı, Gürcü-Bizans kültür etkileşimini yansıtmaktadır.", "🗣️ Adı Gürcüce kökenli olup bölgedeki pek çok yapı gibi yerel halk tarafından farklı söylenebilmektedir.", "🌄 Çevresindeki dağ manzarasıyla yapıya ulaşmak başlı başına bir deneyimdir."]
+  },
+  {
+    k:"BARHAL",bolge:"Barhal Kilisesi, Yusufeli",ikon:"⛪",zorluk:"zor",level:3,
+    hikaye:"Vadinin içinde, tarihin taşlara işlendiği bir yer.",
+    ogretici:["10. yüzyıldan kalma Gürcü dönemine ait önemli bir kilisedir.", "Yusufeli ilçesine bağlı Altıparmak köyünde yer almaktadır.", "Kaçkar Dağları eteklerinde, Barhal Çayı kıyısındadır.", "Kaçkar trekking rotaları bu köyden başlamaktadır."],
+    ipuclar:["📍 Yusufeli'ne bağlı Altıparmak köyünde, Kaçkar Dağları eteklerinde, bir çay kıyısında.", "🧠 10. yüzyılda inşa edilmiş bu kilise, Gürcü mimarisinin bölgedeki en sağlam örneklerinden sayılır.", "🗣️ Köy 'altı parmak' anlamına gelen Türkçe adıyla bilinir; bu ad çevre dağ silüetiyle ilişkilendirilir.", "🌄 Yazın Kaçkar trekking gruplarıyla dolan bu köyde yöresel alabalık yetiştiriciliği de sürdürülmektedir."]
+  },
+  {
+    k:"ARDANUC",bolge:"Ardanuç Kalesi",ikon:"🏰",zorluk:"zor",level:3,
+    hikaye:"Tepe üstünde, yüzyıllardır bekçilik yapıyor.",
+    ogretici:["Ardanuç ilçesinin sembolü olan tarihi kale, vadiye hâkim bir konumda yükselmektedir.", "Gürcü Krallığı döneminde inşa edilmiş, Osmanlı döneminde de kullanılmıştır.", "Çoruh vadisini gözleyen stratejik konumuyla önemli bir savunma yapısıydı.", "Kale, Artvin'deki Gürcü mimari mirasının en erişilebilir örneklerinden biridir."],
+    ipuclar:["📍 Çoruh vadisini gözlemleyen yüksek bir tepe üzerinde, ilçe merkezine yakın tarihi kale.", "🧠 Gürcü Krallığı'nın Artvin üzerindeki hâkimiyetinin en belirgin izlerinden biridir.", "🗣️ İlçe adının ardıç ağacıyla ilişkili olduğu düşünülmektedir; kalenin adı da ilçeden gelmektedir.", "🌄 Kaleden çevre vadiye bakıldığında Artvin'in dağlık dokusunu bütünüyle kavramak mümkündür."]
+  },
+  {
+    k:"ISHAN",bolge:"İşhan Kilisesi, Yusufeli",ikon:"🕍",zorluk:"zor",level:3,
+    hikaye:"Ortaçağ'dan kalan dev bir yapı. Yüzyıllardır sessizce ayakta.",
+    ogretici:["7-8. yüzyıllara tarihlenen, Gürcü-Bizans dönemine ait büyük bir katedraldır.", "Yusufeli ilçesine bağlı İşhan köyünde bulunmaktadır.", "Gürcü mimarisinin bölgedeki en büyük yapılarından biri olarak kabul edilir.", "Kısmen restore edilmiş olmakla birlikte önemli bölümleri ayaktadır."],
+    ipuclar:["📍 Yusufeli'ne bağlı küçük bir köyde, vadi içinde yükselen iri yapılı tarihi katedral.", "🧠 7-8. yüzyıllarda inşa edilen bu büyük yapı, Gürcü kilise mimarisinin bölgedeki erken dönem şaheseri sayılır.", "🗣️ Adı Gürcüce kökenli olup 'ışık' veya 'ışıltı' anlamı taşıdığı öne sürülmektedir.", "🌄 Çevresindeki vadi ve dağlarla birlikte yapı, Artvin'in gizli kalmış tarihi hazinelerinden biri olarak tanımlanır."]
+  },
+  {
+    k:"CEVIZLI",bolge:"Cevizli Köyü, Şavşat",ikon:"🌰",zorluk:"zor",level:3,
+    hikaye:"Manastırına sahip çıkan dağ köyü. Adı gibi bereketli.",
+    ogretici:["Şavşat ilçesine bağlı, Tbeti Manastırı'na ev sahipliği yapan dağ köyüdür.", "Ceviz ağaçlarından aldığı adıyla Artvin'in geleneksel köy isimlerini yansıtır.", "Yüksek rakımlı konumuyla sert kış şartlarına sahip bir yerleşim yeridir.", "Köy, doğa yürüyüşü ve tarihi yapı meraklılarının ilgisini çekmektedir."],
+    ipuclar:["📍 Şavşat ilçesine bağlı, içinde önemli bir tarihi manastır barındıran dağ köyü.", "🧠 Köyün yakınındaki 9-10. yüzyıl manastırı, Artvin'deki Gürcü mimari mirasının önemli bir parçasıdır.", "🗣️ Adı Türkçe 'ceviz' kelimesinden gelmektedir; bölgede ceviz ağaçları yaygın olarak yetişir.", "🌄 Yüksek rakım ve dağlık arazi köye özgün bir coğrafi karakter kazandırmaktadır."]
+  },
+  {
+    k:"TORTUM",bolge:"Tortum Şelalesi ve Gölü, Erzurum sınırı",ikon:"💦",zorluk:"zor",level:3,
+    hikaye:"Dev bir şelale, hemen yanında da bir göl. İki güzellik aynı anda.",
+    ogretici:["Türkiye'nin en büyük doğal şelale ve göllerinden biri Artvin-Erzurum sınırı yakınındadır.", "Tortum Gölü heyelan sonucu oluşmuş doğal bir baraj gölüdür.", "Şelale özellikle ilkbahar aylarında en güçlü görüntüsüne kavuşur.", "Bölge, kuzeydoğu Anadolu doğa turizminin önemli duraklarından biridir."],
+    ipuclar:["📍 Artvin-Erzurum sınırına yakın, yüksekten düşen büyük doğal şelale ve yanındaki heyelan gölü.", "🧠 Göl, tarihsel bir heyelanın Tortum Çayı'nı kapatmasıyla oluşmuş doğal bir göldür.", "🗣️ Adı Ermenice veya Gürcüce kökenli olduğu düşünülen kadim bir yerleşim adından gelmektedir.", "🌄 İlkbaharda karların erimesiyle su akışının arttığı dönem şelale için en görkemli zamandır."]
+  },
+  {
+    k:"MURATLI",bolge:"Muratlı Barajı",ikon:"🔋",zorluk:"zor",level:3,
+    hikaye:"Çoruh'un son durağı Türkiye'de. Ondan sonrası başka bir ülke.",
+    ogretici:["Türkiye-Gürcistan sınırına en yakın barajdır.", "Çoruh Nehri üzerindeki 5 barajın mansap noktasını oluşturmaktadır.", "44 metre yüksekliğinde kaya dolgu tipi bir yapıdır.", "1999-2005 yılları arasında inşa edilmiştir."],
+    ipuclar:["📍 Hopa yakınlarında, Türkiye-Gürcistan sınırına yalnızca 15 km mesafede yer alan baraj.", "🧠 Çoruh üzerindeki kaskad sisteminin en mansap noktasıdır; nehrin Türkiye'deki son büyük yapısıdır.", "🗣️ Yakınındaki köyün adından gelmektedir; kaya dolgu tipiyle diğer bölge barajlarından ayrılır.", "🌄 Buradan salınan sular Türkiye sınırını geçerek Gürcistan topraklarına girmektedir."]
+  },
+  {
+    k:"KAFKASOR",bolge:"Kafkasör Yaylası — Detay",ikon:"🐂",zorluk:"zor",level:4,
+    hikaye:"Yaylanın üstünde zaman yavaşlar. Festival gelince her şey değişir.",
+    ogretici:["İl merkezine 6 km mesafede, ~2.400 m rakımda kolaylıkla ulaşılabilen yayla.", "Festival yüzyıllardır süren boğa güreşi geleneğinin resmileşmiş hâlidir.", "Kışın yaklaşık 2 metre kar alan yayla yazın il merkezinin yeşil sığınağı olur.", "Yayladan İl merkezine, Çoruh vadisine ve kuzeyde Karadeniz'e kadar uzanan geniş manzara görülür."],
+    ipuclar:["📍 İl merkezine 6 km, 2.400 m rakımda, yıl boyunca ziyaret edilebilen bir yayla.", "🧠 Geleneksel boğa güreşi geleneği binlerce yıl öncesine uzandığı ileri sürülen köklerden beslenmektedir.", "🗣️ 'Kafkasör' adı Türkçe'de 'Kafkas önü' anlamına gelir ve coğrafi konumunu tanımlar.", "🌄 Kışın 2 metre kar altında kalan yayla, yazın kuzey Artvin'in en yeşil noktalarından biridir."]
+  },
+  {
+    k:"BILBILAN",bolge:"Bilbilan (Bülbülan) Yaylası, Ardanuç",ikon:"🌸",zorluk:"zor",level:4,
+    hikaye:"Dağların arasında saklı bir yayla. Bülbüller mi sevmiş burayı?",
+    ogretici:["Ardanuç ilçesine bağlı, yüksek rakımlı geleneksel bir yayladır.", "Adının bülbülle ilişkili olduğu düşünülmektedir.", "Yaz aylarında hayvancılık amacıyla kullanılan yaylaya göç geleneği sürmektedir.", "Çevresi ormanlarla kaplıdır ve doğa yürüyüşü için elverişlidir."],
+    ipuclar:["📍 Ardanuç ilçesine bağlı, dağlık arazide yer alan yüksek rakımlı geleneksel yayla.", "🧠 Artvin'deki pek çok yayla gibi burada da yaz göçü geleneği kuşaktan kuşağa aktarılmıştır.", "🗣️ Adı 'Bülbülan' olarak da söylenmekte; bülbül kuşuyla ilişkilendirildiği düşünülmektedir.", "🌄 Yaylanın çevresindeki ormanlar ve dağ manzarası sessizlik arayanlar için özel bir ortam sunar."]
+  },
+  {
+    k:"DEMIRKENT",bolge:"Demirkent Köyü, Artvin Merkez",ikon:"🍽️",zorluk:"zor",level:4,
+    hikaye:"Bir köy var ki mutfağı yüzyıllardır anlatılır.",
+    ogretici:["İl merkezine bağlı bir köydür.", "Kavurmalı hinkal bu köyle özdeşleşmiş yöresel bir lezzettir.", "Hinkal, et kavurması ve yufka katmanlarından oluşan Artvin'e özgü geleneksel bir yemektir.", "Köy il merkezine yakın mesafededir."],
+    ipuclar:["📍 İl merkezine bağlı, yemek geleneğiyle öne çıkan bir dağ köyü.", "🧠 Kavurmalı hinkal et kavurması ile ince yufkanın katmanlanmasıyla hazırlanır; yöreyle özdeşleşmiştir.", "🗣️ 'Hinkal' sözcüğü Kafkas kökenlidir; Gürcistan ve Dağıstan mutfaklarında da benzer yemekler bulunur.", "🌄 Köyde geleneksel hayvancılık hâlâ sürmekte; kavurma bu geleneğin mutfaktaki en doğal yansımasıdır."]
+  },
+  {
+    k:"SEHITLIK",bolge:"Şehitlik Köyü, Artvin Merkez",ikon:"🏡",zorluk:"zor",level:4,
+    hikaye:"Tarihi köprüsü var. Geçerken hafifçe sallanır.",
+    ogretici:["İl merkezine yakın, Çoruh Nehri kıyısındaki bir köydür.", "Tarihi asma köprüsü ziyaretçi çekmektedir.", "Çoruh vadisinin dar ve derin yapısı bu köyde en belirgin biçimde hissedilir.", "Nehir manzarası köy yaşamına egemendir."],
+    ipuclar:["📍 İl merkezine 5 km mesafede, Çoruh Nehri kıyısında küçük bir köy.", "🧠 Tarihi asma köprü, Çoruh üzerindeki geleneksel köprülerin bölgedeki nadir örneklerinden biridir.", "🗣️ Ad, savaş döneminde şehit düşen kişilere ithafen verildiği düşünülen bir yerleşim adıdır.", "🌄 Vadinin daralıp derinleştiği bu noktada Çoruh'un gücü en çarpıcı biçimde hissedilir."]
+  },
+  {
+    k:"MENÇUNA",bolge:"Mençuna Şelalesi, Arhavi",ikon:"💦",zorluk:"zor",level:4,
+    hikaye:"Arhavi'nin gizli hazinesi. Ses duyulur, sonra şelale görünür.",
+    ogretici:["Artvin'in Arhavi ilçesine bağlı, doğal bir şelaledir.", "Karadeniz iklimiyle beslenen bol su akışıyla öne çıkar.", "Arhavi ilçesinin doğa turizmi açısından en önemli değerlerinden biridir.", "Çevresindeki yoğun yeşillik ve nemli orman ortamı kendine özgü bir ekosistem oluşturur."],
+    ipuclar:["📍 Arhavi ilçesine bağlı, Karadeniz kıyı kuşağında yer alan doğal şelale.", "🧠 Karadeniz iklimiyle beslenen bu şelale, yıl boyunca yeterli su akışına sahiptir.", "🗣️ Adının yerel Lazca ya da yöresel ağızdan geldiği düşünülmektedir.", "🌄 Çevresindeki sık orman ve nemli toprak yapısı şelaleye özgün bir doğal ortam kazandırmaktadır."]
+  },
+  {
+    k:"ZEYTINLIK",bolge:"Zeytinlik Köyü, Artvin Merkez",ikon:"🌿",zorluk:"zor",level:4,
+    hikaye:"Adı doğadan gelir. Artvin'in saklı köylerinden.",
+    ogretici:["İl merkezine bağlı bir dağ köyüdür.", "Adının çevresindeki bitki örtüsüyle ilişkili olduğu düşünülmektedir.", "Yüksek rakımlı Artvin köyleri arasında sayılır.", "Hayvancılık ve arıcılık köyün geleneksel geçim kaynaklarındandır."],
+    ipuclar:["📍 İl merkezine bağlı, şehirden uzakta konumlanan yüksek rakımlı bir dağ köyü.", "🧠 Bu yükseklikte zeytin yetişmese de köy adı çevre bitki örtüsüne referans verir.", "🗣️ 'Zeytinlik' tamamen Türkçe kökenli bir ad olup bir bitki topluluğunu doğrudan tanımlamaktadır.", "🌄 Artvin'deki küçük dağ köylerinde olduğu gibi burada da topluluk bağları güçlüdür."]
+  },
+  {
+    k:"FISTIKLI",bolge:"Fıstıklı Köyü, Artvin Merkez",ikon:"🌳",zorluk:"zor",level:4,
+    hikaye:"Göl kenarında, ormanın içinde saklı bir köy.",
+    ogretici:["İl merkezine bağlı, Borçka Baraj Gölü kıyısında konumlu bir köydür.", "Adını çevresindeki fıstık çamı ağaçlarından almaktadır.", "Baraj yapımından sonra köyün bir bölümü su altında kalmıştır.", "Balıkçılık ve tarım köyün başlıca geçim kaynaklarındandır."],
+    ipuclar:["📍 İl merkezine bağlı, Borçka Baraj Gölü kıyısında konumlanan köy.", "🧠 Baraj inşaatından önce gölün bulunmadığı vadide kuruluydu; su yükselmesiyle bir bölümü su altında kaldı.", "🗣️ 'Fıstıklı' adı, bölgede doğal olarak yetişen fıstık çamı ağaçlarına atıfta bulunur.", "🌄 Göl kıyısındaki konumu köye yaz aylarında serin bir ortam ve kendine özgü bir yaşam ritmi kazandırmaktadır."]
+  },
+  {
+    k:"CAMILI",bolge:"Camili Köyü, Borçka — Maçahel",ikon:"🌺",zorluk:"zor",level:4,
+    hikaye:"Sınırda, ormanın içinde, Dünya'nın saydıkları arasında.",
+    ogretici:["Borçka ilçesine bağlı, Türkiye-Gürcistan sınırında yer alan köydür.", "UNESCO biyosfer rezervi olan Maçahel bölgesinin merkezi köyüdür.", "1.000'den fazla bitki türüyle olağanüstü biyoçeşitlilik barındırmaktadır.", "Geleneksel ahşap ev mimarisini büyük ölçüde korumaktadır."],
+    ipuclar:["📍 Borçka'ya bağlı, Gürcistan sınırına dayanan, Maçahel bölgesinin merkezi köyü.", "🧠 2005'te UNESCO Biyosfer Rezervi ilan edilen bölge, 1.000'i aşkın bitki türü kaydıyla dikkat çekmektedir.", "🗣️ Köy halkı Lazca ve Gürcüce unsurlar taşıyan bir dil konuşmakta; ad Gürcüce kökenlidir.", "🌄 Yüzyıllardır süren geleneksel ahşap yapılar ve araçla ulaşmanın zorluğu köye özgün bir doku kazandırmaktadır."]
+  },
+  {
+    k:"SARPKOY",bolge:"Sarp Köyü, Hopa",ikon:"🛂",zorluk:"uzman",level:5,
+    hikaye:"Türkiye burada biter. Bir adım ötesi başka ülke.",
+    ogretici:["Hopa ilçesine bağlı, Türkiye-Gürcistan kara sınırındaki köydür.", "Sarp Sınır Kapısı bu köy sınırları içinde yer almaktadır.", "Türkiye'nin Gürcistan'a açılan en işlek kara kapısıdır.", "Karadeniz kıyısında sınır köyü kimliğiyle özel bir konuma sahiptir."],
+    ipuclar:["📍 Hopa ilçesine bağlı, Karadeniz kıyısında, Türkiye'nin en kuzey doğu sınır köylerinden biri.", "🧠 Bu köydeki sınır kapısı Türkiye ile Gürcistan arasındaki en yoğun kara geçiş noktasıdır.", "🗣️ 'Sarp' adının Gürcüce 'dik, sarp' anlamından geldiği düşünülmektedir.", "🌄 Köyün iki yakasında iki farklı ülke, iki farklı para birimi ve iki farklı kültür yaşamaktadır."]
+  },
+  {
+    k:"YUSUFELI",bolge:"Yusufeli — Yeni Merkez",ikon:"🏗️",zorluk:"uzman",level:5,
+    hikaye:"Bir ilçe yeniden doğdu. Eski sular altında, yeni hayat yukarıda.",
+    ogretici:["275 m yüksekliğiyle dünyanın 3. en yüksek barajına ev sahipliği yapan ilçedir.", "Eski merkez 2022'de baraj göl suyu altında kalmıştır.", "Yeni merkez insan eliyle planlı biçimde kurulmuş ender ilçelerden biridir.", "Rafting turizmi eskiden dünyada bu ilçeyle özdeşleşmişti."],
+    ipuclar:["📍 Çoruh vadisinin üst kesiminde, il merkezine yaklaşık 70 km mesafede yer alan ilçe.", "🧠 Eski merkezi 2022'de su altında kalan bu ilçe, yerleşim yeri taşınan ender Türk ilçelerinden biridir.", "🗣️ Eski merkez 'aşağı', yeni merkez 'yukarı' olarak anılmakta; iki nesil iki ayrı şehirle büyümüştür.", "🌄 Bir zamanlar rafting dünyasının en önemli adreslerinden biri olan Çoruh artık baraj gölü hâline gelmiştir."]
+  },
+  {
+    k:"HATILA",bolge:"Hatila Vadisi — Detay",ikon:"🌲",zorluk:"uzman",level:5,
+    hikaye:"Şehrin hemen yanında, ama bambaşka bir dünya.",
+    ogretici:["İl merkezine yürüme mesafesinde olmasına karşın bakir bir vadi özelliği taşımaktadır.", "Cam teras, şelale ve 200 metreyi aşan vadi derinliğiyle ziyaretçi çekmektedir.", "1994'te milli park ilan edilmiştir.", "Vadinin içindeki dere Çoruh Nehri'ne kavuşmaktadır."],
+    ipuclar:["📍 İl merkezine yalnızca 2 km mesafede, Çoruh vadisine paralel uzanan korunan derin kanyon.", "🧠 1994'te milli park statüsü kazanmıştır; ardından eklenen cam teras yerli ve yabancı ziyaretçi çekmektedir.", "🗣️ Vadi adını içinden akan dereden almaktadır; yerel halk vadi ve dereye aynı adı vermektedir.", "🌄 Sabah sisinin vadi içine dolduğu saatlerde cam terastan bakış olağanüstü bir görsel deneyim sunar."]
+  },
+  {
+    k:"DOLISHANE",bolge:"Dolişhane — Tarihi Miras",ikon:"⛪",zorluk:"uzman",level:5,
+    hikaye:"10. yüzyıldan bugüne. Taşlar çok şey gördü.",
+    ogretici:["Gürcü Krallığı döneminde 10. yüzyılda inşa edilmiş tarihi kilisedir.", "İl merkezine yakın Hamamlı köyü yakınlarındadır.", "Artvin'deki Gürcü mimari mirasının en erişilebilir örneği sayılmaktadır.", "Kültürel miras tescil listesinde yer almaktadır."],
+    ipuclar:["📍 İl merkezine yakın, Hamamlı köyü çevresinde, vadiye hâkim bir konumda yükselen tarihi yapı.", "🧠 Gürcü Krallığı'nın Artvin üzerinde hâkimiyet kurduğu dönemde, 10. yüzyılda inşa edilmiştir.", "🗣️ Adı Gürcüce'de 'küçük tapınak' ya da 'dua yeri' anlamına gelen bir kökten türemektedir.", "🌄 Asırlarca farklı amaçlarla kullanılan yapı, restorasyon çalışmalarıyla yeniden tarihi kimliğine kavuşturulmuştur."]
+  },
+  {
+    k:"MACAHEL",bolge:"Maçahel — UNESCO Biyosfer",ikon:"🌿",zorluk:"uzman",level:5,
+    hikaye:"UNESCO saydı. Dünya onu tanıdı. Ama hâlâ ıssız ve saf.",
+    ogretici:["Türkiye'deki UNESCO biyosfer rezervlerinden biridir.", "Borçka ilçesine bağlı, Gürcistan sınırında uzanan vadi ve köyler topluluğudur.", "1.000'den fazla bitki türüyle olağanüstü biyoçeşitlilik barındırmaktadır.", "Geleneksel ahşap mimarisi ve yaşam tarzı büyük ölçüde korunmaktadır."],
+    ipuclar:["📍 Borçka'ya bağlı, Gürcistan sınırında uzanan ve Türkiye'nin en ücra doğa alanlarından biri.", "🧠 2005'te UNESCO Biyosfer Rezervi ilan edilmiş; 1.000'i aşkın bitki türüyle bilimsel önemi büyüktür.", "🗣️ Bölge halkı Lazca ve Gürcüce unsurlar taşıyan bir dil konuşur; bölge adı Gürcüce kökenlidir.", "🌄 Araçla ulaşmanın zor olduğu bu bölge, geleneksel yaşam biçimini sürdürmesini bu uzaklığa borçludur."]
+  },
+  {
+    k:"ISHAN",bolge:"İşhan — Gürcü Katedrali",ikon:"🕍",zorluk:"uzman",level:5,
+    hikaye:"Bölgenin en büyük Gürcü yapısı. Yüzyıllar önce başlamış, hâlâ duruyor.",
+    ogretici:["7-8. yüzyıllarda inşa edilmiş, bölgenin en büyük Gürcü dini yapılarından biridir.", "Yusufeli ilçesine bağlı İşhan köyündedir.", "Gürcü mimarisinin bölgedeki en erken ve en büyük örneklerinden sayılmaktadır.", "Kısmen restore edilmiş olmakla birlikte önemli bölümleri ayaktadır."],
+    ipuclar:["📍 Yusufeli'ne bağlı ıssız bir köyde, vadi içinde yükselen iri gövdeli tarihi katedral.", "🧠 7-8. yüzyıllarda inşa edilen bu büyük yapı, Gürcü-Bizans kültür etkileşiminin bölgedeki en önemli kanıtlarından biridir.", "🗣️ Adı Gürcüce'de 'ışık' ya da 'parlaklık' anlamıyla ilişkilendirilmektedir.", "🌄 Artvin'de pek çok tarihi yapı gibi bu katedral de uzun süre farklı amaçlarla kullanılmış, ardından tescil altına alınmıştır."]
+  },
+  {
+    k:"KARCAL",bolge:"Karçal Dağları — Zirve",ikon:"🏔️",zorluk:"uzman",level:5,
+    hikaye:"En yüksek noktalardan biri. Oraya çıkmak ayrı bir hikaye.",
+    ogretici:["3.428 metrelik zirvesiyle ilin ikinci en yüksek dağ kütlesini oluşturmaktadır.", "Krater gölleri ve nadir türleriyle biyolojik çeşitlilik açısından değerli bir alandır.", "Gürcistan sınırına kadar uzanan bu dağ kütlesi sınır ötesi bir coğrafya taşır.", "Boz ayı ve Anadolu vaşağı gibi nesli tehlikede türlerin yaşam alanlarından biridir."],
+    ipuclar:["📍 İlin güneydoğusunda, Gürcistan sınırına uzanan ve 3.428 m zirvesiyle yükselen dağ kütlesi.", "🧠 Boz ayı ve Anadolu vaşağı gibi nesli tehlikede olan türlerin bu dağlarda yaşadığı kayıt altındadır.", "🗣️ Yöre halkı bu dağlara çıkmayı hafife almaz; ciddi dağcılık deneyimi gerektirdiği bilinir.", "🌄 Yazın bile karla kaplı olan zirve bölgesi, yüksek rakımda saklı krater gölleriyle ayrı bir dünyadır."]
+  },
+  {
+    k:"SALKIMLI",bolge:"Salkımlı Köyü, Artvin Merkez",ikon:"🌿",zorluk:"uzman",level:5,
+    hikaye:"Karçal'ın eteklerinde, bulutlarla komşu bir köy.",
+    ogretici:["İl merkezine bağlı, Karçal Dağları eteklerinde yer alan bir dağ köyüdür.", "Yaylacılık geleneğini sürdüren yerleşim birimlerinden biridir.", "Yüksek rakımlı konumuyla sert kış koşullarına sahiptir.", "Adının çevresindeki salkım bitkisine ya da asma türlerine atıfla verildiği düşünülmektedir."],
+    ipuclar:["📍 İl merkezine bağlı, Karçal eteklerinde yüksek rakımlı bir dağ köyü.", "🧠 Artvin'deki bu tür köyler yüzyıllardır yayla kültürüne dayalı hayvancılıkla geçimini sağlamaktadır.", "🗣️ 'Salkım' Türkçe'de üzüm salkımı veya sarkık çiçek gruplarını tanımlar; köy adı bu bitkiden gelmektedir.", "🌄 Karçal zirvelerine yapılacak yürüyüşler için iyi bir başlangıç noktası olarak değerlendirilmektedir."]
+  }
 ];
 
 /* ════════════════════════════════════════════════
    LEVEL TANIMLARI
 ════════════════════════════════════════════════ */
 const LEVELS = [
-  {id:1, ad:"Artvin'i Tanı",    alt:"İlçeler — 8 kelime",    ikon:"🏙️", renk:"var(--vivid)",  rozet:"🌱"},
-  {id:2, ad:"Artvin'i Hisset",  alt:"Yaylalar & Doğa — 8 kelime", ikon:"🏔️", renk:"var(--gold)",  rozet:"🌟"},
-  {id:3, ad:"Artvin'i Bil",     alt:"Köyler & Kültür — 10 kelime", ikon:"🗺️", renk:"var(--red)",   rozet:"🏆"},
-  {id:4, ad:"Gerçek Artvinli",  alt:"Karma — Tüm kelimeler",  ikon:"🔥", renk:"var(--purple)", rozet:"💎"}
+  {id:1, ad:"Artvin'i Tanı",    alt:"İlçeler — 8 kelime",         ikon:"🏙️", renk:"var(--vivid)",  rozet:"🌱"},
+  {id:2, ad:"Artvin'i Hisset",  alt:"Doğal Güzellikler — 8 kelime", ikon:"🏔️", renk:"var(--gold)",  rozet:"🌟"},
+  {id:3, ad:"Tarihi Mekanlar",  alt:"Kaleler & Kiliseler — 8 kelime", ikon:"🏛️", renk:"var(--red)",   rozet:"🏆"},
+  {id:4, ad:"Köyler & Yaylalar",alt:"Tanınan Köyler — 8 kelime",  ikon:"🗺️", renk:"var(--purple)", rozet:"💎"},
+  {id:5, ad:"Gerçek Artvinli",  alt:"Karma Uzman — 8 kelime",      ikon:"🔥", renk:"var(--blue)",   rozet:"🎖️"}
 ];
 
 /* ════════════════════════════════════════════════
@@ -1124,7 +1252,7 @@ function gonder(){
         const el=document.getElementById('k'+d+'_'+i);
         if(el) el.classList.add('zipla');
       },i*70));
-      const ipM=gosterilen_ip.reduce((acc,idx)=>acc+[8,6,4,5][idx],0);
+      const ipM=gosterilen_ip.reduce((acc,idx)=>acc+[6,5,3,4][idx],0);
       const kaz=Math.max(10,60-Math.max(0,d*5)-ipM);
       PUAN+=kaz;level_puan+=kaz;level_dogru++;
       jokerBarGuncelle();
@@ -1447,8 +1575,8 @@ function oncekiGunTarih(){const d=new Date();d.setDate(d.getDate()-1);return `${
 let jokerKonumAktif = false;
 let jokerAcikKareler = [];
 let sorulmusHarfler = {};
-const JOKER_KONUM_MALIYET = 50;
-const JOKER_HARF_MALIYET  = 30;
+const JOKER_KONUM_MALIYET = 15;
+const JOKER_HARF_MALIYET  = 10;
 
 function jokerBarGuncelle() {
   const el = document.getElementById('jokerPuanNo');
