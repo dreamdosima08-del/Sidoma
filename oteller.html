@@ -30,41 +30,39 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:wght@300;400&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a1a12;--card:var(--bg);--border:rgba(var(--w),.09);--gold:#f0c040;--vivid:#3ddb8a;--off:#e8ede9;--w:255,255,255;--dk:10,26,18}
-[data-theme="light"]{--w:26,46,31;--dk:242,246,243}
-
+:root{--bg:#0a1a12;--card:var(--bg);--border:rgba(255,255,255,.09);--gold:#f0c040;--vivid:#3ddb8a;--off:#e8ede9}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;min-height:100vh}
-.snav{position:sticky;top:0;z-index:100;background:rgba(var(--dk),.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem}
+.snav{position:sticky;top:0;z-index:100;background:rgba(10,26,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem}
 .snav-logo{font-family:'Bebas Neue',sans-serif;font-size:1rem;font-weight:800;color:#e8b84b;text-decoration:none}
-.snav-back{font-size:.72rem;color:rgba(var(--w),.5);border:1px solid rgba(var(--w),.12);padding:.35rem .85rem;border-radius:4px;text-decoration:none;transition:.2s}
+.snav-back{font-size:.72rem;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12);padding:.35rem .85rem;border-radius:4px;text-decoration:none;transition:.2s}
 .snav-back:hover{color:var(--vivid);border-color:var(--vivid)}
 .hero{padding:2.5rem 1.25rem 2rem;text-align:center;border-bottom:1px solid var(--border);background:linear-gradient(to bottom,rgba(61,219,138,.04),transparent)}
 .hero-cat{font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--vivid);margin-bottom:.75rem;display:block}
 .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,7vw,3.2rem);letter-spacing:.08em;color:#fff;margin-bottom:.5rem}
 .hero-title span{color:var(--gold)}
-.hero-desc{font-size:.85rem;color:rgba(var(--w),.45);line-height:1.7;max-width:500px;margin:0 auto 1.25rem}
-.ilce-filtre{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;padding:.75rem 1.25rem;border-bottom:1px solid var(--border);background:rgba(var(--w),.02)}
+.hero-desc{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:500px;margin:0 auto 1.25rem}
+.ilce-filtre{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;padding:.75rem 1.25rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
 .filtre-btn{
   padding:.35rem .85rem;border-radius:20px;
-  border:1px solid rgba(var(--w),.1);
-  background:rgba(var(--w),.04);
-  color:rgba(var(--w),.45);
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.45);
   font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;
   cursor:pointer;transition:.15s;letter-spacing:.03em;
 }
-.filtre-btn:hover{color:#fff;border-color:rgba(var(--w),.3)}
+.filtre-btn:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 .filtre-btn.aktif{background:rgba(61,219,138,.12);border-color:rgba(61,219,138,.35);color:var(--vivid)}
 .w{max-width:800px;margin:0 auto;padding:0 1.25rem}
 .ilce-bolum{padding:2rem 0 1rem}
 .ilce-baslik{
   display:flex;align-items:center;gap:.75rem;
   margin-bottom:1.25rem;padding-bottom:.75rem;
-  border-bottom:1px solid rgba(var(--w),.07);
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 .ilce-ikon{font-size:1.5rem}
 .ilce-ad{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;color:#fff}
-.ilce-sayi{font-size:.65rem;font-weight:800;letter-spacing:.1em;color:rgba(var(--w),.3);text-transform:uppercase;margin-top:.1rem}
+.ilce-sayi{font-size:.65rem;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:.1rem}
 .otel-liste{display:flex;flex-direction:column;gap:.5rem}
 .otel-item{
   background:var(--card);
@@ -88,7 +86,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;min-h
 .tip-tatil{background:rgba(122,176,255,.1);color:#7ab0ff;border:1px solid rgba(122,176,255,.2)}
 .tip-apart{background:rgba(200,150,255,.1);color:#c896ff;border:1px solid rgba(200,150,255,.2)}
 .tip-butik{background:rgba(255,150,100,.1);color:#ff9664;border:1px solid rgba(255,150,100,.2)}
-.otel-adres{font-size:.75rem;color:rgba(var(--w),.4);line-height:1.5;margin-top:.15rem}
+.otel-adres{font-size:.75rem;color:rgba(255,255,255,.4);line-height:1.5;margin-top:.15rem}
 .otel-sag{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
 .otel-tel{
   display:flex;align-items:center;gap:.35rem;
@@ -98,22 +96,19 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;min-h
   text-decoration:none;transition:.15s;white-space:nowrap;
 }
 .otel-tel:hover{background:rgba(61,219,138,.18)}
-.bos-filtre{text-align:center;padding:3rem 1rem;color:rgba(var(--w),.3);font-size:.85rem}
+.bos-filtre{text-align:center;padding:3rem 1rem;color:rgba(255,255,255,.3);font-size:.85rem}
 .istatistik{
   display:flex;gap:1.5rem;justify-content:center;
   padding:1rem;margin-bottom:.5rem;
-  background:rgba(var(--w),.02);border-radius:8px;
+  background:rgba(255,255,255,.02);border-radius:8px;
   border:1px solid var(--border);
 }
 .ist-item{text-align:center}
 .ist-no{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--gold);display:block;letter-spacing:.05em}
-.ist-lbl{font-size:.58rem;color:rgba(var(--w),.3);letter-spacing:.08em;text-transform:uppercase}
-footer{border-top:1px solid var(--border);padding:1.5rem 1.25rem;text-align:center;font-size:.7rem;color:rgba(var(--w),.3);margin-top:2rem}
+.ist-lbl{font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
+footer{border-top:1px solid var(--border);padding:1.5rem 1.25rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.3);margin-top:2rem}
 footer a{color:var(--vivid);text-decoration:none}
-</style>
-  <link rel="stylesheet" href="/theme.css">
-  <script src="/theme.js" defer></script>
-</head>
+</style></head>
 <body>
 
 <nav class="snav">
@@ -349,4 +344,15 @@ function render(){
 function filtrele(ilce){
   aktifFiltre = ilce;
   document.querySelectorAll('.filtre-btn').forEach(function(b){ b.classList.remove('aktif'); });
-  event.ta
+  event.target.classList.add('aktif');
+  render();
+  if(ilce !== 'hepsi'){
+    var el = document.getElementById('bolum-'+ilce);
+    if(el) setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+  }
+}
+
+render();
+</script>
+</body>
+</html>
