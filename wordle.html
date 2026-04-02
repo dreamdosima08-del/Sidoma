@@ -182,16 +182,24 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 .ak-ana:hover{color:var(--off)}
 
 /* Klavye */
-.klavye{display:flex;flex-direction:column;gap:4px}
-.klv-satir{display:flex;gap:3px;justify-content:center}
-.tus{height:44px;min-width:26px;flex:1;max-width:34px;
+.klavye{display:flex;flex-direction:column;gap:5px}
+.klv-satir{display:flex;gap:4px;justify-content:center}
+.tus{height:52px;min-width:32px;flex:1;max-width:42px;
   background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.1);
-  border-radius:4px;color:#fff;font-family:'Nunito',sans-serif;
-  font-size:.62rem;font-weight:800;cursor:pointer;
+  border-radius:6px;color:#fff;font-family:'Nunito',sans-serif;
+  font-size:.72rem;font-weight:800;cursor:pointer;
   transition:background .12s,transform .08s;
   display:flex;align-items:center;justify-content:center;user-select:none}
 .tus:active{transform:scale(.88)}
-.tus.wide{flex:1.6;max-width:46px;font-size:.55rem}
+.tus.wide{flex:1.6;max-width:54px;font-size:.64rem}
+.tus-gir{height:58px;min-width:72px;max-width:90px;flex:none;
+  background:rgba(61,219,138,.15);border:1.5px solid rgba(61,219,138,.4);
+  color:var(--vivid);font-size:.76rem;font-weight:900;border-radius:7px}
+.tus-gir:hover{background:rgba(61,219,138,.25)!important}
+.tus-sil{height:58px;min-width:72px;max-width:90px;flex:none;
+  background:rgba(255,107,107,.12);border:1.5px solid rgba(255,107,107,.35);
+  color:var(--red);font-size:.76rem;font-weight:900;border-radius:7px}
+.tus-sil:hover{background:rgba(255,107,107,.22)!important}
 .tus.dogru{background:var(--dogru)!important;border-color:var(--dogru)!important;color:var(--bg)!important}
 .tus.yakin{background:var(--yakin)!important;border-color:var(--yakin)!important;color:var(--bg)!important}
 .tus.yok{background:var(--yok)!important;border-color:#253d27!important;opacity:.5}
@@ -363,6 +371,14 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 .hs-var{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.3);color:var(--vivid)}
 .hs-yok{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:var(--red)}
 
+
+/* BOYUT MODLARI */
+body.boyut-b .tus { font-size:.86rem!important; height:58px!important; }
+body.boyut-b .kare { font-size:inherit!important; }
+body.boyut-b .hikaye-metin, body.boyut-b .h-metin { font-size:.95rem!important; }
+body.boyut-b .ip-btn { font-size:.68rem!important; }
+body.boyut-b .lk-ad { font-size:1.15rem!important; }
+body.boyut-b #boyutBtn { color:var(--vivid)!important; border-color:rgba(61,219,138,.4)!important; font-weight:900!important; }
 </style></head>
 <body>
 
@@ -371,6 +387,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
   <div><a class="nav-logo" href="/">ARTVİN<br>REHBERİ</a></div>
   <div class="nav-title">ARTVİN'İ <span>ÇÖZ</span></div>
   <div class="nav-sag">
+    <button class="ikon-btn" id="boyutBtn" onclick="boyutDegistir()" title="Yazı boyutu">A</button>
     <button class="ikon-btn" id="pasBtnNav" onclick="pasPanelAc()" title="Pas geçilen sorular" style="display:none">
       ⏭️<span class="badge" id="pasBadge">0</span>
     </button>
@@ -384,7 +401,11 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 <!-- ════ ANA EKRAN ════ -->
 <div class="ana-ekran" id="anaEkran">
   <div class="ana-baslik">
-    <h1>🏔️ ARTVİN'İ ÇÖZ</h1>
+    <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:.2rem">
+        <span style="font-size:1.4rem">🇹🇷</span>
+        <h1>ARTVİN'İ ÇÖZ</h1>
+        <span style="font-size:1.4rem">🇹🇷</span>
+      </div>
     <p>Artvin'i ne kadar biliyorsun?</p>
   </div>
 
@@ -511,7 +532,11 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 <!-- ÖZET -->
 <div class="overlay" id="ozetOvr">
   <div class="panel">
-    <div class="p-baslik">📊 OYUN ÖZETİ</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:.75rem">
+      <span style="font-size:1.1rem">🇹🇷</span>
+      <div class="p-baslik" style="margin-bottom:0">📊 OYUN ÖZETİ</div>
+      <span style="font-size:1.1rem">🇹🇷</span>
+    </div>
     <div class="ozet-ist" id="ozetIst"></div>
     <div style="font-size:.62rem;font-weight:800;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-bottom:.45rem">Cevaplar</div>
     <div class="ozet-liste" id="ozetListe"></div>
@@ -529,6 +554,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 <!-- LEVEL TAMAMLANDI -->
 <div class="overlay" id="levelOvr">
   <div class="panel" style="text-align:center">
+    <div style="font-size:1.4rem;text-align:center;margin-bottom:.3rem">🇹🇷</div>
     <div class="lt-rozet" id="ltRozet"></div>
     <div class="lt-baslik" id="ltBaslik"></div>
     <div class="lt-alt" id="ltAlt"></div>
@@ -545,12 +571,23 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;
 <!-- ÇIKIŞ ONAY -->
 <div class="overlay" id="cikisOvr">
   <div class="panel" style="text-align:center">
-    <div style="font-size:2rem;margin-bottom:.5rem">🚪</div>
-    <div class="d-baslik">ANA MENÜYE DÖN?</div>
-    <div class="cikis-metin">Oyun durumu kaydedilecek, kaldığın yerden devam edebilirsin.</div>
+    <div style="font-size:2.2rem;margin-bottom:.6rem">🚪</div>
+    <div class="d-baslik">OYUNDAN ÇIKIYOR MUSUN?</div>
+    <div class="cikis-metin">
+      Oyun durumu otomatik kaydedildi.<br>
+      <strong style="color:var(--vivid)">Kaldığın yerden devam edebilirsin!</strong><br>
+      <span style="font-size:.72rem;color:var(--dim)">Ana sayfaya git, sonra oyuna döndüğünde kaldığın kelimeden devam edersin.</span>
+    </div>
     <div class="btn-row">
-      <button class="btn btn-ana" onclick="anaMenuDon()">Evet, Ana Menüye Git</button>
-      <button class="btn btn-kapat" onclick="kapat('cikisOvr')">Devam Et</button>
+      <button class="btn btn-devam" onclick="kapat('cikisOvr')" style="background:var(--vivid);color:#060d08">
+        ← Oyuna Devam Et
+      </button>
+      <button class="btn btn-ana" onclick="anaMenuDonOnay()">
+        🏠 Ana Menüye Git (kayıt edildi)
+      </button>
+      <a href="/" class="btn btn-kapat" style="text-decoration:none;display:flex;align-items:center;justify-content:center">
+        🌐 Ana Sayfaya Git (yeni sekme değil)
+      </a>
     </div>
   </div>
 </div>
@@ -711,7 +748,7 @@ const HAVUZ = [
     ipuclar:["📍 İl merkezinin üst kesimindeki tarihi kale kalıntıları bu isimle anılmaktadır.", "🧠 1921 öncesinde bu coğrafyanın idari adıydı; Osmanlı belgelerinde sıkça geçmektedir.", "🗣️ Yaşlı nesil arasında şehre hâlâ bu eski adıyla seslenildiği görülür.", "🌄 Tepedeki kale kalıntıları günümüzde şehir merkezinden bakıldığında net biçimde görülmektedir."]
   },
   {
-    k:"DOLISHANE",bolge:"Dolişhane Kilisesi, Artvin Merkez",ikon:"⛪",zorluk:"zor",level:3,
+    k:"HATILA",bolge:"Hatila Vadisi Milli Parkı",ikon:"⛪",zorluk:"zor",level:3,
     hikaye:"Asırlık taşlar, Gürcü ustaların eseri. Hâlâ ayakta.",
     ogretici:["10. yüzyılda Gürcü Krallığı döneminde inşa edilmiş tarihi bir kilisedir.", "Artvin Merkez ilçesine bağlı Hamamlı köyü yakınlarında yer almaktadır.", "Gürcü mimarisinin Artvin'deki en iyi korunmuş örneklerinden biri kabul edilir.", "Yapı, Türkiye'nin kültürel miras tescil listesinde yer almaktadır."],
     ipuclar:["📍 İl merkezine yakın Hamamlı köyü çevresinde, vadiye hâkim bir konumda tarihi yapı.", "🧠 Gürcü Krallığı'nın altın çağında 10. yüzyılda inşa edilmiştir; bu dönem Gürcü mimarisi için önemlidir.", "🗣️ Adı Gürcüce'de 'küçük dua evi' anlamına gelen bir kökten gelmektedir.", "🌄 Çevre köylüler yapıyı uzun yıllar ahır olarak kullanmış, ancak restore edilerek koruma altına alınmıştır."]
@@ -771,7 +808,7 @@ const HAVUZ = [
     ipuclar:["📍 Ardanuç ilçesine bağlı, dağlık arazide yer alan yüksek rakımlı geleneksel yayla.", "🧠 Artvin'deki pek çok yayla gibi burada da yaz göçü geleneği kuşaktan kuşağa aktarılmıştır.", "🗣️ Adı 'Bülbülan' olarak da söylenmekte; bülbül kuşuyla ilişkilendirildiği düşünülmektedir.", "🌄 Yaylanın çevresindeki ormanlar ve dağ manzarası sessizlik arayanlar için özel bir ortam sunar."]
   },
   {
-    k:"DEMIRKENT",bolge:"Demirkent Köyü, Artvin Merkez",ikon:"🍽️",zorluk:"zor",level:4,
+    k:"HAMAMLI",bolge:"Hamamlı Köyü, Artvin Merkez",ikon:"🍽️",zorluk:"zor",level:4,
     hikaye:"Bir köy var ki mutfağı yüzyıllardır anlatılır.",
     ogretici:["İl merkezine bağlı bir köydür.", "Kavurmalı hinkal bu köyle özdeşleşmiş yöresel bir lezzettir.", "Hinkal, et kavurması ve yufka katmanlarından oluşan Artvin'e özgü geleneksel bir yemektir.", "Köy il merkezine yakın mesafededir."],
     ipuclar:["📍 İl merkezine bağlı, yemek geleneğiyle öne çıkan bir dağ köyü.", "🧠 Kavurmalı hinkal et kavurması ile ince yufkanın katmanlanmasıyla hazırlanır; yöreyle özdeşleşmiştir.", "🗣️ 'Hinkal' sözcüğü Kafkas kökenlidir; Gürcistan ve Dağıstan mutfaklarında da benzer yemekler bulunur.", "🌄 Köyde geleneksel hayvancılık hâlâ sürmekte; kavurma bu geleneğin mutfaktaki en doğal yansımasıdır."]
@@ -783,13 +820,13 @@ const HAVUZ = [
     ipuclar:["📍 İl merkezine 5 km mesafede, Çoruh Nehri kıyısında küçük bir köy.", "🧠 Tarihi asma köprü, Çoruh üzerindeki geleneksel köprülerin bölgedeki nadir örneklerinden biridir.", "🗣️ Ad, savaş döneminde şehit düşen kişilere ithafen verildiği düşünülen bir yerleşim adıdır.", "🌄 Vadinin daralıp derinleştiği bu noktada Çoruh'un gücü en çarpıcı biçimde hissedilir."]
   },
   {
-    k:"MENÇUNA",bolge:"Mençuna Şelalesi, Arhavi",ikon:"💦",zorluk:"zor",level:4,
+    k:"MENCUNA",bolge:"Mençuna Şelalesi, Arhavi",ikon:"💦",zorluk:"zor",level:4,
     hikaye:"Arhavi'nin gizli hazinesi. Ses duyulur, sonra şelale görünür.",
     ogretici:["Artvin'in Arhavi ilçesine bağlı, doğal bir şelaledir.", "Karadeniz iklimiyle beslenen bol su akışıyla öne çıkar.", "Arhavi ilçesinin doğa turizmi açısından en önemli değerlerinden biridir.", "Çevresindeki yoğun yeşillik ve nemli orman ortamı kendine özgü bir ekosistem oluşturur."],
     ipuclar:["📍 Arhavi ilçesine bağlı, Karadeniz kıyı kuşağında yer alan doğal şelale.", "🧠 Karadeniz iklimiyle beslenen bu şelale, yıl boyunca yeterli su akışına sahiptir.", "🗣️ Adının yerel Lazca ya da yöresel ağızdan geldiği düşünülmektedir.", "🌄 Çevresindeki sık orman ve nemli toprak yapısı şelaleye özgün bir doğal ortam kazandırmaktadır."]
   },
   {
-    k:"ZEYTINLIK",bolge:"Zeytinlik Köyü, Artvin Merkez",ikon:"🌿",zorluk:"zor",level:4,
+    k:"ERENLER",bolge:"Erenler Köyü, Artvin Merkez",ikon:"🌿",zorluk:"zor",level:4,
     hikaye:"Adı doğadan gelir. Artvin'in saklı köylerinden.",
     ogretici:["İl merkezine bağlı bir dağ köyüdür.", "Adının çevresindeki bitki örtüsüyle ilişkili olduğu düşünülmektedir.", "Yüksek rakımlı Artvin köyleri arasında sayılır.", "Hayvancılık ve arıcılık köyün geleneksel geçim kaynaklarındandır."],
     ipuclar:["📍 İl merkezine bağlı, şehirden uzakta konumlanan yüksek rakımlı bir dağ köyü.", "🧠 Bu yükseklikte zeytin yetişmese de köy adı çevre bitki örtüsüne referans verir.", "🗣️ 'Zeytinlik' tamamen Türkçe kökenli bir ad olup bir bitki topluluğunu doğrudan tanımlamaktadır.", "🌄 Artvin'deki küçük dağ köylerinde olduğu gibi burada da topluluk bağları güçlüdür."]
@@ -807,7 +844,7 @@ const HAVUZ = [
     ipuclar:["📍 Borçka'ya bağlı, Gürcistan sınırına dayanan, Maçahel bölgesinin merkezi köyü.", "🧠 2005'te UNESCO Biyosfer Rezervi ilan edilen bölge, 1.000'i aşkın bitki türü kaydıyla dikkat çekmektedir.", "🗣️ Köy halkı Lazca ve Gürcüce unsurlar taşıyan bir dil konuşmakta; ad Gürcüce kökenlidir.", "🌄 Yüzyıllardır süren geleneksel ahşap yapılar ve araçla ulaşmanın zorluğu köye özgün bir doku kazandırmaktadır."]
   },
   {
-    k:"SARPKOY",bolge:"Sarp Köyü, Hopa",ikon:"🛂",zorluk:"uzman",level:5,
+    k:"SARP",bolge:"Sarp Köyü, Hopa",ikon:"🛂",zorluk:"uzman",level:5,
     hikaye:"Türkiye burada biter. Bir adım ötesi başka ülke.",
     ogretici:["Hopa ilçesine bağlı, Türkiye-Gürcistan kara sınırındaki köydür.", "Sarp Sınır Kapısı bu köy sınırları içinde yer almaktadır.", "Türkiye'nin Gürcistan'a açılan en işlek kara kapısıdır.", "Karadeniz kıyısında sınır köyü kimliğiyle özel bir konuma sahiptir."],
     ipuclar:["📍 Hopa ilçesine bağlı, Karadeniz kıyısında, Türkiye'nin en kuzey doğu sınır köylerinden biri.", "🧠 Bu köydeki sınır kapısı Türkiye ile Gürcistan arasındaki en yoğun kara geçiş noktasıdır.", "🗣️ 'Sarp' adının Gürcüce 'dik, sarp' anlamından geldiği düşünülmektedir.", "🌄 Köyün iki yakasında iki farklı ülke, iki farklı para birimi ve iki farklı kültür yaşamaktadır."]
@@ -825,10 +862,10 @@ const HAVUZ = [
     ipuclar:["📍 İl merkezine yalnızca 2 km mesafede, Çoruh vadisine paralel uzanan korunan derin kanyon.", "🧠 1994'te milli park statüsü kazanmıştır; ardından eklenen cam teras yerli ve yabancı ziyaretçi çekmektedir.", "🗣️ Vadi adını içinden akan dereden almaktadır; yerel halk vadi ve dereye aynı adı vermektedir.", "🌄 Sabah sisinin vadi içine dolduğu saatlerde cam terastan bakış olağanüstü bir görsel deneyim sunar."]
   },
   {
-    k:"DOLISHANE",bolge:"Dolişhane — Tarihi Miras",ikon:"⛪",zorluk:"uzman",level:5,
-    hikaye:"10. yüzyıldan bugüne. Taşlar çok şey gördü.",
-    ogretici:["Gürcü Krallığı döneminde 10. yüzyılda inşa edilmiş tarihi kilisedir.", "İl merkezine yakın Hamamlı köyü yakınlarındadır.", "Artvin'deki Gürcü mimari mirasının en erişilebilir örneği sayılmaktadır.", "Kültürel miras tescil listesinde yer almaktadır."],
-    ipuclar:["📍 İl merkezine yakın, Hamamlı köyü çevresinde, vadiye hâkim bir konumda yükselen tarihi yapı.", "🧠 Gürcü Krallığı'nın Artvin üzerinde hâkimiyet kurduğu dönemde, 10. yüzyılda inşa edilmiştir.", "🗣️ Adı Gürcüce'de 'küçük tapınak' ya da 'dua yeri' anlamına gelen bir kökten türemektedir.", "🌄 Asırlarca farklı amaçlarla kullanılan yapı, restorasyon çalışmalarıyla yeniden tarihi kimliğine kavuşturulmuştur."]
+    k:"KARAGOL",bolge:"Borçka Karagöl — Uzman",ikon:"🍂",zorluk:"uzman",level:5,
+    hikaye:"Sonbaharda orman yanar gibi. Göl ses çıkarmaz, sadece yansıtır.",
+    ogretici:["Heyelan sonucu oluşmuş nadir doğal göllerden biridir.","Sonbaharda altın sarısı ormanlarla birlikte Türkiye'nin en çok fotoğraflanan noktalarından olur.","1.350 metre rakımda, Borçka ilçesine bağlıdır.","Göl çevresi yaban hayatı açısından son derece zengindir."],
+    ipuclar:["📍 Borçka ilçesine bağlı, ~1.350 m rakımda, heyelan kökenli doğal göl.","🧠 17. yüzyılda gerçekleştiği tahmin edilen büyük bir heyelanın ardından oluşmuştur.","🗣️ 'Kara göl' adı suyun koyu rengi ve derinliğinden kaynaklanmaktadır.","🌄 Ekim ayında sarı yapraklı ormanın göle yansıması adeta iki ayrı dünya yaratır."]
   },
   {
     k:"MACAHEL",bolge:"Maçahel — UNESCO Biyosfer",ikon:"🌿",zorluk:"uzman",level:5,
@@ -870,10 +907,11 @@ const LEVELS = [
 /* ════════════════════════════════════════════════
    KLAVYE
 ════════════════════════════════════════════════ */
+/* ─── KLAVYE ─── */
 const KLV = [
   ['E','R','T','Y','U','İ','O','P','Ğ','Ü'],
   ['A','S','D','F','G','H','J','K','L','Ş','I'],
-  ['GİR','Z','X','C','V','B','N','M','Ö','Ç','SİL']
+  ['Z','X','C','V','B','N','M','Ö','Ç']
 ];
 
 /* ════════════════════════════════════════════════
@@ -1147,20 +1185,35 @@ function pasBtnGuncelle() {
 function gridOlustur() {
   const g = document.getElementById('grid');
   g.innerHTML = '';
-  const b = UZUNLUK<=5?52:UZUNLUK===6?47:UZUNLUK===7?42:UZUNLUK===8?37:33;
-  const gap = UZUNLUK<=6?4:3;
-  g.style.gap = gap+'px';
-  for(let d=0;d<6;d++){
-    const s=document.createElement('div');
-    s.className='satir';s.id='s'+d;s.style.gap=gap+'px';
-    for(let k=0;k<UZUNLUK;k++){
-      const h=document.createElement('div');
-      h.className='kare';h.id='k'+d+'_'+k;
-      h.style.cssText=`width:${b}px;height:${b}px;font-size:${b*.56}px`;
-      s.appendChild(h);
-    }
-    g.appendChild(s);
+  /* Tek aktif satır — önceki denemeler geçmiş şeridinde gösterilir */
+  const b = UZUNLUK<=5?54:UZUNLUK===6?50:UZUNLUK===7?44:UZUNLUK===8?40:36;
+  const gap = 5;
+
+  /* GEÇMİŞ SATIRLAR (önceki denemeler — küçük) */
+  const gecmisWrap = document.createElement('div');
+  gecmisWrap.id = 'gecmisSatirlar';
+  gecmisWrap.style.cssText = 'display:flex;flex-direction:column;gap:3px;margin-bottom:8px;min-height:0';
+  g.appendChild(gecmisWrap);
+
+  /* AKTİF TEK SATIR */
+  const aktifWrap = document.createElement('div');
+  aktifWrap.id = 'aktifSatirWrap';
+  aktifWrap.style.cssText = 'display:flex;flex-direction:column;gap:'+gap+'px;align-items:center';
+
+  const s = document.createElement('div');
+  s.className='satir'; s.id='s0'; s.style.gap=gap+'px';
+  for(let k=0;k<UZUNLUK;k++){
+    const h=document.createElement('div');
+    h.className='kare'; h.id='k0_'+k;
+    h.style.cssText=`width:${b}px;height:${b}px;font-size:${Math.round(b*.58)}px`;
+    s.appendChild(h);
   }
+  aktifWrap.appendChild(s);
+  g.appendChild(aktifWrap);
+
+  // Boyutları global sakla
+  window._KARE_B = b;
+  window._KARE_GAP = gap;
 }
 
 /* ════════════════════════════════════════════════
@@ -1174,13 +1227,45 @@ function klavyeOlustur() {
     div.className='klv-satir';
     satir.forEach(h=>{
       const b=document.createElement('button');
-      b.className='tus'+(h.length>1?' wide':'');
-      b.textContent=h;b.id='tus_'+h;b.dataset.d='';
+      b.className='tus';
+      b.textContent=h; b.id='tus_'+h; b.dataset.d='';
       b.addEventListener('click',()=>tusBasildi(h));
       div.appendChild(b);
     });
     kv.appendChild(div);
   });
+
+  /* Alt satır: harf sırası + boşluk + GİR + SİL */
+  const altDiv = document.createElement('div');
+  altDiv.className = 'klv-satir';
+
+  /* Boş esnek alan sola it */
+  const bosluk = document.createElement('div');
+  bosluk.style.cssText = 'flex:1';
+  altDiv.appendChild(bosluk);
+
+  /* GİR butonu */
+  const btnGir = document.createElement('button');
+  btnGir.className = 'tus tus-gir';
+  btnGir.id = 'tus_GİR';
+  btnGir.textContent = 'GİR ✓';
+  btnGir.addEventListener('click', ()=>tusBasildi('GİR'));
+  altDiv.appendChild(btnGir);
+
+  /* Küçük boşluk */
+  const ara = document.createElement('div');
+  ara.style.cssText = 'width:8px;flex-shrink:0';
+  altDiv.appendChild(ara);
+
+  /* SİL butonu */
+  const btnSil = document.createElement('button');
+  btnSil.className = 'tus tus-sil';
+  btnSil.id = 'tus_SİL';
+  btnSil.textContent = '⌫ SİL';
+  btnSil.addEventListener('click', ()=>tusBasildi('SİL'));
+  altDiv.appendChild(btnSil);
+
+  kv.appendChild(altDiv);
 }
 
 // Fiziksel klavye → oyun harfi dönüşümü
@@ -1195,10 +1280,12 @@ const FIZIK_MAP = {
 
 document.addEventListener('keydown',e=>{
   if(!OYUN_AKTIF||e.ctrlKey||e.metaKey||e.altKey) return;
-  const k=e.key.toUpperCase();
-  if(k==='ENTER'){tusBasildi('GİR');return;}
-  if(k==='BACKSPACE'){tusBasildi('SİL');return;}
-  if(/^[A-ZÇŞĞÜÖİI]$/.test(k)){tusBasildi(k);}
+  const k=e.key;
+  if(k==='Enter'){tusBasildi('GİR');return;}
+  if(k==='Backspace'){tusBasildi('SİL');return;}
+  // Türkçe ve Latin harfleri kabul et — büyük harfe çevir
+  const up = k.length===1 ? k.toUpperCase() : '';
+  if(/^[A-ZÇŞĞÜÖİI]$/.test(up)){tusBasildi(up);}
 });
 
 function tusBasildi(h){
@@ -1214,7 +1301,7 @@ function tusBasildi(h){
   }
   if(KOLON<UZUNLUK){
     tahminler[DENEME][KOLON]=h;
-    const el=document.getElementById('k'+DENEME+'_'+KOLON);
+    const el=document.getElementById('k0_'+KOLON);
     if(el){el.textContent=h;el.classList.add('dolu');el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
     KOLON++;
   }
@@ -1227,14 +1314,19 @@ function gonder(){
   if(KOLON<UZUNLUK){msg('Kelime '+UZUNLUK+' harf olmalı! 📏');salla(DENEME);return;}
   const tahmin=tahminler[DENEME].join('');
   // Türkçe veya Latin versiyonuyla geçerlilik kontrolü
-  function latinVers(s){return s.replace(/Ş/g,'S').replace(/Ç/g,'C').replace(/Ğ/g,'G').replace(/Ü/g,'U').replace(/Ö/g,'O').replace(/İ/g,'I').replace(/I/g,'I');}
-  const gecerli=HAVUZ.some(o=>o.k===tahmin||latinVers(o.k)===latinVers(tahmin))||tahmin===HEDEF||latinVers(tahmin)===latinVers(HEDEF);
+  // Türkçe ↔ Latin her iki yönde normalize et
+  function latinVers(s){
+    return s.toUpperCase()
+      .replace(/Ç/g,'C').replace(/Ş/g,'S').replace(/Ğ/g,'G')
+      .replace(/Ü/g,'U').replace(/Ö/g,'O').replace(/İ/g,'I').replace(/I/g,'I');
+  }
+  const gecerli=HAVUZ.some(o=>latinVers(o.k)===latinVers(tahmin))||latinVers(tahmin)===latinVers(HEDEF);
   if(!gecerli){msg('Bu kelime listede yok! 🤔');salla(DENEME);return;}
 
   const res=hesapla(tahmin,HEDEF);
   const d=DENEME;
   res.forEach((durum,i)=>setTimeout(()=>{
-    const el=document.getElementById('k'+d+'_'+i);
+    const el=document.getElementById('k0_'+i);
     if(!el) return;
     el.classList.add('flip');
     setTimeout(()=>{el.classList.remove('flip');el.classList.add(durum);},240);
@@ -1246,10 +1338,11 @@ function gonder(){
   DENEME++;KOLON=0;
 
   setTimeout(()=>{
+    gecmisSatirEkle(_tahminKopya, _sonucKopya);
     if(kazandi){
       BİTTİ=true;
       tahminler[d].forEach((_,i)=>setTimeout(()=>{
-        const el=document.getElementById('k'+d+'_'+i);
+        const el=document.getElementById('k0_'+i);
         if(el) el.classList.add('zipla');
       },i*70));
       const ipM=gosterilen_ip.reduce((acc,idx)=>acc+[6,5,3,4][idx],0);
@@ -1271,11 +1364,15 @@ function gonder(){
 }
 
 function hesapla(t,h){
-  // Türkçe karakter normalize — hem Türkçe hem Latin kabul
-  function norm(s){
-    return s.toUpperCase()
-      .replace(/I/g,'İ')  // Latin I → Türkçe İ
-      .replace(/i/g,'İ');
+  // Tüm Türkçe ↔ Latin çift yönlü normalize
+  // Kullanıcı C yazsa Ç ile, S yazsa Ş ile eşleşir (ve tersi)
+  function norm(ch){
+    const MAP={'Ç':'C','C':'C','Ş':'S','S':'S','Ğ':'G','G':'G',
+               'Ü':'U','U':'U','Ö':'O','O':'O','İ':'I','I':'I',
+               'ç':'C','c':'C','ş':'S','s':'S','ğ':'G','g':'G',
+               'ü':'U','u':'U','ö':'O','o':'O','i':'I'};
+    const up = ch.toUpperCase();
+    return MAP[up] || MAP[ch] || up;
   }
   const tn=t.split('').map(norm);
   const hn=h.split('').map(norm);
@@ -1289,24 +1386,34 @@ function hesapla(t,h){
 
 function klavyeGuncelle(t,res){
   const onc={dogru:3,yakin:2,yok:1};
-  t.split('').forEach((c,i)=>{
-    // Hem normal hem Türkçe versiyonu dene
-    const denemeler=[c];
-    // Latin → Türkçe
-    const ltMap={'S':'Ş','C':'Ç','G':'Ğ','U':'Ü','O':'Ö','I':'İ'};
-    if(ltMap[c]) denemeler.push(ltMap[c]);
+  // Her harfi normalize et, klavyedeki karşılığını bul
+  const ESLES={
+    'C':['C','Ç'],'Ç':['C','Ç'],
+    'S':['S','Ş'],'Ş':['S','Ş'],
+    'G':['G','Ğ'],'Ğ':['G','Ğ'],
+    'U':['U','Ü'],'Ü':['U','Ü'],
+    'O':['O','Ö'],'Ö':['O','Ö'],
+    'I':['I','İ'],'İ':['I','İ']
+  };
+  t.split('').forEach((ch,i)=>{
+    const up = ch.toUpperCase();
+    const denemeler = ESLES[up] ? ESLES[up] : [up];
     denemeler.forEach(harf=>{
       const b=document.getElementById('tus_'+harf);
       if(!b) return;
       const cur=onc[b.dataset.d]||0;
       const yeni=onc[res[i]]||0;
-      if(yeni>cur){b.classList.remove('dogru','yakin','yok');b.classList.add(res[i]);b.dataset.d=res[i];}
+      if(yeni>cur){
+        b.classList.remove('dogru','yakin','yok');
+        b.classList.add(res[i]);
+        b.dataset.d=res[i];
+      }
     });
   });
 }
 
 function salla(d){
-  const s=document.getElementById('s'+d);
+  const s=document.getElementById('s0');
   if(!s) return;
   s.querySelectorAll('.kare').forEach(el=>{
     el.classList.remove('salla');void el.offsetWidth;el.classList.add('salla');
@@ -1488,7 +1595,7 @@ function ozetGoster(gec, modAd){
 
   document.getElementById('ozetListe').innerHTML=gec.map(g=>{
     const ik=g.durum==='dogru'?'✅':g.durum==='pas'?'⏭️':'❌';
-    return `<div class="oz-item">
+    return `<div class="oz-item" style="cursor:pointer" onclick="gecmisDetayGoster(${i})">
       <span class="oz-ikon">${ik}</span>
       <span class="oz-kelime">${g.kelime}</span>
       <span class="oz-bilgi">${g.obj.bolge}${g.durum==='dogru'?' · '+g.deneme+'. denemede':''}</span>
@@ -1551,7 +1658,14 @@ window.addEventListener('popstate', e => {
 });
 
 function anaEkranaDon(){
+  durumKaydet();
   document.getElementById('cikisOvr').classList.add('on');
+}
+
+function anaMenuDonOnay(){
+  durumKaydet();
+  kapat('cikisOvr');
+  anaMenuDon();
 }
 
 /* ════════════════════════════════════════════════
@@ -1577,6 +1691,69 @@ let jokerAcikKareler = [];
 let sorulmusHarfler = {};
 const JOKER_KONUM_MALIYET = 15;
 const JOKER_HARF_MALIYET  = 10;
+
+
+/* Deneme geçmişini görsel olarak göster */
+
+function gecmisDetayGoster(idx) {
+  const g = gecmis[idx];
+  if(!g) return;
+  const ikon = g.durum==='dogru'?'✅':g.durum==='pas'?'⏭️':'❌';
+  document.getElementById('gdBaslik').textContent = ikon + ' ' + g.kelime + ' — ' + g.obj.bolge;
+  
+  let html = '';
+  // Durum
+  html += `<div style="text-align:center;margin-bottom:.85rem">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.2em;color:var(--gold)">${g.kelime}</div>
+    <div style="font-size:.75rem;color:var(--muted)">${g.durum==='dogru'?g.deneme+'. denemede bulundu':g.durum==='pas'?'Pas geçildi':'Bulunamadı'}</div>
+  </div>`;
+  
+  // Öğretici bilgiler
+  html += `<div style="background:rgba(61,219,138,.06);border:1px solid rgba(61,219,138,.15);border-radius:8px;padding:.85rem;margin-bottom:.75rem">
+    <div style="font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--vivid);margin-bottom:.5rem">📚 ${g.obj.bolge}</div>`;
+  g.obj.ogretici.forEach(s => {
+    html += `<div style="font-size:.78rem;color:rgba(255,255,255,.6);padding:.2rem 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5">• ${s}</div>`;
+  });
+  html += '</div>';
+  
+  // İpuçları
+  html += '<div style="font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem">🔍 İPUÇLARI</div>';
+  g.obj.ipuclar.forEach(ip => {
+    html += `<div style="font-size:.75rem;color:rgba(122,176,255,.75);padding:.25rem 0;line-height:1.55">${ip}</div>`;
+  });
+  
+  document.getElementById('gdIcerik').innerHTML = html;
+  document.getElementById('gecmisDetayOvr').classList.add('on');
+}
+
+function gecmisSatirEkle(tahminArr, sonuclar) {
+  const wrap = document.getElementById('gecmisSatirlar');
+  if(!wrap) return;
+  const b = Math.round((window._KARE_B || 44) * 0.62); // küçük boy
+  const gap = 3;
+  const satir = document.createElement('div');
+  satir.className = 'satir gecmis-satir';
+  satir.style.cssText = 'display:flex;gap:'+gap+'px;opacity:.85';
+  tahminArr.forEach((harf, i) => {
+    const k = document.createElement('div');
+    k.style.cssText = `width:${b}px;height:${b}px;font-size:${Math.round(b*.58)}px;
+      display:flex;align-items:center;justify-content:center;
+      border-radius:3px;font-family:'Bebas Neue',sans-serif;color:#fff;
+      font-weight:700;border:2px solid transparent;`;
+    if(sonuclar[i]==='dogru') k.style.background='var(--dogru)';
+    else if(sonuclar[i]==='yakin') k.style.background='var(--yakin)';
+    else k.style.cssText += 'background:var(--yok);border-color:#253d27;';
+    k.textContent = harf;
+    satir.appendChild(k);
+  });
+  wrap.appendChild(satir);
+
+  // Aktif satırı sıfırla
+  for(let i=0;i<UZUNLUK;i++){
+    const el=document.getElementById('k0_'+i);
+    if(el){el.textContent='';el.className='kare';el.style.background='';}
+  }
+}
 
 function jokerBarGuncelle() {
   const el = document.getElementById('jokerPuanNo');
