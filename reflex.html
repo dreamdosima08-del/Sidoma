@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Artvin Reflex Challenge | artvinrehber.com</title>
-<meta name="description" content="Artvin Reflex Challenge — 20 saniyede reflekslerini test et! Artvin kelimelerine dokun, yabancılara dokunma.">
+<title>Artvin Reflex Challenge — Artvin Hız Testi Oyunu | artvinrehber.com</title>
+<meta name="keywords" content="artvin reflex oyunu, artvin hız testi, artvin kelime testi, artvin oyun, artvin challenge, artvin refleks">
+<meta name="description" content="Artvin kelimelerini 20 saniyede tanıyabilir misin? Artvinliyse dokun, değilse bırak! 3 mod, combo sistemi ve rekabet. Artvin'in en hızlı oyunu.">
 <meta name="theme-color" content="#030f06">
 <link rel="canonical" href="https://artvinrehber.com/reflex.html">
 <meta property="og:title" content="Artvin Reflex Challenge ⚡">
@@ -161,6 +162,23 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-
 @keyframes atesPulse{from{color:var(--gold)}to{color:#ffe040}}
 @keyframes skorBump{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
 </style>
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin, Türkiye">
+<meta name="geo.position" content="41.1833;41.8167">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Game",
+  "name": "Artvin Reflex Challenge",
+  "description": "Artvin kelimelerini 20 saniyede tanı. Artvinliyse dokun, değilse bırak. 3 mod, combo sistemi.",
+  "url": "https://artvinrehber.com/reflex.html",
+  "genre": "Reaction Game",
+  "gamePlatform": "Web Browser",
+  "inLanguage": "tr",
+  "about": {"@type":"Place","name":"Artvin","address":{"@type":"PostalAddress","addressRegion":"Artvin","addressCountry":"TR"}},
+  "author": {"@type":"Organization","name":"Artvin Rehberi","url":"https://artvinrehber.com"}
+}
+</script>
 </head>
 <body>
 
@@ -169,6 +187,26 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-
   <div class="nav-title">⚡ REFLEX</div>
   <a class="nav-back" href="/">← Geri</a>
 </nav>
+<!-- SEO AÇIKLAMA BÖLÜMÜ -->
+<div id="giris-aciklama" style="display:none;max-width:480px;margin:.5rem auto 0;padding:0 1rem;">
+  <div style="background:rgba(255,79,79,.04);border:1px solid rgba(255,79,79,.1);border-radius:10px;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-size:.78rem;color:rgba(226,237,229,.5);line-height:1.7;">
+    <strong style="color:rgba(226,237,229,.75)">Artvin Reflex Challenge</strong> — Ekranda beliren kelime Artvin ile ilgiliyse dokun, değilse bırak!
+    Kolay, Normal ve Artvinli olmak üzere 3 mod. Combo yaptıkça hız artar, gerilim tırmanır.
+    Artvin ilçeleri, yaylaları, yemekleri ve kültüründen 115+ kelime.
+    <span style="display:inline-flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap;">
+      <a href="/wordle.html" style="color:#ff6b6b;text-decoration:none;">🔤 Kelime Oyunu</a>
+      <a href="/quiz.html" style="color:#ff6b6b;text-decoration:none;">🏔️ Quiz</a>
+      <a href="/kelime-avi.html" style="color:#ff6b6b;text-decoration:none;">🔍 Kelime Avı</a>
+    </span>
+  </div>
+</div>
+<script>
+  // Oyun başlamadan SEO bölümünü göster
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('giris-aciklama');
+    if(el) el.style.display = 'block';
+  });
+</script>
 
 <!-- GİRİŞ -->
 <div class="screen aktif" id="giris">
