@@ -165,7 +165,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-
     <div style="font-size:2rem;margin-bottom:.5rem">🏔️</div>
     <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;color:#fff;margin-bottom:.4rem">HOŞ GELDİN!</div>
     <div style="font-size:.82rem;color:var(--dim);margin-bottom:1.25rem;line-height:1.6">Sıralamada görünmek için<br>bir kullanıcı adı gir.</div>
-    <input id="kullaniciInput" type="text" maxlength="16" placeholder="Kullanıcı adın..."
+    <input id="kullaniciInput" type="text" maxlength="16" placeholder="Kullanıcı adınız..."
       style="width:100%;padding:.7rem 1rem;border-radius:8px;border:1.5px solid var(--border);
       background:var(--bg2);color:#fff;font-family:'Nunito',sans-serif;font-size:1rem;
       font-weight:700;outline:none;text-align:center;margin-bottom:.4rem"
@@ -178,7 +178,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-
       font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.12em;cursor:pointer">
       BAŞLA →
     </button>
-    <div style="margin-top:.75rem;font-size:.65rem;color:var(--dim2)">İsmin herkese görünür olacak</div>
+    <div style="margin-top:.75rem;font-size:.65rem;color:var(--dim2)">Kullanıcı adınız sıralama tablosunda herkese görünür.</div>
   </div>
 </div>
 
@@ -200,7 +200,7 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-
   <div class="k-rozet">🏔️ Artvin Reflex Challenge</div>
   <div class="k-h1">ADİNİ<br><span>GİR</span></div>
   <div class="k-sub">Sıralamaya girmek için bir kullanıcı adı seç.</div>
-  <input class="k-input" id="kInput" type="text" maxlength="16" placeholder="Kullanıcı adın..." autocomplete="off" autocorrect="off" spellcheck="false">
+  <input class="k-input" id="kInput" type="text" maxlength="16" placeholder="Kullanıcı adınız..." autocomplete="off" autocorrect="off" spellcheck="false">
   <div class="k-hata" id="kHata"></div>
   <button class="btn-giris" onclick="kullaniciGiris()">DEVAM ET →</button>
   <button class="btn-tablo-link" onclick="tabloAc()">🏆 Skor Tablosuna Bak</button>
@@ -564,7 +564,8 @@ function karistir(a){return[...a].sort(()=>Math.random()-.5);}
 function kullaniciGiris(){
   const v=document.getElementById('kInput').value.trim();
   const h=document.getElementById('kHata');
-  if(!v){h.textContent='❌ Bir kullanıcı adı gir.';return;}
+  if(!v){h.textContent='❌ Sıralamada yer almak için
+bir kullanıcı adı belirleyin..';return;}
   if(v.length<2){h.textContent='❌ En az 2 karakter olmalı.';return;}
   if(/[<>{}[\]\/\\]/.test(v)){h.textContent='❌ Geçersiz karakter.';return;}
   kulAdi=v;h.textContent='';
