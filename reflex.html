@@ -564,8 +564,7 @@ function karistir(a){return[...a].sort(()=>Math.random()-.5);}
 function kullaniciGiris(){
   const v=document.getElementById('kInput').value.trim();
   const h=document.getElementById('kHata');
-  if(!v){h.textContent='❌ Sıralamada yer almak için
-bir kullanıcı adı belirleyin..';return;}
+  if(!v){h.textContent='Lütfen bir kullanıcı adı giriniz.';return;}
   if(v.length<2){h.textContent='❌ En az 2 karakter olmalı.';return;}
   if(/[<>{}[\]\/\\]/.test(v)){h.textContent='❌ Geçersiz karakter.';return;}
   kulAdi=v;h.textContent='';
