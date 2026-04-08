@@ -551,6 +551,7 @@
             <h2 style="color:#1a341a; text-align:center; margin-bottom:20px;">🏆 Festival Bitti</h2>
 
             <p id="finalMessage" style="font-size:1.6rem; font-weight:bold; text-align:center;"></p>
+            <p style="text-align:center;font-size:1.3rem;color:#1a341a;margin-top:10px"><strong id="finalScore"></strong></p>
 
             <div class="leaderboard">
 
@@ -1035,3 +1036,86 @@
                 <div class="options">
 
                     <div class="option-btn" id="hamleA">?
+                    <div class="option-btn" id="hamleB">?</div>
+
+                </div>
+
+            `;
+
+            let tur = Math.floor(Math.random()*3);
+            let hamleA, hamleB;
+
+            if(tur === 0) {
+                hamleA = { text: '⚡ Hızlı Hamle', puan: 15, kond: -2, moral: 1 };
+                hamleB = { text: '💪 Güç Hamlesi', puan: 20, kond: -3, moral: -1 };
+            } else if(tur === 1) {
+                hamleA = { text: '🔄 Savuştur', puan: 10, kond: -1, moral: 2 };
+                hamleB = { text: '🎯 Rakibi Sür', puan: 18, kond: -2, moral: 0 };
+            } else {
+                hamleA = { text: '🛡️ Savun', puan: 8, kond: 0, moral: 1 };
+                hamleB = { text: '🐂 Karşı Hücum', puan: 22, kond: -3, moral: 2 };
+            }
+
+            document.getElementById('hamleA').textContent = hamleA.text;
+            document.getElementById('hamleB').textContent = hamleB.text;
+
+            document.getElementById('hamleA').onclick = () => resolveWrestle(hamleA);
+            document.getElementById('hamleB').onclick = () => resolveWrestle(hamleB);
+        }
+
+        function resolveWrestle(hamle) {
+            let basari = gameState.guc + gameState.kondisyon + gameState.moral + Math.floor(Math.random()*5);
+            let rakipGuc = 10 + Math.floor(Math.random()*10);
+            let kazandi = basari > rakipGuc;
+            let puan = kazandi ? hamle.puan : Math.floor(hamle.puan * 0.3);
+            gameState.puan += puan;
+            gameState.kondisyon = Math.max(1, gameState.kondisyon + hamle.kond);
+            gameState.moral = Math.max(1, Math.min(15, gameState.moral + hamle.moral));
+            updateStatUI();
+            gameState.guresKategorisiIndex++;
+
+            wrestleContainer.innerHTML = `
+                <div class="event-title">${kazandi ? '🏆 KAZANDI!' : '😔 Yenildi'}</div>
+                <div class="event-desc">${gameState.bullName} ${kazandi ? 'rakibini meydan dışına sürdü!' : 'bu sefer yenildi ama mücadele etti!'}<br>+${puan} puan</div>
+                <div class="options">
+                    <div class="option-btn" id="devamBtn">➡️ Devam</div>
+                </div>
+            `;
+            document.getElementById('devamBtn').onclick = () => nextWrestleRound();
+        }
+
+        function finishGame() {
+            let toplam = gameState.puan;
+            startMenu.classList.add('hidden');
+            gameScreen.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+
+            let mesaj;
+            if(toplam >= 100) mesaj = '🏆 Kafkasör Şampiyonu! ' + gameState.bullName + ' efsane oldu!';
+            else if(toplam >= 60) mesaj = '🥈 Güzel bir performans! ' + gameState.bullName + ' adını duyurdu.';
+            else mesaj = '💪 ' + gameState.bullName + ' deneyim kazandı. Seneye daha güçlü gelecek!';
+
+            finalMessage.textContent = mesaj;
+            document.getElementById('finalScore').textContent = toplam + ' puan';
+            addScore(gameState.username, toplam);
+        }
+
+        startBtn.addEventListener('click', startGame);
+        restartBtn.addEventListener('click', () => {
+            endScreen.classList.add('hidden');
+            startMenu.classList.remove('hidden');
+        });
+        showScoresBtn.addEventListener('click', () => {
+            renderLeaderboard();
+            scoreList.parentElement.classList.toggle('hidden');
+        });
+
+        loadLeaderboard();
+        renderLeaderboard();
+
+    })();
+
+</script>
+
+</body>
+</html>
