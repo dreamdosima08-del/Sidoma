@@ -332,6 +332,11 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+function kapat(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('on');
+}
+
 function kullaniciKaydet() {
   const input = document.getElementById('kullaniciInput');
   const hata  = document.getElementById('kullaniciHata');
