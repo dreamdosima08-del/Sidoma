@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>🐂 Kafkasör Baş Boğası · Artvin</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            background: linear-gradient(165deg, #1a3b2e 0%, #2a5e4a 40%, #3a7a5a 100%);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 16px;
+
+        }
+
+        .game-wrapper {
+
+            max-width: 750px;
+
+            width: 100%;
+
+            background: #2b5e42;
+
+            border-radius: 48px 48px 32px 32px;
+
+            box-shadow: 0 20px 0 #143023, 0 30px 40px rgba(0,0,0,0.4);
+
+            padding: 24px 20px 30px;
+
+            border: 2px solid #b89b6e;
+
+        }
+
+        h1 {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            color: #f5e7d3;
+
+            text-shadow: 4px 4px 0 #1e3a28;
+
+            font-size: 2rem;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+
+        }
+
+        h1 span {
+
+            background: #a77b4b;
+
+            padding: 5px 18px;
+
+            border-radius: 60px;
+
+            font-size: 0.9rem;
+
+            color: #1d341d;
+
+            text-shadow: none;
+
+            box-shadow: inset 0 -2px 0 #5e3e2e;
+
+        }
+
+        .screen {
+
+            background: #6a9e6a;
+
+            padding: 20px 18px;
+
+            border-radius: 36px 36px 28px 28px;
+
+            box-shadow: inset 0 0 0 4px #4a7e4a, inset 0 10px 10px rgba(0,0,0,0.1);
+
+            border-bottom: 8px solid #2d5a2d;
+
+            margin-bottom: 15px;
+
+        }
+
+        .menu-area {
+
+            background: #a7d0a0;
+
+            border-radius: 24px;
+
+            padding: 25px 20px;
+
+            box-shadow: inset 0 2px 8px #5c8a5c, 0 8px 0 #3d6e3d;
+
+            border-bottom: 3px solid #e2c294;
+
+        }
+
+        .input-group {
+
+            margin-bottom: 22px;
+
+        }
+
+        .input-group label {
+
+            display: block;
+
+            font-weight: 700;
+
+            color: #1a3a1a;
+
+            margin-bottom: 6px;
+
+            font-size: 1.1rem;
+
+            text-shadow: 1px 1px 0 #c0d8b0;
+
+        }
+
+        .input-group input, .input-group select {
+
+            width: 100%;
+
+            padding: 16px 18px;
+
+            background: #fcf7e8;
+
+            border: none;
+
+            border-radius: 40px;
+
+            font-size: 1.1rem;
+
+            font-weight: bold;
+
+            color: #1e3a1e;
+
+            box-shadow: inset 0 4px 6px rgba(0,0,0,0.1), 0 4px 0 #7a9960;
+
+            outline: 2px solid #b68b54;
+
+        }
+
+        .stat-preview {
+
+            display: flex;
+
+            justify-content: space-around;
+
+            background: #2b552b;
+
+            padding: 16px 10px;
+
+            border-radius: 40px;
+
+            margin: 20px 0 15px;
+
+            color: #ffefcf;
+
+            font-weight: bold;
+
+            box-shadow: inset 0 3px 6px #163016, 0 5px 0 #1e3f1e;
+
+        }
+
+        .stat-item {
+
+            text-align: center;
+
+            font-size: 0.9rem;
+
+        }
+
+        .btn {
+
+            background: #daa44b;
+
+            border: none;
+
+            font-weight: 800;
+
+            padding: 18px 25px;
+
+            border-radius: 50px;
+
+            font-size: 1.4rem;
+
+            box-shadow: 0 7px 0 #7b5525, 0 4px 10px black;
+
+            color: #1e361e;
+
+            cursor: pointer;
+
+            width: 100%;
+
+            transition: 0.06s;
+
+            border: 1px solid #ffe3a3;
+
+            letter-spacing: 2px;
+
+            margin-top: 5px;
+
+        }
+
+        .btn:active {
+
+            transform: translateY(5px);
+
+            box-shadow: 0 2px 0 #7b5525, 0 4px 8px black;
+
+        }
+
+        .btn-small {
+
+            font-size: 1.1rem;
+
+            padding: 12px 16px;
+
+            width: auto;
+
+            min-width: 120px;
+
+        }
+
+        .event-card {
+
+            background: #efe0c6;
+
+            border-radius: 40px;
+
+            padding: 25px 22px;
+
+            box-shadow: inset 0 0 0 3px #c8a87c, 0 10px 0 #6d8f5e;
+
+            margin-bottom: 20px;
+
+        }
+
+        .event-title {
+
+            font-size: 1.6rem;
+
+            font-weight: 800;
+
+            color: #1e3c1e;
+
+            margin-bottom: 20px;
+
+            line-height: 1.3;
+
+        }
+
+        .event-desc {
+
+            font-size: 1.2rem;
+
+            margin-bottom: 30px;
+
+            color: #1f351f;
+
+            font-weight: 600;
+
+        }
+
+        .options {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+
+        }
+
+        .option-btn {
+
+            background: #2f6642;
+
+            padding: 18px 18px;
+
+            border-radius: 30px;
+
+            color: #f9efdb;
+
+            font-weight: bold;
+
+            font-size: 1.2rem;
+
+            box-shadow: 0 5px 0 #153d1e, 0 2px 8px black;
+
+            border: 1px solid #bbaa80;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: 0.05s;
+
+        }
+
+        .option-btn:active {
+
+            transform: translateY(4px);
+
+            box-shadow: 0 1px 0 #153d1e, 0 2px 8px black;
+
+        }
+
+        .leaderboard {
+
+            background: #1e412e;
+
+            border-radius: 24px;
+
+            padding: 18px 16px;
+
+            box-shadow: inset 0 2px 6px #6aa56a, 0 8px 0 #0f2618;
+
+            color: #f3e5c9;
+
+            margin-top: 10px;
+
+        }
+
+        .leaderboard h3 {
+
+            font-size: 1.6rem;
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .leaderboard ol {
+
+            padding-left: 30px;
+
+            font-size: 1.1rem;
+
+            font-weight: 600;
+
+        }
+
+        .flex-row {
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+        .stat-bar {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            margin: 10px 0;
+
+        }
+
+        .badge {
+
+            background: #1b351b;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            color: #ffde9e;
+
+            font-weight: bold;
+
+            font-size: 0.9rem;
+
+        }
+
+        .hidden { display: none !important; }
+
+        .text-center { text-align: center; }
+
+        .mt-3 { margin-top: 15px; }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="game-wrapper">
+
+    <h1>🐂 KAFKASÖR <span>BAŞ BOĞA</span></h1>
+
+    <div class="screen">
+
+        <!-- BAŞLANGIÇ MENÜSÜ -->
+
+        <div id="startMenu" class="menu-area">
+
+            <div class="input-group">
+
+                <label>👤 Kullanıcı Adın</label>
+
+                <input type="text" id="usernameInput" placeholder="Örn: Borçkalı Recep" maxlength="20" value="Artvinli">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>🐃 Boğanın Adı</label>
+
+                <input type="text" id="bullNameInput" placeholder="Örn: Karabela" maxlength="16" value="Bozkurt">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>🧬 Boğa Irkı</label>
+
+                <select id="breedSelect">
+
+                    <option value="Boz Irk">🐂 Boz Irk (Dengeli)</option>
+
+                    <option value="Yerli Kara">⚫ Yerli Kara (Güçlü)</option>
+
+                    <option value="Kafkas">🏔️ Kafkas (Dayanıklı)</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>🎨 Renk</label>
+
+                <select id="colorSelect">
+
+                    <option value="Kara">⚫ Kara</option>
+
+                    <option value="Kahverengi">🟤 Kahverengi</option>
+
+                    <option value="Boz">🌫️ Boz</option>
+
+                    <option value="Alaca">🟤⚪ Alaca</option>
+
+                </select>
+
+            </div>
+
+            <div id="statPreview" class="stat-preview">
+
+                <div class="stat-item">💪 Güç: <span id="previewStr">7</span></div>
+
+                <div class="stat-item">🏃 Kondisyon: <span id="previewSta">7</span></div>
+
+                <div class="stat-item">❤️ Moral: <span id="previewMor">6</span></div>
+
+                <div class="stat-item">⚖️ Ağırlık: <span id="previewWei">7</span></div>
+
+            </div>
+
+            <button class="btn" id="startGameBtn">🏁 YAYLAYA ÇIK</button>
+
+        </div>
+
+
+
+        <!-- OYUN EKRANI -->
+
+        <div id="gameScreen" class="menu-area hidden">
+
+            <div class="stat-bar">
+
+                <div class="badge">💪 <span id="statPower">0</span></div>
+
+                <div class="badge">🏃 <span id="statStamina">0</span></div>
+
+                <div class="badge">❤️ <span id="statMoral">0</span></div>
+
+                <div class="badge">⚖️ <span id="statWeight">0</span></div>
+
+            </div>
+
+            <div id="eventContainer" class="event-card">
+
+                <!-- Dinamik olay kartı -->
+
+            </div>
+
+            <div id="wrestleContainer" class="event-card hidden">
+
+                <!-- güreş ekranı -->
+
+            </div>
+
+        </div>
+
+
+
+        <!-- OYUN SONU -->
+
+        <div id="endScreen" class="menu-area hidden">
+
+            <h2 style="color:#1a341a; text-align:center; margin-bottom:20px;">🏆 Festival Bitti</h2>
+
+            <p id="finalMessage" style="font-size:1.6rem; font-weight:bold; text-align:center;"></p>
+
+            <div class="leaderboard">
+
+                <h3>📋 SKOR TABLOSU</h3>
+
+                <ol id="scoreList"></ol>
+
+            </div>
+
+            <button class="btn mt-3" id="restartBtn">🔄 YENİDEN OYNA</button>
+
+        </div>
+
+    </div>
+
+    <div class="flex-row">
+
+        <button id="showScoresFromMenu" class="btn-small btn">🏅 Sıralama</button>
+
+        <span style="color:#e9dccd;">🐂 Artvin Yaylaları</span>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    (function(){
+
+        "use strict";
+
+
+
+        // ---------- OYUN VERİLERİ ----------
+
+        const YAYLALAR = ["Bilbilan Yaylası", "Sahara Yaylası", "Karcal Yaylası"];
+
+        const YEMLER = ["Yonca", "Arpa", "Çayır Otu"];
+
+        const RAKIP_BOGALAR = ["Karabela", "Küçük Ağa", "Polat", "Aslan"];
+
+        const KATEGORILER = ["Deste", "Ayak", "Küçük Orta", "Büyük Orta", "Başaltı", "Baş"];
+
+        const HAMLELER = ["Boynuz takma", "Kaldırma", "Yan vuruş", "Sürme", "Boyun atma"];
+
+
+
+        const IRK_STATS = {
+
+            "Boz Irk": { guc:7, kond:7, moral:6, agirlik:7 },
+
+            "Yerli Kara": { guc:9, kond:6, moral:5, agirlik:8 },
+
+            "Kafkas": { guc:6, kond:9, moral:7, agirlik:6 }
+
+        };
+
+
+
+        let gameState = {
+
+            username: '', bullName: '', breed: 'Boz Irk', color: 'Kara',
+
+            guc: 0, kondisyon: 0, moral: 0, agirlik: 0,
+
+            hazirlikAdimi: 0, toplamHazirlik: 6,
+
+            guresKategorisiIndex: 0, puan: 0,
+
+            kategori: '', rakipAdi: ''
+
+        };
+
+
+
+        let leaderboard = [];
+
+
+
+        // DOM
+
+        const startMenu = document.getElementById('startMenu');
+
+        const gameScreen = document.getElementById('gameScreen');
+
+        const endScreen = document.getElementById('endScreen');
+
+        const eventContainer = document.getElementById('eventContainer');
+
+        const wrestleContainer = document.getElementById('wrestleContainer');
+
+        const usernameInput = document.getElementById('usernameInput');
+
+        const bullNameInput = document.getElementById('bullNameInput');
+
+        const breedSelect = document.getElementById('breedSelect');
+
+        const startBtn = document.getElementById('startGameBtn');
+
+        const restartBtn = document.getElementById('restartBtn');
+
+        const showScoresBtn = document.getElementById('showScoresFromMenu');
+
+        const scoreList = document.getElementById('scoreList');
+
+        const finalMessage = document.getElementById('finalMessage');
+
+
+
+        const previewStr = document.getElementById('previewStr');
+
+        const previewSta = document.getElementById('previewSta');
+
+        const previewMor = document.getElementById('previewMor');
+
+        const previewWei = document.getElementById('previewWei');
+
+
+
+        const statPower = document.getElementById('statPower');
+
+        const statStamina = document.getElementById('statStamina');
+
+        const statMoral = document.getElementById('statMoral');
+
+        const statWeight = document.getElementById('statWeight');
+
+
+
+        function updatePreviewStats() {
+
+            let irk = breedSelect.value;
+
+            let base = IRK_STATS[irk] || IRK_STATS["Boz Irk"];
+
+            previewStr.textContent = base.guc;
+
+            previewSta.textContent = base.kond;
+
+            previewMor.textContent = base.moral;
+
+            previewWei.textContent = base.agirlik;
+
+        }
+
+        breedSelect.addEventListener('change', updatePreviewStats);
+
+        updatePreviewStats();
+
+
+
+        function updateStatUI() {
+
+            statPower.textContent = gameState.guc;
+
+            statStamina.textContent = gameState.kondisyon;
+
+            statMoral.textContent = gameState.moral;
+
+            statWeight.textContent = gameState.agirlik;
+
+        }
+
+
+
+        function loadLeaderboard() {
+
+            let saved = localStorage.getItem('artvin_boga');
+
+            if(saved) {
+
+                try { leaderboard = JSON.parse(saved); } catch(e){ leaderboard = []; }
+
+            }
+
+            if(!leaderboard.length) {
+
+                leaderboard = [
+
+                    { username: 'Şavşatlı Ali', score: 85 },
+
+                    { username: 'Macahelli Dede', score: 72 },
+
+                    { username: 'Borçkalı Hüseyin', score: 60 }
+
+                ];
+
+                saveLeaderboard();
+
+            }
+
+        }
+
+        function saveLeaderboard() {
+
+            localStorage.setItem('artvin_boga', JSON.stringify(leaderboard));
+
+        }
+
+        function renderLeaderboard() {
+
+            let sorted = [...leaderboard].sort((a,b) => b.score - a.score);
+
+            scoreList.innerHTML = '';
+
+            sorted.slice(0,5).forEach(entry => {
+
+                let li = document.createElement('li');
+
+                li.textContent = `${entry.username} — ${entry.score} puan`;
+
+                scoreList.appendChild(li);
+
+            });
+
+        }
+
+        function addScore(username, score) {
+
+            leaderboard.push({ username, score });
+
+            leaderboard = leaderboard.sort((a,b) => b.score - a.score).slice(0,10);
+
+            saveLeaderboard();
+
+            renderLeaderboard();
+
+        }
+
+
+
+        function startGame() {
+
+            let username = usernameInput.value.trim() || 'Artvinli Yiğit';
+
+            let bullName = bullNameInput.value.trim() || 'Bozkurt';
+
+            gameState.username = username;
+
+            gameState.bullName = bullName;
+
+            gameState.breed = breedSelect.value;
+
+            let base = IRK_STATS[gameState.breed];
+
+            gameState.guc = base.guc;
+
+            gameState.kondisyon = base.kond;
+
+            gameState.moral = base.moral;
+
+            gameState.agirlik = base.agirlik;
+
+            gameState.hazirlikAdimi = 0;
+
+            gameState.guresKategorisiIndex = 0;
+
+            gameState.puan = 0;
+
+
+
+            startMenu.classList.add('hidden');
+
+            gameScreen.classList.remove('hidden');
+
+            endScreen.classList.add('hidden');
+
+            updateStatUI();
+
+            nextEvent();
+
+        }
+
+
+
+        function getRandomEvent() {
+
+            let r = Math.floor(Math.random() * 5);
+
+            if(r === 0) {
+
+                let yayla = YAYLALAR[Math.floor(Math.random()*YAYLALAR.length)];
+
+                return {
+
+                    title: `🏔️ ${yayla}'da otluyorsun`,
+
+                    desc: `Hava serin, otlar gür. Ne yapalım?`,
+
+                    optA: { text: '🍀 Bol bol otlat', guc:1, kond:-1, moral:1, agirlik:1 },
+
+                    optB: { text: '💪 Rampa çıkart', guc:2, kond:1, moral:-1, agirlik:0 }
+
+                };
+
+            } else if(r===1) {
+
+                let yem = YEMLER[Math.floor(Math.random()*YEMLER.length)];
+
+                return {
+
+                    title: `🌾 Yem zamanı`,
+
+                    desc: `${yem} mi verelim, dinlendirelim mi?`,
+
+                    optA: { text: `✅ ${yem} ver`, guc:1, kond:1, moral:0, agirlik:1 },
+
+                    optB: { text: `😴 Dinlendir`, guc:0, kond:-1, moral:2, agirlik:0 }
+
+                };
+
+            } else if(r===2) {
+
+                return {
+
+                    title: `🏥 Boğa biraz halsiz`,
+
+                    desc: `Tabanca mı oldu ne?`,
+
+                    optA: { text: `🔮 Ocağa okut`, guc:0, kond:0, moral:3, agirlik:-1 },
+
+                    optB: { text: `🩺 Kırıkçı'ya götür`, guc:1, kond:2, moral:0, agirlik:0 }
+
+                };
+
+            } else if(r===3) {
+
+                return {
+
+                    title: `🏋️ Antrenman`,
+
+                    desc: `Tulumla güreştirelim mi, koşturalım mı?`,
+
+                    optA: { text: `🎵 Tulumla güreştir`, guc:3, kond:-1, moral:2, agirlik:0 },
+
+                    optB: { text: `🏃 Koştur`, guc:1, kond:3, moral:-1, agirlik:-1 }
+
+                };
+
+            } else {
+
+                return {
+
+                    title: `😤 Boğa keyifsiz`,
+
+                    desc: `Ne yapsak coşar?`,
+
+                    optA: { text: `📣 Bağırt`, guc:1, kond:0, moral:3, agirlik:0 },
+
+                    optB: { text: `🌿 Serbest bırak`, guc:-1, kond:1, moral:1, agirlik:1 }
+
+                };
+
+            }
+
+        }
+
+
+
+        function applyStatChanges(changes) {
+
+            gameState.guc = Math.max(1, Math.min(15, gameState.guc + (changes.guc||0)));
+
+            gameState.kondisyon = Math.max(1, Math.min(15, gameState.kondisyon + (changes.kond||0)));
+
+            gameState.moral = Math.max(1, Math.min(15, gameState.moral + (changes.moral||0)));
+
+            gameState.agirlik = Math.max(1, Math.min(15, gameState.agirlik + (changes.agirlik||0)));
+
+            updateStatUI();
+
+        }
+
+
+
+        function nextEvent() {
+
+            if(gameState.hazirlikAdimi < gameState.toplamHazirlik) {
+
+                let evt = getRandomEvent();
+
+                gameState.hazirlikAdimi++;
+
+                renderEventCard(evt);
+
+            } else {
+
+                startWrestling();
+
+            }
+
+        }
+
+
+
+        function renderEventCard(evt) {
+
+            wrestleContainer.classList.add('hidden');
+
+            eventContainer.classList.remove('hidden');
+
+            eventContainer.innerHTML = `
+
+                <div class="event-title">${evt.title}</div>
+
+                <div class="event-desc">${evt.desc}</div>
+
+                <div class="options">
+
+                    <div class="option-btn" id="optA">🐂 ${evt.optA.text}</div>
+
+                    <div class="option-btn" id="optB">🌲 ${evt.optB.text}</div>
+
+                </div>
+
+            `;
+
+            document.getElementById('optA').addEventListener('click', ()=>{
+
+                applyStatChanges(evt.optA);
+
+                nextEvent();
+
+            });
+
+            document.getElementById('optB').addEventListener('click', ()=>{
+
+                applyStatChanges(evt.optB);
+
+                nextEvent();
+
+            });
+
+        }
+
+
+
+        function startWrestling() {
+
+            gameState.guresKategorisiIndex = 0;
+
+            nextWrestleRound();
+
+        }
+
+
+
+        function nextWrestleRound() {
+
+            let idx = gameState.guresKategorisiIndex;
+
+            if(idx >= KATEGORILER.length) {
+
+                finishGame();
+
+                return;
+
+            }
+
+            let kategori = KATEGORILER[idx];
+
+            let rakip = RAKIP_BOGALAR[Math.floor(Math.random()*RAKIP_BOGALAR.length)];
+
+            gameState.kategori = kategori;
+
+            gameState.rakipAdi = rakip;
+
+            
+
+            wrestleContainer.classList.remove('hidden');
+
+            eventContainer.classList.add('hidden');
+
+            wrestleContainer.innerHTML = `
+
+                <div class="event-title">🏟️ ${kategori}</div>
+
+                <div class="event-desc">Rakip: ${rakip}<br>🐂 ${gameState.bullName} karşı karşıya!</div>
+
+                <div class="options">
+
+                    <div class="option-btn" id="hamleA">?
