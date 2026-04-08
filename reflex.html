@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Artvin Reflex Challenge — Artvin Hız Testi Oyunu | artvinrehber.com</title>
 <meta name="keywords" content="artvin reflex oyunu, artvin hız testi, artvin kelime testi, artvin oyun, artvin challenge, artvin refleks">
-<meta name="description" content="Artvin kelimelerini 20 saniyede tanıyabilir misin? Artvinliyse dokun, değilse bırak! 3 mod, combo sistemi ve rekabet. Artvin'in en hızlı oyunu.">
+<meta name="description" content="Artvin kelimelerini 20 saniyede tanıyabilir misin? Artvinliyse dokun, değilse bırak! 3 mod, combo sistemi ve sıralama tablosu.">
 <meta name="theme-color" content="#030f06">
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin, Türkiye">
 <link rel="canonical" href="https://artvinrehber.com/reflex.html">
 <meta property="og:title" content="Artvin Reflex Challenge ⚡">
 <meta property="og:description" content="20 saniyede reflekslerini test et! Artvin kelimelerine dokun, yabancılara dokunma.">
@@ -14,72 +16,63 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ══ TEMEL ══ */
-:root{
-  --bg:#030f06;--bg2:#071a0c;--card:#0f2918;
-  --vivid:#3ddb8a;--gold:#f0c040;--red:#ff4f4f;--blue:#5ab4ff;--purple:#c896ff;
-  --off:#e2ede5;--dim:rgba(226,237,229,.35);--border:rgba(61,219,138,.15);
-}
+:root{--bg:#030f06;--bg2:#071a0c;--card:#0f2918;--vivid:#3ddb8a;--gold:#f0c040;--red:#ff4f4f;--blue:#5ab4ff;--off:#e2ede5;--dim:rgba(226,237,229,.35);--border:rgba(61,219,138,.15);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-select:none;display:flex;flex-direction:column;}
-
-/* ══ NAV ══ */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:rgba(3,15,6,.96);backdrop-filter:blur(8px);z-index:10;}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:.78rem;letter-spacing:.14em;color:var(--vivid);text-decoration:none;}
 .nav-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;color:#fff;}
 .nav-back{font-size:.62rem;color:var(--dim);border:1px solid rgba(255,255,255,.12);padding:.25rem .65rem;border-radius:4px;text-decoration:none;transition:.15s;}
 .nav-back:hover{color:var(--vivid);border-color:var(--vivid);}
-
-/* ══ EKRANLAR ══ */
 .screen{flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;padding:1.25rem 1rem;overflow:hidden;position:relative;}
 .screen.aktif{display:flex;}
 .screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 20%,rgba(61,219,138,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 80% 80%,rgba(61,219,138,.05) 0%,transparent 60%);pointer-events:none;}
-
-/* ══ GİRİŞ ══ */
+/* KULLANICI */
+#kullanici{gap:1.1rem;text-align:center;}
+.k-rozet{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);border-radius:50px;padding:.32rem .9rem;font-size:.58rem;font-weight:800;letter-spacing:.14em;color:var(--vivid);text-transform:uppercase;}
+.k-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,9vw,3.4rem);letter-spacing:.1em;line-height:1;color:#fff;}
+.k-h1 span{background:linear-gradient(90deg,var(--vivid),#7cffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.k-sub{font-size:.85rem;color:var(--dim);line-height:1.65;max-width:320px;}
+.k-input{width:100%;max-width:340px;padding:.85rem 1rem;border-radius:12px;border:2px solid var(--border);background:rgba(255,255,255,.05);color:#fff;font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:800;outline:none;text-align:center;transition:.2s;}
+.k-input:focus{border-color:var(--vivid);background:rgba(61,219,138,.06);}
+.k-input::placeholder{color:var(--dim);font-weight:700;}
+.k-hata{font-size:.7rem;color:var(--red);min-height:1rem;max-width:340px;width:100%;}
+.btn-giris{width:100%;max-width:340px;padding:.9rem;border-radius:12px;border:none;background:linear-gradient(135deg,var(--vivid),#28c475);color:#051a0a;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.14em;cursor:pointer;transition:.15s;box-shadow:0 6px 24px rgba(61,219,138,.3);}
+.btn-giris:hover{transform:translateY(-2px);}
+.btn-tablo-link{font-size:.75rem;font-weight:800;color:var(--dim);background:none;border:1px solid var(--border);padding:.4rem .9rem;border-radius:6px;cursor:pointer;transition:.15s;}
+.btn-tablo-link:hover{color:var(--vivid);border-color:var(--vivid);}
+/* GİRİŞ */
 #giris{gap:1rem;text-align:center;}
-.giris-rozet{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);border-radius:50px;padding:.32rem .9rem;font-size:.58rem;font-weight:800;letter-spacing:.14em;color:var(--vivid);text-transform:uppercase;}
-.giris-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,9vw,3.4rem);letter-spacing:.1em;line-height:1;color:#fff;}
-.giris-h1 span{background:linear-gradient(90deg,var(--vivid),#7cffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.giris-sub{font-size:.85rem;color:var(--dim);line-height:1.65;max-width:320px;}
-
-/* Kural grid */
+.hos-geldin{background:rgba(61,219,138,.08);border:1px solid rgba(61,219,138,.2);border-radius:10px;padding:.55rem 1.1rem;font-size:.88rem;font-weight:800;color:var(--vivid);max-width:340px;width:100%;}
+.giris-sub{font-size:.82rem;color:var(--dim);line-height:1.6;max-width:320px;}
 .kural-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;width:100%;max-width:360px;}
 .kural-kart{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:.8rem .65rem;text-align:center;}
 .kk-ikon{font-size:1.5rem;margin-bottom:.25rem;}
 .kk-baslik{font-family:'Bebas Neue',sans-serif;font-size:.72rem;letter-spacing:.1em;color:#fff;margin-bottom:.15rem;}
 .kk-alt{font-size:.62rem;color:var(--dim);line-height:1.4;}
-
-/* Mod seçici */
 .mod-satir{display:flex;gap:.5rem;width:100%;max-width:360px;}
 .mod-btn{flex:1;padding:.6rem .4rem;border-radius:10px;border:2px solid var(--border);background:rgba(255,255,255,.03);font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;cursor:pointer;transition:.15s;color:var(--dim);text-align:center;line-height:1.4;}
-.mod-btn:hover{border-color:rgba(61,219,138,.4);color:var(--vivid);}
 .mod-btn.secili.m0{background:rgba(61,219,138,.12);border-color:rgba(61,219,138,.5);color:var(--vivid);}
 .mod-btn.secili.m1{background:rgba(240,192,64,.1);border-color:rgba(240,192,64,.4);color:var(--gold);}
 .mod-btn.secili.m2{background:rgba(255,79,79,.1);border-color:rgba(255,79,79,.4);color:var(--red);}
 .mod-ikon{font-size:1.1rem;display:block;}
 .mod-ad{display:block;font-size:.75rem;}
 .mod-sure{display:block;font-size:.58rem;margin-top:.1rem;opacity:.7;}
-
 .btn-baslat{width:100%;max-width:360px;padding:.9rem;border-radius:13px;border:none;background:linear-gradient(135deg,var(--vivid),#28c475);color:#051a0a;font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.14em;cursor:pointer;transition:.15s;box-shadow:0 6px 28px rgba(61,219,138,.35);}
-.btn-baslat:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(61,219,138,.45);}
-.btn-baslat:active{transform:translateY(0);}
-
-/* ══ GERİ SAYIM ══ */
+.btn-baslat:hover{transform:translateY(-2px);}
+/* GERİ SAYIM */
 #geriSayim{gap:.5rem;}
 .gs-sayi{font-family:'Bebas Neue',sans-serif;font-size:8rem;color:var(--vivid);animation:puls 1s ease infinite;line-height:1;}
 .gs-metin{font-size:1rem;color:var(--dim);font-weight:700;letter-spacing:.06em;}
 @keyframes puls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(.92)}}
-
-/* ══ OYUN EKRANI ══ */
+/* OYUN */
 #oyun{padding:0;justify-content:stretch;}
-
 .oyun-ust{display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:rgba(3,15,6,.92);position:relative;z-index:5;transition:background .5s;}
 .oyun-ust.tehlike{background:rgba(80,5,5,.92)!important;}
 .oyun-ust.ates{background:rgba(40,25,0,.9)!important;}
-
 .ust-blok{text-align:center;}
-.ust-no{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:.06em;display:block;line-height:1;transition:color .3s,transform .2s;}
+.ust-no{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:.06em;display:block;line-height:1;transition:color .3s;}
 .ust-lbl{font-size:.5rem;font-weight:800;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
 .ust-no.skor-renk{color:var(--gold);}
 .ust-no.sure-renk{color:#fff;}
@@ -87,199 +80,184 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-
 .ust-no.combo-renk{color:var(--dim);}
 .ust-no.combo-aktif{color:var(--vivid)!important;}
 .ust-no.combo-ates{color:var(--gold)!important;animation:atesPulse .4s ease infinite alternate;}
-
-/* Süre bar */
 .sure-bar-dis{height:4px;background:rgba(255,255,255,.07);flex-shrink:0;}
 .sure-bar-ic{height:100%;background:var(--vivid);transition:width .15s linear,background .4s;}
-.sure-bar-ic.acil{background:var(--red);}
-.sure-bar-ic.ates{background:var(--gold);}
-
-/* Dokunma alanı */
+.sure-bar-ic.sari{background:var(--gold);}
+.sure-bar-ic.kirmizi{background:var(--red);animation:barPuls .5s ease infinite alternate;}
+@keyframes barPuls{from{opacity:1}to{opacity:.5}}
 .dokunma-alani{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;padding:1rem;transition:background .3s;}
-
-/* Arkaplan combo efekti */
-.dokunma-alani.combo-bg-3{background:rgba(61,219,138,.03);}
-.dokunma-alani.combo-bg-5{background:rgba(61,219,138,.06);}
-.dokunma-alani.combo-bg-10{background:rgba(240,192,64,.06);}
-.dokunma-alani.combo-bg-15{background:rgba(240,192,64,.1);}
-
-/* Flash efektleri */
+.dokunma-alani.cb3{background:rgba(61,219,138,.03);}
+.dokunma-alani.cb5{background:rgba(61,219,138,.06);}
+.dokunma-alani.cb10{background:rgba(240,192,64,.06);}
+.dokunma-alani.cb15{background:rgba(240,192,64,.1);}
 .flash-dogru{position:absolute;inset:0;background:rgba(61,219,138,.22);opacity:0;pointer-events:none;transition:opacity .12s;}
 .flash-yanlis{position:absolute;inset:0;background:rgba(255,79,79,.22);opacity:0;pointer-events:none;transition:opacity .12s;}
 .flash-dogru.on,.flash-yanlis.on{opacity:1;}
-
-/* Kelime */
 .kelime-bolge{display:flex;flex-direction:column;align-items:center;gap:.65rem;position:relative;z-index:2;text-align:center;pointer-events:none;}
-.kelime-ust{font-size:.55rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);height:.9rem;}
 .kelime-metin{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,13vw,5rem);letter-spacing:.08em;color:#fff;line-height:1;transition:opacity .12s,transform .12s;}
 .kelime-metin.gecis{opacity:0;transform:scale(.85);}
-.kelime-ipucu{font-size:.75rem;color:var(--dim);font-style:italic;height:1.1rem;transition:opacity .2s;}
-
-/* Combo mesaj */
+.kelime-ipucu{font-size:.75rem;color:var(--dim);font-style:italic;height:1.1rem;}
 .combo-mesaj{position:absolute;top:1.2rem;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.1em;color:var(--gold);opacity:0;transform:translateY(0);transition:opacity .25s,transform .35s;pointer-events:none;z-index:10;}
 .combo-mesaj.goster{opacity:1;transform:translateY(-12px);}
-
-/* Son 5 sn overlay */
 .son5-overlay{position:absolute;inset:0;background:rgba(100,0,0,.05);opacity:0;transition:opacity .5s;pointer-events:none;}
 .son5-overlay.on{opacity:1;}
-
-/* Talim */
 .dokunma-talim{position:absolute;bottom:1.1rem;display:flex;gap:.45rem;pointer-events:none;}
 .talim-chip{font-size:.62rem;font-weight:800;padding:.3rem .7rem;border-radius:5px;letter-spacing:.05em;}
 .talim-evet{background:rgba(61,219,138,.14);color:var(--vivid);border:1px solid rgba(61,219,138,.28);}
 .talim-hayir{background:rgba(255,255,255,.05);color:var(--dim);border:1px solid rgba(255,255,255,.1);}
-
-/* ══ SONUÇ ══ */
+/* SONUÇ */
 #sonuc{gap:.9rem;text-align:center;}
 .sonuc-emoji{font-size:2.8rem;}
 .sonuc-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,8vw,2.9rem);letter-spacing:.1em;color:#fff;line-height:1;}
 .sonuc-h1 span{color:var(--gold);}
 .sonuc-mesaj{font-size:.85rem;color:var(--dim);line-height:1.6;max-width:310px;}
 .sonuc-mod{font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:4px;border:1px solid var(--border);color:var(--dim);}
-
 .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;width:100%;max-width:360px;}
 .stat-item{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:.8rem .4rem;}
 .stat-no{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.06em;display:block;}
 .stat-lbl{font-size:.52rem;font-weight:800;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
-
 .en-iyi{background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.2);border-radius:9px;padding:.55rem 1.1rem;font-size:.75rem;color:var(--gold);font-weight:800;}
-
+.siram{font-size:.82rem;color:var(--blue);font-weight:800;min-height:1.2rem;}
 .sonuc-butonlar{display:flex;flex-direction:column;gap:.45rem;width:100%;max-width:360px;}
 .btn-tekrar{padding:.85rem;border-radius:12px;border:none;background:linear-gradient(135deg,var(--vivid),#28c475);color:#051a0a;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.12em;cursor:pointer;transition:.15s;box-shadow:0 6px 24px rgba(61,219,138,.3);}
 .btn-tekrar:hover{transform:translateY(-2px);}
-.btn-paylas-wp{padding:.7rem;border-radius:9px;border:none;background:#25D366;color:#fff;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:.15s;}
-.btn-paylas-x{padding:.7rem;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--off);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:.15s;}
-.btn-paylas-x:hover,.btn-paylas-wp:hover{transform:translateY(-1px);}
-.btn-paylasim-row{display:flex;gap:.45rem;}
-.btn-paylasim-row .btn-paylas-wp,.btn-paylasim-row .btn-paylas-x{flex:1;}
-
+.btn-row{display:flex;gap:.45rem;}
+.btn-wp{flex:1;padding:.7rem;border-radius:9px;border:none;background:#25D366;color:#fff;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:.15s;}
+.btn-sec{flex:1;padding:.7rem;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--off);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:.15s;}
+.btn-tablo-s{padding:.7rem;border-radius:9px;border:1px solid rgba(91,179,255,.25);background:rgba(91,179,255,.08);color:var(--blue);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:.15s;}
+/* OVERLAY TABLO */
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(3,10,5,.92);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem;}
+.overlay.on{display:flex;}
+.t-panel{background:var(--card);border:1px solid rgba(61,219,138,.2);border-radius:16px;padding:1.5rem 1.25rem;max-width:400px;width:100%;max-height:80vh;overflow-y:auto;}
+.t-baslik{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;color:#fff;margin-bottom:.3rem;}
+.t-modlar{display:flex;gap:.4rem;margin-bottom:1rem;}
+.t-mod{flex:1;padding:.35rem;border-radius:6px;border:1px solid var(--border);background:none;font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;color:var(--dim);cursor:pointer;transition:.15s;}
+.t-mod.on{background:rgba(61,219,138,.12);border-color:rgba(61,219,138,.4);color:var(--vivid);}
+.t-satir{display:flex;align-items:center;gap:.75rem;padding:.6rem .5rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.t-sira{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;min-width:2rem;color:var(--dim);}
+.t-sira.g1{color:var(--gold);}
+.t-sira.g2{color:rgba(200,200,200,.7);}
+.t-sira.g3{color:rgba(180,120,60,.8);}
+.t-isim{flex:1;font-size:.85rem;font-weight:800;color:#fff;}
+.t-isim.ben{color:var(--vivid);}
+.t-skor{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);}
+.t-bos{font-size:.8rem;color:var(--dim);text-align:center;padding:1.5rem;}
+.t-kapat{width:100%;padding:.7rem;border-radius:8px;border:1px solid var(--border);background:none;color:var(--dim);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;margin-top:.75rem;transition:.15s;}
+.t-kapat:hover{color:var(--vivid);border-color:var(--vivid);}
 /* Toast */
-.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(255,255,255,.92);color:#030f06;font-size:.72rem;font-weight:800;letter-spacing:.04em;padding:.45rem 1.1rem;border-radius:5px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:999;white-space:nowrap;}
-.toast.goster{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* Animasyonlar */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(255,255,255,.92);color:#030f06;font-size:.72rem;font-weight:800;padding:.45rem 1.1rem;border-radius:5px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:999;white-space:nowrap;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
 @keyframes titres{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 @keyframes atesPulse{from{color:var(--gold)}to{color:#ffe040}}
 @keyframes skorBump{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
 </style>
-<meta name="geo.region" content="TR-08">
-<meta name="geo.placename" content="Artvin, Türkiye">
-<meta name="geo.position" content="41.1833;41.8167">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Game",
-  "name": "Artvin Reflex Challenge",
-  "description": "Artvin kelimelerini 20 saniyede tanı. Artvinliyse dokun, değilse bırak. 3 mod, combo sistemi.",
-  "url": "https://artvinrehber.com/reflex.html",
-  "genre": "Reaction Game",
-  "gamePlatform": "Web Browser",
-  "inLanguage": "tr",
-  "about": {"@type":"Place","name":"Artvin","address":{"@type":"PostalAddress","addressRegion":"Artvin","addressCountry":"TR"}},
-  "author": {"@type":"Organization","name":"Artvin Rehberi","url":"https://artvinrehber.com"}
-}
-</script>
 </head>
 <body>
-
 <nav class="nav">
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
   <div class="nav-title">⚡ REFLEX</div>
   <a class="nav-back" href="/">← Geri</a>
 </nav>
-<!-- SEO AÇIKLAMA BÖLÜMÜ -->
-<div id="giris-aciklama" style="display:none;max-width:480px;margin:.5rem auto 0;padding:0 1rem;">
-  <div style="background:rgba(255,79,79,.04);border:1px solid rgba(255,79,79,.1);border-radius:10px;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-size:.78rem;color:rgba(226,237,229,.5);line-height:1.7;">
-    <strong style="color:rgba(226,237,229,.75)">Artvin Reflex Challenge</strong> — Ekranda beliren kelime Artvin ile ilgiliyse dokun, değilse bırak!
-    Kolay, Normal ve Artvinli olmak üzere 3 mod. Combo yaptıkça hız artar, gerilim tırmanır.
-    Artvin ilçeleri, yaylaları, yemekleri ve kültüründen 115+ kelime.
-    <span style="display:inline-flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap;">
-      <a href="/wordle.html" style="color:#ff6b6b;text-decoration:none;">🔤 Kelime Oyunu</a>
-      <a href="/quiz.html" style="color:#ff6b6b;text-decoration:none;">🏔️ Quiz</a>
-      <a href="/kelime-avi.html" style="color:#ff6b6b;text-decoration:none;">🔍 Kelime Avı</a>
-    </span>
+
+<!-- KULLANICI ADI MODALI -->
+<div class="overlay" id="kullaniciOvr">
+  <div class="panel" style="max-width:360px;text-align:center">
+    <div style="font-size:2rem;margin-bottom:.5rem">🏔️</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;color:#fff;margin-bottom:.4rem">HOŞ GELDİN!</div>
+    <div style="font-size:.82rem;color:var(--dim);margin-bottom:1.25rem;line-height:1.6">Sıralamada görünmek için<br>bir kullanıcı adı gir.</div>
+    <input id="kullaniciInput" type="text" maxlength="16" placeholder="Kullanıcı adın..."
+      style="width:100%;padding:.7rem 1rem;border-radius:8px;border:1.5px solid var(--border);
+      background:var(--bg2);color:#fff;font-family:'Nunito',sans-serif;font-size:1rem;
+      font-weight:700;outline:none;text-align:center;margin-bottom:.4rem"
+      oninput="this.value=this.value.toUpperCase().replace(/[^A-ZÇĞİÖŞÜ0-9_]/g,'')"
+      onkeydown="if(event.key==='Enter')kullaniciKaydet()"
+    >
+    <div id="kullaniciHata" style="font-size:.72rem;color:var(--red);min-height:1rem;margin-bottom:.5rem"></div>
+    <button onclick="kullaniciKaydet()" style="width:100%;padding:.85rem;border-radius:10px;border:none;
+      background:linear-gradient(135deg,var(--vivid),#28c475);color:#051a0a;
+      font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.12em;cursor:pointer">
+      BAŞLA →
+    </button>
+    <div style="margin-top:.75rem;font-size:.65rem;color:var(--dim2)">İsmin herkese görünür olacak</div>
   </div>
 </div>
-<script>
-  // Oyun başlamadan SEO bölümünü göster
-  document.addEventListener('DOMContentLoaded', function() {
-    var el = document.getElementById('giris-aciklama');
-    if(el) el.style.display = 'block';
-  });
-</script>
 
-<!-- GİRİŞ -->
-<div class="screen aktif" id="giris">
-  <div class="giris-rozet">🏔️ Artvin Reflex Challenge</div>
-  <div class="giris-h1">ARTVİN<br><span>REFLEKSİN</span><br>VAR MI?</div>
-  <div class="giris-sub">Ekranda beliren kelime Artvin ile ilgiliyse <strong style="color:var(--vivid)">DOKUN</strong>, değilse <strong style="color:var(--dim)">BIRAK</strong>.</div>
+<!-- SKOR TABLOSU MODALI -->
+<div class="overlay" id="tabloOvr">
+  <div class="panel" style="max-width:420px;max-height:80vh;overflow-y:auto">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;color:var(--gold);margin-bottom:1rem">
+      🏆 GÜNLÜK SKOR TABLOSU
+    </div>
+    <div id="tabloIcerik"><div style="text-align:center;color:var(--dim);padding:1rem">Yükleniyor...</div></div>
+    <button onclick="kapat('tabloOvr')" style="width:100%;margin-top:1rem;padding:.65rem;border-radius:8px;
+      border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--dim);
+      font-family:'Nunito',sans-serif;font-weight:800;cursor:pointer;font-size:.85rem">Kapat</button>
+  </div>
+</div>
 
+<!-- KULLANICI GİRİŞ -->
+<div class="screen aktif" id="kullanici">
+  <div class="k-rozet">🏔️ Artvin Reflex Challenge</div>
+  <div class="k-h1">ADİNİ<br><span>GİR</span></div>
+  <div class="k-sub">Sıralamaya girmek için bir kullanıcı adı seç.</div>
+  <input class="k-input" id="kInput" type="text" maxlength="16" placeholder="Kullanıcı adın..." autocomplete="off" autocorrect="off" spellcheck="false">
+  <div class="k-hata" id="kHata"></div>
+  <button class="btn-giris" onclick="kullaniciGiris()">DEVAM ET →</button>
+  <button class="btn-tablo-link" onclick="tabloAc()">🏆 Skor Tablosuna Bak</button>
+</div>
+
+<!-- MOD SEÇİM -->
+<div class="screen" id="giris">
+  <div class="hos-geldin" id="hosGeldin">👋 Merhaba!</div>
+  <div class="giris-sub">Artvin kelimesiyse <strong style="color:var(--vivid)">DOKUN</strong>, değilse <strong style="color:var(--dim)">BIRAK</strong>.</div>
   <div class="kural-grid">
     <div class="kural-kart"><div class="kk-ikon">👆</div><div class="kk-baslik">DOKUN</div><div class="kk-alt">Artvin ile ilgiliyse</div></div>
     <div class="kural-kart"><div class="kk-ikon">🤚</div><div class="kk-baslik">BIRAK</div><div class="kk-alt">İlgili değilse</div></div>
     <div class="kural-kart"><div class="kk-ikon">🔥</div><div class="kk-baslik">COMBO</div><div class="kk-alt">Seri yap, hız artar!</div></div>
-    <div class="kural-kart"><div class="kk-ikon">⚠️</div><div class="kk-baslik">DIKKAT</div><div class="kk-alt">Yanlış = -5 puan!</div></div>
+    <div class="kural-kart"><div class="kk-ikon">⚠️</div><div class="kk-baslik">DİKKAT</div><div class="kk-alt">Yanlış = -5 puan!</div></div>
   </div>
-
   <div class="mod-satir">
-    <button class="mod-btn secili m0" id="modBtn0" onclick="modSec(0)">
-      <span class="mod-ikon">⭐</span>
-      <span class="mod-ad">Kolay</span>
-      <span class="mod-sure">22 sn · ipuçlu</span>
-    </button>
-    <button class="mod-btn m1" id="modBtn1" onclick="modSec(1)">
-      <span class="mod-ikon">⚡</span>
-      <span class="mod-ad">Normal</span>
-      <span class="mod-sure">20 sn · hızlı</span>
-    </button>
-    <button class="mod-btn m2" id="modBtn2" onclick="modSec(2)">
-      <span class="mod-ikon">🔥</span>
-      <span class="mod-ad">Artvinli</span>
-      <span class="mod-sure">15 sn · tuzak</span>
-    </button>
+    <button class="mod-btn secili m0" id="mb0" onclick="modSec(0)"><span class="mod-ikon">⭐</span><span class="mod-ad">Kolay</span><span class="mod-sure">22 sn · ipuçlu</span></button>
+    <button class="mod-btn m1" id="mb1" onclick="modSec(1)"><span class="mod-ikon">⚡</span><span class="mod-ad">Normal</span><span class="mod-sure">20 sn · hızlı</span></button>
+    <button class="mod-btn m2" id="mb2" onclick="modSec(2)"><span class="mod-ikon">🔥</span><span class="mod-ad">Artvinli</span><span class="mod-sure">15 sn · tuzak</span></button>
   </div>
-
   <button class="btn-baslat" onclick="oyunuBaslat()">BAŞLA →</button>
+  <button onclick="tabloGoster()" style="width:100%;max-width:360px;padding:.65rem;border-radius:10px;
+    border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--dim);
+    font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;cursor:pointer">
+    🏆 Skor Tablosunu Gör
+  </button>
+  <button onclick="tabloGoster()" style="width:100%;max-width:360px;padding:.65rem;border-radius:10px;
+    border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--dim);
+    font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;cursor:pointer;transition:.15s"
+    onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">
+    🏆 Skor Tablosunu Gör
+  </button>
 </div>
 
 <!-- GERİ SAYIM -->
 <div class="screen" id="geriSayim">
   <div class="gs-sayi" id="gsNo">3</div>
-  <div class="gs-metin" id="gsMetin">Hazırlan!</div>
+  <div class="gs-metin" id="gsMt">Hazırlan!</div>
 </div>
 
 <!-- OYUN -->
 <div class="screen" id="oyun">
   <div class="oyun-ust" id="oyunUst">
-    <div class="ust-blok">
-      <span class="ust-no skor-renk" id="skorNo">0</span>
-      <span class="ust-lbl">Skor</span>
-    </div>
-    <div class="ust-blok">
-      <span class="ust-no sure-renk" id="sureNo">20</span>
-      <span class="ust-lbl">Süre</span>
-    </div>
-    <div class="ust-blok">
-      <span class="ust-no combo-renk" id="comboNo">×0</span>
-      <span class="ust-lbl">Combo</span>
-    </div>
+    <div class="ust-blok"><span class="ust-no skor-renk" id="skorNo">0</span><span class="ust-lbl">Skor</span></div>
+    <div class="ust-blok"><span class="ust-no sure-renk" id="sureNo">20</span><span class="ust-lbl">Süre</span></div>
+    <div class="ust-blok"><span class="ust-no combo-renk" id="comboNo">×0</span><span class="ust-lbl">Combo</span></div>
   </div>
-  <div class="sure-bar-dis">
-    <div class="sure-bar-ic" id="sureBar" style="width:100%"></div>
-  </div>
-
-  <div class="dokunma-alani" id="dokunmaAlani" onclick="dokunuldu()">
-    <div class="flash-dogru" id="flashD"></div>
-    <div class="flash-yanlis" id="flashY"></div>
-    <div class="son5-overlay" id="son5Overlay"></div>
-    <div class="combo-mesaj" id="comboMesaj"></div>
-
+  <div class="sure-bar-dis"><div class="sure-bar-ic" id="sureBar" style="width:100%"></div></div>
+  <div class="dokunma-alani" id="da" onclick="dokunuldu()">
+    <div class="flash-dogru" id="fD"></div>
+    <div class="flash-yanlis" id="fY"></div>
+    <div class="son5-overlay" id="s5"></div>
+    <div class="combo-mesaj" id="cm"></div>
     <div class="kelime-bolge">
-      <div class="kelime-ust" id="kelimeUst"></div>
-      <div class="kelime-metin" id="kelimeMetin">—</div>
-      <div class="kelime-ipucu" id="kelimeIpucu"></div>
+      <div class="kelime-metin" id="kMetin">—</div>
+      <div class="kelime-ipucu" id="kIpucu"></div>
     </div>
-
     <div class="dokunma-talim">
       <div class="talim-chip talim-evet">👆 DOKUN = Artvin</div>
       <div class="talim-chip talim-hayir">🤚 Bırak = Değil</div>
@@ -289,561 +267,537 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;user-
 
 <!-- SONUÇ -->
 <div class="screen" id="sonuc">
-  <div class="sonuc-emoji" id="sonucEmoji"></div>
-  <div class="sonuc-h1">SKOR: <span id="sonucSkor">0</span></div>
-  <div class="sonuc-mod" id="sonucMod"></div>
-  <div class="sonuc-mesaj" id="sonucMesaj"></div>
-
+  <div class="sonuc-emoji" id="sEmoji"></div>
+  <div class="sonuc-h1">SKOR: <span id="sSkor">0</span></div>
+  <div class="sonuc-mod" id="sMod"></div>
+  <div class="sonuc-mesaj" id="sMesaj"></div>
   <div class="stat-grid">
-    <div class="stat-item"><span class="stat-no" id="stDogru" style="color:var(--vivid)">0</span><span class="stat-lbl">Doğru</span></div>
-    <div class="stat-item"><span class="stat-no" id="stYanlis" style="color:var(--red)">0</span><span class="stat-lbl">Yanlış</span></div>
-    <div class="stat-item"><span class="stat-no" id="stCombo" style="color:var(--gold)">0</span><span class="stat-lbl">En Seri</span></div>
+    <div class="stat-item"><span class="stat-no" id="stD" style="color:var(--vivid)">0</span><span class="stat-lbl">Doğru</span></div>
+    <div class="stat-item"><span class="stat-no" id="stY" style="color:var(--red)">0</span><span class="stat-lbl">Yanlış</span></div>
+    <div class="stat-item"><span class="stat-no" id="stC" style="color:var(--gold)">0</span><span class="stat-lbl">En Seri</span></div>
   </div>
-
   <div class="en-iyi" id="enIyi"></div>
-
+  <div class="siram" id="siramEl"></div>
   <div class="sonuc-butonlar">
     <button class="btn-tekrar" onclick="tekrarOyna()">🔄 TEKRAR DENE</button>
-    <div class="btn-paylasim-row">
-      <button class="btn-paylas-wp" onclick="paylasWP()">📱 WhatsApp</button>
-      <button class="btn-paylas-x" onclick="paylasX()">𝕏 X</button>
+    <button onclick="tabloGoster()" style="padding:.7rem;border-radius:9px;
+      border:1px solid rgba(240,192,64,.3);background:rgba(240,192,64,.08);
+      color:var(--gold);font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;cursor:pointer">
+      🏆 Skor Tablosu
+    </button>
+    <button onclick="tabloGoster()" style="padding:.7rem;border-radius:9px;
+      border:1px solid rgba(240,192,64,.3);background:rgba(240,192,64,.08);
+      color:var(--gold);font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;cursor:pointer">
+      🏆 Skor Tablosu
+    </button>
+    <div class="btn-row">
+      <button class="btn-wp" onclick="paylasWP()">📱 WhatsApp</button>
+      <button class="btn-sec" onclick="paylasX()">𝕏 X</button>
     </div>
-    <button class="btn-paylas-x" onclick="paylasKopyala()">📋 Skoru Kopyala</button>
+    <button class="btn-tablo-s" onclick="tabloAc()">🏆 Skor Tablosu</button>
+    <button class="btn-sec" onclick="paylasKopyala()">📋 Skoru Kopyala</button>
     <a href="/" style="text-align:center;font-size:.72rem;color:var(--dim);text-decoration:none;padding:.35rem">← Ana Sayfaya Dön</a>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- SKOR TABLOSU -->
+<div class="overlay" id="tabloOvr">
+  <div class="t-panel">
+    <div class="t-baslik">🏆 SKOR TABLOSU</div>
+    <div class="t-modlar">
+      <button class="t-mod on" onclick="tModSec(0)">⭐ Kolay</button>
+      <button class="t-mod" onclick="tModSec(1)">⚡ Normal</button>
+      <button class="t-mod" onclick="tModSec(2)">🔥 Artvinli</button>
+    </div>
+    <div id="tIcerik"></div>
+    <button class="t-kapat" onclick="tabloKapat()">Kapat</button>
+  </div>
+</div>
+
+<div class="toast" id="toastEl"></div>
 
 <script>
+
 /* ══════════════════════════════════════════════════════════
-   KELİME VERİ SETİ — 180+ kelime, 6 kategori
+   SHEETDB + KULLANICI SİSTEMİ
 ══════════════════════════════════════════════════════════ */
+const SHEETDB_URL = 'https://sheetdb.io/api/v1/31v7puz3gv46q';
+let kullaniciAdi = localStorage.getItem('artvinReflex_kullanici') || '';
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (kullaniciAdi) {
+    kapat('kullaniciOvr');
+  } else {
+    document.getElementById('kullaniciOvr').classList.add('on');
+  }
+});
+
+function kullaniciKaydet() {
+  const input = document.getElementById('kullaniciInput');
+  const hata  = document.getElementById('kullaniciHata');
+  const val   = input.value.trim();
+  if (!val || val.length < 2) { hata.textContent = 'En az 2 karakter gir!'; return; }
+  if (val.length > 16) { hata.textContent = 'En fazla 16 karakter.'; return; }
+  kullaniciAdi = val;
+  localStorage.setItem('artvinReflex_kullanici', val);
+  kapat('kullaniciOvr');
+  toast('Hoş geldin ' + val + '! 🏔️');
+}
+
+async function skorKaydet(skor, mod) {
+  if (!kullaniciAdi) return;
+  const bugun = new Date().toISOString().split('T')[0];
+  try {
+    await fetch(SHEETDB_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: [{ kullanici: kullaniciAdi, skor: skor, mod: mod, tarih: bugun, zaman: new Date().toLocaleTimeString('tr-TR') }] })
+    });
+  } catch(e) { console.log('Skor kaydedilemedi:', e); }
+}
+
+async function tabloGoster() {
+  document.getElementById('tabloOvr').classList.add('on');
+  const el = document.getElementById('tabloIcerik');
+  el.innerHTML = '<div style="text-align:center;color:var(--dim);padding:1.5rem">Yükleniyor...</div>';
+  try {
+    const bugun = new Date().toISOString().split('T')[0];
+    const res   = await fetch(SHEETDB_URL + '?limit=200');
+    const data  = await res.json();
+    const bugunSkorlar = data.filter(r => r.tarih === bugun);
+    const enIyi = {};
+    bugunSkorlar.forEach(r => {
+      const s = parseInt(r.skor) || 0;
+      if (!enIyi[r.kullanici] || s > enIyi[r.kullanici].skor)
+        enIyi[r.kullanici] = { skor: s, mod: r.mod, zaman: r.zaman };
+    });
+    const siralama = Object.entries(enIyi).sort((a,b) => b[1].skor - a[1].skor).slice(0,20);
+    if (siralama.length === 0) {
+      el.innerHTML = '<div style="text-align:center;color:var(--dim);padding:2rem">Bugün henüz skor yok.<br>İlk sen ol! 🔥</div>';
+      return;
+    }
+    const madalya = ['🥇','🥈','🥉'];
+    let html = '<div style="margin-bottom:.6rem;font-size:.6rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase">Bugün · En İyi 20</div>';
+    siralama.forEach(([isim, d], i) => {
+      const benim = isim === kullaniciAdi;
+      const simge = madalya[i] || (i+1)+'.';
+      html += `<div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .75rem;border-radius:8px;margin-bottom:.3rem;
+        background:${benim?'rgba(61,219,138,.1)':'rgba(255,255,255,.03)'};
+        border:1px solid ${benim?'rgba(61,219,138,.3)':'rgba(255,255,255,.06)'}">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;min-width:1.8rem;text-align:center;
+          color:${i===0?'var(--gold)':i===1?'#ccc':i===2?'#cd7f32':'var(--dim)'}">${simge}</span>
+        <span style="flex:1;font-weight:800;color:${benim?'var(--vivid)':'#fff'};font-size:.9rem">${isim}${benim?' ← Sen':''}</span>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--gold)">${d.skor}</span>
+        <span style="font-size:.6rem;color:var(--dim)">${d.mod}</span>
+      </div>`;
+    });
+    el.innerHTML = html;
+  } catch(e) {
+    el.innerHTML = '<div style="text-align:center;color:var(--red);padding:1rem">Bağlantı hatası 😞</div>';
+  }
+}
+
+/* ══ ADMİN PANELİ — klavyede ADMIN yaz ══ */
+const _adminKod = [];
+document.addEventListener('keydown', e => {
+  _adminKod.push(e.key.toUpperCase());
+  if (_adminKod.length > 5) _adminKod.shift();
+  if (_adminKod.join('') === 'ADMIN') adminPanelAc();
+});
+
+async function adminPanelAc() {
+  try {
+    const res   = await fetch(SHEETDB_URL + '?limit=500');
+    const data  = await res.json();
+    const bugun = new Date().toISOString().split('T')[0];
+    const bugunData = data.filter(r => r.tarih === bugun);
+    let ozet = 'ADMIN PANELİ\nToplam kayıt: ' + data.length + ' | Bugün: ' + bugunData.length + '\n\nBugünün tüm skorları:\n';
+    bugunData.sort((a,b) => parseInt(b.skor)-parseInt(a.skor))
+      .forEach((r,i) => { ozet += (i+1) + '. ' + r.kullanici + ' — ' + r.skor + ' (' + r.mod + ') ' + r.zaman + '\n'; });
+    alert(ozet);
+  } catch(e) { alert('Admin panel hatası: ' + e.message); }
+}
+
+
+/* ══ KELİME HAVUZU ══ */
 const VT = {
 
-  // ─── DOĞRU: Artvin ile ilgili ───
-
-  ilceler: [
-    {k:"ARTVIN",     h:"İl merkezimiz"},
-    {k:"HOPA",       h:"Karadeniz kıyısı"},
-    {k:"BORÇKA",     h:"Orman ilçesi"},
-    {k:"ŞAVŞAT",     h:"Karlı ilçe"},
-    {k:"ARDANUÇ",    h:"Tarihi kale"},
-    {k:"ARHAVİ",     h:"Fındık ve çay"},
-    {k:"MURGUL",     h:"Bakır madeni"},
-    {k:"YUSUFELİ",   h:"Baraj ilçesi"},
-    {k:"KEMALPAŞA",  h:"Sahil ilçesi"},
+  // ── DOĞRU: İlçeler ──
+  ilceler:[
+    {k:'ARTVIN',h:'İl merkezimiz'},{k:'HOPA',h:'Karadeniz kıyısı'},{k:'ARHAVİ',h:'Fındık ve çay'},
+    {k:'BORÇKA',h:'Orman ilçesi'},{k:'ŞAVŞAT',h:'Karlı dağ ilçesi'},{k:'ARDANUÇ',h:'Tarihi kale'},
+    {k:'MURGUL',h:'Bakır madeni'},{k:'YUSUFELİ',h:'Baraj ilçesi'},{k:'KEMALPAŞA',h:'Sahil ilçesi'},
+    {k:'ORTAKÖY',h:'Artvin köyü'},{k:'MEYDANCIK',h:'Şavşat beldesi'},{k:'DEMİRKENT',h:'Şavşat köyü'},
+    {k:'YEŞİLKÖY',h:'Artvin köyü'},{k:'KÖPRÜBAŞI',h:'Artvin beldesi'},{k:'CAMİLİ',h:'Maçahel merkezi'},
+    {k:'ZEYTİNLİK',h:'Artvin köyü'},{k:'KILIÇKAYA',h:'Artvin beldesi'},{k:'ORTAKLAR',h:'Artvin köyü'},
   ],
 
-  doga_mekan: [
-    {k:"KAFKASÖR",   h:"Festival yaylası"},
-    {k:"KARAGÖL",    h:"Heyelan gölü"},
-    {k:"ÇORUH",      h:"Hızlı nehir"},
-    {k:"KARÇAL",     h:"3428m zirve"},
-    {k:"HATİLA",     h:"Milli park"},
-    {k:"MAÇAHEL",    h:"UNESCO biyosfer"},
-    {k:"DERİNER",    h:"Dünya 6. barajı"},
-    {k:"YUSUFELİ BARAJI",h:"275m yükseklik"},
-    {k:"SARP",       h:"Gürcistan kapısı"},
-    {k:"TORTUM",     h:"Dev şelale"},
-    {k:"MENCUNA",    h:"Arhavi şelalesi"},
-    {k:"MURATLIBENDI",h:"Son Çoruh barajı"},
-    {k:"BORÇKA BARAJI",h:"Çoruh üzerinde"},
-    {k:"CAMILI",     h:"Maçahel merkezi"},
-    {k:"BİLBİLAN",   h:"Ardanuç yaylası"},
+  // ── DOĞRU: Doğa ve Coğrafya ──
+  doga:[
+    {k:'KARAGÖL',h:'Heyelan gölü'},{k:'HATİLA',h:'Milli park'},{k:'ÇORUH',h:'Hızlı nehir'},
+    {k:'KARÇAL',h:'3428m zirve'},{k:'KAFKASÖR',h:'Festival yaylası'},{k:'MAÇAHEL',h:'UNESCO biyosfer'},
+    {k:'DERİNER',h:'Büyük baraj'},{k:'SARP',h:'Gürcistan kapısı'},{k:'TORTUM',h:'Dev şelale'},
+    {k:'MENCUNA',h:'Arhavi şelalesi'},{k:'MURATLIBENDI',h:'Son Çoruh barajı'},{k:'BİLBİLAN',h:'Ardanuç yaylası'},
+    {k:'ARSİYANİ',h:'Yüksek yayla'},{k:'DİŞHOR',h:'Şavşat yaylası'},{k:'BARHAL',h:'Altıparmak köyü'},
+    {k:'PAPİLA',h:'Artvin yaylası'},{k:'YEDİGÖL',h:'Yedi göl silsilesi'},{k:'SAHARA',h:'Yüksek yayla'},
+    {k:'BÜLBÜLAN',h:'Ardanuç yaylası'},{k:'PAPART',h:'Doğa alanı'},{k:'BALIKLI GÖL',h:'Doğa cenneti'},
+    {k:'VELIKÖY',h:'Şavşat yaylası'},{k:'MARAL',h:'Artvin yaylası'},{k:'BORÇKA BARAJI',h:'Çoruh üstünde'},
+    {k:'HATILA VADİSİ',h:'Milli park'},{k:'DANZOT',h:'Ardanuç yaylası'},{k:'PINARLI',h:'Balık gölü'},
   ],
 
-  tarih_kultur: [
-    {k:"LİVANE",     h:"Artvin'in eski adı"},
-    {k:"DOLİŞHANE",  h:"Gürcü kilisesi"},
-    {k:"BARHAL",     h:"10. yy kilise"},
-    {k:"İŞHAN",      h:"Gürcü katedrali"},
-    {k:"TBETİ",      h:"Şavşat manastırı"},
-    {k:"ARDANUÇ KALESİ",h:"Ortaçağ kalesi"},
-    {k:"BOĞA GÜREŞİ",h:"Kafkasör geleneği"},
-    {k:"HORON",      h:"Yöresel dans"},
-    {k:"KAFKAS MÜZİĞİ",h:"Yöre sesi"},
+  // ── DOĞRU: Tarihi ve Kültürel ──
+  tarih:[
+    {k:'DOLİŞHANE',h:'Gürcü kilisesi'},{k:'İŞHAN',h:'Gürcü katedrali'},{k:'TBETİ',h:'Şavşat manastırı'},
+    {k:'ARDANUÇ KALESİ',h:'Ortaçağ kalesi'},{k:'BOĞA GÜREŞİ',h:'Kafkasör geleneği'},{k:'HORON',h:'Yöresel dans'},
+    {k:'LİVANE',h:'Artvin eski adı'},{k:'ÖŞKVANK',h:'Gürcü kilisesi'},{k:'HAHO',h:'Tortum kilisesi'},
+    {k:'PORTA KALESİ',h:'Tarihi kale'},{k:'ARTVIN KALESİ',h:'Şehir kalesi'},{k:'ŞAVŞAT KALESİ',h:'Dağ kalesi'},
+    {k:'PETEKLİ',h:'Köy kilisesi'},{k:'KAFKAS MÜZİĞİ',h:'Yöre müziği'},
   ],
 
-  yemek_kultur: [
-    {k:"PUÇUKO",     h:"Tescilli lezzet"},
-    {k:"HINKAL",     h:"Hamurlu yemek"},
-    {k:"MUHLAMA",    h:"Mısır unlu"},
-    {k:"SİLOR",      h:"Yufkalı yemek"},
-    {k:"KAVURMA",    h:"Et yemeği"},
-    {k:"SEMAVER",    h:"Çay demliği"},
-    {k:"KARA DEMLİK",h:"Yayla demliği"},
-    {k:"BADYA",      h:"Toprak kap"},
-    {k:"BEC",        h:"Yöresel söz"},
-    {k:"PUÇUKU",     h:"Fasulye yemeği"},
-    {k:"CÇA DÖNERİ", h:"Yöresel döner"},
+  // ── DOĞRU: Yemek ve Kültür ──
+  yemek:[
+    {k:'HINKAL',h:'Hamurlu yemek'},{k:'PUÇUKO',h:'Tescilli lezzet'},{k:'SİLOR',h:'Yufkalı yemek'},
+    {k:'KAYGANA',h:'Artvin omlet'},{k:'KUYMAK',h:'Mısır unlu'},{k:'HASUTA',h:'Yöresel yemek'},
+    {k:'KATMER',h:'Hamur tatlısı'},{k:'PESTİL',h:'Meyve kurusu'},{k:'KÖME',h:'Cevizli tatlı'},
+    {k:'GENDİME',h:'Artvin çorbası'},{k:'LOBYO',h:'Fasulye yemeği'},{k:'KALACO',h:'Yöresel yemek'},
+    {k:'HARŞO',h:'Yöresel tarif'},{k:'LOKUŞ',h:'Yöresel tatlı'},{k:'MUHLAMA',h:'Mısır unlu'},
+    {k:'KAVURMA',h:'Et yemeği'},{k:'ERİŞTE',h:'El yapımı makarna'},{k:'BADYA',h:'Toprak kap'},
+    {k:'SEMAVER',h:'Çay demliği'},{k:'KARA DEMLİK',h:'Yayla demliği'},
   ],
 
-  koyler_yaylalar: [
-    {k:"HAMAMLI",    h:"Vadi köyü"},
-    {k:"ŞEHİTLİK",   h:"Köprülü köy"},
-    {k:"FISTIKLI",   h:"Göl kıyısı"},
-    {k:"SALKIMLI",   h:"Karçal eteği"},
-    {k:"ERENLER",    h:"Orman köyü"},
-    {k:"CEVİZLİ",    h:"Şavşat köyü"},
-    {k:"DEMİRKENT",  h:"Kavurmalı hinkal"},
-    {k:"ALTIPARMAK", h:"Barhal köyü"},
-    {k:"DİŞHOR",     h:"Şavşat yaylası"},
-    {k:"ARSİYANI",   h:"Yüksek yayla"},
-    {k:"KAFKASÖR YAYLASI",h:"Festival alanı"},
-    {k:"VELIKÖY",    h:"Şavşat yaylası"},
-    {k:"PINARLI",    h:"Balık gölü köyü"},
-    {k:"DANZOT",     h:"Ardanuç yaylası"},
+  // ── DOĞRU: Köyler ──
+  koyler:[
+    {k:'HAMAMLI',h:'Vadi köyü'},{k:'ŞEHİTLİK',h:'Köprülü köy'},{k:'FISTIKLI',h:'Göl kıyısı'},
+    {k:'SALKIMLI',h:'Karçal eteği'},{k:'ERENLER',h:'Orman köyü'},{k:'CEVİZLİ',h:'Şavşat köyü'},
+    {k:'ALTIPARMAK',h:'Barhal köyü'},{k:'CAMILI',h:'Maçahel merkezi'},{k:'KARŞIKÖY',h:'Artvin köyü'},
+    {k:'EFELER',h:'Artvin köyü'},{k:'DEMİRCİLER',h:'Artvin köyü'},{k:'BALCI',h:'Artvin köyü'},
+    {k:'ÇAMLICA',h:'Artvin köyü'},{k:'KOCABEY',h:'Artvin köyü'},{k:'BOYALI',h:'Artvin köyü'},
+    {k:'KAYNARCA',h:'Artvin köyü'},{k:'BAŞKÖY',h:'Artvin köyü'},{k:'GÜLEŞ',h:'Artvin köyü'},
+    {k:'TOSUNLU',h:'Artvin köyü'},{k:'AYDINKÖY',h:'Artvin köyü'},{k:'ORUÇLU',h:'Şavşat köyü'},
+    {k:'TÜRKGÖZÜ',h:'Ardanuç köyü'},{k:'TAŞLICA',h:'Artvin köyü'},{k:'MEŞELI',h:'Artvin köyü'},
   ],
 
-  // ─── YANLIŞ: Artvin ile ilgisiz ───
-
-  yanlis_bariz: [
-    {k:"ANKARA"},
-    {k:"İSTANBUL"},
-    {k:"İZMİR"},
-    {k:"BURSA"},
-    {k:"ANTALYA"},
-    {k:"KONYA"},
-    {k:"ADANA"},
-    {k:"SAMSUN"},
-    {k:"MALATYA"},
-    {k:"GAZİANTEP"},
-    {k:"DİYARBAKIR"},
-    {k:"KAYSERİ"},
-    {k:"ESKİŞEHİR"},
-    {k:"MERSİN"},
-    {k:"DENİZLİ"},
-    {k:"SAKARYA"},
-    {k:"TEKİRDAĞ"},
-    {k:"BALIKESİR"},
-    {k:"ÇANAKKALE"},
-    {k:"BODRUM"},
-    {k:"MUĞLA"},
-    {k:"AFYONKARAHİSAR"},
-    {k:"KASTAMONU"},
-    {k:"SİNOP"},
-    {k:"TOKAT"},
+  // ── YANLIŞ: Bariz şehirler ──
+  yanlis_bariz:[
+    {k:'ANKARA'},{k:'İSTANBUL'},{k:'İZMİR'},{k:'BURSA'},{k:'ANTALYA'},
+    {k:'KONYA'},{k:'ADANA'},{k:'SAMSUN'},{k:'MALATYA'},{k:'GAZİANTEP'},
+    {k:'DİYARBAKIR'},{k:'KAYSERİ'},{k:'ESKİŞEHİR'},{k:'MERSİN'},{k:'DENİZLİ'},
+    {k:'SAKARYA'},{k:'TEKİRDAĞ'},{k:'BALIKESİR'},{k:'ÇANAKKALE'},{k:'MUĞLA'},
+    {k:'AFYONKARAHİSAR'},{k:'KASTAMONU'},{k:'SİNOP'},{k:'TOKAT'},{k:'ISPARTA'},
+    {k:'BURDUR'},{k:'YOZGAT'},{k:'ÇORUM'},{k:'AMASYA'},{k:'NİĞDE'},
   ],
 
-  yanlis_tuzak: [
-    // Komşu iller — tuzak!
-    {k:"RİZE"},
-    {k:"TRABZON"},
-    {k:"BAYBURT"},
-    {k:"ERZURUM"},
-    {k:"KARS"},
-    {k:"ARDAHAN"},
-    {k:"GİRESUN"},
-    {k:"ORDU"},
-    {k:"GÜMÜŞHANE"},
-    // Gürcistan/çevre — tuzak!
-    {k:"BATUM"},
-    {k:"TİFLİS"},
-    {k:"GÜRCISTAN"},
-    {k:"KAFKASYA"},
-    {k:"LAZISTAN"},
-    // Rize yaylaları — tuzak!
-    {k:"AYDER"},
-    {k:"HEMŞIN"},
-    {k:"ÇAMLIHEMŞIN"},
-    {k:"FIRTINA DERESİ"},
-    // Trabzon — tuzak!
-    {k:"ÜZÜNGÖL"},
-    {k:"SÜRMENE"},
-    {k:"ARAKLÜ"},
-    // Artvin gibi görünen yazım hataları
-    {k:"ARTVİNE"},
-    {k:"BORKA"},
-    {k:"ŞABŞAT"},
-    {k:"HOVPA"},
-    {k:"ARDANUC"},
-    {k:"KAFKASOR"},
-    {k:"YUSFELİ"},
-    {k:"ARHAVII"},
-    {k:"KARADENIZ"},
-    {k:"LAZCA"},
-    {k:"HEMŞİNCE"},
+  // ── YANLIŞ: Tuzak — Rize ──
+  tuzak_rize:[
+    {k:'AYDER'},{k:'HEMŞİN'},{k:'ÇAMLIHEMŞIN'},{k:'PALOVIT'},{k:'POKUT'},
+    {k:'ELEVIT'},{k:'ÇAYELI'},{k:'PAZAR'},{k:'ARDEŞEN'},{k:'İKİZDERE'},
+    {k:'OVIT'},{k:'ANZER'},{k:'KALEGEDİK'},{k:'FIRTINA DERESİ'},{k:'TUNCA'},
+    {k:'ZİL KALESİ'},{k:'LAZ BÖREĞİ'},{k:'HEMŞİN ÇÖREĞI'},{k:'HAMSIKOLI'},
   ],
+
+  // ── YANLIŞ: Tuzak — Trabzon ──
+  tuzak_trabzon:[
+    {k:'ÜZÜNGÖL'},{k:'SÜRMENE'},{k:'ARAKLÜ'},{k:'ÇAYKARA'},{k:'TONYA'},
+    {k:'MAÇKA'},{k:'HAMSİKÖY'},{k:'ALTINDERE'},{k:'SOĞANLI'},{k:'SUMELA'},
+    {k:'BALKAYA'},{k:'SİSER YAYLASI'},{k:'KADIRGA'},{k:'PULATHANE'},
+    {k:'VAKFIKEBİR EKMEĞİ'},{k:'KARALAHANA ÇORBASI'},
+  ],
+
+  // ── YANLIŞ: Tuzak — Ardahan / Erzurum ──
+  tuzak_diger:[
+    {k:'ÇILDIR'},{k:'GÖLE'},{k:'HANAK'},{k:'POSOF'},{k:'DAMAL'},
+    {k:'ÇILDIR GÖLÜ'},{k:'AKTAŞ GÖLÜ'},{k:'İSPİR'},{k:'UZUNDERE'},{k:'OLTU'},
+    {k:'ŞENKAYA'},{k:'NARMAN'},{k:'TORTUM GÖLÜ'},{k:'DUMLU DAĞI'},
+    {k:'KADAYIF DOLMASI'},{k:'KARS GRAVYERİ'},{k:'CİVİL PEYNİRİ'},
+  ],
+
+  // ── YANLIŞ: Tuzak — Gürcistan ──
+  tuzak_gurcistan:[
+    {k:'BATUM'},{k:'TİFLİS'},{k:'KOBULETI'},{k:'KUTAISI'},{k:'POTİ'},
+    {k:'GÖNYE KALESİ'},{k:'ZUGDIDI'},{k:'KHİNKALİ'},{k:'ÇURÇHELA'},
+    {k:'GALI'},{k:'KOBULETI'},
+  ],
+
 };
 
-/* ══════════════════════════════════════════════════════════
-   MOD TANIMLARI
-══════════════════════════════════════════════════════════ */
-const MODLAR = [
-  {
-    ad:"Kolay", ikon:"⭐", sure:22,
-    hizlar:[{esik:0,ms:1400},{esik:5,ms:1100},{esik:10,ms:900},{esik:15,ms:750}],
-    ipucu:true,
-    dagılım:{dogru_kolay:0.65, dogru_zor:0.1, yanlis_kolay:0.2, yanlis_tuzak:0.05},
-  },
-  {
-    ad:"Normal", ikon:"⚡", sure:20,
-    hizlar:[{esik:0,ms:1200},{esik:5,ms:950},{esik:10,ms:750},{esik:15,ms:600}],
-    ipucu:false,
-    dagılım:{dogru_kolay:0.45, dogru_zor:0.2, yanlis_kolay:0.2, yanlis_tuzak:0.15},
-  },
-  {
-    ad:"Artvinli", ikon:"🔥", sure:15,
-    hizlar:[{esik:0,ms:1000},{esik:5,ms:800},{esik:10,ms:620},{esik:15,ms:500}],
-    ipucu:false,
-    dagılım:{dogru_kolay:0.25, dogru_zor:0.3, yanlis_kolay:0.1, yanlis_tuzak:0.35},
-  },
+const MODLAR=[
+  {ad:'Kolay',ikon:'⭐',sure:22,hizlar:[{e:0,ms:1400},{e:5,ms:1100},{e:10,ms:900},{e:15,ms:750}],ipucu:true},
+  {ad:'Normal',ikon:'⚡',sure:20,hizlar:[{e:0,ms:1200},{e:5,ms:950},{e:10,ms:750},{e:15,ms:600}],ipucu:false},
+  {ad:'Artvinli',ikon:'🔥',sure:15,hizlar:[{e:0,ms:1000},{e:5,ms:800},{e:10,ms:620},{e:15,ms:500}],ipucu:false},
 ];
 
-/* ══════════════════════════════════════════════════════════
-   OYUN DURUMU
-══════════════════════════════════════════════════════════ */
-let MOD_IDX = 0;
-let skor=0,dogru=0,yanlis=0,combo=0,enUzunCombo=0;
-let kalan=20,oyunAktif=false,dokunulduMu=false;
-let mevcutKelime=null,kelimeSirasi=[];
-let sureInterval=null,kelimeTimeout=null;
-let sureBaslangic=null,hizMs=1200;
+const LS='artvinReflex_v3';
+let kulAdi='',MOD=0,skor=0,dogru=0,yanlis=0,combo=0,enUzun=0;
+let kalan=20,aktif=false,dokundum=false;
+let mevcutK=null,sira=[];
+let sureInt=null,kTimeout=null;
+let sureBas=null,hiz=1200;
 let suanMod=MODLAR[0];
 
-/* ══════════════════════════════════════════════════════════
-   YARDIMCI
-══════════════════════════════════════════════════════════ */
-function ekranGoster(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('aktif'));
-  document.getElementById(id).classList.add('aktif');
+/* LS */
+function veriAl(){try{return JSON.parse(localStorage.getItem(LS))||{s:{0:[],1:[],2:[]}};}catch{return{s:{0:[],1:[],2:[]}};}}
+function skorKaydet(m,isim,p){
+  const v=veriAl();
+  if(!v.s)v.s={0:[],1:[],2:[]};
+  if(!v.s[m])v.s[m]=[];
+  const idx=v.s[m].findIndex(x=>x.i===isim);
+  if(idx>=0){if(p>v.s[m][idx].p)v.s[m][idx].p=p;}
+  else v.s[m].push({i:isim,p});
+  v.s[m].sort((a,b)=>b.p-a.p);
+  v.s[m]=v.s[m].slice(0,10);
+  try{localStorage.setItem(LS,JSON.stringify(v));}catch{}
+  return v.s[m];
+}
+function siralamaAl(m){const v=veriAl();return(v.s&&v.s[m])?v.s[m]:[];}
+
+/* YARDIMCI */
+function ekran(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('aktif'));document.getElementById(id).classList.add('aktif');}
+function toast(t,s=2000){const el=document.getElementById('toastEl');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),s);}
+function karistir(a){return[...a].sort(()=>Math.random()-.5);}
+
+/* KULLANICI */
+function kullaniciGiris(){
+  const v=document.getElementById('kInput').value.trim();
+  const h=document.getElementById('kHata');
+  if(!v){h.textContent='❌ Bir kullanıcı adı gir.';return;}
+  if(v.length<2){h.textContent='❌ En az 2 karakter olmalı.';return;}
+  if(/[<>{}[\]\/\\]/.test(v)){h.textContent='❌ Geçersiz karakter.';return;}
+  kulAdi=v;h.textContent='';
+  document.getElementById('hosGeldin').textContent='👋 Merhaba, '+kulAdi+'!';
+  ekran('giris');
+}
+document.getElementById('kInput').addEventListener('keydown',e=>{if(e.key==='Enter')kullaniciGiris();});
+
+/* MOD */
+function modSec(i){
+  MOD=i;suanMod=MODLAR[i];
+  document.querySelectorAll('.mod-btn').forEach((b,j)=>b.className='mod-btn m'+j+(j===i?' secili':''));
 }
 
-function toast(metin,sure=2000){
-  const t=document.getElementById('toast');
-  t.textContent=metin;t.classList.add('goster');
-  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('goster'),sure);
+/* KELİME HAVUZU */
+function havuzOlustur(){
+  const dK=[...VT.ilceler,...VT.doga.slice(0,10),...VT.yemek.slice(0,8)].map(x=>({...x,d:true,z:'k'}));
+  const dZ=[...VT.tarih,...VT.koyler,...VT.doga.slice(10),...VT.yemek.slice(8)].map(x=>({...x,d:true,z:'z'}));
+  let yL;
+  if(MOD===0){
+    yL=[...karistir(VT.trabzon).slice(0,5),...karistir(VT.rize).slice(0,5),...karistir(VT.erzurum).slice(0,3),...karistir(VT.ardahan).slice(0,3)].map(x=>({...x,d:false,z:'k'}));
+  }else if(MOD===1){
+    yL=[...karistir(VT.rize).slice(0,6),...karistir(VT.trabzon).slice(0,6),...karistir(VT.ardahan).slice(0,4),...karistir(VT.erzurum).slice(0,4),...karistir(VT.kars).slice(0,3),...karistir(VT.diger).slice(0,3)].map(x=>({...x,d:false,z:'z'}));
+  }else{
+    yL=[...karistir(VT.rize),...karistir(VT.trabzon),...karistir(VT.ardahan),...karistir(VT.erzurum),...karistir(VT.kars),...karistir(VT.diger)].map(x=>({...x,d:false,z:'z'}));
+  }
+  let dS=MOD===0?28:MOD===1?22:18;
+  let yS=MOD===0?14:MOD===1?20:24;
+  let dO=MOD===0?.7:MOD===1?.5:.3;
+  let dH=karistir([...karistir(dK).slice(0,Math.ceil(dS*dO)),...karistir(dZ).slice(0,Math.floor(dS*(1-dO)))]);
+  let yH=karistir(yL).slice(0,yS);
+  const tum=[...dH,...yH];
+  const bas=tum.filter(k=>k.z==='k'&&k.d).slice(0,4);
+  const son=tum.filter(k=>k.z==='z'&&!k.d).slice(0,6);
+  const orta=karistir(tum.filter(k=>!bas.includes(k)&&!son.includes(k)));
+  return[...bas,...orta,...son];
 }
 
-function karistir(a){return a.sort(()=>Math.random()-.5);}
-
-function modSec(idx){
-  MOD_IDX=idx;
-  suanMod=MODLAR[idx];
-  document.querySelectorAll('.mod-btn').forEach((b,i)=>{
-    b.className='mod-btn m'+i+(i===idx?' secili':'');
-  });
-}
-
-/* ══════════════════════════════════════════════════════════
-   KELİME SİRASI
-══════════════════════════════════════════════════════════ */
-function kelimeListesiOlustur(){
-  const mod = suanMod;
-
-  // Doğru kelime havuzları
-  const kolay_dogru = [
-    ...VT.ilceler,
-    ...VT.doga_mekan.slice(0,8),
-    ...VT.yemek_kultur.slice(0,5),
-  ].map(x=>({...x,dogru:true,zorluk:'kolay'}));
-
-  const zor_dogru = [
-    ...VT.tarih_kultur,
-    ...VT.koyler_yaylalar,
-    ...VT.doga_mekan.slice(8),
-    ...VT.yemek_kultur.slice(5),
-  ].map(x=>({...x,dogru:true,zorluk:'zor'}));
-
-  // Yanlış kelime havuzları
-  const kolay_yanlis = [...VT.yanlis_bariz].map(x=>({...x,dogru:false,zorluk:'kolay'}));
-  const zor_yanlis   = [...VT.yanlis_tuzak].map(x=>({...x,dogru:false,zorluk:'zor'}));
-
-  karistir(kolay_dogru); karistir(zor_dogru);
-  karistir(kolay_yanlis); karistir(zor_yanlis);
-
-  // Toplam kelime sayısına göre her kategoriden al
-  const top = 40;
-  const d = mod.dagılım;
-  const list = [
-    ...kolay_dogru.slice(0, Math.round(top*d.dogru_kolay)),
-    ...zor_dogru.slice(0,   Math.round(top*d.dogru_zor)),
-    ...kolay_yanlis.slice(0,Math.round(top*d.yanlis_kolay)),
-    ...zor_yanlis.slice(0,  Math.round(top*d.yanlis_tuzak)),
-  ];
-
-  // Akıllı sıralama: başa kolay, ortaya karışık, sona zor
-  const bas    = list.filter(k=>k.zorluk==='kolay' && k.dogru).slice(0,4);
-  const son    = list.filter(k=>k.zorluk==='zor'   && !k.dogru).slice(0,6);
-  const ortasi = list.filter(k=>!bas.includes(k)&&!son.includes(k));
-  karistir(ortasi);
-
-  return [...bas, ...ortasi, ...son];
-}
-
-/* ══════════════════════════════════════════════════════════
-   OYUN BAŞLAT
-══════════════════════════════════════════════════════════ */
+/* BAŞLAT */
 function oyunuBaslat(){
-  ekranGoster('geriSayim');
-  let sayac=3;
-  const gsNo=document.getElementById('gsNo');
-  const gsMetin=document.getElementById('gsMetin');
-  gsNo.textContent=sayac; gsMetin.textContent='Hazırlan!';
-  gsNo.style.animation='puls 1s ease infinite';
-
-  const geri=setInterval(()=>{
-    sayac--;
-    if(sayac<=0){
-      clearInterval(geri);
-      gsMetin.textContent='BAŞLA!';
-      gsNo.textContent='🔥';
-      setTimeout(oyunBaslat,600);
-    } else {
-      gsNo.textContent=sayac;
-      gsMetin.textContent=sayac===2?'Nefesini tut...':'Hazır mısın?';
-    }
+  ekran('geriSayim');
+  let say=3;
+  const gsN=document.getElementById('gsNo');
+  const gsM=document.getElementById('gsMt');
+  gsN.textContent=say;gsM.textContent='Hazırlan!';
+  gsN.style.animation='puls 1s ease infinite';
+  const g=setInterval(()=>{
+    say--;
+    if(say<=0){clearInterval(g);gsM.textContent='BAŞLA!';gsN.textContent='🔥';setTimeout(oyunBaslat,600);}
+    else{gsN.textContent=say;gsM.textContent=say===2?'Nefesini tut...':'Hazır mısın?';}
   },900);
 }
 
 function oyunBaslat(){
-  suanMod=MODLAR[MOD_IDX];
-  skor=0;dogru=0;yanlis=0;combo=0;enUzunCombo=0;
-  kalan=suanMod.sure;oyunAktif=true;dokunulduMu=false;
-  hizMs=suanMod.hizlar[0].ms;
-  kelimeSirasi=kelimeListesiOlustur();
-  mevcutKelime=null;
-
-  ekranGoster('oyun');
+  suanMod=MODLAR[MOD];
+  skor=0;dogru=0;yanlis=0;combo=0;enUzun=0;
+  kalan=suanMod.sure;aktif=true;dokundum=false;
+  hiz=suanMod.hizlar[0].ms;
+  sira=havuzOlustur();mevcutK=null;
+  ekran('oyun');
   document.getElementById('gsNo').style.animation='';
-
-  // Renk sıfırla
   document.getElementById('oyunUst').className='oyun-ust';
-  document.getElementById('dokunmaAlani').className='dokunma-alani';
+  document.getElementById('da').className='dokunma-alani';
   document.getElementById('sureBar').className='sure-bar-ic';
-  document.getElementById('son5Overlay').classList.remove('on');
-
-  guncelle();
-  sureBaslangic=Date.now();
-
-  // Süre sayacı
-  sureInterval=setInterval(()=>{
-    kalan=Math.max(0,suanMod.sure-Math.floor((Date.now()-sureBaslangic)/1000));
-    const sureEl=document.getElementById('sureNo');
-    const barEl=document.getElementById('sureBar');
-    const ust=document.getElementById('oyunUst');
-    const overlay=document.getElementById('son5Overlay');
-
-    sureEl.textContent=kalan;
-    barEl.style.width=(kalan/suanMod.sure*100)+'%';
-
-    const acil=kalan<=5;
-    const cokAcil=kalan<=3;
-
-    sureEl.className='ust-no sure-renk'+(acil?' sure-acil':'');
-    barEl.className='sure-bar-ic'+(cokAcil?' acil':acil?' ates':'');
-    ust.className='oyun-ust'+(cokAcil?' tehlike':acil?' ates':'');
-    overlay.classList.toggle('on',acil);
-
-    if(kalan<=0) oyunBitis();
+  document.getElementById('s5').classList.remove('on');
+  guncelle();sureBas=Date.now();
+  sureInt=setInterval(()=>{
+    kalan=Math.max(0,suanMod.sure-Math.floor((Date.now()-sureBas)/1000));
+    const sEl=document.getElementById('sureNo');
+    const bEl=document.getElementById('sureBar');
+    const uEl=document.getElementById('oyunUst');
+    const oEl=document.getElementById('s5');
+    sEl.textContent=kalan;
+    bEl.style.width=(kalan/suanMod.sure*100)+'%';
+    const acil=kalan<=5,cok=kalan<=3;
+    sEl.className='ust-no sure-renk'+(acil?' sure-acil':'');
+    bEl.className='sure-bar-ic'+(cok?' kirmizi':acil?' sari':'');
+    uEl.className='oyun-ust'+(cok?' tehlike':acil?' ates':'');
+    oEl.classList.toggle('on',acil);
+    if(kalan<=0)oyunBitis();
   },200);
-
   sonrakiKelime();
 }
 
-/* ══════════════════════════════════════════════════════════
-   KELİME YÖNETİMİ
-══════════════════════════════════════════════════════════ */
 function sonrakiKelime(){
-  if(!oyunAktif) return;
-  clearTimeout(kelimeTimeout);
-
-  // Hız güncelle
+  if(!aktif)return;
+  clearTimeout(kTimeout);
   const hs=suanMod.hizlar;
-  for(let i=hs.length-1;i>=0;i--){
-    if(dogru>=hs[i].esik){hizMs=hs[i].ms;break;}
-  }
-
-  // Önceki kelimeyi değerlendir (bırakıldıysa)
-  if(mevcutKelime&&!dokunulduMu&&mevcutKelime.dogru){
-    yanlisCevap(false); // bıraktı ama bırakmamalıydı
-  }
-
-  dokunulduMu=false;
-
-  // Sonraki kelimeyi al
-  if(kelimeSirasi.length===0) kelimeSirasi=kelimeListesiOlustur();
-  mevcutKelime=kelimeSirasi.shift();
-
-  kelimeGoster(mevcutKelime);
-
-  kelimeTimeout=setTimeout(()=>{
-    if(!oyunAktif) return;
-    if(!dokunulduMu){
-      if(mevcutKelime&&mevcutKelime.dogru) yanlisCevap(false);
-    }
-    mevcutKelime=null;
-    sonrakiKelime();
-  },hizMs);
+  for(let i=hs.length-1;i>=0;i--){if(dogru>=hs[i].e){hiz=hs[i].ms;break;}}
+  if(mevcutK&&!dokundum&&mevcutK.d)yanlisCevap();
+  dokundum=false;
+  if(sira.length===0)sira=havuzOlustur();
+  mevcutK=sira.shift();
+  kelimeGoster(mevcutK);
+  kTimeout=setTimeout(()=>{
+    if(!aktif)return;
+    if(!dokundum&&mevcutK&&mevcutK.d)yanlisCevap();
+    mevcutK=null;sonrakiKelime();
+  },hiz);
 }
 
 function kelimeGoster(k){
-  const metinEl=document.getElementById('kelimeMetin');
-  const ustEl=document.getElementById('kelimeUst');
-  const ipucuEl=document.getElementById('kelimeIpucu');
-
-  metinEl.classList.add('gecis');
+  const mEl=document.getElementById('kMetin');
+  const iEl=document.getElementById('kIpucu');
+  mEl.classList.add('gecis');
   setTimeout(()=>{
-    metinEl.textContent=k.k;
-    ustEl.textContent='';
-    if(suanMod.ipucu && k.h) ipucuEl.textContent=k.h;
-    else ipucuEl.textContent='';
-    metinEl.classList.remove('gecis');
+    mEl.textContent=k.k;
+    iEl.textContent=(suanMod.ipucu&&k.h)?k.h:'';
+    mEl.classList.remove('gecis');
   },110);
 }
 
-/* ══════════════════════════════════════════════════════════
-   DOKUNMA
-══════════════════════════════════════════════════════════ */
 function dokunuldu(){
-  if(!oyunAktif||dokunulduMu||!mevcutKelime) return;
-  dokunulduMu=true;
-
-  if(mevcutKelime.dogru) dogruCevap();
-  else yanlisCevap(true);
-
-  clearTimeout(kelimeTimeout);
-  mevcutKelime=null;
+  if(!aktif||dokundum||!mevcutK)return;
+  dokundum=true;
+  if(mevcutK.d)dogruCevap();else yanlisCevap();
+  clearTimeout(kTimeout);mevcutK=null;
   setTimeout(sonrakiKelime,120);
 }
 
 function dogruCevap(){
   dogru++;combo++;
-  if(combo>enUzunCombo) enUzunCombo=combo;
-  const bonus=Math.min((combo-1)*2,12);
-  skor+=10+bonus;
-  flash('D');
-  if(navigator.vibrate) navigator.vibrate(30);
-  guncelle();
-  comboEfekt();
+  if(combo>enUzun)enUzun=combo;
+  const b=Math.min((combo-1)*2,14);
+  skor+=10+b;
+  flash('fD');if(navigator.vibrate)navigator.vibrate(30);
+  guncelle();comboEfekt();
 }
 
-function yanlisCevap(dokundumu){
-  yanlis++;
-  skor=Math.max(0,skor-5);
-  combo=0;
-  flash('Y');
-  if(navigator.vibrate) navigator.vibrate([60,20,60]);
+function yanlisCevap(){
+  yanlis++;skor=Math.max(0,skor-5);combo=0;
+  flash('fY');if(navigator.vibrate)navigator.vibrate([60,20,60]);
   guncelle();
   document.getElementById('comboNo').className='ust-no combo-renk';
-  document.getElementById('dokunmaAlani').className='dokunma-alani';
+  document.getElementById('da').className='dokunma-alani';
 }
 
 function guncelle(){
-  const skorEl=document.getElementById('skorNo');
-  skorEl.textContent=skor;
-  skorEl.style.animation='none'; void skorEl.offsetWidth;
-  if(dogru>0) skorEl.style.animation='skorBump .25s ease';
-
-  const comboEl=document.getElementById('comboNo');
-  comboEl.textContent='×'+combo;
-  if(combo>=10) comboEl.className='ust-no combo-ates';
-  else if(combo>=3) comboEl.className='ust-no combo-aktif';
-  else comboEl.className='ust-no combo-renk';
-
-  // Arkaplan combo efekti
-  const da=document.getElementById('dokunmaAlani');
-  if(combo>=15) da.className='dokunma-alani combo-bg-15';
-  else if(combo>=10) da.className='dokunma-alani combo-bg-10';
-  else if(combo>=5) da.className='dokunma-alani combo-bg-5';
-  else if(combo>=3) da.className='dokunma-alani combo-bg-3';
-  else da.className='dokunma-alani';
+  const sEl=document.getElementById('skorNo');
+  sEl.textContent=skor;sEl.style.animation='none';
+  void sEl.offsetWidth;if(dogru>0)sEl.style.animation='skorBump .25s ease';
+  const cEl=document.getElementById('comboNo');
+  cEl.textContent='×'+combo;
+  if(combo>=10)cEl.className='ust-no combo-ates';
+  else if(combo>=3)cEl.className='ust-no combo-aktif';
+  else cEl.className='ust-no combo-renk';
+  const dEl=document.getElementById('da');
+  if(combo>=15)dEl.className='dokunma-alani cb15';
+  else if(combo>=10)dEl.className='dokunma-alani cb10';
+  else if(combo>=5)dEl.className='dokunma-alani cb5';
+  else if(combo>=3)dEl.className='dokunma-alani cb3';
+  else dEl.className='dokunma-alani';
 }
 
-/* ══════════════════════════════════════════════════════════
-   EFEKTLER
-══════════════════════════════════════════════════════════ */
-function flash(tip){
-  const el=document.getElementById('flash'+(tip==='D'?'D':'Y'));
-  el.classList.add('on');
-  setTimeout(()=>el.classList.remove('on'),180);
+function flash(id){
+  const el=document.getElementById(id);
+  el.classList.add('on');setTimeout(()=>el.classList.remove('on'),180);
 }
 
 function comboEfekt(){
-  const mesajlar={3:'👏 İyi gidiyorsun!',5:'🔥 Seri başladı!',8:'⚡ Durdurulamıyorsun!',10:'🏆 Artvin ustası!',15:'🌟 Efsane!',20:'💎 Tam Artvinli!'};
-  const m=mesajlar[combo];
-  if(!m) return;
-  const el=document.getElementById('comboMesaj');
-  el.textContent=m;
-  el.classList.add('goster');
+  const ms={3:'👏 İyi gidiyorsun!',5:'🔥 Seri başladı!',8:'⚡ Durdurulamıyorsun!',10:'🏆 Artvin ustası!',15:'🌟 Efsane!',20:'💎 Tam Artvinli!'};
+  const m=ms[combo];if(!m)return;
+  const el=document.getElementById('cm');
+  el.textContent=m;el.classList.add('goster');
   setTimeout(()=>el.classList.remove('goster'),1100);
 }
 
-/* ══════════════════════════════════════════════════════════
-   OYUN BİTİŞ
-══════════════════════════════════════════════════════════ */
 function oyunBitis(){
-  if(!oyunAktif) return;
-  oyunAktif=false;
-  clearInterval(sureInterval);
-  clearTimeout(kelimeTimeout);
-
-  const key='artvinReflex_m'+MOD_IDX;
-  const once=parseInt(localStorage.getItem(key)||'0');
-  const rekor=skor>once;
-  if(rekor) localStorage.setItem(key,skor);
-
+  if(!aktif)return;
+  aktif=false;clearInterval(sureInt);clearTimeout(kTimeout);
+  const sir=skorKaydet(MOD,kulAdi,skor);
+  const ben=sir.findIndex(s=>s.i===kulAdi&&s.p===skor);
   setTimeout(()=>{
-    ekranGoster('sonuc');
-    document.getElementById('sonucSkor').textContent=skor;
-    document.getElementById('sonucMod').textContent=suanMod.ikon+' '+suanMod.ad+' Modu';
-    document.getElementById('stDogru').textContent=dogru;
-    document.getElementById('stYanlis').textContent=yanlis;
-    document.getElementById('stCombo').textContent=enUzunCombo;
-
+    ekran('sonuc');
+    document.getElementById('sSkor').textContent=skor;
+    document.getElementById('sMod').textContent=suanMod.ikon+' '+suanMod.ad+' Modu';
+    document.getElementById('stD').textContent=dogru;
+    document.getElementById('stY').textContent=yanlis;
+    document.getElementById('stC').textContent=enUzun;
+    const sirEl=document.getElementById('siramEl');
+    if(ben===0)sirEl.textContent='🥇 1. sıradasın! Rekor senin!';
+    else if(ben===1)sirEl.textContent='🥈 2. sıradasın!';
+    else if(ben===2)sirEl.textContent='🥉 3. sıradasın!';
+    else if(ben>=0)sirEl.textContent=`📊 ${ben+1}. sıradasın`;
+    else sirEl.textContent='';
     let emoji,mesaj;
-    if(skor>=250)     {emoji='💎';mesaj='Sen direkt Artvin\'sin! Doğan yerde büyümüşsün gibi 🔥';}
-    else if(skor>=180){emoji='🏆';mesaj='Artvin havası var sende! Az kaldı Artvinli sayılıyorsun.';}
-    else if(skor>=120){emoji='🌟';mesaj='Fena değilsin! Bir haftalık Artvin tatiline ihtiyacın var.';}
-    else if(skor>=60) {emoji='💪';mesaj='Daha yolun var ama potansiyelin görünüyor!';}
-    else              {emoji='😄';mesaj='Artvin seni bekliyor — gel bir tanış önce!';}
-
-    document.getElementById('sonucEmoji').textContent=emoji;
-    document.getElementById('sonucMesaj').textContent=mesaj;
-
-    const enIyiEl=document.getElementById('enIyi');
-    if(rekor){
-      enIyiEl.textContent='🏅 YENİ REKOR! En iyin: '+skor+' puan';
-      enIyiEl.style.color='var(--gold)';
-      enIyiEl.style.borderColor='rgba(240,192,64,.3)';
-    } else {
-      enIyiEl.textContent='📊 Senin en iyisi: '+once+' puan';
-      enIyiEl.style.color='';
-      enIyiEl.style.borderColor='';
-    }
+    if(skor>=250){emoji='💎';mesaj="Sen direkt Artvin'sin! 🔥";}
+    else if(skor>=180){emoji='🏆';mesaj="Artvin havası var sende!";}
+    else if(skor>=120){emoji='🌟';mesaj="Fena değilsin! Bir Artvin tatili sana yakışır.";}
+    else if(skor>=60){emoji='💪';mesaj="Daha yolun var ama potansiyelin görünüyor!";}
+    else{emoji='😄';mesaj="Artvin seni bekliyor — gel bir tanış önce!";}
+    document.getElementById('sEmoji').textContent=emoji;
+    document.getElementById('sMesaj').textContent=mesaj;
+    const eEl=document.getElementById('enIyi');
+    const enIyi=sir.find(s=>s.i===kulAdi);
+    if(ben===0||sir.length===1){eEl.textContent='🏅 YENİ REKOR: '+skor+' puan';eEl.style.color='var(--gold)';}
+    else{eEl.textContent='📊 Senin en iyisi: '+(enIyi?enIyi.p:skor)+' puan';eEl.style.color='';}
   },300);
 }
 
-/* ══════════════════════════════════════════════════════════
-   TEKRAR & PAYLAŞIM
-══════════════════════════════════════════════════════════ */
-function tekrarOyna(){ekranGoster('giris');}
+function tekrarOyna(){ekran('giris');}
 
+/* PAYLAŞIM */
 function paylasMetni(){
-  const modAd=suanMod.ad;
-  const satirlar=[
-    `⚡ Artvin Reflex Challenge — ${modAd} Modu`,
-    ``,
-    `🎯 Skor: ${skor} puan`,
-    `✅ Doğru: ${dogru} | ❌ Yanlış: ${yanlis} | 🔥 En seri: ${enUzunCombo}`,
-    ``,
-    `"Artvin'i ne kadar biliyorsun?"`,
-    `Sen geçebilir misin? 👇`,
+  const sir=siralamaAl(MOD);
+  const bir=sir[0];
+  return[
+    `⚡ Artvin Reflex — ${suanMod.ad} Modu`,``,
+    `👤 ${kulAdi}: ${skor} puan`,
+    `✅ ${dogru} doğru | ❌ ${yanlis} yanlış | 🔥 ${enUzun} seri`,
+    bir?`🥇 Lider: ${bir.i} — ${bir.p} puan`:'',
+    ``,`Sen geçebilir misin? 👇`,
     `artvinrehber.com/reflex.html`,
-  ];
-  return satirlar.join('\n');
+  ].filter(Boolean).join('\n');
 }
+function paylasWP(){window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(paylasMetni()),'_blank');}
+function paylasX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(`⚡ Artvin Reflex'te ${skor} puan yaptım! (${kulAdi} — ${suanMod.ad})\nSen geçebilir misin? artvinrehber.com/reflex.html`),'_blank');}
+function paylasKopyala(){navigator.clipboard.writeText(paylasMetni()).then(()=>toast('📋 Kopyalandı!'));}
 
-function paylasWP(){
-  window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(paylasMetni()),'_blank');
+/* TABLO */
+let tMod=0;
+function tabloAc(){tMod=MOD;tRender();document.getElementById('tabloOvr').classList.add('on');}
+function tabloKapat(){document.getElementById('tabloOvr').classList.remove('on');}
+function tModSec(i){
+  tMod=i;
+  document.querySelectorAll('.t-mod').forEach((b,j)=>b.classList.toggle('on',j===i));
+  tRender();
 }
-function paylasX(){
-  const k=`⚡ Artvin Reflex'te ${skor} puan yaptım! (${suanMod.ad} modu)\nSen geçebilir misin? artvinrehber.com/reflex.html`;
-  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(k),'_blank');
-}
-function paylasKopyala(){
-  navigator.clipboard.writeText(paylasMetni()).then(()=>toast('📋 Kopyalandı!'));
+function tRender(){
+  const sir=siralamaAl(tMod);
+  const el=document.getElementById('tIcerik');
+  if(!sir.length){el.innerHTML='<div class="t-bos">Henüz skor yok.<br>İlk sen ol! 🏆</div>';return;}
+  el.innerHTML=sir.map((s,i)=>{
+    const sc=i===0?'g1':i===1?'g2':i===2?'g3':'';
+    const md=i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1;
+    const ben=s.i===kulAdi;
+    return`<div class="t-satir"><div class="t-sira ${sc}">${md}</div><div class="t-isim${ben?' ben':''}">${s.i}${ben?' 👈':''}</div><div class="t-skor">${s.p}</div></div>`;
+  }).join('');
 }
 </script>
 </body>
