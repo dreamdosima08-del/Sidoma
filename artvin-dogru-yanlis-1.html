@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Artvin Doğru mu Yanlış mı? | 60 Soruda Test | artvinrehber.com</title>
+<meta name="description" content="Gerçek Artvinli misin? 60 soruda kendini test et! Artvin bilgi yarışması — doğru/yanlış quiz. 5 seviye, sıralama tablosu.">
+<meta name="keywords" content="artvin quiz, artvin doğru yanlış, artvin testi, artvin bilgi yarışması">
+<meta name="geo.region" content="TR-08">
+<link rel="canonical" href="https://artvinrehber.com/artvin-dogru-yanlis.html">
+<meta property="og:title" content="Artvin Doğru mu Yanlış mı?">
+<meta property="og:description" content="Gerçek Artvinli misin? 60 soruda kendini test et!">
+<meta property="og:image" content="https://i.ibb.co/Lzp5Jvdm/1775766946242.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ── AÇILIŞ ── */
+.ac-foto{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -10%,rgba(61,219,138,.18) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,rgba(61,219,138,.06) 0%,transparent 50%),
+    #060d0a;
+}
+.ac-cizgi{
+  position:fixed;inset:0;z-index:1;
+  background-image:
+    linear-gradient(rgba(61,219,138,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(61,219,138,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+
+.ac-overlay{display:none;}
+.ac-icerik{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center;gap:1.1rem;}
+.ac-logo{font-size:.58rem;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--vivid);background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.2);padding:.3rem 1rem;border-radius:50px;margin-bottom:1.5rem;display:inline-block;}
+.ac-baslik{font-family:"Bebas Neue",sans-serif;font-size:clamp(3.4rem,16vw,6.5rem);letter-spacing:.05em;line-height:.9;color:#fff;text-shadow:0 0 60px rgba(61,219,138,.15);}
+.ac-baslik .vurgu{background:linear-gradient(135deg,var(--vivid),#7cffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ac-alt{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.6;max-width:300px;}
+.ac-btn{padding:1rem 3rem;border-radius:50px;background:linear-gradient(135deg,var(--vivid),#1fc46a);color:#030f06;font-family:"Bebas Neue",sans-serif;font-size:1.5rem;letter-spacing:.16em;border:none;cursor:pointer;box-shadow:0 0 0 0 rgba(61,219,138,.4);animation:glow 2s ease infinite;transition:.2s;}
+@keyframes glow{0%,100%{box-shadow:0 0 24px rgba(61,219,138,.35),0 8px 24px rgba(0,0,0,.4);}50%{box-shadow:0 0 48px rgba(61,219,138,.65),0 8px 24px rgba(0,0,0,.4);}}
+.ac-btn:hover{transform:translateY(-3px) scale(1.04);}
+.ac-istatistik{display:flex;gap:1rem;justify-content:center;}
+.ac-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.6rem 1.1rem;}.ac-stat .no{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;color:#fff;display:block;line-height:1;}
+.ac-stat .lbl{font-size:.52rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+/* ── GİRİŞ ── */
+.giris-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;background:radial-gradient(ellipse 90% 70% at 50% 0%,rgba(61,219,138,.07) 0%,transparent 60%),var(--bg);}
+.giris-logo{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;letter-spacing:.12em;color:var(--vivid);text-align:center;margin-bottom:.25rem;}
+.giris-alt{font-size:.82rem;color:var(--dim);text-align:center;margin-bottom:1.5rem;}
+.glass-kart{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:1.5rem;width:100%;max-width:420px;}
+.form-lbl{font-size:.6rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem;display:block;}
+.form-input{width:100%;padding:.75rem 1.1rem;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-family:"Nunito",sans-serif;font-size:1rem;font-weight:700;outline:none;transition:.2s;margin-bottom:1.1rem;}
+.form-input:focus{border-color:var(--vivid);background:rgba(61,219,138,.05);}
+/* Avatar grid */
+.avatar-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem;margin-bottom:1.25rem;}
+.av-btn{aspect-ratio:1;border-radius:12px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);font-size:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;}
+.av-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);transform:scale(1.08);}
+.av-btn.secili{background:rgba(61,219,138,.12);border-color:var(--vivid);box-shadow:0 0 12px rgba(61,219,138,.3);}
+.btn-giris{width:100%;padding:.9rem;border-radius:12px;background:linear-gradient(135deg,var(--vivid),#1fc46a);color:#030f06;font-family:"Bebas Neue",sans-serif;font-size:1.2rem;letter-spacing:.14em;border:none;cursor:pointer;transition:.15s;box-shadow:0 4px 20px rgba(61,219,138,.25);}
+.btn-giris:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(61,219,138,.4);}
+
+:root{
+  --bg:#07080f;--bg2:#0d1020;--card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.1);--border2:rgba(255,255,255,.06);
+  --gold:#f0c040;--vivid:#7c6fff;--accent:#a78bfa;
+  --green:#22d3a5;--red:#ff4757;--blue:#60a5fa;
+  --off:#e8eaf6;--dim:rgba(232,234,246,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+html,body{min-height:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--off);font-family:"Nunito",sans-serif;font-weight:700;}
+button{cursor:pointer;border:none;font-family:inherit;}
+
+/* EKRANLAR */
+.ekran{display:none;}
+.ekran.aktif{display:block;}
+
+/* ══════════════════════════════
+   AÇILIŞ
+══════════════════════════════ */
+#acilis{min-height:100vh;position:relative;overflow:hidden;}
+
+@keyframes yavasZoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
+
+
+
+
+.ac-baslik .vurgu{
+  background:linear-gradient(135deg,var(--vivid),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+
+.ac-btn::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+  border-radius:14px;
+}
+.ac-btn:hover{transform:scale(1.04);}
+@keyframes glowPuls{
+  0%,100%{box-shadow:0 0 40px rgba(124,111,255,.4),0 8px 20px rgba(0,0,0,.4);}
+  50%{box-shadow:0 0 64px rgba(124,111,255,.7),0 8px 20px rgba(0,0,0,.4);}
+}
+
+
+.ac-stat .no{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;color:var(--gold);display:block;}
+.ac-stat .lbl{font-size:.55rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;}
+
+/* ══════════════════════════════
+   GİRİŞ
+══════════════════════════════ */
+#giris{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:2rem 1.25rem;
+  background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(124,111,255,.12) 0%,transparent 60%),var(--bg);
+}
+
+.giris-ust{text-align:center;}
+.giris-ust h2{
+  font-family:"Bebas Neue",sans-serif;font-size:2rem;
+  letter-spacing:.1em;color:#fff;margin-bottom:.3rem;
+}
+.giris-ust p{font-size:.82rem;color:var(--dim);line-height:1.6;}
+
+/* Glass kart */
+
+
+
+
+.form-input::placeholder{color:rgba(255,255,255,.25);}
+
+/* Avatar */
+.av-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.4rem;margin-bottom:1.1rem;}
+
+
+
+
+.btn-devam{
+  width:100%;padding:.85rem;border-radius:12px;
+  background:linear-gradient(135deg,var(--vivid),var(--accent));
+  color:#fff;font-family:"Bebas Neue",sans-serif;
+  font-size:1.2rem;letter-spacing:.1em;transition:.15s;
+  box-shadow:0 4px 20px rgba(124,111,255,.3);
+}
+.btn-devam:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,111,255,.4);}
+
+/* Liderboard önizleme */
+.ldr-onizleme{margin-top:.25rem;}
+.ldr-onizleme h3{font-size:.65rem;font-weight:900;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-bottom:.6rem;}
+
+/* ══════════════════════════════
+   OYUN
+══════════════════════════════ */
+#oyun{min-height:100vh;display:flex;flex-direction:column;background:var(--bg);}
+.oyun-bar{
+  background:rgba(7,8,15,.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border2);
+  padding:.55rem 1rem;flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.kul-info{display:flex;align-items:center;gap:.4rem;}
+.kul-av{font-size:1.2rem;}
+.kul-ad{font-size:.78rem;font-weight:800;color:#fff;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sv-chip{
+  font-size:.52rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+  padding:.18rem .5rem;border-radius:4px;
+  background:rgba(124,111,255,.15);border:1px solid rgba(124,111,255,.3);color:var(--accent);
+  white-space:nowrap;
+}
+.skor-blok{text-align:center;}
+.skor-no{
+  font-family:"Bebas Neue",sans-serif;font-size:1.6rem;
+  color:var(--gold);display:block;line-height:1;
+  transition:transform .15s;
+}
+.skor-no.zimpla{transform:scale(1.3);}
+.skor-lbl{font-size:.48rem;font-weight:900;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
+.prog-dis{height:3px;background:rgba(255,255,255,.06);flex-shrink:0;}
+.prog-ic{height:100%;background:linear-gradient(90deg,var(--vivid),var(--accent));transition:width .4s ease;}
+
+.soru-alan{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:1rem 1.25rem 1.5rem;gap:1rem;
+}
+.zorluk-chip{
+  font-size:.58rem;font-weight:900;letter-spacing:.12em;
+  text-transform:uppercase;padding:.25rem .75rem;border-radius:50px;
+}
+.z-kolay{background:rgba(34,211,165,.1);color:var(--green);border:1px solid rgba(34,211,165,.25);}
+.z-orta{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.25);}
+.z-zor{background:rgba(240,192,64,.1);color:var(--gold);border:1px solid rgba(240,192,64,.25);}
+.z-uzman{background:rgba(255,71,87,.1);color:var(--red);border:1px solid rgba(255,71,87,.25);}
+
+.soru-kart{
+  width:100%;max-width:480px;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;padding:1.5rem 1.25rem;
+  text-align:center;
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+  animation:kartGel .3s cubic-bezier(.2,.8,.4,1);
+  transition:border-color .25s,background .25s;
+}
+@keyframes kartGel{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.soru-no{font-size:.6rem;font-weight:900;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-bottom:.75rem;}
+.soru-metin{font-size:clamp(1rem,4.5vw,1.2rem);font-weight:800;color:#fff;line-height:1.55;}
+.kart-dogru{border-color:rgba(34,211,165,.5)!important;background:rgba(34,211,165,.07)!important;}
+.kart-yanlis{border-color:rgba(255,71,87,.5)!important;background:rgba(255,71,87,.06)!important;}
+.feedback{
+  font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6;
+  margin-top:.75rem;padding:.6rem .75rem;
+  background:rgba(255,255,255,.04);border-radius:8px;display:none;
+}
+.fb-d{color:var(--green);}
+.fb-y{color:var(--red);}
+
+.timer-dis{width:100%;max-width:480px;height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;}
+.timer-ic{height:100%;background:var(--vivid);border-radius:2px;transition:width .1s linear,background .3s;}
+.timer-ic.sari{background:var(--gold);}
+.timer-ic.kirmizi{background:var(--red);}
+
+.btn-row{display:flex;gap:.75rem;width:100%;max-width:480px;}
+.btn-d,.btn-y{
+  flex:1;padding:.9rem .5rem;border-radius:14px;
+  font-family:"Bebas Neue",sans-serif;font-size:1.3rem;letter-spacing:.1em;
+  transition:.15s;position:relative;overflow:hidden;
+}
+.btn-d{
+  background:rgba(34,211,165,.1);border:2px solid rgba(34,211,165,.25);color:var(--green);
+}
+.btn-d:hover{background:rgba(34,211,165,.2);border-color:rgba(34,211,165,.6);transform:translateY(-2px);}
+.btn-y{
+  background:rgba(255,71,87,.08);border:2px solid rgba(255,71,87,.2);color:var(--red);
+}
+.btn-y:hover{background:rgba(255,71,87,.18);border-color:rgba(255,71,87,.5);transform:translateY(-2px);}
+.btn-d:disabled,.btn-y:disabled{opacity:.4;cursor:default;transform:none;}
+
+/* Flash */
+.flash{position:fixed;inset:0;opacity:0;pointer-events:none;z-index:50;transition:opacity .12s;}
+.flash.on{opacity:1;}
+.flash-d{background:rgba(34,211,165,.13);}
+.flash-y{background:rgba(255,71,87,.13);}
+
+/* Seri banner */
+.streak-ban{
+  display:none;position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);z-index:200;
+  background:rgba(240,192,64,.12);backdrop-filter:blur(20px);
+  border:2px solid var(--gold);border-radius:20px;
+  padding:1rem 2rem;text-align:center;pointer-events:none;
+  animation:pop .35s cubic-bezier(.2,.8,.4,1);
+}
+@keyframes pop{from{opacity:0;transform:translate(-50%,-50%) scale(.5)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.streak-txt{font-family:"Bebas Neue",sans-serif;font-size:2rem;color:var(--gold);letter-spacing:.1em;}
+.streak-sub{font-size:.72rem;color:rgba(240,192,64,.7);}
+
+/* Seviye banner */
+.sv-ban{
+  display:none;position:fixed;top:80px;left:50%;
+  transform:translateX(-50%);z-index:100;
+  background:rgba(124,111,255,.15);backdrop-filter:blur(16px);
+  border:1px solid rgba(124,111,255,.4);border-radius:10px;
+  padding:.55rem 1.25rem;font-family:"Bebas Neue",sans-serif;
+  font-size:.95rem;letter-spacing:.1em;color:var(--accent);
+  animation:slideD .3s ease;white-space:nowrap;
+}
+@keyframes slideD{from{opacity:0;transform:translateX(-50%) translateY(-16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ══════════════════════════════
+   SONUÇ
+══════════════════════════════ */
+#sonuc{
+  min-height:100vh;
+  background:radial-gradient(ellipse 80% 60% at 50% 10%,rgba(124,111,255,.15) 0%,transparent 60%),var(--bg);
+}
+.sonuc-icerik{
+  display:flex;flex-direction:column;align-items:center;
+  padding:2rem 1.25rem 3rem;gap:1rem;text-align:center;
+  max-width:480px;margin:0 auto;
+}
+.sonuc-rozet{font-size:4rem;animation:rozetG .6s cubic-bezier(.2,.8,.4,1);}
+@keyframes rozetG{from{opacity:0;transform:scale(0) rotate(-20deg)}to{opacity:1;transform:none}}
+.sonuc-sv{
+  font-family:"Bebas Neue",sans-serif;font-size:1.4rem;letter-spacing:.1em;
+  padding:.35rem 1.25rem;border-radius:50px;
+  background:rgba(124,111,255,.15);border:1px solid rgba(124,111,255,.3);
+  color:var(--accent);
+}
+.sonuc-skor{font-family:"Bebas Neue",sans-serif;font-size:3.5rem;color:var(--gold);line-height:1;}
+.sonuc-yuzde{font-family:"Bebas Neue",sans-serif;font-size:1.2rem;color:#fff;}
+.sonuc-msg{font-size:.92rem;color:var(--dim);line-height:1.7;max-width:320px;}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;width:100%;}
+.stat-item{background:rgba(255,255,255,.05);border:1px solid var(--border2);border-radius:10px;padding:.7rem .4rem;}
+.stat-no{font-family:"Bebas Neue",sans-serif;font-size:1.5rem;display:block;letter-spacing:.06em;}
+.stat-lbl{font-size:.5rem;font-weight:900;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;}
+
+/* Liderboard */
+.ldr-kart{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:16px;padding:1.1rem;}
+.tab-row{display:flex;gap:.3rem;margin-bottom:.85rem;}
+.tab{flex:1;padding:.4rem .3rem;border-radius:7px;border:1px solid var(--border2);background:transparent;color:var(--dim);font-size:.68rem;font-weight:800;cursor:pointer;transition:.15s;}
+.tab.aktif{background:rgba(124,111,255,.15);border-color:rgba(124,111,255,.35);color:var(--accent);}
+.ldr-row{display:flex;align-items:center;gap:.55rem;padding:.5rem .6rem;border-radius:8px;margin-bottom:.3rem;background:rgba(255,255,255,.03);}
+.ldr-row.benim{background:rgba(124,111,255,.1);border:1px solid rgba(124,111,255,.2);}
+.ldr-sira{font-family:"Bebas Neue",sans-serif;font-size:1rem;min-width:1.5rem;text-align:center;color:var(--dim);}
+.ldr-isim{flex:1;font-size:.82rem;font-weight:800;color:#fff;}
+.ldr-sv{font-size:.52rem;color:var(--dim);}
+.ldr-skor{font-family:"Bebas Neue",sans-serif;font-size:.95rem;color:var(--gold);}
+
+/* Paylaşım */
+.paylas-kart{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:14px;padding:1.1rem;}
+.paylas-alt{font-size:.78rem;color:var(--dim);margin-bottom:.7rem;}
+.paylas-row{display:flex;gap:.45rem;flex-wrap:wrap;}
+.btn-wp{flex:1;padding:.6rem .4rem;border-radius:8px;background:#25D366;color:#fff;font-weight:800;font-size:.78rem;cursor:pointer;}
+.btn-x{flex:1;padding:.6rem .4rem;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid var(--border);color:var(--off);font-weight:800;font-size:.78rem;cursor:pointer;}
+.btn-kopyala{flex:1;padding:.6rem .4rem;border-radius:8px;background:rgba(124,111,255,.12);border:1px solid rgba(124,111,255,.25);color:var(--accent);font-weight:800;font-size:.78rem;cursor:pointer;}
+
+.btn-tekrar{
+  width:100%;padding:.85rem;border-radius:12px;
+  background:linear-gradient(135deg,var(--vivid),var(--accent));
+  color:#fff;font-family:"Bebas Neue",sans-serif;
+  font-size:1.15rem;letter-spacing:.1em;transition:.15s;
+  box-shadow:0 4px 20px rgba(124,111,255,.3);
+}
+.btn-tekrar:hover{transform:translateY(-2px);}
+.btn-meydan{
+  width:100%;padding:.68rem;border-radius:10px;
+  border:1px solid var(--border);background:rgba(255,255,255,.04);
+  color:var(--dim);font-weight:800;font-size:.82rem;cursor:pointer;transition:.15s;
+}
+.btn-meydan:hover{color:var(--gold);border-color:rgba(240,192,64,.4);}
+
+/* Toast */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(255,255,255,.92);color:#07080f;font-size:.72rem;font-weight:800;padding:.45rem 1.1rem;border-radius:6px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:999;white-space:nowrap;}
+.toast.ac{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="flash flash-d" id="flashD"></div>
+<div class="flash flash-y" id="flashY"></div>
+<div class="streak-ban" id="streakBanner"><div class="streak-txt" id="streakTxt">🔥 3 SERİ!</div><div class="streak-sub" id="streakSub">+10 Bonus</div></div>
+<div class="sv-ban" id="svBanner"></div>
+<div class="toast" id="toast"></div>
+
+<!-- ══ AÇILIŞ ══ -->
+<div class="ekran aktif" id="acilis">
+  <div class="ac-foto"></div>
+  <div class="ac-cizgi"></div>
+  <div class="ac-icerik">
+    <span class="ac-logo">🏔️ artvinrehber.com sunar</span>
+    <h1 class="ac-baslik">ARTVİN<br><span class="vurgu">DOĞRU mu?</span><br>YANLIŞ mı?</h1>
+    <p class="ac-alt">Gerçek Artvinli misin?<br><strong style="color:#fff">60 Soruda</strong> Kendini Test Et</p>
+    <button class="ac-btn" onclick="ekranGoster('giris')">OYUNA BAŞLA →</button>
+    <div class="ac-istatistik">
+      <div class="ac-stat"><span class="no">60</span><span class="lbl">Soru</span></div>
+      <div class="ac-stat"><span class="no">5</span><span class="lbl">Seviye</span></div>
+      <div class="ac-stat"><span class="no">🏆</span><span class="lbl">Sıralama</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GİRİŞ ══ -->
+<div class="ekran" id="giris">
+  <div class="giris-wrap">
+    <div style="width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;">
+      <div class="giris-logo">ARTVIN DOĞRU / YANLIŞ</div>
+      <div class="giris-alt">Kullanıcı adınızı belirleyin ve yarışmaya katılın</div>
+      <div class="glass-kart">
+        <label class="form-lbl">Kullanıcı Adınız</label>
+        <input class="form-input" id="kulInput" type="text" maxlength="18"
+          placeholder="Adınızı yazın..."
+          onkeydown="if(event.key==='Enter')girisYap()">
+        <label class="form-lbl">Avatar Seçin</label>
+        <div class="avatar-grid">
+          <button class="av-btn secili" data-av="🏔️" onclick="avSec(this)">🏔️</button>
+          <button class="av-btn" data-av="🐂" onclick="avSec(this)">🐂</button>
+          <button class="av-btn" data-av="🌲" onclick="avSec(this)">🌲</button>
+          <button class="av-btn" data-av="🦅" onclick="avSec(this)">🦅</button>
+          <button class="av-btn" data-av="🏹" onclick="avSec(this)">🏹</button>
+          <button class="av-btn" data-av="⚡" onclick="avSec(this)">⚡</button>
+          <button class="av-btn" data-av="🎯" onclick="avSec(this)">🎯</button>
+          <button class="av-btn" data-av="🌊" onclick="avSec(this)">🌊</button>
+          <button class="av-btn" data-av="🔥" onclick="avSec(this)">🔥</button>
+          <button class="av-btn" data-av="🎓" onclick="avSec(this)">🎓</button>
+          <button class="av-btn" data-av="👑" onclick="avSec(this)">👑</button>
+          <button class="av-btn" data-av="🧠" onclick="avSec(this)">🧠</button>
+        </div>
+        <button class="btn-giris" onclick="girisYap()">DEVAM ET →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OYUN ══ -->
+<div class="ekran" id="oyun" style="min-height:100vh;display:flex;flex-direction:column;">
+  <div class="oyun-bar">
+    <div class="kul-info">
+      <span class="kul-av" id="kulAv">🏔️</span>
+      <div><div class="kul-ad" id="kulAd">—</div><div class="sv-chip" id="svChip">🎒 Öğrenci</div></div>
+    </div>
+    <div class="skor-blok"><span class="skor-no" id="skorNo">0</span><span class="skor-lbl">Puan</span></div>
+    <div style="text-align:right"><div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:rgba(255,255,255,.5)" id="ilerNo">1/60</div><div style="font-size:.48rem;color:var(--dim);letter-spacing:.08em">SORU</div></div>
+  </div>
+  <div class="prog-dis"><div class="prog-ic" id="progIc" style="width:0%"></div></div>
+  <div class="soru-alan">
+    <div class="zorluk-chip z-kolay" id="zorlukChip">Öğrenci</div>
+    <div class="soru-kart" id="soruKart">
+      <div class="soru-no" id="soruNo">Soru 1 / 60</div>
+      <div class="soru-metin" id="soruMetin">Yükleniyor...</div>
+      <div class="feedback" id="feedbackTxt"></div>
+    </div>
+    <div class="timer-dis"><div class="timer-ic" id="timerBar" style="width:100%"></div></div>
+    <div class="btn-row">
+      <button class="btn-d" id="btnD" onclick="cevapVer(true)">✅ DOĞRU</button>
+      <button class="btn-y" id="btnY" onclick="cevapVer(false)">❌ YANLIŞ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SONUÇ ══ -->
+<div class="ekran" id="sonuc">
+  <div class="sonuc-icerik">
+    <div class="sonuc-rozet" id="sonucRozet">🏆</div>
+    <div class="sonuc-sv" id="sonucSv">Öğrenci</div>
+    <div><span class="sonuc-skor" id="sonucSkor">0</span><div style="font-size:.58rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)">Toplam Puan</div></div>
+    <div class="sonuc-yuzde" id="sonucYuzde">Artvin Bilgin: %0</div>
+    <div class="sonuc-msg" id="sonucMsg"></div>
+    <div class="stat-grid">
+      <div class="stat-item"><span class="stat-no" id="stD" style="color:var(--green)">0</span><span class="stat-lbl">Doğru</span></div>
+      <div class="stat-item"><span class="stat-no" id="stY" style="color:var(--red)">0</span><span class="stat-lbl">Yanlış</span></div>
+      <div class="stat-item"><span class="stat-no" id="stS" style="color:var(--gold)">0</span><span class="stat-lbl">En Seri</span></div>
+    </div>
+    <div class="ldr-kart">
+      <div class="tab-row">
+        <button class="tab aktif" id="tabGunluk" onclick="tabSec('gunluk')">Günlük</button>
+        <button class="tab" id="tabHaftalik" onclick="tabSec('haftalik')">Haftalık</button>
+        <button class="tab" id="tabTumZaman" onclick="tabSec('tumzaman')">Tüm Zamanlar</button>
+      </div>
+      <div id="liderIcerik"><div style="text-align:center;padding:1rem;opacity:.4;font-size:.8rem">Yükleniyor...</div></div>
+      <div id="benim-siram" style="font-size:.72rem;color:var(--accent);text-align:center;margin-top:.5rem;font-weight:800"></div>
+    </div>
+    <div class="paylas-kart">
+      <div class="paylas-alt">Arkadaşlarına meydan oku — sonucunu paylaş:</div>
+      <div class="paylas-row">
+        <button class="btn-wp" onclick="paylasWP()">📱 WhatsApp</button>
+        <button class="btn-x" onclick="paylasX()">𝕏 X</button>
+        <button class="btn-kopyala" id="btnKopyala" onclick="paylasKopyala()">📋 Kopyala</button>
+      </div>
+    </div>
+    <button class="btn-tekrar" onclick="tekrarOyna()">🔄 Skorunu Geçebilir misin?</button>
+    <button class="btn-meydan" onclick="meydanOku()">👥 Arkadaşına Meydan Oku</button>
+    <a href="/" style="font-size:.72rem;color:var(--dim);text-decoration:none;padding:.4rem">← Ana Sayfaya Dön</a>
+  </div>
+</div>
+
+<script>
+var SHEETDB = 'https://sheetdb.io/api/v1/xm2jronau7zt1';
+
+var SORULAR = [
+  // ── ÖĞRENCİ (1-15) ──
+  {soru:"Artvin, Türkiye'nin Karadeniz Bölgesi'nde yer alır.",cevap:true,aciklama:"Artvin, Doğu Karadeniz Bölümü'nün en doğusunda, Gürcistan sınırında yer alır.",zorluk:0},
+  {soru:"Artvin'in simgesi boğadır.",cevap:true,aciklama:"Artvin'in Kafkasör yaylasında düzenlenen boğa güreşleri festivali nedeniyle boğa, şehrin sembolü haline gelmiştir.",zorluk:0},
+  {soru:"Çoruh Nehri tek kol üzerinden beslenir.",cevap:false,aciklama:"Çoruh Nehri; Barhal Çayı, Şavşat Suyu (Oltu Çayı sistemi), Tortum Çayı gibi birçok büyük dere ve kolla beslenir. Tek kollu değildir.",zorluk:0},
+  {soru:"Artvin Ermenistan ile sınır komşusudur.",cevap:false,aciklama:"Artvin doğuda Gürcistan ile sınır komşusudur. Ermenistan ile sınırı yoktur.",zorluk:0},
+  {soru:"Artvin'in en büyük ilçesi merkezden sonra nüfus bakımından Hopa'dır.",cevap:true,aciklama:"Artvin merkez ilçeden sonra en yüksek nüfusa sahip ilçe Hopa'dır.",zorluk:0},
+  {soru:"Artvin sadece çay ve fındık tarımına uygundur.",cevap:false,aciklama:"Artvin'de yetişmeyen sebze ve meyve neredeyse yoktur. Elma, armut, kivi, ceviz, zeytin, fasulye, mısır gibi çok çeşitli ürünler yetişir.",zorluk:0},
+  {soru:"2025 yılında Artvin nüfusu 169 binden 167.500'e düşmüştür.",cevap:true,aciklama:"Türkiye İstatistik Kurumu 2025 verilerine göre Artvin nüfusu 169.000'den 167.500'e gerilemiştir.",zorluk:0},
+  {soru:"Artvin, Gürcistan ile sınır komşusudur.",cevap:true,aciklama:"Artvin'in kuzeydoğusunda Gürcistan ile kara sınırı bulunur.",zorluk:0},
+  {soru:"Artvin'in gümrük kapısı Sarp köyündedir.",cevap:true,aciklama:"Artvin'in Hopa ilçesine bağlı Sarp köyü, Türkiye-Gürcistan sınırındaki en yoğun kara gümrük kapılarından biridir.",zorluk:0},
+  {soru:"Karagöl, Artvin'de bir tane vardır.",cevap:false,aciklama:"Artvin'de birden fazla Karagöl bulunur. En bilinenleri Borçka Karagöl ve Şavşat Karagöl'dür.",zorluk:0},
+  {soru:"Artvin'in trafik plakası 08'dir.",cevap:true,aciklama:"Türkiye'de illerin plaka kodları alfabetik sıraya göre verilmiştir; Artvin 08'dir.",zorluk:0},
+  {soru:"Deriner Barajı Artvin Merkezdedir.",cevap:true,aciklama:"Deriner Barajı, Artvin merkez ilçe sınırları içinde, Çoruh Nehri üzerinde yer alır.",zorluk:0},
+  {soru:"Artvin'in ekonomisinde madencilik (bakır, altın vb.) önemli yer tutar.",cevap:true,aciklama:"Murgul'daki bakır madeni ve Cerattepe'deki altın-bakır madenciliği, Artvin ekonomisinde önemli paya sahiptir.",zorluk:0},
+  {soru:"Artvin'de orman oranı Türkiye ortalamasının oldukça altındadır.",cevap:false,aciklama:"Artvin, Türkiye'nin en yüksek ormanlık alan oranına sahip illerinden biridir (%57 civarı). Türkiye ortalamasının oldukça üzerindedir.",zorluk:0},
+  {soru:"Kemalpaşa, Arhavi'den ayrılarak ilçe olmuştur.",cevap:false,aciklama:"Kemalpaşa (eski adı Limon), 1990 yılında Hopa'dan ayrılarak ilçe olmuştur. Arhavi'den değil.",zorluk:0},
+  // ── ÖĞRETMEN (16-30) ──
+  {soru:"Artvin ili 9 ilçeden oluşur.",cevap:true,aciklama:"Artvin'in 9 ilçesi vardır: Merkez, Ardanuç, Arhavi, Borçka, Hopa, Murgul, Şavşat, Yusufeli, Kemalpaşa.",zorluk:1},
+  {soru:"Artvin'in yüzölçümü yaklaşık 7.436 km²'dir.",cevap:true,aciklama:"Artvin ilinin yüzölçümü resmi kayıtlarda 7.436 km² olarak geçmektedir.",zorluk:1},
+  {soru:"Çoruh Nehri dünyanın en hızlı akan ikinci nehridir.",cevap:true,aciklama:"Çoruh, dünyanın en hızlı akan nehirleri arasında ikinci sırada gösterilir. Eğimi ve debisi bu ünü haklı çıkarır.",zorluk:1},
+  {soru:"Artvin'de kıyı kesimlerde nemli Karadeniz iklimi, iç kesimlerde daha karasal özellikler görülür.",cevap:true,aciklama:"Kıyıda yıl boyu yağışlı ve ılıman iklim hakimken, iç kesimlerde (Yusufeli, Ardanuç) yazlar sıcak ve kurak, kışlar soğuk geçer.",zorluk:1},
+  {soru:"Sahara Karagöl Milli Parkı Borçka'dadır.",cevap:false,aciklama:"Karagöl-Sahara Milli Parkı, Şavşat ilçe sınırları içinde yer alır. Borçka'da değildir.",zorluk:1},
+  {soru:"Artvin'in bütün ilçeleri denize kıyıdadır.",cevap:false,aciklama:"Artvin'in sadece Arhavi, Hopa, Kemalpaşa ve Borçka (küçük bir kıyı şeridi) denize kıyılıdır.",zorluk:1},
+  {soru:"Bülbülan (Bilbilan) yaylası Kars ile sınırdır.",cevap:true,aciklama:"Bülbülan Yaylası, Şavşat ilçesinde olup Kars il sınırına yakın konumdadır.",zorluk:1},
+  {soru:"Artvin'in eski adı Livane'dir.",cevap:true,aciklama:"Artvin şehrinin Osmanlı dönemindeki adı Livane (Liva-i Livane) olarak bilinir.",zorluk:1},
+  {soru:"Artvin nüfus yoğunluğu Türkiye ortalamasının çok üzerindedir.",cevap:false,aciklama:"Artvin, dağlık ve engebeli yapısı nedeniyle kilometrekare başına düşen nüfus açısından Türkiye ortalamasının altındadır.",zorluk:1},
+  {soru:"Borçka Karagöl, Şavşat Karagöl'den daha yüksek konumdadır.",cevap:false,aciklama:"Şavşat Karagöl (2.150 m), Borçka Karagöl'e (1.200 m) göre çok daha yüksek rakımlıdır. Borçka Karagöl daha alçaktadır.",zorluk:1},
+  {soru:"Türkiye'nin hidroelektrik üretiminin yüzde 20'si Çoruh projelerinden karşılanır.",cevap:true,aciklama:"Çoruh Havzası'ndaki barajlar (Deriner, Borçka, Muratlı, Artvin, Yusufeli vb.) Türkiye'nin toplam HES üretiminin yaklaşık %20'sini sağlar.",zorluk:1},
+  {soru:"Artvin Osmanlı döneminde hiçbir zaman Rus işgali görmemiştir.",cevap:false,aciklama:"93 Harbi (1877-1878) sonrasında Artvin ve çevresi yaklaşık 40 yıl Rus işgalinde kalmıştır.",zorluk:1},
+  {soru:"Hatila Vadisi Milli Parkı Borçka sınırları içerisindedir.",cevap:false,aciklama:"Hatila Vadisi Milli Parkı, Artvin Merkez ilçe sınırları içinde, Hatila Deresi boyuncadır. Borçka'da değildir.",zorluk:1},
+  {soru:"Artvin'de son yıllarda kivi üretimi artmıştır.",cevap:true,aciklama:"Özellikle Arhavi ve Hopa'da kivi bahçeleri yaygınlaşmış, üretim artış göstermiştir.",zorluk:1},
+  {soru:"Kaçkar Dağları'nın tamamı Artvin sınırları içindedir.",cevap:false,aciklama:"Kaçkar Dağları'nın büyük bölümü Rize (Çamlıhemşin) sınırlarında kalır. Artvin sadece güney ve doğu eteklerine sahiptir.",zorluk:1},
+  // ── AKADEMİSYEN (31-45) ──
+  {soru:"İşhan Kilisesi, Gürcü yapımıdır.",cevap:true,aciklama:"İşhan Kilisesi (Yusufeli), Orta Çağ Gürcü krallığı döneminde inşa edilmiş önemli bir dini yapıdır.",zorluk:2},
+  {soru:"Camili (Macahel) bölgesi Türkiye'nin tek UNESCO Biyosfer Rezervi'dir.",cevap:true,aciklama:"Macahel, 2005 yılında UNESCO tarafından Biyosfer Rezervi ilan edilmiştir ve Türkiye'de bu statüdeki tek alandır.",zorluk:2},
+  {soru:"Deriner Barajı yüksekliği 249 metredir.",cevap:true,aciklama:"Deriner Barajı, temelden itibaren 249 metre gövde yüksekliğine sahiptir.",zorluk:2},
+  {soru:"Artvin'de Bronz Çağı'na ait bakır baltalar bulunmuştur.",cevap:true,aciklama:"Bölgedeki arkeolojik yüzey araştırmalarında, Erken ve Orta Bronz Çağı'na tarihlenen bakır eserler (balta, mızrak ucu) tespit edilmiştir.",zorluk:2},
+  {soru:"Karçal Dağı Artvin'in en yüksek dağıdır.",cevap:false,aciklama:"Artvin'in en yüksek dağı Kaçkar Dağı'dır (3.937 m). Karçal Dağı (3.428 m) ikinci sıradadır.",zorluk:2},
+  {soru:"Artvin 1877-78 Savaşı sonrası kısa süre Rusya'ya bırakılmıştır.",cevap:true,aciklama:"93 Harbi (1877-1878) sonrasında imzalanan Berlin Antlaşması ile Artvin Rus işgaline girmiş, bu süre yaklaşık 40 yıl sürmüştür.",zorluk:2},
+  {soru:"Ardanuç Cehennem Deresi Kanyonu dünyanın sayılı kanyonları arasında anılır.",cevap:true,aciklama:"Cehennem Deresi Kanyonu, derinliği ve dik yamaçlarıyla dünyanın en etkileyici kanyonları arasında gösterilir.",zorluk:2},
+  {soru:"Türkiye'de Artvin kütüğüne bağlı 450 bin kişi yaşamaktadır.",cevap:true,aciklama:"Artvin nüfusu 170 bin civarında olsa da, gurbetçi ve dışarıda yaşayan Artvinlilerle birlikte kütük nüfusu 450 bine ulaşır.",zorluk:2},
+  {soru:"Artvin yağışın büyük çoğunluğunu sonbahar ve kış aylarında alır.",cevap:true,aciklama:"Artvin'de en fazla yağış sonbahar (Ekim-Kasım) ve kış (Aralık-Ocak) aylarında düşer. Yazlar nispeten kuraktır.",zorluk:2},
+  {soru:"Karagöl-Sahara Milli Parkı ladin ormanlarıyla ünlüdür.",cevap:true,aciklama:"Milli park, saf ve karışık Doğu Ladini (Picea orientalis) ormanları ile bilinir.",zorluk:2},
+  {soru:"Yusufeli havzasında pirinç yetiştiriciliği yapılmaktadır.",cevap:true,aciklama:"Yusufeli'nin Çoruh vadisi boyunca sulak alanlarda, özellikle Irmaklar köyü çevresinde pirinç üretimi vardır.",zorluk:2},
+  {soru:"Tbeti Kilisesi Yusufeli ilçesindedir.",cevap:false,aciklama:"Tbeti (Cevizlik) Kilisesi, Şavşat ilçesine bağlı Cevizlik köyündedir. Yusufeli'nde değildir.",zorluk:2},
+  {soru:"Murgul'da bakır madeni faaliyetleri yapılan beldenin ismi 'Küre' dir.",cevap:false,aciklama:"Murgul'daki bakır madeni faaliyetlerinin merkezi 'Murgul' beldesidir. 'Küre' ise Kastamonu'da bir ilçedir.",zorluk:2},
+  {soru:"Artvin tarih boyunca sadece Türk ve Gürcü uygarlıklarına ev sahipliği yapmıştır.",cevap:false,aciklama:"Artvin'de Hurriler, Urartular, İskitler, Roma, Bizans, Selçuklu, Osmanlı ve Rus gibi birçok uygarlık iz bırakmıştır.",zorluk:2},
+  {soru:"Yusufeli barajları sayesinde ilçe nüfusu sürekli artış göstermiştir.",cevap:false,aciklama:"Yusufeli Barajı inşaatı nedeniyle ilçe merkezi taşınmış, birçok köy sular altında kalmış, nüfus azalmıştır.",zorluk:2},
+  // ── PROFESÖR (46-60) ──
+  {soru:"Artvin çevresinde Cilalı Taş Devri'nden Demir Çağı'na kadar kesintisiz arkeolojik katmanlar tespit edilmiştir ama planlı kazılar sınırlıdır.",cevap:true,aciklama:"Şavşat Meydancık, Yusufeli ve Ardanuç yüzey araştırmalarında Neolitik'ten Demir Çağı'na kadar buluntulara rastlanmıştır. Toprağın asidik yapısı planlı kazıları zorlaştırmıştır.",zorluk:3},
+  {soru:"Artvin'in Alparslan'ın 1048 Pasinler Savaşı sonrası Selçuklu egemenliğine girdiği kabul edilir.",cevap:true,aciklama:"Pasinler Savaşı 1048 yılında yapılmıştır. Savaşın ardından Alparslan'ın orduları Doğu Anadolu'ya yayılmış, Artvin çevresi de kısa sürede Selçuklu hakimiyetine girmiştir.",zorluk:3},
+  {soru:"Artvin'in ödüllü zeytini 'Butko', Yusufeli'nin Demirkent köyüne özel bir zeytindir.",cevap:true,aciklama:"Butko zeytini, Yusufeli ilçesinin Demirkent köyünde yetişen, coğrafi işaretli ve uluslararası ödüllü bir zeytin türüdür.",zorluk:3},
+  {soru:"1933'te Artvin ve Rize birleştirilerek Çoruh Vilayeti yapılmıştır.",cevap:true,aciklama:"1933 yılında Artvin ve Rize illeri birleştirilerek merkezi Rize olan 'Çoruh Vilayeti' kurulmuştur. Bu uygulama 1936'da sona ermiştir.",zorluk:3},
+  {soru:"Artvin ormanlarında geyik ve karaca popülasyonu yoktur.",cevap:false,aciklama:"Artvin ormanlarında kızıl geyik ve karaca popülasyonu bulunmaktadır. Özellikle Kaçkar Dağları Milli Parkı ve çevresinde yaşarlar.",zorluk:3},
+  {soru:"Artvin'de Anadolu parsı yaşamaktadır.",cevap:true,aciklama:"Anadolu parsı (Panthera pardus tulliana) Artvin'in Şavşat ve Borçka ormanlarında nadir de olsa görülmüş, fotokapanla kayıtları alınmıştır.",zorluk:3},
+  {soru:"Artvin nüfusunda sayısal olarak zirve yılları 1975-1985 arasıdır.",cevap:true,aciklama:"Artvin nüfusu 1975'te 229.000, 1985'te 230.000 ile zirve yapmış, sonrasında göç nedeniyle düşüşe geçmiştir.",zorluk:3},
+  {soru:"Artvin Hopa'da Laz nüfus yoğunluğu diğer ilçelere göre fazladır.",cevap:false,aciklama:"Hopa'da Laz nüfus yoğunluğu Arhavi ve Kemalpaşa'ya göre daha düşüktür. Arhavi ve Kemalpaşa Laz yoğunluğunun daha yüksek olduğu ilçelerdir.",zorluk:3},
+  {soru:"Artvin'in en eski yerleşim izleri Şavşat ve Yusufeli civarındadır (MÖ 4000'lere uzanır).",cevap:true,aciklama:"Şavşat Meydancık ve Yusufeli Kılıçkaya çevresinde yapılan yüzey araştırmaları MÖ 4000-3000 yıllarına tarihlenen yerleşim izleri vermiştir.",zorluk:3},
+  {soru:"Artvin'in tek kayak merkezi olan Atabari, Mersivan Yaylası'nda Artvin merkeze bağlıdır.",cevap:true,aciklama:"Atabari Kayak Merkezi, Artvin merkeze bağlı Mersivan Yaylası'nda yer alır ve Artvin'in bilinen tek kayak merkezidir.",zorluk:3},
+  {soru:"Rize-Artvin Havalimanı, Rize'nin Fındıklı ilçesi ile Artvin'in Arhavi ilçesi arasındadır.",cevap:false,aciklama:"Rize-Artvin Havalimanı, Rize'nin Pazar ilçesi ile Artvin'in Hopa ilçesi arasında, Yeşilköy mevkiinde yer alır.",zorluk:3},
+  {soru:"Artvin orman popülasyonu bakımından %57'lik oran ile Türkiye'de ilk 10 içerisinde yer alır.",cevap:true,aciklama:"Artvin orman varlığı oranı yaklaşık %57 ile Türkiye'de genellikle 3. veya 4. sıradadır. İlk 10 içinde kesinlikle yer alır.",zorluk:3},
+  {soru:"Artvin Hopa-Arhavi-Kemalpaşa sahil hattı yıllık 2000 metreye yakın yağış alır.",cevap:true,aciklama:"Bu sahil şeridi yıllık 1800-2200 mm arasında yağış alır, 2000 metreye yakındır.",zorluk:3},
+  {soru:"Artvin'in toplam köy sayısı 300'den azdır.",cevap:false,aciklama:"Artvin'de 2024 itibarıyla 320 civarında köy bulunmaktadır. 300'den fazladır.",zorluk:3},
+  {soru:"Artvin en çok göçü İstanbul'a vermiştir.",cevap:false,aciklama:"Artvin'den en çok göç alan şehir Bursa'dır. Bursa'daki Artvin nüfusu, İstanbul'dakinin üzerindedir.",zorluk:3}
+];
+
+var SEVIYELER = [
+  {min:0,   max:150,  ad:'Öğrenci',       rozet:'🎒'},
+  {min:151, max:350,  ad:'Öğretmen',      rozet:'📚'},
+  {min:351, max:700,  ad:'Akademisyen',   rozet:'🎓'},
+  {min:701, max:1200, ad:'Artvin Uzmanı', rozet:'🧠'},
+  {min:1201,max:99999,ad:'Artvin Efsanesi',rozet:'👑'}
+];
+var ZORLUK_ADI = ['🟢 Öğrenci','🔵 Öğretmen','🟡 Akademisyen','🔴 Uzman'];
+
+/* ════ DURUM ════ */
+var kul = '', avatar = '🏔️';
+var sorular = [], soruIdx = 0;
+var skor = 0, dogru = 0, yanlis = 0, seri = 0, enSeri = 0;
+var timerInterval = null, timerKalan = 15;
+var mevcutSeviye = 0;
+var beklemede = false;
+
+/* ════ YÜKSELİŞ / SKOR ════ */
+var SHEETDB = 'https://sheetdb.io/api/v1/31v7puz3gv46q';
+var skorlar = [];
+function skorYukle(){
+  try{ skorlar = JSON.parse(localStorage.getItem('adv_skorlar'))||[]; }catch(e){ skorlar=[]; }
+}
+function skorKaydet(){
+  var bugun = new Date().toISOString().split('T')[0];
+  // SheetDB'ye kaydet
+  fetch(SHEETDB, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({data:[{
+      kullanici:kul, avatar:avatar, skor:skor,
+      tarih:bugun, seviye:seviyeAl(skor).ad,
+      dogru:dogru, yanlis:yanlis
+    }]})
+  }).catch(function(e){console.log('SheetDB hata:',e);});
+  skorlar.push({kullanici:kul,avatar:avatar,skor:skor,tarih:bugun,seviye:seviyeAl(skor).ad});
+  skorlar.sort(function(a,b){return b.skor-a.skor;});
+  skorlar = skorlar.slice(0,50);
+  localStorage.setItem('adv_skorlar',JSON.stringify(skorlar));
+}
+
+function seviyeAl(s){
+  for(var i=SEVIYELER.length-1;i>=0;i--){
+    if(s>=SEVIYELER[i].min) return SEVIYELER[i];
+  }
+  return SEVIYELER[0];
+}
+
+function seviyeGuncelle(){
+  var sv = seviyeAl(skor);
+  var idx = SEVIYELER.indexOf(sv);
+  document.getElementById('seviyeChip').textContent = sv.rozet+' '+sv.ad;
+  if(idx > mevcutSeviye){
+    mevcutSeviye = idx;
+    seviyeBannerGoster(sv.rozet+' '+sv.ad+' Seviyesine Ulaştınız!');
+    if(navigator.vibrate) navigator.vibrate([100,50,100]);
+  }
+}
+
+function seviyeBannerGoster(txt){
+  var el = document.getElementById('seviyeBanner');
+  el.textContent = '🆙 '+txt;
+  el.style.display='block';
+  setTimeout(function(){el.style.display='none';},2500);
+}
+
+/* ════ EKRAN GEÇİŞ ════ */
+function ekranGoster(id){
+  document.querySelectorAll('.ekran').forEach(function(e){
+    e.style.display='none'; e.classList.remove('aktif');
+  });
+  var el = document.getElementById(id);
+  el.style.display = (id==='giris'||id==='sonuc') ? 'flex' : 'block';
+  el.classList.add('aktif');
+}
+
+function acilisGec(){ ekranGoster('giris'); }
+
+function avSec(btn){
+  document.querySelectorAll('.av-btn').forEach(function(b){b.classList.remove('secili');});
+  btn.classList.add('secili');
+  avatar = btn.dataset.av;
+}
+
+function girisYap(){
+  var v = document.getElementById('kulInput').value.trim();
+  if(!v||v.length<2){ toast('En az 2 karakter giriniz.'); return; }
+  kul = v;
+  document.getElementById('kulAd').textContent = kul;
+  document.getElementById('kulAvatar').textContent = avatar;
+  oyunBaslat();
+}
+
+/* ════ OYUN ════ */
+function oyunBaslat(){
+  sorular = SORULAR.slice().sort(function(){return Math.random()-.5;});
+  soruIdx=0; skor=0; dogru=0; yanlis=0; seri=0; enSeri=0; mevcutSeviye=0;
+  ekranGoster('oyun');
+  soruGoster();
+}
+
+function soruGoster(){
+  if(soruIdx>=sorular.length){ oyunBitis(); return; }
+  var s = sorular[soruIdx];
+  beklemede = false;
+
+  // Zorluk chip
+  var zc = document.getElementById('zorlukChip');
+  zc.className = 'zorluk-chip '+['z-kolay','z-orta','z-zor','z-uzman'][s.zorluk];
+  zc.textContent = ZORLUK_ADI[s.zorluk];
+
+  document.getElementById('soruNo').textContent = 'Soru '+(soruIdx+1)+' / '+sorular.length;
+  document.getElementById('soruMetin').textContent = s.soru;
+
+  var fEl = document.getElementById('feedbackTxt');
+  fEl.style.display='none'; fEl.textContent='';
+
+  var kart = document.getElementById('soruKart');
+  kart.className = 'soru-kart';
+
+  document.getElementById('btnDogru').disabled = false;
+  document.getElementById('btnYanlis').disabled = false;
+
+  // İlerleme
+  document.getElementById('ilerNo').textContent = (soruIdx+1)+'/60';
+  document.getElementById('progIc').style.width = ((soruIdx+1)/sorular.length*100)+'%';
+
+  // Timer
+  timerKalan = 15;
+  clearInterval(timerInterval);
+  var timerEl = document.getElementById('timerBar');
+  timerEl.style.width='100%'; timerEl.className='timer-bar-ic';
+  timerInterval = setInterval(function(){
+    timerKalan--;
+    var pct = (timerKalan/15)*100;
+    timerEl.style.width = pct+'%';
+    timerEl.className = 'timer-bar-ic'+(timerKalan<=5?' kirmizi':timerKalan<=8?' sari':'');
+    if(timerKalan<=0){ clearInterval(timerInterval); cevapVer(null); }
+  },1000);
+
+  seviyeGuncelle();
+}
+
+function cevapVer(cevap){
+  if(beklemede) return;
+  beklemede = true;
+  clearInterval(timerInterval);
+
+  var s = sorular[soruIdx];
+  var kart = document.getElementById('soruKart');
+  var fEl = document.getElementById('feedbackTxt');
+  document.getElementById('btnDogru').disabled = true;
+  document.getElementById('btnYanlis').disabled = true;
+
+  var hizBonus = timerKalan >= 10 ? 5 : 0;
+
+  if(cevap === null){
+    // Süre doldu
+    yanlis++;
+    seri=0;
+    skor = Math.max(0, skor-5);
+    kart.classList.add('kart-yanlis');
+    fEl.className = 'feedback-txt feedback-yanlis';
+    fEl.textContent = '⏰ Süre doldu! Doğru cevap: '+(s.cevap?'DOĞRU':'YANLIŞ')+' — '+s.aciklama;
+    fEl.style.display='block';
+    flash('Y');
+  } else if(cevap === s.cevap){
+    // Doğru
+    dogru++;
+    seri++;
+    if(seri>enSeri) enSeri=seri;
+    var kazanilan = 10 + hizBonus;
+    skor += kazanilan;
+    // Seri bonusu
+    if(seri===3){ skor+=10; streakGoster('🔥 3 SERİ!','+10 Bonus Puan'); }
+    else if(seri===5){ skor+=25; streakGoster('🔥🔥 5 SERİ!','+25 Bonus Puan'); }
+    else if(seri===10){ skor+=50; streakGoster('💥 10 SERİ!','+50 Bonus Puan'); }
+    kart.classList.add('kart-dogru');
+    fEl.className = 'feedback-txt feedback-dogru';
+    fEl.textContent = '✅ Doğru! '+s.aciklama;
+    fEl.style.display='block';
+    flash('D');
+    skorZimpla();
+  } else {
+    // Yanlış
+    yanlis++;
+    seri=0;
+    skor = Math.max(0, skor-5);
+    kart.classList.add('kart-yanlis');
+    fEl.className = 'feedback-txt feedback-yanlis';
+    fEl.textContent = '❌ Yanlış! Doğru cevap: '+(s.cevap?'DOĞRU':'YANLIŞ')+' — '+s.aciklama;
+    fEl.style.display='block';
+    flash('Y');
+  }
+
+  document.getElementById('skorNo').textContent = skor;
+  seviyeGuncelle();
+
+  setTimeout(function(){
+    soruIdx++;
+    soruGoster();
+  }, 1800);
+}
+
+function flash(tip){
+  var el = document.getElementById('flash'+tip);
+  el.classList.add('on');
+  setTimeout(function(){el.classList.remove('on');},200);
+}
+
+function skorZimpla(){
+  var el = document.getElementById('skorNo');
+  el.classList.add('zimpla');
+  setTimeout(function(){el.classList.remove('zimpla');},200);
+}
+
+function streakGoster(txt,sub){
+  var el = document.getElementById('streakBanner');
+  document.getElementById('streakTxt').textContent = txt;
+  document.getElementById('streakSub').textContent = sub;
+  el.style.display='block';
+  setTimeout(function(){el.style.display='none';},1500);
+}
+
+/* ════ BİTİŞ ════ */
+function oyunBitis(){
+  skorKaydet();
+  var sv = seviyeAl(skor);
+  var yuzde = Math.round((dogru/sorular.length)*100);
+  var mesajlar = [
+    'Biraz çalışman lazım 😄 Artvin seni bekliyor!',
+    'Fena değil! Ama daha iyisi mümkün 💪',
+    'Gerçek Artvinlisin! Yaylalar sana selam ediyor 🏔️',
+    'EFSANESİN! 🔥 Artvin\'in tüm sırlarını biliyorsun!'
+  ];
+  var mesajIdx = yuzde<40?0:yuzde<70?1:yuzde<90?2:3;
+
+  document.getElementById('sonucRozet').textContent = sv.rozet;
+  document.getElementById('sonucSeviye').textContent = sv.rozet+' '+sv.ad;
+  document.getElementById('sonucSkor').textContent = skor;
+  document.getElementById('sonucYuzde').textContent = 'Artvin Bilgin: %'+yuzde;
+  document.getElementById('sonucMesaj').textContent = mesajlar[mesajIdx];
+  document.getElementById('stDogru').textContent = dogru;
+  document.getElementById('stYanlis').textContent = yanlis;
+  document.getElementById('stSeri').textContent = enSeri;
+
+  liderRenderOnline('gunluk');
+  ekranGoster('sonuc');
+}
+
+/* ════ LİDERBOARD ════ */
+function tabSec(tip){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('aktif');});
+  document.getElementById('tab'+tip.charAt(0).toUpperCase()+tip.slice(1)).classList.add('aktif');
+  liderRenderOnline(tip);
+}
+
+async function liderRenderOnline(tip){
+  var el = document.getElementById('liderIcerik');
+  el.innerHTML = '<div style="text-align:center;padding:1rem;opacity:.5;font-size:.8rem">Yükleniyor...</div>';
+  try {
+    var bugun = new Date().toISOString().split('T')[0];
+    var hafta = new Date(Date.now()-7*24*3600*1000).toISOString().split('T')[0];
+    var res = await fetch(SHEETDB+'?limit=200');
+    var data = await res.json();
+    var liste = data.filter(function(r){
+      if(tip==='gunluk') return r.tarih===bugun;
+      if(tip==='haftalik') return r.tarih>=hafta;
+      return true;
+    });
+    var enIyi = {};
+    liste.forEach(function(r){
+      var s=parseInt(r.skor)||0;
+      if(!enIyi[r.kullanici]||s>enIyi[r.kullanici].skor)
+        enIyi[r.kullanici]={skor:s,avatar:r.avatar||'🏔️',seviye:r.seviye};
+    });
+    var sira = Object.entries(enIyi).sort(function(a,b){return b[1].skor-a[1].skor;}).slice(0,15);
+    if(!sira.length){el.innerHTML='<div style="text-align:center;padding:1.5rem;opacity:.5;font-size:.82rem">Henüz skor yok. İlk sen ol! 🔥</div>';return;}
+    var med=['🥇','🥈','🥉'];
+    var html='';
+    var benim=-1;
+    sira.forEach(function(item,i){
+      var isim=item[0],d=item[1];
+      var b=isim===kul;
+      if(b) benim=i+1;
+      html+='<div class="ldr-row'+(b?' benim':'')+'">'+
+        '<span class="ldr-sira">'+(med[i]||(i+1)+'.')+'</span>'+
+        '<span style="font-size:.9rem">'+d.avatar+'</span>'+
+        '<span class="ldr-isim">'+isim+'</span>'+
+        '<span class="ldr-sv">'+d.seviye+'</span>'+
+        '<span class="ldr-skor">'+d.skor+'</span>'+
+      '</div>';
+    });
+    el.innerHTML=html;
+    document.getElementById('benim-siram').textContent=benim>0?'Sen şu an #'+benim+' sıradasın 🏆':'';
+  } catch(e){
+    el.innerHTML='<div style="text-align:center;padding:1rem;color:#ff4757;font-size:.8rem">Bağlantı hatası 😞</div>';
+  }
+}
+
+function liderRender(tip){
+  var bugun = new Date().toISOString().split('T')[0];
+  var hafta = new Date(Date.now()-7*24*3600*1000).toISOString().split('T')[0];
+  var liste = skorlar.filter(function(s){
+    if(tip==='gunluk') return s.tarih===bugun;
+    if(tip==='haftalik') return s.tarih>=hafta;
+    return true;
+  });
+  liste.sort(function(a,b){return b.skor-a.skor;});
+  var med = ['🥇','🥈','🥉'];
+  var html = '';
+  var benim = -1;
+  liste.slice(0,10).forEach(function(s,i){
+    var b = s.kullanici===kul;
+    if(b) benim=i+1;
+    html += '<div class="lider-satir'+(b?' benim':'')+'">'+
+      '<span class="lider-sira">'+(med[i]||(i+1)+'.')+'</span>'+
+      '<span style="font-size:.9rem;margin-right:.2rem">'+s.avatar+'</span>'+
+      '<span class="lider-isim">'+s.kullanici+'</span>'+
+      '<span class="lider-seviye">'+s.seviye+'</span>'+
+      '<span class="lider-skor">'+s.skor+'</span>'+
+      '</div>';
+  });
+  if(!html) html='<div style="text-align:center;color:var(--dim);padding:1rem;font-size:.82rem">Henüz skor yok. İlk sen ol!</div>';
+  document.getElementById('liderIcerik').innerHTML = html;
+  document.getElementById('benim-siram').textContent = benim>0 ? 'Sen şu an #'+benim+' sıradasın 🏆' : '';
+}
+
+/* ════ PAYLAŞIM ════ */
+function paylasMetni(){
+  var sv = seviyeAl(skor);
+  var yuzde = Math.round((dogru/sorular.length)*100);
+  return 'Artvin Doğru mu? Yanlış mı? testinde '+skor+' puan yaptım!\n'+
+    sv.rozet+' Seviye: '+sv.ad+'\nArtvin Bilgim: %'+yuzde+'\n\nSen kaç yaparsın? 👇\nartvinrehber.com/artvin-dogru-yanlis.html';
+}
+function paylasWP(){ window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(paylasMetni()),'_blank'); }
+function paylasX(){ window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(paylasMetni()),'_blank'); }
+function paylasKopyala(){
+  navigator.clipboard.writeText(paylasMetni()).then(function(){
+    var btn=document.getElementById('btnKopyala');
+    btn.textContent='✅ Kopyalandı!';
+    setTimeout(function(){btn.textContent='📋 Kopyala';},2000);
+  });
+}
+function meydanOku(){
+  var txt = kul+' sana meydan okuyor! Artvin Doğru mu Yanlış mı testinde '+skor+' puan yaptım. Sen geçebilir misin?\nartvinrehber.com/artvin-dogru-yanlis.html';
+  if(navigator.share) navigator.share({title:'Artvin Meydan Okuma',text:txt,url:'https://artvinrehber.com/artvin-dogru-yanlis.html'}).catch(function(){});
+  else navigator.clipboard.writeText(txt).then(function(){toast('📋 Kopyalandı!');});
+}
+function tekrarOyna(){ oyunBaslat(); }
+
+/* ════ TOAST ════ */
+function toast(txt){
+  var t=document.getElementById('toast');
+  t.textContent=txt; t.classList.add('ac');
+  clearTimeout(t._t); t._t=setTimeout(function(){t.classList.remove('ac');},2000);
+}
+
+/* ════ BAŞLAT ════ */
+skorYukle();
+
+
+/* ── EK: ekranGoster güncellemesi ── */
+function ekranGoster(id){
+  document.querySelectorAll(".ekran").forEach(function(e){
+    e.style.display="none";e.classList.remove("aktif");
+  });
+  var el=document.getElementById(id);
+  el.style.display="block";el.classList.add("aktif");
+  if(id==="giris") onizlemeLdrYukle();
+}
+
+/* Giriş ekranı önizleme liderboard */
+async function onizlemeLdrYukle(){
+  var el=document.getElementById("onizlemeLdr");
+  try{
+    var bugun=new Date().toISOString().split("T")[0];
+    var res=await fetch("https://sheetdb.io/api/v1/31v7puz3gv46q?limit=100");
+    var data=await res.json();
+    var bugunData=data.filter(function(r){return r.tarih===bugun;});
+    var enIyi={};
+    bugunData.forEach(function(r){
+      var s=parseInt(r.skor)||0;
+      if(!enIyi[r.kullanici]||s>enIyi[r.kullanici].skor)
+        enIyi[r.kullanici]={skor:s,avatar:r.avatar||"🏔️",seviye:r.seviye||""};
+    });
+    var sira=Object.entries(enIyi).sort(function(a,b){return b[1].skor-a[1].skor;}).slice(0,5);
+    if(!sira.length){el.innerHTML="<div style=\"text-align:center;padding:.75rem;opacity:.4;font-size:.78rem\">Bugün henüz skor yok. İlk sen ol! 🔥</div>";return;}
+    var med=["🥇","🥈","🥉"];
+    var html="";
+    sira.forEach(function(item,i){
+      html+="<div class=\"ldr-row\" style=\"margin-bottom:.3rem\">"+
+        "<span class=\"ldr-sira\">"+(med[i]||(i+1)+".")+"</span>"+
+        "<span style=\"font-size:.9rem\">"+item[1].avatar+"</span>"+
+        "<span class=\"ldr-isim\">"+item[0]+"</span>"+
+        "<span class=\"ldr-skor\">"+item[1].skor+"</span>"+
+      "</div>";
+    });
+    el.innerHTML=html;
+  }catch(e){el.innerHTML="<div style=\"text-align:center;padding:.75rem;opacity:.4;font-size:.78rem\">Bağlantı hatası</div>";}
+}
+
+/* Seviye banner ID güncelle */
+document.getElementById("svBanner").id="seviyeBanner";
+
+</script>
+</body>
+</html>
