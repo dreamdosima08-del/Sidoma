@@ -15,20 +15,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ── AÇILIŞ ── */
-.ac-foto{position:fixed;inset:0;z-index:0;background:url("https://i.ibb.co/Lzp5Jvdm/1775766946242.png") center/cover no-repeat;transform:scale(1.05);animation:slowZoom 20s ease infinite alternate;}
-@keyframes slowZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
-.ac-overlay{position:fixed;inset:0;z-index:1;background:linear-gradient(170deg,rgba(4,12,8,.5) 0%,rgba(4,12,8,.75) 50%,rgba(4,12,8,.95) 100%);}
-.ac-icerik{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 1.5rem 3.5rem;text-align:center;}
+.ac-foto{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -10%,rgba(61,219,138,.18) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,rgba(61,219,138,.06) 0%,transparent 50%),
+    #060d0a;
+}
+.ac-cizgi{
+  position:fixed;inset:0;z-index:1;
+  background-image:
+    linear-gradient(rgba(61,219,138,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(61,219,138,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+
+.ac-overlay{display:none;}
+.ac-icerik{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center;gap:1.1rem;}
 .ac-logo{font-size:.58rem;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--vivid);background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.2);padding:.3rem 1rem;border-radius:50px;margin-bottom:1.5rem;display:inline-block;}
-.ac-baslik{font-family:"Bebas Neue",sans-serif;font-size:clamp(3.2rem,15vw,6rem);letter-spacing:.06em;line-height:.95;color:#fff;margin-bottom:1rem;text-shadow:0 4px 40px rgba(0,0,0,.6);}
+.ac-baslik{font-family:"Bebas Neue",sans-serif;font-size:clamp(3.4rem,16vw,6.5rem);letter-spacing:.05em;line-height:.9;color:#fff;text-shadow:0 0 60px rgba(61,219,138,.15);}
 .ac-baslik .vurgu{background:linear-gradient(135deg,var(--vivid),#7cffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.ac-alt{font-size:1rem;color:rgba(255,255,255,.65);margin-bottom:2rem;line-height:1.6;}
+.ac-alt{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.6;max-width:300px;}
 .ac-btn{padding:1rem 3rem;border-radius:50px;background:linear-gradient(135deg,var(--vivid),#1fc46a);color:#030f06;font-family:"Bebas Neue",sans-serif;font-size:1.5rem;letter-spacing:.16em;border:none;cursor:pointer;box-shadow:0 0 0 0 rgba(61,219,138,.4);animation:glow 2s ease infinite;transition:.2s;}
 @keyframes glow{0%,100%{box-shadow:0 0 24px rgba(61,219,138,.35),0 8px 24px rgba(0,0,0,.4);}50%{box-shadow:0 0 48px rgba(61,219,138,.65),0 8px 24px rgba(0,0,0,.4);}}
 .ac-btn:hover{transform:translateY(-3px) scale(1.04);}
-.ac-istatistik{display:flex;gap:2rem;margin-top:1.75rem;justify-content:center;}
-.ac-stat .no{font-family:"Bebas Neue",sans-serif;font-size:1.8rem;color:#fff;display:block;line-height:1;}
-.ac-stat .lbl{font-size:.55rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.ac-istatistik{display:flex;gap:1rem;justify-content:center;}
+.ac-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.6rem 1.1rem;}.ac-stat .no{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;color:#fff;display:block;line-height:1;}
+.ac-stat .lbl{font-size:.52rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);}
 /* ── GİRİŞ ── */
 .giris-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;background:radial-gradient(ellipse 90% 70% at 50% 0%,rgba(61,219,138,.07) 0%,transparent 60%),var(--bg);}
 .giris-logo{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;letter-spacing:.12em;color:var(--vivid);text-align:center;margin-bottom:.25rem;}
@@ -335,7 +349,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <!-- ══ AÇILIŞ ══ -->
 <div class="ekran aktif" id="acilis">
   <div class="ac-foto"></div>
-  <div class="ac-overlay"></div>
+  <div class="ac-cizgi"></div>
   <div class="ac-icerik">
     <span class="ac-logo">🏔️ artvinrehber.com sunar</span>
     <h1 class="ac-baslik">ARTVİN<br><span class="vurgu">DOĞRU mu?</span><br>YANLIŞ mı?</h1>
@@ -592,7 +606,7 @@ function ekranGoster(id){
 function acilisGec(){ ekranGoster('giris'); }
 
 function avSec(btn){
-  document.querySelectorAll('.avatar-btn').forEach(function(b){b.classList.remove('secili');});
+  document.querySelectorAll('.av-btn').forEach(function(b){b.classList.remove('secili');});
   btn.classList.add('secili');
   avatar = btn.dataset.av;
 }
