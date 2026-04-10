@@ -73,7 +73,6 @@ button{cursor:pointer;border:none;font-family:inherit;}
 
 /* EKRANLAR */
 .ekran{display:none;}
-.ekran.aktif{display:block;}
 
 /* ══════════════════════════════
    AÇILIŞ
@@ -364,8 +363,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 </div>
 
 <!-- ══ GİRİŞ ══ -->
-<div class="ekran" id="giris">
-  <div class="giris-wrap">
+<div class="ekran" id="giris"><div class="giris-wrap">
     <div style="width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;">
       <div class="giris-logo">ARTVIN DOĞRU / YANLIŞ</div>
       <div class="giris-alt">Kullanıcı adınızı belirleyin ve yarışmaya katılın</div>
@@ -396,7 +394,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 </div>
 
 <!-- ══ OYUN ══ -->
-<div class="ekran" id="oyun" style="min-height:100vh;display:flex;flex-direction:column;">
+<div class="ekran" id="oyun">
   <div class="oyun-bar">
     <div class="kul-info">
       <span class="kul-av" id="kulAv">🏔️</span>
@@ -595,12 +593,25 @@ function seviyeBannerGoster(txt){
 
 /* ════ EKRAN GEÇİŞ ════ */
 function ekranGoster(id){
-  document.querySelectorAll('.ekran').forEach(function(e){
-    e.style.display='none'; e.classList.remove('aktif');
+  var ekranlar = ['acilis','giris','oyun','sonuc'];
+  ekranlar.forEach(function(eid){
+    var el = document.getElementById(eid);
+    if(el) el.style.display = 'none';
   });
-  var el = document.getElementById(id);
-  el.style.display = (id==='giris'||id==='sonuc') ? 'flex' : 'block';
-  el.classList.add('aktif');
+  var hedef = document.getElementById(id);
+  if(!hedef) return;
+  if(id==='oyun'){
+    hedef.style.display = 'flex';
+    hedef.style.flexDirection = 'column';
+    hedef.style.minHeight = '100vh';
+  } else if(id==='giris'||id==='sonuc'){
+    hedef.style.display = 'flex';
+    hedef.style.flexDirection = 'column';
+    hedef.style.alignItems = 'center';
+    hedef.style.minHeight = '100vh';
+  } else {
+    hedef.style.display = 'block';
+  }
 }
 
 function acilisGec(){ ekranGoster('giris'); }
