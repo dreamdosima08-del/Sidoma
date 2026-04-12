@@ -158,18 +158,22 @@ function sonucRender(){
   var el=document.getElementById('sonucListe');
   if(!S.length){el.innerHTML='<div style="color:var(--soluk);font-size:.8rem;text-align:center;padding:1rem 0">+ butonuyla maç ekleyin</div>';return;}
   el.innerHTML='';
+  var inp='border-radius:7px;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.2);outline:none;width:100%;box-sizing:border-box;';
   S.forEach(function(r,i){
     el.innerHTML+=
-      '<div class="mkart">'+
-        '<div class="mkart-ust">'+
-          '<input placeholder="Ev Sahibi" value="'+r.ev+'" onchange="S['+i+'].ev=this.value">'+
-          '<input class="skor-i" placeholder="0" type="number" value="'+r.eg+'" onchange="S['+i+'].eg=this.value">'+
-          '<span class="ayrac">—</span>'+
-          '<input class="skor-i" placeholder="0" type="number" value="'+r.dg+'" onchange="S['+i+'].dg=this.value">'+
-          '<input placeholder="Deplasman" value="'+r.dep+'" onchange="S['+i+'].dep=this.value">'+
-          '<button class="sil-btn" onclick="sonucSil('+i+')">✕</button>'+
+      '<div style="background:var(--cam);border:1px solid var(--cam-k);border-radius:12px;padding:.75rem;margin-bottom:.5rem;">'+
+        '<div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.4rem;">'+
+          '<input style="'+inp+'flex:1;min-width:0;font-size:.82rem;padding:.45rem .55rem;color:#fff;" placeholder="Ev Sahibi" value="'+r.ev+'" onchange="S['+i+'].ev=this.value">'+
+          '<span style="font-family:Bebas Neue,sans-serif;font-size:.85rem;color:var(--soluk);flex-shrink:0;padding:0 .15rem">vs</span>'+
+          '<input style="'+inp+'flex:1;min-width:0;font-size:.82rem;padding:.45rem .55rem;color:#fff;" placeholder="Deplasman" value="'+r.dep+'" onchange="S['+i+'].dep=this.value">'+
+          '<button class="sil-btn" style="flex-shrink:0;margin-left:.2rem" onclick="sonucSil('+i+')">✕</button>'+
         '</div>'+
-        '<input class="alt-inp" placeholder="📅 Tarih (örn: 12/04/2026)" value="'+r.tarih+'" onchange="S['+i+'].tarih=this.value">'+
+        '<div style="display:flex;gap:.4rem;align-items:center;">'+
+          '<input style="'+inp+'width:3.5rem;flex-shrink:0;text-align:center;font-family:DM Mono,monospace;font-size:1.05rem;color:#f5c842;padding:.42rem .3rem;" type="number" placeholder="0" value="'+r.eg+'" onchange="S['+i+'].eg=this.value">'+
+          '<span style="font-family:Bebas Neue,sans-serif;font-size:1rem;color:var(--soluk);flex-shrink:0">—</span>'+
+          '<input style="'+inp+'width:3.5rem;flex-shrink:0;text-align:center;font-family:DM Mono,monospace;font-size:1.05rem;color:#f5c842;padding:.42rem .3rem;" type="number" placeholder="0" value="'+r.dg+'" onchange="S['+i+'].dg=this.value">'+
+          '<input style="'+inp+'flex:1;min-width:0;font-size:.75rem;padding:.42rem .5rem;color:var(--soluk);" placeholder="Maç Tarihi: 12/04/2026" value="'+r.tarih+'" onchange="S['+i+'].tarih=this.value">'+
+        '</div>'+
       '</div>';
   });
 }
