@@ -161,95 +161,80 @@ footer a{color:var(--vivid);text-decoration:none;}
 
   <div class="tablo-baslik">Artvin 1. Amatör Lig — Puan Durumu</div>
 
-  <div class="tablo-wrap">
-    <div class="tablo-ust">
-      <div>#</div>
-      <div>Takım</div>
-      <div>O</div>
-      <div>G</div>
-      <div>B</div>
-      <div>M</div>
-      <div>A</div>
-      <div>Y</div>
-      <div>Av</div>
-      <div>P</div>
-    </div>
-
-    <div class="tablo-satir lider">
-      <div class="sira bir">1</div>
-      <div class="takim-ad">Borçkaspor</div>
-      <div class="stat">11</div><div class="stat">9</div><div class="stat">1</div><div class="stat">1</div>
-      <div class="stat">55</div><div class="stat">7</div><div class="stat">+48</div>
-      <div class="puan">28</div>
-    </div>
-    <div class="tablo-satir lider">
-      <div class="sira iki">2</div>
-      <div class="takim-ad">Yusufelispor</div>
-      <div class="stat">11</div><div class="stat">9</div><div class="stat">1</div><div class="stat">1</div>
-      <div class="stat">30</div><div class="stat">8</div><div class="stat">+22</div>
-      <div class="puan">28</div>
-    </div>
-    <div class="tablo-satir">
-      <div class="sira uc">3</div>
-      <div class="takim-ad">Hopa Spor Eğitim</div>
-      <div class="stat">12</div><div class="stat">7</div><div class="stat">1</div><div class="stat">4</div>
-      <div class="stat">31</div><div class="stat">22</div><div class="stat">+9</div>
-      <div class="puan">22</div>
-    </div>
-    <div class="tablo-satir yukselme">
-      <div class="sira">4</div>
-      <div class="takim-ad">Artvin Kemalpaşaspor</div>
-      <div class="stat">11</div><div class="stat">6</div><div class="stat">3</div><div class="stat">2</div>
-      <div class="stat">28</div><div class="stat">9</div><div class="stat">+19</div>
-      <div class="puan">21</div>
-    </div>
-    <div class="tablo-satir">
-      <div class="sira">5</div>
-      <div class="takim-ad">Şavşat Gençlikspor</div>
-      <div class="stat">11</div><div class="stat">4</div><div class="stat">0</div><div class="stat">7</div>
-      <div class="stat">23</div><div class="stat">54</div><div class="stat">-31</div>
-      <div class="puan">12</div>
-    </div>
-    <div class="tablo-satir dusme">
-      <div class="sira">6</div>
-      <div class="takim-ad ihrac">Yeşil Artvinspor</div>
-      <div class="stat">12</div><div class="stat">1</div><div class="stat">0</div><div class="stat">11</div>
-      <div class="stat">6</div><div class="stat">38</div><div class="stat">-32</div>
-      <div class="puan" style="color:var(--dim)">3</div>
-    </div>
-    <div class="tablo-satir dusme">
-      <div class="sira">7</div>
-      <div class="takim-ad ihrac">Muratlı Hudutspor</div>
-      <div class="stat">12</div><div class="stat">0</div><div class="stat">0</div><div class="stat">12</div>
-      <div class="stat">0</div><div class="stat">41</div><div class="stat">-41</div>
-      <div class="puan" style="color:var(--dim)">0</div>
-    </div>
+  <div style="overflow-x:auto;margin-bottom:1.5rem;">
+  <table class="tablo-wrap">
+    <thead>
+      <tr>
+        <th style="width:2rem">#</th>
+        <th class="left" style="min-width:140px">Takım</th>
+        <th>O</th><th>G</th><th>B</th><th>M</th>
+        <th>A</th><th>Y</th><th>Av</th>
+        <th style="color:var(--vivid)">P</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="lider">
+        <td style="font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1rem">1</td>
+        <td class="left" style="font-weight:800;color:#fff">Borçkaspor</td>
+        <td>11</td><td>9</td><td>1</td><td>1</td>
+        <td>55</td><td>7</td><td style="color:var(--vivid)">+48</td>
+        <td style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--vivid)">28</td>
+      </tr>
+      <tr class="lider">
+        <td style="font-family:'Bebas Neue',sans-serif;color:#ccc;font-size:1rem">2</td>
+        <td class="left" style="font-weight:800;color:#fff">Yusufelispor</td>
+        <td>11</td><td>9</td><td>1</td><td>1</td>
+        <td>30</td><td>8</td><td style="color:var(--vivid)">+22</td>
+        <td style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--vivid)">28</td>
+      </tr>
+      <tr>
+        <td style="font-family:'Bebas Neue',sans-serif;color:#cd7f32;font-size:1rem">3</td>
+        <td class="left" style="font-weight:800;color:#fff">Hopa Spor Eğitim</td>
+        <td>12</td><td>7</td><td>1</td><td>4</td>
+        <td>31</td><td>22</td><td style="color:var(--vivid)">+9</td>
+        <td style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--vivid)">22</td>
+      </tr>
+      <tr class="yukselme">
+        <td style="font-family:'Bebas Neue',sans-serif;color:var(--dim);font-size:1rem">4</td>
+        <td class="left" style="font-weight:800;color:#fff">Artvin Kemalpaşaspor</td>
+        <td>11</td><td>6</td><td>3</td><td>2</td>
+        <td>28</td><td>9</td><td style="color:var(--vivid)">+19</td>
+        <td style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--vivid)">21</td>
+      </tr>
+      <tr>
+        <td style="font-family:'Bebas Neue',sans-serif;color:var(--dim);font-size:1rem">5</td>
+        <td class="left" style="font-weight:800;color:#fff">Şavşat Gençlikspor</td>
+        <td>11</td><td>4</td><td>0</td><td>7</td>
+        <td>23</td><td>54</td><td style="color:var(--red)">-31</td>
+        <td style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--vivid)">12</td>
+      </tr>
+      <tr class="dusme">
+        <td style="font-family:'Bebas Neue',sans-serif;color:var(--dim);font-size:1rem">6</td>
+        <td class="left" style="font-weight:800;color:var(--red);text-decoration:line-through;opacity:.6">Yeşil Artvinspor</td>
+        <td>12</td><td>1</td><td>0</td><td>11</td>
+        <td>6</td><td>38</td><td style="color:var(--red)">-32</td>
+        <td style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--dim)">3</td>
+      </tr>
+      <tr class="dusme">
+        <td style="font-family:'Bebas Neue',sans-serif;color:var(--dim);font-size:1rem">7</td>
+        <td class="left" style="font-weight:800;color:var(--red);text-decoration:line-through;opacity:.6">Muratlı Hudutspor</td>
+        <td>12</td><td>0</td><td>0</td><td>12</td>
+        <td>0</td><td>41</td><td style="color:var(--red)">-41</td>
+        <td style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--dim)">0</td>
+      </tr>
+    </tbody>
+  </table>
   </div>
 
   <div class="aciklama">
     ⚠️ Yeşil Artvinspor ligin ikinci yarısından, Muratlı Hudutspor ise ikinci haftadan itibaren ligden çekilmiştir. Borçkaspor, 9. haftada hükmen mağlup sayılmıştır.
   </div>
 
-  <!-- IFRAME DENEMESI -->
-  <div class="iframe-wrap">
-    <div class="iframe-baslik">
-      <span>📊 Canlı Veri — amatorfutbol.org</span>
-      <a href="https://www.amatorfutbol.org/askf/artvin/1-amator/puandurumu-10972.html" target="_blank">Kaynakta Gör ↗</a>
-    </div>
-    <div class="iframe-ic" id="iframeWrap1">
-      <iframe
-        src="https://www.amatorfutbol.org/askf/artvin/1-amator/puandurumu-10972.html"
-        title="Artvin 1. Amatör Lig Puan Durumu"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-        onload="iframeYuklendi(this)"
-        onerror="iframeHata('iframeWrap1')">
-      </iframe>
-      <div class="iframe-hata" id="h1">
-        ⚠️ İçerik yüklenemedi. <a href="https://www.amatorfutbol.org/askf/artvin/1-amator/puandurumu-10972.html" target="_blank">Kaynağa git →</a>
-      </div>
-    </div>
-  </div>
+  <a href="https://www.amatorfutbol.org/askf/artvin/1-amator/puandurumu-10972.html" target="_blank"
+    style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.7rem 1rem;text-decoration:none;margin-bottom:1rem;">
+    <span style="font-size:.78rem;color:var(--dim)">📊 Tam tablo ve fikstür için</span>
+    <span style="font-size:.75rem;font-weight:800;color:var(--vivid)">amatorfutbol.org →</span>
+  </a>
 
 </div>
 
