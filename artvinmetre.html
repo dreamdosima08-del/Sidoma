@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ArtvinMetre — Artvin Nüfus Saati | artvinrehber.com</title>
+<meta name="description" content="Artvin nüfusu gerçek zamanlı takip. Doğum, ölüm, göç. TÜİK 2024 verilerine dayalı canlı sayaç.">
+<meta name="geo.region" content="TR-08">
+<link rel="canonical" href="https://artvinrehber.com/artvinmetre.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a0e;
+  --kart:#0c1219;
+  --kart2:#111a24;
+  --yesil:#00e676;
+  --yesil-d:rgba(0,230,118,.08);
+  --kirmizi:#ff5252;
+  --kirmizi-d:rgba(255,82,82,.08);
+  --mavi:#448aff;
+  --mavi-d:rgba(68,138,255,.08);
+  --turuncu:#ff9100;
+  --turuncu-d:rgba(255,145,0,.08);
+  --metin:#e8eaf6;
+  --soluk:#4a5568;
+  --soluk2:#718096;
+  --kenar:rgba(255,255,255,.05);
+  --kenar2:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{min-height:100%;background:var(--bg);color:var(--metin);font-family:'Inter',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 100% 40% at 50% 0%,rgba(0,230,118,.05) 0%,transparent 50%);pointer-events:none;z-index:0;}
+.sarici{position:relative;z-index:1;max-width:500px;margin:0 auto;padding-bottom:4rem;}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-bottom:1px solid var(--kenar);}
+.nav-logo{font-size:.75rem;font-weight:700;color:var(--soluk2);text-decoration:none;}
+.nav-logo b{color:var(--yesil);}
+.nav-geri{font-size:.68rem;color:var(--soluk2);text-decoration:none;border:1px solid var(--kenar2);padding:.25rem .65rem;border-radius:5px;}
+
+/* HERO */
+.hero{padding:1.4rem 1rem 1rem;border-bottom:1px solid var(--kenar);}
+.rozet{display:inline-flex;align-items:center;gap:.35rem;background:var(--yesil-d);border:1px solid rgba(0,230,118,.18);border-radius:20px;padding:.22rem .65rem;font-size:.62rem;font-weight:700;color:var(--yesil);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;}
+.rozet-dot{width:5px;height:5px;border-radius:50%;background:var(--yesil);animation:blink 2s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+.hero-h{font-size:clamp(2rem,10vw,3rem);font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:.35rem;}
+.hero-h span{color:var(--yesil);}
+.hero-sub{font-size:.78rem;color:var(--soluk2);line-height:1.6;}
+
+/* ANA NÜFUS */
+.ana{margin:1rem;background:var(--kart);border:1px solid var(--kenar2);border-radius:16px;overflow:hidden;}
+.ana-ic{background:linear-gradient(135deg,rgba(0,230,118,.06),rgba(0,230,118,.02));padding:1.2rem 1.25rem 1rem;border-bottom:1px solid var(--kenar);position:relative;}
+.ana-ic::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--yesil),transparent);}
+.ana-etiket{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soluk2);margin-bottom:.55rem;}
+.ana-rakam{font-family:'DM Mono',monospace;font-size:clamp(2.5rem,13vw,4rem);font-weight:400;color:#fff;letter-spacing:.02em;line-height:1;margin-bottom:.65rem;}
+.ana-alt{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
+.ana-chip{font-size:.65rem;font-weight:700;padding:.22rem .6rem;border-radius:5px;}
+.chip-r{background:var(--kirmizi-d);color:var(--kirmizi);}
+.chip-g{background:var(--yesil-d);color:var(--yesil);}
+.ana-not{font-size:.62rem;color:var(--soluk);}
+
+/* BÖLÜM BAŞLIĞI */
+.bolum{padding:.8rem 1rem .35rem;font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--soluk2);display:flex;align-items:center;gap:.5rem;}
+.bolum::after{content:'';flex:1;height:1px;background:var(--kenar);}
+
+/* SATIRLAR */
+.satir{margin:0 1rem .5rem;background:var(--kart);border:1px solid var(--kenar);border-radius:13px;display:flex;align-items:center;padding:1rem 1.1rem;gap:1rem;position:relative;overflow:hidden;}
+.satir::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;}
+.satir.y::before{background:var(--yesil);}
+.satir.k::before{background:var(--kirmizi);}
+.satir.m::before{background:var(--mavi);}
+.satir.t::before{background:var(--turuncu);}
+
+.s-ikon{font-size:1.4rem;width:2.2rem;text-align:center;flex-shrink:0;}
+.s-metin{flex:1;min-width:0;}
+.s-etiket{font-size:1rem;font-weight:700;color:var(--metin);line-height:1.3;}
+.s-alt{font-size:.75rem;color:var(--soluk2);margin-top:.2rem;}
+.s-rakam{font-family:'DM Mono',monospace;font-size:1.9rem;font-weight:500;flex-shrink:0;text-align:right;line-height:1;}
+.satir.y .s-rakam{color:var(--yesil);}
+.satir.k .s-rakam{color:var(--kirmizi);}
+.satir.m .s-rakam{color:var(--mavi);}
+.satir.t .s-rakam{color:var(--turuncu);}
+
+/* NET DEĞİŞİM */
+.net{margin:0 1rem .5rem;background:var(--kart);border:1px solid var(--kenar2);border-radius:13px;padding:1rem 1.1rem;display:flex;align-items:center;gap:1rem;}
+.net-ikon{font-size:1.4rem;width:2.2rem;text-align:center;flex-shrink:0;}
+.net-metin{flex:1;}
+.net-etiket{font-size:1rem;font-weight:700;color:var(--metin);}
+.net-alt{font-size:.75rem;color:var(--soluk2);margin-top:.2rem;}
+.net-rakam{font-family:'DM Mono',monospace;font-size:1.9rem;font-weight:500;flex-shrink:0;}
+
+/* TREND */
+.trend{margin:0 1rem .5rem;background:var(--kart);border:1px solid var(--kenar);border-radius:13px;padding:1.1rem;}
+.trend-h{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soluk2);margin-bottom:.9rem;}
+.ts{display:flex;align-items:center;gap:.7rem;margin-bottom:.65rem;}
+.ts:last-child{margin-bottom:0;}
+.ts-yil{font-family:'DM Mono',monospace;font-size:.75rem;font-weight:600;color:var(--soluk2);width:2.5rem;flex-shrink:0;}
+.ts-bg{flex:1;height:6px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden;}
+.ts-ic{height:100%;border-radius:3px;}
+.ts-val{font-family:'DM Mono',monospace;font-size:.75rem;font-weight:600;width:4.5rem;text-align:right;flex-shrink:0;}
+
+/* PAYLAŞ */
+.paylas{margin:0 1rem .5rem;background:var(--kart);border:1px solid var(--kenar2);border-radius:13px;padding:1.1rem;}
+.paylas-h{font-size:.78rem;font-weight:700;color:var(--soluk2);margin-bottom:.85rem;text-align:center;}
+.paylas-row{display:flex;gap:.5rem;}
+.pbtn{flex:1;padding:.8rem .4rem;border-radius:10px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.35rem;transition:.15s;}
+.pbtn:hover{transform:translateY(-1px);}
+.pbtn-wp{background:#25D366;color:#fff;}
+.pbtn-x{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--metin);}
+.pbtn-kop{background:var(--yesil-d);border:1px solid rgba(0,230,118,.2);color:var(--yesil);}
+
+/* KAYNAK */
+.kaynak{margin:0 1rem;background:rgba(68,138,255,.04);border:1px solid rgba(68,138,255,.09);border-radius:12px;padding:1rem;}
+.kaynak p{font-size:.72rem;color:rgba(232,234,246,.45);line-height:1.85;}
+.kaynak b{color:rgba(232,234,246,.65);}
+</style>
+</head>
+<body>
+<div class="sarici">
+
+<nav class="nav">
+  <a class="nav-logo" href="/"><b>Artvin</b>Rehberi</a>
+  <a class="nav-geri" href="/">← Geri</a>
+</nav>
+
+<div class="hero">
+  <div class="rozet"><div class="rozet-dot"></div>Canlı Tahmin</div>
+  <h1 class="hero-h">Artvin<span>Metre</span></h1>
+  <p class="hero-sub">TÜİK 2024 verilerine dayalı gerçek zamanlı nüfus tahmini.</p>
+</div>
+
+<!-- ANA NÜFUS -->
+<div class="ana">
+  <div class="ana-ic">
+    <div class="ana-etiket">Artvin Anlık Nüfus Tahmini</div>
+    <div class="ana-rakam" id="anaNufus">167.531</div>
+    <div class="ana-alt">
+      <span class="ana-chip chip-r" id="yilNet">▼ 0</span>
+      <span class="ana-not">2025 yılı net değişim tahmini</span>
+    </div>
+  </div>
+</div>
+
+<!-- BUGÜN -->
+<div class="bolum">Bugün</div>
+
+<div class="satir y">
+  <div class="s-ikon">👶</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bugünkü Doğumlar</div>
+    <div class="s-alt">Her 6.4 saatte 1 doğum</div>
+  </div>
+  <div class="s-rakam" id="bdDogum">0</div>
+</div>
+
+<div class="satir k">
+  <div class="s-ikon">🕯️</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bugünkü Ölümler</div>
+    <div class="s-alt">Her 5.4 saatte 1 ölüm</div>
+  </div>
+  <div class="s-rakam" id="bdOlum">0</div>
+</div>
+
+<div class="satir m">
+  <div class="s-ikon">🚶</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bugün Gelen Göç</div>
+    <div class="s-alt">Günlük ortalama 21 kişi</div>
+  </div>
+  <div class="s-rakam" id="bdGelen">0</div>
+</div>
+
+<div class="satir t">
+  <div class="s-ikon">🧳</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bugün Giden Göç</div>
+    <div class="s-alt">Günlük ortalama 28.5 kişi</div>
+  </div>
+  <div class="s-rakam" id="bdGiden">0</div>
+</div>
+
+<!-- BU YIL -->
+<div class="bolum">Bu Yıl — 2025</div>
+
+<div class="satir y">
+  <div class="s-ikon">👶</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bu Yıl Doğan</div>
+    <div class="s-alt">2024 oranı esas alındı</div>
+  </div>
+  <div class="s-rakam" id="yilDogum">0</div>
+</div>
+
+<div class="satir k">
+  <div class="s-ikon">🕯️</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bu Yıl Vefat Eden</div>
+    <div class="s-alt">2024 oranı esas alındı</div>
+  </div>
+  <div class="s-rakam" id="yilOlum">0</div>
+</div>
+
+<div class="satir m">
+  <div class="s-ikon">🚶</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bu Yıl Artvin'e Gelen</div>
+    <div class="s-alt">2024 oranı esas alındı</div>
+  </div>
+  <div class="s-rakam" id="yilGelen">0</div>
+</div>
+
+<div class="satir t">
+  <div class="s-ikon">🧳</div>
+  <div class="s-metin">
+    <div class="s-etiket">Bu Yıl Artvin'den Giden</div>
+    <div class="s-alt">2024 oranı esas alındı</div>
+  </div>
+  <div class="s-rakam" id="yilGiden">0</div>
+</div>
+
+<div class="net">
+  <div class="net-ikon">📉</div>
+  <div class="net-metin">
+    <div class="net-etiket">Bu Yıl Net Değişim</div>
+    <div class="net-alt">Doğum − Ölüm + Gelen − Giden</div>
+  </div>
+  <div class="net-rakam" id="yilNet2">0</div>
+</div>
+
+<!-- TREND -->
+<div class="bolum">Nüfus Trendi</div>
+<div class="trend">
+  <div class="trend-h">Son 3 Yıl — TÜİK ADNKS</div>
+  <div class="ts">
+    <span class="ts-yil">2023</span>
+    <div class="ts-bg"><div class="ts-ic" style="width:100%;background:linear-gradient(90deg,#448aff55,#448aff)"></div></div>
+    <span class="ts-val" style="color:#448aff">172.356</span>
+  </div>
+  <div class="ts">
+    <span class="ts-yil">2024</span>
+    <div class="ts-bg"><div class="ts-ic" style="width:98.2%;background:linear-gradient(90deg,#448aff55,#448aff)"></div></div>
+    <span class="ts-val" style="color:#448aff">169.280</span>
+  </div>
+  <div class="ts">
+    <span class="ts-yil">2025</span>
+    <div class="ts-bg"><div class="ts-ic" style="width:97.2%;background:linear-gradient(90deg,#00e67655,#00e676)"></div></div>
+    <span class="ts-val" style="color:var(--yesil)">167.531</span>
+  </div>
+</div>
+
+<!-- PAYLAŞ -->
+<div class="bolum">Paylaş</div>
+<div class="paylas">
+  <div class="paylas-h">Artvin'i tanıyanlarla paylaş 🏔️</div>
+  <div class="paylas-row">
+    <button class="pbtn pbtn-wp" onclick="pWP()">📱 WhatsApp</button>
+    <button class="pbtn pbtn-x" onclick="pX()">𝕏 X</button>
+    <button class="pbtn pbtn-kop" id="kopBtn" onclick="pKop()">📋 Kopyala</button>
+  </div>
+</div>
+
+<!-- METODOLOJİ -->
+<div class="bolum">Metodoloji</div>
+<div class="kaynak">
+  <p>
+    <b>Nasıl çalışır?</b> TÜİK 2024 doğum (1.365), ölüm (1.636), alınan göç (7.670) ve verilen göç (10.400) verileri yıla bölünerek saniye başına düşen değere dönüştürülür. Sayfa açılışından bu yana geçen süreyle çarpılarak anlık tahmin üretilir.<br><br>
+    <b>⚠️ Önemli:</b> 2025 yılına ait resmi TÜİK verisi henüz açıklanmadığından 2024 oranları kullanılmaktadır. Bu bir istatistiksel tahmindir, gerçek zamanlı kayıt değildir. Worldometer ile aynı yöntemi kullanır.<br><br>
+    Kaynak: TÜİK Adrese Dayalı Nüfus Kayıt Sistemi (ADNKS) 2024.
+  </p>
+</div>
+
+</div>
+<script>
+var NUFUS_2025  = 167531;
+var DOGUM_YIL  = 1365;
+var OLUM_YIL   = 1636;
+var GELEN_YIL  = 7670;
+var GIDEN_YIL  = 10400;
+
+var SN = 365.25 * 24 * 3600;
+var dSn = DOGUM_YIL / SN;
+var oSn = OLUM_YIL  / SN;
+var gSn = GELEN_YIL / SN;
+var kSn = GIDEN_YIL / SN;
+var nSn = dSn - oSn + gSn - kSn;
+
+function yilSn(){
+  var b = new Date(new Date().getFullYear()+'-01-01T00:00:00');
+  return Math.max(0,(Date.now()-b.getTime())/1000);
+}
+function gunSn(){
+  var n = new Date();
+  return n.getHours()*3600 + n.getMinutes()*60 + n.getSeconds();
+}
+function fmt(n){ return Math.floor(n).toLocaleString('tr-TR'); }
+
+function guncelle(){
+  var ys = yilSn();
+  var gs = gunSn();
+
+  var yD=dSn*ys, yO=oSn*ys, yG=gSn*ys, yK=kSn*ys, yN=nSn*ys;
+  var gD=dSn*gs, gO=oSn*gs, gG=gSn*gs, gK=kSn*gs;
+  var nuf = NUFUS_2025 + yN;
+
+  document.getElementById('anaNufus').textContent = fmt(nuf);
+
+  var netVal = Math.floor(yN);
+  var netEl = document.getElementById('yilNet');
+  netEl.textContent = (netVal>0?'▲ +':'▼ ') + fmt(Math.abs(netVal));
+  netEl.className = 'ana-chip ' + (netVal>0?'chip-g':'chip-r');
+
+  document.getElementById('bdDogum').textContent = fmt(gD);
+  document.getElementById('bdOlum').textContent  = fmt(gO);
+  document.getElementById('bdGelen').textContent = fmt(gG);
+  document.getElementById('bdGiden').textContent = fmt(gK);
+
+  document.getElementById('yilDogum').textContent = fmt(yD);
+  document.getElementById('yilOlum').textContent  = fmt(yO);
+  document.getElementById('yilGelen').textContent = fmt(yG);
+  document.getElementById('yilGiden').textContent = fmt(yK);
+
+  var n2 = document.getElementById('yilNet2');
+  n2.textContent = (netVal>0?'+':'') + fmt(Math.abs(netVal));
+  n2.style.color = netVal>0 ? 'var(--yesil)' : 'var(--kirmizi)';
+}
+
+function pMetni(){
+  var nuf = document.getElementById('anaNufus').textContent;
+  return 'Artvin nüfusu şu an: ' + nuf + '\n\nDoğum, ölüm ve göç verileri canlı takip:\nartvinrehber.com/artvinmetre.html';
+}
+function pWP(){ window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(pMetni()),'_blank'); }
+function pX(){ window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(pMetni()),'_blank'); }
+function pKop(){
+  navigator.clipboard.writeText(pMetni()).then(function(){
+    var b = document.getElementById('kopBtn');
+    b.textContent = '✅ Kopyalandı!';
+    setTimeout(function(){ b.textContent='📋 Kopyala'; }, 2000);
+  });
+}
+
+guncelle();
+setInterval(guncelle, 1000);
+</script>
+</body>
+</html>
