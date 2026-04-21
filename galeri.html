@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artvin Fotoğraf Galerisi — Yaylalar, Köyler, Doğa | artvinrehber.com</title>
+<meta name="description" content="Artvin'in yaylaları, köyleri, vadileri ve doğasından özgün fotoğraflar. Berta yaylası, Çoruh nehri, Ardanuç, Murgul ve daha fazlası.">
+<meta name="keywords" content="artvin fotoğraf, artvin manzara, artvin yayla, berta yaylası, artvin çoruh nehri, ardanuç fotoğraf, murgul artvin, artvin köyleri, artvin doğa">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://www.artvinrehber.com/galeri.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Artvin Rehberi">
+<meta property="og:title" content="Artvin Fotoğraf Galerisi — Yaylalar, Köyler, Doğa">
+<meta property="og:description" content="Artvin'in yaylaları, köyleri ve doğasından özgün fotoğraflar.">
+<meta property="og:url" content="https://www.artvinrehber.com/galeri.html">
+<meta property="og:image" content="https://i.ibb.co/rGncy3LT/20140730-160940.jpg">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin, Türkiye">
+<meta name="geo.position" content="41.1833;41.8167">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "Artvin Fotoğraf Galerisi",
+  "description": "Artvin'in yaylaları, köyleri, vadileri ve doğasından özgün fotoğraflar.",
+  "url": "https://www.artvinrehber.com/galeri.html",
+  "author": {"@type":"Person","name":"Artvin Rehberi","url":"https://www.artvinrehber.com"},
+  "about": {"@type":"Place","name":"Artvin","address":{"@type":"PostalAddress","addressRegion":"Artvin","addressCountry":"TR"}}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1a12;--kart:#0f2318;--vivid:#3ddb8a;--gold:#f0c040;--off:#e0ede3;--dim:rgba(224,237,227,.4);--border:rgba(61,219,138,.15);}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{overflow-x:hidden;background:var(--bg);color:var(--off);font-family:'Inter',sans-serif;min-height:100vh;}
+img{max-width:100%;height:auto;display:block;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,26,18,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.1rem;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;color:var(--vivid);text-decoration:none;}
+.nav-back{font-size:.65rem;color:var(--dim);border:1px solid rgba(255,255,255,.1);padding:.25rem .65rem;border-radius:4px;text-decoration:none;}
+.nav-back:hover{color:var(--vivid);border-color:var(--vivid);}
+
+/* HERO */
+.hero{padding:2rem 1.1rem 1.5rem;text-align:center;border-bottom:1px solid var(--border);}
+.hero-cat{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vivid);margin-bottom:.65rem;display:block;}
+.hero-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,10vw,3.5rem);letter-spacing:.08em;color:#fff;line-height:1;margin-bottom:.5rem;}
+.hero-h span{color:var(--vivid);}
+.hero-sub{font-size:.8rem;color:var(--dim);line-height:1.65;}
+.hero-say{display:inline-flex;align-items:center;gap:.4rem;background:rgba(61,219,138,.08);border:1px solid rgba(61,219,138,.2);border-radius:20px;padding:.2rem .75rem;font-size:.6rem;font-weight:700;color:var(--vivid);margin-top:.75rem;letter-spacing:.06em;}
+.hero-say span{font-family:'Bebas Neue',sans-serif;font-size:.85rem;}
+
+/* GALERİ GRID */
+.galeri-wrap{padding:1.25rem 1rem;}
+.galeri-grid{columns:2;column-gap:.6rem;}
+@media(min-width:600px){.galeri-grid{columns:3;}}
+
+.foto-item{break-inside:avoid;margin-bottom:.6rem;cursor:pointer;position:relative;border-radius:10px;overflow:hidden;background:var(--kart);}
+.foto-item img{width:100%;display:block;transition:transform .3s ease;border-radius:10px;}
+.foto-item:hover img{transform:scale(1.04);}
+.foto-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);opacity:0;transition:opacity .3s;border-radius:10px;}
+.foto-item:hover .foto-overlay{opacity:1;}
+.foto-alt-metin{position:absolute;bottom:0;left:0;right:0;padding:.6rem .75rem;font-size:.65rem;font-weight:600;color:#fff;line-height:1.4;transform:translateY(4px);transition:transform .3s;opacity:0;}
+.foto-item:hover .foto-alt-metin{transform:translateY(0);opacity:1;}
+
+/* FİLİGRAN */
+.foto-item::after{
+  content:'artvinrehber.com';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) rotate(-25deg);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(.75rem,3vw,1rem);
+  letter-spacing:.12em;
+  color:rgba(255,255,255,.18);
+  pointer-events:none;
+  white-space:nowrap;
+  z-index:2;
+}
+
+/* AÇIKLAMA ALTINDA */
+.foto-caption{padding:.5rem .6rem .7rem;font-size:.7rem;color:var(--dim);line-height:1.5;border-top:1px solid rgba(255,255,255,.05);}
+
+/* LİGHTBOX */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:999;align-items:center;justify-content:center;padding:1rem;}
+.lb.aktif{display:flex;}
+.lb-ic{position:relative;max-width:100%;max-height:100%;}
+.lb-img{max-width:min(90vw,800px);max-height:80vh;object-fit:contain;border-radius:8px;display:block;}
+.lb-kapat{position:absolute;top:-2.5rem;right:0;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:.25rem .5rem;}
+.lb-caption{margin-top:.6rem;font-size:.75rem;color:rgba(255,255,255,.55);text-align:center;max-width:min(90vw,800px);}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:.5rem .75rem;border-radius:6px;}
+.lb-nav:hover{background:rgba(255,255,255,.2);}
+.lb-prev{left:-3.5rem;}
+.lb-next{right:-3.5rem;}
+@media(max-width:500px){.lb-prev{left:0;top:auto;bottom:-3rem;transform:none;} .lb-next{right:0;top:auto;bottom:-3rem;transform:none;}}
+
+/* DAHA FAZLA */
+.daha-btn{display:block;margin:1.5rem auto;padding:.75rem 2rem;background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;color:var(--vivid);cursor:pointer;text-align:center;transition:.15s;}
+.daha-btn:hover{background:rgba(61,219,138,.18);}
+
+footer{border-top:1px solid var(--border);padding:1.5rem 1.1rem;text-align:center;font-size:.65rem;color:rgba(255,255,255,.2);line-height:2;}
+footer a{color:var(--vivid);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
+  <a class="nav-back" href="/">← Ana Sayfa</a>
+</nav>
+
+<div class="hero">
+  <span class="hero-cat">📷 Özgün Fotoğraflar</span>
+  <h1 class="hero-h">ARTVİN<br><span>GALERİSİ</span></h1>
+  <p class="hero-sub">Yaylalar, köyler, nehirler ve dağlar.<br>Artvin'den yansımalar.</p>
+  <div class="hero-say"><span id="fotoSay">9</span>&nbsp;fotoğraf</div>
+</div>
+
+<div class="galeri-wrap">
+  <div class="galeri-grid" id="galeriGrid">
+
+    <div class="foto-item" onclick="lbAc(0)">
+      <img src="https://i.ibb.co/rGncy3LT/20140730-160940.jpg"
+           alt="Artvin barajı yapılmadan önce Demirkent Erkinis köyünden Çoruh nehrine bakış"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Çoruh Nehri — Demirkent Köyü</div>
+      <div class="foto-caption">Artvin barajı yapılmadan önce Demirkent (Erkinis) köyünden Çoruh nehrine bakış · 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(1)">
+      <img src="https://i.ibb.co/PzJ5hVRW/20140803-091758.jpg"
+           alt="Berta Ortaköy Duganala yaylası Artvin sabah manzarası"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Duganala Yaylası — Berta</div>
+      <div class="foto-caption">Berta (Ortaköy) — Duganala yaylası sabah · 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(2)">
+      <img src="https://i.ibb.co/4R33tBWC/20140803-123250.jpg"
+           alt="Berta Ortaköy Duganala yaylası Artvin öğlen manzarası"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Duganala Yaylası — Öğlen</div>
+      <div class="foto-caption">Berta (Ortaköy) — Duganala yaylası öğlen · 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(3)">
+      <img src="https://i.ibb.co/0VXtTwpL/20140803-133428.jpg"
+           alt="Berta Ortaköy Duganala yaylası Artvin panorama"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Duganala Yaylası — Panorama</div>
+      <div class="foto-caption">Berta (Ortaköy) — Duganala yaylası · 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(4)">
+      <img src="https://i.ibb.co/ZjTYF9T/20140803-172515.jpg"
+           alt="Berta Ortaköy mezrası Artvin köy manzarası"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Berta Mezrası</div>
+      <div class="foto-caption">Berta (Ortaköy) mezrası · 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(5)">
+      <img src="https://i.ibb.co/chkgGyNr/20140804-182411.jpg"
+           alt="Artvin Salkımlı köyü Saçinka mezrası akşam manzarası"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Saçinka Mezrası — Salkımlı</div>
+      <div class="foto-caption">Artvin Salkımlı köyü — Saçinka mezrası · 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(6)">
+      <img src="https://i.ibb.co/HTn96q4Z/20140817-125931.jpg"
+           alt="Artvin merkez Atatepeden Şehitlik Seyitler Salkımlı köylerine bakış panorama"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Artvin Merkez — Atatepeden</div>
+      <div class="foto-caption">Artvin merkez — Atatepeden Şehitlik, Seyitler ve Salkımlı köylerine bakış · 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(7)">
+      <img src="https://i.ibb.co/Fq8nP5Cb/20141010-100559.jpg"
+           alt="Damar beldesinden Murgul ilçesi Artvin sonbahar"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Murgul — Damar Beldesinden</div>
+      <div class="foto-caption">Damar beldesinden Murgul · Ekim 2014</div>
+    </div>
+
+    <div class="foto-item" onclick="lbAc(8)">
+      <img src="https://i.ibb.co/B2RZ5d0d/20141015-144341.jpg"
+           alt="Artvin Ardanuç ilçesi sonbahar manzarası"
+           loading="lazy">
+      <div class="foto-overlay"></div>
+      <div class="foto-alt-metin">Ardanuç</div>
+      <div class="foto-caption">Artvin / Ardanuç · Ekim 2014</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LİGHTBOX -->
+<div class="lb" id="lb" onclick="lbKapat(event)">
+  <div class="lb-ic">
+    <button class="lb-kapat" onclick="lbKapat()">✕</button>
+    <button class="lb-nav lb-prev" onclick="lbNav(-1,event)">‹</button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <button class="lb-nav lb-next" onclick="lbNav(1,event)">›</button>
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 <a href="/">artvinrehber.com</a> — Tüm fotoğraflar özgün arşiv çekimidir.</p>
+  <p style="margin-top:.3rem"><a href="/">Ana Sayfa</a> · <a href="/blog1.html">Blog</a> · <a href="/gezi.html">Gezi Rehberi</a></p>
+</footer>
+
+<script>
+var FOTOLAR = [
+  {src:'https://i.ibb.co/rGncy3LT/20140730-160940.jpg', cap:'Artvin barajı yapılmadan önce Demirkent (Erkinis) köyünden Çoruh nehrine bakış · 2014'},
+  {src:'https://i.ibb.co/PzJ5hVRW/20140803-091758.jpg', cap:'Berta (Ortaköy) — Duganala yaylası sabah · 2014'},
+  {src:'https://i.ibb.co/4R33tBWC/20140803-123250.jpg', cap:'Berta (Ortaköy) — Duganala yaylası öğlen · 2014'},
+  {src:'https://i.ibb.co/0VXtTwpL/20140803-133428.jpg', cap:'Berta (Ortaköy) — Duganala yaylası · 2014'},
+  {src:'https://i.ibb.co/ZjTYF9T/20140803-172515.jpg', cap:'Berta (Ortaköy) mezrası · 2014'},
+  {src:'https://i.ibb.co/chkgGyNr/20140804-182411.jpg', cap:'Artvin Salkımlı köyü — Saçinka mezrası · 2014'},
+  {src:'https://i.ibb.co/HTn96q4Z/20140817-125931.jpg', cap:'Artvin merkez — Atatepeden Şehitlik, Seyitler ve Salkımlı köylerine bakış · 2014'},
+  {src:'https://i.ibb.co/Fq8nP5Cb/20141010-100559.jpg', cap:'Damar beldesinden Murgul · Ekim 2014'},
+  {src:'https://i.ibb.co/B2RZ5d0d/20141015-144341.jpg', cap:'Artvin / Ardanuç · Ekim 2014'}
+];
+
+var aktifIdx = 0;
+
+function lbAc(idx) {
+  aktifIdx = idx;
+  document.getElementById('lbImg').src = FOTOLAR[idx].src;
+  document.getElementById('lbImg').alt = FOTOLAR[idx].cap;
+  document.getElementById('lbCaption').textContent = FOTOLAR[idx].cap;
+  document.getElementById('lb').classList.add('aktif');
+  document.body.style.overflow = 'hidden';
+}
+
+function lbKapat(e) {
+  if (e && e.target !== document.getElementById('lb') && !e.target.classList.contains('lb-kapat')) return;
+  document.getElementById('lb').classList.remove('aktif');
+  document.body.style.overflow = '';
+}
+
+function lbNav(yon, e) {
+  if (e) e.stopPropagation();
+  aktifIdx = (aktifIdx + yon + FOTOLAR.length) % FOTOLAR.length;
+  document.getElementById('lbImg').src = FOTOLAR[aktifIdx].src;
+  document.getElementById('lbImg').alt = FOTOLAR[aktifIdx].cap;
+  document.getElementById('lbCaption').textContent = FOTOLAR[aktifIdx].cap;
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lb').classList.contains('aktif')) return;
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+  if (e.key === 'Escape') { document.getElementById('lb').classList.remove('aktif'); document.body.style.overflow = ''; }
+});
+</script>
+</body>
+</html>
