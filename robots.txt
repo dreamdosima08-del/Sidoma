@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://artvinrehber.com/sitemap.xml
+Sitemap: https://www.artvinrehber.com/sitemap.xml
