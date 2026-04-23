@@ -810,6 +810,17 @@ border-radius:20px;}
   #blogModal6 .tavsiye-grid{grid-template-columns:1fr}
 }
 
+
+.hava-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.75rem}
+@media(max-width:480px){.hava-grid{grid-template-columns:repeat(3,1fr)}}
+.hava-kart{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:.65rem .5rem;text-align:center}
+.hava-ilce{font-size:.55rem;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.06em;margin-bottom:.25rem;text-transform:uppercase}
+.hava-emo{font-size:1.4rem;line-height:1;margin-bottom:.2rem}
+.hava-temp{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#fff;letter-spacing:.05em}
+.hava-durum{font-size:.55rem;color:rgba(255,255,255,.4);margin-top:.1rem}
+.hava-alt{font-size:.55rem;color:rgba(255,255,255,.3);margin-top:.15rem}
+.hava-loading{text-align:center;padding:1.5rem;color:rgba(255,255,255,.3);font-size:.78rem;grid-column:1/-1}
+
 </style>
 
   <!-- ═══ SEO & GEO OPTİMİZASYON ═══ -->
@@ -1604,35 +1615,7 @@ border-radius:20px;}
 </section>
 
 <!-- ELEKTRİK -->
-<section id="elektrik" style="padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.07)">
-  <div class="w">
-    <p class="slbl">⚡ Çoruh Elektrik</p>
-    <h2 class="stitle">Elektrik Arıza & Kesinti</h2>
-    <p class="sdesc">Artvin elektrik arızaları için Çoruh Elektrik A.Ş.'yi arayın.</p>
-    <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:1rem">
-      <a href="tel:186"
-         style="display:flex;align-items:center;gap:.85rem;background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.2);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:.2s"
-         onmouseover="this.style.borderColor='rgba(240,192,64,.5)'" onmouseout="this.style.borderColor='rgba(240,192,64,.2)'">
-        <span style="font-size:1.6rem;flex-shrink:0">⚡</span>
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.1em;color:#fff">ELEKTRİK ARIZA HATTI</div>
-          <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.1rem">7/24 — Çoruh Elektrik A.Ş.</div>
-        </div>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:#f0c040;margin-left:auto">186</span>
-      </a>
-      <a href="tel:08503337836"
-         style="display:flex;align-items:center;gap:.85rem;background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.12);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:.2s"
-         onmouseover="this.style.borderColor='rgba(240,192,64,.4)'" onmouseout="this.style.borderColor='rgba(240,192,64,.12)'">
-        <span style="font-size:1.6rem;flex-shrink:0">📞</span>
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.1em;color:#fff">MÜŞTERİ HİZMETLERİ</div>
-          <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.1rem">0850 333 78 36 — Çoruh Elektrik</div>
-        </div>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:.75rem;color:#f0c040;margin-left:auto">ARA →</span>
-      </a>
-    </div>
-  </div>
-</section>
+
 
 <section id="otobus">
   <div class="w">
@@ -1664,65 +1647,9 @@ border-radius:20px;}
 </section>
 
 <!-- ELEKTRİK -->
-<section id="elektrik" style="padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.07)">
-  <div class="w">
-    <p class="slbl">⚡ Çoruh Elektrik</p>
-    <h2 class="stitle">Elektrik Arıza & Kesinti</h2>
-    <p class="sdesc">Artvin elektrik arızaları için Çoruh Elektrik A.Ş.'yi arayın.</p>
-    <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:1rem">
-      <a href="tel:186"
-         style="display:flex;align-items:center;gap:.85rem;background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.2);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:.2s"
-         onmouseover="this.style.borderColor='rgba(240,192,64,.5)'" onmouseout="this.style.borderColor='rgba(240,192,64,.2)'">
-        <span style="font-size:1.6rem;flex-shrink:0">⚡</span>
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.1em;color:#fff">ELEKTRİK ARIZA HATTI</div>
-          <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.1rem">7/24 — Çoruh Elektrik A.Ş.</div>
-        </div>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:#f0c040;margin-left:auto">186</span>
-      </a>
-      <a href="tel:08503337836"
-         style="display:flex;align-items:center;gap:.85rem;background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.12);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:.2s"
-         onmouseover="this.style.borderColor='rgba(240,192,64,.4)'" onmouseout="this.style.borderColor='rgba(240,192,64,.12)'">
-        <span style="font-size:1.6rem;flex-shrink:0">📞</span>
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.1em;color:#fff">MÜŞTERİ HİZMETLERİ</div>
-          <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.1rem">0850 333 78 36 — Çoruh Elektrik</div>
-        </div>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:.75rem;color:#f0c040;margin-left:auto">ARA →</span>
-      </a>
-    </div>
-  </div>
-</section>
 
-<section id="elektrik" style="padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.07)">
-  <div class="w">
-    <p class="slbl">⚡ Çoruh Elektrik</p>
-    <h2 class="stitle">Elektrik Arıza & Kesinti</h2>
-    <p class="sdesc">Artvin elektrik arızaları için Çoruh Elektrik A.Ş.'yi arayın.</p>
-    <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:1rem">
-      <a href="tel:186"
-         style="display:flex;align-items:center;gap:.85rem;background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.2);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:.2s"
-         onmouseover="this.style.borderColor='rgba(240,192,64,.5)'" onmouseout="this.style.borderColor='rgba(240,192,64,.2)'">
-        <span style="font-size:1.6rem;flex-shrink:0">⚡</span>
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.1em;color:#fff">ELEKTRİK ARIZA HATTI</div>
-          <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.1rem">7/24 — Çoruh Elektrik A.Ş.</div>
-        </div>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:#f0c040;margin-left:auto">186</span>
-      </a>
-      <a href="tel:08503337836"
-         style="display:flex;align-items:center;gap:.85rem;background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.12);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:.2s"
-         onmouseover="this.style.borderColor='rgba(240,192,64,.4)'" onmouseout="this.style.borderColor='rgba(240,192,64,.12)'">
-        <span style="font-size:1.6rem;flex-shrink:0">📞</span>
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.1em;color:#fff">MÜŞTERİ HİZMETLERİ</div>
-          <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.1rem">0850 333 78 36 — Çoruh Elektrik</div>
-        </div>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:.75rem;color:#f0c040;margin-left:auto">ARA →</span>
-      </a>
-    </div>
-  </div>
-</section>
+
+
 
 <section id="blog" style="display:block;visibility:visible;opacity:1;transform:none">
   <div class="w">
@@ -2154,44 +2081,7 @@ border-radius:20px;}
 </section>
 
 <!-- RAKIM -->
-<section id="rakim">
-  <div class="w">
-    <p class="slbl">GPS · IP · Manuel</p>
-    <h2 class="stitle">Rakım Ölçer</h2>
-    <p class="sdesc">GPS ile bulunduğunuz noktanın gerçek rakımını ölçün.</p>
-    <button onclick="gpsRakimOlc()" style="background:rgba(61,219,138,.12);border:1px solid rgba(61,219,138,.3);color:var(--vivid);padding:.7rem 1.4rem;font-size:.82rem;font-weight:700;letter-spacing:.08em;cursor:pointer;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem" id="gpsBtn">📍 GPS ile Rakımımı Ölç</button>
-    <div class="rcard">
-      <div class="mbars" id="mbars">
-        <div class="mbar" style="height:18px"></div><div class="mbar" style="height:34px"></div>
-        <div class="mbar" style="height:55px"></div><div class="mbar" style="height:78px"></div>
-        <div class="mbar" style="height:100px"></div><div class="mbar" style="height:78px"></div>
-        <div class="mbar" style="height:55px"></div><div class="mbar" style="height:34px"></div>
-        <div class="mbar" style="height:18px"></div>
-      </div>
-      <div class="rnum" id="rnum">—</div>
-      <div class="ru">metre · m</div>
-      <p class="rst" id="rst">Aşağıdan ilçenizi seçin.</p>
-      <select class="rilce-select" onchange="districtElev(this.value)">
-        <option value="">— Veya ilçe seçin —</option>
-        <option value="595|Artvin Merkez">Artvin Merkez (~595 m)</option>
-        <option value="5|Hopa">Hopa (~5 m · Kıyı)</option>
-        <option value="55|Borçka">Borçka (~55 m)</option>
-        <option value="560|Yusufeli">Yusufeli (~560 m)</option>
-        <option value="1215|Şavşat">Şavşat (~1.215 m)</option>
-        <option value="680|Ardanuç">Ardanuç (~680 m)</option>
-        <option value="5|Arhavi">Arhavi (~5 m · Kıyı)</option>
-        <option value="295|Murgul">Murgul (~295 m)</option>
-        <option value="3|Kemalpaşa">Kemalpaşa (~3 m · Kıyı)</option>
-      </select>
-      <div class="rdets" id="rdets" style="display:none;margin-top:1rem">
-        <div class="rdb"><div class="rdl">Enlem</div><div class="rdv" id="rlat">—</div></div>
-        <div class="rdb"><div class="rdl">Boylam</div><div class="rdv" id="rlon">—</div></div>
-        <div class="rdb"><div class="rdl">Hassasiyet</div><div class="rdv" id="racc">—</div></div>
-        <div class="rdb"><div class="rdl">Kaynak</div><div class="rdv" id="rsrc">—</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- MESAFE -->
 <section id="mesafe">
@@ -2547,6 +2437,76 @@ function sayfaPaylas(){
         ? (data.find(d => d.MiladiTarihKisa === bugun) || data[0])
         : data;
 
+</script>
+
+
+<script>
+/* ═══ HAVA DURUMU — Open-Meteo API ═══ */
+var ILCELER = [
+  {ad:'Artvin Merkez', lat:41.1833, lon:41.8167},
+  {ad:'Ardanuç',       lat:41.1167, lon:42.0667},
+  {ad:'Arhavi',        lat:41.3500, lon:41.3000},
+  {ad:'Borçka',        lat:41.3667, lon:41.6833},
+  {ad:'Hopa',          lat:41.4167, lon:41.4167},
+  {ad:'Murgul',        lat:41.1833, lon:41.5167},
+  {ad:'Şavşat',        lat:41.2500, lon:42.3667},
+  {ad:'Yusufeli',      lat:40.8167, lon:41.5333},
+  {ad:'Kemalpaşa',     lat:41.1000, lon:41.0833}
+];
+
+var WMO = {
+  0:'Açık',1:'Az bulutlu',2:'Parçalı bulutlu',3:'Bulutlu',
+  45:'Sisli',48:'Sisli',51:'Hafif çisenti',53:'Çisenti',55:'Yoğun çisenti',
+  61:'Hafif yağmur',63:'Yağmur',65:'Şiddetli yağmur',
+  71:'Hafif kar',73:'Kar',75:'Yoğun kar',
+  80:'Sağanak',81:'Kuvvetli sağanak',82:'Şiddetli sağanak',
+  95:'Fırtına',96:'Dolu',99:'Şiddetli dolu'
+};
+
+var WMO_EMO = {
+  0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',
+  51:'🌦️',53:'🌧️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',
+  71:'🌨️',73:'❄️',75:'❄️',80:'🌧️',81:'🌧️',82:'⛈️',
+  95:'⛈️',96:'⛈️',99:'⛈️'
+};
+
+async function havaYukle() {
+  var grid = document.getElementById('havaGrid');
+  if (!grid) return;
+
+  try {
+    var latlar = ILCELER.map(function(i){return i.lat;}).join(',');
+    var lonlar = ILCELER.map(function(i){return i.lon;}).join(',');
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + latlar + '&longitude=' + lonlar + '&current_weather=true&timezone=Europe%2FIstanbul';
+    
+    var res = await fetch(url);
+    var data = await res.json();
+    
+    var items = Array.isArray(data) ? data : [data];
+    
+    grid.innerHTML = items.map(function(d, i) {
+      var ilce = ILCELER[i] || ILCELER[0];
+      var cw = d.current_weather;
+      var wmo = cw ? cw.weathercode : 0;
+      var temp = cw ? Math.round(cw.temperature) : '--';
+      var ruzgar = cw ? Math.round(cw.windspeed) : '--';
+      var emo = WMO_EMO[wmo] || '🌡️';
+      var durum = WMO[wmo] || 'Bilinmiyor';
+      return '<div class="hava-kart">'
+        + '<div class="hava-ilce">' + ilce.ad + '</div>'
+        + '<div class="hava-emo">' + emo + '</div>'
+        + '<div class="hava-temp">' + temp + '°C</div>'
+        + '<div class="hava-durum">' + durum + '</div>'
+        + '<div class="hava-alt">💨 ' + ruzgar + ' km/s</div>'
+        + '</div>';
+    }).join('');
+
+  } catch(e) {
+    grid.innerHTML = '<div style="text-align:center;padding:1.5rem;color:rgba(255,255,255,.3);font-size:.8rem">🌐 Hava verisi yüklenemedi.<br>İnternet bağlantınızı kontrol edin.</div>';
+  }
+}
+
+havaYukle();
 </script>
 
 </body>
