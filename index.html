@@ -314,7 +314,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .blog-paylasim-lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-right:.25rem}
 .pbtn-kopyala{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)!important;cursor:pointer}
 .pbtn-kopyala.copied{background:rgba(61,219,138,.2);border-color:var(--vivid)!important}
-.uydu-cta{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(61,219,138,.08),rgba(240,192,64,.06));border:1px solid rgba(61,219,138,.25);padding:1.25rem 1.75rem;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:pointer}
+.uydu-cta{display:flex;align-items:center;justify-content:space-between;height:100%;background:linear-gradient(135deg,rgba(61,219,138,.08),rgba(240,192,64,.06));border:1px solid rgba(61,219,138,.25);padding:1.25rem 1.75rem;text-decoration:none;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:pointer}
 .uydu-cta:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 12px 40px rgba(61,219,138,.15);border-color:rgba(61,219,138,.5)}
 .uydu-cta-left{display:flex;align-items:center;gap:1.1rem}
 .uydu-cta-ico{font-size:2rem}
@@ -763,7 +763,7 @@ border-radius:20px;}
 #blogModal6 .foto-ara{width:100%;margin:2.5rem 0;overflow:hidden}
 #blogModal6 .foto-ara img{width:100%;display:block;object-fit:cover}
 #blogModal6 .foto-altyazi{font-size:.72rem;color:rgba(255,255,255,.3);padding:.6rem 1rem;text-align:center;font-style:italic;background:rgba(0,0,0,.4)}
-#blogModal6 .foto-ikili{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:2.5rem 0}
+#blogModal6 .foto-ikili{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:stretch;margin:2.5rem 0}
 #blogModal6 .foto-ikili img{width:100%;height:200px;object-fit:cover;display:block}
 #blogModal6 .sezon-banner{background:linear-gradient(135deg,rgba(255,0,200,.12),rgba(255,204,0,.08));border:1px solid rgba(255,204,0,.3);padding:1.75rem;margin:2.5rem 0;text-align:center}
 #blogModal6 .sezon-banner-baslik{font-family:'Playfair Display',serif;font-size:1.4rem;color:#ffcc00;margin-bottom:.5rem}
@@ -820,6 +820,14 @@ border-radius:20px;}
 .hava-durum{font-size:.55rem;color:rgba(255,255,255,.4);margin-top:.1rem}
 .hava-alt{font-size:.55rem;color:rgba(255,255,255,.3);margin-top:.15rem}
 .hava-loading{text-align:center;padding:1.5rem;color:rgba(255,255,255,.3);font-size:.78rem;grid-column:1/-1}
+
+
+/* Web'de gezi & video simetri */
+.travel-video-container{display:flex;flex-direction:column;gap:15px;width:100%}
+@media(min-width:1024px){
+  .travel-video-container{flex-direction:row;align-items:center;justify-content:space-between}
+  .travel-item,.video-item{flex:1;margin:0 10px}
+}
 
 </style>
 
