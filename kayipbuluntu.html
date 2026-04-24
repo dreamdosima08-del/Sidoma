@@ -234,19 +234,41 @@ footer a{color:var(--vivid);text-decoration:none;}
   <p><a href="/">Ana Sayfa</a> · <a href="/eczane.html">Nöbetçi Eczane</a> · <a href="/taksi.html">Taksimetre</a></p>
 </footer>
 
-<script>
-var ILANLAR = JSON.parse(localStorage.getItem('kayipBuluntu') || '[]');
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",
+  authDomain: "artvin-imece.firebaseapp.com",
+  projectId: "artvin-imece",
+  storageBucket: "artvin-imece.firebasestorage.app",
+  messagingSenderId: "30297800879",
+  appId: "1:30297800879:web:a36f3b4ad6ba54d8bed45a"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const COL = "kayip_ilanlar";
+
 var aktifFiltre = 'hepsi';
+var tumIlanlar = [];
 
 document.getElementById('ilanTarih').value = new Date().toISOString().split('T')[0];
-sayacGuncelle();
-listeGoster();
 
-function sayacGuncelle() {
-  document.getElementById('ilanSayi').textContent = ILANLAR.length;
-}
+// Gerçek zamanlı dinle
+const q = query(collection(db, COL), orderBy("zaman", "desc"));
+onSnapshot(q, function(snapshot) {
+  tumIlanlar = [];
+  snapshot.forEach(function(doc) {
+    tumIlanlar.push({id: doc.id, ...doc.data()});
+  });
+  document.getElementById('ilanSayi').textContent = tumIlanlar.length;
+  listeGoster();
+});
 
-function sekmeAc(id, btn) {
+window.sekmeAc = function(id, btn) {
   document.querySelectorAll('.sekme-icerik').forEach(function(el){ el.classList.remove('aktif'); });
   document.querySelectorAll('.sekme-wrap .sekme').forEach(function(el){ el.classList.remove('aktif'); });
   document.getElementById(id).classList.add('aktif');
@@ -254,13 +276,13 @@ function sekmeAc(id, btn) {
   if (id === 'ilanlar') listeGoster();
 }
 
-function tipSec(tip) {
+window.tipSec = function(tip) {
   document.getElementById('ilanTip').value = tip;
   document.getElementById('btnKayip').classList.toggle('aktif', tip === 'kayip');
   document.getElementById('btnBuluntu').classList.toggle('aktif', tip === 'buluntu');
 }
 
-function ilanGonder() {
+window.ilanGonder = async function() {
   var tip = document.getElementById('ilanTip').value;
   var kat = document.getElementById('ilanKategori').value;
   var bas = document.getElementById('ilanBaslik').value.trim();
@@ -271,37 +293,45 @@ function ilanGonder() {
   var ad = document.getElementById('ilanAd').value.trim();
   var tel = document.getElementById('ilanTel').value.trim();
 
-  if (!kat || !bas || !ilce || !tarih || !acik || !ad || !tel) {
+  if (!kat||!bas||!ilce||!tarih||!acik||!ad||!tel) {
     alert('Lütfen yıldızlı alanları doldurun!');
     return;
   }
 
-  var ilan = {
-    id: Date.now(),
-    tip: tip, kategori: kat, baslik: bas,
-    ilce: ilce, tarih: tarih, yer: yer,
-    aciklama: acik, ad: ad, tel: tel,
-    eklemeTarihi: new Date().toLocaleDateString('tr-TR')
-  };
+  var btn = document.querySelector('.btn-gonder');
+  btn.textContent = '⏳ Yayınlanıyor...';
+  btn.disabled = true;
 
-  ILANLAR.unshift(ilan);
-  localStorage.setItem('kayipBuluntu', JSON.stringify(ILANLAR));
-  sayacGuncelle();
-
-  document.getElementById('basariMesaj').classList.add('goster');
-  setTimeout(function() {
-    ['ilanBaslik','ilanAciklama','ilanYer','ilanAd','ilanTel'].forEach(function(id){
-      document.getElementById(id).value = '';
+  try {
+    await addDoc(collection(db, COL), {
+      tip, kategori: kat, baslik: bas,
+      ilce, tarih, yer, aciklama: acik,
+      ad, tel, zaman: serverTimestamp(),
+      eklemeTarihi: new Date().toLocaleDateString('tr-TR')
     });
-    document.getElementById('ilanKategori').value = '';
-    document.getElementById('ilanIlce').value = '';
-    document.getElementById('basariMesaj').classList.remove('goster');
-  }, 3000);
+
+    document.getElementById('basariMesaj').classList.add('goster');
+    ['ilanBaslik','ilanAciklama','ilanYer','ilanAd','ilanTel'].forEach(function(id){
+      document.getElementById(id).value='';
+    });
+    document.getElementById('ilanKategori').value='';
+    document.getElementById('ilanIlce').value='';
+
+    setTimeout(function(){
+      document.getElementById('basariMesaj').classList.remove('goster');
+    }, 3000);
+
+  } catch(e) {
+    alert('Hata: ' + e.message);
+  } finally {
+    btn.textContent = '✅ İlanı Yayınla';
+    btn.disabled = false;
+  }
 }
 
 function listeGoster() {
   var liste = document.getElementById('ilanListesi');
-  var gorunecek = aktifFiltre === 'hepsi' ? ILANLAR : ILANLAR.filter(function(i){ return i.tip === aktifFiltre; });
+  var gorunecek = aktifFiltre === 'hepsi' ? tumIlanlar : tumIlanlar.filter(function(i){ return i.tip === aktifFiltre; });
 
   if (gorunecek.length === 0) {
     liste.innerHTML = '<div class="bos-mesaj"><span>📋</span>Bu kategoride ilan yok.</div>';
@@ -315,7 +345,7 @@ function listeGoster() {
     var temizTel = i.tel.replace(/[^0-9]/g,'').replace(/^0/,'');
     var wpLink = 'https://api.whatsapp.com/send?phone=90' + temizTel + '&text=' + encodeURIComponent('"' + i.baslik + '" ilanınızı artvinrehber.com\'da gördüm.');
     return '<div class="ilan ' + i.tip + '">'
-      + '<div class="ilan-ust">' + tipEtiket + '<span class="ilan-tarih">' + i.eklemeTarihi + '</span></div>'
+      + '<div class="ilan-ust">' + tipEtiket + '<span class="ilan-tarih">' + (i.eklemeTarihi||'') + '</span></div>'
       + '<div class="ilan-baslik">' + i.baslik + '</div>'
       + '<div class="ilan-yer">📍 ' + i.ilce + (i.yer ? ' · ' + i.yer : '') + ' · ' + i.kategori + '</div>'
       + '<div class="ilan-aciklama">' + i.aciklama + '</div>'
@@ -326,12 +356,13 @@ function listeGoster() {
   }).join('');
 }
 
-function filtrele(tip, btn) {
+window.filtrele = function(tip, btn) {
   aktifFiltre = tip;
   document.querySelectorAll('.filtre-btn').forEach(function(b){ b.classList.remove('aktif'); });
   btn.classList.add('aktif');
   listeGoster();
 }
 </script>
+
 </body>
 </html>
