@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ArtvinMetre — Artvin Nüfus Saati | artvinrehber.com</title>
+<title>Artvin Nüfusu 2026 — Canlı Nüfus Sayacı & İstatistikler | artvinrehber.com</title>
 <meta name="description" content="Artvin nüfusu, doğum, ölüm ve göç verileri. TÜİK 2025 verilerine dayalı gerçek zamanlı nüfus sayacı.">
 <meta name="geo.region" content="TR-08">
 <link rel="canonical" href="https://artvinrehber.com/artvinmetre.html">
@@ -116,6 +116,36 @@ body::before{content:'';position:fixed;inset:0;background:linear-gradient(180deg
 .kaynak p{font-size:.72rem;color:rgba(232,234,246,.45);line-height:1.85;}
 .kaynak b{color:rgba(232,234,246,.65);}
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Artvin'in nüfusu kaç?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TÜİK 2025 ADNKS verilerine göre Artvin'in nüfusu 167.531 kişidir. Nüfus her yıl azalmaktadır."}
+    },
+    {
+      "@type": "Question",
+      "name": "Artvin nüfusu azalıyor mu?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Evet. 2023'te 172.356, 2024'te 169.280, 2025'te 167.531 olan Artvin nüfusu her yıl düşmektedir. 2025 yılında net göç ve doğum-ölüm dengesiyle yaklaşık 1.932 kişilik azalma beklenmektedir."}
+    },
+    {
+      "@type": "Question",
+      "name": "Artvin'de yıllık kaç doğum gerçekleşiyor?",
+      "acceptedAnswer": {"@type": "Answer", "text": "2025 tahminine göre Artvin'de yıllık yaklaşık 1.275 doğum gerçekleşmektedir. Kaba doğum hızı binde 7,6'dır."}
+    },
+    {
+      "@type": "Question",
+      "name": "Artvin'den göç ne kadar?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TÜİK 2025 verilerine göre Artvin 7.329 kişi göç alırken 8.928 kişi göç vermiştir. Net göç -1.599'dur."}
+    }
+  ]
+}
+</script>
+
 </head>
 <body>
 <div class="sarici">
@@ -402,5 +432,25 @@ function pKop() {
 guncelle();
 setInterval(guncelle, 1000);
 </script>
+
+<section style="background:#0f2318;border-top:1px solid rgba(61,219,138,.1);padding:2rem 1.25rem;max-width:500px;margin:0 auto;">
+  <h2 style="font-size:1rem;font-weight:800;color:#fff;margin-bottom:.75rem;font-family:'Inter',sans-serif;">Artvin Nüfus İstatistikleri 2026</h2>
+  <div style="margin-bottom:1.25rem;">
+    <h3 style="font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.35rem;">Artvin nüfusu kaç?</h3>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.85;">TÜİK 2025 ADNKS verilerine göre Artvin nüfusu <strong style="color:#3ddb8a">167.531 kişidir.</strong> 2023'te 172.356, 2024'te 169.280 olan nüfus her yıl azalmaktadır.</p>
+  </div>
+  <div style="margin-bottom:1.25rem;">
+    <h3 style="font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.35rem;">Artvin nüfusu neden azalıyor?</h3>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.85;">Artvin'de göç dengesi negatiftir. 2025 yılında 7.329 kişi gelirken 8.928 kişi il dışına göç etmiştir. Düşen doğum oranı ve artan ölüm oranı da nüfus azalmasına katkıda bulunmaktadır.</p>
+  </div>
+  <div style="margin-bottom:1.25rem;">
+    <h3 style="font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.35rem;">ArtvinMetre nasıl çalışır?</h3>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.85;">TÜİK'in yıllık doğum, ölüm ve göç verileri saniyeye bölünerek lineer dağıtılır. Sayfa açıldığı andan geçen süreyle çarpılarak anlık nüfus tahmini üretilir. Worldometer ile aynı yöntemi kullanır.</p>
+  </div>
+  <div style="background:rgba(61,219,138,.07);border-radius:10px;padding:.85rem 1rem;font-size:.75rem;color:rgba(255,255,255,.5);margin-top:1rem;">
+    📊 <strong style="color:#3ddb8a">Kaynak:</strong> TÜİK ADNKS 2025. Bu sayaç istatistiksel tahmin üretir, gerçek zamanlı kayıt değildir.
+  </div>
+</section>
+
 </body>
 </html>
