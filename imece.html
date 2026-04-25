@@ -3,413 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Artvin İmece — Ücretsiz Eşya Paylaşımı, Takas & Komşuluk Yardımlaşması | artvinrehber.com</title>
-<meta name="description" content="Artvin İmece: Para yok, satış yok, reklam yok. Artvin'de tamamen ücretsiz eşya paylaşımı, takas ve komşuluk dayanışması. Kitap, giysi, ev eşyası ver ya da takas et. Hopa, Borçka, Şavşat, Yusufeli ve tüm ilçeler.">
-<meta name="keywords" content="artvin imece, artvin ücretsiz eşya, artvin takas, artvin kitap paylaşım, artvin yardımlaşma, artvin komşuluk, artvin dayanışma, artvin ücretsiz ilan, hopa imece, borçka takas, şavşat ücretsiz eşya, yusufeli yardımlaşma, arhavi komşuluk, ardanuç dayanışma, artvin sosyal yardım, artvin giysi paylaşım">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<title>Artvin İmece — Ücretsiz Eşya Paylaşımı & Takas | artvinrehber.com</title>
+<meta name="description" content="Artvin İmece: Para yok, satış yok, reklam yok. Artvin'de tamamen ücretsiz eşya paylaşımı, takas ve komşuluk dayanışması. Hopa, Borçka, Şavşat, Yusufeli ve tüm ilçeler.">
+<meta name="keywords" content="artvin imece, artvin ücretsiz eşya, artvin takas, artvin yardımlaşma, artvin komşuluk, artvin dayanışma, hopa imece, borçka takas, şavşat ücretsiz eşya">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.artvinrehber.com/imece.html">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Artvin Rehberi">
-<meta property="og:title" content="Artvin İmece — Paylaş, Değiştir, Yardımlaş">
-<meta property="og:description" content="Artvin'de ücretsiz eşya paylaşımı ve komşuluk yardımlaşması. Tamamen ücretsiz.">
+<meta property="og:title" content="Artvin İmece — Ücretsiz Eşya Paylaşımı & Takas">
+<meta property="og:description" content="Para yok. Satış yok. Reklam yok. Artvin'de komşuluk dayanışması.">
 <meta property="og:url" content="https://www.artvinrehber.com/imece.html">
-<meta property="og:image" content="https://www.artvinrehber.com/imece-og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Artvin İmece — Ücretsiz Eşya Paylaşımı & Takas">
-<meta name="twitter:description" content="Artvin'de ücretsiz eşya paylaşımı ve takas platformu. Tüm ilçeler dahil.">
 <meta name="geo.region" content="TR-08">
 <meta name="geo.placename" content="Artvin, Türkiye">
 <meta name="geo.position" content="41.1833;41.8167">
-<meta name="geo.region" content="TR-08">
 <meta name="ICBM" content="41.1833, 41.8167">
-<meta name="DC.title" content="Artvin İmece — Ücretsiz Eşya Paylaşımı">
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Artvin İmece — Ücretsiz Eşya Paylaşımı & Takas",
-  "description": "Artvin'de tamamen ücretsiz eşya paylaşımı ve takas platformu. Para alınmaz, satış yapılmaz, reklam içermez. Hopa, Borçka, Şavşat, Yusufeli, Arhavi, Ardanuç, Murgul tüm ilçeler.",
-  "url": "https://www.artvinrehber.com/imece.html",
-  "inLanguage": "tr-TR",
-  "about": {
-    "@type": "Place",
-    "name": "Artvin",
-    "address": {"@type":"PostalAddress","addressLocality":"Artvin","addressRegion":"Artvin","postalCode":"08000","addressCountry":"TR"},
-    "geo": {"@type":"GeoCoordinates","latitude":"41.1833","longitude":"41.8167"}
-  },
-  "audience": {"@type":"Audience","audienceType":"Artvin sakinleri"},
-  "publisher": {"@type":"Organization","name":"Artvin Rehberi","url":"https://www.artvinrehber.com","logo":{"@type":"ImageObject","url":"https://www.artvinrehber.com/favicon.ico"}}
-}
-
-
+{"@context":"https://schema.org","@type":"WebPage","name":"Artvin İmece","description":"Artvin'de tamamen ücretsiz eşya paylaşımı ve takas platformu. Para alınmaz, satış yapılmaz.","url":"https://www.artvinrehber.com/imece.html","inLanguage":"tr-TR","about":{"@type":"Place","name":"Artvin","geo":{"@type":"GeoCoordinates","latitude":"41.1833","longitude":"41.8167"}}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
 <style>
-/* ═══ ARTVIN İMECE — Meşvele Yeşili Tema ═══ */
 :root{
-  --bg:#050e07;
-  --bg2:#091309;
-  --imece:#2ecc71;       /* Meşvele Yeşili */
-  --imece-d:rgba(46,204,113,.1);
-  --imece-glow:rgba(46,204,113,.25);
-  --altin:#e8b84b;
-  --kirmizi:#e74c3c;
-  --kirmizi-d:rgba(231,76,60,.1);
-  --mavi:#3498db;
-  --off:#dff0e4;
-  --dim:rgba(223,240,228,.4);
-  --soluk:rgba(223,240,228,.2);
-  --border:rgba(46,204,113,.12);
-  --kart:rgba(9,19,9,.8);
+  --bg:#050e07;--bg2:#091309;--imece:#2ecc71;--imece-d:rgba(46,204,113,.1);
+  --imece-glow:rgba(46,204,113,.25);--altin:#e8b84b;--kirmizi:#e74c3c;
+  --kirmizi-d:rgba(231,76,60,.1);--mavi:#3498db;--off:#dff0e4;
+  --dim:rgba(223,240,228,.4);--soluk:rgba(223,240,228,.2);
+  --border:rgba(46,204,113,.12);--kart:rgba(9,19,9,.8);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{overflow-x:hidden;background:var(--bg);color:var(--off);font-family:'DM Sans',sans-serif;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 20%,rgba(46,204,113,.06),transparent),radial-gradient(ellipse 50% 40% at 85% 80%,rgba(46,204,113,.04),transparent);pointer-events:none;z-index:0;}
 
-/* ARKA PLAN DOKU */
-body::before{
-  content:'';position:fixed;inset:0;
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 20%,rgba(46,204,113,.06) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 80%,rgba(46,204,113,.04) 0%,transparent 60%);
-  pointer-events:none;z-index:0;
-}
+/* KVKK MODAL */
+.km-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;display:flex;align-items:flex-end;justify-content:center;}
+.km-kutu{background:#0c1510;border:1px solid rgba(46,204,113,.2);border-radius:16px 16px 0 0;padding:1.5rem 1.25rem 2rem;width:100%;max-width:520px;max-height:85vh;overflow-y:auto;}
+.km-h{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+.km-sub{font-size:.78rem;color:rgba(223,240,228,.45);line-height:1.75;margin-bottom:1rem;}
+.km-madde{background:rgba(255,255,255,.04);border-radius:8px;padding:.75rem;margin-bottom:.5rem;font-size:.75rem;color:rgba(223,240,228,.5);line-height:1.7;}
+.km-madde b{color:rgba(255,255,255,.8);}
+.km-onay{display:flex;align-items:flex-start;gap:.6rem;margin:1rem 0 .75rem;}
+.km-onay input{margin-top:.2rem;accent-color:#2ecc71;width:18px;height:18px;flex-shrink:0;cursor:pointer;}
+.km-onay label{font-size:.75rem;color:rgba(223,240,228,.55);line-height:1.65;cursor:pointer;}
+.km-onay label a{color:#2ecc71;text-decoration:none;}
+.km-btn{width:100%;padding:.9rem;background:#2ecc71;color:#031a08;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;opacity:.4;pointer-events:none;transition:.2s;}
+.km-btn.aktif{opacity:1;pointer-events:all;}
+.km-reddet{width:100%;padding:.6rem;margin-top:.4rem;background:transparent;color:rgba(255,255,255,.2);border:none;font-size:.7rem;cursor:pointer;}
 
 /* NAV */
-.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(5,14,7,.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.75rem 1.1rem;
-}
+.nav{position:sticky;top:0;z-index:100;background:rgba(5,14,7,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.1rem;}
 .nav-marka{display:flex;align-items:center;gap:.6rem;text-decoration:none;}
-.nav-marka-logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.1rem;letter-spacing:.15em;
-  color:var(--imece);
-  background:var(--imece-d);
-  border:1px solid var(--border);
-  padding:.2rem .65rem;border-radius:6px;
-}
+.nav-marka-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;color:var(--imece);background:var(--imece-d);border:1px solid var(--border);padding:.2rem .65rem;border-radius:6px;}
 .nav-marka-sub{font-size:.6rem;font-weight:600;color:var(--dim);letter-spacing:.06em;}
-.nav-back{font-size:.65rem;color:var(--dim);border:1px solid rgba(255,255,255,.08);padding:.28rem .7rem;border-radius:4px;text-decoration:none;transition:.2s;}
-.nav-back:hover{color:var(--imece);border-color:var(--border);}
+.nav-back{font-size:.65rem;color:var(--dim);border:1px solid rgba(255,255,255,.08);padding:.28rem .7rem;border-radius:4px;text-decoration:none;}
 
 /* HERO */
-.hero{
-  position:relative;z-index:1;
-  padding:2.5rem 1.1rem 2rem;
-  text-align:center;
-  border-bottom:1px solid var(--border);
-}
-.hero-rozet{
-  display:inline-flex;align-items:center;gap:.4rem;
-  background:var(--imece-d);border:1px solid var(--border);
-  border-radius:20px;padding:.22rem .85rem;
-  font-size:.6rem;font-weight:600;color:var(--imece);
-  letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;
-}
-.hero-rozet-dot{width:5px;height:5px;border-radius:50%;background:var(--imece);animation:nabiz 2s ease infinite;}
+.hero{position:relative;z-index:1;padding:2.5rem 1.1rem 2rem;text-align:center;border-bottom:1px solid var(--border);}
+.rozet{display:inline-flex;align-items:center;gap:.4rem;background:var(--imece-d);border:1px solid var(--border);border-radius:20px;padding:.22rem .85rem;font-size:.6rem;font-weight:600;color:var(--imece);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;}
+.rozet-dot{width:5px;height:5px;border-radius:50%;background:var(--imece);animation:nabiz 2s ease infinite;}
 @keyframes nabiz{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
-.hero-h{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(2.8rem,12vw,5rem);
-  font-weight:800;color:#fff;
-  line-height:.95;letter-spacing:-.02em;
-  margin-bottom:.75rem;
-}
-.hero-h .imece{
-  color:var(--imece);
-  text-shadow:0 0 40px var(--imece-glow);
-}
-.hero-h .artvin{
-  font-style:italic;
-  font-size:clamp(1rem,5vw,2rem);
-  font-weight:400;
-  color:var(--dim);
-  display:block;
-  letter-spacing:.04em;
-  margin-bottom:.2rem;
-}
-.hero-sub{
-  font-size:.9rem;color:var(--dim);
-  line-height:1.75;max-width:420px;margin:0 auto 1.25rem;
-}
-.hero-istatistik{
-  display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;
-  margin-top:1rem;
-}
+.hero-h{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,12vw,5rem);font-weight:800;color:#fff;line-height:.95;letter-spacing:-.02em;margin-bottom:.75rem;}
+.hero-h .imece{color:var(--imece);text-shadow:0 0 40px var(--imece-glow);}
+.hero-h .artvin{font-style:italic;font-size:clamp(1rem,5vw,2rem);font-weight:400;color:var(--dim);display:block;letter-spacing:.04em;margin-bottom:.2rem;}
+.hero-sub{font-size:.9rem;color:var(--dim);line-height:1.75;max-width:420px;margin:0 auto 1.25rem;}
+.hero-stat-wrap{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;}
 .hero-stat{text-align:center;}
-.hero-stat-rakam{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.6rem;color:var(--imece);
-  letter-spacing:.06em;display:block;line-height:1;
-}
+.hero-stat-rakam{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--imece);letter-spacing:.06em;display:block;line-height:1;}
 .hero-stat-etiket{font-size:.55rem;font-weight:600;color:var(--soluk);letter-spacing:.1em;text-transform:uppercase;}
 
-/* SEKMELER */
-.sekme-bar{
-  position:sticky;top:53px;z-index:99;
-  background:rgba(5,14,7,.95);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  display:flex;padding:.6rem 1.1rem;gap:.4rem;
-  overflow-x:auto;scrollbar-width:none;
-}
-.sekme-bar::-webkit-scrollbar{display:none;}
-.sekme{
-  flex-shrink:0;padding:.5rem 1rem;
-  border-radius:8px;border:1px solid transparent;
-  background:transparent;font-family:'DM Sans',sans-serif;
-  font-size:.75rem;font-weight:600;color:var(--dim);
-  cursor:pointer;transition:.2s;white-space:nowrap;
-}
-.sekme.aktif{
-  background:var(--imece-d);
-  border-color:var(--border);color:var(--imece);
-}
-.sekme-icerik{display:none;position:relative;z-index:1;}
-.sekme-icerik.aktif{display:block;}
+/* İLÇE ŞERİDİ */
+.ilce-serit{background:rgba(46,204,113,.04);border-top:1px solid rgba(46,204,113,.08);border-bottom:1px solid rgba(46,204,113,.08);padding:.6rem 1.1rem;text-align:center;}
+.ilce-serit p{font-size:.62rem;color:rgba(255,255,255,.3);line-height:1.9;}
+.ilce-serit strong{color:rgba(46,204,113,.6);}
 
-/* FİLTRELER */
-.filtre-bar{
-  padding:.75rem 1.1rem;
-  display:flex;gap:.4rem;flex-wrap:wrap;
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.filtre-btn{
-  font-size:.62rem;font-weight:600;
-  padding:.28rem .7rem;border-radius:20px;
-  border:1px solid rgba(255,255,255,.08);
-  background:transparent;color:var(--dim);cursor:pointer;transition:.2s;
-}
-.filtre-btn.aktif{background:var(--imece-d);border-color:var(--border);color:var(--imece);}
+/* SEKME BAR */
+.sekme-bar{position:sticky;top:53px;z-index:99;background:rgba(5,14,7,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;padding:.6rem 1.1rem;gap:.4rem;overflow-x:auto;scrollbar-width:none;}
+.sekme-bar::-webkit-scrollbar{display:none;}
+.s-btn{flex-shrink:0;padding:.5rem 1rem;border-radius:8px;border:1px solid transparent;background:transparent;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;color:var(--dim);cursor:pointer;transition:.2s;white-space:nowrap;}
+.s-btn.aktif{background:var(--imece-d);border-color:var(--border);color:var(--imece);}
+.s-ic{display:none;position:relative;z-index:1;}
+.s-ic.aktif{display:block;}
+
+/* FİLTRE */
+.filtre-bar{padding:.75rem 1.1rem;display:flex;gap:.4rem;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.04);}
+.f-btn{font-size:.62rem;font-weight:600;padding:.28rem .7rem;border-radius:20px;border:1px solid rgba(255,255,255,.08);background:transparent;color:var(--dim);cursor:pointer;transition:.2s;}
+.f-btn.aktif{background:var(--imece-d);border-color:var(--border);color:var(--imece);}
 
 /* İLAN KARTLARI */
 .ilan-grid{padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.6rem;}
-
-.ilan-kart{
-  background:var(--kart);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:14px;padding:1rem;
-  position:relative;overflow:hidden;
-  transition:border-color .2s;
-}
-.ilan-kart:hover{border-color:var(--border);}
-.ilan-kart::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;
-}
+.ilan-kart{background:var(--kart);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:1rem;position:relative;overflow:hidden;}
+.ilan-kart::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;}
 .ilan-kart.paylasim::before{background:var(--imece);}
 .ilan-kart.takas::before{background:var(--altin);}
 .ilan-kart.yardim::before{background:var(--mavi);}
-
 .ilan-ust{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.5rem;}
-.ilan-tipler{display:flex;gap:.3rem;flex-wrap:wrap;}
 .ilan-tip{font-size:.52rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.12rem .45rem;border-radius:3px;}
-.tip-paylasim{background:var(--imece-d);color:var(--imece);}
-.tip-takas{background:rgba(232,184,75,.1);color:var(--altin);}
-.tip-yardim{background:rgba(52,152,219,.1);color:var(--mavi);}
+.tip-p{background:var(--imece-d);color:var(--imece);}
+.tip-t{background:rgba(232,184,75,.1);color:var(--altin);}
+.tip-y{background:rgba(52,152,219,.1);color:var(--mavi);}
 .ilan-tarih{font-size:.58rem;color:var(--soluk);}
-
 .ilan-baslik{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.3rem;line-height:1.3;}
 .ilan-meta{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem;}
-.ilan-meta-item{font-size:.65rem;color:var(--dim);display:flex;align-items:center;gap:.2rem;}
-.ilan-aciklama{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:.65rem;}
-.ilan-alt{display:flex;gap:.4rem;align-items:center;justify-content:space-between;}
+.ilan-meta span{font-size:.65rem;color:var(--dim);}
+.ilan-acik{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:.65rem;}
+.ilan-alt{display:flex;gap:.4rem;align-items:center;justify-content:space-between;flex-wrap:wrap;}
 .ilan-ad{font-size:.65rem;font-weight:600;color:var(--dim);}
-.ilan-puanlar{display:flex;align-items:center;gap:.25rem;font-size:.6rem;color:var(--imece);}
-
-.ilan-butonlar{display:flex;gap:.4rem;}
-.ilan-btn{font-size:.65rem;font-weight:700;padding:.35rem .8rem;border-radius:6px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:.15s;}
-.ilan-btn:hover{transform:translateY(-1px);}
+.ilan-puan{font-size:.6rem;color:var(--imece);}
+.ilan-btns{display:flex;gap:.35rem;flex-wrap:wrap;}
+.i-btn{font-size:.63rem;font-weight:700;padding:.32rem .75rem;border-radius:6px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:.15s;}
 .btn-wp{background:#25D366;color:#fff;}
 .btn-ara{background:rgba(52,152,219,.15);color:var(--mavi);border:1px solid rgba(52,152,219,.2);}
+.btn-sil{background:rgba(255,255,255,.05);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.08);}
+.btn-bildir{background:rgba(231,76,60,.08);color:rgba(231,76,60,.6);border:1px solid rgba(231,76,60,.15);}
 
-/* BOŞ MESAJ */
+/* BOŞ */
 .bos{text-align:center;padding:3rem 1rem;color:var(--soluk);}
-.bos-ikon{font-size:2.5rem;display:block;margin-bottom:.6rem;}
-.bos-metin{font-size:.85rem;line-height:1.7;}
+.bos span{font-size:2.5rem;display:block;margin-bottom:.6rem;}
 
 /* FORM */
 .form-wrap{padding:1.1rem;}
-.form-alan{margin-bottom:.9rem;}
-.form-label{font-size:.7rem;font-weight:600;color:var(--off);margin-bottom:.35rem;display:block;letter-spacing:.02em;}
-.form-input,.form-select,.form-textarea{
-  width:100%;background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:8px;padding:.65rem .9rem;
-  font-family:'DM Sans',sans-serif;font-size:.87rem;color:var(--off);
-  outline:none;transition:.2s;
-}
-.form-input:focus,.form-select:focus,.form-textarea:focus{
-  border-color:rgba(46,204,113,.35);background:rgba(46,204,113,.04);
-}
-.form-select{appearance:none;cursor:pointer;}
-.form-textarea{min-height:85px;resize:vertical;line-height:1.6;}
-.form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.18);}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;}
-
-/* TİP SEÇİCİ */
-.tip-secici{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-bottom:.9rem;}
-.tip-btn{
-  padding:.6rem .3rem;border-radius:10px;
-  border:1px solid rgba(255,255,255,.08);
-  background:transparent;font-family:'DM Sans',sans-serif;
-  font-size:.72rem;font-weight:600;color:var(--dim);
-  cursor:pointer;transition:.2s;text-align:center;
-}
-.tip-btn.aktif.paylasim{background:var(--imece-d);border-color:var(--border);color:var(--imece);}
-.tip-btn.aktif.takas{background:rgba(232,184,75,.1);border-color:rgba(232,184,75,.25);color:var(--altin);}
-.tip-btn.aktif.yardim{background:rgba(52,152,219,.1);border-color:rgba(52,152,219,.2);color:var(--mavi);}
-
-.btn-yayinla{
-  width:100%;padding:.9rem;
-  background:var(--imece);color:#031a08;
-  border:none;border-radius:10px;
-  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;
-  cursor:pointer;transition:.15s;margin-top:.5rem;
-  letter-spacing:.02em;
-}
-.btn-yayinla:hover{background:#27ae60;transform:translateY(-1px);}
-.btn-yayinla:active{transform:translateY(0);}
-
-/* KURAL KUTUSU */
-.kurallar{
-  margin:.5rem 1.1rem 1.1rem;
-  background:rgba(46,204,113,.04);
-  border:1px solid var(--border);
-  border-radius:12px;padding:1rem;
-}
-.kurallar-h{font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--imece);margin-bottom:.6rem;}
-.kural-item{font-size:.72rem;color:var(--dim);line-height:1.7;display:flex;gap:.4rem;margin-bottom:.2rem;}
-.kural-item span{color:var(--imece);flex-shrink:0;}
-
-/* BAŞARI */
-.basari{
-  display:none;background:rgba(46,204,113,.08);
-  border:1px solid rgba(46,204,113,.2);
-  border-radius:10px;padding:1rem;
-  text-align:center;margin-top:.75rem;
-}
+.f-alan{margin-bottom:.85rem;}
+.f-label{font-size:.7rem;font-weight:600;color:var(--off);margin-bottom:.35rem;display:block;}
+.f-input,.f-select,.f-textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:.65rem .9rem;font-family:'DM Sans',sans-serif;font-size:.87rem;color:var(--off);outline:none;transition:.2s;}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:rgba(46,204,113,.35);background:rgba(46,204,113,.04);}
+.f-select{appearance:none;cursor:pointer;}
+.f-textarea{min-height:85px;resize:vertical;line-height:1.6;}
+.f-input::placeholder,.f-textarea::placeholder{color:rgba(255,255,255,.18);}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;}
+.tip-sec{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-bottom:.9rem;}
+.t-btn{padding:.6rem .3rem;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:transparent;font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:600;color:var(--dim);cursor:pointer;transition:.2s;text-align:center;}
+.t-btn.p{background:var(--imece-d);border-color:var(--border);color:var(--imece);}
+.t-btn.t{background:rgba(232,184,75,.1);border-color:rgba(232,184,75,.25);color:var(--altin);}
+.t-btn.y{background:rgba(52,152,219,.1);border-color:rgba(52,152,219,.2);color:var(--mavi);}
+.btn-yayinla{width:100%;padding:.9rem;background:var(--imece);color:#031a08;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;transition:.15s;margin-top:.5rem;}
+.btn-yayinla:hover{background:#27ae60;}
+.basari{display:none;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2);border-radius:10px;padding:1rem;text-align:center;margin-top:.75rem;}
 .basari.goster{display:block;}
 .basari p{font-size:.85rem;color:var(--imece);font-weight:600;}
+.silme-kutu{display:none;margin-top:.75rem;background:rgba(0,0,0,.3);border-radius:8px;padding:.75rem;text-align:center;}
+.silme-kod{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.2em;color:var(--imece);}
 
-/* PUAN SİSTEMİ */
-.puan-kart{
-  margin:1.1rem;background:var(--kart);
-  border:1px solid var(--border);border-radius:14px;padding:1.1rem;
-}
+/* KVKK ONAY SATIRI */
+.onay-satir{display:flex;align-items:flex-start;gap:.6rem;margin:.5rem 0;}
+.onay-satir input{margin-top:.2rem;accent-color:var(--imece);width:16px;height:16px;flex-shrink:0;cursor:pointer;}
+.onay-satir label{font-size:.72rem;color:var(--dim);line-height:1.65;cursor:pointer;}
+.onay-satir label a{color:var(--imece);text-decoration:none;}
+
+/* KURAL */
+.kurallar{margin:.5rem 1.1rem 1.1rem;background:rgba(46,204,113,.04);border:1px solid var(--border);border-radius:12px;padding:1rem;}
+.kural-h{font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--imece);margin-bottom:.6rem;}
+.kural-item{font-size:.72rem;color:var(--dim);line-height:1.7;display:flex;gap:.4rem;margin-bottom:.2rem;}
+
+/* PUAN */
+.puan-kart{margin:1.1rem;background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:1.1rem;}
 .puan-h{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:.75rem;}
 .puan-item{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04);}
 .puan-item:last-child{border-bottom:none;}
 .puan-eylem{font-size:.78rem;color:var(--dim);}
 .puan-deger{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--imece);letter-spacing:.05em;}
 
-/* FIREBASE UYARI */
-.firebase-uyari{
-  margin:1.1rem;
-  background:rgba(232,184,75,.06);
-  border:1px solid rgba(232,184,75,.18);
-  border-radius:10px;padding:.85rem 1rem;
-  font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.75;
-}
-.firebase-uyari b{color:var(--altin);}
-
 footer{border-top:1px solid var(--border);padding:1.5rem 1.1rem;text-align:center;font-size:.65rem;color:var(--soluk);line-height:2;}
 footer a{color:var(--imece);text-decoration:none;}
-
-/* KVKK MODAL */
-.kvkk-modal-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.85);
-  z-index:9999;display:flex;align-items:flex-end;
-  justify-content:center;
-  animation:fadeIn .3s ease;
-}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.kvkk-modal{
-  background:#0c1510;
-  border:1px solid rgba(46,204,113,.2);
-  border-radius:16px 16px 0 0;
-  padding:1.5rem 1.25rem 2rem;
-  width:100%;max-width:520px;
-  max-height:85vh;overflow-y:auto;
-}
-.kvkk-modal-h{
-  font-family:'Syne',sans-serif;
-  font-size:1.1rem;font-weight:800;color:#fff;
-  margin-bottom:.5rem;
-}
-.kvkk-modal-sub{font-size:.78rem;color:rgba(223,240,228,.45);line-height:1.75;margin-bottom:1rem;}
-.kvkk-madde{background:rgba(255,255,255,.03);border-radius:8px;padding:.75rem;margin-bottom:.5rem;font-size:.75rem;color:rgba(223,240,228,.5);line-height:1.7;}
-.kvkk-madde b{color:rgba(255,255,255,.75);}
-.kvkk-onay-row{display:flex;align-items:flex-start;gap:.6rem;margin:1rem 0 .75rem;}
-.kvkk-onay-row input{margin-top:.2rem;accent-color:#2ecc71;width:18px;height:18px;flex-shrink:0;cursor:pointer;}
-.kvkk-onay-row label{font-size:.75rem;color:rgba(223,240,228,.55);line-height:1.65;cursor:pointer;}
-.kvkk-onay-row label a{color:#2ecc71;text-decoration:none;}
-.kvkk-btn-onayla{
-  width:100%;padding:.9rem;
-  background:#2ecc71;color:#031a08;
-  border:none;border-radius:10px;
-  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;
-  cursor:pointer;transition:.15s;
-  opacity:.4;pointer-events:none;
-}
-.kvkk-btn-onayla.aktif{opacity:1;pointer-events:all;}
-.kvkk-btn-onayla.aktif:hover{background:#27ae60;}
-.kvkk-btn-reddet{
-  width:100%;padding:.65rem;margin-top:.4rem;
-  background:transparent;color:rgba(255,255,255,.2);
-  border:none;font-size:.72rem;cursor:pointer;
-}
-
 </style>
 </head>
 <body>
 
-
-<!-- KVKK ONAY MODALI -->
-<div class="kvkk-modal-overlay" id="kvkkModal">
-  <div class="kvkk-modal">
+<!-- KVKK MODAL -->
+<div class="km-overlay" id="kmOverlay">
+  <div class="km-kutu">
     <div style="text-align:center;font-size:1.8rem;margin-bottom:.75rem">🌿</div>
-    <div class="kvkk-modal-h">Artvin İmece'ye Hoş Geldiniz</div>
-    <div class="kvkk-modal-sub">Devam etmeden önce aşağıdaki bilgileri okumanızı rica ederiz.</div>
-
-    <div class="kvkk-madde">
-      <b>📋 Platform Hakkında</b><br>
-      Artvin İmece, Artvin'de ücretsiz eşya paylaşımı ve takas için kurulmuş, kâr amacı gütmeyen bir platformdur. Para transferi ve ticari satış kesinlikle yasaktır.
+    <div class="km-h">Artvin İmece'ye Hoş Geldiniz</div>
+    <div class="km-sub">Devam etmeden önce lütfen okuyun.</div>
+    <div class="km-madde"><b>📋 Platform Nedir?</b><br>Artvin İmece, kullanıcıların kendi aralarında gönüllü olarak eşya paylaşımı yaptığı bir topluluk alanıdır. Platform yalnızca aracıdır, işlemlerin tarafı değildir. Para transferi ve ticari satış kesinlikle yasaktır.</div>
+    <div class="km-madde"><b>📞 Kişisel Veri (KVKK)</b><br>İlan verdiğinizde adınız ve telefon numaranız diğer kullanıcılara görünür. Verileriniz Google Firebase'de saklanır, üçüncü taraflara satılmaz.</div>
+    <div class="km-madde"><b>🚫 Yasak İçerikler</b><br>Çalıntı/sahte eşya, ticari satış, yanıltıcı ilan yasaktır. Platform kurallara aykırı ilanları bildirimsiz kaldırabilir.</div>
+    <div class="km-madde"><b>⚠️ Güvenlik</b><br>Tanımadığınız kişilerle buluşurken güvenli, kamuya açık alanları tercih edin.</div>
+    <div class="km-onay">
+      <input type="checkbox" id="kmOnay">
+      <label for="kmOnay"><a href="/gizlilik.html" target="_blank">Gizlilik Politikası & Kullanım Koşulları</a>'nı okudum, kabul ediyorum.</label>
     </div>
-
-    <div class="kvkk-madde">
-      <b>📞 Kişisel Veri Bildirimi (KVKK)</b><br>
-      İlan verdiğinizde adınız ve telefon numaranız diğer kullanıcılara görünür. Verileriniz Google Firebase'de saklanır, üçüncü taraflara satılmaz. KVKK Madde 11 kapsamındaki haklarınızı kullanmak için WhatsApp'tan ulaşabilirsiniz.
-    </div>
-
-    <div class="kvkk-madde">
-      <b>⚠️ Güvenlik Uyarısı</b><br>
-      Tanımadığınız kişilerle buluşurken güvenli, kamuya açık alanları tercih edin. Platform, kullanıcılar arası anlaşmazlıklardan sorumlu tutulamaz.
-    </div>
-
-    <div class="kvkk-onay-row">
-      <input type="checkbox" id="kvkkModalOnay" onchange="kvkkOnayDegisti()">
-      <label for="kvkkModalOnay">
-        <a href="/gizlilik.html" target="_blank">Gizlilik Politikası & Kullanım Koşulları</a>'nı okudum, anladım ve kabul ediyorum. Telefon numaram ilan verdiğimde görünecektir.
-      </label>
-    </div>
-
-    <button class="kvkk-btn-onayla" id="kvkkBtnOnayla" onclick="kvkkOnayla()">
-      ✅ Kabul Ediyorum — Devam Et
-    </button>
-    <button class="kvkk-btn-reddet" onclick="kvkkReddet()">
-      Kabul etmiyorum — Sayfadan ayrıl
-    </button>
+    <button class="km-btn" id="kmBtnOnayla">✅ Kabul Ediyorum — Devam Et</button>
+    <button class="km-reddet" id="kmBtnReddet">Kabul etmiyorum — Ayrıl</button>
   </div>
 </div>
 
-<nav class="nav" role="navigation" aria-label="Ana menü">
+<nav class="nav" role="navigation">
   <a class="nav-marka" href="/">
     <span class="nav-marka-logo">İMECE</span>
     <span class="nav-marka-sub">artvinrehber.com</span>
@@ -417,134 +199,62 @@ footer a{color:var(--imece);text-decoration:none;}
   <a class="nav-back" href="/">← Ana Sayfa</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-rozet">
-    <div class="hero-rozet-dot"></div>
-    Para Yok · Satış Yok · Tamamen Ücretsiz
-  </div>
-  <h1 class="hero-h">
-    <span class="artvin">Artvin</span>
-    <span class="imece">İMECE</span>
-  </h1>
+  <div class="rozet"><div class="rozet-dot"></div>Para Yok · Satış Yok · Tamamen Ücretsiz</div>
+  <h1 class="hero-h"><span class="artvin">Artvin</span><span class="imece">İMECE</span></h1>
   <p class="hero-sub">Paylaş. Değiştir. Yardımlaş.<br><strong style="color:var(--imece);font-weight:600">Para yok. Satış yok. Reklam yok.</strong><br>Artvin'de komşuluk ruhu dijitale taşınıyor.</p>
-  <div class="hero-istatistik">
-    <div class="hero-stat">
-      <span class="hero-stat-rakam" id="toplamIlan">0</span>
-      <span class="hero-stat-etiket">Aktif İlan</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-rakam" id="toplamKullanici">0</span>
-      <span class="hero-stat-etiket">Katılımcı</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-rakam" id="toplamPaylasim">0</span>
-      <span class="hero-stat-etiket">Tamamlanan</span>
-    </div>
+  <div class="hero-stat-wrap">
+    <div class="hero-stat"><span class="hero-stat-rakam" id="statIlan">0</span><span class="hero-stat-etiket">Aktif İlan</span></div>
+    <div class="hero-stat"><span class="hero-stat-rakam" id="statKullanici">0</span><span class="hero-stat-etiket">Katılımcı</span></div>
+    <div class="hero-stat"><span class="hero-stat-rakam" id="statTamamlanan">0</span><span class="hero-stat-etiket">Tamamlanan</span></div>
   </div>
 </div>
 
-
-<div style="background:rgba(46,204,113,.04);border-top:1px solid rgba(46,204,113,.08);border-bottom:1px solid rgba(46,204,113,.08);padding:.6rem 1.1rem;text-align:center;">
-  <p style="font-size:.62rem;color:rgba(255,255,255,.3);line-height:1.9;letter-spacing:.03em">
-    <strong style="color:rgba(46,204,113,.6)">Artvin İmece — %100 Ücretsiz, Ticari Değil:</strong><br>
-    Artvin Merkez · Hopa · Borçka · Arhavi · Şavşat · Yusufeli · Ardanuç · Murgul · Kemalpaşa
-  </p>
+<div class="ilce-serit">
+  <p><strong>Artvin İmece — %100 Ücretsiz, Ticari Değil:</strong><br>
+  Artvin Merkez · Hopa · Borçka · Arhavi · Şavşat · Yusufeli · Ardanuç · Murgul · Kemalpaşa</p>
 </div>
-<!-- SEKME ÇUBUĞU -->
+
+<!-- SEKME BAR -->
 <div class="sekme-bar">
-  <button class="sekme aktif" onclick="sekmeAc('ilanlar', this)">📋 İlanlar</button>
-  <button class="sekme" onclick="sekmeAc('ilan-ver', this)">➕ İlan Ver</button>
-  <button class="sekme" onclick="sekmeAc('nasil', this)">❓ Nasıl Çalışır</button>
-  <button class="sekme" onclick="sekmeAc('puan', this)">⭐ Dayanışma Puanı</button>
+  <button class="s-btn aktif" id="sBtn0">📋 İlanlar</button>
+  <button class="s-btn" id="sBtn1">➕ İlan Ver</button>
+  <button class="s-btn" id="sBtn2">❓ Nasıl Çalışır</button>
+  <button class="s-btn" id="sBtn3">⭐ Dayanışma Puanı</button>
 </div>
 
 <!-- İLANLAR -->
-<div class="sekme-icerik aktif" id="ilanlar">
-
+<div class="s-ic aktif" id="sIc0">
   <div class="filtre-bar">
-    <button class="filtre-btn aktif" onclick="filtrele('hepsi',this)">Tümü</button>
-    <button class="filtre-btn" onclick="filtrele('paylasim',this)">🟢 Paylaşım</button>
-    <button class="filtre-btn" onclick="filtrele('takas',this)">🔄 Takas</button>
-    <button class="filtre-btn" onclick="filtrele('yardim',this)">💙 Yardım</button>
-    <button class="filtre-btn" onclick="filtrele('egitim',this)">📚 Eğitim</button>
-    <button class="filtre-btn" onclick="filtrele('giysi',this)">👕 Giysi</button>
-    <button class="filtre-btn" onclick="filtrele('ev',this)">🏠 Ev Eşyası</button>
+    <button class="f-btn aktif" data-filtre="hepsi">Tümü</button>
+    <button class="f-btn" data-filtre="paylasim">🟢 Paylaşım</button>
+    <button class="f-btn" data-filtre="takas">🔄 Takas</button>
+    <button class="f-btn" data-filtre="yardim">💙 Yardım</button>
+    <button class="f-btn" data-filtre="egitim">📚 Eğitim</button>
+    <button class="f-btn" data-filtre="giysi">👕 Giysi</button>
+    <button class="f-btn" data-filtre="ev">🏠 Ev</button>
   </div>
-
-  
-
   <div class="ilan-grid" id="ilanGrid">
-    <!-- Demo ilan -->
-    <div class="ilan-kart paylasim" data-tip="paylasim" data-kat="egitim">
-      <div class="ilan-ust">
-        <div class="ilan-tipler">
-          <span class="ilan-tip tip-paylasim">🟢 Ücretsiz</span>
-          <span class="ilan-tip" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.4)">📚 Eğitim</span>
-        </div>
-        <span class="ilan-tarih">Örnek İlan</span>
-      </div>
-      <div class="ilan-baslik">10 adet ders kitabı (5-8. sınıf)</div>
-      <div class="ilan-meta">
-        <span class="ilan-meta-item">📍 Artvin Merkez</span>
-        <span class="ilan-meta-item">📅 Bu hafta</span>
-      </div>
-      <div class="ilan-aciklama">Çocuklarım büyüdü, ihtiyacı olan ailelere verebilirim. Hepsi temiz, yazısız.</div>
-      <div class="ilan-alt">
-        <div>
-          <div class="ilan-ad">Ayşe H.</div>
-          <div class="ilan-puanlar">⭐ 45 Dayanışma Puanı</div>
-        </div>
-        <div class="ilan-butonlar">
-          <a class="ilan-btn btn-wp" href="https://wa.me/905434290908" target="_blank" rel="noopener">📱 Yaz</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="ilan-kart takas" data-tip="takas" data-kat="ev">
-      <div class="ilan-ust">
-        <div class="ilan-tipler">
-          <span class="ilan-tip tip-takas">🔄 Takas</span>
-          <span class="ilan-tip" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.4)">🏠 Ev</span>
-        </div>
-        <span class="ilan-tarih">Örnek İlan</span>
-      </div>
-      <div class="ilan-baslik">Elektrikli el süpürgesi — blender ile takas</div>
-      <div class="ilan-meta">
-        <span class="ilan-meta-item">📍 Borçka</span>
-        <span class="ilan-meta-item">📅 Bu ay</span>
-      </div>
-      <div class="ilan-aciklama">Çalışıyor, temiz. Blender veya mutfak robotu ile takas yaparım.</div>
-      <div class="ilan-alt">
-        <div>
-          <div class="ilan-ad">Mehmet K.</div>
-          <div class="ilan-puanlar">⭐ 28 Dayanışma Puanı</div>
-        </div>
-        <div class="ilan-butonlar">
-          <a class="ilan-btn btn-wp" href="https://wa.me/905434290908" target="_blank" rel="noopener">📱 Yaz</a>
-        </div>
-      </div>
-    </div>
+    <div class="bos"><span>🌿</span>İlanlar yükleniyor...</div>
   </div>
 </div>
 
 <!-- İLAN VER -->
-<div class="sekme-icerik" id="ilan-ver">
+<div class="s-ic" id="sIc1">
   <div class="form-wrap">
-
-    <div class="tip-secici">
-      <button type="button" class="tip-btn aktif paylasim" onclick="tipSec('paylasim',this)">🟢<br>Ücretsiz<br>Paylaşım</button>
-      <button type="button" class="tip-btn takas" onclick="tipSec('takas',this)">🔄<br>Takas</button>
-      <button type="button" class="tip-btn yardim" onclick="tipSec('yardim',this)">💙<br>Yardım<br>İstiyorum</button>
+    <div class="tip-sec">
+      <button type="button" class="t-btn p aktif" data-tip="paylasim">🟢<br>Ücretsiz<br>Paylaşım</button>
+      <button type="button" class="t-btn" data-tip="takas">🔄<br>Takas</button>
+      <button type="button" class="t-btn" data-tip="yardim">💙<br>Yardım<br>İstiyorum</button>
     </div>
-    <input type="hidden" id="ilanTip" value="paylasim">
+    <input type="hidden" id="fTip" value="paylasim">
 
-    <div class="form-alan">
-      <label class="form-label">Kategori *</label>
-      <select class="form-select" id="ilanKat">
+    <div class="f-alan">
+      <label class="f-label">Kategori *</label>
+      <select class="f-select" id="fKat">
         <option value="">Seçin...</option>
         <option value="egitim">📚 Eğitim (Kitap, kırtasiye)</option>
-        <option value="giysi">👕 Giysi (Çocuk, yetişkin, kışlık)</option>
+        <option value="giysi">👕 Giysi</option>
         <option value="ev">🏠 Ev Eşyası</option>
         <option value="elektronik">📱 Elektronik</option>
         <option value="oyuncak">🧸 Oyuncak</option>
@@ -553,30 +263,24 @@ footer a{color:var(--imece);text-decoration:none;}
       </select>
     </div>
 
-    <div class="form-alan">
-      <label class="form-label">İlan Başlığı *</label>
-      <input type="text" class="form-input" id="ilanBaslik" placeholder="Örn: 5 adet çocuk kitabı, 7-8 yaş">
+    <div class="f-alan">
+      <label class="f-label">Başlık *</label>
+      <input type="text" class="f-input" id="fBaslik" placeholder="Örn: 5 adet çocuk kitabı">
     </div>
 
-    <div class="form-row">
-      <div class="form-alan">
-        <label class="form-label">İlçe *</label>
-        <select class="form-select" id="ilanIlce">
+    <div class="f-row">
+      <div class="f-alan">
+        <label class="f-label">İlçe *</label>
+        <select class="f-select" id="fIlce">
           <option value="">Seçin...</option>
-          <option>Artvin Merkez</option>
-          <option>Ardanuç</option>
-          <option>Arhavi</option>
-          <option>Borçka</option>
-          <option>Hopa</option>
-          <option>Kemalpaşa</option>
-          <option>Murgul</option>
-          <option>Şavşat</option>
-          <option>Yusufeli</option>
+          <option>Artvin Merkez</option><option>Ardanuç</option><option>Arhavi</option>
+          <option>Borçka</option><option>Hopa</option><option>Kemalpaşa</option>
+          <option>Murgul</option><option>Şavşat</option><option>Yusufeli</option>
         </select>
       </div>
-      <div class="form-alan">
-        <label class="form-label">Durum</label>
-        <select class="form-select" id="ilanDurum">
+      <div class="f-alan">
+        <label class="f-label">Durum</label>
+        <select class="f-select" id="fDurum">
           <option value="iyi">İyi durumda</option>
           <option value="az-kullanilmis">Az kullanılmış</option>
           <option value="sifir">Sıfır gibi</option>
@@ -585,145 +289,90 @@ footer a{color:var(--imece);text-decoration:none;}
       </div>
     </div>
 
-    <div class="form-alan">
-      <label class="form-label">Açıklama *</label>
-      <textarea class="form-input form-textarea" id="ilanAcik" placeholder="Eşyayı kısaca tarif edin. Neden veriyorsunuz, hangi koşullar..."></textarea>
+    <div class="f-alan">
+      <label class="f-label">Açıklama *</label>
+      <textarea class="f-input f-textarea" id="fAcik" placeholder="Eşyayı kısaca tarif edin..."></textarea>
     </div>
 
-    <div class="form-row">
-      <div class="form-alan">
-        <label class="form-label">Ad *</label>
-        <input type="text" class="form-input" id="ilanAd" placeholder="Adınız">
-      </div>
-      <div class="form-alan">
-        <label class="form-label">Telefon *</label>
-        <input type="tel" class="form-input" id="ilanTel" placeholder="05xx xxx xx xx">
-      </div>
+    <div class="f-row">
+      <div class="f-alan"><label class="f-label">Ad *</label><input type="text" class="f-input" id="fAd" placeholder="Adınız"></div>
+      <div class="f-alan"><label class="f-label">Telefon *</label><input type="tel" class="f-input" id="fTel" placeholder="05xx xxx xx xx"></div>
     </div>
 
-    
-    
-    <div class="form-alan" style="background:rgba(46,204,113,.04);border:1px solid rgba(46,204,113,.1);border-radius:8px;padding:.75rem;margin-top:.25rem">
+    <div class="f-alan" style="background:rgba(46,204,113,.04);border:1px solid rgba(46,204,113,.1);border-radius:8px;padding:.75rem;margin-top:.25rem">
       <div style="font-size:.65rem;font-weight:700;color:var(--imece);margin-bottom:.25rem">🔑 İlan Silme Kodu</div>
-      <div style="font-size:.72rem;color:var(--dim);line-height:1.65">İlanınız yayınlandıktan sonra size özel bir <strong style="color:#fff">silme kodu</strong> gösterilecek. Bu kodu saklayın — ilanınızı silmek istediğinizde kullanacaksınız.</div>
+      <div style="font-size:.72rem;color:var(--dim);line-height:1.65">İlanınız yayınlandıktan sonra size özel bir silme kodu gösterilecek. Bu kodu saklayın.</div>
     </div>
 
-    <div class="form-alan" style="display:flex;align-items:flex-start;gap:.6rem;margin-top:.25rem">
-      <input type="checkbox" id="kvkkOnay" style="margin-top:.2rem;accent-color:var(--imece);width:16px;height:16px;flex-shrink:0;cursor:pointer">
-      <label for="kvkkOnay" style="font-size:.72rem;color:var(--dim);line-height:1.65;cursor:pointer">
-        <a href="/gizlilik.html" target="_blank" style="color:var(--imece);text-decoration:none">Kullanım Koşulları ve Gizlilik Politikası</a>'nı okudum, kabul ediyorum. Telefon numaram diğer kullanıcılara görünecektir.
-      </label>
+    <div class="onay-satir">
+      <input type="checkbox" id="fKvkk">
+      <label for="fKvkk"><a href="/gizlilik.html" target="_blank">Gizlilik Politikası & Kullanım Koşulları</a>'nı okudum, kabul ediyorum. Telefon numaram diğer kullanıcılara görünecektir.</label>
     </div>
 
-    <button class="btn-yayinla" onclick="ilanGonder()">🌿 İlanı Yayınla</button>
+    <button class="btn-yayinla" id="btnYayinla">🌿 İlanı Yayınla</button>
+
     <div class="basari" id="basariMesaj">
-      <p>🎉 İlanınız yayınlandı! İlanlar sekmesinde görünecek.</p>
-      <div id="silmeKoduAlani" style="display:none;margin-top:.75rem;background:rgba(0,0,0,.2);border-radius:8px;padding:.75rem;">
-        <div style="font-size:.65rem;color:rgba(255,255,255,.5);margin-bottom:.3rem">🔑 İlan Silme Kodunuz — Kaydedin!</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.2em;color:var(--imece)" id="silmeKoduGoster">------</div>
-        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:.25rem">Bu kodu not alın. İlanınızı silmek istediğinizde kullanacaksınız.</div>
+      <p>🎉 İlanınız yayınlandı!</p>
+      <div class="silme-kutu" id="silmeKutu">
+        <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-bottom:.3rem">🔑 Silme Kodunuz — Kaydedin!</div>
+        <div class="silme-kod" id="silmeKodGoster">------</div>
+        <div style="font-size:.6rem;color:rgba(255,255,255,.3);margin-top:.2rem">Bu kodu not alın!</div>
       </div>
     </div>
   </div>
 
   <div class="kurallar">
-    <div class="kurallar-h">📜 İmece Kuralları — Ticari Değildir</div>
-    <div class="kural-item"><span>ℹ️</span> Platform yalnızca aracıdır — işlemlerin tarafı değildir ve sorumluluk kabul etmez</div>
-    <div class="kural-item"><span>✅</span> Tüm paylaşımlar ücretsiz veya gerçek takas olmalı</div>
-    <div class="kural-item"><span>✅</span> Ticari satış ve para talep etmek yasak</div>
-    <div class="kural-item"><span>✅</span> Teslimattan sonra dayanışma puanı kazan</div>
-    <div class="kural-item"><span>✅</span> Artvin ve ilçeleriyle sınırlı</div>
-    <div class="kural-item"><span>❌</span> Ticari ilanlar, reklam ve fiyat bildirimi yasaktır</div>
-    <div class="kural-item"><span>❌</span> Çalıntı, sahte veya yasadışı eşya paylaşımı yasaktır</div>
-    <div class="kural-item"><span>🔧</span> Platform kurallara aykırı ilanları bildirimsiz kaldırma hakkını saklı tutar</div>
+    <div class="kural-h">📜 İmece Kuralları — Ticari Değildir</div>
+    <div class="kural-item"><span>ℹ️</span>Platform yalnızca aracıdır — işlemlerin tarafı değildir ve sorumluluk kabul etmez</div>
+    <div class="kural-item"><span>✅</span>Tüm paylaşımlar ücretsiz veya gerçek takas olmalı</div>
+    <div class="kural-item"><span>✅</span>Artvin ve ilçeleriyle sınırlı</div>
+    <div class="kural-item"><span>❌</span>Ticari ilanlar, reklam ve fiyat bildirimi yasaktır</div>
+    <div class="kural-item"><span>❌</span>Çalıntı, sahte veya yasadışı eşya paylaşımı yasaktır</div>
+    <div class="kural-item"><span>🔧</span>Platform kurallara aykırı ilanları bildirimsiz kaldırma hakkını saklı tutar</div>
   </div>
 </div>
 
 <!-- NASIL ÇALIŞIR -->
-<div class="sekme-icerik" id="nasil">
+<div class="s-ic" id="sIc2">
   <div style="padding:1.5rem 1.1rem;display:flex;flex-direction:column;gap:1rem;">
-
     <div style="background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:1.1rem;display:flex;gap:.85rem;align-items:flex-start;">
       <span style="font-size:1.8rem;flex-shrink:0">1️⃣</span>
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">İlan Ver</div>
-        <div style="font-size:.8rem;color:var(--dim);line-height:1.7">Paylaşmak istediğin eşyayı veya yapmak istediğin takası "İlan Ver" formundan birkaç saniyede yayınla.</div>
-      </div>
+      <div><div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">İlan Ver</div><div style="font-size:.8rem;color:var(--dim);line-height:1.7">Paylaşmak istediğin eşyayı birkaç saniyede yayınla.</div></div>
     </div>
-
     <div style="background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:1.1rem;display:flex;gap:.85rem;align-items:flex-start;">
       <span style="font-size:1.8rem;flex-shrink:0">2️⃣</span>
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">WhatsApp ile Bağlan</div>
-        <div style="font-size:.8rem;color:var(--dim);line-height:1.7">İlgini çeken bir ilan gördüğünde tek tuşla WhatsApp'tan yaz. Ortak bir zaman belirle.</div>
-      </div>
+      <div><div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">WhatsApp ile Bağlan</div><div style="font-size:.8rem;color:var(--dim);line-height:1.7">İlgini çeken ilanda tek tuşla WhatsApp'tan yaz.</div></div>
     </div>
-
     <div style="background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:1.1rem;display:flex;gap:.85rem;align-items:flex-start;">
       <span style="font-size:1.8rem;flex-shrink:0">3️⃣</span>
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">Teslim Et, Puan Kazan</div>
-        <div style="font-size:.8rem;color:var(--dim);line-height:1.7">Başarılı her paylaşımda Dayanışma Puanı kazanırsın. Puanın arttıkça ilanların öne çıkar.</div>
-      </div>
+      <div><div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">Teslim Et, Puan Kazan</div><div style="font-size:.8rem;color:var(--dim);line-height:1.7">Başarılı her paylaşımda Dayanışma Puanı kazanırsın.</div></div>
     </div>
-
     <div style="background:rgba(46,204,113,.05);border:1px solid var(--border);border-radius:14px;padding:1.1rem;text-align:center;">
       <div style="font-size:1.5rem;margin-bottom:.4rem">🌿</div>
       <div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">İmece Ruhu — Ticari Değil</div>
-      <div style="font-size:.78rem;color:var(--dim);line-height:1.75">İmece, Anadolu'nun en eski dayanışma geleneği. Para değil alın teri, satış değil paylaşım. <strong style="color:var(--imece)">Bu platformda hiçbir şekilde ücret talep edilemez.</strong> Artvin İmece bu ruhu dijital çağa taşıyor.</div>
+      <div style="font-size:.78rem;color:var(--dim);line-height:1.75">İmece, Anadolu'nun en eski dayanışma geleneği. <strong style="color:var(--imece)">Bu platformda hiçbir şekilde ücret talep edilemez.</strong></div>
     </div>
   </div>
 </div>
 
 <!-- DAYANIŞMA PUANI -->
-<div class="sekme-icerik" id="puan">
+<div class="s-ic" id="sIc3">
   <div class="puan-kart">
     <div class="puan-h">⭐ Dayanışma Puanı Sistemi</div>
-    <div class="puan-item">
-      <span class="puan-eylem">✅ Başarılı eşya teslimi</span>
-      <span class="puan-deger">+10 Puan</span>
-    </div>
-    <div class="puan-item">
-      <span class="puan-eylem">🔄 Takas tamamlama</span>
-      <span class="puan-deger">+8 Puan</span>
-    </div>
-    <div class="puan-item">
-      <span class="puan-eylem">📚 Eğitim materyali paylaşımı</span>
-      <span class="puan-deger">+15 Puan</span>
-    </div>
-    <div class="puan-item">
-      <span class="puan-eylem">❄️ Kışlık giysi bağışı</span>
-      <span class="puan-deger">+12 Puan</span>
-    </div>
-    <div class="puan-item">
-      <span class="puan-eylem">💙 Yardım talebi karşılama</span>
-      <span class="puan-deger">+20 Puan</span>
-    </div>
-    <div class="puan-item">
-      <span class="puan-eylem">⚠️ Ticari ilan bildirimi (doğruysa)</span>
-      <span class="puan-deger">+5 Puan</span>
-    </div>
+    <div class="puan-item"><span class="puan-eylem">✅ Başarılı eşya teslimi</span><span class="puan-deger">+10 Puan</span></div>
+    <div class="puan-item"><span class="puan-eylem">🔄 Takas tamamlama</span><span class="puan-deger">+8 Puan</span></div>
+    <div class="puan-item"><span class="puan-eylem">📚 Eğitim materyali paylaşımı</span><span class="puan-deger">+15 Puan</span></div>
+    <div class="puan-item"><span class="puan-eylem">❄️ Kışlık giysi bağışı</span><span class="puan-deger">+12 Puan</span></div>
+    <div class="puan-item"><span class="puan-eylem">💙 Yardım talebi karşılama</span><span class="puan-deger">+20 Puan</span></div>
+    <div class="puan-item"><span class="puan-eylem">⚠️ Ticari ilan bildirimi</span><span class="puan-deger">+5 Puan</span></div>
   </div>
-
   <div style="margin:0 1.1rem 1.1rem;background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:1.1rem;">
     <div style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:.75rem">🏆 Puan Seviyeleri</div>
     <div style="display:flex;flex-direction:column;gap:.5rem;">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)">
-        <span style="font-size:.78rem;color:var(--dim)">🌱 Yeni Komşu</span>
-        <span style="font-size:.72rem;color:var(--soluk)">0–25 Puan</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)">
-        <span style="font-size:.78rem;color:var(--dim)">🌿 İmece Dostu</span>
-        <span style="font-size:.72rem;color:var(--soluk)">26–75 Puan</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)">
-        <span style="font-size:.78rem;color:var(--imece)">🏔️ Artvin Gönüllüsü</span>
-        <span style="font-size:.72rem;color:var(--imece)">76–150 Puan</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.4rem 0">
-        <span style="font-size:.78rem;color:var(--altin)">⭐ İmece Ustası</span>
-        <span style="font-size:.72rem;color:var(--altin)">151+ Puan</span>
-      </div>
+      <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)"><span style="font-size:.78rem;color:var(--dim)">🌱 Yeni Komşu</span><span style="font-size:.72rem;color:var(--soluk)">0–25 Puan</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)"><span style="font-size:.78rem;color:var(--dim)">🌿 İmece Dostu</span><span style="font-size:.72rem;color:var(--soluk)">26–75 Puan</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)"><span style="font-size:.78rem;color:var(--imece)">🏔️ Artvin Gönüllüsü</span><span style="font-size:.72rem;color:var(--imece)">76–150 Puan</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.4rem 0"><span style="font-size:.78rem;color:var(--altin)">⭐ İmece Ustası</span><span style="font-size:.72rem;color:var(--altin)">151+ Puan</span></div>
     </div>
   </div>
 </div>
@@ -733,18 +382,9 @@ footer a{color:var(--imece);text-decoration:none;}
   <p><a href="/">Ana Sayfa</a> · <a href="/kayipbuluntu.html">Kayıp Buluntu</a> · <a href="/gizlilik.html">Gizlilik & KVKK</a></p>
 </footer>
 
-
-
-
-
-
-<!-- Firebase CDN -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
-
-
-const firebaseConfig = {
+// ── Firebase ──
+var firebaseConfig = {
   apiKey: "AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",
   authDomain: "artvin-imece.firebaseapp.com",
   projectId: "artvin-imece",
@@ -752,223 +392,194 @@ const firebaseConfig = {
   messagingSenderId: "30297800879",
   appId: "1:30297800879:web:a36f3b4ad6ba54d8bed45a"
 };
-
-var app = initializeApp(firebaseConfig);
-var db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
 var COL = "imece_ilanlar";
 
-var aktifTip = 'paylasim';
+// ── Değişkenler ──
 var aktifFiltre = 'hepsi';
+var aktifTip = 'paylasim';
 var tumIlanlar = [];
 
-// Gerçek zamanlı dinle
-var q = db.collection(COL).orderBy("zaman", "desc");
-q.onSnapshot(function(snapshot) {
+// ── KVKK Modal ──
+function kmKontrol() {
+  if (localStorage.getItem('imeceKvkk') === '1') {
+    document.getElementById('kmOverlay').style.display = 'none';
+  }
+}
+document.getElementById('kmOnay').addEventListener('change', function() {
+  document.getElementById('kmBtnOnayla').classList.toggle('aktif', this.checked);
+});
+document.getElementById('kmBtnOnayla').addEventListener('click', function() {
+  localStorage.setItem('imeceKvkk', '1');
+  var o = document.getElementById('kmOverlay');
+  o.style.opacity = '0';
+  o.style.transition = 'opacity .3s';
+  setTimeout(function(){ o.style.display = 'none'; }, 300);
+});
+document.getElementById('kmBtnReddet').addEventListener('click', function() {
+  window.location.href = '/';
+});
+kmKontrol();
+
+// ── Sekmeler ──
+var sekmeler = document.querySelectorAll('.s-btn');
+var icler = document.querySelectorAll('.s-ic');
+sekmeler.forEach(function(btn, i) {
+  btn.addEventListener('click', function() {
+    sekmeler.forEach(function(b){ b.classList.remove('aktif'); });
+    icler.forEach(function(ic){ ic.classList.remove('aktif'); });
+    btn.classList.add('aktif');
+    icler[i].classList.add('aktif');
+  });
+});
+
+// ── Tip Seçici ──
+document.querySelectorAll('.t-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.t-btn').forEach(function(b){ b.className = 't-btn'; });
+    var tip = btn.getAttribute('data-tip');
+    aktifTip = tip;
+    btn.classList.add(tip === 'paylasim' ? 'p' : tip === 'takas' ? 't' : 'y');
+    document.getElementById('fTip').value = tip;
+  });
+});
+
+// ── Filtreler ──
+document.querySelectorAll('.f-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.f-btn').forEach(function(b){ b.classList.remove('aktif'); });
+    btn.classList.add('aktif');
+    aktifFiltre = btn.getAttribute('data-filtre');
+    ilanListele();
+  });
+});
+
+// ── Firebase Dinle ──
+db.collection(COL).orderBy('zaman', 'desc').onSnapshot(function(snapshot) {
   tumIlanlar = [];
   snapshot.forEach(function(doc) {
-    tumIlanlar.push({id: doc.id, ...doc.data()});
+    var d = doc.data();
+    d.id = doc.id;
+    tumIlanlar.push(d);
   });
   istatistikGuncelle();
   ilanListele();
 });
 
 function istatistikGuncelle() {
-  document.getElementById('toplamIlan').textContent = tumIlanlar.length;
-  var kullanicilar = [...new Set(tumIlanlar.map(function(i){return i.tel;}))].length;
-  document.getElementById('toplamKullanici').textContent = kullanicilar;
-  document.getElementById('toplamPaylasim').textContent = Math.floor(tumIlanlar.length * 0.6);
+  document.getElementById('statIlan').textContent = tumIlanlar.length;
+  var k = new Set(tumIlanlar.map(function(i){ return i.tel; })).size;
+  document.getElementById('statKullanici').textContent = k;
+  document.getElementById('statTamamlanan').textContent = Math.floor(tumIlanlar.length * 0.6);
 }
 
-function sekmeAc(id, btn) {
-  document.querySelectorAll('.sekme-icerik').forEach(function(el){ el.classList.remove('aktif'); });
-  document.querySelectorAll('.sekme-bar .sekme').forEach(function(el){ el.classList.remove('aktif'); });
-  document.getElementById(id).classList.add('aktif');
-  btn.classList.add('aktif');
-  if (id === 'ilanlar') ilanListele();
-}
-
-function tipSec(tip, btn) {
-  aktifTip = tip;
-  document.querySelectorAll('.tip-btn').forEach(function(b){
-    b.classList.remove('aktif','paylasim','takas','yardim');
+function ilanListele() {
+  var grid = document.getElementById('ilanGrid');
+  var liste = tumIlanlar.filter(function(i) {
+    if (aktifFiltre === 'hepsi') return true;
+    if (['paylasim','takas','yardim'].includes(aktifFiltre)) return i.tip === aktifFiltre;
+    return i.kategori === aktifFiltre;
   });
-  btn.classList.add('aktif', tip);
-  document.getElementById('ilanTip').value = tip;
-}
 
-
-async function ilanSil(ilanId) {
-  var kod = prompt('İlan silme kodunuzu girin:');
-  if (!kod) return;
-  
-  // Firestore'dan ilanı bul ve silme kodunu kontrol et
-  try {
-    
-    var ilanRef = db.collection(COL).doc(ilanId);
-    var ilanSnap = await ilanRef.get();
-    
-    if (!ilanSnap.exists()) {
-      alert('İlan bulunamadı.');
-      return;
-    }
-    
-    var ilanData = ilanSnap.data();
-    if (ilanData.silmeKodu && ilanData.silmeKodu.toUpperCase() === kod.toUpperCase().trim()) {
-      await ilanRef.delete();
-      alert('✅ İlanınız silindi.');
-    } else {
-      alert('❌ Silme kodu hatalı. İlanınızı yayınlarken gösterilen kodu kullanın.');
-    }
-  } catch(e) {
-    alert('Hata: ' + e.message);
-  }
-}
-
-function ilanSikayet(ilanId, baslik) {
-  var neden = prompt('Şikayet nedeninizi kısaca yazın:\n\n(Örn: Ticari satış yapıyor, Sahte ilan, Uygunsuz içerik)');
-  if (!neden) return;
-  
-  // WhatsApp ile bildir
-  var mesaj = '⚠️ İmece Şikayet\n\nİlan: ' + baslik + '\nNeden: ' + neden + '\nİlan ID: ' + ilanId;
-  window.open('https://api.whatsapp.com/send?phone=905434290908&text=' + encodeURIComponent(mesaj), '_blank');
-  alert('Şikayetiniz iletildi. Teşekkürler!');
-}
-
-function filtrele(filtre, btn) {
-  aktifFiltre = filtre;
-  document.querySelectorAll('.filtre-btn').forEach(function(b){ b.classList.remove('aktif'); });
-  btn.classList.add('aktif');
-  ilanListele();
-}
-
-async async function ilanGonder() {
-  var tip = document.getElementById('ilanTip').value;
-  var kat = document.getElementById('ilanKat').value;
-  var bas = document.getElementById('ilanBaslik').value.trim();
-  var ilce = document.getElementById('ilanIlce').value;
-  var durum = document.getElementById('ilanDurum').value;
-  var acik = document.getElementById('ilanAcik').value.trim();
-  var ad = document.getElementById('ilanAd').value.trim();
-  var tel = document.getElementById('ilanTel').value.trim();
-
-  if (!kat||!bas||!ilce||!acik||!ad||!tel) {
-    alert('Lütfen yıldızlı alanları doldurun!');
-    return;
-  }
-  if (!document.getElementById('kvkkOnay').checked) {
-    alert('Devam etmek için Kullanım Koşulları\'nı kabul etmeniz gerekiyor.');
+  if (liste.length === 0) {
+    grid.innerHTML = '<div class="bos"><span>🌿</span>Bu kategoride henüz ilan yok.<br>İlk ilanı siz verin!</div>';
     return;
   }
 
-  // Ticari içerik kontrolü
-  var ticariKelimeler = ['satılık','satış','fiyat','tl','₺','lira','ücret'];
-  var kontrolMetin = (bas + ' ' + acik).toLowerCase();
-  for (var i=0; i<ticariKelimeler.length; i++) {
-    if (kontrolMetin.includes(ticariKelimeler[i])) {
-      alert('⚠️ İmece\'de ticari satış yapılamaz! Fiyat veya satış ifadesi kullanmayın.');
-      return;
-    }
+  var TIPLER = { paylasim:'<span class="ilan-tip tip-p">🟢 Ücretsiz</span>', takas:'<span class="ilan-tip tip-t">🔄 Takas</span>', yardim:'<span class="ilan-tip tip-y">💙 Yardım</span>' };
+
+  grid.innerHTML = liste.map(function(i) {
+    var temTel = (i.tel||'').replace(/[^0-9]/g,'').replace(/^0/,'');
+    var wp = 'https://api.whatsapp.com/send?phone=90' + temTel + '&text=' + encodeURIComponent('"' + i.baslik + '" ilanını İmece\'de gördüm.');
+    return '<div class="ilan-kart ' + i.tip + '">'
+      + '<div class="ilan-ust"><div>' + (TIPLER[i.tip]||'') + '</div><span class="ilan-tarih">' + (i.tarih||'') + '</span></div>'
+      + '<div class="ilan-baslik">' + i.baslik + '</div>'
+      + '<div class="ilan-meta"><span>📍 ' + i.ilce + '</span><span>📦 ' + i.durum + '</span></div>'
+      + '<div class="ilan-acik">' + i.aciklama + '</div>'
+      + '<div class="ilan-alt"><div><div class="ilan-ad">' + i.ad + '</div><div class="ilan-puan">⭐ İmece Üyesi</div></div>'
+      + '<div class="ilan-btns">'
+      + '<a class="i-btn btn-wp" href="' + wp + '" target="_blank" rel="noopener">📱 Yaz</a>'
+      + '<a class="i-btn btn-ara" href="tel:' + i.tel + '">📞 Ara</a>'
+      + '<button class="i-btn btn-sil" onclick="ilanSil(\'' + i.id + '\')">🗑️</button>'
+      + '<button class="i-btn btn-bildir" onclick="ilanBildir(\'' + i.id + '\',\'' + i.baslik.replace(/'/g,"\\'") + '\')">⚠️</button>'
+      + '</div></div></div>';
+  }).join('');
+}
+
+// ── İlan Gönder ──
+document.getElementById('btnYayinla').addEventListener('click', async function() {
+  var tip = document.getElementById('fTip').value;
+  var kat = document.getElementById('fKat').value;
+  var bas = document.getElementById('fBaslik').value.trim();
+  var ilce = document.getElementById('fIlce').value;
+  var durum = document.getElementById('fDurum').value;
+  var acik = document.getElementById('fAcik').value.trim();
+  var ad = document.getElementById('fAd').value.trim();
+  var tel = document.getElementById('fTel').value.trim();
+  var kvkk = document.getElementById('fKvkk').checked;
+
+  if (!kat||!bas||!ilce||!acik||!ad||!tel) { alert('Lütfen yıldızlı alanları doldurun!'); return; }
+  if (!kvkk) { alert('Kullanım Koşulları\'nı kabul etmeniz gerekiyor.'); return; }
+
+  var ticari = ['satılık','satış','fiyat','₺','lira','ücret'];
+  var metin = (bas+' '+acik).toLowerCase();
+  for (var i=0; i<ticari.length; i++) {
+    if (metin.includes(ticari[i])) { alert('⚠️ Ticari satış içeriği tespit edildi. İmece\'de satış yapılamaz.'); return; }
   }
 
-  var btn = document.querySelector('.btn-yayinla');
+  var btn = this;
   btn.textContent = '⏳ Yayınlanıyor...';
   btn.disabled = true;
 
   try {
     var silKod = Math.random().toString(36).substring(2,8).toUpperCase();
     await db.collection(COL).add({
-      tip, kategori: kat, baslik: bas,
-      ilce, durum, aciklama: acik,
-      ad, tel, zaman: firebase.firestore.FieldValue.serverTimestamp(),
-      tarih: new Date().toLocaleDateString('tr-TR'),
-      silmeKodu: silKod
+      tip, kategori: kat, baslik: bas, ilce, durum,
+      aciklama: acik, ad, tel, silmeKodu: silKod,
+      zaman: firebase.firestore.FieldValue.serverTimestamp(),
+      tarih: new Date().toLocaleDateString('tr-TR')
     });
-    // Silme kodunu göster
-    document.getElementById('silmeKoduGoster').textContent = silKod;
-    document.getElementById('silmeKoduAlani').style.display = 'block';
 
-    
-    ['ilanBaslik','ilanAcik','ilanAd','ilanTel'].forEach(function(id){
-      document.getElementById(id).value='';
-    });
-    document.getElementById('ilanKat').value='';
-    document.getElementById('ilanIlce').value='';
+    document.getElementById('basariMesaj').classList.add('goster');
+    document.getElementById('silmeKodGoster').textContent = silKod;
+    document.getElementById('silmeKutu').style.display = 'block';
 
-    setTimeout(function() {
+    ['fBaslik','fAcik','fAd','fTel'].forEach(function(id){ document.getElementById(id).value=''; });
+    document.getElementById('fKat').value='';
+    document.getElementById('fIlce').value='';
+    document.getElementById('fKvkk').checked=false;
+
+    setTimeout(function(){
       document.getElementById('basariMesaj').classList.remove('goster');
-    }, 3000);
+      document.getElementById('silmeKutu').style.display='none';
+    }, 8000);
 
-  } catch(e) {
-    alert('Hata oluştu: ' + e.message);
-  } finally {
-    btn.textContent = '🌿 İlanı Yayınla';
-    btn.disabled = false;
-  }
+  } catch(e) { alert('Hata: ' + e.message); }
+  finally { btn.textContent = '🌿 İlanı Yayınla'; btn.disabled = false; }
+});
+
+// ── İlan Sil ──
+async function ilanSil(id) {
+  var kod = prompt('İlan silme kodunuzu girin:');
+  if (!kod) return;
+  try {
+    var snap = await db.collection(COL).doc(id).get();
+    if (!snap.exists) { alert('İlan bulunamadı.'); return; }
+    if (snap.data().silmeKodu && snap.data().silmeKodu.toUpperCase() === kod.toUpperCase().trim()) {
+      await db.collection(COL).doc(id).delete();
+      alert('✅ İlanınız silindi.');
+    } else { alert('❌ Silme kodu hatalı.'); }
+  } catch(e) { alert('Hata: ' + e.message); }
 }
 
-function ilanListele() {
-  // Firebase uyarısını kaldır
-  var uyari = document.querySelector('.firebase-uyari');
-  if (uyari) uyari.remove();
-
-  var grid = document.getElementById('ilanGrid');
-  var gorunecek = tumIlanlar.filter(function(i){
-    if (aktifFiltre === 'hepsi') return true;
-    if (['paylasim','takas','yardim'].includes(aktifFiltre)) return i.tip === aktifFiltre;
-    return i.kategori === aktifFiltre;
-  });
-
-  if (gorunecek.length === 0) {
-    grid.innerHTML = '<div class="bos"><span class="bos-ikon">🌿</span><div class="bos-metin">Bu kategoride henüz ilan yok.<br>İlk ilanı siz verin!</div></div>';
-    return;
-  }
-
-  var TIP_ETIKET = {
-    paylasim: '<span class="ilan-tip tip-paylasim">🟢 Ücretsiz</span>',
-    takas: '<span class="ilan-tip tip-takas">🔄 Takas</span>',
-    yardim: '<span class="ilan-tip tip-yardim">💙 Yardım</span>'
-  };
-
-  grid.innerHTML = gorunecek.map(function(i) {
-    var temizTel = i.tel.replace(/[^0-9]/g,'').replace(/^0/,'');
-    var wpLink = 'https://api.whatsapp.com/send?phone=90' + temizTel + '&text=' + encodeURIComponent('"' + i.baslik + '" ilanınızı İmece\'de gördüm.');
-    return '<div class="ilan-kart ' + i.tip + '">'
-      + '<div class="ilan-ust"><div class="ilan-tipler">' + (TIP_ETIKET[i.tip]||'') + '</div><span class="ilan-tarih">' + (i.tarih||'') + '</span></div>'
-      + '<div class="ilan-baslik">' + i.baslik + '</div>'
-      + '<div class="ilan-meta"><span class="ilan-meta-item">📍 ' + i.ilce + '</span><span class="ilan-meta-item">📦 ' + i.durum + '</span></div>'
-      + '<div class="ilan-aciklama">' + i.aciklama + '</div>'
-      + '<div class="ilan-alt"><div><div class="ilan-ad">' + i.ad + '</div><div class="ilan-puanlar">⭐ İmece Üyesi</div></div>'
-      + '<div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;justify-content:space-between">'
-      + '<div class="ilan-butonlar"><a class="ilan-btn btn-wp" href="' + wpLink + '" target="_blank" rel="noopener noreferrer">📱 Yaz</a>'
-      + '<a class="ilan-btn btn-ara" href="tel:' + i.tel + '">📞 Ara</a></div>'
-      + '<div style="display:flex;gap:.3rem">'
-      + '<button class="ilan-btn" onclick="ilanSil('' + i.id + '')" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.08);font-size:.58rem">🗑️ Sil</button>'
-      + '<button class="ilan-btn" onclick="ilanSikayet('' + i.id + '','' + i.baslik.replace(/'/g,"\'") + '')" style="background:rgba(231,76,60,.08);color:rgba(231,76,60,.6);border:1px solid rgba(231,76,60,.15);font-size:.58rem">⚠️ Bildir</button>'
-      + '</div></div></div>'
-      + '</div>';
-  }).join('');
+// ── Bildir ──
+function ilanBildir(id, baslik) {
+  var neden = prompt('Şikayet nedeninizi yazın:\n(Ticari satış, Sahte ilan, Uygunsuz içerik...)');
+  if (!neden) return;
+  window.open('https://api.whatsapp.com/send?phone=905434290908&text=' + encodeURIComponent('⚠️ İmece Şikayet\nİlan: ' + baslik + '\nNeden: ' + neden + '\nID: ' + id), '_blank');
+  alert('Şikayetiniz iletildi. Teşekkürler!');
 }
-
 </script>
-<script>
-function kvkkKontrol() {
-  if (localStorage.getItem('imeceKvkkOnay') === 'evet') {
-    var m = document.getElementById('kvkkModal');
-    if (m) m.style.display = 'none';
-  }
-}
-function kvkkOnayDegisti() {
-  var cb = document.getElementById('kvkkModalOnay');
-  var btn = document.getElementById('kvkkBtnOnayla');
-  if (cb && btn) btn.classList.toggle('aktif', cb.checked);
-}
-function kvkkOnayla() {
-  localStorage.setItem('imeceKvkkOnay', 'evet');
-  var m = document.getElementById('kvkkModal');
-  if (m) { m.style.opacity='0'; m.style.transition='opacity .3s'; setTimeout(function(){m.style.display='none';},300); }
-}
-kvkkKontrol();
-</script>
-
 </body>
 </html>
