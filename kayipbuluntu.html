@@ -29,22 +29,7 @@
   "publisher": {"@type":"Organization","name":"Artvin Rehberi","url":"https://www.artvinrehber.com"}
 }
 
-function kvkkKontrol() {
-  if (localStorage.getItem('kayipKvkkOnay') === 'evet') {
-    document.getElementById('kvkkModal').style.display = 'none';
-  }
-}
-function kvkkOnayDegisti() {
-  var cb = document.getElementById('kvkkModalOnay');
-  document.getElementById('kvkkBtnOnayla').classList.toggle('aktif', cb.checked);
-}
-function kvkkOnayla() {
-  localStorage.setItem('kayipKvkkOnay', 'evet');
-  var m = document.getElementById('kvkkModal');
-  m.style.opacity='0';m.style.transition='opacity .3s';
-  setTimeout(function(){m.style.display='none';},300);
-}
-kvkkKontrol();
+
 
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -427,6 +412,27 @@ window.filtrele = function(tip, btn) {
   btn.classList.add('aktif');
   listeGoster();
 }
+</script>
+
+
+<script>
+function kvkkKontrol() {
+  if (localStorage.getItem('kayipKvkkOnay') === 'evet') {
+    var m = document.getElementById('kvkkModal');
+    if (m) m.style.display = 'none';
+  }
+}
+function kvkkOnayDegisti() {
+  var cb = document.getElementById('kvkkModalOnay');
+  var btn = document.getElementById('kvkkBtnOnayla');
+  if (cb && btn) btn.classList.toggle('aktif', cb.checked);
+}
+function kvkkOnayla() {
+  localStorage.setItem('kayipKvkkOnay', 'evet');
+  var m = document.getElementById('kvkkModal');
+  if (m) { m.style.opacity='0'; m.style.transition='opacity .3s'; setTimeout(function(){m.style.display='none';},300); }
+}
+kvkkKontrol();
 </script>
 
 </body>
