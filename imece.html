@@ -544,6 +544,14 @@ document.getElementById('btnYayinla').addEventListener('click', async function()
     document.getElementById('silmeKodGoster').textContent = silKod;
     document.getElementById('silmeKutu').style.display = 'block';
 
+    // Silme kodunu WhatsApp ile gönder
+    var wpMesaj = '🌿 Artvin İmece — İlan Silme Kodunuz\n\n'
+      + 'İlan: ' + bas + '\n'
+      + 'Silme Kodunuz: *' + silKod + '*\n\n'
+      + 'Bu kodu saklayın. İlanınızı silmek istediğinizde kullanacaksınız.\n'
+      + 'artvinrehber.com/imece.html';
+    window.open('https://api.whatsapp.com/send?phone=90' + tel.replace(/[^0-9]/g,'').replace(/^0/,'') + '&text=' + encodeURIComponent(wpMesaj), '_blank');
+
     ['fBaslik','fAcik','fAd','fTel'].forEach(function(id){ document.getElementById(id).value=''; });
     document.getElementById('fKat').value='';
     document.getElementById('fIlce').value='';
