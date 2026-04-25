@@ -731,9 +731,15 @@ footer a{color:var(--imece);text-decoration:none;}
 </footer>
 
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
+
+
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",
@@ -744,17 +750,17 @@ const firebaseConfig = {
   appId: "1:30297800879:web:a36f3b4ad6ba54d8bed45a"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const COL = "imece_ilanlar";
+var app = initializeApp(firebaseConfig);
+var db = getFirestore(app);
+var COL = "imece_ilanlar";
 
 var aktifTip = 'paylasim';
 var aktifFiltre = 'hepsi';
 var tumIlanlar = [];
 
 // Gerçek zamanlı dinle
-const q = query(collection(db, COL), orderBy("zaman", "desc"));
-onSnapshot(q, function(snapshot) {
+var q = db.collection(COL).orderBy("zaman", "desc");
+q.onSnapshot(function(snapshot) {
   tumIlanlar = [];
   snapshot.forEach(function(doc) {
     tumIlanlar.push({id: doc.id, ...doc.data()});
@@ -770,7 +776,7 @@ function istatistikGuncelle() {
   document.getElementById('toplamPaylasim').textContent = Math.floor(tumIlanlar.length * 0.6);
 }
 
-window.sekmeAc = function(id, btn) {
+function sekmeAc(id, btn) {
   document.querySelectorAll('.sekme-icerik').forEach(function(el){ el.classList.remove('aktif'); });
   document.querySelectorAll('.sekme-bar .sekme').forEach(function(el){ el.classList.remove('aktif'); });
   document.getElementById(id).classList.add('aktif');
@@ -778,7 +784,7 @@ window.sekmeAc = function(id, btn) {
   if (id === 'ilanlar') ilanListele();
 }
 
-window.tipSec = function(tip, btn) {
+function tipSec(tip, btn) {
   aktifTip = tip;
   document.querySelectorAll('.tip-btn').forEach(function(b){
     b.classList.remove('aktif','paylasim','takas','yardim');
@@ -788,15 +794,15 @@ window.tipSec = function(tip, btn) {
 }
 
 
-window.ilanSil = async function(ilanId) {
+async function ilanSil(ilanId) {
   var kod = prompt('İlan silme kodunuzu girin:');
   if (!kod) return;
   
   // Firestore'dan ilanı bul ve silme kodunu kontrol et
   try {
-    var { doc, getDoc, deleteDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-    var ilanRef = doc(db, COL, ilanId);
-    var ilanSnap = await getDoc(ilanRef);
+    
+    var ilanRef = db.collection(COL).doc(ilanId);
+    var ilanSnap = await ilanRef.get();
     
     if (!ilanSnap.exists()) {
       alert('İlan bulunamadı.');
@@ -805,7 +811,7 @@ window.ilanSil = async function(ilanId) {
     
     var ilanData = ilanSnap.data();
     if (ilanData.silmeKodu && ilanData.silmeKodu.toUpperCase() === kod.toUpperCase().trim()) {
-      await deleteDoc(ilanRef);
+      await ilanRef.delete();
       alert('✅ İlanınız silindi.');
     } else {
       alert('❌ Silme kodu hatalı. İlanınızı yayınlarken gösterilen kodu kullanın.');
@@ -815,7 +821,7 @@ window.ilanSil = async function(ilanId) {
   }
 }
 
-window.ilanSikayet = function(ilanId, baslik) {
+function ilanSikayet(ilanId, baslik) {
   var neden = prompt('Şikayet nedeninizi kısaca yazın:\n\n(Örn: Ticari satış yapıyor, Sahte ilan, Uygunsuz içerik)');
   if (!neden) return;
   
@@ -825,14 +831,14 @@ window.ilanSikayet = function(ilanId, baslik) {
   alert('Şikayetiniz iletildi. Teşekkürler!');
 }
 
-window.filtrele = function(filtre, btn) {
+function filtrele(filtre, btn) {
   aktifFiltre = filtre;
   document.querySelectorAll('.filtre-btn').forEach(function(b){ b.classList.remove('aktif'); });
   btn.classList.add('aktif');
   ilanListele();
 }
 
-window.ilanGonder = async function() {
+async async function ilanGonder() {
   var tip = document.getElementById('ilanTip').value;
   var kat = document.getElementById('ilanKat').value;
   var bas = document.getElementById('ilanBaslik').value.trim();
@@ -867,10 +873,10 @@ window.ilanGonder = async function() {
 
   try {
     var silKod = Math.random().toString(36).substring(2,8).toUpperCase();
-    await addDoc(collection(db, COL), {
+    await db.collection(COL).add({
       tip, kategori: kat, baslik: bas,
       ilce, durum, aciklama: acik,
-      ad, tel, zaman: serverTimestamp(),
+      ad, tel, zaman: firebase.firestore.FieldValue.serverTimestamp(),
       tarih: new Date().toLocaleDateString('tr-TR'),
       silmeKodu: silKod
     });
@@ -939,9 +945,8 @@ function ilanListele() {
       + '</div>';
   }).join('');
 }
+
 </script>
-
-
 <script>
 function kvkkKontrol() {
   if (localStorage.getItem('imeceKvkkOnay') === 'evet') {
