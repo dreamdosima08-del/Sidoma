@@ -28,6 +28,24 @@
   "about": {"@type":"Place","name":"Artvin","address":{"@type":"PostalAddress","addressRegion":"Artvin","addressCountry":"TR"}},
   "publisher": {"@type":"Organization","name":"Artvin Rehberi","url":"https://www.artvinrehber.com"}
 }
+
+function kvkkKontrol() {
+  if (localStorage.getItem('kayipKvkkOnay') === 'evet') {
+    document.getElementById('kvkkModal').style.display = 'none';
+  }
+}
+function kvkkOnayDegisti() {
+  var cb = document.getElementById('kvkkModalOnay');
+  document.getElementById('kvkkBtnOnayla').classList.toggle('aktif', cb.checked);
+}
+function kvkkOnayla() {
+  localStorage.setItem('kayipKvkkOnay', 'evet');
+  var m = document.getElementById('kvkkModal');
+  m.style.opacity='0';m.style.transition='opacity .3s';
+  setTimeout(function(){m.style.display='none';},300);
+}
+kvkkKontrol();
+
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -106,9 +124,43 @@ html,body{overflow-x:hidden;background:var(--bg);color:var(--off);font-family:'I
 
 footer{border-top:1px solid var(--border);padding:1.5rem 1.1rem;text-align:center;font-size:.65rem;color:rgba(255,255,255,.2);line-height:2;}
 footer a{color:var(--vivid);text-decoration:none;}
+
+.kvkk-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:flex-end;justify-content:center;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.kvkk-modal{background:#0a1a0d;border:1px solid rgba(61,219,138,.2);border-radius:16px 16px 0 0;padding:1.5rem 1.25rem 2rem;width:100%;max-width:520px;max-height:85vh;overflow-y:auto;}
+.kvkk-modal-h{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:.5rem;}
+.kvkk-modal-sub{font-size:.78rem;color:rgba(224,237,227,.45);line-height:1.75;margin-bottom:1rem;}
+.kvkk-madde{background:rgba(255,255,255,.03);border-radius:8px;padding:.75rem;margin-bottom:.5rem;font-size:.75rem;color:rgba(224,237,227,.5);line-height:1.7;}
+.kvkk-madde b{color:rgba(255,255,255,.75);}
+.kvkk-onay-row{display:flex;align-items:flex-start;gap:.6rem;margin:1rem 0 .75rem;}
+.kvkk-onay-row input{margin-top:.2rem;accent-color:#3ddb8a;width:18px;height:18px;flex-shrink:0;cursor:pointer;}
+.kvkk-onay-row label{font-size:.75rem;color:rgba(224,237,227,.55);line-height:1.65;cursor:pointer;}
+.kvkk-onay-row label a{color:#3ddb8a;text-decoration:none;}
+.kvkk-btn-onayla{width:100%;padding:.9rem;background:#3ddb8a;color:#041209;border:none;border-radius:10px;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;transition:.15s;opacity:.4;pointer-events:none;}
+.kvkk-btn-onayla.aktif{opacity:1;pointer-events:all;}
+.kvkk-btn-reddet{width:100%;padding:.65rem;margin-top:.4rem;background:transparent;color:rgba(255,255,255,.2);border:none;font-size:.72rem;cursor:pointer;}
+
 </style>
 </head>
 <body>
+
+
+<div class="kvkk-modal-overlay" id="kvkkModal">
+  <div class="kvkk-modal">
+    <div style="text-align:center;font-size:1.8rem;margin-bottom:.75rem">📋</div>
+    <div class="kvkk-modal-h">Kayıp & Buluntu — Bilgilendirme</div>
+    <div class="kvkk-modal-sub">Devam etmeden önce lütfen okuyun.</div>
+    <div class="kvkk-madde"><b>📞 Kişisel Veri Bildirimi (KVKK)</b><br>İlan verdiğinizde adınız ve telefon numaranız diğer kullanıcılara görünür. Verileriniz Google Firebase'de saklanır, üçüncü taraflara satılmaz.</div>
+    <div class="kvkk-madde"><b>⚠️ Güvenlik Uyarısı</b><br>Tanımadığınız kişilerle buluşurken güvenli, kamuya açık alanları tercih edin. Platform kullanıcılar arası anlaşmazlıklardan sorumlu tutulamaz.</div>
+    <div class="kvkk-madde"><b>✅ Hizmet Bilgisi</b><br>Bu platform tamamen ücretsizdir. Artvin'e özel bir komşuluk hizmetidir.</div>
+    <div class="kvkk-onay-row">
+      <input type="checkbox" id="kvkkModalOnay" onchange="kvkkOnayDegisti()">
+      <label for="kvkkModalOnay"><a href="/gizlilik.html" target="_blank">Gizlilik Politikası & Kullanım Koşulları</a>'nı okudum, kabul ediyorum.</label>
+    </div>
+    <button class="kvkk-btn-onayla" id="kvkkBtnOnayla" onclick="kvkkOnayla()">✅ Kabul Ediyorum — Devam Et</button>
+    <button class="kvkk-btn-reddet" onclick="window.location.href='/'">Kabul etmiyorum — Ayrıl</button>
+  </div>
+</div>
 
 <nav class="nav" role="navigation" aria-label="Ana menü">
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>

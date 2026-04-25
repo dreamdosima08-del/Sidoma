@@ -43,6 +43,35 @@
   "audience": {"@type":"Audience","audienceType":"Artvin sakinleri"},
   "publisher": {"@type":"Organization","name":"Artvin Rehberi","url":"https://www.artvinrehber.com","logo":{"@type":"ImageObject","url":"https://www.artvinrehber.com/favicon.ico"}}
 }
+
+// KVKK Modal
+function kvkkKontrol() {
+  var onay = localStorage.getItem('imeceKvkkOnay');
+  if (onay === 'evet') {
+    document.getElementById('kvkkModal').style.display = 'none';
+  }
+}
+
+function kvkkOnayDegisti() {
+  var cb = document.getElementById('kvkkModalOnay');
+  var btn = document.getElementById('kvkkBtnOnayla');
+  btn.classList.toggle('aktif', cb.checked);
+}
+
+function kvkkOnayla() {
+  localStorage.setItem('imeceKvkkOnay', 'evet');
+  var modal = document.getElementById('kvkkModal');
+  modal.style.opacity = '0';
+  modal.style.transition = 'opacity .3s';
+  setTimeout(function(){ modal.style.display = 'none'; }, 300);
+}
+
+function kvkkReddet() {
+  window.location.href = '/';
+}
+
+kvkkKontrol();
+
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
@@ -319,9 +348,93 @@ body::before{
 
 footer{border-top:1px solid var(--border);padding:1.5rem 1.1rem;text-align:center;font-size:.65rem;color:var(--soluk);line-height:2;}
 footer a{color:var(--imece);text-decoration:none;}
+
+/* KVKK MODAL */
+.kvkk-modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  z-index:9999;display:flex;align-items:flex-end;
+  justify-content:center;
+  animation:fadeIn .3s ease;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.kvkk-modal{
+  background:#0c1510;
+  border:1px solid rgba(46,204,113,.2);
+  border-radius:16px 16px 0 0;
+  padding:1.5rem 1.25rem 2rem;
+  width:100%;max-width:520px;
+  max-height:85vh;overflow-y:auto;
+}
+.kvkk-modal-h{
+  font-family:'Syne',sans-serif;
+  font-size:1.1rem;font-weight:800;color:#fff;
+  margin-bottom:.5rem;
+}
+.kvkk-modal-sub{font-size:.78rem;color:rgba(223,240,228,.45);line-height:1.75;margin-bottom:1rem;}
+.kvkk-madde{background:rgba(255,255,255,.03);border-radius:8px;padding:.75rem;margin-bottom:.5rem;font-size:.75rem;color:rgba(223,240,228,.5);line-height:1.7;}
+.kvkk-madde b{color:rgba(255,255,255,.75);}
+.kvkk-onay-row{display:flex;align-items:flex-start;gap:.6rem;margin:1rem 0 .75rem;}
+.kvkk-onay-row input{margin-top:.2rem;accent-color:#2ecc71;width:18px;height:18px;flex-shrink:0;cursor:pointer;}
+.kvkk-onay-row label{font-size:.75rem;color:rgba(223,240,228,.55);line-height:1.65;cursor:pointer;}
+.kvkk-onay-row label a{color:#2ecc71;text-decoration:none;}
+.kvkk-btn-onayla{
+  width:100%;padding:.9rem;
+  background:#2ecc71;color:#031a08;
+  border:none;border-radius:10px;
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;
+  cursor:pointer;transition:.15s;
+  opacity:.4;pointer-events:none;
+}
+.kvkk-btn-onayla.aktif{opacity:1;pointer-events:all;}
+.kvkk-btn-onayla.aktif:hover{background:#27ae60;}
+.kvkk-btn-reddet{
+  width:100%;padding:.65rem;margin-top:.4rem;
+  background:transparent;color:rgba(255,255,255,.2);
+  border:none;font-size:.72rem;cursor:pointer;
+}
+
 </style>
 </head>
 <body>
+
+
+<!-- KVKK ONAY MODALI -->
+<div class="kvkk-modal-overlay" id="kvkkModal">
+  <div class="kvkk-modal">
+    <div style="text-align:center;font-size:1.8rem;margin-bottom:.75rem">🌿</div>
+    <div class="kvkk-modal-h">Artvin İmece'ye Hoş Geldiniz</div>
+    <div class="kvkk-modal-sub">Devam etmeden önce aşağıdaki bilgileri okumanızı rica ederiz.</div>
+
+    <div class="kvkk-madde">
+      <b>📋 Platform Hakkında</b><br>
+      Artvin İmece, Artvin'de ücretsiz eşya paylaşımı ve takas için kurulmuş, kâr amacı gütmeyen bir platformdur. Para transferi ve ticari satış kesinlikle yasaktır.
+    </div>
+
+    <div class="kvkk-madde">
+      <b>📞 Kişisel Veri Bildirimi (KVKK)</b><br>
+      İlan verdiğinizde adınız ve telefon numaranız diğer kullanıcılara görünür. Verileriniz Google Firebase'de saklanır, üçüncü taraflara satılmaz. KVKK Madde 11 kapsamındaki haklarınızı kullanmak için WhatsApp'tan ulaşabilirsiniz.
+    </div>
+
+    <div class="kvkk-madde">
+      <b>⚠️ Güvenlik Uyarısı</b><br>
+      Tanımadığınız kişilerle buluşurken güvenli, kamuya açık alanları tercih edin. Platform, kullanıcılar arası anlaşmazlıklardan sorumlu tutulamaz.
+    </div>
+
+    <div class="kvkk-onay-row">
+      <input type="checkbox" id="kvkkModalOnay" onchange="kvkkOnayDegisti()">
+      <label for="kvkkModalOnay">
+        <a href="/gizlilik.html" target="_blank">Gizlilik Politikası & Kullanım Koşulları</a>'nı okudum, anladım ve kabul ediyorum. Telefon numaram ilan verdiğimde görünecektir.
+      </label>
+    </div>
+
+    <button class="kvkk-btn-onayla" id="kvkkBtnOnayla" onclick="kvkkOnayla()">
+      ✅ Kabul Ediyorum — Devam Et
+    </button>
+    <button class="kvkk-btn-reddet" onclick="kvkkReddet()">
+      Kabul etmiyorum — Sayfadan ayrıl
+    </button>
+  </div>
+</div>
 
 <nav class="nav" role="navigation" aria-label="Ana menü">
   <a class="nav-marka" href="/">
