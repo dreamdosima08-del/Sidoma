@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artvin Etkinlik — Admin Paneli</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<style>
+:root{--bg:#f8faf8;--white:#fff;--yesil:#1db954;--yesil-a:#e8f5ee;--koyu:#0f1f17;--metin:#1a2e1f;--dim:#6b7f72;--border:#e2ece5;--kirmizi:#ef4444;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--bg);color:var(--metin);font-family:'Inter',sans-serif;min-height:100vh;}
+
+/* GİRİŞ */
+.giris-overlay{position:fixed;inset:0;background:#fff;z-index:999;display:flex;align-items:center;justify-content:center;}
+.giris-kutu{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:2rem;width:100%;max-width:360px;text-align:center;}
+.giris-h{font-size:1.3rem;font-weight:800;color:var(--koyu);margin-bottom:.4rem;}
+.giris-sub{font-size:.8rem;color:var(--dim);margin-bottom:1.5rem;}
+.giris-input{width:100%;padding:.75rem;border:1.5px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:.88rem;outline:none;text-align:center;letter-spacing:.15em;margin-bottom:.75rem;}
+.giris-input:focus{border-color:var(--yesil);}
+.giris-btn{width:100%;padding:.8rem;background:var(--yesil);color:#fff;border:none;border-radius:10px;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;}
+.giris-hata{font-size:.75rem;color:var(--kirmizi);margin-top:.5rem;display:none;}
+
+/* PANEL */
+.panel{display:none;max-width:800px;margin:0 auto;padding:1.5rem;}
+.panel-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.panel-logo{font-size:1rem;font-weight:800;color:var(--koyu);}
+.panel-logo span{color:var(--yesil);}
+.cikis-btn{font-size:.72rem;color:var(--dim);background:none;border:1px solid var(--border);padding:.3rem .75rem;border-radius:6px;cursor:pointer;}
+
+/* FORM */
+.form-kart{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;}
+.form-kart-h{font-size:1rem;font-weight:700;color:var(--koyu);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;}
+.f-alan{margin-bottom:1rem;}
+.f-label{font-size:.72rem;font-weight:600;color:var(--metin);margin-bottom:.35rem;display:block;}
+.f-input,.f-select,.f-textarea{width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:.87rem;color:var(--metin);outline:none;transition:.2s;background:#fff;}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--yesil);box-shadow:0 0 0 3px rgba(29,185,84,.1);}
+.f-textarea{min-height:100px;resize:vertical;line-height:1.6;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.f-checkbox-satir{display:flex;align-items:center;gap:.5rem;}
+.f-checkbox-satir input{accent-color:var(--yesil);width:16px;height:16px;}
+.f-checkbox-satir label{font-size:.82rem;color:var(--metin);}
+.btn-ekle{width:100%;padding:.9rem;background:var(--yesil);color:#fff;border:none;border-radius:12px;font-family:'Inter',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;margin-top:.5rem;transition:.15s;}
+.btn-ekle:hover{background:#17a348;}
+.basari{display:none;background:#dcfce7;border:1px solid #86efac;border-radius:10px;padding:.85rem;text-align:center;font-size:.85rem;color:#15803d;font-weight:600;margin-top:.75rem;}
+.basari.goster{display:block;}
+
+/* ETKİNLİK LİSTESİ */
+.etkinlik-listesi{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.5rem;}
+.etkinlik-satir{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid var(--border);gap:.75rem;}
+.etkinlik-satir:last-child{border-bottom:none;}
+.es-bilgi{flex:1;min-width:0;}
+.es-baslik{font-size:.88rem;font-weight:600;color:var(--koyu);}
+.es-meta{font-size:.7rem;color:var(--dim);margin-top:.15rem;}
+.es-sil{background:var(--kirmizi);color:#fff;border:none;border-radius:6px;padding:.3rem .65rem;font-size:.68rem;font-weight:700;cursor:pointer;flex-shrink:0;}
+.bos-liste{text-align:center;padding:2rem;color:var(--dim);font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<!-- GİRİŞ EKRANI -->
+<div class="giris-overlay" id="girisOverlay">
+  <div class="giris-kutu">
+    <div style="font-size:2rem;margin-bottom:.75rem">🎪</div>
+    <div class="giris-h">Admin Paneli</div>
+    <div class="giris-sub">Artvin Etkinlik yönetim paneline giriş</div>
+    <input type="password" class="giris-input" id="girisInput" placeholder="••••••••" maxlength="20">
+    <button class="giris-btn" id="girisBtni">Giriş Yap</button>
+    <div class="giris-hata" id="girisHata">❌ Şifre hatalı. Tekrar deneyin.</div>
+  </div>
+</div>
+
+<!-- PANEL -->
+<div class="panel" id="panel">
+  <div class="panel-nav">
+    <div class="panel-logo">Artvin <span>Etkinlik</span> Admin</div>
+    <button class="cikis-btn" id="cikisBtni">Çıkış Yap</button>
+  </div>
+
+  <!-- ETKİNLİK EKLEME FORMU -->
+  <div class="form-kart">
+    <div class="form-kart-h">➕ Yeni Etkinlik Ekle</div>
+
+    <div class="f-alan">
+      <label class="f-label">Etkinlik Adı *</label>
+      <input type="text" class="f-input" id="fBaslik" placeholder="Örn: Kafkasör Yaylası Festivali">
+    </div>
+
+    <div class="f-alan">
+      <label class="f-label">Açıklama *</label>
+      <textarea class="f-textarea" id="fAcik" placeholder="Etkinlik hakkında detaylı bilgi..."></textarea>
+    </div>
+
+    <div class="f-row">
+      <div class="f-alan">
+        <label class="f-label">Tarih *</label>
+        <input type="date" class="f-input" id="fTarih">
+      </div>
+      <div class="f-alan">
+        <label class="f-label">Saat</label>
+        <input type="time" class="f-input" id="fSaat">
+      </div>
+    </div>
+
+    <div class="f-alan">
+      <label class="f-label">Konum *</label>
+      <input type="text" class="f-input" id="fKonum" placeholder="Örn: Kafkasör Yaylası, Artvin">
+    </div>
+
+    <div class="f-row">
+      <div class="f-alan">
+        <label class="f-label">Kategori *</label>
+        <select class="f-select" id="fKat">
+          <option value="">Seçin...</option>
+          <option value="konser">🎵 Konser</option>
+          <option value="festival">🎪 Festival</option>
+          <option value="doga">🏔️ Doğa</option>
+          <option value="egitim">📚 Eğitim</option>
+          <option value="spor">⚽ Spor</option>
+          <option value="kultur">🏛️ Kültür</option>
+          <option value="diger">📌 Diğer</option>
+        </select>
+      </div>
+      <div class="f-alan">
+        <label class="f-label">Ücret (boş = bilgi yok)</label>
+        <input type="text" class="f-input" id="fUcret" placeholder="Örn: 50₺ veya Ücretsiz">
+      </div>
+    </div>
+
+    <div class="f-alan">
+      <label class="f-label">Kapak Görseli URL (opsiyonel)</label>
+      <input type="url" class="f-input" id="fGorsel" placeholder="https://i.ibb.co/...">
+    </div>
+
+    <div class="f-alan" style="display:flex;gap:1.5rem;flex-wrap:wrap">
+      <div class="f-checkbox-satir">
+        <input type="checkbox" id="fUcretsiz">
+        <label for="fUcretsiz">🆓 Ücretsiz etkinlik</label>
+      </div>
+      <div class="f-checkbox-satir">
+        <input type="checkbox" id="fTrend">
+        <label for="fTrend">🔥 Trend olarak öne çıkar</label>
+      </div>
+    </div>
+
+    <button class="btn-ekle" id="btnEkle">🎪 Etkinliği Yayınla</button>
+    <div class="basari" id="basariMesaj">✅ Etkinlik başarıyla yayınlandı!</div>
+  </div>
+
+  <!-- ETKİNLİK LİSTESİ -->
+  <div class="etkinlik-listesi">
+    <div class="form-kart-h" style="margin-bottom:1rem">📋 Mevcut Etkinlikler</div>
+    <div id="etkinlikListesi"><div class="bos-liste">Yükleniyor...</div></div>
+  </div>
+</div>
+
+<script>
+// ── Firebase ──
+firebase.initializeApp({
+  apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",
+  authDomain:"artvin-imece.firebaseapp.com",
+  projectId:"artvin-imece",
+  storageBucket:"artvin-imece.firebasestorage.app",
+  messagingSenderId:"30297800879",
+  appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"
+});
+var db = firebase.firestore();
+var COL = "etkinlikler";
+
+// ── Şifre (değiştirmek için buradan) ──
+var SIFRE = "artvin2026";
+
+// ── Giriş ──
+function girisKontrol(){
+  if(sessionStorage.getItem('etkinlikAdmin')==='1'){
+    document.getElementById('girisOverlay').style.display='none';
+    document.getElementById('panel').style.display='block';
+    etkinlikleriYukle();
+  }
+}
+
+document.getElementById('girisBtni').addEventListener('click', function(){
+  var girilen = document.getElementById('girisInput').value;
+  if(girilen===SIFRE){
+    sessionStorage.setItem('etkinlikAdmin','1');
+    document.getElementById('girisOverlay').style.display='none';
+    document.getElementById('panel').style.display='block';
+    etkinlikleriYukle();
+  } else {
+    document.getElementById('girisHata').style.display='block';
+    document.getElementById('girisInput').value='';
+  }
+});
+
+document.getElementById('girisInput').addEventListener('keydown', function(e){
+  if(e.key==='Enter') document.getElementById('girisBtni').click();
+});
+
+document.getElementById('cikisBtni').addEventListener('click', function(){
+  sessionStorage.removeItem('etkinlikAdmin');
+  location.reload();
+});
+
+girisKontrol();
+
+// ── Bugünün tarihi default ──
+var bugun = new Date().toISOString().split('T')[0];
+document.getElementById('fTarih').value = bugun;
+document.getElementById('fTarih').min = bugun;
+
+// ── Etkinlik Ekle ──
+document.getElementById('btnEkle').addEventListener('click', async function(){
+  var baslik = document.getElementById('fBaslik').value.trim();
+  var acik = document.getElementById('fAcik').value.trim();
+  var tarih = document.getElementById('fTarih').value;
+  var saat = document.getElementById('fSaat').value;
+  var konum = document.getElementById('fKonum').value.trim();
+  var kat = document.getElementById('fKat').value;
+  var ucret = document.getElementById('fUcret').value.trim();
+  var gorsel = document.getElementById('fGorsel').value.trim();
+  var ucretsiz = document.getElementById('fUcretsiz').checked;
+  var trend = document.getElementById('fTrend').checked;
+
+  if(!baslik||!acik||!tarih||!konum||!kat){
+    alert('Lütfen zorunlu alanları doldurun!');
+    return;
+  }
+
+  var btn = this;
+  btn.textContent = '⏳ Yayınlanıyor...';
+  btn.disabled = true;
+
+  try {
+    await db.collection(COL).add({
+      baslik, aciklama: acik,
+      tarih: tarih + (saat ? 'T' + saat + ':00' : 'T00:00:00'),
+      saat: saat||'',
+      konum, kategori: kat,
+      ucret: ucretsiz ? 'Ücretsiz' : (ucret||''),
+      ucretsiz, trend,
+      gorsel: gorsel||'',
+      zaman: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    document.getElementById('basariMesaj').classList.add('goster');
+    ['fBaslik','fAcik','fKonum','fUcret','fGorsel'].forEach(function(id){ document.getElementById(id).value=''; });
+    document.getElementById('fKat').value='';
+    document.getElementById('fUcretsiz').checked=false;
+    document.getElementById('fTrend').checked=false;
+    document.getElementById('fTarih').value=bugun;
+
+    setTimeout(function(){ document.getElementById('basariMesaj').classList.remove('goster'); }, 3000);
+
+  } catch(e) { alert('Hata: '+e.message); }
+  finally { btn.textContent='🎪 Etkinliği Yayınla'; btn.disabled=false; }
+});
+
+// ── Etkinlik Listesi ──
+function etkinlikleriYukle(){
+  db.collection(COL).orderBy('tarih','desc').onSnapshot(function(snap){
+    var liste = document.getElementById('etkinlikListesi');
+    if(snap.empty){ liste.innerHTML='<div class="bos-liste">Henüz etkinlik yok. Yukarıdan ekleyin.</div>'; return; }
+
+    var simdi = new Date();
+    liste.innerHTML = '';
+    snap.forEach(function(doc){
+      var e = doc.data();
+      var tarih = new Date(e.tarih);
+      var gecti = tarih < simdi;
+      var satir = document.createElement('div');
+      satir.className = 'etkinlik-satir';
+      satir.style.opacity = gecti ? '.5' : '1';
+      satir.innerHTML =
+        '<div class="es-bilgi">'
+        + '<div class="es-baslik">'+(gecti?'<span style="color:var(--kirmizi);font-size:.65rem">GEÇTİ · </span>':'')+e.baslik+'</div>'
+        + '<div class="es-meta">'+tarih.toLocaleDateString('tr-TR',{day:'numeric',month:'long'})+(e.saat?' · '+e.saat:'')+(e.konum?' · '+e.konum:'')+'</div>'
+        + '</div>'
+        + '<button class="es-sil" data-id="'+doc.id+'">Sil</button>';
+      liste.appendChild(satir);
+    });
+
+    document.querySelectorAll('.es-sil').forEach(function(btn){
+      btn.addEventListener('click', async function(){
+        if(!confirm('Bu etkinliği silmek istediğinize emin misiniz?')) return;
+        try { await db.collection(COL).doc(this.getAttribute('data-id')).delete(); }
+        catch(e) { alert('Hata: '+e.message); }
+      });
+    });
+  });
+}
+</script>
+</body>
+</html>
