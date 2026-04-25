@@ -203,7 +203,15 @@ footer a{color:var(--vivid);text-decoration:none;}
       </div>
     </div>
 
-    <button class="btn-gonder" onclick="ilanGonder()">✅ İlanı Yayınla</button>
+    
+        <div style="display:flex;align-items:flex-start;gap:.6rem;margin:.5rem 0">
+          <input type="checkbox" id="kvkkOnay" style="margin-top:.2rem;accent-color:#3ddb8a;width:16px;height:16px;flex-shrink:0;cursor:pointer">
+          <label for="kvkkOnay" style="font-size:.72rem;color:rgba(224,237,227,.45);line-height:1.65;cursor:pointer">
+            <a href="/gizlilik.html" target="_blank" style="color:#3ddb8a;text-decoration:none">Gizlilik Politikası & Kullanım Koşulları</a>'nı okudum, kabul ediyorum. Telefon numaram diğer kullanıcılara görünecektir.
+          </label>
+        </div>
+
+        <button class="btn-gonder" onclick="ilanGonder()">✅ İlanı Yayınla</button>
     <div class="basari" id="basariMesaj">
       <p>🎉 İlanınız yayınlandı! "İlanlar" sekmesinden görebilirsiniz.</p>
     </div>
@@ -231,7 +239,7 @@ footer a{color:var(--vivid);text-decoration:none;}
 
 <footer role="contentinfo">
   <p>© 2026 <a href="/">artvinrehber.com</a> — Artvin'in dijital rehberi</p>
-  <p><a href="/">Ana Sayfa</a> · <a href="/eczane.html">Nöbetçi Eczane</a> · <a href="/taksi.html">Taksimetre</a></p>
+  <p><a href="/">Ana Sayfa</a> · <a href="/eczane.html">Nöbetçi Eczane</a> · <a href="/gizlilik.html">Gizlilik & KVKK</a></p>
 </footer>
 
 
@@ -295,6 +303,11 @@ window.ilanGonder = async function() {
 
   if (!kat||!bas||!ilce||!tarih||!acik||!ad||!tel) {
     alert('Lütfen yıldızlı alanları doldurun!');
+    return;
+  }
+  var kvkk = document.getElementById('kvkkOnay');
+  if (kvkk && !kvkk.checked) {
+    alert('Devam etmek için Gizlilik Politikası\'nı kabul etmeniz gerekiyor.');
     return;
   }
 
