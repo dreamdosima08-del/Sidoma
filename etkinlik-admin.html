@@ -55,7 +55,8 @@ html,body{background:var(--bg);color:var(--metin);font-family:'Inter',sans-serif
 .es-bilgi{flex:1;min-width:0;}
 .es-baslik{font-size:.88rem;font-weight:600;color:var(--koyu);}
 .es-meta{font-size:.7rem;color:var(--dim);margin-top:.15rem;}
-.es-sil{background:var(--kirmizi);color:#fff;border:none;border-radius:6px;padding:.3rem .65rem;font-size:.68rem;font-weight:700;cursor:pointer;flex-shrink:0;}
+.es-sil{background:var(--kirmizi);color:#fff;border:none;border-radius:6px;padding:.3rem .65rem;font-size:.68rem;font-weight:700;cursor:pointer;}
+.es-duzenle{background:var(--yesil);color:#fff;border:none;border-radius:6px;padding:.3rem .65rem;font-size:.68rem;font-weight:700;cursor:pointer;}
 .bos-liste{text-align:center;padding:2rem;color:var(--dim);font-size:.85rem;}
 </style>
 </head>
@@ -82,11 +83,12 @@ html,body{background:var(--bg);color:var(--metin);font-family:'Inter',sans-serif
 
   <!-- ETKİNLİK EKLEME FORMU -->
   <div class="form-kart">
-    <div class="form-kart-h">➕ Yeni Etkinlik Ekle</div>
+    <div class="form-kart-h" id="formBaslik">➕ Yeni Etkinlik Ekle</div>
 
     <div class="f-alan">
       <label class="f-label">Etkinlik Adı *</label>
-      <input type="text" class="f-input" id="fBaslik" placeholder="Örn: Kafkasör Yaylası Festivali">
+      <input type="hidden" id="duzenlemeId" value="">
+    <input type="text" class="f-input" id="fBaslik" placeholder="Örn: Kafkasör Yaylası Festivali">
     </div>
 
     <div class="f-alan">
@@ -146,7 +148,10 @@ html,body{background:var(--bg);color:var(--metin);font-family:'Inter',sans-serif
       </div>
     </div>
 
-    <button class="btn-ekle" id="btnEkle">🎪 Etkinliği Yayınla</button>
+    <div style="display:flex;gap:.5rem">
+      <button class="btn-ekle" id="btnEkle" style="flex:1">🎪 Yayınla / Güncelle</button>
+      <button id="btnIptal" style="display:none;padding:.9rem 1rem;background:#fff;border:1.5px solid var(--border);border-radius:12px;font-family:Inter,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;color:var(--dim)">İptal</button>
+    </div>
     <div class="basari" id="basariMesaj">✅ Etkinlik başarıyla yayınlandı!</div>
   </div>
 
@@ -172,6 +177,37 @@ var COL = "etkinlikler";
 
 // ── Şifre (değiştirmek için buradan) ──
 var SIFRE = "artvin2026";
+
+
+// ── Düzenleme ──
+function duzenleAc(id, data) {
+  document.getElementById('duzenlemeId').value = id;
+  document.getElementById('fBaslik').value = data.baslik||'';
+  document.getElementById('fAcik').value = data.aciklama||'';
+  var tarihParca = (data.tarih||'').split('T');
+  document.getElementById('fTarih').value = tarihParca[0]||'';
+  document.getElementById('fSaat').value = data.saat||'';
+  document.getElementById('fKonum').value = data.konum||'';
+  document.getElementById('fKat').value = data.kategori||'';
+  document.getElementById('fUcret').value = data.ucretsiz ? '' : (data.ucret||'');
+  document.getElementById('fGorsel').value = data.gorsel||'';
+  document.getElementById('fUcretsiz').checked = data.ucretsiz||false;
+  document.getElementById('fTrend').checked = data.trend||false;
+  document.getElementById('formBaslik').textContent = '✏️ Etkinliği Düzenle';
+  document.getElementById('btnIptal').style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('btnIptal').addEventListener('click', function(){
+  document.getElementById('duzenlemeId').value = '';
+  document.getElementById('formBaslik').textContent = '➕ Yeni Etkinlik Ekle';
+  document.getElementById('btnIptal').style.display = 'none';
+  ['fBaslik','fAcik','fKonum','fUcret','fGorsel'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('fKat').value='';
+  document.getElementById('fUcretsiz').checked=false;
+  document.getElementById('fTrend').checked=false;
+  document.getElementById('fTarih').value=bugun;
+});
 
 // ── Giriş ──
 function girisKontrol(){
@@ -234,16 +270,25 @@ document.getElementById('btnEkle').addEventListener('click', async function(){
   btn.disabled = true;
 
   try {
-    await db.collection(COL).add({
+    var duzId = document.getElementById('duzenlemeId').value;
+    var veri = {
       baslik, aciklama: acik,
       tarih: tarih + (saat ? 'T' + saat + ':00' : 'T00:00:00'),
       saat: saat||'',
       konum, kategori: kat,
       ucret: ucretsiz ? 'Ücretsiz' : (ucret||''),
       ucretsiz, trend,
-      gorsel: gorsel||'',
-      zaman: firebase.firestore.FieldValue.serverTimestamp()
-    });
+      gorsel: gorsel||''
+    };
+    if (duzId) {
+      await db.collection(COL).doc(duzId).update(veri);
+      document.getElementById('duzenlemeId').value = '';
+      document.getElementById('formBaslik').textContent = '➕ Yeni Etkinlik Ekle';
+      document.getElementById('btnIptal').style.display = 'none';
+    } else {
+      veri.zaman = firebase.firestore.FieldValue.serverTimestamp();
+      await db.collection(COL).add(veri);
+    }
 
     document.getElementById('basariMesaj').classList.add('goster');
     ['fBaslik','fAcik','fKonum','fUcret','fGorsel'].forEach(function(id){ document.getElementById(id).value=''; });
@@ -278,10 +323,17 @@ function etkinlikleriYukle(){
         + '<div class="es-baslik">'+(gecti?'<span style="color:var(--kirmizi);font-size:.65rem">GEÇTİ · </span>':'')+e.baslik+'</div>'
         + '<div class="es-meta">'+tarih.toLocaleDateString('tr-TR',{day:'numeric',month:'long'})+(e.saat?' · '+e.saat:'')+(e.konum?' · '+e.konum:'')+'</div>'
         + '</div>'
-        + '<button class="es-sil" data-id="'+doc.id+'">Sil</button>';
+        + '<div style="display:flex;gap:.4rem"><button class="es-duzenle" data-id="'+doc.id+'">✏️ Düzenle</button><button class="es-sil" data-id="'+doc.id+'">🗑️ Sil</button></div>';
       liste.appendChild(satir);
     });
 
+    document.querySelectorAll('.es-duzenle').forEach(function(btn){
+      btn.addEventListener('click', async function(){
+        var id = this.getAttribute('data-id');
+        var snap = await db.collection(COL).doc(id).get();
+        if(snap.exists) duzenleAc(id, snap.data());
+      });
+    });
     document.querySelectorAll('.es-sil').forEach(function(btn){
       btn.addEventListener('click', async function(){
         if(!confirm('Bu etkinliği silmek istediğinize emin misiniz?')) return;
