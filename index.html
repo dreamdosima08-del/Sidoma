@@ -830,27 +830,26 @@ border-radius:20px;}
 }
 
 
-/* SİTE İÇİ ARAMA */
-.arama-wrap{padding:.5rem 1.25rem .75rem;position:relative;z-index:10;}
-.arama-ic{position:relative;}
-.arama-input{width:100%;background:rgba(0,0,0,.85);border:1.5px solid rgba(255,255,255,.18);border-radius:14px;padding:.95rem 3rem .95rem 2.85rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;color:#fff;outline:none;transition:.2s;backdrop-filter:blur(10px);}
-.arama-input::placeholder{color:rgba(255,255,255,.3);}
-.arama-input:focus{border-color:rgba(255,255,255,.4);background:rgba(0,0,0,.95);}
-.arama-ikon{position:absolute;left:.95rem;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;}
-.arama-temizle{position:absolute;right:.85rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:.85rem;display:none;padding:.2rem;}
-
-/* SONUÇ DROPDOWN */
-.arama-sonuclar{position:absolute;top:calc(100% + .35rem);left:0;right:0;background:#0d1f12;border:1.5px solid rgba(255,255,255,.15);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:999;display:none;max-height:320px;overflow-y:auto;}
-.arama-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;transition:.1s;}
+/* ═══════════ SİTE İÇİ ARAMA ═══════════ */
+.arama-wrap{position:absolute;top:.9rem;left:0;right:0;padding:0 1rem;z-index:50;}
+.arama-ic{position:relative;display:flex;align-items:center;background:#fff;border-radius:999px;box-shadow:0 4px 20px rgba(0,0,0,.4);height:50px;}
+.arama-sembol{flex-shrink:0;width:48px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.arama-ayrac{width:1px;height:26px;background:rgba(0,0,0,.12);flex-shrink:0;}
+.arama-input{flex:1;background:transparent;border:none;outline:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;color:#222;padding:0 .65rem;height:100%;min-width:0;}
+.arama-input::placeholder{color:#aaa;}
+.arama-saglar{display:flex;align-items:center;padding-right:.45rem;gap:.15rem;flex-shrink:0;}
+.arama-mic,.arama-btn{background:none;border:none;cursor:pointer;padding:.45rem;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s;}
+.arama-mic{color:#888;}.arama-mic:hover{background:rgba(0,0,0,.07);}
+.arama-btn{color:#1a73e8;}.arama-btn:hover{background:rgba(26,115,232,.08);}
+.arama-sonuclar{position:absolute;top:calc(100% + .45rem);left:0;right:0;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.18);z-index:999;display:none;max-height:320px;overflow-y:auto;}
+.arama-item{display:flex;align-items:center;gap:.7rem;padding:.72rem 1rem;border-bottom:1px solid rgba(0,0,0,.05);text-decoration:none;transition:.1s;}
 .arama-item:last-child{border-bottom:none;}
-.arama-item:hover,.arama-item:focus{background:rgba(255,255,255,.07);}
-.arama-item-ikon{font-size:1.1rem;flex-shrink:0;}
+.arama-item:hover{background:#f5f5f5;}
+.arama-item-ikon{font-size:1rem;flex-shrink:0;width:22px;text-align:center;}
 .arama-item-ic{flex:1;min-width:0;}
-.arama-item-baslik{font-size:.82rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.arama-item-alt{font-size:.68rem;color:rgba(255,255,255,.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.arama-bos{padding:1rem;text-align:center;font-size:.8rem;color:rgba(255,255,255,.35);}
-.arama-label{text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:.4rem;margin-bottom:.1rem;}
-
+.arama-item-baslik{font-size:.8rem;font-weight:700;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.arama-item-alt{font-size:.66rem;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.arama-bos{padding:.85rem;text-align:center;font-size:.78rem;color:#aaa;}
 </style>
 
   <!-- ═══ SEO & GEO OPTİMİZASYON ═══ -->
@@ -1071,6 +1070,22 @@ border-radius:20px;}
   <div class="hero-overlay"></div>
   
   <!-- Türk Bayrağı -->
+<div class="arama-wrap">
+  <div class="arama-ic">
+    <span class="arama-sembol">🏔️</span>
+    <div class="arama-ayrac"></div>
+    <input class="arama-input" type="text" id="aramaInput" placeholder="Artvin'de ara..." autocomplete="off" oninput="aramaYap(this.value)" aria-label="Site içi arama">
+    <div class="arama-saglar">
+      <button class="arama-mic" onclick="mikrofon()" title="Sesli ara" aria-label="Sesli arama">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </button>
+      <button class="arama-btn" onclick="aramaYap(document.getElementById('aramaInput').value)" title="Ara" aria-label="Ara">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+    <div class="arama-sonuclar" id="aramaSonuclar"></div>
+  </div>
+</div>
   <div class="hero-bayrak">
     <svg viewBox="0 0 30 20" width="32" height="21" xmlns="http://www.w3.org/2000/svg">
       <rect width="30" height="20" fill="#E30A17"/>
@@ -1081,17 +1096,7 @@ border-radius:20px;}
     </svg>
     <span class="hero-bayrak-yazi">T.C. Artvin</span>
   </div>
-<div class="arama-wrap">
-  <div class="arama-ic">
-    <span class="arama-ikon">🔍</span>
-    <input class="arama-input" type="text" id="aramaInput" placeholder="Ara: taksi, dolmuş, yurt, eczane..." autocomplete="off" oninput="aramaYap(this.value)">
-    <button class="arama-temizle" id="aramaTem" onclick="aramaTem()">✕</button>
-    <div class="arama-sonuclar" id="aramaSonuclar"></div>
-  </div>
-</div>
-</div>
-
-<div class="hero-content" style="padding-top:.25rem;">
+<div class="hero-content">
     <div class="hero-tagline">Göğe Komşu Topraklar</div>
     <div class="hero-label">Karadeniz · Türkiye · 2026</div>
     <h1 class="hero-city">ARTVİN</h1>
@@ -2668,102 +2673,51 @@ havaYukle();
 </script>
 
 
-<script>
-var ARAMA_VERİSİ = [
-  {url:"/taksi.html", ikon:"🚕", baslik:"Artvin Taksi Ücretleri 2026", alt:"Kampüs · Havalimanı · Şehirlerarası tarife"},
-  {url:"/dolmus.html", ikon:"🚐", baslik:"Artvin Dolmuş Durakları & Fiyatları", alt:"Mavi Beyaz · Kırmızı Beyaz · İlçeler arası"},
-  {url:"/havas.html", ikon:"✈️", baslik:"Artvin Havaş Saatleri & Fiyatları", alt:"Rize-Artvin Havalimanı · Duraklar · 2026"},
-  {url:"/artvin-nasil-gidilir.html", ikon:"🎓", baslik:"Artvin'e Nasıl Gidilir?", alt:"25 şehirden Artvin'e otobüs & uçak rehberi"},
-  {url:"/artvin-kampus-ulasim.html", ikon:"🏫", baslik:"Kampüs & Yurt Ulaşımı", alt:"KYK · Özel Yurtlar · Mavi Beyaz · Seyitler"},
-  {url:"/eczane.html", ikon:"💊", baslik:"Artvin Nöbetçi Eczane", alt:"Güncel nöbetçi eczane sorgulama"},
-  {url:"/eczane-rehber.html", ikon:"🏥", baslik:"Artvin Eczane Rehberi", alt:"Tüm Artvin eczaneleri listesi"},
-  {url:"/oteller.html", ikon:"🏨", baslik:"Artvin Otelleri", alt:"104 otel ve pansiyon — tüm ilçeler"},
-  {url:"/namaz.html", ikon:"🕌", baslik:"Artvin Namaz Vakitleri", alt:"İmsak · Sabah · Öğle · İkindi · Akşam · Yatsı"},
-  {url:"/artvinmetre.html", ikon:"📊", baslik:"ArtvinMetre", alt:"Artvin'in sayısal rehberi — nüfus, rakım, iklim"},
-  {url:"/imece.html", ikon:"🌿", baslik:"Artvin İmece", alt:"Paylaş · Takas et · Yardımlaş"},
-  {url:"/kayipbuluntu.html", ikon:"🔍", baslik:"Artvin Kayıp & Buluntu", alt:"Kayıp eşya ilanları"},
-  {url:"/etkinlik.html", ikon:"🎪", baslik:"Artvin Etkinlikleri", alt:"Konser, festival, kültürel etkinlikler"},
-  {url:"/artvin-sorular-1.html", ikon:"❓", baslik:"Artvin Hakkında Sorular", alt:"En çok sorulan sorular ve cevaplar"},
-  {url:"/artvin-numeroloji.html", ikon:"✨", baslik:"Artvin Numerolojisi", alt:"Sen hangi Artvin'sin? Kader sayını öğren"},
-  {url:"/galeri.html", ikon:"📷", baslik:"Artvin Fotoğraf Galerisi", alt:"Yaylalar, köyler, doğa"},
-  {url:"/blog34.html", ikon:"🏔️", baslik:"Şavşat Karagöl'e Nasıl Gidilir?", alt:"Ulaşım rehberi · Giriş ücreti"},
-  {url:"/blog33.html", ikon:"🌊", baslik:"Borçka Karagöl'e Nasıl Gidilir?", alt:"Ulaşım rehberi · Giriş ücreti"},
-  {url:"/blog35.html", ikon:"📊", baslik:"Artvin'e En Çok Göç Veren İller", alt:"2025 TÜİK nüfus verileri"},
-  {url:"/blog36.html", ikon:"📊", baslik:"Artvin'in En Çok Göç Verdiği İller", alt:"2025 TÜİK nüfus verileri"},
-  {url:"/artvin-goc-2025.html", ikon:"📈", baslik:"Artvin Göç İstatistikleri 2025", alt:"Nüfus hareketleri ve veriler"},
-  {url:"/havas.html", ikon:"🚌", baslik:"Havaş Artvin Durakları", alt:"Borçka · Hopa · Arhavi · Kalkış saatleri"},
-  {url:"/taksi.html", ikon:"🛂", baslik:"Sarp Sınır Kapısı Taksi", alt:"Havalimanı ↔ Sarp · 3500-4500 TL"},
-  {url:"/artvin-kampus-ulasim.html", ikon:"🏠", baslik:"Artvin Özel Öğrenci Yurtları", alt:"FYD · Kafkas · Livane · Bakır · Öykü · Aris"},
-  {url:"/artvin-kampus-ulasim.html", ikon:"🏛️", baslik:"KYK Yurtları Artvin", alt:"A-B Erkek · C Blok · Şah Sultan · Çiçek Nene · Seyitler"},
-  {url:"/hakkimizda.html", ikon:"ℹ️", baslik:"Hakkımızda", alt:"Artvin Rehberi hakkında"},
-  {url:"/gizlilik.html", ikon:"🔒", baslik:"Gizlilik Politikası", alt:"Kişisel verilerin korunması"}
+<script id="aramaJS">
+var AV=[
+  {u:"/taksi.html",i:"🚕",b:"Artvin Taksi Ücretleri 2026",a:"Kampüs · Havalimanı · Şehirlerarası tarife"},
+  {u:"/dolmus.html",i:"🚐",b:"Artvin Dolmuş Durakları & Fiyatları",a:"Mavi Beyaz · Kırmızı Beyaz · İlçeler arası"},
+  {u:"/havas.html",i:"✈️",b:"Artvin Havaş Saatleri & Fiyatları",a:"Rize-Artvin Havalimanı · Duraklar · 2026"},
+  {u:"/artvin-nasil-gidilir.html",i:"🎓",b:"Artvin'e Nasıl Gidilir?",a:"25 şehirden otobüs & uçak rehberi"},
+  {u:"/artvin-kampus-ulasim.html",i:"🏫",b:"Kampüs & Yurt Ulaşımı",a:"KYK · Özel Yurtlar · Mavi Beyaz · Seyitler"},
+  {u:"/artvin-kampus-ulasim.html",i:"🏠",b:"Artvin Özel Öğrenci Yurtları",a:"FYD · Kafkas · Livane · Bakır · Öykü · Aris"},
+  {u:"/artvin-kampus-ulasim.html",i:"🏛️",b:"Artvin KYK Yurtları",a:"A-B Erkek · C Blok · Şah Sultan · Çiçek Nene"},
+  {u:"/eczane.html",i:"💊",b:"Artvin Nöbetçi Eczane",a:"Güncel nöbetçi eczane sorgulama"},
+  {u:"/eczane-rehber.html",i:"🏥",b:"Artvin Eczane Rehberi",a:"Tüm Artvin eczaneleri listesi"},
+  {u:"/oteller.html",i:"🏨",b:"Artvin Otelleri",a:"104 otel ve pansiyon — tüm ilçeler"},
+  {u:"/namaz.html",i:"🕌",b:"Artvin Namaz Vakitleri",a:"İmsak · Sabah · Öğle · İkindi · Akşam · Yatsı"},
+  {u:"/artvinmetre.html",i:"📊",b:"ArtvinMetre",a:"Artvin'in sayısal rehberi"},
+  {u:"/imece.html",i:"🌿",b:"Artvin İmece",a:"Paylaş · Takas · Yardımlaş"},
+  {u:"/kayipbuluntu.html",i:"🔍",b:"Artvin Kayıp & Buluntu",a:"Kayıp eşya ilanları"},
+  {u:"/etkinlik.html",i:"🎪",b:"Artvin Etkinlikleri",a:"Konser · Festival · Kültürel etkinlikler"},
+  {u:"/artvin-sorular-1.html",i:"❓",b:"Artvin Hakkında Sorular",a:"En çok sorulan sorular"},
+  {u:"/artvin-numeroloji.html",i:"✨",b:"Artvin Numerolojisi",a:"Sen hangi Artvin'sin?"},
+  {u:"/galeri.html",i:"📷",b:"Artvin Fotoğraf Galerisi",a:"Yaylalar · Köyler · Doğa"},
+  {u:"/blog34.html",i:"🏔️",b:"Şavşat Karagöl'e Nasıl Gidilir?",a:"Ulaşım rehberi · Giriş ücreti"},
+  {u:"/blog33.html",i:"🌊",b:"Borçka Karagöl'e Nasıl Gidilir?",a:"Ulaşım rehberi · Giriş ücreti"},
+  {u:"/blog35.html",i:"📈",b:"Artvin'e En Çok Göç Veren İller",a:"2025 TÜİK verileri"},
+  {u:"/blog36.html",i:"📉",b:"Artvin'in En Çok Göç Verdiği İller",a:"2025 TÜİK verileri"},
+  {u:"/taksi.html",i:"🛂",b:"Sarp Sınır Kapısı Taksi",a:"Havalimanı ↔ Sarp 3500-4500₺"},
+  {u:"/hakkimizda.html",i:"ℹ️",b:"Hakkımızda",a:"Artvin Rehberi hakkında"}
 ];
-
-function aramaYap(q) {
-  var input = document.getElementById('aramaInput');
-  var tem = document.getElementById('aramaTem');
-  var sonuclar = document.getElementById('aramaSonuclar');
-  
-  q = q.trim().toLowerCase();
-  tem.style.display = q ? 'block' : 'none';
-  
-  if(q.length < 2) {
-    sonuclar.style.display = 'none';
-    return;
-  }
-  
-  // Türkçe normalize
-  var norm = function(s) {
-    return s.toLowerCase()
-      .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
-      .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c');
-  };
-  
-  var qn = norm(q);
-  
-  var eslesler = ARAMA_VERİSİ.filter(function(item) {
-    return norm(item.baslik).includes(qn) || norm(item.alt).includes(qn) || norm(item.url).includes(qn);
-  });
-  
-  // Tekrar eden URL'leri filtrele
-  var gorulenUrls = [];
-  eslesler = eslesler.filter(function(item) {
-    var key = item.url + item.baslik;
-    if(gorulenUrls.includes(key)) return false;
-    gorulenUrls.push(key);
-    return true;
-  });
-  
-  if(eslesler.length === 0) {
-    sonuclar.innerHTML = '<div class="arama-bos">🔍 Sonuç bulunamadı</div>';
-  } else {
-    sonuclar.innerHTML = eslesler.slice(0, 8).map(function(item) {
-      return '<a href="' + item.url + '" class="arama-item">' +
-        '<span class="arama-item-ikon">' + item.ikon + '</span>' +
-        '<div class="arama-item-ic">' +
-          '<div class="arama-item-baslik">' + item.baslik + '</div>' +
-          '<div class="arama-item-alt">' + item.alt + '</div>' +
-        '</div>' +
-        '</a>';
-    }).join('');
-  }
-  sonuclar.style.display = 'block';
+function nr(s){return s.toLowerCase().replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c');}
+function aramaYap(q){
+  var s=document.getElementById('aramaSonuclar');
+  q=q.trim();
+  if(q.length<2){s.style.display='none';return;}
+  var qn=nr(q);
+  var r=AV.filter(function(x){return nr(x.b).includes(qn)||nr(x.a).includes(qn)||nr(x.u).includes(qn);});
+  var seen=[];r=r.filter(function(x){var k=x.u+x.b;if(seen.includes(k))return false;seen.push(k);return true;});
+  s.innerHTML=r.length?r.slice(0,8).map(function(x){return'<a href="'+x.u+'" class="arama-item"><span class="arama-item-ikon">'+x.i+'</span><div class="arama-item-ic"><div class="arama-item-baslik">'+x.b+'</div><div class="arama-item-alt">'+x.a+'</div></div></a>';}).join(''):'<div class="arama-bos">Sonuç bulunamadı</div>';
+  s.style.display='block';
 }
-
-function aramaTem() {
-  document.getElementById('aramaInput').value = '';
-  document.getElementById('aramaSonuclar').style.display = 'none';
-  document.getElementById('aramaTem').style.display = 'none';
-  document.getElementById('aramaInput').focus();
+function mikrofon(){
+  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){alert('Tarayıcınız sesli aramayı desteklemiyor.');return;}
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  var r=new SR();r.lang='tr-TR';r.start();
+  r.onresult=function(e){var t=e.results[0][0].transcript;document.getElementById('aramaInput').value=t;aramaYap(t);};
 }
-
-// Dışarı tıklayınca kapat
-document.addEventListener('click', function(e) {
-  if(!e.target.closest('.arama-ic')) {
-    document.getElementById('aramaSonuclar').style.display = 'none';
-  }
-});
+document.addEventListener('click',function(e){if(!e.target.closest('.arama-ic'))document.getElementById('aramaSonuclar').style.display='none';});
 </script>
-
 </body>
 </html>
