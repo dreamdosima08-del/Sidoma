@@ -831,13 +831,13 @@ border-radius:20px;}
 
 
 /* SİTE İÇİ ARAMA */
-.arama-wrap{padding:.75rem 1.25rem 0;position:relative;z-index:2;}
+.arama-wrap{padding:.5rem 1.25rem .75rem;position:relative;z-index:10;}
 .arama-ic{position:relative;}
-.arama-input{width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:.75rem 1rem .75rem 2.75rem;font-family:'Plus Jakarta Sans','Bebas Neue',sans-serif;font-size:.88rem;color:#fff;outline:none;transition:.2s;backdrop-filter:blur(8px);}
-.arama-input::placeholder{color:rgba(255,255,255,.4);}
-.arama-input:focus{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.15);}
-.arama-ikon{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;}
-.arama-temizle{position:absolute;right:.85rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:.85rem;display:none;padding:.2rem;}
+.arama-input{width:100%;background:rgba(0,0,0,.85);border:1.5px solid rgba(255,255,255,.18);border-radius:14px;padding:.95rem 3rem .95rem 2.85rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;color:#fff;outline:none;transition:.2s;backdrop-filter:blur(10px);}
+.arama-input::placeholder{color:rgba(255,255,255,.3);}
+.arama-input:focus{border-color:rgba(255,255,255,.4);background:rgba(0,0,0,.95);}
+.arama-ikon{position:absolute;left:.95rem;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;}
+.arama-temizle{position:absolute;right:.85rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:.85rem;display:none;padding:.2rem;}
 
 /* SONUÇ DROPDOWN */
 .arama-sonuclar{position:absolute;top:calc(100% + .35rem);left:0;right:0;background:#0d1f12;border:1.5px solid rgba(255,255,255,.15);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:999;display:none;max-height:320px;overflow-y:auto;}
@@ -1081,18 +1081,17 @@ border-radius:20px;}
     </svg>
     <span class="hero-bayrak-yazi">T.C. Artvin</span>
   </div>
-
 <div class="arama-wrap">
-  <div class="arama-label">🔍 Site İçi Arama</div>
   <div class="arama-ic">
     <span class="arama-ikon">🔍</span>
-    <input class="arama-input" type="text" id="aramaInput" placeholder="Taksi, dolmuş, eczane, yurt..." autocomplete="off" oninput="aramaYap(this.value)">
+    <input class="arama-input" type="text" id="aramaInput" placeholder="Ara: taksi, dolmuş, yurt, eczane..." autocomplete="off" oninput="aramaYap(this.value)">
     <button class="arama-temizle" id="aramaTem" onclick="aramaTem()">✕</button>
     <div class="arama-sonuclar" id="aramaSonuclar"></div>
   </div>
 </div>
+</div>
 
-<div class="hero-content">
+<div class="hero-content" style="padding-top:.25rem;">
     <div class="hero-tagline">Göğe Komşu Topraklar</div>
     <div class="hero-label">Karadeniz · Türkiye · 2026</div>
     <h1 class="hero-city">ARTVİN</h1>
