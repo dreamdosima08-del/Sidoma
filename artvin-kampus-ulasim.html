@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Artvin'e Vardım — Kampüse ve Yurda Nasıl Giderim? | Artvin Çoruh Üniversitesi Ulaşım</title>
 <meta name="description" content="Artvin Çoruh Üniversitesi kampüs ve KYK yurt ulaşımı 2026. Mavi Beyaz dolmuş (33 nolu kooperatif), Kırmızı Beyaz Seyitler dolmuşu (37 nolu kooperatif). Orta Mahalle, Çayağzı, Seyitler. Taksi ücretleri.">
-<meta name="keywords" content="artvin çoruh üniversitesi kampüs ulaşım, artvin otogar kampüse dolmuş, artvin seyitler kampüs ulaşım, artvin kyk yurt ulaşım, artvin mavi beyaz dolmuş, artvin kırmızı beyaz dolmuş, artvin 33 nolu minibüs kooperatifi, artvin 37 nolu minibüs kooperatifi, artvin öğrenci dolmuş fiyatı 2026, artvin merkez kampüs çayağzı korzul, artvin seyitler kampüs fidanlık, artvin kyk orta mahalle, artvin kyk çarşı mahallesi">
+<meta name="keywords" content="artvin çoruh üniversitesi kampüs ulaşım, artvin özel öğrenci yurdu, artvin kyk yurt ulaşım, artvin ismet acar yurdu, artvin fyd rezidans, artvin bakır apart, artvin kafkas yurdu, artvin livane kız apartmanı, artvin gaye kız evi, artvin özel yurt otogar ulaşım, artvin mavi beyaz dolmuş, artvin kırmızı beyaz dolmuş, artvin öğrenci yurt fiyatları 2026">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://artvinrehber.com/artvin-kampus-ulasim.html">
 <meta property="og:type" content="website">
@@ -155,6 +155,28 @@ footer a{color:var(--yesil-c);text-decoration:none;}
 .mb-sembol{background:linear-gradient(135deg,#1d4ed8 50%,#fff 50%);border:2px solid #1d4ed8;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.3);}
 .kb-sembol{background:linear-gradient(135deg,#b91c1c 50%,#fff 50%);border:2px solid #b91c1c;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.3);}
 
+
+/* SEKME SİSTEMİ */
+.sekme-wrap{display:flex;gap:.4rem;padding:1.25rem 1.25rem 0;background:var(--bg);}
+.sekme-btn{flex:1;padding:.65rem .5rem;border-radius:10px 10px 0 0;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;border:1.5px solid var(--border);border-bottom:none;background:var(--bg);color:var(--dim);transition:.15s;}
+.sekme-btn.aktif{background:var(--white);color:var(--yesil);border-color:var(--border2);}
+
+/* ÖZEL YURT KARTI */
+.oyurt-kart{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:.65rem;border:1.5px solid var(--border);}
+.oyurt-header{background:var(--yesil-a);border-bottom:1.5px solid var(--yesil-b);padding:.85rem 1.1rem;display:flex;align-items:center;justify-content:space-between;}
+.oyurt-isim{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.06em;color:var(--koyu);}
+.oyurt-tip{font-size:.6rem;font-weight:800;padding:.18rem .6rem;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;}
+.tip-kiz{background:#fce7f3;color:#be185d;}
+.tip-erkek{background:#dbeafe;color:#1d4ed8;}
+.tip-karma{background:#f3e8ff;color:#6d28d9;}
+.oyurt-ic{padding:.85rem 1.1rem;}
+.oyurt-satir{display:flex;align-items:baseline;justify-content:space-between;padding:.32rem 0;border-bottom:1px solid rgba(0,0,0,.04);}
+.oyurt-satir:last-child{border-bottom:none;}
+.oyurt-e{font-size:.7rem;color:var(--dim);font-weight:500;}
+.oyurt-v{font-size:.8rem;color:var(--metin);font-weight:600;text-align:right;max-width:65%;}
+.oyurt-maps{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.65rem;background:var(--mavi-a);border:1.5px solid var(--mavi-b);border-radius:8px;padding:.55rem;text-decoration:none;font-size:.75rem;font-weight:600;color:var(--mavi);}
+.oyurt-tel{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.35rem;background:var(--yesil-a);border:1.5px solid var(--yesil-b);border-radius:8px;padding:.55rem;text-decoration:none;font-size:.8rem;font-weight:700;color:var(--yesil);font-family:'Bebas Neue',sans-serif;letter-spacing:.06em;}
+
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
@@ -182,6 +204,12 @@ footer a{color:var(--yesil-c);text-decoration:none;}
 </div>
 
 <!-- SEÇİM EKRANI -->
+
+<div class="sekme-wrap">
+  <button class="sekme-btn aktif" id="sekme-devlet" onclick="sekmeGec('devlet')">🏛️ Devlet Yurtları (KYK)</button>
+  <button class="sekme-btn" id="sekme-ozel" onclick="sekmeGec('ozel')">🏠 Özel Yurtlar & Evler</button>
+</div>
+
 <div class="secim-wrap" id="secimWrap">
   <span class="secim-label">🗺️ Nereye gidiyorsun?</span>
 
@@ -227,6 +255,165 @@ footer a{color:var(--yesil-c);text-decoration:none;}
       <span class="secim-btn-alt">Seyitler Köyü</span>
     </button>
   </div>
+
+<!-- ÖZEL YURTLAR -->
+<div id="ozelYurtWrap" style="display:none;padding:1.25rem;">
+
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:var(--koyu);margin-bottom:.25rem;">Artvin Özel Öğrenci Yurtları & Evleri</h2>
+  <p style="font-size:.75rem;color:var(--dim);margin-bottom:1rem;line-height:1.7;">Artvin'de KYK yurtlarına ek olarak çeşitli özel öğrenci yurtları ve evleri bulunmaktadır. Tüm ulaşım bilgileri otogar çıkışına göredir.</p>
+
+  <!-- Çayağzı/Korzul Grubu -->
+  <div style="font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--altin);margin:.5rem 0 .5rem;">📍 Çayağzı (Korzul) — Merkez Kampüs Yakını</div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">İlim Yayma Cemiyeti — Nedime Lütfiye Günal Yurdu</div>
+      <span class="oyurt-tip tip-kiz">Kız</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Mahalle</span><span class="oyurt-v">Çayağzı (Korzul)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz — Aktarmasız</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">240 ₺ (İndi-Bindi)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Merkez Kampüs</span><span class="oyurt-v">~5 dk yürüyüş</span></div>
+      <a class="oyurt-tel" href="tel:04662125010">📞 0466 212 50 10</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/ruaQ9AeZuB8csdCq5" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">Özel Kafkas Yükseköğrenim Erkek Yurdu</div>
+      <span class="oyurt-tip tip-erkek">Erkek</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Mahalle</span><span class="oyurt-v">Çayağzı (Korzul)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz — Aktarmasız</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">240 ₺ (İndi-Bindi)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Merkez Kampüs</span><span class="oyurt-v">~5 dk yürüyüş</span></div>
+      <a class="oyurt-tel" href="tel:04662124972">📞 0466 212 49 72</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/QWcUTa3wQqz5YdML9" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">Artvin Özel Livane Kız Öğrenci Apartmanı</div>
+      <span class="oyurt-tip tip-kiz">Kız</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Mahalle</span><span class="oyurt-v">Çayağzı (Korzul)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz — Aktarmasız</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">240 ₺ (İndi-Bindi)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Merkez Kampüs</span><span class="oyurt-v">~5 dk yürüyüş</span></div>
+      <a class="oyurt-tel" href="tel:05342740515">📞 0534 274 05 15</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/D2uStqoTKP7YKf5r8" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <!-- Çarşı Grubu -->
+  <div style="font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--altin);margin:.75rem 0 .5rem;">📍 Çarşı Mahallesi</div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">İsmet Acar Kız Yurdu</div>
+      <span class="oyurt-tip tip-kiz">Kız</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Mahalle</span><span class="oyurt-v">Merkez Çarşı</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz — Aktarmasız</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">400-450 ₺</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Not</span><span class="oyurt-v">Merkez Kampüs için tek dolmuş hattı</span></div>
+      <a class="oyurt-tel" href="tel:05064073351">📞 0506 407 33 51</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/QhDXPqWywZbq2DAf8" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">Özel Gaye Kız Öğrenci Evi</div>
+      <span class="oyurt-tip tip-kiz">Kız</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Mahalle</span><span class="oyurt-v">Merkez Çarşı</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz — Aktarmasız</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">400-450 ₺</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Merkez Kampüs</span><span class="oyurt-v">Tek dolmuş · ~15 dk</span></div>
+      <a class="oyurt-tel" href="tel:04662127863">📞 0466 212 78 63</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/QVw29MB1pstPwsQM9" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <!-- Seyitler Grubu -->
+  <div style="font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--altin);margin:.75rem 0 .5rem;">📍 Seyitler Köyü — Seyitler Kampüs Yakını</div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">Artvin FYD Rezidans Kız Öğrenci Evleri</div>
+      <span class="oyurt-tip tip-kiz">Kız</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Konum</span><span class="oyurt-v">Seyitler Köyü</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz → Kırmızı Beyaz (2 aktarma)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">350-400 ₺</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Seyitler Kampüs</span><span class="oyurt-v">~5 dk yürüyüş</span></div>
+      <a class="oyurt-tel" href="tel:04662126343">📞 0466 212 63 43</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/skKNuUVRU8K6Q41e9" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">Artvin Bakır Apart (Erkek + Kız)</div>
+      <span class="oyurt-tip tip-karma">Karma</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Konum</span><span class="oyurt-v">Seyitler Köyü — Lomasen Mevkii</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz → Kırmızı Beyaz (2 aktarma)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">250-300 ₺</span></div>
+      <a class="oyurt-tel" href="tel:04662124434">📞 0466 212 44 34</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/YJNqkAsQeNjSV6yA6" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">Öykü Erkek Öğrenci Evi</div>
+      <span class="oyurt-tip tip-erkek">Erkek</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Konum</span><span class="oyurt-v">Seyitler Köyü</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz → Kırmızı Beyaz (2 aktarma)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">400-450 ₺</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Seyitler Kampüs</span><span class="oyurt-v">~5 dk yürüyüş</span></div>
+      <a class="oyurt-tel" href="tel:05365256867">📞 0536 525 68 67</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/n2FjkFR1FEQaf7uy9" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <div class="oyurt-kart">
+    <div class="oyurt-header">
+      <div class="oyurt-isim">Aris Kız Öğrenci Evi</div>
+      <span class="oyurt-tip tip-kiz">Kız</span>
+    </div>
+    <div class="oyurt-ic">
+      <div class="oyurt-satir"><span class="oyurt-e">Konum</span><span class="oyurt-v">Seyitler Köyü</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Dolmuş</span><span class="oyurt-v">Mavi Beyaz → Kırmızı Beyaz (2 aktarma)</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Taksi</span><span class="oyurt-v">400-450 ₺</span></div>
+      <div class="oyurt-satir"><span class="oyurt-e">Seyitler Kampüs</span><span class="oyurt-v">~5 dk yürüyüş</span></div>
+      <a class="oyurt-tel" href="tel:05334566320">📞 0533 456 63 20</a>
+      <a class="oyurt-maps" href="https://maps.app.goo.gl/saoLqRJNapSkvjLW8" target="_blank" rel="noopener">🗺️ Haritada Göster</a>
+    </div>
+  </div>
+
+  <!-- WP -->
+  <a href="https://wa.me/905434290908" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.5rem;background:var(--yesil-a);border:1px solid var(--yesil-b);border-radius:10px;padding:.65rem .85rem;text-decoration:none;margin-top:.5rem;">
+    <span style="font-size:.95rem">📱</span>
+    <span style="font-size:.75rem;font-weight:600;color:var(--yesil);">İrtibat: WhatsApp 0543 429 09 08</span>
+  </a>
+
+</div>
+
+
 </div>
 
 <!-- SONUÇ -->
@@ -628,6 +815,25 @@ function goster(id) {
   var sw = document.getElementById('sonucWrap');
   sw.classList.add('goster');
   sw.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+
+function sekmeGec(sekme) {
+  if(sekme === 'devlet') {
+    document.getElementById('secimWrap').style.display = '';
+    document.getElementById('ozelYurtWrap').style.display = 'none';
+    document.getElementById('sekme-devlet').classList.add('aktif');
+    document.getElementById('sekme-ozel').classList.remove('aktif');
+    // Sonuç ekranını da gizle
+    document.getElementById('sonucWrap').classList.remove('goster');
+  } else {
+    document.getElementById('secimWrap').style.display = 'none';
+    document.getElementById('ozelYurtWrap').style.display = 'block';
+    document.getElementById('sekme-devlet').classList.remove('aktif');
+    document.getElementById('sekme-ozel').classList.add('aktif');
+    document.getElementById('sonucWrap').classList.remove('goster');
+  }
+  window.scrollTo({top: document.querySelector('.sekme-wrap').offsetTop - 60, behavior:'smooth'});
 }
 
 function geri() {
