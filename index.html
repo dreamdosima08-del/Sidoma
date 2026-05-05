@@ -1025,6 +1025,12 @@ border-radius:20px;}
   </script>  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#15803d">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Artvin Rehberi">
 </head>
 <body>
 <a href="#main-content" style="position:absolute;top:-100px;left:0;background:#3ddb8a;color:#000;padding:.5rem 1rem;z-index:9999;border-radius:0 0 8px 0;font-weight:700;transition:top .2s" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">İçeriğe geç</a>
@@ -2705,5 +2711,68 @@ function mikrofon(){
 }
 document.addEventListener('click',function(e){if(!e.target.closest('.arama-ic'))document.getElementById('aramaSonuclar').style.display='none';});
 </script>
+
+<!-- PWA -->
+<script>
+// Service Worker kaydet
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
+
+// Ana ekrana ekle bildirimi
+var deferredPrompt;
+var banner = null;
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  
+  // Banner oluştur
+  banner = document.createElement('div');
+  banner.id = 'pwaBanner';
+  banner.innerHTML = `
+    <div style="display:flex;align-items:center;gap:.75rem;flex:1;">
+      <span style="font-size:1.4rem;">🏔️</span>
+      <div>
+        <div style="font-size:.82rem;font-weight:700;color:#fff;">Artvin Rehberi'ni Yükle</div>
+        <div style="font-size:.68rem;color:rgba(255,255,255,.6);">Taksi · Eczane · Namaz · Dolmuş — tek tıkla</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:.4rem;flex-shrink:0;">
+      <button id="pwaKabul" style="background:#15803d;color:#fff;border:none;border-radius:8px;padding:.45rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Yükle</button>
+      <button id="pwaReddet" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);border:none;border-radius:8px;padding:.45rem .6rem;font-size:.78rem;cursor:pointer;">✕</button>
+    </div>
+  `;
+  banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#0d1f12;border-top:2px solid #15803d;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.4);animation:slideUp .3s ease;';
+  
+  document.body.appendChild(banner);
+  
+  document.getElementById('pwaKabul').addEventListener('click', function() {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function() {
+      deferredPrompt = null;
+      banner.remove();
+    });
+  });
+  
+  document.getElementById('pwaReddet').addEventListener('click', function() {
+    banner.remove();
+    localStorage.setItem('pwaDismissed', '1');
+  });
+});
+
+// Zaten kuruluysa banner gösterme
+if(localStorage.getItem('pwaDismissed')) {
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+  });
+}
+</script>
+<style>
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+</style>
+
 </body>
 </html>
