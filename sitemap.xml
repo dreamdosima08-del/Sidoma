@@ -433,18 +433,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://artvinrehber.com/index</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://artvinrehber.com/(3).html</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://artvinrehber.com/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>daily</changefreq>
