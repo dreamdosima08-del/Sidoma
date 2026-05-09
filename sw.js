@@ -1,4 +1,4 @@
-const CACHE_NAME = 'artvinrehber-v1';
+const CACHE_NAME = 'artvinrehber-v7';
 const URLS = [
   '/',
   '/index.html',
@@ -7,13 +7,9 @@ const URLS = [
   '/havas.html',
   '/namaz.html',
   '/eczane.html',
-  '/eczane-rehber.html',
-  '/oteller.html',
-  '/artvinmetre.html',
-  '/imece.html',
-  '/kayipbuluntu.html',
-  '/artvin-nasil-gidilir.html',
+  '/hava.html',
   '/artvin-kampus-ulasim.html',
+  '/artvinmetre.html',
   '/manifest.json'
 ];
 
@@ -38,12 +34,21 @@ self.addEventListener('activate', function(e) {
   self.clients.claim();
 });
 
+// Network önce, cache yedek
 self.addEventListener('fetch', function(e) {
   e.respondWith(
-    caches.match(e.request).then(function(cached) {
-      return cached || fetch(e.request).catch(function() {
-        return caches.match('/index.html');
-      });
-    })
+    fetch(e.request)
+      .then(function(response) {
+        // Yeni versiyonu cache'e kaydet
+        var clone = response.clone();
+        caches.open(CACHE_NAME).then(function(cache) {
+          cache.put(e.request, clone);
+        });
+        return response;
+      })
+      .catch(function() {
+        // Offline ise cache'den sun
+        return caches.match(e.request);
+      })
   );
 });
