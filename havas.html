@@ -210,9 +210,9 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 .sayac-kart{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;}
 .sayac-durak{font-size:.78rem;font-weight:600;color:var(--white);}
 .sayac-sefer{font-size:.62rem;color:var(--gray2);margin-top:.1rem;}
-.sayac-zaman{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.06em;color:var(--mavi-acik);flex-shrink:0;}
-.sayac-kart.aktif-sefer{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06);}
-.sayac-kart.aktif-sefer .sayac-zaman{color:#34d399;}
+.sayac-zaman{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.06em;color:#fb923c;flex-shrink:0;}
+.sayac-kart.aktif-sefer{border-color:rgba(251,146,60,.4);background:rgba(251,146,60,.08);}
+.sayac-kart.aktif-sefer .sayac-zaman{color:#f97316;}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
@@ -705,30 +705,32 @@ var SEFERLER = {
   ]
 };
 
-function dakikayaCevir(saat) {
+function saniyeyeCevir(saat) {
   var p = saat.split(':');
-  return parseInt(p[0]) * 60 + parseInt(p[1]);
+  return parseInt(p[0]) * 3600 + parseInt(p[1]) * 60;
 }
 
-function formatSure(dk) {
-  if (dk <= 0) return 'Geçti';
-  var s = Math.floor(dk / 60);
-  var m = dk % 60;
-  if (s > 0) return s + 'sa ' + m + 'dk';
-  return m + ' dk';
+function formatSure(saniye) {
+  if (saniye <= 0) return 'Geçti';
+  var s = Math.floor(saniye / 3600);
+  var m = Math.floor((saniye % 3600) / 60);
+  var sn = saniye % 60;
+  if (s > 0) return s + 'sa ' + m + 'dk ' + sn + 'sn';
+  if (m > 0) return m + 'dk ' + sn + 'sn';
+  return sn + ' sn';
 }
 
 function sayacGuncelle() {
   var simdi = new Date();
-  var simdiBd = simdi.getHours() * 60 + simdi.getMinutes();
+  var simdiBd = simdi.getHours() * 3600 + simdi.getMinutes() * 60 + simdi.getSeconds();
 
   Object.keys(SEFERLER).forEach(function(durak) {
     var seferler = SEFERLER[durak];
     var sonraki = null;
-    var enAz = 999999;
+    var enAz = 99999999;
 
     seferler.forEach(function(s) {
-      var bd = dakikayaCevir(s.saat);
+      var bd = saniyeyeCevir(s.saat);
       var fark = bd - simdiBd;
       if (fark > 0 && fark < enAz) {
         enAz = fark;
@@ -751,8 +753,8 @@ function sayacGuncelle() {
     } else {
       // Bugün sefer kalmadı, yarının ilk seferine say
       var ilkSefer = seferler[0];
-      var ilkBd = dakikayaCevir(ilkSefer.saat);
-      var kalanDk = (24 * 60 - simdiBd) + ilkBd;
+      var ilkBd = saniyeyeCevir(ilkSefer.saat);
+      var kalanDk = (24 * 3600 - simdiBd) + ilkBd;
       zEl.textContent = formatSure(kalanDk);
       sfEl.textContent = 'Yarın ' + ilkSefer.ad + ' — Saat ' + ilkSefer.saat;
       kartEl.classList.remove('aktif-sefer');
@@ -762,7 +764,7 @@ function sayacGuncelle() {
 
 // Her dakika güncelle
 sayacGuncelle();
-setInterval(sayacGuncelle, 60000);
+setInterval(sayacGuncelle, 1000);
 
 // HAVA DURUMU - Open-Meteo (ücretsiz, API key yok)
 function havaDurumuGetir() {
