@@ -749,8 +749,12 @@ function sayacGuncelle() {
         kartEl.classList.remove('aktif-sefer');
       }
     } else {
-      zEl.textContent = 'Bitti';
-      sfEl.textContent = 'Bugün sefer kalmadı';
+      // Bugün sefer kalmadı, yarının ilk seferine say
+      var ilkSefer = seferler[0];
+      var ilkBd = dakikayaCevir(ilkSefer.saat);
+      var kalanDk = (24 * 60 - simdiBd) + ilkBd;
+      zEl.textContent = formatSure(kalanDk);
+      sfEl.textContent = 'Yarın ' + ilkSefer.ad + ' — Saat ' + ilkSefer.saat;
       kartEl.classList.remove('aktif-sefer');
     }
   });
