@@ -186,6 +186,33 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 .durak-sure-fiyat{display:flex;align-items:center;gap:.5rem;margin-top:.35rem;flex-wrap:wrap;}
 .sure-badge{display:inline-flex;align-items:center;gap:.25rem;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.2);border-radius:100px;padding:.22rem .65rem;font-size:.65rem;font-weight:700;color:var(--mavi-acik);}
 .fiyat-badge{display:inline-flex;align-items:center;gap:.25rem;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.2);border-radius:100px;padding:.22rem .65rem;font-size:.65rem;font-weight:700;color:#34d399;}
+
+/* CANLI BÖLÜMLER */
+.canli-wrap{padding:.75rem 1.25rem;display:flex;flex-direction:column;gap:.5rem;}
+.hava-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+.hava-kart{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:14px;padding:.85rem;text-align:center;}
+.hava-sehir{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray2);margin-bottom:.3rem;}
+.hava-icon{font-size:1.6rem;line-height:1;margin-bottom:.2rem;}
+.hava-derece{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);letter-spacing:.04em;}
+.hava-durum{font-size:.62rem;color:var(--gray1);}
+
+.ucus-btn{display:flex;align-items:center;justify-content:space-between;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);border-radius:14px;padding:.85rem 1rem;text-decoration:none;}
+.ucus-sol{display:flex;align-items:center;gap:.65rem;}
+.ucus-baslik{font-size:.78rem;font-weight:700;color:var(--white);}
+.ucus-alt{font-size:.62rem;color:var(--gray2);}
+.ucus-ok{font-family:'Bebas Neue';font-size:.8rem;letter-spacing:.1em;color:var(--mavi-acik);}
+
+/* GERİ SAYIM */
+.sayac-bolum{padding:.5rem 1.25rem 1rem;}
+.sayac-baslik{font-size:.6rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--gray2);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;}
+.sayac-baslik::after{content:'';flex:1;height:1px;background:var(--border);}
+.sayac-grid{display:flex;flex-direction:column;gap:.4rem;}
+.sayac-kart{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;}
+.sayac-durak{font-size:.78rem;font-weight:600;color:var(--white);}
+.sayac-sefer{font-size:.62rem;color:var(--gray2);margin-top:.1rem;}
+.sayac-zaman{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.06em;color:var(--mavi-acik);flex-shrink:0;}
+.sayac-kart.aktif-sefer{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06);}
+.sayac-kart.aktif-sefer .sayac-zaman{color:#34d399;}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
@@ -226,6 +253,35 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 <!-- DURAKLAR -->
 <div class="bolum">🚌 Havaş Kalkış Durakları & Saatleri</div>
 
+
+
+<!-- CANLI HAVA + UÇUŞ -->
+<div class="canli-wrap">
+  <div class="hava-grid">
+    <div class="hava-kart">
+      <div class="hava-sehir">Artvin</div>
+      <div class="hava-icon" id="havaIcon1">🌤️</div>
+      <div class="hava-derece" id="havaD1">--°</div>
+      <div class="hava-durum" id="havaDur1">Yükleniyor...</div>
+    </div>
+    <div class="hava-kart">
+      <div class="hava-sehir">Rize-Artvin Havalimanı</div>
+      <div class="hava-icon" id="havaIcon2">🌤️</div>
+      <div class="hava-derece" id="havaD2">--°</div>
+      <div class="hava-durum" id="havaDur2">Yükleniyor...</div>
+    </div>
+  </div>
+  <a class="ucus-btn" href="https://play.google.com/store/apps/details?id=ub.dhmi.gov.tr" target="_blank" rel="noopener">
+    <div class="ucus-sol">
+      <span style="font-size:1.3rem;">✈️</span>
+      <div>
+        <div class="ucus-baslik">Rize-Artvin Havalimanı</div>
+        <div class="ucus-alt">Canlı iniş / kalkış uçuş bilgileri</div>
+      </div>
+    </div>
+    <span class="ucus-ok">UYGULAMA →</span>
+  </a>
+</div>
 
 <!-- SEFER SAATLERİ TABLOSU - Featured Snippet için -->
 <div style="padding:0 1.25rem .75rem;position:relative;z-index:1;">
@@ -272,6 +328,42 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
     </table>
   </div>
   <p style="font-size:.62rem;color:var(--gray2);margin-top:.4rem;text-align:center;">* Mayıs 2026 tarifleri · Güncel bilgi için Havaş'ı arayın</p>
+</div>
+
+
+<!-- GERİ SAYIM -->
+<div class="sayac-bolum">
+  <div class="sayac-baslik">⏱ Bir Sonraki Sefer</div>
+  <div class="sayac-grid" id="sayacGrid">
+    <div class="sayac-kart" id="s-artvin">
+      <div>
+        <div class="sayac-durak">Artvin Otogar</div>
+        <div class="sayac-sefer" id="sf-artvin">Hesaplanıyor...</div>
+      </div>
+      <div class="sayac-zaman" id="sz-artvin">--:--</div>
+    </div>
+    <div class="sayac-kart" id="s-borcka">
+      <div>
+        <div class="sayac-durak">Borçka</div>
+        <div class="sayac-sefer" id="sf-borcka">Hesaplanıyor...</div>
+      </div>
+      <div class="sayac-zaman" id="sz-borcka">--:--</div>
+    </div>
+    <div class="sayac-kart" id="s-hopa">
+      <div>
+        <div class="sayac-durak">Hopa — Maliye Önü</div>
+        <div class="sayac-sefer" id="sf-hopa">Hesaplanıyor...</div>
+      </div>
+      <div class="sayac-zaman" id="sz-hopa">--:--</div>
+    </div>
+    <div class="sayac-kart" id="s-arhavi">
+      <div>
+        <div class="sayac-durak">Arhavi</div>
+        <div class="sayac-sefer" id="sf-arhavi">Hesaplanıyor...</div>
+      </div>
+      <div class="sayac-zaman" id="sz-arhavi">--:--</div>
+    </div>
+  </div>
 </div>
 
 <div class="durak-wrap">
@@ -580,6 +672,128 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <p>© 2026 <a href="/">artvinrehber.com</a> — Artvin Havaş Rehberi</p>
   <p><a href="/">Ana Sayfa</a> · <a href="/taksi.html">Artvin Taksi</a> · <a href="/dolmus.html">Artvin Dolmuş</a></p>
 </footer>
+
+
+<script>
+// SEFER SAATLERİ
+var SEFERLER = {
+  artvin: [
+    {saat:'05:00', ad:'1. Sefer'},
+    {saat:'11:00', ad:'2. Sefer'},
+    {saat:'16:45', ad:'3. Sefer'}
+  ],
+  borcka: [
+    {saat:'05:30', ad:'1. Sefer'},
+    {saat:'11:30', ad:'2. Sefer'},
+    {saat:'17:15', ad:'3. Sefer'}
+  ],
+  hopa: [
+    {saat:'06:00', ad:'1. Sefer'},
+    {saat:'07:30', ad:'2. Sefer'},
+    {saat:'12:00', ad:'3. Sefer'},
+    {saat:'17:45', ad:'4. Sefer'},
+    {saat:'19:45', ad:'5. Sefer'},
+    {saat:'21:30', ad:'6. Sefer'}
+  ],
+  arhavi: [
+    {saat:'06:15', ad:'1. Sefer'},
+    {saat:'07:45', ad:'2. Sefer'},
+    {saat:'12:15', ad:'3. Sefer'},
+    {saat:'18:00', ad:'4. Sefer'},
+    {saat:'20:00', ad:'5. Sefer'},
+    {saat:'20:45', ad:'6. Sefer'}
+  ]
+};
+
+function dakikayaCevir(saat) {
+  var p = saat.split(':');
+  return parseInt(p[0]) * 60 + parseInt(p[1]);
+}
+
+function formatSure(dk) {
+  if (dk <= 0) return 'Geçti';
+  var s = Math.floor(dk / 60);
+  var m = dk % 60;
+  if (s > 0) return s + 'sa ' + m + 'dk';
+  return m + ' dk';
+}
+
+function sayacGuncelle() {
+  var simdi = new Date();
+  var simdiBd = simdi.getHours() * 60 + simdi.getMinutes();
+
+  Object.keys(SEFERLER).forEach(function(durak) {
+    var seferler = SEFERLER[durak];
+    var sonraki = null;
+    var enAz = 999999;
+
+    seferler.forEach(function(s) {
+      var bd = dakikayaCevir(s.saat);
+      var fark = bd - simdiBd;
+      if (fark > 0 && fark < enAz) {
+        enAz = fark;
+        sonraki = s;
+      }
+    });
+
+    var zEl = document.getElementById('sz-' + durak);
+    var sfEl = document.getElementById('sf-' + durak);
+    var kartEl = document.getElementById('s-' + durak);
+
+    if (sonraki) {
+      zEl.textContent = formatSure(enAz);
+      sfEl.textContent = sonraki.ad + ' — Saat ' + sonraki.saat;
+      if (enAz <= 30) {
+        kartEl.classList.add('aktif-sefer');
+      } else {
+        kartEl.classList.remove('aktif-sefer');
+      }
+    } else {
+      zEl.textContent = 'Bitti';
+      sfEl.textContent = 'Bugün sefer kalmadı';
+      kartEl.classList.remove('aktif-sefer');
+    }
+  });
+}
+
+// Her dakika güncelle
+sayacGuncelle();
+setInterval(sayacGuncelle, 60000);
+
+// HAVA DURUMU - Open-Meteo (ücretsiz, API key yok)
+function havaDurumuGetir() {
+  var yerler = [
+    {id:1, lat:41.183, lon:41.818, icon:'havaIcon1', derece:'havaD1', durum:'havaDur1'},
+    {id:2, lat:41.070, lon:40.526, icon:'havaIcon2', derece:'havaD2', durum:'havaDur2'}
+  ];
+  
+  yerler.forEach(function(yer) {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude='+yer.lat+'&longitude='+yer.lon+'&current=temperature_2m,weathercode&timezone=Europe%2FIstanbul')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var t = Math.round(d.current.temperature_2m);
+        var wc = d.current.weathercode;
+        var icon = '☀️';
+        var dur = 'Açık';
+        if (wc === 0) { icon='☀️'; dur='Açık'; }
+        else if (wc<=3) { icon='🌤️'; dur='Parçalı bulutlu'; }
+        else if (wc<=48) { icon='☁️'; dur='Bulutlu'; }
+        else if (wc<=67) { icon='🌧️'; dur='Yağmurlu'; }
+        else if (wc<=77) { icon='❄️'; dur='Karlı'; }
+        else if (wc<=82) { icon='🌦️'; dur='Sağanak'; }
+        else { icon='⛈️'; dur='Fırtınalı'; }
+        
+        document.getElementById(yer.icon).textContent = icon;
+        document.getElementById(yer.derece).textContent = t + '°';
+        document.getElementById(yer.durum).textContent = dur;
+      })
+      .catch(function(){
+        document.getElementById(yer.durum).textContent = 'Bilgi alınamadı';
+      });
+  });
+}
+havaDurumuGetir();
+</script>
 
 </body>
 </html>
