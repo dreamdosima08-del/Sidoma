@@ -467,6 +467,7 @@ var ILCE_KOORD = [
   {ad:"Murgul",lat:41.1833,lon:41.5167,id:"murgul"},
 ];
 function km(a,b,c,d){var R=6371,x=(c-a)*Math.PI/180,y=(d-b)*Math.PI/180,z=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(y/2)*Math.sin(y/2);return R*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z));}
+function scrollEczane(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});}
 function enYakinBul(){
   if(!navigator.geolocation){alert('Konum desteklenmiyor.');return;}
   var btn=document.getElementById('gpsBtn');
@@ -482,8 +483,8 @@ function enYakinBul(){
     h+='<div style="font-size:1rem;font-weight:800;color:#0f1f17;">'+s[0].i.ad+'</div>';
     h+='<div style="font-size:.72rem;color:#4a6358;">~'+Math.round(s[0].k)+' km uzaklıkta</div>';
     h+='</div>';
-    h+='<a href="#'+s[0].i.id+'" style="display:flex;align-items:center;justify-content:center;gap:.4rem;background:#16a34a;color:#fff;border-radius:10px;padding:.75rem;text-decoration:none;font-size:.85rem;font-weight:700;">💊 '+s[0].i.ad+' Eczanelerini Gör</a>';
-    setTimeout(function(){var el=document.getElementById(s[0].i.id);if(el)el.scrollIntoView({behavior:'smooth'});},300);
+    var hedefId=s[0].i.id;
+    h+='<button onclick="scrollEczane(\''+hedefId+'\')" style="display:flex;align-items:center;justify-content:center;gap:.4rem;background:#16a34a;color:#fff;border-radius:10px;padding:.75rem;font-size:.85rem;font-weight:700;border:none;width:100%;cursor:pointer;">💊 '+s[0].i.ad+' Eczanelerini Gör</button>';
     document.getElementById('gpsSonuc').innerHTML=h;
     document.getElementById('gpsSonuc').style.display='block';
   },function(){
