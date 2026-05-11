@@ -141,6 +141,43 @@ h1.hero-h span{color:var(--yesil-c);}
 
 footer{background:#0f2318;padding:1.5rem 1.25rem;text-align:center;font-size:.65rem;color:rgba(255,255,255,.3);line-height:2;}
 footer a{color:var(--yesil-c);text-decoration:none;}
+
+/* ECZANE GRID */
+.ilce-wrap { padding: 0 1.25rem; }
+.eczane-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: .5rem; 
+  padding: .65rem 0;
+}
+.eczane-kart {
+  background: #fff;
+  border: 1.5px solid #dce8dc;
+  border-radius: 14px;
+  padding: .75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.eczane-bilgi { flex: 1; }
+.eczane-ad { font-size: .8rem; font-weight: 700; color: #0f2318; line-height: 1.3; }
+.eczane-adres { font-size: .65rem; color: #9aaa9c; margin-top: .2rem; line-height: 1.4; }
+.eczane-tel { display: flex; align-items: center; gap: .4rem; margin-top: .35rem; }
+.eczane-tel a { 
+  display: inline-flex; align-items: center; gap: .25rem;
+  background: #16a34a; color: #fff; border-radius: 8px;
+  padding: .28rem .65rem; text-decoration: none;
+  font-size: .68rem; font-weight: 700; flex: 1;
+  justify-content: center;
+}
+.maps-btn-ec {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #dbeafe; color: #2563eb; border-radius: 8px;
+  padding: .28rem .5rem; text-decoration: none;
+  font-size: .75rem; font-weight: 700; flex-shrink: 0;
+}
+.tel-ikon { display: none; }
 </style>
 </head>
 <body>
@@ -197,13 +234,18 @@ footer a{color:var(--yesil-c);text-decoration:none;}
   </div>
 </div>
 
-<!-- NÖBETÇİ LİSTE -->
-<div class="bolum">🌙 Mayıs 2026 Nöbetçi Listesi — Artvin Merkez</div>
-<div class="nobetci-wrap">
-<div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">01.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Ozan Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123145" class="ec-tel">📞</a><a href="https://share.google/oXiMrRa3Z9iPEQsr0" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">02.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Sağlık Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662126334" class="ec-tel">📞</a><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">03.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Livane Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662127565" class="ec-tel">📞</a><a href="https://share.google/5Je03geqK4GSK1171" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">04.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Çamlıca Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123242" class="ec-tel">📞</a><a href="https://share.google/rM1yA1gugyd7V9Ooc" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Sal</div><div class="nobetci-tarih-metin">05.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Akın Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662124940" class="ec-tel">📞</a><a href="https://share.google/l5055pJIB7UHgkR4a" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Çar</div><div class="nobetci-tarih-metin">06.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Aylin Keskin Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662121015" class="ec-tel">📞</a><a href="https://share.google/WWvHbbN7cVEatFJqs" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Per</div><div class="nobetci-tarih-metin">07.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Ömür Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662127788" class="ec-tel">📞</a><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">08.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Yağmur Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662124676" class="ec-tel">📞</a><a href="https://share.google/neavojSGS1RXTair3" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">09.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Umut Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662129370" class="ec-tel">📞</a><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">10.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Nurdeniz Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662121510" class="ec-tel">📞</a><a href="https://share.google/ugFKn1vOEPO3Z4rXL" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir nobetci-aktif"><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">11.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Meltem Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123308" class="ec-tel">📞</a><a href="https://share.google/FX6wKOVuP7QPNWwqB" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Sal</div><div class="nobetci-tarih-metin">12.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Ömer Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662126066" class="ec-tel">📞</a><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Çar</div><div class="nobetci-tarih-metin">13.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Demir Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662126692" class="ec-tel">📞</a><a href="https://share.google/32uSXT0AmMdjPL4cx" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Per</div><div class="nobetci-tarih-metin">14.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Ozan Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123145" class="ec-tel">📞</a><a href="https://share.google/oXiMrRa3Z9iPEQsr0" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">15.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Sağlık Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662126334" class="ec-tel">📞</a><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">16.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Livane Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662127565" class="ec-tel">📞</a><a href="https://share.google/5Je03geqK4GSK1171" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">17.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Çamlıca Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123242" class="ec-tel">📞</a><a href="https://share.google/rM1yA1gugyd7V9Ooc" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">18.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Akın Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662124940" class="ec-tel">📞</a><a href="https://share.google/l5055pJIB7UHgkR4a" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Sal</div><div class="nobetci-tarih-metin">19.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Umut Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662129370" class="ec-tel">📞</a><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Çar</div><div class="nobetci-tarih-metin">20.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Ozan Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123145" class="ec-tel">📞</a><a href="https://share.google/oXiMrRa3Z9iPEQsr0" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Per</div><div class="nobetci-tarih-metin">21.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Sağlık Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662126334" class="ec-tel">📞</a><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">22.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Aylin Keskin Eczanesi</div><div class="nobetci-saat">⏰ 18:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662121015" class="ec-tel">📞</a><a href="https://share.google/WWvHbbN7cVEatFJqs" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">23.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Nurdeniz Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662121510" class="ec-tel">📞</a><a href="https://share.google/ugFKn1vOEPO3Z4rXL" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">24.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Meltem Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123308" class="ec-tel">📞</a><a href="https://share.google/FX6wKOVuP7QPNWwqB" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">25.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Ömer Eczanesi</div><div class="nobetci-saat">⏰ 08:00-18:00</div></div><div class="nobetci-butonlar"><a href="tel:04662126066" class="ec-tel">📞</a><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Sal</div><div class="nobetci-tarih-metin">26.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Demir Eczanesi</div><div class="nobetci-saat">⏰ 08:00-18:00</div></div><div class="nobetci-butonlar"><a href="tel:04662126692" class="ec-tel">📞</a><a href="https://share.google/32uSXT0AmMdjPL4cx" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Çar</div><div class="nobetci-tarih-metin">27.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Livane Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662127565" class="ec-tel">📞</a><a href="https://share.google/5Je03geqK4GSK1171" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Per</div><div class="nobetci-tarih-metin">28.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Yağmur Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662124676" class="ec-tel">📞</a><a href="https://share.google/neavojSGS1RXTair3" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">29.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Ömür Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662127565" class="ec-tel">📞</a><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Cum</div><div class="nobetci-tarih-metin">30.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Çamlıca Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662123242" class="ec-tel">📞</a><a href="https://share.google/rM1yA1gugyd7V9Ooc" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div><div class="nobetci-satir "><div class="nobetci-tarih"><div class="nobetci-gun">Paz</div><div class="nobetci-tarih-metin">31.05.26</div></div><div class="nobetci-ec-bilgi"><div class="nobetci-ec-ad">Akın Eczanesi</div><div class="nobetci-saat">⏰ 08:00-08:00</div></div><div class="nobetci-butonlar"><a href="tel:04662124940" class="ec-tel">📞</a><a href="https://share.google/l5055pJIB7UHgkR4a" target="_blank" rel="noopener" class="ec-maps">🗺️</a></div></div>
-</div>
-<div style="padding:.5rem 1.25rem .75rem;font-size:.68rem;color:var(--dim);line-height:1.7;background:var(--white);border-top:1px solid var(--border);">
-  ℹ️ Nöbetler hafta içi <strong>saat 18:00'de</strong> başlar, ertesi gün <strong>08:00'e</strong> kadar sürer. Cumartesi, Pazar ve resmi tatillerde <strong>08:00-08:00</strong> tam 24 saattir.
+
+<!-- İLÇE NÖBETÇİ KISAYOLLAR -->
+<div class="bolum">🌙 İlçe Nöbetçi Eczane Sorgula</div>
+<div style="padding:.5rem 1.25rem .75rem;display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
+  <a href="https://www.eczaneler.gen.tr/nobetci/artvin" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Artvin Merkez</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/hopa" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Hopa</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/arhavi" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Arhavi</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/borcka" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Borçka</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/savsat" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Şavşat</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/yusufeli" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Yusufeli</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/ardanuc" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Ardanuç</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/murgul" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Murgul</a>
 </div>
 
 <!-- TÜM ECZANELER -->
@@ -212,19 +254,19 @@ footer a{color:var(--yesil-c);text-decoration:none;}
 <div class="bolum">🏙️ Artvin Merkez</div>
 <div class="ilce-wrap">
   <div class="eczane-grid">
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Akın Eczanesi</div><div class="eczane-adres">İnönü Cad. Belediye İşhanı No:5</div><a href="https://share.google/l5055pJIB7UHgkR4a" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127300">0466 212-73-00</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Aylin Keskin Eczanesi</div><div class="eczane-adres">İnönü Cad. No:63 · PTT yanı</div><a href="https://share.google/WWvHbbN7cVEatFJqs" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662121015">0466 212-10-15</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Çamlıca Eczanesi</div><div class="eczane-adres">İnönü Cad. No:38/A</div><a href="https://share.google/rM1yA1gugyd7V9Ooc" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123242">0466 212-32-42</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Demir Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:48/B</div><a href="https://share.google/32uSXT0AmMdjPL4cx" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126692">0466 212-66-92</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Livane Eczanesi</div><div class="eczane-adres">İnönü Cad. No:56/E · Halitpaşa Camii karşısı</div><a href="https://share.google/5Je03geqK4GSK1171" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127565">0466 212-75-65</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Meltem Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:62/C</div><a href="https://share.google/FX6wKOVuP7QPNWwqB" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123308">0466 212-33-08</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Nurdeniz Eczanesi</div><div class="eczane-adres">Hastane Cad. Çavuş Sok. No:18/15</div><a href="https://share.google/ugFKn1vOEPO3Z4rXL" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662121510">0466 212-15-10</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ömer Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:62/A</div><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126066">0466 212-60-66</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ömür Eczanesi</div><div class="eczane-adres">Hastane Cad. No:11-9</div><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127788">0466 212-77-88</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ozan Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:14/B · Gazi Ortaokulu karşısı</div><a href="https://share.google/oXiMrRa3Z9iPEQsr0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123145">0466 212-31-45</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sağlık Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:5/D</div><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126334">0466 212-63-34</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Umut Eczanesi</div><div class="eczane-adres">Hastane Cad. Sağlık Sok. No:6/B · Verem Savaş Dispanseri arkası</div><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662129370">0466 212-93-70</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Yağmur Eczanesi</div><div class="eczane-adres">Hastane Cad. No:11</div><a href="https://share.google/neavojSGS1RXTair3" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662124676">0466 212-46-76</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Akın Eczanesi</div><div class="eczane-adres">İnönü Cad. Belediye İşhanı No:5</div><a href="https://share.google/l5055pJIB7UHgkR4a" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127300">0466 212-73-00</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Aylin Keskin Eczanesi</div><div class="eczane-adres">İnönü Cad. No:63 · PTT yanı</div><a href="https://share.google/WWvHbbN7cVEatFJqs" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662121015">0466 212-10-15</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Çamlıca Eczanesi</div><div class="eczane-adres">İnönü Cad. No:38/A</div><a href="https://share.google/rM1yA1gugyd7V9Ooc" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123242">0466 212-32-42</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Demir Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:48/B</div><a href="https://share.google/32uSXT0AmMdjPL4cx" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126692">0466 212-66-92</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Livane Eczanesi</div><div class="eczane-adres">İnönü Cad. No:56/E · Halitpaşa Camii karşısı</div><a href="https://share.google/5Je03geqK4GSK1171" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127565">0466 212-75-65</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Meltem Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:62/C</div><a href="https://share.google/FX6wKOVuP7QPNWwqB" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123308">0466 212-33-08</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Nurdeniz Eczanesi</div><div class="eczane-adres">Hastane Cad. Çavuş Sok. No:18/15</div><a href="https://share.google/ugFKn1vOEPO3Z4rXL" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662121510">0466 212-15-10</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ömer Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:62/A</div><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126066">0466 212-60-66</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ömür Eczanesi</div><div class="eczane-adres">Hastane Cad. No:11-9</div><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127788">0466 212-77-88</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ozan Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:14/B · Gazi Ortaokulu karşısı</div><a href="https://share.google/oXiMrRa3Z9iPEQsr0" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123145">0466 212-31-45</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sağlık Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:5/D</div><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126334">0466 212-63-34</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Umut Eczanesi</div><div class="eczane-adres">Hastane Cad. Sağlık Sok. No:6/B · Verem Savaş Dispanseri arkası</div><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662129370">0466 212-93-70</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Yağmur Eczanesi</div><div class="eczane-adres">Hastane Cad. No:11</div><a href="https://share.google/neavojSGS1RXTair3" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662124676">0466 212-46-76</a></div></div>
   </div>
 </div>
 
@@ -251,7 +293,7 @@ footer a{color:var(--yesil-c);text-decoration:none;}
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Bayraktar Eczanesi</div><div class="eczane-adres">Şehit Üsteğmen Gökhan Yavuz Cad. No:2/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663124320">0466 312-43-20</a></div></div>
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Hayat Eczanesi</div><div class="eczane-adres">Fevzi Çakmak Cad. No:6</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663124164">0466 312-41-64</a></div></div>
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Turna Eczanesi</div><div class="eczane-adres">Yüksel Büyüklü Cad. No:2/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663122012">0466 312-20-12</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Umut Eczanesi</div><div class="eczane-adres">Sahil Cad. No:77/B · Askerlik Şubesi yanı</div><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663127255">0466 312-72-55</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Umut Eczanesi</div><div class="eczane-adres">Sahil Cad. No:77/B · Askerlik Şubesi yanı</div><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663127255">0466 312-72-55</a></div></div>
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Yeni Bayraktar Eczanesi</div><div class="eczane-adres">Atatürk Bulvarı Yıldız Sitesi No:89/1</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663127585">0466 312-75-85</a></div></div>
   </div>
 </div>
@@ -263,7 +305,229 @@ footer a{color:var(--yesil-c);text-decoration:none;}
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Cebeci Eczanesi</div><div class="eczane-adres">Cumhuriyet Meydanı No:2</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664152589">0466 415-25-89</a></div></div>
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Halk Eczanesi</div><div class="eczane-adres">15 Temmuz Meydanı No:14/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151171">0466 415-11-71</a></div></div>
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Özlem Eczanesi</div><div class="eczane-adres">Kars Caddesi No:1/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151188">0466 415-11-88</a></div></div>
-    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sağlık Eczanesi</div><div class="eczane-adres">Sahil Cad. No:19/A</div><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.25rem;background:#dbeafe;color:#2563eb;border-radius:8px;padding:.28rem .6rem;text-decoration:none;font-size:.68rem;font-weight:700;margin-top:.35rem;">🗺️ Yol Tarifi</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151354">0466 415-13-54</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sağlık Eczanesi</div><div class="eczane-adres">Sahil Cad. No:19/A</div><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151354">0466 415-13-54</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Zeytül Eczanesi</div><div class="eczane-adres">Hükümet Cad. No:36/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151490">0466 415-14-90</a></div></div>
+  </div>
+</div>
+
+<!-- KEMALPAŞA -->
+<div class="bolum">🌊 Kemalpaşa</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ayça Eczanesi</div><div class="eczane-adres">Atatürk Bulvarı No:98/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662122220">0466 212-22-20</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Bilge Eczanesi</div><div class="eczane-adres">İnönü Cad. No:77/B-D</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663614000">0466 361-40-00</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Halk Eczanesi</div><div class="eczane-adres">İnönü Cad. No:14</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663613330">0466 361-33-30</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Medea Eczanesi</div><div class="eczane-adres">Atatürk Cad. No:25 · PTT yanı</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663612234">0466 361-22-34</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sarp Eczanesi</div><div class="eczane-adres">Atatürk Bulvarı No:112</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663613110">0466 361-31-10</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Selin Eczanesi</div><div class="eczane-adres">İnönü Cad. No:48</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663613100">0466 361-31-00</a></div></div>
+  </div>
+</div>
+
+<!-- ARDANUÇ -->
+<div class="bolum">🏰 Ardanuç</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Bizim Eczanesi</div><div class="eczane-adres">Ömer Noyan Sok. No:54/104</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04666112334">0466 611-23-34</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Deniz Eczanesi</div><div class="eczane-adres">7 Mart Cad. Ömer Noyan Sok. No:21/F</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04666114219">0466 611-42-19</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Hakan Eczanesi</div><div class="eczane-adres">İnönü Cad. No:40/1</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04666113735">0466 611-37-35</a></div></div>
+  </div>
+</div>
+
+<!-- ŞAVŞAT -->
+<div class="bolum">🏔️ Şavşat</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Merkez Eczanesi</div><div class="eczane-adres">Adil Aydın Cad. No:13/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665171059">0466 517-10-59</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Özcan Eczanesi</div><div class="eczane-adres">Adil Aydın Cad. No:7</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665173833">0466 517-38-33</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Özışık Eczanesi</div><div class="eczane-adres">Hükümet Cad. No:2/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665173200">0466 517-32-00</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Şavşat Eczanesi</div><div class="eczane-adres">Yeni Cad. No:87/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665172919">0466 517-29-19</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Serhat Eczanesi</div><div class="eczane-adres">Cumhuriyet Cad. No:87/1</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665171043">0466 517-10-43</a></div></div>
+  </div>
+</div>
+
+<!-- MURGUL -->
+<div class="bolum">⛏️ Murgul</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Deniz Eczanesi</div><div class="eczane-adres">Cumhuriyet Cad. No:67/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04667114345">0466 711-43-45</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Göktaş Eczanesi</div><div class="eczane-adres">İsrafil Kışla Cad. No:117/1</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04667113740">0466 711-37-40</a></div></div>
+  </div>
+</div>
+
+<!-- YUSUFELİ -->
+<div class="bolum">🚣 Yusufeli</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Koçak Eczanesi</div><div class="eczane-adres">R.T.Erdoğan Cad. No:15/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04668113634">0466 811-36-34</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Lotus Eczanesi</div><div class="eczane-adres">Dr. İsrafil Kışla Cad. No:2/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665021923">0466 502-19-23</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sarıkaya Eczanesi</div><div class="eczane-adres">R.T.Erdoğan Cad. No:14/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04668112707">0466 811-27-07</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Şeyma Eczanesi</div><div class="eczane-adres">Dr. İsrafil Kışla Cad. No:2/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665021211">0466 502-12-11</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Yusufeli Eczanesi</div><div class="eczane-adres">R.T.Erdoğan Cad. No:13/Z-39 · PTT karşısı</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665020898">0466 502-08-98</a></div></div>
+  </div>
+</div>
+
+<!-- NOT -->
+<div class="not-kutu">
+  <b>📌 Önemli Bilgi:</b><br>
+  • Artvin'de her gece en az bir eczane nöbet tutmaktadır<br>
+  • Hafta sonu ve resmi tatillerde de nöbet sistemi aktiftir<br>
+  • Anlık nöbetçi eczane → <a href="/eczane.html" style="color:var(--yesil);font-weight:600">eczane.html</a>
+</div>
+
+
+<!-- SEO -->
+<div class="seo">
+  <h2>Artvin Eczane Rehberi — Tüm Bilgiler</h2>
+  <h3>Artvin Nöbetçi Eczane Bugün</h3>
+  <p>Artvin merkez nöbetçi eczane Mayıs 2026 listesi sayfamızda mevcuttur. Nöbetler hafta içi <strong>saat 18:00'de</strong> başlar ve ertesi sabah 08:00'e kadar sürer.</p>
+  <h3>Artvin En Yakın Eczane</h3>
+  <p>Sayfanın üstündeki <strong>"En Yakın Eczaneyi Bul"</strong> butonuna basın. GPS konumunuza göre en yakın ilçedeki eczaneler listelenir. Her eczane kartındaki 🗺️ butonuyla yol tarifi alabilirsiniz. Artvin'in tek GPS destekli eczane rehberi.</p>
+  <h3>Artvin Merkez Eczaneleri</h3>
+  <p>Artvin Merkezde <strong>13 eczane</strong> bulunmaktadır. Nöbetçi eczane her gün rotasyonla değişir.</p>
+  <h3>Hopa Nöbetçi Eczane</h3>
+  <p>Hopa'da <strong>8 eczane</strong> hizmet vermektedir. Telefon ve yol tarifi için yukarıdaki Hopa bölümünü inceleyin.</p>
+  <h3>Sık Sorulan Sorular</h3>
+  <div class="faq-item" onclick="this.classList.toggle('acik')">
+    <div class="faq-soru">Artvin nöbetçi eczane saati ne zaman başlar? <span class="faq-ok">▼</span></div>
+    <div class="faq-cevap">Hafta içi <strong>saat 18:00'de</strong> başlar, ertesi 08:00'e kadar sürer. Cumartesi-Pazar <strong>08:00-08:00</strong> tam 24 saattir.</div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('acik')">
+    <div class="faq-soru">Artvin'de en yakın eczane nasıl bulunur? <span class="faq-ok">▼</span></div>
+    <div class="faq-cevap">Sayfamızdaki <strong>"En Yakın Eczaneyi Bul"</strong> butonuna tıklayın. GPS konumunuza göre en yakın eczane gösterilir.</div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('acik')">
+    <div class="faq-soru">Artvin'de kaç eczane var? <span class="faq-ok">▼</span></div>
+    <div class="faq-cevap">Artvin merkez ve ilçelerinde toplam <strong>50 eczane</strong> bulunmaktadır.</div>
+  </div>
+</div>
+
+<div class="ic-baglanti">
+  <div class="ib-h">💡 İlginizi Çekebilir</div>
+  <div class="ib-grid">
+    <a class="ib-link" href="/hastane.html"><span class="ib-ikon">🏥</span><div><div class="ib-baslik">Artvin Hastane Rehberi</div><div class="ib-alt">Telefon, adres, randevu</div></div><span class="ib-ok">→</span></a>
+    <a class="ib-link" href="/namaz.html"><span class="ib-ikon">🕌</span><div><div class="ib-baslik">Artvin Namaz Vakitleri</div><div class="ib-alt">Güncel ezan saatleri</div></div><span class="ib-ok">→</span></a>
+    <a class="ib-link" href="/taksi.html"><span class="ib-ikon">🚕</span><div><div class="ib-baslik">Artvin Taksi</div><div class="ib-alt">Eczaneye ulaşım için</div></div><span class="ib-ok">→</span></a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 artvinrehber.com — Artvin Eczane Rehberi</p>
+  <p><a href="/">Ana Sayfa</a> · <a href="/hastane.html">Hastane</a> · <a href="/namaz.html">Namaz</a></p>
+</footer>
+
+<script>
+var ILCE_KOORD = [
+  {ad:"Artvin Merkez",lat:41.1828,lon:41.8183,id:"artvin-merkez"},
+  {ad:"Hopa",lat:41.4119,lon:41.4239,id:"hopa"},
+  {ad:"Arhavi",lat:41.3528,lon:41.2978,id:"arhavi"},
+  {ad:"Borçka",lat:41.3667,lon:41.6833,id:"borcka"},
+  {ad:"Kemalpaşa",lat:41.3667,lon:41.3500,id:"kemalpasa"},
+  {ad:"Şavşat",lat:41.2444,lon:42.3667,id:"savsat"},
+  {ad:"Ardanuç",lat:41.1167,lon:42.0667,id:"ardanuc"},
+  {ad:"Yusufeli",lat:40.8167,lon:41.5333,id:"yusufeli"},
+  {ad:"Murgul",lat:41.1833,lon:41.5167,id:"murgul"},
+];
+function km(a,b,c,d){var R=6371,x=(c-a)*Math.PI/180,y=(d-b)*Math.PI/180,z=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(y/2)*Math.sin(y/2);return R*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z));}
+function enYakinBul(){
+  if(!navigator.geolocation){alert('Konum desteklenmiyor.');return;}
+  var btn=document.getElementById('gpsBtn');
+  btn.disabled=true;btn.innerHTML='📡 Konum alınıyor...';
+  document.getElementById('gpsYukleniyor').style.display='block';
+  navigator.geolocation.getCurrentPosition(function(p){
+    var lat=p.coords.latitude,lon=p.coords.longitude;
+    var s=ILCE_KOORD.map(function(i){return{i:i,k:km(lat,lon,i.lat,i.lon)};} ).sort(function(a,b){return a.k-b.k;});
+    document.getElementById('gpsYukleniyor').style.display='none';
+    btn.innerHTML='✅ Bulundu';
+    var h='<div style="background:#dcfce7;border:1.5px solid #bbf7d0;border-radius:12px;padding:.85rem;margin-bottom:.5rem;">';
+    h+='<div style="font-size:.6rem;font-weight:700;color:#15803d;text-transform:uppercase;margin-bottom:.2rem;">📍 EN YAKIN</div>';
+    h+='<div style="font-size:1rem;font-weight:800;color:#0f1f17;">'+s[0].i.ad+'</div>';
+    h+='<div style="font-size:.72rem;color:#4a6358;">~'+Math.round(s[0].k)+' km uzaklıkta</div>';
+    h+='</div>';
+    h+='<a href="#'+s[0].i.id+'" onclick="setTimeout(function(){document.getElementById(''+s[0].i.id+'').scrollIntoView({behavior:'smooth'});},100)" style="display:flex;align-items:center;justify-content:center;gap:.4rem;background:#16a34a;color:#fff;border-radius:10px;padding:.75rem;text-decoration:none;font-size:.85rem;font-weight:700;">💊 '+s[0].i.ad+' Eczanelerini Gör</a>';
+    document.getElementById('gpsSonuc').innerHTML=h;
+    document.getElementById('gpsSonuc').style.display='block';
+  },function(){
+    document.getElementById('gpsYukleniyor').style.display='none';
+    btn.disabled=false;btn.innerHTML='📍 En Yakın Eczaneyi Bul';
+    document.getElementById('gpsSonuc').innerHTML='<div style="background:#fee2e2;border:1px solid #fca5a5;border-radius:10px;padding:.75rem;font-size:.78rem;color:#dc2626;text-align:center;">⚠️ Konum alınamadı. Lütfen konum iznine izin verin.</div>';
+    document.getElementById('gpsSonuc').style.display='block';
+  });
+}
+document.querySelectorAll('.faq-soru').forEach(function(s){s.parentElement.onclick=function(){this.classList.toggle('acik');};} );
+</script>
+</body>
+</html
+<!-- İLÇE NÖBETÇİ KISAYOLLAR -->
+<div class="bolum">🌙 İlçe Nöbetçi Eczane Sorgula</div>
+<div style="padding:.5rem 1.25rem .75rem;display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
+  <a href="https://www.eczaneler.gen.tr/nobetci/artvin" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Artvin Merkez</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/hopa" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Hopa</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/arhavi" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Arhavi</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/borcka" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Borçka</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/savsat" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Şavşat</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/yusufeli" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Yusufeli</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/ardanuc" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Ardanuç</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci/murgul" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Murgul</a>
+</div>
+
+<!-- TÜM ECZANELER -->
+<div class="bolum">💊 Tüm Artvin Eczaneleri — İlçe İlçe</div>
+<!-- MERKEZ -->
+<div class="bolum">🏙️ Artvin Merkez</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Akın Eczanesi</div><div class="eczane-adres">İnönü Cad. Belediye İşhanı No:5</div><a href="https://share.google/l5055pJIB7UHgkR4a" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127300">0466 212-73-00</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Aylin Keskin Eczanesi</div><div class="eczane-adres">İnönü Cad. No:63 · PTT yanı</div><a href="https://share.google/WWvHbbN7cVEatFJqs" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662121015">0466 212-10-15</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Çamlıca Eczanesi</div><div class="eczane-adres">İnönü Cad. No:38/A</div><a href="https://share.google/rM1yA1gugyd7V9Ooc" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123242">0466 212-32-42</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Demir Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:48/B</div><a href="https://share.google/32uSXT0AmMdjPL4cx" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126692">0466 212-66-92</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Livane Eczanesi</div><div class="eczane-adres">İnönü Cad. No:56/E · Halitpaşa Camii karşısı</div><a href="https://share.google/5Je03geqK4GSK1171" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127565">0466 212-75-65</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Meltem Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:62/C</div><a href="https://share.google/FX6wKOVuP7QPNWwqB" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123308">0466 212-33-08</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Nurdeniz Eczanesi</div><div class="eczane-adres">Hastane Cad. Çavuş Sok. No:18/15</div><a href="https://share.google/ugFKn1vOEPO3Z4rXL" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662121510">0466 212-15-10</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ömer Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:62/A</div><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126066">0466 212-60-66</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ömür Eczanesi</div><div class="eczane-adres">Hastane Cad. No:11-9</div><a href="https://share.google/WFrJMLP7tS6XX9Dn4" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662127788">0466 212-77-88</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Ozan Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:14/B · Gazi Ortaokulu karşısı</div><a href="https://share.google/oXiMrRa3Z9iPEQsr0" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662123145">0466 212-31-45</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sağlık Eczanesi</div><div class="eczane-adres">Şehit Dursun Acar Cad. No:5/D</div><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662126334">0466 212-63-34</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Umut Eczanesi</div><div class="eczane-adres">Hastane Cad. Sağlık Sok. No:6/B · Verem Savaş Dispanseri arkası</div><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662129370">0466 212-93-70</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Yağmur Eczanesi</div><div class="eczane-adres">Hastane Cad. No:11</div><a href="https://share.google/neavojSGS1RXTair3" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04662124676">0466 212-46-76</a></div></div>
+  </div>
+</div>
+
+<!-- HOPA -->
+<div class="bolum">🌊 Hopa</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Altınpost Eczanesi</div><div class="eczane-adres">Turgay Ciner Cad. No:6</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663516666">0466 351-66-66</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Feyza Eczanesi</div><div class="eczane-adres">Lise Cad. No:49/A · ASM yanı</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04665021144">0466 502-11-44</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Gökberk Eczanesi</div><div class="eczane-adres">139. Sokak No:2/E</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663515500">0466 351-55-00</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Jülide Nazlı Eczanesi</div><div class="eczane-adres">Sahil Cad. Belediye İşhanı No:50/C · Heyamo Otel yanı</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663513946">0466 351-39-46</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Mihrap Eczanesi</div><div class="eczane-adres">Lise Cad. No:68/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663513553">0466 351-35-53</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Uzun Eczanesi</div><div class="eczane-adres">Sahil Cad. Terzioğlu Apt. No:174/8</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663516211">0466 351-62-11</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Vatan Eczanesi</div><div class="eczane-adres">139. Sokak No:6BA · Artvin Yolu üzeri</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663517200">0466 351-72-00</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Yasemin Eczanesi</div><div class="eczane-adres">Turgay Ciner Cad. No:95/A · Eski Hastane karşısı</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663512628">0466 351-26-28</a></div></div>
+  </div>
+</div>
+
+<!-- ARHAVİ -->
+<div class="bolum">🌿 Arhavi</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Arhavi Eczanesi</div><div class="eczane-adres">Atatürk Bulvarı No:36 · Hastane yanı</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663124060">0466 312-40-60</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Bayraktar Eczanesi</div><div class="eczane-adres">Şehit Üsteğmen Gökhan Yavuz Cad. No:2/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663124320">0466 312-43-20</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Hayat Eczanesi</div><div class="eczane-adres">Fevzi Çakmak Cad. No:6</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663124164">0466 312-41-64</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Turna Eczanesi</div><div class="eczane-adres">Yüksel Büyüklü Cad. No:2/A</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663122012">0466 312-20-12</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Umut Eczanesi</div><div class="eczane-adres">Sahil Cad. No:77/B · Askerlik Şubesi yanı</div><a href="https://share.google/83pcf2gS2RVKP0uq0" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663127255">0466 312-72-55</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Yeni Bayraktar Eczanesi</div><div class="eczane-adres">Atatürk Bulvarı Yıldız Sitesi No:89/1</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04663127585">0466 312-75-85</a></div></div>
+  </div>
+</div>
+
+<!-- BORÇKA -->
+<div class="bolum">🏔️ Borçka</div>
+<div class="ilce-wrap">
+  <div class="eczane-grid">
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Cebeci Eczanesi</div><div class="eczane-adres">Cumhuriyet Meydanı No:2</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664152589">0466 415-25-89</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Halk Eczanesi</div><div class="eczane-adres">15 Temmuz Meydanı No:14/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151171">0466 415-11-71</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Özlem Eczanesi</div><div class="eczane-adres">Kars Caddesi No:1/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151188">0466 415-11-88</a></div></div>
+    <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Sağlık Eczanesi</div><div class="eczane-adres">Sahil Cad. No:19/A</div><a href="https://share.google/flklA9hhOX6xelPxX" target="_blank" rel="noopener" class="maps-btn-ec">↗ Yol</a></div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151354">0466 415-13-54</a></div></div>
     <div class="eczane-kart"><div class="eczane-bilgi"><div class="eczane-ad">Zeytül Eczanesi</div><div class="eczane-adres">Hükümet Cad. No:36/B</div></div><div class="eczane-tel"><span class="tel-ikon">📞</span><a href="tel:04664151490">0466 415-14-90</a></div></div>
   </div>
 </div>
