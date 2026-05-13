@@ -334,7 +334,7 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;}
         <div class="bugun-saat">Güncel bilgi için tıklayın</div>
       </div>
       <div class="bugun-butonlar">
-        <a href="https://www.eczaneler.gen.tr/nobetci-artvin" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;background:#15803d;color:#fff;border-radius:8px;padding:.5rem 1rem;font-size:.8rem;font-weight:700;text-decoration:none;">Nöbetçiyi Gör →</a>
+        <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;background:#15803d;color:#fff;border-radius:8px;padding:.5rem 1rem;font-size:.8rem;font-weight:700;text-decoration:none;">Nöbetçiyi Gör →</a>
         <a href="tel:04662123308" class="ec-tel" style="width:40px;height:40px;font-size:1rem;">📞</a>
       </div>
     </div>
@@ -356,7 +356,7 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;}
 <!-- İLÇE NÖBETÇİ KISAYOLLAR -->
 <div class="bolum">🌙 İlçe Nöbetçi Eczane Sorgula</div>
 <div style="padding:.5rem 1.25rem .75rem;display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
-  <a href="https://www.eczaneler.gen.tr/nobetci-artvin" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Artvin Merkez</a>
+  <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Artvin Merkez</a>
   <a href="https://www.eczaneler.gen.tr/nobetci-artvin-hopa" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Hopa</a>
   <a href="https://www.eczaneler.gen.tr/nobetci-artvin-arhavi" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Arhavi</a>
   <a href="https://www.eczaneler.gen.tr/nobetci-artvin-borcka" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.35rem;background:#fff;border:1.5px solid #c8ddc8;border-radius:12px;padding:.7rem .5rem;text-decoration:none;font-size:.78rem;font-weight:700;color:#0f2318;">🏥 Borçka</a>
@@ -456,29 +456,6 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;}
 
 <script>
 var ILCE_KOORD = [
-  {ad:"Artvin Merkez",lat:41.1828,lon:41.8183,id:"artvin-merkez"},
-  {ad:"Hopa",lat:41.4119,lon:41.4239,id:"hopa"},
-  {ad:"Arhavi",lat:41.3528,lon:41.2978,id:"arhavi"},
-  {ad:"Borçka",lat:41.3667,lon:41.6833,id:"borcka"},
-  {ad:"Kemalpaşa",lat:41.3667,lon:41.3500,id:"kemalpasa"},
-  {ad:"Şavşat",lat:41.2444,lon:42.3667,id:"savsat"},
-  {ad:"Ardanuç",lat:41.1167,lon:42.0667,id:"ardanuc"},
-  {ad:"Yusufeli",lat:40.8167,lon:41.5333,id:"yusufeli"},
-  {ad:"Murgul",lat:41.1833,lon:41.5167,id:"murgul"},
-];
-function km(a,b,c,d){var R=6371,x=(c-a)*Math.PI/180,y=(d-b)*Math.PI/180,z=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(y/2)*Math.sin(y/2);return R*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z));}
-function scrollEczane(id){
-  var el = document.getElementById(id);
-  if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
-}
-
-function km(a,b,c,d){
-  var R=6371,x=(c-a)*Math.PI/180,y=(d-b)*Math.PI/180;
-  var z=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(y/2)*Math.sin(y/2);
-  return R*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z));
-}
-
-var ILCE_KOORD = [
   {ad:'Artvin Merkez', lat:41.1828, lon:41.8183, id:'artvin-merkez'},
   {ad:'Hopa', lat:41.4119, lon:41.4239, id:'hopa'},
   {ad:'Arhavi', lat:41.3528, lon:41.2978, id:'arhavi'},
@@ -487,60 +464,96 @@ var ILCE_KOORD = [
   {ad:'Şavşat', lat:41.2444, lon:42.3667, id:'savsat'},
   {ad:'Ardanuç', lat:41.1167, lon:42.0667, id:'ardanuc'},
   {ad:'Yusufeli', lat:40.8167, lon:41.5333, id:'yusufeli'},
-  {ad:'Murgul', lat:41.1833, lon:41.5167, id:'murgul'},
+  {ad:'Murgul', lat:41.1833, lon:41.5167, id:'murgul'}
 ];
 
-function enYakinBul(){
-  if(!navigator.geolocation){
+function uzaklik(lat1, lon1, lat2, lon2) {
+  var R = 6371;
+  var dLat = (lat2 - lat1) * Math.PI / 180;
+  var dLon = (lon2 - lon1) * Math.PI / 180;
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+          Math.sin(dLon/2) * Math.sin(dLon/2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function scrollEczane(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+}
+
+function enYakinBul() {
+  if (!navigator.geolocation) {
     alert('Tarayıcınız konum özelliğini desteklemiyor.');
     return;
   }
+
   var btn = document.getElementById('gpsBtn');
+  var yukleniyor = document.getElementById('gpsYukleniyor');
+  var sonuc = document.getElementById('gpsSonuc');
+
   btn.disabled = true;
   btn.innerHTML = '📡 Konum alınıyor...';
-  document.getElementById('gpsYukleniyor').style.display = 'block';
+  yukleniyor.style.display = 'block';
+  sonuc.style.display = 'none';
 
   navigator.geolocation.getCurrentPosition(
-    function(p){
-      var lat = p.coords.latitude;
-      var lon = p.coords.longitude;
+    function(pozisyon) {
+      var kulLat = pozisyon.coords.latitude;
+      var kulLon = pozisyon.coords.longitude;
 
-      var sirali = ILCE_KOORD.map(function(i){
-        return { ilce: i, uzaklik: km(lat, lon, i.lat, i.lon) };
-      }).sort(function(a,b){ return a.uzaklik - b.uzaklik; });
+      var sirali = ILCE_KOORD.slice().sort(function(a, b) {
+        return uzaklik(kulLat, kulLon, a.lat, a.lon) - uzaklik(kulLat, kulLon, b.lat, b.lon);
+      });
 
       var enYakin = sirali[0];
       var ikinci = sirali[1];
+      var enYakinKm = Math.round(uzaklik(kulLat, kulLon, enYakin.lat, enYakin.lon));
 
-      document.getElementById('gpsYukleniyor').style.display = 'none';
-      btn.innerHTML = '✅ Bulundu';
+      yukleniyor.style.display = 'none';
+      btn.innerHTML = '✅ Konum Bulundu';
 
-      var h = '';
-      h += '<div style="background:#dcfce7;border:1.5px solid #bbf7d0;border-radius:12px;padding:.85rem;margin-bottom:.6rem;">';
-      h += '<div style="font-size:.6rem;font-weight:700;color:#15803d;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">📍 EN YAKIN İLÇE</div>';
-      h += '<div style="font-size:1rem;font-weight:800;color:#0f1f17;">' + enYakin.ilce.ad + '</div>';
-      h += '<div style="font-size:.72rem;color:#4a6358;">~' + Math.round(enYakin.uzaklik) + ' km uzaklıkta</div>';
-      h += '</div>';
-      h += '<button onclick="scrollEczane('' + enYakin.ilce.id + '')" style="width:100%;background:#16a34a;color:#fff;border:none;border-radius:10px;padding:.75rem;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;margin-bottom:.35rem;">💊 ' + enYakin.ilce.ad + ' Eczanelerini Gör</button>';
-      if(ikinci){
-        h += '<div style="font-size:.65rem;color:#9aaa9c;text-align:center;">2. yakın: ' + ikinci.ilce.ad + ' (~' + Math.round(ikinci.uzaklik) + ' km)</div>';
+      var html = '';
+      html += '<div style="background:#dcfce7;border:1.5px solid #bbf7d0;border-radius:12px;padding:.85rem;margin-bottom:.6rem;">';
+      html += '<div style="font-size:.6rem;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem;">📍 EN YAKIN İLÇE</div>';
+      html += '<div style="font-size:1rem;font-weight:800;color:#0f1f17;margin-bottom:.15rem;">' + enYakin.ad + '</div>';
+      html += '<div style="font-size:.72rem;color:#4a6358;">Tahminen ~' + enYakinKm + ' km uzaklıkta</div>';
+      html += '</div>';
+
+      html += '<button onclick="scrollEczane('' + enYakin.id + '')" ';
+      html += 'style="width:100%;background:#16a34a;color:#fff;border:none;border-radius:10px;';
+      html += 'padding:.8rem;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;margin-bottom:.4rem;">';
+      html += '💊 ' + enYakin.ad + ' Eczanelerini Gör';
+      html += '</button>';
+
+      if (ikinci) {
+        var ikinciKm = Math.round(uzaklik(kulLat, kulLon, ikinci.lat, ikinci.lon));
+        html += '<div style="font-size:.65rem;color:#9aaa9c;text-align:center;">2. yakın: ' + ikinci.ad + ' (~' + ikinciKm + ' km)</div>';
       }
 
-      document.getElementById('gpsSonuc').innerHTML = h;
-      document.getElementById('gpsSonuc').style.display = 'block';
+      sonuc.innerHTML = html;
+      sonuc.style.display = 'block';
     },
-    function(err){
-      document.getElementById('gpsYukleniyor').style.display = 'none';
+    function(hata) {
+      yukleniyor.style.display = 'none';
       btn.disabled = false;
       btn.innerHTML = '📍 En Yakın Eczaneyi Bul';
-      var mesaj = 'Konum alınamadı.';
-      if(err.code === 1) mesaj = 'Konum izni reddedildi. Lütfen tarayıcı ayarlarından konum iznine izin verin.';
-      if(err.code === 2) mesaj = 'Konum bilgisi alınamadı. Tekrar deneyin.';
-      if(err.code === 3) mesaj = 'Konum alımı zaman aşımına uğradı. Tekrar deneyin.';
-      document.getElementById('gpsSonuc').innerHTML = '<div style="background:#fee2e2;border:1px solid #fca5a5;border-radius:10px;padding:.75rem;font-size:.78rem;color:#dc2626;text-align:center;">⚠️ ' + mesaj + '</div>';
-      document.getElementById('gpsSonuc').style.display = 'block';
+
+      var mesaj = 'Konum alınamadı. Lütfen tekrar deneyin.';
+      if (hata.code === 1) mesaj = 'Konum izni reddedildi. Tarayıcı ayarlarından konum iznini açın.';
+      else if (hata.code === 2) mesaj = 'Konum bilgisi alınamadı. Tekrar deneyin.';
+      else if (hata.code === 3) mesaj = 'Konum alımı zaman aşımına uğradı. Tekrar deneyin.';
+
+      sonuc.innerHTML = '<div style="background:#fee2e2;border:1px solid #fca5a5;border-radius:10px;padding:.85rem;font-size:.78rem;color:#dc2626;text-align:center;">⚠️ ' + mesaj + '</div>';
+      sonuc.style.display = 'block';
     },
-    { timeout: 10000, enableHighAccuracy: true }
+    {
+      timeout: 10000,
+      maximumAge: 60000,
+      enableHighAccuracy: false
+    }
   );
 }
 </script>
