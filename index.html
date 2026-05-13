@@ -832,15 +832,15 @@ border-radius:20px;}
 
 /* ═══════════ SİTE İÇİ ARAMA ═══════════ */
 .arama-wrap{position:absolute;top:.9rem;left:0;right:0;padding:0 1rem;z-index:50;}
-.arama-ic{position:relative;display:flex;align-items:center;background:#fff;border-radius:999px;box-shadow:0 4px 20px rgba(0,0,0,.4);height:50px;}
+.arama-ic{position:relative;display:flex;align-items:center;background:rgba(10,26,18,.85);border:1.5px solid rgba(232,184,75,.35);border-radius:999px;box-shadow:0 4px 24px rgba(0,0,0,.5);height:50px;backdrop-filter:blur(12px);}
 .arama-sembol{flex-shrink:0;width:48px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
-.arama-ayrac{width:1px;height:26px;background:rgba(0,0,0,.12);flex-shrink:0;}
-.arama-input{flex:1;background:transparent;border:none;outline:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;color:#222;padding:0 .65rem;height:100%;min-width:0;}
+.arama-ayrac{width:1px;height:26px;background:rgba(232,184,75,.25);flex-shrink:0;}
+.arama-input{flex:1;background:transparent;border:none;outline:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;color:rgba(255,255,255,.85);padding:0 .65rem;height:100%;min-width:0;}
 .arama-input::placeholder{color:#aaa;}
 .arama-saglar{display:flex;align-items:center;padding-right:.45rem;gap:.15rem;flex-shrink:0;}
 .arama-mic,.arama-btn{background:none;border:none;cursor:pointer;padding:.45rem;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s;}
-.arama-mic{color:#888;}.arama-mic:hover{background:rgba(0,0,0,.07);}
-.arama-btn{color:#1a73e8;}.arama-btn:hover{background:rgba(26,115,232,.08);}
+.arama-mic{color:#e8b84b;}.arama-mic:hover{background:rgba(232,184,75,.12);}
+.arama-btn{color:#e8b84b;}.arama-btn:hover{background:rgba(232,184,75,.12);}
 .arama-sonuclar{position:absolute;top:calc(100% + .45rem);left:0;right:0;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.18);z-index:999;display:none;max-height:320px;overflow-y:auto;}
 .arama-item{display:flex;align-items:center;gap:.7rem;padding:.72rem 1rem;border-bottom:1px solid rgba(0,0,0,.05);text-decoration:none;transition:.1s;}
 .arama-item:last-child{border-bottom:none;}
