@@ -457,110 +457,107 @@ footer a{color:var(--yesil-b);text-decoration:none;}
 </footer>
 
 
+
+
+</body>
+</html>
 <script>
-var GZ_VERI = {
-  'artvin-hopa':     {km:'55', sure:'Genellikle her saat başı', fiyat:'280', durak:'d1'},
-  'artvin-borcka':   {km:'32', sure:'Genellikle her saat başı', fiyat:'170', durak:'d2'},
-  'artvin-ardanuc':  {km:'35', sure:'Genellikle her saat başı', fiyat:'230', durak:'d2'},
-  'artvin-murgul':   {km:'58', sure:'Genellikle her saat başı', fiyat:'230', durak:'d2'},
-  'artvin-savsat':   {km:'65', sure:'Genellikle her saat başı', fiyat:'280', durak:'d1'},
-  'artvin-arhavi':   {km:'65', sure:'Genellikle her saat başı', fiyat:'300', durak:'d1'},
-  'artvin-yusufeli': {km:'70', sure:'Genellikle her saat başı', fiyat:'300', durak:'d1'},
-  'artvin-kemalpasa':{km:'72', sure:'', fiyat:'', durak:'aktarma'},
-  'hopa-artvin':     {km:'55', sure:'Genellikle her saat başı', fiyat:'280', durak:'hopa'},
-  'borcka-artvin':   {km:'32', sure:'Genellikle her saat başı', fiyat:'170', durak:'borcka'},
-  'ardanuc-artvin':  {km:'35', sure:'Genellikle her saat başı', fiyat:'230', durak:'ardanuc'},
-  'murgul-artvin':   {km:'58', sure:'Genellikle her saat başı', fiyat:'230', durak:'murgul'},
-  'savsat-artvin':   {km:'65', sure:'Genellikle her saat başı', fiyat:'280', durak:'savsat'},
-  'arhavi-artvin':   {km:'65', sure:'Genellikle her saat başı', fiyat:'300', durak:'arhavi'},
-  'yusufeli-artvin': {km:'70', sure:'Genellikle her saat başı', fiyat:'300', durak:'yusufeli'},
-  'kemalpasa-artvin':{km:'72', sure:'', fiyat:'', durak:'aktarma'}
+window.addEventListener('load', function() {
+
+var VERI = {
+  'artvin-hopa':     {km:'55 km', sure:'Genellikle her saat başı', fiyat:'280 ₺', durak:'d1'},
+  'artvin-borcka':   {km:'32 km', sure:'Genellikle her saat başı', fiyat:'170 ₺', durak:'d2'},
+  'artvin-ardanuc':  {km:'35 km', sure:'Genellikle her saat başı', fiyat:'230 ₺', durak:'d2'},
+  'artvin-murgul':   {km:'58 km', sure:'Genellikle her saat başı', fiyat:'230 ₺', durak:'d2'},
+  'artvin-savsat':   {km:'65 km', sure:'Genellikle her saat başı', fiyat:'280 ₺', durak:'d1'},
+  'artvin-arhavi':   {km:'65 km', sure:'Genellikle her saat başı', fiyat:'300 ₺', durak:'d1'},
+  'artvin-yusufeli': {km:'70 km', sure:'Genellikle her saat başı', fiyat:'300 ₺', durak:'d1'},
+  'artvin-kemalpasa':{km:'72 km', sure:'', fiyat:'', durak:'aktarma'},
+  'hopa-artvin':     {km:'55 km', sure:'Genellikle her saat başı', fiyat:'280 ₺', durak:'hopa'},
+  'borcka-artvin':   {km:'32 km', sure:'Genellikle her saat başı', fiyat:'170 ₺', durak:'borcka'},
+  'ardanuc-artvin':  {km:'35 km', sure:'Genellikle her saat başı', fiyat:'230 ₺', durak:'ardanuc'},
+  'murgul-artvin':   {km:'58 km', sure:'Genellikle her saat başı', fiyat:'230 ₺', durak:'murgul'},
+  'savsat-artvin':   {km:'65 km', sure:'Genellikle her saat başı', fiyat:'280 ₺', durak:'savsat'},
+  'arhavi-artvin':   {km:'65 km', sure:'Genellikle her saat başı', fiyat:'300 ₺', durak:'arhavi'},
+  'yusufeli-artvin': {km:'70 km', sure:'Genellikle her saat başı', fiyat:'300 ₺', durak:'yusufeli'},
+  'kemalpasa-artvin':{km:'72 km', sure:'', fiyat:'', durak:'aktarma'}
 };
 
-var GZ_DURAK = {
+var DURAK = {
   d1:       {isim:'Artvin Durak 1 — Kooperatif', adres:'Erzurum Cad. No:9, Otogar Yanı', tel:'04662122236', fmt:'0466 212 22 36', hatlar:'Hopa · Şavşat · Arhavi · Yusufeli', maps:'https://maps.app.goo.gl/2YY8KSzJF6UTX7JS8'},
   d2:       {isim:'Artvin Durak 2 — Artrium Alt Viraj', adres:'Artrium AVM Alt Virajı', tel:'04662122240', fmt:'0466 212 22 40', hatlar:'Borçka · Ardanuç · Murgul', maps:'https://maps.app.goo.gl/d24Wvi2kLnL8ekXD8'},
-  hopa:     {isim:'Hopa Dolmuş Durağı', adres:'Hopa Merkez', tel:'04663516670', fmt:'0466 351 66 70', hatlar:'Hopa → Artvin'},
-  borcka:   {isim:'Borçka Dolmuş Durağı', adres:'Borçka Merkez', tel:'04664153353', fmt:'0466 415 33 53', hatlar:'Borçka → Artvin'},
-  ardanuc:  {isim:'Ardanuç Dolmuş Durağı', adres:'Ardanuç Merkez', tel:'04666113435', fmt:'0466 611 34 35', hatlar:'Ardanuç → Artvin'},
-  savsat:   {isim:'Şavşat Dolmuş Durağı', adres:'Şavşat Merkez', tel:'04665171250', fmt:'0466 517 12 50', hatlar:'Şavşat → Artvin'},
-  arhavi:   {isim:'Arhavi Dolmuş Durağı', adres:'Arhavi Merkez', tel:'04663126050', fmt:'0466 312 60 50', hatlar:'Arhavi → Artvin'},
-  murgul:   {isim:'Murgul Dolmuş Durağı', adres:'Murgul Merkez', tel:'04667113066', fmt:'0466 711 30 66', hatlar:'Murgul → Artvin'},
-  yusufeli: {isim:'Yusufeli Dolmuş Durağı', adres:'Yusufeli Merkez', tel:'04662122474', fmt:'0466 212 24 74', hatlar:'Yusufeli → Artvin'},
-  kemalpasa:{isim:'Kemalpaşa Dolmuş Durağı', adres:'Kemalpaşa Merkez', tel:'04663515775', fmt:'0466 351 57 75', hatlar:'Kemalpaşa → Artvin'}
+  hopa:     {isim:'Hopa Dolmuş Durağı', adres:'Hopa Merkez', tel:'04663516670', fmt:'0466 351 66 70', hatlar:'Hopa → Artvin', maps:''},
+  borcka:   {isim:'Borçka Dolmuş Durağı', adres:'Borçka Merkez', tel:'04664153353', fmt:'0466 415 33 53', hatlar:'Borçka → Artvin', maps:''},
+  ardanuc:  {isim:'Ardanuç Dolmuş Durağı', adres:'Ardanuç Merkez', tel:'04666113435', fmt:'0466 611 34 35', hatlar:'Ardanuç → Artvin', maps:''},
+  savsat:   {isim:'Şavşat Dolmuş Durağı', adres:'Şavşat Merkez', tel:'04665171250', fmt:'0466 517 12 50', hatlar:'Şavşat → Artvin', maps:''},
+  arhavi:   {isim:'Arhavi Dolmuş Durağı', adres:'Arhavi Merkez', tel:'04663126050', fmt:'0466 312 60 50', hatlar:'Arhavi → Artvin', maps:''},
+  murgul:   {isim:'Murgul Dolmuş Durağı', adres:'Murgul Merkez', tel:'04667113066', fmt:'0466 711 30 66', hatlar:'Murgul → Artvin', maps:''},
+  yusufeli: {isim:'Yusufeli Dolmuş Durağı', adres:'Yusufeli Merkez', tel:'04662122474', fmt:'0466 212 24 74', hatlar:'Yusufeli → Artvin', maps:''},
+  kemalpasa:{isim:'Kemalpaşa Dolmuş Durağı', adres:'Kemalpaşa Merkez', tel:'04663515775', fmt:'0466 351 57 75', hatlar:'Kemalpaşa → Artvin', maps:''}
 };
 
-var GZ_DURAK_AKTARMA = {
-  aktarma: {isim:'Kemalpaşa — Direkt Hat Yok', adres:'Hopa üzerinden aktarmalı seyahat edilir', tel:'04663516670', fmt:'0466 351 66 70', hatlar:'Önce Artvin → Hopa, sonra Hopa → Kemalpaşa'}
-};
-
-var GZ_ADLAR = {
+var ADLAR = {
   artvin:'Artvin Merkez', hopa:'Hopa', borcka:'Borçka',
   ardanuc:'Ardanuç', murgul:'Murgul', savsat:'Şavşat',
   arhavi:'Arhavi', yusufeli:'Yusufeli', kemalpasa:'Kemalpaşa'
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-document.getElementById('gzBtn').addEventListener('click', function() {
+var btn = document.getElementById('gzBtn');
+if (!btn) { return; }
+
+btn.addEventListener('click', function() {
   var nereden = document.getElementById('gzNereden').value;
   var nereye = document.getElementById('gzNereye').value;
   var sonuc = document.getElementById('gzSonuc');
 
   if (!nereden || !nereye) {
-    sonuc.innerHTML = '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:.75rem;font-size:.8rem;color:#b45309;text-align:center;">⚠️ Lütfen nereden ve nereye seçin.</div>';
+    sonuc.innerHTML = '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:.85rem;font-size:.82rem;color:#b45309;text-align:center;">⚠️ Lütfen nereden ve nereye seçin.</div>';
     sonuc.style.display = 'block';
     return;
   }
 
   if (nereden === nereye) {
-    sonuc.innerHTML = '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:.75rem;font-size:.8rem;color:#b45309;text-align:center;">⚠️ Kalkış ve varış noktası aynı olamaz.</div>';
+    sonuc.innerHTML = '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:.85rem;font-size:.82rem;color:#b45309;text-align:center;">⚠️ Kalkış ve varış aynı olamaz.</div>';
     sonuc.style.display = 'block';
     return;
   }
 
-  // İlçeden ilçeye sorgu engelle
   if (nereden !== 'artvin' && nereye !== 'artvin') {
-    sonuc.innerHTML = '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:.75rem;font-size:.82rem;color:#b45309;text-align:center;">ℹ️ Şu an yalnızca Artvin merkez bağlantılı güzergahlar sorgulanabilir.</div>';
+    sonuc.innerHTML = '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:.85rem;font-size:.82rem;color:#b45309;text-align:center;">ℹ️ Şu an yalnızca Artvin merkez bağlantılı güzergahlar sorgulanabilir.</div>';
     sonuc.style.display = 'block';
     return;
   }
 
   var anahtar = nereden + '-' + nereye;
-  var bilgi = GZ_VERI[anahtar];
+  var bilgi = VERI[anahtar];
 
   if (!bilgi) {
-    sonuc.innerHTML = '<div style="background:#fee2e2;border:1px solid #fca5a5;border-radius:10px;padding:.75rem;font-size:.8rem;color:#dc2626;text-align:center;">Bu güzergah için bilgi bulunamadı.</div>';
+    sonuc.innerHTML = '<div style="background:#fee2e2;border:1px solid #fca5a5;border-radius:10px;padding:.85rem;font-size:.82rem;color:#dc2626;text-align:center;">Bu güzergah için bilgi bulunamadı.</div>';
     sonuc.style.display = 'block';
     return;
   }
 
-  // Aktarmalı güzergah (Kemalpaşa)
+  // Kemalpaşa aktarmalı
   if (bilgi.durak === 'aktarma') {
-    var ak = GZ_DURAK_AKTARMA.aktarma;
     var html = '<div style="background:#fef3c7;border:2px solid #fde68a;border-radius:14px;padding:1rem;margin-bottom:.65rem;">';
-    html += '<div style="font-size:.75rem;font-weight:800;color:#b45309;margin-bottom:.3rem;">⚠️ Kemalpaşa — Direkt Hat Yok</div>';
-    html += '<div style="font-size:.78rem;color:#92400e;line-height:1.7;">Kemalpaşa'ya direkt dolmuş bulunmamaktadır. <strong>Hopa üzerinden aktarmalı</strong> seyahat edilmektedir.</div>';
+    html += '<div style="font-size:.78rem;font-weight:800;color:#b45309;margin-bottom:.35rem;">⚠️ Kemalpaşa — Direkt Hat Yok</div>';
+    html += '<div style="font-size:.8rem;color:#92400e;line-height:1.7;">Kemalpaşa\'ya direkt dolmuş bulunmamaktadır. <strong>Hopa üzerinden aktarmalı</strong> seyahat edilmektedir.</div>';
     html += '</div>';
-    html += '<div class="gz-durak">';
-    html += '<div class="gz-durak-h">📍 ' + ak.isim + '</div>';
-    html += '<div class="gz-durak-adres">' + ak.adres + '</div>';
-    html += '<div style="font-size:.62rem;color:var(--dim);margin-bottom:.55rem;">' + ak.hatlar + '</div>';
-    html += '<div class="gz-durak-btns">';
-    html += '<a href="tel:' + ak.tel + '" class="gz-ara">📞 Hopa Durağını Ara</a>';
-    html += '</div></div>';
+    html += '<div class="gz-durak"><div class="gz-durak-h">📍 Hopa Dolmuş Durağı</div>';
+    html += '<div class="gz-durak-adres">Hopa Merkez &nbsp;·&nbsp; 0466 351 66 70</div>';
+    html += '<div style="font-size:.62rem;color:var(--dim);margin-bottom:.55rem;">Önce Artvin → Hopa, sonra Hopa → Kemalpaşa</div>';
+    html += '<div class="gz-durak-btns"><a href="tel:04663516670" class="gz-ara">📞 Hopa Durağını Ara</a></div></div>';
     sonuc.innerHTML = html;
     sonuc.style.display = 'block';
-    sonuc.scrollIntoView({behavior:'smooth', block:'nearest'});
     return;
   }
 
-  var d = GZ_DURAK[bilgi.durak] || GZ_DURAK_AKTARMA[bilgi.durak];
-
-  var html = '<div class="gz-sonuc-baslik">🚐 ' + GZ_ADLAR[nereden] + ' → ' + GZ_ADLAR[nereye] + '</div>';
+  var d = DURAK[bilgi.durak];
+  var html = '<div class="gz-sonuc-baslik">🚐 ' + ADLAR[nereden] + ' → ' + ADLAR[nereye] + '</div>';
   html += '<div class="gz-bilgi-grid">';
-  html += '<div class="gz-bilgi"><div class="gz-bilgi-etiket">Mesafe</div><div class="gz-bilgi-deger">' + bilgi.km + ' km</div></div>';
+  html += '<div class="gz-bilgi"><div class="gz-bilgi-etiket">Mesafe</div><div class="gz-bilgi-deger">' + bilgi.km + '</div></div>';
   html += '<div class="gz-bilgi"><div class="gz-bilgi-etiket">Kalkış</div><div class="gz-bilgi-deger" style="font-size:.65rem;line-height:1.3;">' + bilgi.sure + '</div></div>';
-  html += '<div class="gz-bilgi"><div class="gz-bilgi-etiket">Ücret</div><div class="gz-bilgi-deger yesil">' + bilgi.fiyat + ' ₺</div></div>';
+  html += '<div class="gz-bilgi"><div class="gz-bilgi-etiket">Ücret</div><div class="gz-bilgi-deger yesil">' + bilgi.fiyat + '</div></div>';
   html += '</div>';
   html += '<div class="gz-durak">';
   html += '<div class="gz-durak-h">📍 ' + d.isim + '</div>';
@@ -568,14 +565,15 @@ document.getElementById('gzBtn').addEventListener('click', function() {
   html += '<div style="font-size:.62rem;color:var(--dim);margin-bottom:.55rem;">' + d.hatlar + '</div>';
   html += '<div class="gz-durak-btns">';
   html += '<a href="tel:' + d.tel + '" class="gz-ara">📞 Durağı Ara</a>';
-  html += '<a href="' + d.maps + '" target="_blank" rel="noopener" class="gz-rezerv">🗺️ Haritada Gör</a>';
+  if (d.maps) {
+    html += '<a href="' + d.maps + '" target="_blank" rel="noopener" class="gz-rezerv">🗺️ Haritada Gör</a>';
+  }
   html += '</div></div>';
 
   sonuc.innerHTML = html;
   sonuc.style.display = 'block';
   sonuc.scrollIntoView({behavior:'smooth', block:'nearest'});
 });
-</script>
 
-</body>
-</html>
+}); // window load
+</script>
