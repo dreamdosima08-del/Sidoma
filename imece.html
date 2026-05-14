@@ -29,6 +29,7 @@
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
 
 <style>
 :root{
@@ -331,6 +332,16 @@ footer a{color:var(--imece);text-decoration:none;}
       <div class="f-alan"><label class="f-label">Telefon *</label><input type="tel" class="f-input" id="fTel" placeholder="05xx xxx xx xx"></div>
     </div>
 
+    
+    <div class="f-alan" style="margin-top:.5rem;">
+      <label class="f-label">📷 Fotoğraf <span style="color:rgba(255,255,255,.3);font-weight:400;">(İsteğe bağlı, maks. 3MB)</span></label>
+      <input type="file" class="f-input" id="fFoto" accept="image/*" style="padding:.5rem;">
+      <div id="fotoOnizleme" style="display:none;margin-top:.5rem;">
+        <img id="fotoImg" style="width:100%;max-height:180px;object-fit:cover;border-radius:8px;border:1px solid rgba(46,204,113,.2);" alt="Ön izleme">
+      </div>
+      <div id="fotoYukleniyor" style="display:none;font-size:.7rem;color:var(--imece);margin-top:.3rem;">📤 Fotoğraf yükleniyor...</div>
+    </div>
+
     <div class="f-alan" style="background:rgba(46,204,113,.04);border:1px solid rgba(46,204,113,.1);border-radius:8px;padding:.75rem;margin-top:.25rem">
       <div style="font-size:.65rem;font-weight:700;color:var(--imece);margin-bottom:.25rem">🔑 İlan Silme Kodu</div>
       <div style="font-size:.72rem;color:var(--dim);line-height:1.65">İlanınız yayınlandıktan sonra size özel bir silme kodu gösterilecek. Bu kodu saklayın.</div>
@@ -416,6 +427,24 @@ footer a{color:var(--imece);text-decoration:none;}
 
 <script>
 // ── Firebase ──
+
+// Fotoğraf önizleme
+document.getElementById('fFoto').addEventListener('change', function() {
+  var dosya = this.files[0];
+  if (!dosya) return;
+  if (dosya.size > 3 * 1024 * 1024) {
+    alert('⚠️ Fotoğraf 3MB'dan küçük olmalıdır.');
+    this.value = '';
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('fotoImg').src = e.target.result;
+    document.getElementById('fotoOnizleme').style.display = 'block';
+  };
+  reader.readAsDataURL(dosya);
+});
+
 var firebaseConfig = {
   apiKey: "AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",
   authDomain: "artvin-imece.firebaseapp.com",
@@ -426,6 +455,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
+var storage = firebase.storage();
 var COL = "imece_ilanlar";
 
 // ── Değişkenler ──
@@ -566,6 +596,19 @@ document.getElementById('btnYayinla').addEventListener('click', async function()
 
   try {
     var silKod = Math.random().toString(36).substring(2,8).toUpperCase();
+    
+    // Fotoğraf yükle
+    var fotoUrl = '';
+    var fotoInput = document.getElementById('fFoto');
+    if (fotoInput.files && fotoInput.files[0]) {
+      document.getElementById('fotoYukleniyor').style.display = 'block';
+      var dosya = fotoInput.files[0];
+      var ref = storage.ref('ilanlar/' + Date.now() + '_' + dosya.name.replace(/[^a-zA-Z0-9.]/g,'_'));
+      var snapshot = await ref.put(dosya);
+      fotoUrl = await snapshot.ref.getDownloadURL();
+      document.getElementById('fotoYukleniyor').style.display = 'none';
+    }
+
     await db.collection(COL).add({
       tip, kategori: kat, baslik: bas, ilce, durum,
       aciklama: acik, ad, tel, silmeKodu: silKod,
