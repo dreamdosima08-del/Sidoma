@@ -190,11 +190,11 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 /* CANLI BÖLÜMLER */
 .canli-wrap{padding:.75rem 1.25rem;display:flex;flex-direction:column;gap:.5rem;}
 .hava-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
-.hava-kart{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:14px;padding:.85rem;text-align:center;}
-.hava-sehir{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray2);margin-bottom:.3rem;}
-.hava-icon{font-size:1.6rem;line-height:1;margin-bottom:.2rem;}
-.hava-derece{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);letter-spacing:.04em;}
-.hava-durum{font-size:.62rem;color:var(--gray1);}
+.hava-kart{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:12px;padding:.55rem .5rem;text-align:center;}
+.hava-sehir{font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray2);margin-bottom:.15rem;}
+.hava-icon{font-size:1.1rem;line-height:1;margin-bottom:.1rem;}
+.hava-derece{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--white);letter-spacing:.04em;}
+.hava-durum{font-size:.58rem;color:var(--gray1);}
 
 .ucus-btn{display:flex;align-items:center;justify-content:space-between;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);border-radius:14px;padding:.85rem 1rem;text-decoration:none;}
 .ucus-sol{display:flex;align-items:center;gap:.65rem;}
@@ -208,9 +208,9 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 .sayac-baslik::after{content:'';flex:1;height:1px;background:var(--border);}
 .sayac-grid{display:flex;flex-direction:column;gap:.4rem;}
 .sayac-kart{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;}
-.sayac-durak{font-size:.78rem;font-weight:600;color:var(--white);}
+.sayac-durak{font-size:.8rem;font-weight:700;color:var(--white);}
 .sayac-sefer{font-size:.62rem;color:var(--gray2);margin-top:.1rem;}
-.sayac-zaman{font-family:'Bebas Neue';font-size:1.1rem;letter-spacing:.06em;color:#fb923c;flex-shrink:0;}
+.sayac-zaman{font-family:'Bebas Neue';font-size:1.4rem;letter-spacing:.08em;color:#fb923c;flex-shrink:0;min-width:90px;text-align:right;}
 .sayac-kart.aktif-sefer{border-color:rgba(251,146,60,.4);background:rgba(251,146,60,.08);}
 .sayac-kart.aktif-sefer .sayac-zaman{color:#f97316;}
 
@@ -290,6 +290,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <div class="ipucu-ayrac"></div>
   <a href="#yorumlar-bolum" class="ipucu-item"><span>💬</span> Yorumlar</a>
   <span class="ipucu-ok">↓</span>
+  <span style="font-size:.6rem;font-weight:700;color:rgba(56,189,248,.5);white-space:nowrap;margin-left:.15rem;letter-spacing:.04em;">Havaş Durakları için kaydır</span>
 </div>
 
 <!-- HERO -->
@@ -321,83 +322,6 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 <!-- DURAKLAR -->
 <div class="bolum">🚌 Havaş Kalkış Durakları & Saatleri</div>
 
-
-
-<!-- CANLI HAVA + UÇUŞ -->
-<div id="hava-bolum"></div>
-<div class="canli-wrap">
-  <div class="hava-grid">
-    <div class="hava-kart">
-      <div class="hava-sehir">Artvin</div>
-      <div class="hava-icon" id="havaIcon1">🌤️</div>
-      <div class="hava-derece" id="havaD1">--°</div>
-      <div class="hava-durum" id="havaDur1">Yükleniyor...</div>
-    </div>
-    <div class="hava-kart">
-      <div class="hava-sehir">Rize-Artvin Havalimanı</div>
-      <div class="hava-icon" id="havaIcon2">🌤️</div>
-      <div class="hava-derece" id="havaD2">--°</div>
-      <div class="hava-durum" id="havaDur2">Yükleniyor...</div>
-    </div>
-  </div>
-  <a class="ucus-btn" href="https://play.google.com/store/apps/details?id=ub.dhmi.gov.tr" target="_blank" rel="noopener">
-    <div class="ucus-sol">
-      <span style="font-size:1.3rem;">✈️</span>
-      <div>
-        <div class="ucus-baslik">Rize-Artvin Havalimanı</div>
-        <div class="ucus-alt">Canlı iniş / kalkış uçuş bilgileri</div>
-      </div>
-    </div>
-    <span class="ucus-ok">UYGULAMA →</span>
-  </a>
-</div>
-
-<!-- SEFER SAATLERİ TABLOSU - Featured Snippet için -->
-<div style="padding:0 1.25rem .75rem;position:relative;z-index:1;">
-  <div style="font-size:.6rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--gray2);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;">
-    📋 TÜM DURAKLAR — SEFER ÖZETİ
-    <div style="flex:1;height:1px;background:var(--border);"></div>
-  </div>
-  <div style="background:var(--kart);border:1px solid var(--kart-border);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);">
-    <table style="width:100%;border-collapse:collapse;">
-      <thead>
-        <tr style="background:rgba(56,189,248,.1);border-bottom:1px solid var(--kart-border);">
-          <th style="padding:.65rem .85rem;text-align:left;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Durak</th>
-          <th style="padding:.65rem .5rem;text-align:center;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Mesafe</th>
-          <th style="padding:.65rem .5rem;text-align:center;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Süre</th>
-          <th style="padding:.65rem .85rem;text-align:right;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Ücret</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom:1px solid var(--kart-border);">
-          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Artvin Otogar</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">113 km</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">140 dk</td>
-          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">520 ₺</td>
-        </tr>
-        <tr style="border-bottom:1px solid var(--kart-border);">
-          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Borçka</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">84 km</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">100 dk</td>
-          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">450 ₺</td>
-        </tr>
-        <tr style="border-bottom:1px solid var(--kart-border);">
-          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Hopa Maliye Önü</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">58 km</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">60 dk</td>
-          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">300 ₺</td>
-        </tr>
-        <tr>
-          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Arhavi</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">47 km</td>
-          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">45 dk</td>
-          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">280 ₺</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:.62rem;color:var(--gray2);margin-top:.4rem;text-align:center;">* Mayıs 2026 tarifleri · Güncel bilgi için Havaş'ı arayın</p>
-</div>
 
 
 <!-- GERİ SAYIM -->
@@ -872,6 +796,80 @@ havaDurumuGetir();
 </script>
 
 
+
+<!-- SEFER SAATLERİ TABLOSU - Featured Snippet için -->
+<div style="padding:0 1.25rem .75rem;position:relative;z-index:1;">
+  </div>
+  <div style="background:var(--kart);border:1px solid var(--kart-border);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);">
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr style="background:rgba(56,189,248,.1);border-bottom:1px solid var(--kart-border);">
+          <th style="padding:.65rem .85rem;text-align:left;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Durak</th>
+          <th style="padding:.65rem .5rem;text-align:center;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Mesafe</th>
+          <th style="padding:.65rem .5rem;text-align:center;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Süre</th>
+          <th style="padding:.65rem .85rem;text-align:right;font-size:.65rem;font-weight:700;color:var(--mavi-acik);letter-spacing:.06em;text-transform:uppercase;">Ücret</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--kart-border);">
+          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Artvin Otogar</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">113 km</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">140 dk</td>
+          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">520 ₺</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--kart-border);">
+          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Borçka</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">84 km</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">100 dk</td>
+          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">450 ₺</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--kart-border);">
+          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Hopa Maliye Önü</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">58 km</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">60 dk</td>
+          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">300 ₺</td>
+        </tr>
+        <tr>
+          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Arhavi</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">47 km</td>
+          <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">45 dk</td>
+          <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">280 ₺</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.62rem;color:var(--gray2);margin-top:.4rem;text-align:center;">* Mayıs 2026 tarifleri · Güncel bilgi için Havaş'ı arayın</p>
+</div>
+
+
+<!-- CANLI HAVA + UÇUŞ -->
+<div id="hava-bolum"></div>
+<div class="canli-wrap">
+  <div class="hava-grid">
+    <div class="hava-kart">
+      <div class="hava-sehir">Artvin</div>
+      <div class="hava-icon" id="havaIcon1">🌤️</div>
+      <div class="hava-derece" id="havaD1">--°</div>
+      <div class="hava-durum" id="havaDur1">Yükleniyor...</div>
+    </div>
+    <div class="hava-kart">
+      <div class="hava-sehir">Rize-Artvin Havalimanı</div>
+      <div class="hava-icon" id="havaIcon2">🌤️</div>
+      <div class="hava-derece" id="havaD2">--°</div>
+      <div class="hava-durum" id="havaDur2">Yükleniyor...</div>
+    </div>
+  </div>
+  <a class="ucus-btn" href="https://play.google.com/store/apps/details?id=ub.dhmi.gov.tr" target="_blank" rel="noopener">
+    <div class="ucus-sol">
+      <span style="font-size:1.3rem;">✈️</span>
+      <div>
+        <div class="ucus-baslik">Rize-Artvin Havalimanı</div>
+        <div class="ucus-alt">Canlı iniş / kalkış uçuş bilgileri</div>
+      </div>
+    </div>
+    <span class="ucus-ok">UYGULAMA →</span>
+  </a>
+</div>
 
 <!-- UÇUŞ PLANLAYICI -->
 <div id="plan-bolum"></div>
