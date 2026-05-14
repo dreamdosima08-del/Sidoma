@@ -280,7 +280,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .pbtn-tg{background:#229ed9}
 
 /* FLOATING PAYLAŞ BUTONU */
-#floatShare{position:fixed;top:6.75rem;right:1rem;z-index:490;background:rgba(10,26,18,.9);border:1px solid rgba(61,219,138,.3);backdrop-filter:blur(8px);color:var(--vivid);padding:.42rem .95rem;border-radius:2rem;cursor:pointer;font-size:.71rem;font-weight:600;display:flex;align-items:center;gap:.38rem;box-shadow:0 2px 12px rgba(0,0,0,.4);transition:all .2s}
+#floatShare{position:fixed;top:7.5rem;right:1rem;z-index:490;background:rgba(10,26,18,.9);border:1px solid rgba(61,219,138,.3);backdrop-filter:blur(8px);color:var(--vivid);padding:.55rem;border-radius:50%;cursor:pointer;font-size:.71rem;font-weight:600;display:flex;align-items:center;gap:.38rem;box-shadow:0 2px 12px rgba(0,0,0,.4);transition:all .2s}
 #floatShare:hover{border-color:var(--vivid);box-shadow:0 4px 16px rgba(61,219,138,.25);transform:scale(1.1)}
 #copyToast{position:fixed;top:3.5rem;right:1rem;z-index:600;background:rgba(10,26,18,.95);border:1px solid var(--vivid);color:var(--offwhite);font-size:.72rem;padding:.5rem .9rem;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .3s ease;white-space:nowrap}
 #scroll-nav{position:fixed;bottom:1.5rem;right:1rem;z-index:500;display:flex;flex-direction:column;gap:.5rem}
@@ -1074,7 +1074,16 @@ border-radius:20px;}
   <div class="hero-overlay"></div>
   
   <!-- Türk Bayrağı -->
-<div class="arama-wrap">
+<!-- DÖVİZ + SAAT BANDI -->
+<div id="dovizBant" style="position:absolute;top:.2rem;left:0;right:0;padding:0 1rem;z-index:51;display:flex;align-items:center;justify-content:space-between;pointer-events:none;">
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <span id="dolarGoster" style="font-size:.62rem;font-weight:700;color:rgba(232,184,75,.7);letter-spacing:.04em;transition:opacity .4s;">$ --</span>
+    <span id="euroGoster" style="font-size:.62rem;font-weight:700;color:rgba(232,184,75,.7);letter-spacing:.04em;transition:opacity .4s;">€ --</span>
+  </div>
+  <div id="saatGoster" style="font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.12em;color:rgba(232,184,75,.6);"></div>
+</div>
+
+<div class="arama-wrap" style="top:1.4rem;">
   <div class="arama-ic">
     <span class="arama-sembol"><img src="https://i.ibb.co/27mw4L16/1778614783558.png" alt="Artvin Rehberi Logo" style="width:26px;height:26px;object-fit:cover;border-radius:50%;"></span>
     <div class="arama-ayrac"></div>
@@ -2106,7 +2115,7 @@ border-radius:20px;}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 
-<button id="floatShare" title="Sayfayı Paylaş" onclick="sayfaPaylas()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Paylaş</button>
+<button id="floatShare" title="Sayfayı Paylaş" onclick="sayfaPaylas()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
 <div id="copyToast">✅ Link kopyalandı!</div>
 
 <!-- YUKARI / AŞAĞI OK -->
@@ -2440,6 +2449,40 @@ if(localStorage.getItem('pwaDismissed')) {
     </div>
   </div>
 </footer>
+
+
+<script>
+// SAAT
+function saatiGuncelle() {
+  var el = document.getElementById('saatGoster');
+  if (!el) return;
+  var simdi = new Date();
+  var s = String(simdi.getHours()).padStart(2,'0');
+  var m = String(simdi.getMinutes()).padStart(2,'0');
+  el.textContent = s + ':' + m;
+}
+saatiGuncelle();
+setInterval(saatiGuncelle, 1000);
+
+// DÖVİZ - TCMB RSS üzerinden
+function dovizCek() {
+  fetch('https://api.exchangerate-api.com/v4/latest/TRY')
+    .then(function(r){ return r.json(); })
+    .then(function(d) {
+      var usdTry = d.rates && d.rates.USD ? (1/d.rates.USD).toFixed(2) : null;
+      var eurTry = d.rates && d.rates.EUR ? (1/d.rates.EUR).toFixed(2) : null;
+      if (usdTry) document.getElementById('dolarGoster').textContent = '$ ' + usdTry;
+      if (eurTry) document.getElementById('euroGoster').textContent = '€ ' + eurTry;
+    })
+    .catch(function() {
+      // API çalışmazsa gizle
+      var b = document.getElementById('dovizBant');
+      if (b) b.style.display = 'none';
+    });
+}
+dovizCek();
+setInterval(dovizCek, 300000); // 5 dakikada bir güncelle
+</script>
 
 </body>
 </html>
