@@ -237,11 +237,30 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 .bildirim-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;}
 .bildirim-sefer-btn{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);border-radius:8px;padding:.5rem .4rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:.68rem;font-weight:600;color:#4ade80;cursor:pointer;text-align:center;}
 .bildirim-sefer-btn:active{transform:scale(.97);}
+
+/* SCROLL ÇUBUĞU */
+.scroll-progress{position:fixed;top:0;right:0;width:3px;height:100vh;background:rgba(255,255,255,.06);z-index:999;pointer-events:none;}
+.scroll-progress-ic{width:100%;background:linear-gradient(to bottom,#38bdf8,#4ade80);border-radius:3px;transition:height .1s linear;height:0%;}
+
+/* İPUCU BANDI */
+.ipucu-bant{background:rgba(56,189,248,.07);border-top:1px solid rgba(56,189,248,.12);border-bottom:1px solid rgba(56,189,248,.12);padding:.55rem 1.25rem;display:flex;align-items:center;gap:.5rem;overflow-x:auto;scrollbar-width:none;}
+.ipucu-bant::-webkit-scrollbar{display:none;}
+.ipucu-item{display:flex;align-items:center;gap:.3rem;white-space:nowrap;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.5);flex-shrink:0;}
+.ipucu-item span{font-size:.75rem;}
+.ipucu-ayrac{width:1px;height:14px;background:rgba(255,255,255,.1);flex-shrink:0;}
+.ipucu-bant-ok{font-size:.7rem;color:rgba(56,189,248,.6);animation:bounceDown .9s ease-in-out infinite;display:inline-block;margin-left:.25rem;}
+@keyframes bounceDown{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress">
+  <div class="scroll-progress-ic" id="scrollBar"></div>
+</div>
+
 
 <nav class="nav">
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
@@ -256,6 +275,21 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
     <a href="tel:08502220487" style="display:inline-flex;align-items:center;gap:.35rem;background:#fff;color:#b45309;border-radius:8px;padding:.4rem .85rem;text-decoration:none;font-size:.75rem;font-weight:800;white-space:nowrap;flex-shrink:0;">📞 0850 222 0 487</a>
   </div>
   <button onclick="document.getElementById('uyariBant').style.display='none'" style="position:absolute;right:.65rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.25);border:none;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.8rem;cursor:pointer;line-height:1;">✕</button>
+</div>
+
+
+<!-- İPUCU BANDI -->
+<div class="ipucu-bant">
+  <div class="ipucu-item"><span>⏱️</span> Canlı Geri Sayım</div>
+  <div class="ipucu-ayrac"></div>
+  <div class="ipucu-item"><span>🌤️</span> Hava Durumu</div>
+  <div class="ipucu-ayrac"></div>
+  <div class="ipucu-item"><span>✈️</span> Uçuş Planlayıcı</div>
+  <div class="ipucu-ayrac"></div>
+  <div class="ipucu-item"><span>🔔</span> Sefer Hatırlatıcı</div>
+  <div class="ipucu-ayrac"></div>
+  <div class="ipucu-item"><span>💬</span> Kullanıcı Yorumları</div>
+  <div class="ipucu-bant-ok">↓</div>
 </div>
 
 <!-- HERO -->
@@ -1034,6 +1068,18 @@ function bildirimKur(durak, saatStr) {
 }
 
 var DURAK_ISIMLERI = {artvin:'Artvin Otogar', borcka:'Borçka', hopa:'Hopa', arhavi:'Arhavi'};
+</script>
+
+
+<script>
+// SCROLL PROGRESS BAR
+window.addEventListener('scroll', function() {
+  var bar = document.getElementById('scrollBar');
+  if (!bar) return;
+  var total = document.documentElement.scrollHeight - window.innerHeight;
+  var yuzde = total > 0 ? (window.scrollY / total * 100) : 0;
+  bar.style.height = yuzde + '%';
+});
 </script>
 
 </body>
