@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACU Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0f0e17;color:#eeeef5;font-family:system-ui,sans-serif;min-height:100vh;}
+
+/* GİRİŞ */
+#giris{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem;}
+.giris-kart{background:#16152a;border:1px solid rgba(124,58,237,.3);border-radius:16px;padding:2rem;width:100%;max-width:340px;text-align:center;}
+.giris-h{font-size:1.1rem;font-weight:800;margin-bottom:.3rem;}
+.giris-sub{font-size:.78rem;color:rgba(238,238,245,.4);margin-bottom:1.25rem;}
+.giris-input{width:100%;background:#1a1a2e;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.75rem 1rem;color:#eeeef5;font-size:.9rem;outline:none;margin-bottom:.75rem;text-align:center;letter-spacing:.2em;}
+.giris-btn{width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:10px;padding:.8rem;font-size:.88rem;font-weight:700;cursor:pointer;}
+
+/* PANEL */
+#panel{display:none;padding:1rem;max-width:640px;margin:0 auto;padding-bottom:2rem;}
+.panel-nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:1rem;}
+.panel-h{font-size:.95rem;font-weight:800;}
+.panel-cikis{font-size:.75rem;color:rgba(238,238,245,.4);cursor:pointer;background:none;border:none;color:rgba(238,238,245,.4);}
+.badge{background:rgba(239,68,68,.15);color:#f87171;border-radius:20px;padding:.15rem .55rem;font-size:.7rem;font-weight:700;margin-left:.4rem;}
+
+/* BEKLEYEN KARTLAR */
+.bk{background:#16152a;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1rem;margin-bottom:.65rem;}
+.bk-ust{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;}
+.bk-kat{font-size:.65rem;font-weight:700;padding:.2rem .55rem;border-radius:8px;}
+.bk-zaman{font-size:.62rem;color:rgba(238,238,245,.3);}
+.bk-nick{font-size:.75rem;color:rgba(238,238,245,.5);margin-bottom:.5rem;}
+.bk-metin{font-size:.88rem;line-height:1.6;margin-bottom:.85rem;word-break:break-word;}
+.bk-butonlar{display:flex;gap:.5rem;}
+.btn-onayla{flex:1;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:9px;padding:.6rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-onayla:hover{background:rgba(34,197,94,.25);}
+.btn-reddet{flex:1;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#f87171;border-radius:9px;padding:.6rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-reddet:hover{background:rgba(239,68,68,.2);}
+
+.bos{text-align:center;padding:3rem;color:rgba(238,238,245,.3);font-size:.88rem;}
+.yukleniyor{text-align:center;padding:2rem;color:rgba(238,238,245,.3);}
+</style>
+</head>
+<body>
+
+<!-- GİRİŞ -->
+<div id="giris">
+  <div class="giris-kart">
+    <div style="font-size:2rem;margin-bottom:.5rem;">🔐</div>
+    <div class="giris-h">ACU Admin</div>
+    <div class="giris-sub">Moderasyon Paneli</div>
+    <input type="password" class="giris-input" id="sifreInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')girisYap()">
+    <button class="giris-btn" onclick="girisYap()">Giriş Yap</button>
+  </div>
+</div>
+
+<!-- PANEL -->
+<div id="panel">
+  <div class="panel-nav">
+    <div class="panel-h">ACU Admin <span class="badge" id="sayac">0</span></div>
+    <button class="panel-cikis" onclick="cikis()">Çıkış</button>
+  </div>
+  <div id="liste"><div class="yukleniyor">⏳ Yükleniyor...</div></div>
+</div>
+
+<script>
+var SIFRE = '828615';
+
+var firebaseConfig = {
+  apiKey: "AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0",
+  authDomain: "acu-kampus.firebaseapp.com",
+  projectId: "acu-kampus",
+  storageBucket: "acu-kampus.firebasestorage.app",
+  messagingSenderId: "356152793085",
+  appId: "1:356152793085:web:38a6ae1ad911880cb2ab94"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+
+var KAT = {
+  itiraf: {e:'🤫', c:'#a855f7', bg:'rgba(168,85,247,.13)'},
+  soru:   {e:'❓', c:'#3b82f6', bg:'rgba(59,130,246,.13)'},
+  ilan:   {e:'🏠', c:'#22c55e', bg:'rgba(34,197,94,.13)'},
+};
+
+function zamanFmt(ts) {
+  if (!ts) return '';
+  var f = Math.floor((Date.now() - ts.toMillis()) / 1000);
+  if (f < 60) return 'Az önce';
+  if (f < 3600) return Math.floor(f/60) + ' dk önce';
+  if (f < 86400) return Math.floor(f/3600) + ' sa önce';
+  return Math.floor(f/86400) + ' gün önce';
+}
+
+function girisYap() {
+  var s = document.getElementById('sifreInput').value;
+  if (s === SIFRE) {
+    document.getElementById('giris').style.display = 'none';
+    document.getElementById('panel').style.display = 'block';
+    bekleyenleriYukle();
+  } else {
+    document.getElementById('sifreInput').style.border = '1px solid #ef4444';
+    setTimeout(function(){ document.getElementById('sifreInput').style.border = '1px solid rgba(255,255,255,.1)'; }, 1000);
+  }
+}
+
+function cikis() {
+  document.getElementById('giris').style.display = 'flex';
+  document.getElementById('panel').style.display = 'none';
+  document.getElementById('sifreInput').value = '';
+}
+
+function bekleyenleriYukle() {
+  document.getElementById('liste').innerHTML = '<div class="yukleniyor">⏳ Bağlanıyor...</div>';
+  db.collection('acukampus')
+    .where('durum', '==', 'bekliyor')
+    .orderBy('olusturma', 'asc')
+    .onSnapshot(function(snap) {
+      document.getElementById('sayac').textContent = snap.size;
+      if (snap.empty) {
+        document.getElementById('liste').innerHTML = '<div class="bos">✅ Bekleyen gönderi yok</div>';
+        return;
+      }
+      var html = '';
+      snap.forEach(function(doc) {
+        var d = doc.data();
+        var k = KAT[d.kategori] || {e:'📌', c:'#888', bg:'rgba(136,136,136,.1)'};
+        html += '<div class="bk" id="bk_' + doc.id + '">';
+        html += '<div class="bk-ust">';
+        html += '<span class="bk-kat" style="background:' + k.bg + ';color:' + k.c + '">' + k.e + ' ' + d.kategori + '</span>';
+        html += '<span class="bk-zaman">' + zamanFmt(d.olusturma) + '</span>';
+        html += '</div>';
+        html += '<div class="bk-nick">👤 ' + (d.anonimIsim || d.nick || 'Anonim') + '</div>';
+        html += '<div class="bk-metin">' + d.metin.replace(/\n/g,'<br>') + '</div>';
+        html += '<div class="bk-butonlar">';
+        html += '<button class="btn-onayla" onclick="onayla(\'' + doc.id + '\')">✅ Onayla</button>';
+        html += '<button class="btn-reddet" onclick="reddet(\'' + doc.id + '\')">🗑️ Sil</button>';
+        html += '</div></div>';
+      });
+      document.getElementById('liste').innerHTML = html;
+    }, function(err) {
+      document.getElementById('liste').innerHTML = '<div class="bos" style="color:#f87171;">❌ Hata: ' + err.message + '</div>';
+    });
+}
+
+function onayla(id) {
+  db.collection('acukampus').doc(id).update({durum: 'aktif'}).then(function() {
+    var el = document.getElementById('bk_' + id);
+    if (el) { el.style.opacity = '0'; setTimeout(function(){ el.remove(); }, 300); }
+  });
+}
+
+function reddet(id) {
+  if (!confirm('Bu gönderiyi silmek istiyor musun?')) return;
+  db.collection('acukampus').doc(id).delete().then(function() {
+    var el = document.getElementById('bk_' + id);
+    if (el) { el.style.opacity = '0'; setTimeout(function(){ el.remove(); }, 300); }
+  });
+}
+</script>
+</body>
+</html>
