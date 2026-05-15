@@ -394,7 +394,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
       </span>
     </label>
 
-    <button id="kabulBtn" onclick="kabulEt()" style="width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;opacity:.5;" disabled>
+    <button id="kabulBtn" onclick="kabulEt()" style="width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">
       Platforma Gir →
     </button>
 
@@ -771,6 +771,9 @@ function kabulKontrol(){
   });
 }
 function kabulEt(){
+  var k1 = document.getElementById('kabulKvkk').checked;
+  var k2 = document.getElementById('kabulKural').checked;
+  if(!k1 || !k2){ alert('Lütfen her iki kutuyu da işaretle.'); return; }
   localStorage.setItem('acuKabul','1');
   document.getElementById('kabulOverlay').style.display='none';
 }
