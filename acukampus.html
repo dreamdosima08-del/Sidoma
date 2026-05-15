@@ -337,6 +337,22 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 }
 .bnav-paylasim-ic:active{transform:scale(.94);}
 .bnav-paylasim-lbl{font-size:.6rem;color:var(--mor-c);font-weight:600;}
+
+/* YORUM SİSTEMİ */
+.yorum-alan{display:none;margin-top:.75rem;border-top:1px solid var(--border);padding-top:.75rem;}
+.yorum-alan.acik{display:block;}
+.yorum-item{display:flex;gap:.5rem;margin-bottom:.6rem;}
+.yorum-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.yorum-icerik{flex:1;min-width:0;}
+.yorum-nick{font-size:.72rem;font-weight:700;color:var(--text);}
+.yorum-zaman{font-size:.6rem;color:var(--soluk);margin-left:.35rem;}
+.yorum-metin{font-size:.82rem;color:rgba(238,238,245,.75);line-height:1.55;margin-top:.15rem;word-break:break-word;}
+.yorum-yaz{display:flex;gap:.5rem;margin-top:.5rem;}
+.yorum-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:.55rem .85rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.82rem;outline:none;}
+.yorum-input:focus{border-color:var(--mor);}
+.yorum-gonder{background:var(--mor);color:#fff;border:none;border-radius:20px;padding:.55rem .85rem;font-size:.78rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif;}
+.yorum-gonder:active{transform:scale(.97);}
+.yorum-sayi{font-size:.72rem;color:var(--soluk);}
 </style>
 </head>
 <body>
@@ -540,14 +556,23 @@ var KAT = {
   ilan:   {l:'İlan',    e:'🏠', c:'#22c55e', bg:'rgba(34,197,94,.13)'},
 };
 var RENKLER = ['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
-var SIFATLAR = ['Gizli','Anonim','Sessiz','Dağlı','Çoruhlu','Kaçkarlı','Hatilalı','Karanlık','Gizemli'];
-var HAYVANLAR = ['Kartal','Ayı','Kurt','Tilki','Vaşak','Karabatak','Orman Horozu','Çakal','Dağ Keçisi'];
+var SIFATLAR = [];
+var HAYVANLAR = [];
 
 var anonimAktif = true;
 var aktifKat = 'hepsi';
 
 function renkAl(s){var i=0;for(var j=0;j<s.length;j++)i+=s.charCodeAt(j);return RENKLER[i%RENKLER.length];}
-function anonimIsim(){return SIFATLAR[Math.floor(Math.random()*SIFATLAR.length)]+' '+HAYVANLAR[Math.floor(Math.random()*HAYVANLAR.length)];}
+function anonimIsim(cb){
+  var sayacRef = db.collection('acukampus').doc('__sayac__');
+  return sayacRef.get().then(function(doc){
+    var mevcut = doc.exists ? (doc.data().userSayac || 0) : 0;
+    var yeni = mevcut + 1;
+    return sayacRef.set({userSayac: yeni}, {merge: true}).then(function(){
+      return 'User' + yeni.toString().padStart(3,'0');
+    });
+  });
+}
 function zamanFmt(ts){
   if(!ts)return '';
   var f=Math.floor((Date.now()-ts.toMillis())/1000);
@@ -616,7 +641,12 @@ function listele(kat){
       html+='<div class="kart-metin">'+d.metin.replace(/\n/g,'<br>')+'</div>';
       html+='<div class="kart-alt">';
       html+='<button class="k-btn" id="b'+doc.id+'" onclick="begeni(\''+doc.id+'\',this)">👍 '+(d.begeni||0)+'</button>';
+      html+='<button class="k-btn" onclick="yorumAc(\''+doc.id+'\')">💬 <span id="ys_'+doc.id+'">'+(d.yorumSayi||0)+'</span></button>';
       html+='<button class="k-btn" onclick="bildir(\''+doc.id+'\')">🚩 Bildir</button>';
+      html+='</div>';
+      html+='<div class="yorum-alan" id="ya_'+doc.id+'">';
+      html+='<div id="yl_'+doc.id+'"><div style="font-size:.72rem;color:var(--soluk);padding:.25rem 0;">Yorumlar yükleniyor...</div></div>';
+      html+='<div class="yorum-yaz"><input class="yorum-input" id="yi_'+doc.id+'" placeholder="Yorum yaz..." onkeydown="if(event.key===\'Enter\')yorumGonder(\''+doc.id+'\')"><button class="yorum-gonder" onclick="yorumGonder(\''+doc.id+'\')">' + String.fromCharCode(9658) + '</button></div>';
       html+='</div></div>';
     });
     akis.innerHTML=html;
@@ -686,7 +716,8 @@ function gonder(){
 
   btn.disabled=true;btn.textContent='⏳ Gönderiliyor...';
 
-  var isim=anonimAktif?anonimIsim():'Kullanıcı';
+  var isimPromise = anonimAktif ? anonimIsim() : Promise.resolve('Kullanıcı');
+  isimPromise.then(function(isim){
   var veri={
     kategori:kat,metin:metin,
     anonim:anonimAktif,anonimIsim:isim,nick:isim,
@@ -706,6 +737,7 @@ function gonder(){
     btn.disabled=false;btn.textContent='🚀 Gönder';
     alert('Bir hata oluştu, tekrar dene.');
   });
+  }); // isimPromise
 }
 
 // ── BEĞENİ ──
@@ -743,6 +775,92 @@ function kabulEt(){
   document.getElementById('kabulOverlay').style.display='none';
 }
 kabulKontrol();
+
+
+// YORUM SİSTEMİ
+var anonimYorum = true;
+
+function yorumAc(postId) {
+  var alan = document.getElementById('ya_' + postId);
+  if (!alan) return;
+  var acik = alan.classList.toggle('acik');
+  if (acik) yorumlariYukle(postId);
+}
+
+function yorumlariYukle(postId) {
+  var liste = document.getElementById('yl_' + postId);
+  if (!liste) return;
+
+  db.collection('acukampus').doc(postId)
+    .collection('yorumlar')
+    .where('durum','==','aktif')
+    .get().then(function(snap) {
+      if (snap.empty) {
+        liste.innerHTML = '<div style="font-size:.75rem;color:var(--soluk);padding:.25rem 0;">Henüz yorum yok. İlk yorumu yaz!</div>';
+        return;
+      }
+      var html = '';
+      snap.forEach(function(doc) {
+        var y = doc.data();
+        var nick = y.anonim ? (y.anonimIsim||'Anonim') : (y.nick||'Anonim');
+        var r = renkAl(nick);
+        html += '<div class="yorum-item">';
+        html += '<div class="yorum-avatar" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
+        html += '<div class="yorum-icerik">';
+        html += '<span class="yorum-nick">'+nick+'</span>';
+        html += '<span class="yorum-zaman">'+zamanFmt(y.olusturma)+'</span>';
+        html += '<div class="yorum-metin">'+y.metin.replace(/
+/g,'<br>')+'</div>';
+        html += '</div></div>';
+      });
+      liste.innerHTML = html;
+    }).catch(function() {
+      liste.innerHTML = '<div style="font-size:.72rem;color:#f87171;">Yorumlar yüklenemedi.</div>';
+    });
+}
+
+function yorumGonder(postId) {
+  var input = document.getElementById('yi_' + postId);
+  if (!input) return;
+  var metin = input.value.trim();
+  if (!metin || metin.length < 2) return;
+  if (metin.length > 300) { alert('En fazla 300 karakter.'); return; }
+
+  var yasaklar = ['bok','sik','orospu','piç','göt'];
+  for (var i=0; i<yasaklar.length; i++) {
+    if (metin.toLowerCase().includes(yasaklar[i])) { alert('⚠️ Uygunsuz ifade.'); return; }
+  }
+
+  anonimIsim().then(function(isim){
+  var veri = {
+    metin: metin,
+    anonim: true,
+    anonimIsim: isim,
+    nick: isim,
+    durum: 'aktif',
+    olusturma: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  input.value = '';
+  input.disabled = true;
+
+  db.collection('acukampus').doc(postId)
+    .collection('yorumlar').add(veri)
+    .then(function() {
+      // Yorum sayısını artır
+      db.collection('acukampus').doc(postId).update({
+        yorumSayi: firebase.firestore.FieldValue.increment(1)
+      });
+      input.disabled = false;
+      yorumlariYukle(postId);
+      var ys = document.getElementById('ys_' + postId);
+      if (ys) ys.textContent = parseInt(ys.textContent||0) + 1;
+    }).catch(function() {
+      input.disabled = false;
+      alert('Yorum gönderilemedi.');
+    });
+  }); // anonimIsim
+}
 
 // ── BAŞLAT ──
 istatistikYukle();
