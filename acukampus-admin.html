@@ -116,7 +116,6 @@ function bekleyenleriYukle() {
   document.getElementById('liste').innerHTML = '<div class="yukleniyor">⏳ Bağlanıyor...</div>';
   db.collection('acukampus')
     .where('durum', '==', 'bekliyor')
-    .orderBy('olusturma', 'asc')
     .onSnapshot(function(snap) {
       document.getElementById('sayac').textContent = snap.size;
       if (snap.empty) {
