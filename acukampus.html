@@ -3,13 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>ACU Kampus 2026 - Artvin Coruh Universitesi Ogrenci Platformu</title>
-<meta name="description" content="Artvin Coruh Universitesi ogrencileri icin anonim paylasim platformu. Itiraf, soru, ilan ve kampus haberleri.">
+<title>ACU Kampüs 2026 — Artvin Çoruh Üniversitesi Öğrenci Platformu</title>
+<meta name="description" content="Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım platformu. İtiraf, soru, ilan, dersler ve kampüs haberleri. Açü'lülerin dijital buluşma noktası 2026.">
+<meta name="keywords" content="acu kampüs, artvin çoruh üniversitesi, açü öğrenci platformu, anonim paylaşım, açü forum, artvin öğrenci, çoruh üniversitesi itiraf, acu öğrenci ilan, artvin kampüs 2026, açü dersler">
 <meta name="robots" content="index,follow">
+<meta name="author" content="Artvin Rehberi">
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin, Türkiye">
 <link rel="canonical" href="https://artvinrehber.com/acukampus.html">
-<meta property="og:title" content="ACU Kampus 2026">
-<meta property="og:description" content="Artvin Coruh Universitesi ogrenci topluluk platformu.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ACU Kampüs 2026 — Artvin Çoruh Üniversitesi Öğrenci Platformu">
+<meta property="og:description" content="Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım, soru-cevap ve ilan platformu. Açü'lülerin dijital kampüsü.">
 <meta property="og:url" content="https://artvinrehber.com/acukampus.html">
+<meta property="og:image" content="https://i.ibb.co/27mw4L16/1778614783558.png">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Artvin Rehberi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ACU Kampüs 2026 — Artvin Çoruh Üniversitesi">
+<meta name="twitter:description" content="Açü'lülerin anonim paylaşım ve iletişim platformu.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "ACU Kampüs — Artvin Çoruh Üniversitesi Öğrenci Platformu",
+  "url": "https://artvinrehber.com/acukampus.html",
+  "description": "Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım ve topluluk platformu.",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-05-16",
+  "publisher": {"@type": "Organization", "name": "Artvin Rehberi", "url": "https://artvinrehber.com"},
+  "about": {"@type": "EducationalOrganization", "name": "Artvin Çoruh Üniversitesi"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"ACU Kampüs nedir?","acceptedAnswer":{"@type":"Answer","text":"ACU Kampüs, Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım, soru-cevap ve ilan platformudur."}},
+    {"@type":"Question","name":"ACU Kampüs'te anonim paylaşım nasıl çalışır?","acceptedAnswer":{"@type":"Answer","text":"Anonim paylaşımda User001 gibi otomatik sıralı kullanıcı adı atanır. Diğer kullanıcılar kim olduğunuzu göremez."}},
+    {"@type":"Question","name":"Artvin Çoruh Üniversitesi'ne nasıl gidilir?","acceptedAnswer":{"@type":"Answer","text":"Artvin Çoruh Üniversitesi'ne Rize-Artvin Havalimanı üzerinden Havaş servisi veya şehir içi dolmuşlarla ulaşılabilir."}}
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -134,7 +169,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-merhaba">Merhaba, <span>Açü'lü!</span> 👋</div>
+  <h1 style="display:none">ACU Kampüs — Artvin Çoruh Üniversitesi Öğrenci Platformu 2026</h1>
+<div class="hero-merhaba">Merhaba, <span>Açü'lü!</span> 👋</div>
   <div class="hero-sub">Kampusun nabzini tut. Paylasim yap, soru sor, ilan ver.</div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n" id="sGonderi">0</div><div class="stat-l">Gonderi</div></div>
@@ -144,6 +180,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </div>
 
 <!-- KATEGORILER -->
+<h2 style="display:none">ACU Kampüs Gönderi Akışı — İtiraf, Soru, İlan, Dersler</h2>
 <div class="kat-bar">
   <div class="kat-ic" id="katIc">
     <button class="kat-btn aktif" data-kat="hepsi">🏠 Tumu</button>
@@ -251,9 +288,43 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir. Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.<br><br>
     5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet gösterilmektedir.
   </div>
+  <h2 style="display:none">Artvin Çoruh Üniversitesi Öğrenci Rehberi Linkleri</h2>
+  <div class="ftr-h" style="margin-top:.5rem;">🔗 Faydalı Linkler</div>
+  <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;">
+    <a href="/artvin-nasil-gidilir.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
+      <span style="font-size:1rem;flex-shrink:0;">🗺️</span>
+      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Artvin'e Nasıl Gidilir?</div><div style="font-size:.62rem;color:var(--soluk);">Uçak, otobüs ve araç ile ulaşım</div></div>
+      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
+    </a>
+    <a href="/artvin-kampus-ulasim.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
+      <span style="font-size:1rem;flex-shrink:0;">🏫</span>
+      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Kampüs Ulaşım Rehberi</div><div style="font-size:.62rem;color:var(--soluk);">Seyitler kampüsü servis ve taksi</div></div>
+      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
+    </a>
+    <a href="/blog18.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
+      <span style="font-size:1rem;flex-shrink:0;">📖</span>
+      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Artvin Öğrenci Rehberi</div><div style="font-size:.62rem;color:var(--soluk);">En iyi ilçeler ve yaşam rehberi</div></div>
+      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
+    </a>
+    <a href="/taksi.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
+      <span style="font-size:1rem;flex-shrink:0;">🚕</span>
+      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Artvin Taksi Ücretleri 2026</div><div style="font-size:.62rem;color:var(--soluk);">Şehir içi ve kampüs taksi</div></div>
+      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
+    </a>
+    <a href="/dolmus.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
+      <span style="font-size:1rem;flex-shrink:0;">🚐</span>
+      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Artvin Dolmuş Durakları</div><div style="font-size:.62rem;color:var(--soluk);">İlçeler arası saatler ve fiyatlar</div></div>
+      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
+    </a>
+    <a href="/" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
+      <span style="font-size:1rem;flex-shrink:0;">🏠</span>
+      <div><div style="font-size:.78rem;font-weight:700;color:var(--morc);">Artvin Rehberi Ana Sayfa</div><div style="font-size:.62rem;color:var(--soluk);">Tüm Artvin hizmetleri</div></div>
+      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
+    </a>
+  </div>
   <div style="text-align:center;border-top:1px solid var(--border);padding-top:1rem">
-    <a href="https://wa.me/905434290908" target="_blank" rel="noopener" style="font-size:.75rem;color:var(--morc);text-decoration:none">📱 Iletisim & Icerik Kaldirma</a>
-    <div style="font-size:.6rem;color:var(--soluk);margin-top:.4rem">ACU Kampus · artvinrehber.com/acukampus · 2026</div>
+    <a href="https://wa.me/905434290908" target="_blank" rel="noopener" style="font-size:.75rem;color:var(--morc);text-decoration:none">📱 İletişim & İçerik Kaldırma</a>
+    <div style="font-size:.6rem;color:var(--soluk);margin-top:.4rem">ACU Kampüs · artvinrehber.com/acukampus · 2026</div>
   </div>
 </div>
 
