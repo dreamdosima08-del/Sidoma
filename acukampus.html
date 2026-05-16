@@ -3,48 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>ACU Kampüs 2026 — Artvin Çoruh Üniversitesi Öğrenci Platformu</title>
-<meta name="description" content="Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım platformu. İtiraf, soru, ilan, dersler ve kampüs haberleri. Açü'lülerin dijital buluşma noktası 2026.">
-<meta name="keywords" content="acu kampüs, artvin çoruh üniversitesi, açü öğrenci platformu, anonim paylaşım, açü forum, artvin öğrenci, çoruh üniversitesi itiraf, acu öğrenci ilan, artvin kampüs 2026, açü dersler">
+<title>ACU Kampus 2026 - Artvin Coruh Universitesi Ogrenci Platformu</title>
+<meta name="description" content="Artvin Coruh Universitesi ogrencileri icin anonim paylasim platformu. Itiraf, soru, ilan ve kampus haberleri. Acululer dijital bulusma noktasi 2026.">
+<meta name="keywords" content="acu kampus, artvin coruh universitesi, acu ogrenci platformu, anonim paylasim, artvin ogrenci, artvin kampus 2026">
 <meta name="robots" content="index,follow">
-<meta name="author" content="Artvin Rehberi">
 <meta name="geo.region" content="TR-08">
-<meta name="geo.placename" content="Artvin, Türkiye">
 <link rel="canonical" href="https://artvinrehber.com/acukampus.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ACU Kampüs 2026 — Artvin Çoruh Üniversitesi Öğrenci Platformu">
-<meta property="og:description" content="Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım, soru-cevap ve ilan platformu. Açü'lülerin dijital kampüsü.">
+<meta property="og:title" content="ACU Kampus 2026">
+<meta property="og:description" content="Artvin Coruh Universitesi ogrenci topluluk platformu.">
 <meta property="og:url" content="https://artvinrehber.com/acukampus.html">
-<meta property="og:image" content="https://i.ibb.co/27mw4L16/1778614783558.png">
-<meta property="og:locale" content="tr_TR">
-<meta property="og:site_name" content="Artvin Rehberi">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ACU Kampüs 2026 — Artvin Çoruh Üniversitesi">
-<meta name="twitter:description" content="Açü'lülerin anonim paylaşım ve iletişim platformu.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "ACU Kampüs — Artvin Çoruh Üniversitesi Öğrenci Platformu",
-  "url": "https://artvinrehber.com/acukampus.html",
-  "description": "Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım ve topluluk platformu.",
-  "datePublished": "2026-01-01",
-  "dateModified": "2026-05-16",
-  "publisher": {"@type": "Organization", "name": "Artvin Rehberi", "url": "https://artvinrehber.com"},
-  "about": {"@type": "EducationalOrganization", "name": "Artvin Çoruh Üniversitesi"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"ACU Kampüs nedir?","acceptedAnswer":{"@type":"Answer","text":"ACU Kampüs, Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım, soru-cevap ve ilan platformudur."}},
-    {"@type":"Question","name":"ACU Kampüs'te anonim paylaşım nasıl çalışır?","acceptedAnswer":{"@type":"Answer","text":"Anonim paylaşımda User001 gibi otomatik sıralı kullanıcı adı atanır. Diğer kullanıcılar kim olduğunuzu göremez."}},
-    {"@type":"Question","name":"Artvin Çoruh Üniversitesi'ne nasıl gidilir?","acceptedAnswer":{"@type":"Answer","text":"Artvin Çoruh Üniversitesi'ne Rize-Artvin Havalimanı üzerinden Havaş servisi veya şehir içi dolmuşlarla ulaşılabilir."}}
-  ]
-}
-</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -57,8 +24,6 @@
   --mor:#7c3aed;--mor2:#9333ea;--morc:#c4b5fd;--mora:rgba(124,58,237,.14);--morb:rgba(124,58,237,.28);
 }
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
-
-/* NAV */
 .nav{position:sticky;top:0;z-index:9999;background:rgba(15,14,23,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between}
 .logo-badge{width:36px;height:36px;background:linear-gradient(135deg,#7c3aed,#a855f7,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.45);flex-shrink:0}
 .logo-text{font-size:.9rem;font-weight:800;background:linear-gradient(135deg,#c4b5fd,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -66,9 +31,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .canli-dot{display:flex;align-items:center;gap:.3rem;font-size:.65rem;font-weight:600;color:#22c55e}
 .canli-dot::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;flex-shrink:0;animation:pls 2s infinite}
 @keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
-.paylasim-btn{background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:8px;padding:.45rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation}
-
-/* HERO */
+.paylasim-btn{background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:8px;padding:.45rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
 .hero{background:linear-gradient(160deg,#12102a 0%,#1a1535 60%,#0f0e17 100%);padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%);pointer-events:none}
 .hero-merhaba{font-size:1.3rem;font-weight:900;letter-spacing:-.02em;margin-bottom:.2rem}
@@ -78,22 +41,12 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .stat{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:.5rem .75rem;text-align:center;flex:1}
 .stat-n{font-size:1.1rem;font-weight:800;color:var(--text)}
 .stat-l{font-size:.58rem;color:var(--soluk);margin-top:.1rem}
-
-/* KATEGORILER */
 .kat-bar{overflow-x:auto;scrollbar-width:none;background:var(--bg2);border-bottom:1px solid var(--border)}
 .kat-bar::-webkit-scrollbar{display:none}
 .kat-ic{display:flex;padding:.5rem .75rem;gap:.35rem;min-width:max-content}
-.kat-btn{display:flex;align-items:center;gap:.3rem;padding:.4rem .8rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:.75rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .15s;touch-action:manipulation}
+.kat-btn{display:flex;align-items:center;gap:.3rem;padding:.4rem .8rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:.75rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .15s}
 .kat-btn.aktif{background:var(--mora);border-color:var(--morb);color:var(--morc);font-weight:600}
-
-/* AKIS */
 .akis{padding:1rem .9rem;display:flex;flex-direction:column;gap:.75rem;max-width:640px;margin:0 auto;padding-bottom:120px}
-
-/* SKELETON */
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-.sk{background:linear-gradient(90deg,var(--bg3) 25%,#252440 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
-
-/* KART */
 .kart{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.1rem;animation:fadein .25s ease}
 @keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .kart-ust{display:flex;align-items:center;gap:.6rem;margin-bottom:.65rem}
@@ -103,94 +56,43 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .kart-badge{font-size:.6rem;font-weight:700;padding:.18rem .5rem;border-radius:10px;margin-left:auto;flex-shrink:0}
 .kart-metin{font-size:.88rem;line-height:1.65;margin-bottom:.7rem;word-break:break-word;color:var(--text)}
 .kart-alt{display:flex;align-items:center;gap:.2rem}
-.kbtn{display:flex;align-items:center;gap:.25rem;background:transparent;border:none;color:var(--soluk);font-size:.75rem;font-weight:500;cursor:pointer;padding:.35rem .55rem;border-radius:8px;font-family:'Inter',sans-serif;transition:all .15s;touch-action:manipulation}
-.kbtn:hover,.kbtn:active{background:rgba(255,255,255,.06);color:var(--text)}
+.kbtn{display:flex;align-items:center;gap:.25rem;background:transparent;border:none;color:var(--soluk);font-size:.75rem;font-weight:500;cursor:pointer;padding:.35rem .55rem;border-radius:8px;font-family:'Inter',sans-serif;transition:all .15s}
+.kbtn:active{background:rgba(255,255,255,.06);color:var(--text)}
 .kbtn.begendi{color:var(--morc);background:var(--mora)}
-
-/* BOS */
 .bos{text-align:center;padding:3rem 1rem;color:var(--dim)}
-.bos-icon{font-size:2.5rem;margin-bottom:.75rem}
-.bos-h{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.35rem}
-
-/* PAYLAS MODAL */
 .overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.ac{opacity:1;pointer-events:all}
 .modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1rem 2rem;width:100%;max-width:640px;transform:translateY(100%);transition:transform .25s cubic-bezier(.32,.72,0,1);border-top:1px solid rgba(124,58,237,.3)}
 .overlay.ac .modal{transform:translateY(0)}
 .modal-h{font-size:.95rem;font-weight:800;margin-bottom:.85rem;display:flex;align-items:center;justify-content:space-between}
-.modal-kapat{background:rgba(255,255,255,.08);border:none;color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;font-family:'Inter',sans-serif;touch-action:manipulation}
+.modal-kapat{background:rgba(255,255,255,.08);border:none;color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;font-family:'Inter',sans-serif}
 .flbl{font-size:.63rem;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.3rem;display:block}
 .fsel,.ftxt{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;margin-bottom:.6rem;-webkit-appearance:none}
 .fsel:focus,.ftxt:focus{border-color:var(--mor)}
 .ftxt{resize:none;min-height:110px;line-height:1.6}
-.anon-row{display:flex;align-items:center;gap:.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.65rem .9rem;margin-bottom:.7rem;cursor:pointer;touch-action:manipulation}
+.anon-row{display:flex;align-items:center;gap:.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.65rem .9rem;margin-bottom:.7rem;cursor:pointer}
 .tog{width:40px;height:22px;background:rgba(255,255,255,.12);border-radius:11px;position:relative;transition:.2s;flex-shrink:0}
 .tog.on{background:var(--mor)}
 .tog::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.2s}
 .tog.on::after{left:21px}
 .kural{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);border-radius:10px;padding:.6rem .85rem;font-size:.72rem;color:var(--morc);line-height:1.6;margin-bottom:.7rem}
-.gonder{width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:12px;padding:.88rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation}
+.gonder{width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:12px;padding:.88rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
 .gonder:disabled{opacity:.5;cursor:not-allowed}
 .basari{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:.8rem;font-size:.82rem;color:#4ade80;text-align:center;margin-top:.55rem}
-
-/* BOTTOM NAV */
-.bnav{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(15,14,23,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;safe-area-inset-bottom:env(safe-area-inset-bottom)}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.65rem .5rem .5rem;background:transparent;border:none;color:var(--soluk);font-size:.58rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(15,14,23,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.65rem .5rem .5rem;background:transparent;border:none;color:var(--soluk);font-size:.58rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif}
 .nb.on{color:var(--morc)}
 .nb-ic{font-size:1.2rem;line-height:1}
-.nb-plus-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.5rem .5rem .45rem;cursor:pointer;touch-action:manipulation}
-.nb-plus{width:44px;height:44px;background:linear-gradient(135deg,#7c3aed,#9333ea);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 16px rgba(124,58,237,.5);border:none;margin-top:-18px;cursor:pointer;touch-action:manipulation}
+.nb-plus-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.5rem .5rem .45rem;cursor:pointer}
+.nb-plus{width:44px;height:44px;background:linear-gradient(135deg,#7c3aed,#9333ea);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 16px rgba(124,58,237,.5);border:none;margin-top:-18px;cursor:pointer}
 .nb-plus-lbl{font-size:.58rem;color:var(--morc);font-weight:600}
-
-/* FOOTER */
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1rem 5rem;margin-top:1rem}
-.ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
-.ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem}
-.cbtn{flex:1;padding:.6rem .5rem;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;transition:all .15s;touch-action:manipulation}
-.cbtn.aktif{border-color:var(--mor);color:var(--morc);background:var(--mora)}
-
-/* YORUM */
-.yorum-wrap{display:none;border-top:1px solid var(--border);margin-top:.75rem;padding-top:.75rem;}
-.yorum-wrap.ac{display:block;}
-.yorum-bos{font-size:.75rem;color:var(--soluk);padding:.2rem 0 .5rem;}
-.yorum-liste{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.6rem;}
-.yorum-item{display:flex;gap:.5rem;}
-.yorum-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;margin-top:2px;}
-.yorum-ic{flex:1;min-width:0;background:rgba(255,255,255,.04);border-radius:10px;padding:.55rem .75rem;}
-.yorum-nick{font-size:.72rem;font-weight:700;color:var(--text);}
-.yorum-zaman{font-size:.58rem;color:var(--soluk);margin-left:.35rem;}
-.yorum-metin{font-size:.82rem;color:rgba(238,238,245,.75);line-height:1.55;margin-top:.2rem;word-break:break-word;}
-.yorum-yaz{display:flex;gap:.4rem;margin-top:.35rem;}
-.yorum-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:.5rem .85rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.82rem;outline:none;}
-.yorum-input:focus{border-color:var(--mor);}
-.yorum-gonder{background:var(--mor);color:#fff;border:none;border-radius:20px;padding:.5rem .85rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;touch-action:manipulation;}
-.yorum-bilgi{font-size:.65rem;color:var(--soluk);margin-top:.35rem;}
-
-/* RADYO */
-.radyo-mini-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;touch-action:manipulation;}
-.radyo-mini-btn.caliyor{border-color:var(--mor);background:var(--mora);}
-.radyo-wrap{padding:.75rem .9rem;max-width:640px;margin:0 auto;}
-.radyo-h{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--morc);margin-bottom:.6rem;display:flex;align-items:center;gap:.35rem;}
-.radyo-grid{display:flex;gap:.5rem;}
-.radyo-kart{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.8rem;cursor:pointer;transition:all .2s;text-align:center;touch-action:manipulation;}
-.radyo-kart.caliyor{border-color:var(--mor);background:var(--mora);}
-.radyo-logo{font-size:1.6rem;margin-bottom:.3rem;}
-.radyo-isim{font-size:.75rem;font-weight:700;color:var(--text);}
-.radyo-tur{font-size:.6rem;color:var(--soluk);margin-top:.1rem;}
-.radyo-durum{font-size:.65rem;margin-top:.4rem;height:14px;}
-.radyo-durum.caliyor{color:#4ade80;animation:blink 1.5s infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-.radyo-kontrol{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.5rem;}
-.radyo-btn{width:36px;height:36px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;touch-action:manipulation;}
-.radyo-btn.play{background:var(--mor);color:#fff;}
-.radyo-btn.stop{background:rgba(239,68,68,.2);color:#f87171;}
-.radyo-ses{-webkit-appearance:none;width:80px;height:4px;border-radius:2px;background:var(--border);outline:none;cursor:pointer;}
-.radyo-ses::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--mor);cursor:pointer;}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 1rem 5rem;margin-top:1rem}
+.ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem;display:none}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav">
   <div style="display:flex;align-items:center;gap:.6rem">
     <div class="logo-badge">AÇÜ</div>
@@ -199,74 +101,49 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
       <div class="logo-sub">Artvin Çoruh Üniversitesi</div>
     </div>
   </div>
-  <div style="display:flex;align-items:center;gap:.5rem">
-    <button class="radyo-mini-btn" id="rmbPower" onclick="radyoSec('powertturk')" title="Power Türk">📻</button>
-    <button class="radyo-mini-btn" id="rmbKral" onclick="radyoSec('kralfm')" title="Kral FM">👑</button>
+  <div style="display:flex;align-items:center;gap:.6rem">
     <div class="canli-dot">Canlı</div>
+    <button class="paylasim-btn" id="navPaylas">+ Paylaş</button>
   </div>
 </nav>
 
-<!-- v5.0 -->
-<!-- HERO -->
 <div class="hero">
-  <h1 style="display:none">ACU Kampüs — Artvin Çoruh Üniversitesi Öğrenci Platformu 2026</h1>
-<div class="hero-merhaba">Merhaba, <span>Açü'lü!</span> 👋</div>
-  <div class="hero-sub">Kampusun nabzini tut. Paylasim yap, soru sor, ilan ver.</div>
+  <div class="hero-merhaba">Merhaba, <span>Açü'lü!</span> 👋</div>
+  <div class="hero-sub">Kampüsün nabzını tut. Paylaşım yap, soru sor, ilan ver.</div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-n" id="sGonderi">0</div><div class="stat-l">Gonderi</div></div>
-    <div class="stat"><div class="stat-n">8K</div><div class="stat-l">Ogrenci</div></div>
-    <div class="stat"><div class="stat-n">ACU</div><div class="stat-l">Artvin Coruh</div></div>
+    <div class="stat"><div class="stat-n" id="sGonderi">0</div><div class="stat-l">Gönderi</div></div>
+    <div class="stat"><div class="stat-n">8K</div><div class="stat-l">Öğrenci</div></div>
+    <div class="stat"><div class="stat-n">AÇÜ</div><div class="stat-l">Artvin Çoruh</div></div>
   </div>
 </div>
 
-<!-- KATEGORILER -->
-<h2 style="display:none">ACU Kampüs Gönderi Akışı — İtiraf, Soru, İlan, Dersler</h2>
-
-<audio id="radyoAudio" preload="none"></audio>
-
 <div class="kat-bar">
-  <div class="kat-ic" id="katIc">
-    <button class="kat-btn aktif" data-kat="hepsi">🏠 Tumu</button>
-    <button class="kat-btn" data-kat="itiraf">🤫 Itiraf</button>
+  <div class="kat-ic">
+    <button class="kat-btn aktif" data-kat="hepsi">🏠 Tümü</button>
+    <button class="kat-btn" data-kat="itiraf">🤫 İtiraf</button>
     <button class="kat-btn" data-kat="soru">❓ Soru</button>
-    <button class="kat-btn" data-kat="ilan">🏠 Ilan</button>
+    <button class="kat-btn" data-kat="ilan">🏠 İlan</button>
     <button class="kat-btn" data-kat="etkinlik">📢 Etkinlik</button>
     <button class="kat-btn" data-kat="mizah">😂 Mizah</button>
     <button class="kat-btn" data-kat="ders">🎓 Dersler</button>
   </div>
 </div>
 
-<!-- AKIS -->
 <div class="akis" id="akis"></div>
-      <div style="flex:1"><div class="sk" style="height:11px;width:110px;margin-bottom:5px"></div><div class="sk" style="height:9px;width:65px"></div></div>
-    </div>
-    <div class="sk" style="height:13px;margin-bottom:6px"></div>
-    <div class="sk" style="height:13px;width:75%"></div>
-  </div>
-  <div class="kart">
-    <div class="kart-ust">
-      <div class="sk" style="width:36px;height:36px;border-radius:50%"></div>
-      <div style="flex:1"><div class="sk" style="height:11px;width:90px;margin-bottom:5px"></div><div class="sk" style="height:9px;width:55px"></div></div>
-    </div>
-    <div class="sk" style="height:13px;margin-bottom:6px"></div>
-    <div class="sk" style="height:13px;width:60%"></div>
-  </div>
-</div>
 
-<!-- PAYLAS MODAL -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-h">
-      ✍️ Paylasim Yap
-      <button class="modal-kapat" id="modalKapat">✕</button>
+      ✍️ Paylaşım Yap
+      <button class="modal-kapat" id="btnKapat">✕</button>
     </div>
-    <div class="kural">🛡️ Hakaret ve ifsa yasaktir. Inceleme sonrasi yayinlanir.</div>
+    <div class="kural">🛡️ Hakaret ve ifşa yasaktır. İnceleme sonrası yayınlanır.</div>
     <span class="flbl">Kategori</span>
     <select class="fsel" id="fKat">
-      <option value="">— Sec —</option>
-      <option value="itiraf">🤫 Itiraf</option>
-      <option value="soru">❓ Soru & Yardim</option>
-      <option value="ilan">🏠 Ilan</option>
+      <option value="">— Seç —</option>
+      <option value="itiraf">🤫 İtiraf</option>
+      <option value="soru">❓ Soru & Yardım</option>
+      <option value="ilan">🏠 İlan</option>
       <option value="etkinlik">📢 Etkinlik</option>
       <option value="mizah">😂 Mizah</option>
       <option value="ders">🎓 Dersler</option>
@@ -276,524 +153,166 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     <div class="anon-row" id="anonRow">
       <div class="tog on" id="anonTog"></div>
       <div>
-        <div style="font-size:.82rem;font-weight:600" id="anonLbl">Anonim paylasim</div>
-        <div style="font-size:.63rem;color:var(--soluk)">Otomatik kullanici adi atanir</div>
+        <div style="font-size:.82rem;font-weight:600">Anonim paylaşım</div>
+        <div style="font-size:.63rem;color:var(--soluk)">Otomatik kullanıcı adı atanır</div>
       </div>
     </div>
-    <div id="cinsiyetWrap" style="margin-bottom:.65rem;">
-      <span class="flbl">Cinsiyet <span style="color:var(--soluk);font-weight:400;text-transform:none;letter-spacing:0">(isteğe bağlı)</span></span>
-      <div style="display:flex;gap:.5rem;">
-        <button class="cbtn" id="cErkek" onclick="cSec('erkek')" type="button">👦 Erkek</button>
-        <button class="cbtn" id="cKadin" onclick="cSec('kadin')" type="button">👧 Kadın</button>
-        <button class="cbtn aktif" id="cBelirtme" onclick="cSec('belirtme')" type="button">🙂 Belirtme</button>
-      </div>
-    </div>
-    <button class="gonder" id="gonderBtn">🚀 Gönder</button>
-    <div class="basari" id="basari">✅ Gonderildi! Inceleme sonrasi yayinlanacak.</div>
+    <button class="gonder" id="btnGonder">🚀 Gönder</button>
+    <div class="basari" id="basari">✅ Gönderildi! İnceleme sonrası yayınlanacak.</div>
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
 <nav class="bnav">
-  <button class="nb on" data-kat="hepsi"><span class="nb-ic">🏠</span>Akis</button>
-  <button class="nb" data-kat="itiraf"><span class="nb-ic">🤫</span>Itiraf</button>
+  <button class="nb on" data-kat="hepsi"><span class="nb-ic">🏠</span>Akış</button>
+  <button class="nb" data-kat="itiraf"><span class="nb-ic">🤫</span>İtiraf</button>
   <div class="nb-plus-wrap" id="nbPlus">
     <button class="nb-plus">➕</button>
-    <div class="nb-plus-lbl">Paylasim</div>
+    <div class="nb-plus-lbl">Paylaş</div>
   </div>
   <button class="nb" data-kat="soru"><span class="nb-ic">❓</span>Soru</button>
-  <button class="nb" data-kat="ilan"><span class="nb-ic">🏠</span>Ilan</button>
+  <button class="nb" data-kat="ilan"><span class="nb-ic">🏠</span>İlan</button>
 </nav>
 
-<!-- FOOTER -->
 <div class="footer">
-  <div class="ftr-h" onclick="ftrAc('kural')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;">📋 Topluluk Kuralları <span id="kural-ok">▾</span></div>
-  <div id="kural-icerik" style="display:none" class="ftr-p">
-    1. Saygılı iletişim şarttır<br>
-    2. Hakaret, ifşa ve zorbalık kesinlikle yasaktır<br>
-    3. Kişisel bilgi (isim, adres, telefon) paylaşılamaz<br>
-    4. Siyasi nefret söylemi yasaktır<br>
-    5. Tüm içerikler moderasyona tabidir<br>
-    6. Öğrenci dayanışması önceliklidir
-  </div>
-  <div class="ftr-h" onclick="ftrAc('kvkk')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-top:.5rem;">🔐 KVKK & Gizlilik <span id="kvkk-ok">▾</span></div>
-  <div id="kvkk-icerik" style="display:none" class="ftr-p">
-    6698 sayılı KVKK kapsamında aydınlatma metnidir.<br><br>
-    Platform, moderasyon amacıyla tarayıcı bilgisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır. Veriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.<br><br>
-    Veri silme talebi için WhatsApp hattından iletişime geçebilirsiniz.
-  </div>
-  <div class="ftr-h" onclick="ftrAc('kullanim')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-top:.5rem;">📄 Kullanım Şartları <span id="kullanim-ok">▾</span></div>
-  <div id="kullanim-icerik" style="display:none" class="ftr-p">
-    ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.<br><br>
-    Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir. Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.<br><br>
-    5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet gösterilmektedir.
-  </div>
-  <h2 style="display:none">Artvin Çoruh Üniversitesi Öğrenci Rehberi Linkleri</h2>
-    <div class="ftr-h" style="margin-top:.5rem;">🔗 Faydalı Linkler</div>
-  <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;">
-    <a href="/blog17.html" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🏠</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:#eeeef5;">Artvin Öğrenci İçin Uygun mu? 2026</div><div style="font-size:.62rem;color:rgba(238,238,245,.38);">Kira, bütçe ve yaşam rehberi</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:#c4b5fd;">→</span>
-    </a>
-    <a href="/blog28.html" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🎓</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:#eeeef5;">AÇÜ Öğrenci Rehberi 2026</div><div style="font-size:.62rem;color:rgba(238,238,245,.38);">Yurt, kafeterya, kampüs bilgileri</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:#c4b5fd;">→</span>
-    </a>
-    <a href="/blog37.html" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">📚</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:#eeeef5;">AÇÜ Fakülte ve Bölümler 2026</div><div style="font-size:.62rem;color:rgba(238,238,245,.38);">Tüm bölümler ve programlar</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:#c4b5fd;">→</span>
-    </a>
-    <a href="/artvin-nasil-gidilir.html" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🗺️</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:#eeeef5;">Artvin'e Nasıl Gidilir?</div><div style="font-size:.62rem;color:rgba(238,238,245,.38);">Uçak, otobüs ve araç ile ulaşım</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:#c4b5fd;">→</span>
-    </a>
-    <a href="/artvin-kampus-ulasim.html" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🚌</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:#eeeef5;">Kampüs Ulaşım Rehberi</div><div style="font-size:.62rem;color:rgba(238,238,245,.38);">Seyitler kampüsüne nasıl gidilir</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:#c4b5fd;">→</span>
-    </a>
-  </div>
-  </div>
-      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
-    </a>
-    <a href="/artvin-kampus-ulasim.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🏫</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Kampüs Ulaşım Rehberi</div><div style="font-size:.62rem;color:var(--soluk);">Seyitler kampüsü servis ve taksi</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
-    </a>
-    <a href="/blog18.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">📖</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Artvin Öğrenci Rehberi</div><div style="font-size:.62rem;color:var(--soluk);">En iyi ilçeler ve yaşam rehberi</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
-    </a>
-    <a href="/taksi.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🚕</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Artvin Taksi Ücretleri 2026</div><div style="font-size:.62rem;color:var(--soluk);">Şehir içi ve kampüs taksi</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
-    </a>
-    <a href="/dolmus.html" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🚐</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:var(--text);">Artvin Dolmuş Durakları</div><div style="font-size:.62rem;color:var(--soluk);">İlçeler arası saatler ve fiyatlar</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
-    </a>
-    <a href="/" rel="noopener" style="display:flex;align-items:center;gap:.6rem;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:.65rem .85rem;text-decoration:none;">
-      <span style="font-size:1rem;flex-shrink:0;">🏠</span>
-      <div><div style="font-size:.78rem;font-weight:700;color:var(--morc);">Artvin Rehberi Ana Sayfa</div><div style="font-size:.62rem;color:var(--soluk);">Tüm Artvin hizmetleri</div></div>
-      <span style="margin-left:auto;font-size:.75rem;color:var(--morc);">→</span>
-    </a>
-  </div>
-  <div style="text-align:center;border-top:1px solid var(--border);padding-top:1rem">
+  <div class="ftr-h" onclick="ftrAc('kural')">📋 Topluluk Kuralları <span id="k-ok">▾</span></div>
+  <div class="ftr-p" id="kural-ic">1. Saygılı iletişim şarttır<br>2. Hakaret ve ifşa yasaktır<br>3. Kişisel bilgi paylaşılamaz<br>4. Siyasi nefret söylemi yasaktır</div>
+  <div class="ftr-h" onclick="ftrAc('kvkk')" style="margin-top:.5rem">🔐 KVKK & Gizlilik <span id="kvkk-ok">▾</span></div>
+  <div class="ftr-p" id="kvkk-ic">Veriler Firebase altyapısında saklanır. Üçüncü taraflarla paylaşılmaz. Veri silme için WhatsApp'tan ulaşın.</div>
+  <div style="text-align:center;border-top:1px solid var(--border);padding-top:1rem;margin-top:1rem">
     <a href="https://wa.me/905434290908" target="_blank" rel="noopener" style="font-size:.75rem;color:var(--morc);text-decoration:none">📱 İletişim & İçerik Kaldırma</a>
     <div style="font-size:.6rem;color:var(--soluk);margin-top:.4rem">ACU Kampüs · artvinrehber.com/acukampus · 2026</div>
   </div>
 </div>
 
 <script>
-// FIREBASE
-var FB_CONFIG = {
+firebase.initializeApp({
   apiKey: "AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0",
   authDomain: "acu-kampus.firebaseapp.com",
   projectId: "acu-kampus",
   storageBucket: "acu-kampus.firebasestorage.app",
   messagingSenderId: "356152793085",
   appId: "1:356152793085:web:38a6ae1ad911880cb2ab94"
-};
-firebase.initializeApp(FB_CONFIG);
+});
 var db = firebase.firestore();
-
 var TG_TOKEN = '8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
-var TG_CHAT  = '1032454830';
-
-// SABITLER
-var KATEGORILER = {
-  itiraf:  {l:'Itiraf',   e:'🤫', c:'#a855f7', bg:'rgba(168,85,247,.13)'},
-  soru:    {l:'Soru',     e:'❓', c:'#3b82f6', bg:'rgba(59,130,246,.13)'},
-  ilan:    {l:'Ilan',     e:'🏠', c:'#22c55e', bg:'rgba(34,197,94,.13)'},
-  etkinlik:{l:'Etkinlik', e:'📢', c:'#f59e0b', bg:'rgba(245,158,11,.13)'},
-  mizah:   {l:'Mizah',   e:'😂', c:'#f97316', bg:'rgba(249,115,22,.13)'},
-  ders:    {l:'Dersler',  e:'🎓', c:'#06b6d4', bg:'rgba(6,182,212,.13)'},
+var TG_CHAT = '1032454830';
+var KAT = {
+  itiraf:{l:'İtiraf',e:'🤫',c:'#a855f7',bg:'rgba(168,85,247,.13)'},
+  soru:{l:'Soru',e:'❓',c:'#3b82f6',bg:'rgba(59,130,246,.13)'},
+  ilan:{l:'İlan',e:'🏠',c:'#22c55e',bg:'rgba(34,197,94,.13)'},
+  etkinlik:{l:'Etkinlik',e:'📢',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  mizah:{l:'Mizah',e:'😂',c:'#f97316',bg:'rgba(249,115,22,.13)'},
+  ders:{l:'Dersler',e:'🎓',c:'#06b6d4',bg:'rgba(6,182,212,.13)'},
 };
-var RENKLER = ['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
+var RENKLER=['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
+var anonAktif=true;
+var aktifKat='hepsi';
 
-var aktifKat = 'hepsi';
-var anonAktif = true;
+function renk(s){var n=0;for(var i=0;i<s.length;i++)n+=s.charCodeAt(i);return RENKLER[n%RENKLER.length];}
+function zaman(ts){if(!ts)return '';var s=Math.floor((Date.now()-ts.toMillis())/1000);if(s<60)return 'Az önce';if(s<3600)return Math.floor(s/60)+' dk önce';if(s<86400)return Math.floor(s/3600)+' sa önce';return Math.floor(s/86400)+' gün önce';}
+function userAdi(){return 'User'+String(Math.floor(Math.random()*900)+100).padStart(3,'0');}
 
-// YARDIMCI
-function renk(s) {
-  var n = 0;
-  for (var i = 0; i < s.length; i++) n += s.charCodeAt(i);
-  return RENKLER[n % RENKLER.length];
-}
-function zaman(ts) {
-  if (!ts) return '';
-  var s = Math.floor((Date.now() - ts.toMillis()) / 1000);
-  if (s < 60) return 'Az once';
-  if (s < 3600) return Math.floor(s/60) + ' dk once';
-  if (s < 86400) return Math.floor(s/3600) + ' sa once';
-  return Math.floor(s/86400) + ' gun once';
-}
-var seciliCinsiyet = 'belirtme';
+function modalAc(){document.getElementById('overlay').classList.add('ac');document.body.style.overflow='hidden';}
+function modalKapat(){document.getElementById('overlay').classList.remove('ac');document.body.style.overflow='';}
+function anonToggle(){anonAktif=!anonAktif;document.getElementById('anonTog').className='tog'+(anonAktif?' on':'');}
+function ftrAc(id){var el=document.getElementById(id+'-ic');var ok=document.getElementById(id.replace('kural','k')+'-ok');if(!el)return;var ac=el.style.display==='block';el.style.display=ac?'none':'block';ok.textContent=ac?'▾':'▴';}
 
-function cSec(c) {
-  seciliCinsiyet = c;
-  ['Erkek','Kadin','Belirtme'].forEach(function(x) {
-    document.getElementById('c'+x).className = 'cbtn' + (c === x.toLowerCase() ? ' aktif' : '');
-  });
-}
-
-function userAdi() {
-  return db.collection('acukampus').doc('__sayac__').get().then(function(doc) {
-    var n = (doc.exists ? (doc.data().sayac || 0) : 0) + 1;
-    return db.collection('acukampus').doc('__sayac__').set({sayac: n}, {merge: true}).then(function() {
-      return 'User' + String(n).padStart(3,'0');
-    });
-  });
-}
-
-// MODAL
-function modalAc() {
-  document.getElementById('overlay').classList.add('ac');
-  document.body.style.overflow = 'hidden';
-}
-function modalKapat() {
-  document.getElementById('overlay').classList.remove('ac');
-  document.body.style.overflow = '';
-}
-
-// ANONiM TOGGLE
-function anonToggle() {
-  anonAktif = !anonAktif;
-  var tog = document.getElementById('anonTog');
-  var lbl = document.getElementById('anonLbl');
-  if (anonAktif) {
-    tog.classList.add('on');
-    lbl.textContent = 'Anonim paylasim';
-  } else {
-    tog.classList.remove('on');
-    lbl.textContent = 'Isimle paylasim';
-  }
-}
-
-// KATEGORI SEC
-function katSec(kat) {
-  aktifKat = kat;
-  document.querySelectorAll('.kat-btn').forEach(function(b) {
-    b.classList.toggle('aktif', b.dataset.kat === kat);
-  });
-  document.querySelectorAll('.nb').forEach(function(b) {
-    b.classList.toggle('on', b.dataset.kat === kat);
-  });
+function katSec(kat){
+  aktifKat=kat;
+  document.querySelectorAll('.kat-btn').forEach(function(b){b.classList.toggle('aktif',b.dataset.kat===kat);});
+  document.querySelectorAll('.nb[data-kat]').forEach(function(b){b.classList.toggle('on',b.dataset.kat===kat);});
   listele(kat);
 }
 
-// ISTATISTIK
-function istatistik() {
+function istatistik(){
   db.collection('acukampus').where('durum','==','aktif').get()
-    .then(function(s) { document.getElementById('sGonderi').textContent = s.size; })
-    .catch(function() {});
+    .then(function(s){document.getElementById('sGonderi').textContent=s.size;})
+    .catch(function(){});
 }
 
-// LISTELE
-function listele(kat) {
-  var akis = document.getElementById('akis');
-  akis.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem;">⏳ Yukleniyor...</div>';
-
-  var sorgu = db.collection('acukampus').where('durum','==','aktif').limit(30);
-  if (kat && kat !== 'hepsi') sorgu = sorgu.where('kategori','==',kat);
-
-  sorgu.onSnapshot(function(snap) {
-    akis.innerHTML = '';
-    if (snap.empty) {
-      akis.innerHTML = '<div class="bos"><div class="bos-icon">🌿</div><div class="bos-h">Gonderi yok</div><p style="font-size:.8rem">Ilk paylasimi sen yap!</p></div>';
-      return;
-    }
-    var html = '';
-    snap.forEach(function(doc) {
-      var d = doc.data();
-      var k = KATEGORILER[d.kategori] || {l:d.kategori, e:'📌', c:'#888', bg:'rgba(136,136,136,.1)'};
-      var nick = d.nick || 'Anonim';
-      var r = renk(nick);
-      var emoji = d.cinsiyet === 'erkek' ? '👦' : d.cinsiyet === 'kadin' ? '👧' : '🙂';
-      html += '<div class="kart">';
-      html += '<div class="kart-ust">';
-      html += '<div class="kart-avatar" style="background:' + r + '22;color:' + r + '">' + emoji + '</div>';
-      html += '<div style="flex:1;min-width:0"><div class="kart-nick">' + nick + '</div><div class="kart-zaman">' + zaman(d.olusturma) + '</div></div>';
-      html += '<span class="kart-badge" style="background:' + k.bg + ';color:' + k.c + '">' + k.e + ' ' + k.l + '</span>';
-      html += '</div>';
-      html += '<div class="kart-metin">' + d.metin.replace(/\n/g,'<br>') + '</div>';
-      html += '<div class="kart-alt">';
-      html += '<button class="kbtn" onclick="begeni(\'' + doc.id + '\',this)">👍 ' + (d.begeni||0) + '</button>';
-      html += '<button class="kbtn" onclick="bildir(\'' + doc.id + '\')">🚩</button>';
-      html += '</div></div>';
+function listele(kat){
+  var akis=document.getElementById('akis');
+  akis.innerHTML='<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem">⏳ Yükleniyor...</div>';
+  var q=db.collection('acukampus').where('durum','==','aktif').limit(30);
+  if(kat&&kat!=='hepsi')q=q.where('kategori','==',kat);
+  q.onSnapshot(function(snap){
+    if(snap.empty){akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.35rem">Gönderi yok</div><div style="font-size:.8rem">İlk paylaşımı sen yap!</div></div>';return;}
+    var html='';
+    snap.forEach(function(doc){
+      var d=doc.data();
+      var k=KAT[d.kategori]||{l:d.kategori,e:'📌',c:'#888',bg:'rgba(136,136,136,.1)'};
+      var nick=d.nick||'Anonim';
+      var r=renk(nick);
+      html+='<div class="kart">';
+      html+='<div class="kart-ust">';
+      html+='<div class="kart-avatar" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
+      html+='<div style="flex:1;min-width:0"><div class="kart-nick">'+nick+'</div><div class="kart-zaman">'+zaman(d.olusturma)+'</div></div>';
+      html+='<span class="kart-badge" style="background:'+k.bg+';color:'+k.c+'">'+k.e+' '+k.l+'</span>';
+      html+='</div>';
+      html+='<div class="kart-metin">'+d.metin.replace(/\n/g,'<br>')+'</div>';
+      html+='<div class="kart-alt">';
+      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="begeni">👍 '+(d.begeni||0)+'</button>';
+      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="bildir" style="margin-left:auto">🚩</button>';
+      html+='</div></div>';
     });
-    akis.innerHTML = html;
-  }, function(err) {
-    akis.innerHTML = '<div class="bos"><div class="bos-icon">⚠️</div><div class="bos-h">Yuklenemedi</div><p style="font-size:.8rem">' + err.message + '</p></div>';
+    akis.innerHTML=html;
+  },function(err){
+    akis.innerHTML='<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div style="font-size:.9rem;font-weight:700;color:var(--text)">Yüklenemedi</div><div style="font-size:.75rem;margin-top:.25rem">'+err.message+'</div></div>';
   });
 }
 
-// TELEGRAM
-function tgBildir(veri) {
-  if (!TG_TOKEN) return;
-  var k = KATEGORILER[veri.kategori] || {e:'📌', l:veri.kategori};
-  var msg = '🆕 ACU Kampus\n' + k.e + ' ' + k.l + '\n👤 ' + veri.nick + '\n\n' + veri.metin.substring(0,300) + '\n\nID: ' + veri.id;
-  fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({chat_id: TG_CHAT, text: msg})
-  }).catch(function() {});
+function gonder(){
+  var kat=document.getElementById('fKat').value;
+  var metin=document.getElementById('fMetin').value.trim();
+  var btn=document.getElementById('btnGonder');
+  if(!kat){alert('Kategori seçmelisin.');return;}
+  if(!metin||metin.length<5){alert('Biraz daha uzun yaz.');return;}
+  if(metin.length>800){alert('En fazla 800 karakter.');return;}
+  btn.disabled=true;btn.textContent='⏳ Gönderiliyor...';
+  var nick=userAdi();
+  db.collection('acukampus').add({
+    kategori:kat,metin:metin,anonim:anonAktif,nick:nick,
+    durum:'bekliyor',begeni:0,
+    olusturma:firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function(ref){
+    fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:'ACU Kampus\n'+nick+'\n\n'+metin.substring(0,300)+'\n\nID:'+ref.id})}).catch(function(){});
+    btn.disabled=false;btn.textContent='🚀 Gönder';
+    document.getElementById('fMetin').value='';
+    document.getElementById('fKat').value='';
+    document.getElementById('basari').style.display='block';
+    setTimeout(function(){document.getElementById('basari').style.display='none';modalKapat();},2500);
+  }).catch(function(e){btn.disabled=false;btn.textContent='🚀 Gönder';alert('Hata: '+e.message);});
 }
 
-// GONDER
-function gonder() {
-  var kat = document.getElementById('fKat').value;
-  var metin = document.getElementById('fMetin').value.trim();
-  var btn = document.getElementById('gonderBtn');
-  if (!kat) { alert('Kategori secmelisin.'); return; }
-  if (!metin || metin.length < 5) { alert('Biraz daha uzun yaz.'); return; }
-  if (metin.length > 800) { alert('En fazla 800 karakter.'); return; }
-  btn.disabled = true;
-  btn.textContent = '⏳ Gönderiliyor...';
-  userAdi().then(function(nick) {
-    db.collection('acukampus').add({
-      kategori: kat, metin: metin,
-      anonim: anonAktif, nick: nick,
-      cinsiyet: seciliCinsiyet,
-      durum: 'bekliyor', begeni: 0,
-      olusturma: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(function(ref) {
-      tgBildir({id:ref.id, kategori:kat, nick:nick, metin:metin});
-    btn.disabled = false;
-    btn.textContent = '🚀 Gonder';
-    document.getElementById('fMetin').value = '';
-    document.getElementById('fKat').value = '';
-    document.getElementById('basari').style.display = 'block';
-    setTimeout(function() {
-      document.getElementById('basari').style.display = 'none';
-      modalKapat();
-    }, 2500);
-    }).catch(function(e) {
-      btn.disabled = false;
-      btn.textContent = '🚀 Gönder';
-      alert('Hata: ' + e.message);
-    });
-  }).catch(function(e) {
-    btn.disabled = false;
-    btn.textContent = '🚀 Gönder';
-    alert('Hata: ' + e.message);
-  });
-}
+// TEK EVENT LISTENER
+document.addEventListener('click',function(e){
+  var t=e.target;
 
-// BEGENI
-function begeni(id, el) {
-  if (el.disabled) return;
-  el.disabled = true;
-  el.classList.add('begendi');
-  db.collection('acukampus').doc(id).update({begeni: firebase.firestore.FieldValue.increment(1)});
-}
+  if(t.id==='navPaylas'||t.id==='nbPlus'||t.closest('#nbPlus')){modalAc();return;}
+  if(t.id==='btnKapat'||t.id==='overlay'){modalKapat();return;}
+  if(t.id==='btnGonder'){gonder();return;}
+  if(t.id==='anonRow'||t.closest('#anonRow')){anonToggle();return;}
 
-// BILDIR
-function bildir(id) {
-  if (!confirm('Bu gonderiyi bildirmek istiyor musun?')) return;
-  db.collection('acukampus').doc(id).update({bildirim: firebase.firestore.FieldValue.increment(1)});
-  alert('Bildirildi, tesekkurler.');
-}
+  var katBtn=t.closest('.kat-btn')||( t.classList.contains('kat-btn')?t:null);
+  if(katBtn&&katBtn.dataset.kat){katSec(katBtn.dataset.kat);return;}
 
-// EVENT LISTENERS
-// EVENT DELEGATION
-document.addEventListener('click', function(e) {
-  var t = e.target;
+  var nb=t.closest('.nb[data-kat]')||(t.classList.contains('nb')&&t.dataset.kat?t:null);
+  if(nb&&nb.dataset&&nb.dataset.kat){katSec(nb.dataset.kat);return;}
 
-  // Kategori butonları
-  if (t.classList.contains('kat-btn')) {
-    katSec(t.dataset.kat);
+  if(t.dataset&&t.dataset.tip==='begeni'){
+    if(t.classList.contains('begendi'))return;
+    t.classList.add('begendi');t.disabled=true;
+    db.collection('acukampus').doc(t.dataset.id).update({begeni:firebase.firestore.FieldValue.increment(1)});
     return;
   }
-
-  // Bottom nav butonları
-  if (t.classList.contains('nb') && t.dataset.kat) {
-    katSec(t.dataset.kat);
+  if(t.dataset&&t.dataset.tip==='bildir'){
+    if(!confirm('Bu gönderiyi bildirmek istiyor musun?'))return;
+    db.collection('acukampus').doc(t.dataset.id).update({bildirim:firebase.firestore.FieldValue.increment(1)});
+    alert('Bildirildi, teşekkürler.');
     return;
   }
-  if (t.closest('.nb') && t.closest('.nb').dataset.kat) {
-    katSec(t.closest('.nb').dataset.kat);
-    return;
-  }
-
-  // Paylas butonlari
-  if (t.id === 'navPaylas' || t.closest('#nbPlus')) {
-    modalAc();
-    return;
-  }
-
-  // Modal kapat
-  if (t.id === 'modalKapat') { modalKapat(); return; }
-  if (t.id === 'overlay') { modalKapat(); return; }
-
-  // Gonder
-  if (t.id === 'gonderBtn') { gonder(); return; }
-
-  // Anonim toggle
-  if (t.id === 'anonRow' || t.closest('#anonRow')) { anonToggle(); return; }
-
-  // Radyo mini butonlar
-  if (t.id === 'rmbPower') { radyoSec('powertturk'); return; }
-  if (t.id === 'rmbKral') { radyoSec('kralfm'); return; }
-  if (t.id === 'radyoPlayBtn') { radyoPlayPause(); return; }
 });
 
-// FOOTER ACCORDION
-function ftrAc(id) {
-  var el = document.getElementById(id + '-icerik');
-  var ok = document.getElementById(id + '-ok');
-  if (!el) return;
-  var acik = el.style.display === 'block';
-  el.style.display = acik ? 'none' : 'block';
-  ok.textContent = acik ? '▾' : '▴';
-}
-
-
-// YORUM AC/KAPAT
-function yorumAc(postId) {
-  var wrap = document.getElementById('yw_' + postId);
-  if (!wrap) return;
-  var acikMi = wrap.classList.toggle('ac');
-  if (acikMi) yorumlariYukle(postId);
-}
-
-// YORUMLARI YUKLE
-function yorumlariYukle(postId) {
-  var liste = document.getElementById('yl_' + postId);
-  if (!liste) return;
-  db.collection('acukampus').doc(postId).collection('yorumlar')
-    .where('durum','==','aktif').get()
-    .then(function(snap) {
-      if (snap.empty) {
-        liste.innerHTML = '<div class="yorum-bos">Henüz yorum yok. İlk yorumu sen yaz!</div>';
-        return;
-      }
-      var html = '';
-      snap.forEach(function(doc) {
-        var y = doc.data();
-        var nick = y.nick || 'Anonim';
-        var r = renk(nick);
-        html += '<div class="yorum-item">';
-        html += '<div class="yorum-av" style="background:' + r + '22;color:' + r + '">' + nick.charAt(0).toUpperCase() + '</div>';
-        html += '<div class="yorum-ic">';
-        html += '<span class="yorum-nick">' + nick + '</span>';
-        html += '<span class="yorum-zaman">' + zaman(y.olusturma) + '</span>';
-        html += '<div class="yorum-metin">' + y.metin.replace(/
-/g,'<br>') + '</div>';
-        html += '</div></div>';
-      });
-      liste.innerHTML = html;
-    }).catch(function() {
-      liste.innerHTML = '<div class="yorum-bos">Yüklenemedi.</div>';
-    });
-}
-
-// YORUM GONDER
-function yorumGonder(postId) {
-  var input = document.getElementById('yi_' + postId);
-  if (!input) return;
-  var metin = input.value.trim();
-  if (!metin || metin.length < 2) return;
-  if (metin.length > 300) { alert('En fazla 300 karakter.'); return; }
-
-  input.disabled = true;
-  var eski = input.value;
-  input.value = '';
-
-  var nick = 'User' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
-
-  db.collection('acukampus').doc(postId).collection('yorumlar').add({
-    metin: metin,
-    nick: nick,
-    durum: 'bekliyor',
-    olusturma: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function() {
-    input.disabled = false;
-    db.collection('acukampus').doc(postId).update({
-      yorumSayi: firebase.firestore.FieldValue.increment(1)
-    });
-    var ys = document.getElementById('ys_' + postId);
-    if (ys) ys.textContent = parseInt(ys.textContent||0) + 1;
-    // Küçük bildirim
-    var bilgi = input.parentElement.nextElementSibling;
-    if (bilgi) { bilgi.textContent = '✅ Yorum gönderildi, inceleme sonrası yayınlanacak.'; bilgi.style.color = '#4ade80'; setTimeout(function(){ bilgi.textContent = 'Yorumlar inceleme sonrası yayınlanır.'; bilgi.style.color = ''; }, 3000); }
-  }).catch(function(e) {
-    input.disabled = false;
-    input.value = eski;
-    alert('Hata: ' + e.message);
-  });
-}
-
-// RADYO
-var RADYOLAR = {
-  powertturk: 'https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio',
-  kralfm:     'https://kralmuzik.radyotvonline.net/kralfm'
-};
-var aktifRadyo = null;
-var radyoCaliyor = false;
-
-function radyoSec(id) {
-  var audio = document.getElementById('radyoAudio');
-
-  // Aynıysa durdur/devam et
-  if (aktifRadyo === id) {
-    radyoPlayPause();
-    return;
-  }
-
-  // Önceki kart stilini sıfırla
-  if (aktifRadyo) {
-    var rkEl = document.getElementById('rk_' + aktifRadyo); if(rkEl) rkEl.classList.remove('caliyor');
-    var rmbEl = document.getElementById('rmb' + (aktifRadyo==='powertturk'?'Power':'Kral')); if(rmbEl) rmbEl.classList.remove('caliyor');
-    document.getElementById('rd_' + aktifRadyo).textContent = '';
-    document.getElementById('rd_' + aktifRadyo).classList.remove('caliyor');
-  }
-
-  aktifRadyo = id;
-  audio.src = RADYOLAR[id];
-  audio.volume = document.getElementById('radyoSes').value / 100;
-  audio.play().then(function() {
-    radyoCaliyor = true;
-    document.getElementById('radyoPlayBtn').textContent = '⏸';
-    var rkEl2 = document.getElementById('rk_' + id); if(rkEl2) rkEl2.classList.add('caliyor');
-    var rmbEl2 = document.getElementById('rmb' + (id==='powertturk'?'Power':'Kral')); if(rmbEl2) rmbEl2.classList.add('caliyor');
-    document.getElementById('rd_' + id).textContent = '● Yayında';
-    document.getElementById('rd_' + id).classList.add('caliyor');
-  }).catch(function() {
-    aktifRadyo = null;
-  });
-}
-
-function radyoPlayPause() {
-  if (!aktifRadyo) return;
-  var audio = document.getElementById('radyoAudio');
-  if (radyoCaliyor) {
-    audio.pause();
-    radyoCaliyor = false;
-    document.getElementById('radyoPlayBtn').textContent = '▶';
-    document.getElementById('rd_' + aktifRadyo).textContent = '⏸ Duraklatıldı';
-    document.getElementById('rd_' + aktifRadyo).classList.remove('caliyor');
-  } else {
-    audio.play();
-    radyoCaliyor = true;
-    document.getElementById('radyoPlayBtn').textContent = '⏸';
-    document.getElementById('rd_' + aktifRadyo).textContent = '● Yayında';
-    document.getElementById('rd_' + aktifRadyo).classList.add('caliyor');
-  }
-}
-
-function radyoSesAyarla(val) {
-  document.getElementById('radyoAudio').volume = val / 100;
-  document.getElementById('radyoSesLbl').textContent = '🔊 ' + val + '%';
-}
-// BASLAT
 istatistik();
 listele('hepsi');
 </script>
