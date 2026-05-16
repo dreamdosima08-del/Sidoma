@@ -59,12 +59,24 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .kbtn{display:flex;align-items:center;gap:.25rem;background:transparent;border:none;color:var(--soluk);font-size:.75rem;font-weight:500;cursor:pointer;padding:.35rem .55rem;border-radius:8px;font-family:'Inter',sans-serif;transition:all .15s}
 .kbtn:active{background:rgba(255,255,255,.06);color:var(--text)}
 .kbtn.begendi{color:var(--morc);background:var(--mora)}
+.yorum-wrap{display:none;border-top:1px solid var(--border);margin-top:.7rem;padding-top:.65rem}
+.yorum-wrap.ac{display:block}
+.yorum-liste{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.5rem}
+.yi{display:flex;gap:.4rem}
+.yi-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;margin-top:2px}
+.yi-ic{flex:1;background:rgba(255,255,255,.04);border-radius:8px;padding:.45rem .65rem}
+.yi-nick{font-size:.7rem;font-weight:700;color:var(--text)}
+.yi-zaman{font-size:.57rem;color:var(--soluk);margin-left:.3rem}
+.yi-metin{font-size:.8rem;color:var(--dim);line-height:1.5;margin-top:.15rem;word-break:break-word}
+.yorum-yaz{display:flex;gap:.35rem}
+.yorum-inp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:.45rem .75rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.8rem;outline:none}
+.yorum-inp:focus{border-color:var(--mor)}
+.yorum-gonder{background:var(--mor);color:#fff;border:none;border-radius:16px;padding:.45rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
+.yorum-bilgi{font-size:.62rem;color:var(--soluk);margin-top:.3rem}
 .bos{text-align:center;padding:3rem 1rem;color:var(--dim)}
 .overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.ac{opacity:1;pointer-events:all}
 .modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1rem 2rem;width:100%;max-width:640px;transform:translateY(100%);transition:transform .25s cubic-bezier(.32,.72,0,1);border-top:1px solid rgba(124,58,237,.3)}
-
-
 .overlay.ac .modal{transform:translateY(0)}
 .modal-h{font-size:.95rem;font-weight:800;margin-bottom:.85rem;display:flex;align-items:center;justify-content:space-between}
 .modal-kapat{background:rgba(255,255,255,.08);border:none;color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;font-family:'Inter',sans-serif}
@@ -91,21 +103,6 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 1rem 5rem;margin-top:1rem}
 .ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
 .ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem;display:none}
-
-.yw{display:none;border-top:1px solid var(--border);margin-top:.7rem;padding-top:.7rem;}
-.yw.ac{display:block;}
-.yi-liste{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.5rem;}
-.yi{display:flex;gap:.4rem;}
-.yi-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;margin-top:2px;}
-.yi-ic{flex:1;background:rgba(255,255,255,.04);border-radius:8px;padding:.45rem .65rem;}
-.yi-nick{font-size:.7rem;font-weight:700;color:var(--text);}
-.yi-zaman{font-size:.57rem;color:var(--soluk);margin-left:.3rem;}
-.yi-metin{font-size:.8rem;color:var(--dim);line-height:1.5;margin-top:.15rem;word-break:break-word;}
-.yw-yaz{display:flex;gap:.35rem;}
-.yw-inp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:.45rem .75rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.8rem;outline:none;}
-.yw-inp:focus{border-color:var(--mor);}
-.yw-btn{background:var(--mor);color:#fff;border:none;border-radius:16px;padding:.45rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
-.yw-bilgi{font-size:.62rem;color:var(--soluk);margin-top:.3rem;}
 </style>
 </head>
 <body>
@@ -191,7 +188,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </nav>
 
 <div class="footer">
-  <div class="ftr-h" onclick="ftrAc('kural')">📋 Topluluk Kuralları <span id="k-ok">▾</span></div>
+  <div class="ftr-h" onclick="ftrAc('kural')">📋 Topluluk Kuralları <span id="kural-ok">▾</span></div>
   <div class="ftr-p" id="kural-ic">1. Saygılı iletişim şarttır<br>2. Hakaret ve ifşa yasaktır<br>3. Kişisel bilgi paylaşılamaz<br>4. Siyasi nefret söylemi yasaktır</div>
   <div class="ftr-h" onclick="ftrAc('kvkk')" style="margin-top:.5rem">🔐 KVKK & Gizlilik <span id="kvkk-ok">▾</span></div>
   <div class="ftr-p" id="kvkk-ic">Veriler Firebase altyapısında saklanır. Üçüncü taraflarla paylaşılmaz. Veri silme için WhatsApp'tan ulaşın.</div>
@@ -203,39 +200,36 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 <script>
 firebase.initializeApp({
-  apiKey: "AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0",
-  authDomain: "acu-kampus.firebaseapp.com",
-  projectId: "acu-kampus",
-  storageBucket: "acu-kampus.firebasestorage.app",
-  messagingSenderId: "356152793085",
-  appId: "1:356152793085:web:38a6ae1ad911880cb2ab94"
+  apiKey:"AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0",
+  authDomain:"acu-kampus.firebaseapp.com",
+  projectId:"acu-kampus",
+  storageBucket:"acu-kampus.firebasestorage.app",
+  messagingSenderId:"356152793085",
+  appId:"1:356152793085:web:38a6ae1ad911880cb2ab94"
 });
-var db = firebase.firestore();
-var TG_TOKEN = '8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
-var TG_CHAT = '1032454830';
-var KAT = {
-  itiraf:{l:'İtiraf',e:'🤫',c:'#a855f7',bg:'rgba(168,85,247,.13)'},
+var db=firebase.firestore();
+var TG_TOKEN='8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
+var TG_CHAT='1032454830';
+var KAT={
+  itiraf:{l:'Itiraf',e:'🤫',c:'#a855f7',bg:'rgba(168,85,247,.13)'},
   soru:{l:'Soru',e:'❓',c:'#3b82f6',bg:'rgba(59,130,246,.13)'},
-  ilan:{l:'İlan',e:'🏠',c:'#22c55e',bg:'rgba(34,197,94,.13)'},
+  ilan:{l:'Ilan',e:'🏠',c:'#22c55e',bg:'rgba(34,197,94,.13)'},
   etkinlik:{l:'Etkinlik',e:'📢',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
   mizah:{l:'Mizah',e:'😂',c:'#f97316',bg:'rgba(249,115,22,.13)'},
   ders:{l:'Dersler',e:'🎓',c:'#06b6d4',bg:'rgba(6,182,212,.13)'},
 };
 var RENKLER=['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
 var anonAktif=true;
-var aktifKat='hepsi';
 
 function renk(s){var n=0;for(var i=0;i<s.length;i++)n+=s.charCodeAt(i);return RENKLER[n%RENKLER.length];}
-function zaman(ts){if(!ts)return '';var s=Math.floor((Date.now()-ts.toMillis())/1000);if(s<60)return 'Az önce';if(s<3600)return Math.floor(s/60)+' dk önce';if(s<86400)return Math.floor(s/3600)+' sa önce';return Math.floor(s/86400)+' gün önce';}
+function zaman(ts){if(!ts)return '';var s=Math.floor((Date.now()-ts.toMillis())/1000);if(s<60)return 'Az once';if(s<3600)return Math.floor(s/60)+' dk once';if(s<86400)return Math.floor(s/3600)+' sa once';return Math.floor(s/86400)+' gun once';}
 function userAdi(){return 'User'+String(Math.floor(Math.random()*900)+100).padStart(3,'0');}
-
 function modalAc(){document.getElementById('overlay').classList.add('ac');document.body.style.overflow='hidden';}
 function modalKapat(){document.getElementById('overlay').classList.remove('ac');document.body.style.overflow='';}
 function anonToggle(){anonAktif=!anonAktif;document.getElementById('anonTog').className='tog'+(anonAktif?' on':'');}
-function ftrAc(id){var el=document.getElementById(id+'-ic');var ok=document.getElementById(id.replace('kural','k')+'-ok');if(!el)return;var ac=el.style.display==='block';el.style.display=ac?'none':'block';ok.textContent=ac?'▾':'▴';}
+function ftrAc(id){var el=document.getElementById(id+'-ic');var ok=document.getElementById(id.replace('kural','kural')+'-ok');if(!el)return;var ac=el.style.display==='block';el.style.display=ac?'none':'block';if(ok)ok.textContent=ac?'▾':'▴';}
 
 function katSec(kat){
-  aktifKat=kat;
   document.querySelectorAll('.kat-btn').forEach(function(b){b.classList.toggle('aktif',b.dataset.kat===kat);});
   document.querySelectorAll('.nb[data-kat]').forEach(function(b){b.classList.toggle('on',b.dataset.kat===kat);});
   listele(kat);
@@ -249,18 +243,21 @@ function istatistik(){
 
 function listele(kat){
   var akis=document.getElementById('akis');
-  akis.innerHTML='<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem">⏳ Yükleniyor...</div>';
+  akis.innerHTML='<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem">Yukleniyor...</div>';
   var q=db.collection('acukampus').where('durum','==','aktif').limit(30);
   if(kat&&kat!=='hepsi')q=q.where('kategori','==',kat);
   q.onSnapshot(function(snap){
-    if(snap.empty){akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.35rem">Gönderi yok</div><div style="font-size:.8rem">İlk paylaşımı sen yap!</div></div>';return;}
+    if(snap.empty){
+      akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.35rem">Gonderi yok</div><div style="font-size:.8rem">Ilk paylasimi sen yap!</div></div>';
+      return;
+    }
     var html='';
     snap.forEach(function(doc){
       var d=doc.data();
       var k=KAT[d.kategori]||{l:d.kategori,e:'📌',c:'#888',bg:'rgba(136,136,136,.1)'};
       var nick=d.nick||'Anonim';
       var r=renk(nick);
-      html+='<div class="kart">';
+      html+='<div class="kart" data-id="'+doc.id+'">';
       html+='<div class="kart-ust">';
       html+='<div class="kart-avatar" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
       html+='<div style="flex:1;min-width:0"><div class="kart-nick">'+nick+'</div><div class="kart-zaman">'+zaman(d.olusturma)+'</div></div>';
@@ -272,149 +269,113 @@ function listele(kat){
       html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="yorum">💬 <span id="ys_'+doc.id+'">'+(d.yorumSayi||0)+'</span></button>';
       html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="bildir" style="margin-left:auto">🚩</button>';
       html+='</div>';
-      html+='<div class="yw" id="yw_'+doc.id+'">';
-      html+='<div class="yi-liste" id="yl_'+doc.id+'"></div>';
-      html+='<div class="yw-yaz">';
-      html+='<input class="yw-inp" id="yi_'+doc.id+'" placeholder="Yorum yaz..." maxlength="300">';
-      html+='<button class="yw-btn" data-id="'+doc.id+'" data-tip="yorumgonder">▶</button>';
+      html+='<div class="yorum-wrap" id="yw_'+doc.id+'">';
+      html+='<div class="yorum-liste" id="yl_'+doc.id+'"></div>';
+      html+='<div class="yorum-yaz">';
+      html+='<input class="yorum-inp" id="yi_'+doc.id+'" placeholder="Yorum yaz..." maxlength="300">';
+      html+='<button class="yorum-gonder" data-id="'+doc.id+'" data-tip="yorumgonder">▶</button>';
       html+='</div>';
-      html+='<div class="yw-bilgi">Yorumlar inceleme sonrası yayınlanır.</div>';
+      html+='<div class="yorum-bilgi" id="yb_'+doc.id+'">Yorumlar inceleme sonrasi yayinlanir.</div>';
       html+='</div>';
       html+='</div>';
     });
     akis.innerHTML=html;
   },function(err){
-    akis.innerHTML='<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div style="font-size:.9rem;font-weight:700;color:var(--text)">Yüklenemedi</div><div style="font-size:.75rem;margin-top:.25rem">'+err.message+'</div></div>';
+    akis.innerHTML='<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div style="font-size:.9rem;font-weight:700;color:var(--text)">Yuklenemedi</div><div style="font-size:.75rem;margin-top:.25rem">'+err.message+'</div></div>';
   });
+}
+
+function yorumAc(postId){
+  var yw=document.getElementById('yw_'+postId);
+  if(!yw)return;
+  var acik=yw.classList.toggle('ac');
+  if(acik)yorumlariYukle(postId);
+}
+
+function yorumlariYukle(postId){
+  var liste=document.getElementById('yl_'+postId);
+  if(!liste)return;
+  liste.innerHTML='<div style="font-size:.72rem;color:var(--soluk);padding:.2rem 0">Yukleniyor...</div>';
+  db.collection('acukampus').doc(postId).collection('yorumlar')
+    .where('durum','==','aktif').get()
+    .then(function(snap){
+      if(snap.empty){liste.innerHTML='<div style="font-size:.75rem;color:var(--soluk);padding:.2rem 0">Henuz yorum yok.</div>';return;}
+      var html='';
+      snap.forEach(function(doc){
+        var y=doc.data();
+        var nick=y.nick||'Anonim';
+        var r=renk(nick);
+        html+='<div class="yi">';
+        html+='<div class="yi-av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
+        html+='<div class="yi-ic"><span class="yi-nick">'+nick+'</span><span class="yi-zaman">'+zaman(y.olusturma)+'</span>';
+        html+='<div class="yi-metin">'+y.metin.replace(/\n/g,'<br>')+'</div></div></div>';
+      });
+      liste.innerHTML=html;
+    }).catch(function(){
+      liste.innerHTML='<div style="font-size:.72rem;color:#f87171">Yuklenemedi.</div>';
+    });
+}
+
+function yorumGonder(postId){
+  var inp=document.getElementById('yi_'+postId);
+  if(!inp)return;
+  var metin=inp.value.trim();
+  if(!metin||metin.length<2)return;
+  var eski=inp.value;
+  inp.disabled=true;inp.value='';
+  var nick=userAdi();
+  db.collection('acukampus').doc(postId).collection('yorumlar').add({
+    metin:metin,nick:nick,durum:'bekliyor',
+    olusturma:firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function(){
+    inp.disabled=false;
+    db.collection('acukampus').doc(postId).update({yorumSayi:firebase.firestore.FieldValue.increment(1)});
+    var ys=document.getElementById('ys_'+postId);
+    if(ys)ys.textContent=parseInt(ys.textContent||0)+1;
+    var bilgi=document.getElementById('yb_'+postId);
+    if(bilgi){bilgi.textContent='Gonderildi! Inceleme sonrasi yayinlanacak.';bilgi.style.color='#4ade80';setTimeout(function(){bilgi.textContent='Yorumlar inceleme sonrasi yayinlanir.';bilgi.style.color='';},3000);}
+  }).catch(function(){inp.disabled=false;inp.value=eski;});
 }
 
 function gonder(){
   var kat=document.getElementById('fKat').value;
   var metin=document.getElementById('fMetin').value.trim();
   var btn=document.getElementById('btnGonder');
-  if(!kat){alert('Kategori seçmelisin.');return;}
+  if(!kat){alert('Kategori secmelisin.');return;}
   if(!metin||metin.length<5){alert('Biraz daha uzun yaz.');return;}
   if(metin.length>800){alert('En fazla 800 karakter.');return;}
-  btn.disabled=true;btn.textContent='⏳ Gönderiliyor...';
+  btn.disabled=true;btn.textContent='Gonderiliyor...';
   var nick=userAdi();
   db.collection('acukampus').add({
     kategori:kat,metin:metin,anonim:anonAktif,nick:nick,
-    durum:'bekliyor',begeni:0,
+    durum:'bekliyor',begeni:0,yorumSayi:0,
     olusturma:firebase.firestore.FieldValue.serverTimestamp()
   }).then(function(ref){
     fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:'ACU Kampus\n'+nick+'\n\n'+metin.substring(0,300)+'\n\nID:'+ref.id})}).catch(function(){});
-    btn.disabled=false;btn.textContent='🚀 Gönder';
+    btn.disabled=false;btn.textContent='🚀 Gonder';
     document.getElementById('fMetin').value='';
     document.getElementById('fKat').value='';
     document.getElementById('basari').style.display='block';
     setTimeout(function(){document.getElementById('basari').style.display='none';modalKapat();},2500);
-  }).catch(function(e){btn.disabled=false;btn.textContent='🚀 Gönder';alert('Hata: '+e.message);});
+  }).catch(function(e){btn.disabled=false;btn.textContent='🚀 Gonder';alert('Hata: '+e.message);});
 }
 
-// TEK EVENT LISTENER
 document.addEventListener('click',function(e){
   var t=e.target;
-
   if(t.id==='navPaylas'||t.id==='nbPlus'||t.closest('#nbPlus')){modalAc();return;}
   if(t.id==='btnKapat'||t.id==='overlay'){modalKapat();return;}
   if(t.id==='btnGonder'){gonder();return;}
   if(t.id==='anonRow'||t.closest('#anonRow')){anonToggle();return;}
-
-  var katBtn=t.closest('.kat-btn')||( t.classList.contains('kat-btn')?t:null);
-  if(katBtn&&katBtn.dataset.kat){katSec(katBtn.dataset.kat);return;}
-
+  var kb=t.closest('.kat-btn')||(t.classList.contains('kat-btn')?t:null);
+  if(kb&&kb.dataset.kat){katSec(kb.dataset.kat);return;}
   var nb=t.closest('.nb[data-kat]')||(t.classList.contains('nb')&&t.dataset.kat?t:null);
   if(nb&&nb.dataset&&nb.dataset.kat){katSec(nb.dataset.kat);return;}
-
-  if(t.dataset&&t.dataset.tip==='yorum'){
-    yorumAc(t.dataset.id);
-    return;
-  }
-  if(t.dataset&&t.dataset.tip==='yorumgonder'){
-    yorumGonder(t.dataset.id);
-    return;
-  }
-  if(t.dataset&&t.dataset.tip==='begeni'){
-    if(t.classList.contains('begendi'))return;
-    t.classList.add('begendi');t.disabled=true;
-    db.collection('acukampus').doc(t.dataset.id).update({begeni:firebase.firestore.FieldValue.increment(1)});
-    return;
-  }
-  if(t.dataset&&t.dataset.tip==='bildir'){
-    if(!confirm('Bu gönderiyi bildirmek istiyor musun?'))return;
-    db.collection('acukampus').doc(t.dataset.id).update({bildirim:firebase.firestore.FieldValue.increment(1)});
-    alert('Bildirildi, teşekkürler.');
-    return;
-  }
+  if(t.dataset&&t.dataset.tip==='begeni'){if(t.classList.contains('begendi'))return;t.classList.add('begendi');t.disabled=true;db.collection('acukampus').doc(t.dataset.id).update({begeni:firebase.firestore.FieldValue.increment(1)});return;}
+  if(t.dataset&&t.dataset.tip==='yorum'){yorumAc(t.dataset.id);return;}
+  if(t.dataset&&t.dataset.tip==='yorumgonder'){yorumGonder(t.dataset.id);return;}
+  if(t.dataset&&t.dataset.tip==='bildir'){if(!confirm('Bu gonderiyi bildirmek istiyor musun?'))return;db.collection('acukampus').doc(t.dataset.id).update({bildirim:firebase.firestore.FieldValue.increment(1)});alert('Bildirildi.');return;}
 });
 
-
-function yorumAc(postId) {
-  var yw = document.getElementById('yw_' + postId);
-  if (!yw) return;
-  var acik = yw.classList.toggle('ac');
-  if (acik) yorumlariYukle(postId);
-}
-
-function yorumlariYukle(postId) {
-  var liste = document.getElementById('yl_' + postId);
-  if (!liste) return;
-  db.collection('acukampus').doc(postId).collection('yorumlar')
-    .where('durum','==','aktif').get()
-    .then(function(snap) {
-      if (snap.empty) {
-        liste.innerHTML = '<div style="font-size:.75rem;color:var(--soluk);padding:.2rem 0">Henuz yorum yok.</div>';
-        return;
-      }
-      var html = '';
-      snap.forEach(function(doc) {
-        var y = doc.data();
-        var nick = y.nick || 'Anonim';
-        var r = renk(nick);
-        html += '<div class="yi">';
-        html += '<div class="yi-av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
-        html += '<div class="yi-ic">';
-        html += '<span class="yi-nick">'+nick+'</span>';
-        html += '<span class="yi-zaman">'+zaman(y.olusturma)+'</span>';
-        html += '<div class="yi-metin">'+y.metin.replace(/
-/g,'<br>')+'</div>';
-        html += '</div></div>';
-      });
-      liste.innerHTML = html;
-    }).catch(function() {
-      liste.innerHTML = '<div style="font-size:.72rem;color:#f87171">Yuklenemedi.</div>';
-    });
-}
-
-function yorumGonder(postId) {
-  var inp = document.getElementById('yi_' + postId);
-  if (!inp) return;
-  var metin = inp.value.trim();
-  if (!metin || metin.length < 2) return;
-  var eski = inp.value;
-  inp.disabled = true;
-  inp.value = '';
-  var nick = 'User' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
-  db.collection('acukampus').doc(postId).collection('yorumlar').add({
-    metin: metin, nick: nick,
-    durum: 'bekliyor',
-    olusturma: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function() {
-    inp.disabled = false;
-    db.collection('acukampus').doc(postId).update({yorumSayi: firebase.firestore.FieldValue.increment(1)});
-    var ys = document.getElementById('ys_' + postId);
-    if (ys) ys.textContent = parseInt(ys.textContent||0) + 1;
-    var bilgi = inp.parentElement.nextElementSibling;
-    if (bilgi) {
-      bilgi.textContent = 'Gonderildi! Inceleme sonrasi yayinlanacak.';
-      bilgi.style.color = '#4ade80';
-      setTimeout(function() { bilgi.textContent = 'Yorumlar inceleme sonrasi yayinlanir.'; bilgi.style.color = ''; }, 3000);
-    }
-  }).catch(function(e) {
-    inp.disabled = false;
-    inp.value = eski;
-  });
-}
 istatistik();
 listele('hepsi');
 </script>
