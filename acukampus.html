@@ -506,7 +506,13 @@ function listele(kat) {
   var sorgu = db.collection('acukampus').where('durum','==','aktif').limit(30);
   if (kat && kat !== 'hepsi') sorgu = sorgu.where('kategori','==',kat);
 
+  // 5 saniye timeout
+  var timeout = setTimeout(function() {
+    document.getElementById('akis').innerHTML = '<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem;">⚠️ Bağlantı kurulamadı. Sayfayı yenile.</div>';
+  }, 5000);
+
   sorgu.onSnapshot(function(snap) {
+    clearTimeout(timeout);
     if (snap.empty) {
       akis.innerHTML = '<div class="bos"><div class="bos-icon">🌿</div><div class="bos-h">Gonderi yok</div><p style="font-size:.8rem">Ilk paylasiimi sen yap!</p></div>';
       return;
