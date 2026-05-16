@@ -357,16 +357,120 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </head>
 <body>
 <!-- KABUL MODALI -->
-<div id="kmOverlay" style="position:fixed;inset:0;z-index:99999;background:rgba(10,9,20,.97);display:flex;align-items:center;justify-content:center;padding:1rem;overflow-y:auto;">
+<style>
+#km{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:#0a0918;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+#km-box{background:#16152a;border:1px solid #5b21b6;border-radius:20px;padding:24px 20px;width:100%;max-width:400px;}
+.km-h{font-size:18px;font-weight:800;color:#fff;text-align:center;margin-bottom:6px;}
+.km-s{font-size:13px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:16px;}
+.km-info{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:12px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,.65);line-height:1.8;}
+.km-cb-row{display:flex;align-items:flex-start;gap:12px;padding:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;margin-bottom:10px;}
+.km-cb-row input[type=checkbox]{width:24px;height:24px;min-width:24px;accent-color:#7c3aed;cursor:pointer;margin-top:1px;}
+.km-cb-row span{font-size:14px;color:rgba(255,255,255,.75);line-height:1.5;flex:1;}
+.km-linkler{display:flex;gap:8px;margin-bottom:16px;}
+.km-link{flex:1;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:8px;padding:10px 8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;}
+.km-uyari{color:#f87171;font-size:13px;text-align:center;margin-bottom:10px;display:none;}
+.km-btn{width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:12px;padding:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+.km-alt{text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.2);}
 
-  <!-- ANA MODAL -->
-  <div id="kmAna" style="background:#16152a;border:1px solid rgba(124,58,237,.35);border-radius:20px;width:100%;max-width:420px;padding:1.75rem 1.25rem;position:relative;">
-    
-    <div style="text-align:center;margin-bottom:1.25rem;">
-      <div style="width:52px;height:52px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto .65rem;box-shadow:0 4px 20px rgba(124,58,237,.4);">🏫</div>
-      <div style="font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.01em;">ACU Kampüs'e Hoş Geldin</div>
-      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-top:.25rem;">Artvin Çoruh Üniversitesi · Öğrenci Platformu</div>
+#km-detay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:100000;background:#0a0918;display:none;flex-direction:column;padding:20px;overflow-y:auto;}
+#km-detay-box{background:#16152a;border-radius:16px;padding:20px;max-width:400px;width:100%;margin:0 auto;}
+#km-detay-baslik{font-size:16px;font-weight:800;color:#fff;margin-bottom:12px;}
+#km-detay-icerik{font-size:14px;color:rgba(255,255,255,.6);line-height:1.9;}
+.km-geri{width:100%;margin-top:16px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+</style>
+
+<div id="km">
+  <div id="km-box">
+    <div style="text-align:center;margin-bottom:16px;">
+      <div style="width:52px;height:52px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 10px;box-shadow:0 4px 20px rgba(124,58,237,.4);">🏫</div>
+      <div class="km-h">ACU Kampüs'e Hoş Geldin</div>
+      <div class="km-s">Artvin Çoruh Üniversitesi · Öğrenci Platformu</div>
     </div>
+    <div class="km-info">
+      ✅ Bu platform yalnızca öğrenciler içindir<br>
+      🚫 Hakaret, ifşa, zorbalık yasaktır<br>
+      🛡️ Tüm içerikler moderasyona tabidir
+    </div>
+    <div class="km-cb-row">
+      <input type="checkbox" id="cb1">
+      <span>Kullanım Şartları ve Gizlilik Politikası'nı okudum, kabul ediyorum.</span>
+    </div>
+    <div class="km-cb-row">
+      <input type="checkbox" id="cb2">
+      <span>Topluluk kurallarına uyacağımı, hakaret ve ifşa paylaşımı yapmayacağımı kabul ediyorum.</span>
+    </div>
+    <div class="km-linkler">
+      <button class="km-link" id="btnKullanim">📄 Kullanım Şartları</button>
+      <button class="km-link" id="btnGizlilik">🔐 Gizlilik</button>
+    </div>
+    <div class="km-uyari" id="kmUyari">⚠️ Devam etmek için her iki kutuyu işaretleyin.</div>
+    <button class="km-btn" id="kmGirBtn">Kabul Et ve Platforma Gir →</button>
+    <div class="km-alt">Açü'lü olmak ayrıcalıktır 🏔️</div>
+  </div>
+</div>
+
+<div id="km-detay">
+  <div id="km-detay-box">
+    <div id="km-detay-baslik"></div>
+    <div id="km-detay-icerik"></div>
+    <button class="km-geri" id="btnGeri">← Geri Dön</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var METINLER = {
+    kullanim: {
+      baslik: '📄 Kullanım Şartları',
+      icerik: 'ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.<br><br>Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir.<br><br>Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.<br><br>5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet gösterilmektedir.'
+    },
+    gizlilik: {
+      baslik: '🔐 Gizlilik & KVKK',
+      icerik: '6698 sayılı KVKK kapsamında aydınlatma metnidir.<br><br>Platform, moderasyon ve güvenlik amacıyla tarayıcı bilgisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır.<br><br>Veriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.<br><br>Veri silme talebi için WhatsApp hattından iletişime geçebilirsiniz.'
+    }
+  };
+
+  // Daha önce kabul ettiyse gösterme
+  if (localStorage.getItem('acu_kabul') === '1') {
+    document.getElementById('km').style.display = 'none';
+    return;
+  }
+
+  function detayAc(tip) {
+    var m = METINLER[tip];
+    document.getElementById('km-detay-baslik').innerHTML = m.baslik;
+    document.getElementById('km-detay-icerik').innerHTML = m.icerik;
+    document.getElementById('km-detay').style.display = 'flex';
+  }
+
+  function detayKapat() {
+    document.getElementById('km-detay').style.display = 'none';
+  }
+
+  function girYap() {
+    var cb1 = document.getElementById('cb1').checked;
+    var cb2 = document.getElementById('cb2').checked;
+    if (!cb1 || !cb2) {
+      document.getElementById('kmUyari').style.display = 'block';
+      return;
+    }
+    localStorage.setItem('acu_kabul', '1');
+    document.getElementById('km').style.display = 'none';
+  }
+
+  document.getElementById('btnKullanim').addEventListener('click', function(e) { e.preventDefault(); detayAc('kullanim'); });
+  document.getElementById('btnGizlilik').addEventListener('click', function(e) { e.preventDefault(); detayAc('gizlilik'); });
+  document.getElementById('btnGeri').addEventListener('click', function(e) { e.preventDefault(); detayKapat(); });
+  document.getElementById('kmGirBtn').addEventListener('click', function(e) { e.preventDefault(); girYap(); });
+
+  // Touch desteği
+  document.getElementById('kmGirBtn').addEventListener('touchend', function(e) { e.preventDefault(); girYap(); });
+  document.getElementById('btnKullanim').addEventListener('touchend', function(e) { e.preventDefault(); detayAc('kullanim'); });
+  document.getElementById('btnGizlilik').addEventListener('touchend', function(e) { e.preventDefault(); detayAc('gizlilik'); });
+  document.getElementById('btnGeri').addEventListener('touchend', function(e) { e.preventDefault(); detayKapat(); });
+
+})();
+</script>
 
     <div style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.1rem;font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.85;">
       Bu platform yalnızca öğrenci topluluğu amacıyla oluşturulmuştur.<br>
@@ -954,49 +1058,7 @@ function yorumGonder(postId) {
 
 
 
-// ── KABUL SİSTEMİ ──
-var KM_DETAYLAR = {
-  kvkk: {
-    baslik: '📄 Kullanım Şartları',
-    icerik: 'ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.<br><br>Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir. Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.<br><br>Platform 5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet göstermektedir. İçerik kaldırma talepleri için WhatsApp hattından iletişime geçebilirsiniz.<br><br>Platform, kullanıcı tarafından üretilen içeriklerden sorumlu tutulamaz.'
-  },
-  gizlilik: {
-    baslik: '🔐 Gizlilik & KVKK',
-    icerik: '6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma metnidir.<br><br><strong style="color:#c4b5fd">Toplanan Veriler:</strong><br>Platform, içerik moderasyonu ve güvenlik amacıyla tarayıcı bilgisi ve oturum verisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır.<br><br><strong style="color:#c4b5fd">Veri Saklama:</strong><br>Veriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.<br><br><strong style="color:#c4b5fd">Haklarınız:</strong><br>Verilerinizin silinmesini talep etme hakkınız bulunmaktadır. Talepler için WhatsApp hattından iletişime geçebilirsiniz.'
-  }
-};
 
-function kmDetayAc(tip) {
-  var d = KM_DETAYLAR[tip];
-  if (!d) return;
-  document.getElementById('kmDetayBaslik').innerHTML = d.baslik;
-  document.getElementById('kmDetayIcerik').innerHTML = d.icerik;
-  document.getElementById('kmDetay').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-
-function kmDetayKapat() {
-  document.getElementById('kmDetay').style.display = 'none';
-}
-
-function kmGir() {
-  var cb1 = document.getElementById('kmCb1').checked;
-  var cb2 = document.getElementById('kmCb2').checked;
-  if (!cb1 || !cb2) {
-    document.getElementById('kmUyari').style.display = 'block';
-    return;
-  }
-  localStorage.setItem('acu_kabul', '1');
-  document.getElementById('kmOverlay').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-(function() {
-  if (localStorage.getItem('acu_kabul') === '1') {
-    var o = document.getElementById('kmOverlay');
-    if (o) o.style.display = 'none';
-  }
-})();
 
 // ── BAŞLAT ──
 istatistikYukle();
