@@ -357,10 +357,67 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </head>
 <body>
 <!-- KABUL MODALI -->
-<div id="kabulOverlay" style="position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;">
-  <div style="background:#16152a;border:1px solid rgba(124,58,237,.4);border-radius:18px;padding:1.5rem;width:100%;max-width:400px;">
-    <div style="text-align:center;margin-bottom:1rem;">
-      <div style="font-size:2rem;margin-bottom:.4rem;">🏫</div>
+<div id="kmOverlay" style="position:fixed;inset:0;z-index:99999;background:rgba(10,9,20,.97);display:flex;align-items:center;justify-content:center;padding:1rem;overflow-y:auto;">
+
+  <!-- ANA MODAL -->
+  <div id="kmAna" style="background:#16152a;border:1px solid rgba(124,58,237,.35);border-radius:20px;width:100%;max-width:420px;padding:1.75rem 1.25rem;position:relative;">
+    
+    <div style="text-align:center;margin-bottom:1.25rem;">
+      <div style="width:52px;height:52px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto .65rem;box-shadow:0 4px 20px rgba(124,58,237,.4);">🏫</div>
+      <div style="font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.01em;">ACU Kampüs'e Hoş Geldin</div>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-top:.25rem;">Artvin Çoruh Üniversitesi · Öğrenci Platformu</div>
+    </div>
+
+    <div style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.1rem;font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.85;">
+      Bu platform yalnızca öğrenci topluluğu amacıyla oluşturulmuştur.<br>
+      Hakaret, ifşa ve kötüye kullanım kesinlikle yasaktır.<br>
+      Tüm içerikler moderasyona tabidir.
+    </div>
+
+    <!-- CHECKBOX 1 -->
+    <label style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem 1rem;margin-bottom:.6rem;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+      <input type="checkbox" id="kmCb1" style="width:22px;height:22px;accent-color:#7c3aed;flex-shrink:0;cursor:pointer;">
+      <div style="font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;flex:1;">
+        <span onclick="kmDetayAc('kvkk')" style="color:#c4b5fd;text-decoration:underline;cursor:pointer;">Kullanım Şartları</span> ve 
+        <span onclick="kmDetayAc('gizlilik')" style="color:#c4b5fd;text-decoration:underline;cursor:pointer;">Gizlilik Politikası</span>'nı okudum, kabul ediyorum.
+      </div>
+    </label>
+
+    <!-- CHECKBOX 2 -->
+    <label style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem 1rem;margin-bottom:1rem;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+      <input type="checkbox" id="kmCb2" style="width:22px;height:22px;accent-color:#7c3aed;flex-shrink:0;cursor:pointer;">
+      <div style="font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;flex:1;">
+        Topluluk kurallarına uyacağımı, hakaret ve ifşa içerikli paylaşım yapmayacağımı kabul ediyorum.
+      </div>
+    </label>
+
+    <div id="kmUyari" style="display:none;text-align:center;font-size:.73rem;color:#f87171;margin-bottom:.6rem;">
+      ⚠️ Devam etmek için her iki kutuyu işaretleyin.
+    </div>
+
+    <button id="kmBtn" onclick="kmGir()" style="width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:13px;padding:.95rem;font-size:.92rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.01em;-webkit-tap-highlight-color:transparent;touch-action:manipulation;">
+      Kabul Et ve Platforma Gir →
+    </button>
+
+    <div style="text-align:center;margin-top:.75rem;font-size:.62rem;color:rgba(255,255,255,.2);">
+      Açü'lü olmak ayrıcalıktır 🏔️
+    </div>
+  </div>
+
+  <!-- DETAY PANEL (KVKK / Gizlilik) -->
+  <div id="kmDetay" style="display:none;position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.92);padding:1rem;overflow-y:auto;">
+    <div style="background:#16152a;border-radius:16px;padding:1.25rem;max-width:420px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <div id="kmDetayBaslik" style="font-size:.9rem;font-weight:800;color:#fff;"></div>
+        <button onclick="kmDetayKapat()" style="background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;">✕</button>
+      </div>
+      <div id="kmDetayIcerik" style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.9;"></div>
+      <button onclick="kmDetayKapat()" style="width:100%;margin-top:1.25rem;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:10px;padding:.75rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">← Geri Dön</button>
+    </div>
+  </div>
+
+</div>
+
       <div style="font-size:1rem;font-weight:800;color:#fff;">ACU Kampüs'e Hoş Geldin</div>
       <div style="font-size:.75rem;color:rgba(255,255,255,.45);margin-top:.25rem;">Artvin Çoruh Üniversitesi Öğrenci Platformu</div>
     </div>
@@ -888,20 +945,52 @@ function yorumGonder(postId) {
 }
 
 
-function kabulKontrol(){
-  if(localStorage.getItem('acuKabul')==='1'){
-    var o = document.getElementById('kabulOverlay');
-    if(o) o.style.display='none';
+
+
+
+// ── KABUL SİSTEMİ ──
+var KM_DETAYLAR = {
+  kvkk: {
+    baslik: '📄 Kullanım Şartları',
+    icerik: 'ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.<br><br>Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir. Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.<br><br>Platform 5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet göstermektedir. İçerik kaldırma talepleri için WhatsApp hattından iletişime geçebilirsiniz.<br><br>Platform, kullanıcı tarafından üretilen içeriklerden sorumlu tutulamaz.'
+  },
+  gizlilik: {
+    baslik: '🔐 Gizlilik & KVKK',
+    icerik: '6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma metnidir.<br><br><strong style="color:#c4b5fd">Toplanan Veriler:</strong><br>Platform, içerik moderasyonu ve güvenlik amacıyla tarayıcı bilgisi ve oturum verisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır.<br><br><strong style="color:#c4b5fd">Veri Saklama:</strong><br>Veriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.<br><br><strong style="color:#c4b5fd">Haklarınız:</strong><br>Verilerinizin silinmesini talep etme hakkınız bulunmaktadır. Talepler için WhatsApp hattından iletişime geçebilirsiniz.'
   }
+};
+
+function kmDetayAc(tip) {
+  var d = KM_DETAYLAR[tip];
+  if (!d) return;
+  document.getElementById('kmDetayBaslik').innerHTML = d.baslik;
+  document.getElementById('kmDetayIcerik').innerHTML = d.icerik;
+  document.getElementById('kmDetay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
 }
-function kabulEt(){
-  var k1 = document.getElementById('cb1').checked;
-  var k2 = document.getElementById('cb2').checked;
-  if(!k1||!k2){ alert('Lütfen her iki kutuyu da işaretle.'); return; }
-  localStorage.setItem('acuKabul','1');
-  document.getElementById('kabulOverlay').style.display='none';
+
+function kmDetayKapat() {
+  document.getElementById('kmDetay').style.display = 'none';
 }
-kabulKontrol();
+
+function kmGir() {
+  var cb1 = document.getElementById('kmCb1').checked;
+  var cb2 = document.getElementById('kmCb2').checked;
+  if (!cb1 || !cb2) {
+    document.getElementById('kmUyari').style.display = 'block';
+    return;
+  }
+  localStorage.setItem('acu_kabul', '1');
+  document.getElementById('kmOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+(function() {
+  if (localStorage.getItem('acu_kabul') === '1') {
+    var o = document.getElementById('kmOverlay');
+    if (o) o.style.display = 'none';
+  }
+})();
 
 // ── BAŞLAT ──
 istatistikYukle();
