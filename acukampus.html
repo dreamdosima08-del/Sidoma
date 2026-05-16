@@ -111,6 +111,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem 1rem 5rem}
 .ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
 .ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem}
+.cbtn{flex:1;padding:.6rem .5rem;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;transition:all .15s;touch-action:manipulation}
+.cbtn.aktif{border-color:var(--mor);color:var(--morc);background:var(--mora)}
 </style>
 </head>
 <body>
@@ -118,10 +120,10 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 <!-- NAV -->
 <nav class="nav">
   <div style="display:flex;align-items:center;gap:.6rem">
-    <div class="logo-badge">ACU</div>
+    <div class="logo-badge">AÇÜ</div>
     <div>
       <div class="logo-text">ACU Kampus</div>
-      <div class="logo-sub">Artvin Coruh Universitesi</div>
+      <div class="logo-sub">Artvin Çoruh Üniversitesi</div>
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:.6rem">
@@ -132,11 +134,11 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-merhaba">Merhaba, <span>Acu'lu!</span> 👋</div>
+  <div class="hero-merhaba">Merhaba, <span>Açü'lü!</span> 👋</div>
   <div class="hero-sub">Kampusun nabzini tut. Paylasim yap, soru sor, ilan ver.</div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n" id="sGonderi">0</div><div class="stat-l">Gonderi</div></div>
-    <div class="stat"><div class="stat-n">8.5K</div><div class="stat-l">Ogrenci</div></div>
+    <div class="stat"><div class="stat-n">8K</div><div class="stat-l">Ogrenci</div></div>
     <div class="stat"><div class="stat-n">ACU</div><div class="stat-l">Artvin Coruh</div></div>
   </div>
 </div>
@@ -201,7 +203,15 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
         <div style="font-size:.63rem;color:var(--soluk)">Otomatik kullanici adi atanir</div>
       </div>
     </div>
-    <button class="gonder" id="gonderBtn">🚀 Gonder</button>
+    <div id="cinsiyetWrap" style="margin-bottom:.65rem;">
+      <span class="flbl">Cinsiyet <span style="color:var(--soluk);font-weight:400;text-transform:none;letter-spacing:0">(isteğe bağlı)</span></span>
+      <div style="display:flex;gap:.5rem;">
+        <button class="cbtn" id="cErkek" onclick="cSec('erkek')" type="button">👦 Erkek</button>
+        <button class="cbtn" id="cKadin" onclick="cSec('kadin')" type="button">👧 Kadın</button>
+        <button class="cbtn aktif" id="cBelirtme" onclick="cSec('belirtme')" type="button">🙂 Belirtme</button>
+      </div>
+    </div>
+    <button class="gonder" id="gonderBtn">🚀 Gönder</button>
     <div class="basari" id="basari">✅ Gonderildi! Inceleme sonrasi yayinlanacak.</div>
   </div>
 </div>
@@ -220,10 +230,27 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 <!-- FOOTER -->
 <div class="footer">
-  <div class="ftr-h">📋 Topluluk Kurallari</div>
-  <div class="ftr-p">Hakaret, ifsa ve zorbalık yasaktir. Kisisel bilgi paylasilasmaz. Moderasyon hakkimiz saklıdır.</div>
-  <div class="ftr-h">🔐 KVKK & Gizlilik</div>
-  <div class="ftr-p">Veriler Firebase altyapisinda saklanir. Ucuncu taraflarla paylasilmaz.</div>
+  <div class="ftr-h" onclick="ftrAc('kural')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;">📋 Topluluk Kuralları <span id="kural-ok">▾</span></div>
+  <div id="kural-icerik" style="display:none" class="ftr-p">
+    1. Saygılı iletişim şarttır<br>
+    2. Hakaret, ifşa ve zorbalık kesinlikle yasaktır<br>
+    3. Kişisel bilgi (isim, adres, telefon) paylaşılamaz<br>
+    4. Siyasi nefret söylemi yasaktır<br>
+    5. Tüm içerikler moderasyona tabidir<br>
+    6. Öğrenci dayanışması önceliklidir
+  </div>
+  <div class="ftr-h" onclick="ftrAc('kvkk')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-top:.5rem;">🔐 KVKK & Gizlilik <span id="kvkk-ok">▾</span></div>
+  <div id="kvkk-icerik" style="display:none" class="ftr-p">
+    6698 sayılı KVKK kapsamında aydınlatma metnidir.<br><br>
+    Platform, moderasyon amacıyla tarayıcı bilgisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır. Veriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.<br><br>
+    Veri silme talebi için WhatsApp hattından iletişime geçebilirsiniz.
+  </div>
+  <div class="ftr-h" onclick="ftrAc('kullanim')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-top:.5rem;">📄 Kullanım Şartları <span id="kullanim-ok">▾</span></div>
+  <div id="kullanim-icerik" style="display:none" class="ftr-p">
+    ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.<br><br>
+    Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir. Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.<br><br>
+    5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet gösterilmektedir.
+  </div>
   <div style="text-align:center;border-top:1px solid var(--border);padding-top:1rem">
     <a href="https://wa.me/905434290908" target="_blank" rel="noopener" style="font-size:.75rem;color:var(--morc);text-decoration:none">📱 Iletisim & Icerik Kaldirma</a>
     <div style="font-size:.6rem;color:var(--soluk);margin-top:.4rem">ACU Kampus · artvinrehber.com/acukampus · 2026</div>
@@ -274,8 +301,22 @@ function zaman(ts) {
   if (s < 86400) return Math.floor(s/3600) + ' sa once';
   return Math.floor(s/86400) + ' gun once';
 }
+var seciliCinsiyet = 'belirtme';
+
+function cSec(c) {
+  seciliCinsiyet = c;
+  ['Erkek','Kadin','Belirtme'].forEach(function(x) {
+    document.getElementById('c'+x).className = 'cbtn' + (c === x.toLowerCase() ? ' aktif' : '');
+  });
+}
+
 function userAdi() {
-  return 'User' + String(Math.floor(Math.random() * 900) + 100).padStart(3,'0');
+  return db.collection('acukampus').doc('__sayac__').get().then(function(doc) {
+    var n = (doc.exists ? (doc.data().sayac || 0) : 0) + 1;
+    return db.collection('acukampus').doc('__sayac__').set({sayac: n}, {merge: true}).then(function() {
+      return 'User' + String(n).padStart(3,'0');
+    });
+  });
 }
 
 // MODAL
@@ -338,9 +379,10 @@ function listele(kat) {
       var k = KATEGORILER[d.kategori] || {l:d.kategori, e:'📌', c:'#888', bg:'rgba(136,136,136,.1)'};
       var nick = d.nick || 'Anonim';
       var r = renk(nick);
+      var emoji = d.cinsiyet === 'erkek' ? '👦' : d.cinsiyet === 'kadin' ? '👧' : '🙂';
       html += '<div class="kart">';
       html += '<div class="kart-ust">';
-      html += '<div class="kart-avatar" style="background:' + r + '22;color:' + r + '">' + nick.charAt(0).toUpperCase() + '</div>';
+      html += '<div class="kart-avatar" style="background:' + r + '22;color:' + r + '">' + emoji + '</div>';
       html += '<div style="flex:1;min-width:0"><div class="kart-nick">' + nick + '</div><div class="kart-zaman">' + zaman(d.olusturma) + '</div></div>';
       html += '<span class="kart-badge" style="background:' + k.bg + ';color:' + k.c + '">' + k.e + ' ' + k.l + '</span>';
       html += '</div>';
@@ -376,15 +418,16 @@ function gonder() {
   if (!metin || metin.length < 5) { alert('Biraz daha uzun yaz.'); return; }
   if (metin.length > 800) { alert('En fazla 800 karakter.'); return; }
   btn.disabled = true;
-  btn.textContent = '⏳ Gonderiliyor...';
-  var nick = userAdi();
-  db.collection('acukampus').add({
-    kategori: kat, metin: metin,
-    anonim: anonAktif, nick: nick,
-    durum: 'bekliyor', begeni: 0,
-    olusturma: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function(ref) {
-    tgBildir({id:ref.id, kategori:kat, nick:nick, metin:metin});
+  btn.textContent = '⏳ Gönderiliyor...';
+  userAdi().then(function(nick) {
+    db.collection('acukampus').add({
+      kategori: kat, metin: metin,
+      anonim: anonAktif, nick: nick,
+      cinsiyet: seciliCinsiyet,
+      durum: 'bekliyor', begeni: 0,
+      olusturma: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function(ref) {
+      tgBildir({id:ref.id, kategori:kat, nick:nick, metin:metin});
     btn.disabled = false;
     btn.textContent = '🚀 Gonder';
     document.getElementById('fMetin').value = '';
@@ -394,9 +437,14 @@ function gonder() {
       document.getElementById('basari').style.display = 'none';
       modalKapat();
     }, 2500);
+    }).catch(function(e) {
+      btn.disabled = false;
+      btn.textContent = '🚀 Gönder';
+      alert('Hata: ' + e.message);
+    });
   }).catch(function(e) {
     btn.disabled = false;
-    btn.textContent = '🚀 Gonder';
+    btn.textContent = '🚀 Gönder';
     alert('Hata: ' + e.message);
   });
 }
@@ -434,6 +482,16 @@ document.querySelectorAll('.kat-btn').forEach(function(btn) {
 document.querySelectorAll('.nb[data-kat]').forEach(function(btn) {
   btn.addEventListener('click', function() { katSec(this.dataset.kat); });
 });
+
+// FOOTER ACCORDION
+function ftrAc(id) {
+  var el = document.getElementById(id + '-icerik');
+  var ok = document.getElementById(id + '-ok');
+  if (!el) return;
+  var acik = el.style.display === 'block';
+  el.style.display = acik ? 'none' : 'block';
+  ok.textContent = acik ? '▾' : '▴';
+}
 
 // BASLAT
 istatistik();
