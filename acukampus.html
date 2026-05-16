@@ -575,25 +575,28 @@ function yorumGonder(postId){
   var eskiDeger=input.value;
   input.value='';
 
-  kullaniciAdi().then(function(isim){
-    db.collection('acukampus').doc(postId).collection('yorumlar').add({
-      metin:metin, nick:isim, cinsiyet:'belirtme',
-      durum:'bekliyor',
-      olusturma:firebase.firestore.FieldValue.serverTimestamp()
-    }).then(function(){
-      input.disabled=false;
-      db.collection('acukampus').doc(postId).update({yorumSayi:firebase.firestore.FieldValue.increment(1)});
-      var ys=document.getElementById('ys'+postId);
-      if(ys)ys.textContent=parseInt(ys.textContent||0)+1;
-      yorumlariYukle(postId);
-    }).catch(function(e){
-      input.disabled=false;
-      input.value=eskiDeger;
-      alert('Yorum gönderilemedi: '+e.message);
+  // Yorum için basit isim - ayrı sayaç tutmaya gerek yok
+  var yorumIsim = 'User' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
+  
+  db.collection('acukampus').doc(postId).collection('yorumlar').add({
+    metin:metin, nick:yorumIsim, cinsiyet:'belirtme',
+    durum:'bekliyor',
+    olusturma:firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function(){
+    input.disabled=false;
+    db.collection('acukampus').doc(postId).update({
+      yorumSayi:firebase.firestore.FieldValue.increment(1)
     });
-  }).catch(function(){
+    var ys=document.getElementById('ys'+postId);
+    if(ys)ys.textContent=parseInt(ys.textContent||0)+1;
+    yorumlariYukle(postId);
+    // Küçük bildirim
+    var btn=document.querySelector('[onclick="yorumAc(''+postId+'')"]');
+    if(btn){btn.style.color='#4ade80';setTimeout(function(){btn.style.color='';},2000);}
+  }).catch(function(e){
     input.disabled=false;
     input.value=eskiDeger;
+    alert('Yorum gönderilemedi: '+e.message);
   });
 }
 
