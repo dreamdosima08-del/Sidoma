@@ -87,14 +87,14 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .kat-btn.aktif{background:var(--mora);border-color:var(--morb);color:var(--morc);font-weight:600}
 
 /* AKIS */
-.akis{padding:.75rem .9rem;display:flex;flex-direction:column;gap:.6rem;max-width:640px;margin:0 auto;padding-bottom:100px}
+.akis{padding:1rem .9rem;display:flex;flex-direction:column;gap:.75rem;max-width:640px;margin:0 auto;padding-bottom:120px}
 
 /* SKELETON */
 @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 .sk{background:linear-gradient(90deg,var(--bg3) 25%,#252440 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
 
 /* KART */
-.kart{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1rem;animation:fadein .25s ease}
+.kart{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.1rem;animation:fadein .25s ease}
 @keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .kart-ust{display:flex;align-items:center;gap:.6rem;margin-bottom:.65rem}
 .kart-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;flex-shrink:0}
@@ -143,11 +143,49 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .nb-plus-lbl{font-size:.58rem;color:var(--morc);font-weight:600}
 
 /* FOOTER */
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem 1rem 5rem}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1rem 5rem;margin-top:1rem}
 .ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
 .ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem}
 .cbtn{flex:1;padding:.6rem .5rem;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--dim);font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;transition:all .15s;touch-action:manipulation}
 .cbtn.aktif{border-color:var(--mor);color:var(--morc);background:var(--mora)}
+
+/* YORUM */
+.yorum-wrap{display:none;border-top:1px solid var(--border);margin-top:.75rem;padding-top:.75rem;}
+.yorum-wrap.ac{display:block;}
+.yorum-bos{font-size:.75rem;color:var(--soluk);padding:.2rem 0 .5rem;}
+.yorum-liste{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.6rem;}
+.yorum-item{display:flex;gap:.5rem;}
+.yorum-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.yorum-ic{flex:1;min-width:0;background:rgba(255,255,255,.04);border-radius:10px;padding:.55rem .75rem;}
+.yorum-nick{font-size:.72rem;font-weight:700;color:var(--text);}
+.yorum-zaman{font-size:.58rem;color:var(--soluk);margin-left:.35rem;}
+.yorum-metin{font-size:.82rem;color:rgba(238,238,245,.75);line-height:1.55;margin-top:.2rem;word-break:break-word;}
+.yorum-yaz{display:flex;gap:.4rem;margin-top:.35rem;}
+.yorum-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:.5rem .85rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.82rem;outline:none;}
+.yorum-input:focus{border-color:var(--mor);}
+.yorum-gonder{background:var(--mor);color:#fff;border:none;border-radius:20px;padding:.5rem .85rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;touch-action:manipulation;}
+.yorum-bilgi{font-size:.65rem;color:var(--soluk);margin-top:.35rem;}
+
+/* RADYO */
+.radyo-mini-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;touch-action:manipulation;}
+.radyo-mini-btn.calıyor{border-color:var(--mor);background:var(--mora);}
+.radyo-wrap{padding:.75rem .9rem;max-width:640px;margin:0 auto;}
+.radyo-h{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--morc);margin-bottom:.6rem;display:flex;align-items:center;gap:.35rem;}
+.radyo-grid{display:flex;gap:.5rem;}
+.radyo-kart{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.8rem;cursor:pointer;transition:all .2s;text-align:center;touch-action:manipulation;}
+.radyo-kart.calıyor{border-color:var(--mor);background:var(--mora);}
+.radyo-logo{font-size:1.6rem;margin-bottom:.3rem;}
+.radyo-isim{font-size:.75rem;font-weight:700;color:var(--text);}
+.radyo-tur{font-size:.6rem;color:var(--soluk);margin-top:.1rem;}
+.radyo-durum{font-size:.65rem;margin-top:.4rem;height:14px;}
+.radyo-durum.calıyor{color:#4ade80;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.radyo-kontrol{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.5rem;}
+.radyo-btn{width:36px;height:36px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;touch-action:manipulation;}
+.radyo-btn.play{background:var(--mor);color:#fff;}
+.radyo-btn.stop{background:rgba(239,68,68,.2);color:#f87171;}
+.radyo-ses{-webkit-appearance:none;width:80px;height:4px;border-radius:2px;background:var(--border);outline:none;cursor:pointer;}
+.radyo-ses::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--mor);cursor:pointer;}
 </style>
 </head>
 <body>
@@ -161,9 +199,10 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
       <div class="logo-sub">Artvin Çoruh Üniversitesi</div>
     </div>
   </div>
-  <div style="display:flex;align-items:center;gap:.6rem">
-    <div class="canli-dot">Canli</div>
-    <button class="paylasim-btn" id="navPaylas">+ Paylas</button>
+  <div style="display:flex;align-items:center;gap:.5rem">
+    <button class="radyo-mini-btn" id="rmbPower" onclick="radyoSec('powertturk')" title="Power Türk">📻</button>
+    <button class="radyo-mini-btn" id="rmbKral" onclick="radyoSec('kralfm')" title="Kral FM">👑</button>
+    <div class="canli-dot">Canlı</div>
   </div>
 </nav>
 
@@ -181,6 +220,9 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 <!-- KATEGORILER -->
 <h2 style="display:none">ACU Kampüs Gönderi Akışı — İtiraf, Soru, İlan, Dersler</h2>
+
+<audio id="radyoAudio" preload="none"></audio>
+
 <div class="kat-bar">
   <div class="kat-ic" id="katIc">
     <button class="kat-btn aktif" data-kat="hepsi">🏠 Tumu</button>
@@ -588,6 +630,144 @@ function ftrAc(id) {
   ok.textContent = acik ? '▾' : '▴';
 }
 
+
+// YORUM AC/KAPAT
+function yorumAc(postId) {
+  var wrap = document.getElementById('yw_' + postId);
+  if (!wrap) return;
+  var acikMi = wrap.classList.toggle('ac');
+  if (acikMi) yorumlariYukle(postId);
+}
+
+// YORUMLARI YUKLE
+function yorumlariYukle(postId) {
+  var liste = document.getElementById('yl_' + postId);
+  if (!liste) return;
+  db.collection('acukampus').doc(postId).collection('yorumlar')
+    .where('durum','==','aktif').get()
+    .then(function(snap) {
+      if (snap.empty) {
+        liste.innerHTML = '<div class="yorum-bos">Henüz yorum yok. İlk yorumu sen yaz!</div>';
+        return;
+      }
+      var html = '';
+      snap.forEach(function(doc) {
+        var y = doc.data();
+        var nick = y.nick || 'Anonim';
+        var r = renk(nick);
+        html += '<div class="yorum-item">';
+        html += '<div class="yorum-av" style="background:' + r + '22;color:' + r + '">' + nick.charAt(0).toUpperCase() + '</div>';
+        html += '<div class="yorum-ic">';
+        html += '<span class="yorum-nick">' + nick + '</span>';
+        html += '<span class="yorum-zaman">' + zaman(y.olusturma) + '</span>';
+        html += '<div class="yorum-metin">' + y.metin.replace(/
+/g,'<br>') + '</div>';
+        html += '</div></div>';
+      });
+      liste.innerHTML = html;
+    }).catch(function() {
+      liste.innerHTML = '<div class="yorum-bos">Yüklenemedi.</div>';
+    });
+}
+
+// YORUM GONDER
+function yorumGonder(postId) {
+  var input = document.getElementById('yi_' + postId);
+  if (!input) return;
+  var metin = input.value.trim();
+  if (!metin || metin.length < 2) return;
+  if (metin.length > 300) { alert('En fazla 300 karakter.'); return; }
+
+  input.disabled = true;
+  var eski = input.value;
+  input.value = '';
+
+  var nick = 'User' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
+
+  db.collection('acukampus').doc(postId).collection('yorumlar').add({
+    metin: metin,
+    nick: nick,
+    durum: 'bekliyor',
+    olusturma: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function() {
+    input.disabled = false;
+    db.collection('acukampus').doc(postId).update({
+      yorumSayi: firebase.firestore.FieldValue.increment(1)
+    });
+    var ys = document.getElementById('ys_' + postId);
+    if (ys) ys.textContent = parseInt(ys.textContent||0) + 1;
+    // Küçük bildirim
+    var bilgi = input.parentElement.nextElementSibling;
+    if (bilgi) { bilgi.textContent = '✅ Yorum gönderildi, inceleme sonrası yayınlanacak.'; bilgi.style.color = '#4ade80'; setTimeout(function(){ bilgi.textContent = 'Yorumlar inceleme sonrası yayınlanır.'; bilgi.style.color = ''; }, 3000); }
+  }).catch(function(e) {
+    input.disabled = false;
+    input.value = eski;
+    alert('Hata: ' + e.message);
+  });
+}
+
+// RADYO
+var RADYOLAR = {
+  powertturk: 'https://listen.powerapp.com.tr/powerturk/mpeg/icecast.audio',
+  kralfm:     'https://kralmuzik.radyotvonline.net/kralfm'
+};
+var aktifRadyo = null;
+var radyoCaliyor = false;
+
+function radyoSec(id) {
+  var audio = document.getElementById('radyoAudio');
+
+  // Aynıysa durdur/devam et
+  if (aktifRadyo === id) {
+    radyoPlayPause();
+    return;
+  }
+
+  // Önceki kart stilini sıfırla
+  if (aktifRadyo) {
+    var rkEl = document.getElementById('rk_' + aktifRadyo); if(rkEl) rkEl.classList.remove('calıyor');
+    var rmbEl = document.getElementById('rmb' + (aktifRadyo==='powertturk'?'Power':'Kral')); if(rmbEl) rmbEl.classList.remove('calıyor');
+    document.getElementById('rd_' + aktifRadyo).textContent = '';
+    document.getElementById('rd_' + aktifRadyo).classList.remove('calıyor');
+  }
+
+  aktifRadyo = id;
+  audio.src = RADYOLAR[id];
+  audio.volume = document.getElementById('radyoSes').value / 100;
+  audio.play().then(function() {
+    radyoCaliyor = true;
+    document.getElementById('radyoPlayBtn').textContent = '⏸';
+    var rkEl2 = document.getElementById('rk_' + id); if(rkEl2) rkEl2.classList.add('calıyor');
+    var rmbEl2 = document.getElementById('rmb' + (id==='powertturk'?'Power':'Kral')); if(rmbEl2) rmbEl2.classList.add('calıyor');
+    document.getElementById('rd_' + id).textContent = '● Yayında';
+    document.getElementById('rd_' + id).classList.add('calıyor');
+  }).catch(function() {
+    aktifRadyo = null;
+  });
+}
+
+function radyoPlayPause() {
+  if (!aktifRadyo) return;
+  var audio = document.getElementById('radyoAudio');
+  if (radyoCaliyor) {
+    audio.pause();
+    radyoCaliyor = false;
+    document.getElementById('radyoPlayBtn').textContent = '▶';
+    document.getElementById('rd_' + aktifRadyo).textContent = '⏸ Duraklatıldı';
+    document.getElementById('rd_' + aktifRadyo).classList.remove('calıyor');
+  } else {
+    audio.play();
+    radyoCaliyor = true;
+    document.getElementById('radyoPlayBtn').textContent = '⏸';
+    document.getElementById('rd_' + aktifRadyo).textContent = '● Yayında';
+    document.getElementById('rd_' + aktifRadyo).classList.add('calıyor');
+  }
+}
+
+function radyoSesAyarla(val) {
+  document.getElementById('radyoAudio').volume = val / 100;
+  document.getElementById('radyoSesLbl').textContent = '🔊 ' + val + '%';
+}
 // BASLAT
 istatistik();
 listele('hepsi');
