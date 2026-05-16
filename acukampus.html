@@ -358,62 +358,74 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 <body>
 <!-- KABUL MODALI -->
 <style>
-#km{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:#0a0918;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
-#km-box{background:#16152a;border:1px solid #5b21b6;border-radius:20px;padding:24px 20px;width:100%;max-width:400px;}
-.km-h{font-size:18px;font-weight:800;color:#fff;text-align:center;margin-bottom:6px;}
-.km-s{font-size:13px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:16px;}
-.km-info{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:12px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,.65);line-height:1.8;}
-.km-cb-row{display:flex;align-items:flex-start;gap:12px;padding:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;margin-bottom:10px;}
-.km-cb-row input[type=checkbox]{width:24px;height:24px;min-width:24px;accent-color:#7c3aed;cursor:pointer;margin-top:1px;}
-.km-cb-row span{font-size:14px;color:rgba(255,255,255,.75);line-height:1.5;flex:1;}
-.km-linkler{display:flex;gap:8px;margin-bottom:16px;}
-.km-link{flex:1;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:8px;padding:10px 8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;}
-.km-uyari{color:#f87171;font-size:13px;text-align:center;margin-bottom:10px;display:none;}
-.km-btn{width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:12px;padding:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
-.km-alt{text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.2);}
+#km-wrap{position:fixed;inset:0;z-index:99999;background:rgba(8,7,18,.97);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;}
+#km-kart{background:#16152a;border:1px solid rgba(124,58,237,.35);border-radius:20px;padding:24px 20px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.6);transform:scale(.95) translateY(12px);opacity:0;transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .25s ease;}
+#km-kart.goster{transform:scale(1) translateY(0);opacity:1;}
+.km-cb-kutu{border-radius:12px;padding:14px;margin-bottom:8px;transition:all .2s;cursor:pointer;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);}
+.km-cb-kutu.secili{background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.4);}
+.km-cb-ic{display:flex;align-items:center;gap:12px;}
+.km-cb-ic input[type=checkbox]{width:22px;height:22px;min-width:22px;accent-color:#7c3aed;cursor:pointer;flex-shrink:0;}
+.km-cb-ic span{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;}
+.km-link-btn{background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;min-height:36px;margin-top:10px;margin-left:34px;}
+.km-link-btn+.km-link-btn{margin-left:6px;}
+#km-btn{width:100%;border:none;border-radius:13px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;min-height:52px;transition:all .25s;}
+#km-btn.aktif{background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;box-shadow:0 4px 20px rgba(124,58,237,.45);}
+#km-btn.pasif{background:rgba(124,58,237,.15);color:rgba(255,255,255,.3);cursor:not-allowed;}
+#km-uyari{display:none;text-align:center;font-size:13px;color:#f87171;margin-bottom:10px;padding:8px;background:rgba(239,68,68,.08);border-radius:8px;}
 
-#km-detay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:100000;background:#0a0918;display:none;flex-direction:column;padding:20px;overflow-y:auto;}
-#km-detay-box{background:#16152a;border-radius:16px;padding:20px;max-width:400px;width:100%;margin:0 auto;}
-#km-detay-baslik{font-size:16px;font-weight:800;color:#fff;margin-bottom:12px;}
-#km-detay-icerik{font-size:14px;color:rgba(255,255,255,.6);line-height:1.9;}
-.km-geri{width:100%;margin-top:16px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:10px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+#kd-wrap{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto;}
+#kd-wrap.acik{display:flex;}
+#kd-kart{background:#1e1b38;border:1px solid rgba(124,58,237,.4);border-radius:16px;padding:20px;width:100%;max-width:420px;max-height:80vh;display:flex;flex-direction:column;}
+#kd-icerik{font-size:13px;color:rgba(255,255,255,.65);line-height:1.9;overflow-y:auto;white-space:pre-line;flex:1;margin-top:12px;}
+#kd-geri{width:100%;margin-top:16px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
 </style>
 
-<div id="km">
-  <div id="km-box">
-    <div style="text-align:center;margin-bottom:16px;">
-      <div style="width:52px;height:52px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 10px;box-shadow:0 4px 20px rgba(124,58,237,.4);">🏫</div>
-      <div class="km-h">ACU Kampüs'e Hoş Geldin</div>
-      <div class="km-s">Artvin Çoruh Üniversitesi · Öğrenci Platformu</div>
+<div id="km-wrap">
+  <div id="km-kart">
+    <div style="text-align:center;margin-bottom:18px;">
+      <div style="width:54px;height:54px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 10px;box-shadow:0 4px 20px rgba(124,58,237,.45);">🏫</div>
+      <div style="font-size:17px;font-weight:900;color:#fff;letter-spacing:-.02em;">ACU Kampüs'e Hoş Geldin</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.38);margin-top:4px;">Artvin Çoruh Üniversitesi · Öğrenci Platformu</div>
     </div>
-    <div class="km-info">
+
+    <div style="background:rgba(124,58,237,.09);border:1px solid rgba(124,58,237,.18);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,.62);line-height:1.85;">
       ✅ Bu platform yalnızca öğrenciler içindir<br>
-      🚫 Hakaret, ifşa, zorbalık yasaktır<br>
+      🚫 Hakaret, ifşa ve zorbalık kesinlikle yasaktır<br>
       🛡️ Tüm içerikler moderasyona tabidir
     </div>
-    <div class="km-cb-row">
-      <input type="checkbox" id="cb1">
-      <span>Kullanım Şartları ve Gizlilik Politikası'nı okudum, kabul ediyorum.</span>
+
+    <div class="km-cb-kutu" id="kutu1">
+      <div class="km-cb-ic">
+        <input type="checkbox" id="cb1">
+        <span>Aşağıdaki belgeleri okudum ve kabul ediyorum.</span>
+      </div>
+      <div style="margin-top:10px;padding-left:34px;display:flex;gap:8px;">
+        <button class="km-link-btn" id="btnKullanim" style="margin-left:0;">📄 Kullanım Şartları</button>
+        <button class="km-link-btn" id="btnGizlilik" style="margin-left:0;">🔐 Gizlilik</button>
+      </div>
     </div>
-    <div class="km-cb-row">
-      <input type="checkbox" id="cb2">
-      <span>Topluluk kurallarına uyacağımı, hakaret ve ifşa paylaşımı yapmayacağımı kabul ediyorum.</span>
+
+    <div class="km-cb-kutu" id="kutu2">
+      <div class="km-cb-ic">
+        <input type="checkbox" id="cb2">
+        <span>Topluluk kurallarına uyacağımı, hakaret ve ifşa paylaşımı yapmayacağımı kabul ediyorum.</span>
+      </div>
     </div>
-    <div class="km-linkler">
-      <button class="km-link" id="btnKullanim">📄 Kullanım Şartları</button>
-      <button class="km-link" id="btnGizlilik">🔐 Gizlilik</button>
-    </div>
-    <div class="km-uyari" id="kmUyari">⚠️ Devam etmek için her iki kutuyu işaretleyin.</div>
-    <button class="km-btn" id="kmGirBtn">Kabul Et ve Platforma Gir →</button>
-    <div class="km-alt">Açü'lü olmak ayrıcalıktır 🏔️</div>
+
+    <div id="km-uyari">⚠️ Devam etmek için her iki kutuyu işaretleyin.</div>
+    <button class="pasif" id="km-btn">Kabul Et ve Platforma Gir →</button>
+    <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.18);">Açü'lü olmak ayrıcalıktır 🏔️</div>
   </div>
 </div>
 
-<div id="km-detay">
-  <div id="km-detay-box">
-    <div id="km-detay-baslik"></div>
-    <div id="km-detay-icerik"></div>
-    <button class="km-geri" id="btnGeri">← Geri Dön</button>
+<div id="kd-wrap">
+  <div id="kd-kart">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div id="kd-baslik" style="font-size:15px;font-weight:800;color:#fff;"></div>
+      <button id="kd-kapat" style="background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;min-width:32px;border-radius:50%;cursor:pointer;font-size:16px;font-family:'Inter',sans-serif;">✕</button>
+    </div>
+    <div id="kd-icerik"></div>
+    <button id="kd-geri">← Geri Dön</button>
   </div>
 </div>
 
@@ -422,56 +434,105 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
   var METINLER = {
     kullanim: {
       baslik: '📄 Kullanım Şartları',
-      icerik: 'ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.<br><br>Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir.<br><br>Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.<br><br>5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet gösterilmektedir.'
+      icerik: 'ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.
+
+Kullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir. Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.
+
+5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet gösterilmektedir. İçerik kaldırma talepleri için WhatsApp hattından iletişime geçebilirsiniz.'
     },
     gizlilik: {
       baslik: '🔐 Gizlilik & KVKK',
-      icerik: '6698 sayılı KVKK kapsamında aydınlatma metnidir.<br><br>Platform, moderasyon ve güvenlik amacıyla tarayıcı bilgisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır.<br><br>Veriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.<br><br>Veri silme talebi için WhatsApp hattından iletişime geçebilirsiniz.'
+      icerik: '6698 sayılı KVKK kapsamında aydınlatma metnidir.
+
+Toplanan Veriler:
+Platform, moderasyon ve güvenlik amacıyla tarayıcı bilgisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır.
+
+Veri Saklama:
+Veriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.
+
+Haklarınız:
+Verilerinizin silinmesini talep etme hakkınız bulunmaktadır. WhatsApp hattından iletişime geçebilirsiniz.'
     }
   };
 
   // Daha önce kabul ettiyse gösterme
   if (localStorage.getItem('acu_kabul') === '1') {
-    document.getElementById('km').style.display = 'none';
+    document.getElementById('km-wrap').style.display = 'none';
     return;
+  }
+
+  // Giriş animasyonu
+  setTimeout(function() {
+    document.getElementById('km-kart').classList.add('goster');
+  }, 50);
+
+  var cb1 = document.getElementById('cb1');
+  var cb2 = document.getElementById('cb2');
+  var kmBtn = document.getElementById('km-btn');
+
+  function durumuGuncelle() {
+    var aktif = cb1.checked && cb2.checked;
+    kmBtn.className = aktif ? 'aktif' : 'pasif';
+    document.getElementById('kutu1').className = 'km-cb-kutu' + (cb1.checked ? ' secili' : '');
+    document.getElementById('kutu2').className = 'km-cb-kutu' + (cb2.checked ? ' secili' : '');
+    if (aktif) document.getElementById('km-uyari').style.display = 'none';
   }
 
   function detayAc(tip) {
     var m = METINLER[tip];
-    document.getElementById('km-detay-baslik').innerHTML = m.baslik;
-    document.getElementById('km-detay-icerik').innerHTML = m.icerik;
-    document.getElementById('km-detay').style.display = 'flex';
+    document.getElementById('kd-baslik').textContent = m.baslik;
+    document.getElementById('kd-icerik').textContent = m.icerik;
+    document.getElementById('kd-wrap').classList.add('acik');
   }
 
   function detayKapat() {
-    document.getElementById('km-detay').style.display = 'none';
+    document.getElementById('kd-wrap').classList.remove('acik');
   }
 
-  function girYap() {
-    var cb1 = document.getElementById('cb1').checked;
-    var cb2 = document.getElementById('cb2').checked;
-    if (!cb1 || !cb2) {
-      document.getElementById('kmUyari').style.display = 'block';
+  function gir() {
+    if (!cb1.checked || !cb2.checked) {
+      document.getElementById('km-uyari').style.display = 'block';
       return;
     }
-    localStorage.setItem('acu_kabul', '1');
-    document.getElementById('km').style.display = 'none';
+    kmBtn.textContent = '⏳ Giriş yapılıyor...';
+    kmBtn.disabled = true;
+    setTimeout(function() {
+      localStorage.setItem('acu_kabul', '1');
+      document.getElementById('km-wrap').style.display = 'none';
+    }, 500);
   }
 
-  document.getElementById('btnKullanim').addEventListener('click', function(e) { e.preventDefault(); detayAc('kullanim'); });
-  document.getElementById('btnGizlilik').addEventListener('click', function(e) { e.preventDefault(); detayAc('gizlilik'); });
-  document.getElementById('btnGeri').addEventListener('click', function(e) { e.preventDefault(); detayKapat(); });
-  document.getElementById('kmGirBtn').addEventListener('click', function(e) { e.preventDefault(); girYap(); });
+  // Kutu tıklamaları
+  document.getElementById('kutu1').addEventListener('click', function(e) {
+    if (e.target.id === 'btnKullanim' || e.target.id === 'btnGizlilik') return;
+    cb1.checked = !cb1.checked;
+    durumuGuncelle();
+  });
+  document.getElementById('kutu2').addEventListener('click', function() {
+    cb2.checked = !cb2.checked;
+    durumuGuncelle();
+  });
 
-  // Touch desteği
-  document.getElementById('kmGirBtn').addEventListener('touchend', function(e) { e.preventDefault(); girYap(); });
-  document.getElementById('btnKullanim').addEventListener('touchend', function(e) { e.preventDefault(); detayAc('kullanim'); });
-  document.getElementById('btnGizlilik').addEventListener('touchend', function(e) { e.preventDefault(); detayAc('gizlilik'); });
-  document.getElementById('btnGeri').addEventListener('touchend', function(e) { e.preventDefault(); detayKapat(); });
+  // Checkbox direkt tıklama
+  cb1.addEventListener('change', durumuGuncelle);
+  cb2.addEventListener('change', durumuGuncelle);
+
+  // Detay butonları
+  document.getElementById('btnKullanim').addEventListener('click', function(e) { e.stopPropagation(); detayAc('kullanim'); });
+  document.getElementById('btnGizlilik').addEventListener('click', function(e) { e.stopPropagation(); detayAc('gizlilik'); });
+  document.getElementById('kd-kapat').addEventListener('click', detayKapat);
+  document.getElementById('kd-geri').addEventListener('click', detayKapat);
+
+  // Giriş butonu
+  kmBtn.addEventListener('click', gir);
+
+  // ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') detayKapat();
+  });
 
 })();
 </script>
-
     <div style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.1rem;font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.85;">
       Bu platform yalnızca öğrenci topluluğu amacıyla oluşturulmuştur.<br>
       Hakaret, ifşa ve kötüye kullanım kesinlikle yasaktır.<br>
