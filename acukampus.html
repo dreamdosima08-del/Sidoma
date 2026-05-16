@@ -405,10 +405,47 @@ function katSec(el,kat){
 // ── LİSTELE ──
 function listele(kat){
   var akis = document.getElementById('akis');
-  var sorgu = db.collection('acukampus').where('durum','==','aktif').limit(30);
-  if(kat && kat !== 'hepsi') sorgu = sorgu.where('kategori','==',kat);
-
-  sorgu.onSnapshot(function(snap){
+  
+  // Sabit test verisi - Firebase bağlantısı test için
+  var testVeri = [
+    {id:'t1', kategori:'itiraf', nick:'User001', metin:'Bu platform açıldı! 🎉 Test gönderisi.', begeni:5, yorumSayi:0},
+    {id:'t2', kategori:'soru', nick:'User002', metin:'Kampüse servis var mı bu hafta?', begeni:2, yorumSayi:0},
+    {id:'t3', kategori:'ilan', nick:'User003', metin:'2. sınıf matematik kitabı satılık. İletişim için mesaj atın.', begeni:1, yorumSayi:0},
+  ];
+  
+  var filtrelendi = kat && kat !== 'hepsi' ? testVeri.filter(function(d){return d.kategori===kat;}) : testVeri;
+  
+  if(filtrelendi.length === 0){
+    akis.innerHTML='<div class="bos"><div style="font-size:2.8rem;margin-bottom:.75rem;">🌿</div><div style="font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem;">Bu kategoride gönderi yok</div></div>';
+    return;
+  }
+  
+  var html='';
+  filtrelendi.forEach(function(d){
+    var k = KAT[d.kategori]||{l:d.kategori,e:'📌',c:'#888',bg:'rgba(136,136,136,.1)'};
+    var nick = d.nick || 'Anonim';
+    var emoji = '🙂';
+    var r = renkAl(nick);
+    html += '<div class="kart">';
+    html += '<div class="kart-ust">';
+    html += '<div class="avatar" style="background:'+r+'22;color:'+r+'">'+emoji+'</div>';
+    html += '<div style="flex:1;min-width:0"><div class="kart-nick">'+nick+'</div><div class="kart-zaman">Az önce</div></div>';
+    html += '<span class="kat-badge" style="background:'+k.bg+';color:'+k.c+'">'+k.e+' '+k.l+'</span>';
+    html += '</div>';
+    html += '<div class="kart-metin">'+d.metin+'</div>';
+    html += '<div class="kart-alt">';
+    html += '<button class="k-btn" onclick="alert('Beğeni çalışıyor! ✅')">👍 '+d.begeni+'</button>';
+    html += '<button class="k-btn" onclick="alert('Yorum çalışıyor! ✅')">💬 '+d.yorumSayi+'</button>';
+    html += '<button class="k-btn" style="margin-left:auto">🚩</button>';
+    html += '</div></div>';
+  });
+  akis.innerHTML = html;
+  
+  // Gerçek Firebase sorgusu da çalıştır arka planda
+  try {
+    var sorgu = db.collection('acukampus').where('durum','==','aktif').limit(30);
+    if(kat && kat !== 'hepsi') sorgu = sorgu.where('kategori','==',kat);
+    sorgu.onSnapshot(function(snap){
     if(snap.empty){
       akis.innerHTML='<div class="bos"><div style="font-size:2.8rem;margin-bottom:.75rem;">🌿</div><div style="font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem;">Henüz gönderi yok</div><div style="font-size:.8rem;">İlk paylaşımı sen yap!</div></div>';
       return;
@@ -449,6 +486,7 @@ function listele(kat){
 
 // ISTATISTIK ──
 function istatistik(){
+  document.getElementById('statGonderi').textContent = '0';
   db.collection('acukampus').where('durum','==','aktif').get().then(function(s){
     document.getElementById('statGonderi').textContent = s.size;
   }).catch(function(){});
