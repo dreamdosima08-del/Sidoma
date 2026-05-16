@@ -604,5 +604,15 @@ function yorumGonder(postId){
 istatistik();
 listele('hepsi');
 </script>
+
+<div id="debug" style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,255,0,.9);color:#000;padding:.5rem 1rem;border-radius:8px;font-size:.8rem;font-weight:700;z-index:99999;display:none;"></div>
+<script>
+document.addEventListener('click', function(e) {
+  var d = document.getElementById('debug');
+  d.style.display = 'block';
+  d.textContent = 'Tıklanan: ' + e.target.tagName + ' / ' + (e.target.className||e.target.id||'?');
+  setTimeout(function(){d.style.display='none';}, 2000);
+});
+</script>
 </body>
 </html>
