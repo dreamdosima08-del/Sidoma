@@ -375,21 +375,27 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     </div>
 
     <!-- CHECKBOX 1 -->
-    <label style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem 1rem;margin-bottom:.6rem;cursor:pointer;-webkit-tap-highlight-color:transparent;">
-      <input type="checkbox" id="kmCb1" style="width:22px;height:22px;accent-color:#7c3aed;flex-shrink:0;cursor:pointer;">
-      <div style="font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;flex:1;">
-        <span onclick="kmDetayAc('kvkk')" style="color:#c4b5fd;text-decoration:underline;cursor:pointer;">Kullanım Şartları</span> ve 
-        <span onclick="kmDetayAc('gizlilik')" style="color:#c4b5fd;text-decoration:underline;cursor:pointer;">Gizlilik Politikası</span>'nı okudum, kabul ediyorum.
+    <!-- CHECKBOX 1 -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem 1rem;margin-bottom:.6rem;">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;">
+        <input type="checkbox" id="kmCb1" style="width:24px;height:24px;accent-color:#7c3aed;flex-shrink:0;cursor:pointer;">
+        <div style="font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;">
+          Aşağıdaki belgeleri okudum, kabul ediyorum.
+        </div>
       </div>
-    </label>
+      <div style="display:flex;gap:.75rem;padding-left:2.25rem;">
+        <button onclick="kmDetayAc('kvkk')" style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:8px;padding:.4rem .75rem;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation;">📄 Kullanım Şartları</button>
+        <button onclick="kmDetayAc('gizlilik')" style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:8px;padding:.4rem .75rem;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation;">🔐 Gizlilik</button>
+      </div>
+    </div>
 
     <!-- CHECKBOX 2 -->
-    <label style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem 1rem;margin-bottom:1rem;cursor:pointer;-webkit-tap-highlight-color:transparent;">
-      <input type="checkbox" id="kmCb2" style="width:22px;height:22px;accent-color:#7c3aed;flex-shrink:0;cursor:pointer;">
-      <div style="font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;flex:1;">
+    <div style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem 1rem;margin-bottom:1rem;">
+      <input type="checkbox" id="kmCb2" style="width:24px;height:24px;accent-color:#7c3aed;flex-shrink:0;cursor:pointer;">
+      <div style="font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;">
         Topluluk kurallarına uyacağımı, hakaret ve ifşa içerikli paylaşım yapmayacağımı kabul ediyorum.
       </div>
-    </label>
+    </div>
 
     <div id="kmUyari" style="display:none;text-align:center;font-size:.73rem;color:#f87171;margin-bottom:.6rem;">
       ⚠️ Devam etmek için her iki kutuyu işaretleyin.
