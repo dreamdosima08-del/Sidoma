@@ -62,7 +62,9 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .bos{text-align:center;padding:3rem 1rem;color:var(--dim)}
 .overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.ac{opacity:1;pointer-events:all}
-.modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1rem 2rem;width:100%;max-width:640px;transform:translateY(100%);transition:transform .25s cubic-bezier(.32,.72,0,1);border-top:1px solid rgba(124,58,237,.3)}
+.modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1rem 2rem;width:100%;max-width:640px;transform:translateY(100%);transition:transform .25s cubic-bezier(.32,.72,0,1);border-top:1px solid rgba(124,58,237,.3);position:relative;overflow:hidden;}
+.modal::before{content:'';position:absolute;inset:0;background:url('https://i.ibb.co/C3Q88nTj/artvin.jpg') center/cover no-repeat;opacity:.07;pointer-events:none;z-index:0;}
+.modal>*{position:relative;z-index:1;}
 .overlay.ac .modal{transform:translateY(0)}
 .modal-h{font-size:.95rem;font-weight:800;margin-bottom:.85rem;display:flex;align-items:center;justify-content:space-between}
 .modal-kapat{background:rgba(255,255,255,.08);border:none;color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;font-family:'Inter',sans-serif}
@@ -89,6 +91,21 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 1rem 5rem;margin-top:1rem}
 .ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
 .ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem;display:none}
+
+.yw{display:none;border-top:1px solid var(--border);margin-top:.7rem;padding-top:.7rem;}
+.yw.ac{display:block;}
+.yi-liste{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.5rem;}
+.yi{display:flex;gap:.4rem;}
+.yi-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.yi-ic{flex:1;background:rgba(255,255,255,.04);border-radius:8px;padding:.45rem .65rem;}
+.yi-nick{font-size:.7rem;font-weight:700;color:var(--text);}
+.yi-zaman{font-size:.57rem;color:var(--soluk);margin-left:.3rem;}
+.yi-metin{font-size:.8rem;color:var(--dim);line-height:1.5;margin-top:.15rem;word-break:break-word;}
+.yw-yaz{display:flex;gap:.35rem;}
+.yw-inp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:.45rem .75rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.8rem;outline:none;}
+.yw-inp:focus{border-color:var(--mor);}
+.yw-btn{background:var(--mor);color:#fff;border:none;border-radius:16px;padding:.45rem .75rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+.yw-bilgi{font-size:.62rem;color:var(--soluk);margin-top:.3rem;}
 </style>
 </head>
 <body>
@@ -252,8 +269,18 @@ function listele(kat){
       html+='<div class="kart-metin">'+d.metin.replace(/\n/g,'<br>')+'</div>';
       html+='<div class="kart-alt">';
       html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="begeni">👍 '+(d.begeni||0)+'</button>';
+      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="yorum">💬 <span id="ys_'+doc.id+'">'+(d.yorumSayi||0)+'</span></button>';
       html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="bildir" style="margin-left:auto">🚩</button>';
-      html+='</div></div>';
+      html+='</div>';
+      html+='<div class="yw" id="yw_'+doc.id+'">';
+      html+='<div class="yi-liste" id="yl_'+doc.id+'"></div>';
+      html+='<div class="yw-yaz">';
+      html+='<input class="yw-inp" id="yi_'+doc.id+'" placeholder="Yorum yaz..." maxlength="300">';
+      html+='<button class="yw-btn" data-id="'+doc.id+'" data-tip="yorumgonder">▶</button>';
+      html+='</div>';
+      html+='<div class="yw-bilgi">Yorumlar inceleme sonrası yayınlanır.</div>';
+      html+='</div>';
+      html+='</div>';
     });
     akis.innerHTML=html;
   },function(err){
@@ -299,6 +326,14 @@ document.addEventListener('click',function(e){
   var nb=t.closest('.nb[data-kat]')||(t.classList.contains('nb')&&t.dataset.kat?t:null);
   if(nb&&nb.dataset&&nb.dataset.kat){katSec(nb.dataset.kat);return;}
 
+  if(t.dataset&&t.dataset.tip==='yorum'){
+    yorumAc(t.dataset.id);
+    return;
+  }
+  if(t.dataset&&t.dataset.tip==='yorumgonder'){
+    yorumGonder(t.dataset.id);
+    return;
+  }
   if(t.dataset&&t.dataset.tip==='begeni'){
     if(t.classList.contains('begendi'))return;
     t.classList.add('begendi');t.disabled=true;
@@ -313,6 +348,73 @@ document.addEventListener('click',function(e){
   }
 });
 
+
+function yorumAc(postId) {
+  var yw = document.getElementById('yw_' + postId);
+  if (!yw) return;
+  var acik = yw.classList.toggle('ac');
+  if (acik) yorumlariYukle(postId);
+}
+
+function yorumlariYukle(postId) {
+  var liste = document.getElementById('yl_' + postId);
+  if (!liste) return;
+  db.collection('acukampus').doc(postId).collection('yorumlar')
+    .where('durum','==','aktif').get()
+    .then(function(snap) {
+      if (snap.empty) {
+        liste.innerHTML = '<div style="font-size:.75rem;color:var(--soluk);padding:.2rem 0">Henuz yorum yok.</div>';
+        return;
+      }
+      var html = '';
+      snap.forEach(function(doc) {
+        var y = doc.data();
+        var nick = y.nick || 'Anonim';
+        var r = renk(nick);
+        html += '<div class="yi">';
+        html += '<div class="yi-av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
+        html += '<div class="yi-ic">';
+        html += '<span class="yi-nick">'+nick+'</span>';
+        html += '<span class="yi-zaman">'+zaman(y.olusturma)+'</span>';
+        html += '<div class="yi-metin">'+y.metin.replace(/
+/g,'<br>')+'</div>';
+        html += '</div></div>';
+      });
+      liste.innerHTML = html;
+    }).catch(function() {
+      liste.innerHTML = '<div style="font-size:.72rem;color:#f87171">Yuklenemedi.</div>';
+    });
+}
+
+function yorumGonder(postId) {
+  var inp = document.getElementById('yi_' + postId);
+  if (!inp) return;
+  var metin = inp.value.trim();
+  if (!metin || metin.length < 2) return;
+  var eski = inp.value;
+  inp.disabled = true;
+  inp.value = '';
+  var nick = 'User' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
+  db.collection('acukampus').doc(postId).collection('yorumlar').add({
+    metin: metin, nick: nick,
+    durum: 'bekliyor',
+    olusturma: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function() {
+    inp.disabled = false;
+    db.collection('acukampus').doc(postId).update({yorumSayi: firebase.firestore.FieldValue.increment(1)});
+    var ys = document.getElementById('ys_' + postId);
+    if (ys) ys.textContent = parseInt(ys.textContent||0) + 1;
+    var bilgi = inp.parentElement.nextElementSibling;
+    if (bilgi) {
+      bilgi.textContent = 'Gonderildi! Inceleme sonrasi yayinlanacak.';
+      bilgi.style.color = '#4ade80';
+      setTimeout(function() { bilgi.textContent = 'Yorumlar inceleme sonrasi yayinlanir.'; bilgi.style.color = ''; }, 3000);
+    }
+  }).catch(function(e) {
+    inp.disabled = false;
+    inp.value = eski;
+  });
+}
 istatistik();
 listele('hepsi');
 </script>
