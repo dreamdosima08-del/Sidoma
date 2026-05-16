@@ -59,7 +59,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .kbtn{display:flex;align-items:center;gap:.25rem;background:transparent;border:none;color:var(--soluk);font-size:.75rem;font-weight:500;cursor:pointer;padding:.35rem .55rem;border-radius:8px;font-family:'Inter',sans-serif;transition:all .15s}
 .kbtn:active{background:rgba(255,255,255,.06);color:var(--text)}
 .kbtn.begendi{color:var(--morc);background:var(--mora)}
-.yorum-wrap{display:none;border-top:1px solid var(--border);margin-top:.7rem;padding-top:.65rem}
+.yorum-wrap{display:block;border-top:1px solid var(--border);margin-top:.7rem;padding-top:.65rem}
 .yorum-wrap.ac{display:block}
 .yorum-liste{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.5rem}
 .yi{display:flex;gap:.4rem}
@@ -280,6 +280,9 @@ function listele(kat){
       html+='</div>';
     });
     akis.innerHTML=html;
+    snap.forEach(function(doc){
+      yorumlariYukle(doc.id);
+    });
   },function(err){
     akis.innerHTML='<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div style="font-size:.9rem;font-weight:700;color:var(--text)">Yuklenemedi</div><div style="font-size:.75rem;margin-top:.25rem">'+err.message+'</div></div>';
   });
@@ -325,7 +328,7 @@ function yorumGonder(postId){
   inp.disabled=true;inp.value='';
   var nick=userAdi();
   db.collection('acukampus').doc(postId).collection('yorumlar').add({
-    metin:metin,nick:nick,durum:'bekliyor',
+    metin:metin,nick:nick,durum:'aktif',
     olusturma:firebase.firestore.FieldValue.serverTimestamp()
   }).then(function(){
     inp.disabled=false;
@@ -371,7 +374,11 @@ document.addEventListener('click',function(e){
   var nb=t.closest('.nb[data-kat]')||(t.classList.contains('nb')&&t.dataset.kat?t:null);
   if(nb&&nb.dataset&&nb.dataset.kat){katSec(nb.dataset.kat);return;}
   if(t.dataset&&t.dataset.tip==='begeni'){if(t.classList.contains('begendi'))return;t.classList.add('begendi');t.disabled=true;db.collection('acukampus').doc(t.dataset.id).update({begeni:firebase.firestore.FieldValue.increment(1)});return;}
-  if(t.dataset&&t.dataset.tip==='yorum'){yorumAc(t.dataset.id);return;}
+  if(t.dataset&&t.dataset.tip==='yorum'){
+    var inp=document.getElementById('yi_'+t.dataset.id);
+    if(inp)inp.focus();
+    return;
+  }
   if(t.dataset&&t.dataset.tip==='yorumgonder'){yorumGonder(t.dataset.id);return;}
   if(t.dataset&&t.dataset.tip==='bildir'){if(!confirm('Bu gonderiyi bildirmek istiyor musun?'))return;db.collection('acukampus').doc(t.dataset.id).update({bildirim:firebase.firestore.FieldValue.increment(1)});alert('Bildirildi.');return;}
 });
