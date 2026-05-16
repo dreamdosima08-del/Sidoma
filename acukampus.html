@@ -3,8 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>ACU Kampüs — Artvin Çoruh Üniversitesi</title>
-<meta name="robots" content="noindex">
+<title>ACU Kampüs 2026 — Artvin Çoruh Üniversitesi Öğrenci Platformu</title>
+<meta name="description" content="Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım platformu. İtiraf, soru, ilan ve kampüs haberleri. Açü'lülerin dijital buluşma noktası 2026.">
+<meta name="keywords" content="acu kampüs, artvin çoruh üniversitesi, öğrenci platformu, anonim paylaşım, açü forum, artvin öğrenci, çoruh üniversitesi itiraf, acu öğrenci ilan, artvin kampüs 2026">
+<meta name="robots" content="index, follow">
+<meta name="author" content="ACU Kampüs">
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin, Türkiye">
+<link rel="canonical" href="https://artvinrehber.com/acukampus.html">
+
+<!-- OG -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ACU Kampüs 2026 — Artvin Çoruh Üniversitesi Öğrenci Platformu">
+<meta property="og:description" content="Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım, soru-cevap ve ilan platformu. Açü'lülerin dijital kampüsü.">
+<meta property="og:url" content="https://artvinrehber.com/acukampus.html">
+<meta property="og:image" content="https://i.ibb.co/27mw4L16/1778614783558.png">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Artvin Rehberi">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ACU Kampüs 2026 — Artvin Çoruh Üniversitesi">
+<meta name="twitter:description" content="Açü'lülerin anonim paylaşım ve iletişim platformu.">
+
+<!-- JSON-LD WebPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "ACU Kampüs — Artvin Çoruh Üniversitesi Öğrenci Platformu",
+  "url": "https://artvinrehber.com/acukampus.html",
+  "description": "Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım ve topluluk platformu.",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-05-16",
+  "publisher": {"@type": "Organization", "name": "Artvin Rehberi", "url": "https://artvinrehber.com"},
+  "about": {"@type": "EducationalOrganization", "name": "Artvin Çoruh Üniversitesi", "address": {"@type": "PostalAddress", "addressLocality": "Artvin", "addressCountry": "TR"}}
+}
+</script>
+
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"ACU Kampüs nedir?","acceptedAnswer":{"@type":"Answer","text":"ACU Kampüs, Artvin Çoruh Üniversitesi öğrencileri için anonim paylaşım, soru-cevap ve ilan platformudur."}},
+    {"@type":"Question","name":"ACU Kampüs'e nasıl gönderi atılır?","acceptedAnswer":{"@type":"Answer","text":"Ana sayfadaki + Paylaş butonuna tıklayarak kategori seçip anonim veya isimli gönderi paylaşabilirsiniz."}},
+    {"@type":"Question","name":"ACU Kampüs'te anonimlik nasıl çalışır?","acceptedAnswer":{"@type":"Answer","text":"Anonim paylaşımda otomatik kullanıcı adı (User001 gibi) atanır. Diğer kullanıcılar kim olduğunuzu göremez."}}
+  ]
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -18,30 +67,11 @@
 }
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-/* KABUL MODALI */
-#km-wrap{position:fixed;inset:0;z-index:99999;background:rgba(8,7,18,.97);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;}
-#km-kart{background:#16152a;border:1px solid rgba(124,58,237,.35);border-radius:20px;padding:24px 20px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.6);transform:scale(.95) translateY(12px);opacity:0;transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .25s ease;}
-#km-kart.goster{transform:scale(1) translateY(0);opacity:1;}
-.km-kutu{border-radius:12px;padding:14px;margin-bottom:8px;transition:all .2s;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);}
-.km-kutu.secili{background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.4);}
-.km-cb-satir{display:flex;align-items:center;gap:12px;}
-.km-cb-satir input{width:22px;height:22px;min-width:22px;accent-color:#7c3aed;cursor:pointer;flex-shrink:0;}
-.km-cb-satir span{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;}
-.km-doc-btn{background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;min-height:36px;}
-#km-btn{width:100%;border:none;border-radius:13px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;min-height:52px;transition:all .25s;margin-top:4px;}
-#km-btn.aktif{background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;box-shadow:0 4px 20px rgba(124,58,237,.45);}
-#km-btn.pasif{background:rgba(124,58,237,.15);color:rgba(255,255,255,.3);cursor:not-allowed;}
-#km-uyari{display:none;text-align:center;font-size:13px;color:#f87171;margin-bottom:8px;padding:8px;background:rgba(239,68,68,.08);border-radius:8px;}
-#kd-wrap{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto;}
-#kd-wrap.acik{display:flex;}
-#kd-kart{background:#1e1b38;border:1px solid rgba(124,58,237,.4);border-radius:16px;padding:20px;width:100%;max-width:420px;max-height:80vh;display:flex;flex-direction:column;}
-#kd-icerik{font-size:13px;color:rgba(255,255,255,.65);line-height:1.9;overflow-y:auto;white-space:pre-line;flex:1;margin-top:12px;}
-
 /* NAV */
 .nav{position:sticky;top:0;z-index:100;background:rgba(15,14,23,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo-badge{width:36px;height:36px;background:linear-gradient(135deg,#7c3aed,#a855f7,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.45);}
-.nav-logo-isim{font-size:.92rem;font-weight:800;background:linear-gradient(135deg,#c4b5fd,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.02em;}
-.nav-logo-uni{font-size:.58rem;color:var(--soluk);}
+.nav-badge{width:36px;height:36px;background:linear-gradient(135deg,#7c3aed,#a855f7,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.45);}
+.nav-isim{font-size:.92rem;font-weight:800;background:linear-gradient(135deg,#c4b5fd,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-uni{font-size:.58rem;color:var(--soluk);}
 .canli{display:flex;align-items:center;gap:.3rem;font-size:.65rem;font-weight:600;color:#22c55e;}
 .canli::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pls 2s infinite;}
 @keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
@@ -72,9 +102,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 /* KART */
 .kart{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1rem;animation:fadeIn .3s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.kart:hover{border-color:var(--border2);}
 .kart-ust{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem;}
-.avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;flex-shrink:0;}
+.avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
 .kart-nick{font-size:.82rem;font-weight:600;}
 .kart-zaman{font-size:.63rem;color:var(--soluk);}
 .kat-badge{font-size:.6rem;font-weight:700;padding:.18rem .55rem;border-radius:10px;margin-left:auto;flex-shrink:0;}
@@ -88,7 +117,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .yorum-alan{display:none;margin-top:.75rem;border-top:1px solid var(--border);padding-top:.75rem;}
 .yorum-alan.acik{display:block;}
 .yorum-item{display:flex;gap:.5rem;margin-bottom:.6rem;}
-.y-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.y-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:2px;}
 .y-nick{font-size:.72rem;font-weight:700;}
 .y-zaman{font-size:.6rem;color:var(--soluk);margin-left:.35rem;}
 .y-metin{font-size:.82rem;color:rgba(238,238,245,.75);line-height:1.55;margin-top:.15rem;word-break:break-word;}
@@ -99,8 +128,6 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 /* BOŞ */
 .bos{text-align:center;padding:3.5rem 1rem;color:var(--dim);}
-.bos-icon{font-size:2.8rem;margin-bottom:.75rem;}
-.bos-h{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem;}
 
 /* PAYLAŞIM MODAL */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .2s;}
@@ -108,90 +135,50 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1.1rem 2rem;width:100%;max-width:640px;margin:0 auto;transform:translateY(100%);transition:transform .28s cubic-bezier(.32,.72,0,1);border-top:1px solid var(--border2);}
 .overlay.acik .modal{transform:translateY(0);}
 .form-label{font-size:.65rem;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem;display:block;}
-.form-select,.form-textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:.72rem .9rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:.15s;margin-bottom:.65rem;-webkit-appearance:none;}
-.form-select:focus,.form-textarea:focus{border-color:var(--mor);}
+.form-select,.form-textarea,.form-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:.72rem .9rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:.15s;margin-bottom:.65rem;-webkit-appearance:none;}
+.form-select:focus,.form-textarea:focus,.form-input:focus{border-color:var(--mor);}
 .form-textarea{resize:none;min-height:115px;line-height:1.6;}
+.kural-bant{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);border-radius:10px;padding:.6rem .85rem;font-size:.72rem;color:var(--mor-c);line-height:1.6;margin-bottom:.75rem;}
+.gonder-btn{width:100%;background:linear-gradient(135deg,var(--mor),var(--mor2));color:#fff;border:none;border-radius:13px;padding:.88rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+.gonder-btn:disabled{opacity:.5;cursor:not-allowed;}
+.basari{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:.85rem;font-size:.82rem;color:#4ade80;text-align:center;margin-top:.6rem;}
+
+/* CİNSİYET */
+.cinsiyet-wrap{display:flex;gap:.5rem;margin-bottom:.65rem;}
+.c-btn{flex:1;padding:.65rem;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--dim);font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;transition:.15s;}
+.c-btn.secili{border-color:var(--mor);color:var(--mor-c);background:var(--mor-a);}
+
+/* ANONİM SATIR */
 .anonim-row{display:flex;align-items:center;gap:.65rem;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:.65rem .9rem;margin-bottom:.75rem;cursor:pointer;}
 .toggle{width:40px;height:23px;background:rgba(255,255,255,.12);border-radius:12px;position:relative;transition:.2s;flex-shrink:0;}
 .toggle.on{background:var(--mor);}
 .toggle::after{content:'';position:absolute;width:17px;height:17px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.2s;}
 .toggle.on::after{left:20px;}
-.kural-bant{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);border-radius:10px;padding:.6rem .85rem;font-size:.72rem;color:var(--mor-c);line-height:1.6;margin-bottom:.75rem;}
-.gonder-btn{width:100%;background:linear-gradient(135deg,var(--mor),var(--mor2));color:#fff;border:none;border-radius:13px;padding:.88rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 18px rgba(124,58,237,.35);}
-.gonder-btn:disabled{opacity:.5;cursor:not-allowed;}
-.basari{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:.85rem;font-size:.82rem;color:#4ade80;text-align:center;margin-top:.6rem;}
 
 /* BOTTOM NAV */
 .bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(15,14,23,.92);backdrop-filter:blur(24px);border-top:1px solid var(--border);display:flex;padding:0 0 env(safe-area-inset-bottom) 0;}
-.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.18rem;padding:.7rem .5rem .55rem;background:transparent;border:none;color:var(--soluk);font-size:.6rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:.15s;}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.18rem;padding:.7rem .5rem .55rem;background:transparent;border:none;color:var(--soluk);font-size:.6rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;}
 .bnav-btn.aktif{color:var(--mor-c);}
 .bnav-ic{font-size:1.25rem;line-height:1;}
 .bnav-plus-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:.18rem;padding:.55rem .5rem .45rem;}
-.bnav-plus{width:42px;height:42px;background:linear-gradient(135deg,var(--mor),var(--mor2));border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 4px 14px rgba(124,58,237,.45);cursor:pointer;border:none;font-family:'Inter',sans-serif;margin-top:-14px;}
+.bnav-plus{width:42px;height:42px;background:linear-gradient(135deg,var(--mor),var(--mor2));border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 4px 14px rgba(124,58,237,.45);cursor:pointer;border:none;margin-top:-14px;}
 .bnav-plus-lbl{font-size:.6rem;color:var(--mor-c);font-weight:600;}
 
 /* FOOTER */
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem 1rem 6rem;margin-top:.5rem;}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem 1rem 6rem;}
 .footer-h{font-size:.65rem;font-weight:700;color:var(--mor-c);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.65rem;}
 .footer-metin{font-size:.75rem;color:rgba(238,238,245,.4);line-height:1.8;margin-bottom:1.25rem;}
 </style>
 </head>
 <body>
 
-<!-- KABUL MODALI -->
-<div id="km-wrap">
-  <div id="km-kart">
-    <div style="text-align:center;margin-bottom:18px;">
-      <div style="width:54px;height:54px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 10px;box-shadow:0 4px 20px rgba(124,58,237,.45);">🏫</div>
-      <div style="font-size:17px;font-weight:900;color:#fff;">ACU Kampüs'e Hoş Geldin</div>
-      <div style="font-size:12px;color:rgba(255,255,255,.38);margin-top:4px;">Artvin Çoruh Üniversitesi · Öğrenci Platformu</div>
-    </div>
-    <div style="background:rgba(124,58,237,.09);border:1px solid rgba(124,58,237,.18);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,.62);line-height:1.85;">
-      ✅ Bu platform yalnızca öğrenciler içindir<br>
-      🚫 Hakaret, ifşa ve zorbalık kesinlikle yasaktır<br>
-      🛡️ Tüm içerikler moderasyona tabidir
-    </div>
-    <div class="km-kutu" id="kutu1">
-      <div class="km-cb-satir">
-        <input type="checkbox" id="cb1">
-        <span>Aşağıdaki belgeleri okudum ve kabul ediyorum.</span>
-      </div>
-      <div style="display:flex;gap:8px;margin-top:10px;padding-left:34px;">
-        <button class="km-doc-btn" id="btnKullanim">📄 Kullanım Şartları</button>
-        <button class="km-doc-btn" id="btnGizlilik">🔐 Gizlilik</button>
-      </div>
-    </div>
-    <div class="km-kutu" id="kutu2">
-      <div class="km-cb-satir">
-        <input type="checkbox" id="cb2">
-        <span>Topluluk kurallarına uyacağımı, hakaret ve ifşa paylaşımı yapmayacağımı kabul ediyorum.</span>
-      </div>
-    </div>
-    <div id="km-uyari">⚠️ Devam etmek için her iki kutuyu işaretleyin.</div>
-    <button class="pasif" id="km-btn">Kabul Et ve Platforma Gir →</button>
-    <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.18);">Açü'lü olmak ayrıcalıktır 🏔️</div>
-  </div>
-</div>
-
-<!-- DETAY MODAL -->
-<div id="kd-wrap">
-  <div id="kd-kart">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <div id="kd-baslik" style="font-size:15px;font-weight:800;color:#fff;"></div>
-      <button id="kd-kapat" style="background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;min-width:32px;border-radius:50%;cursor:pointer;font-size:16px;font-family:'Inter',sans-serif;">✕</button>
-    </div>
-    <div id="kd-icerik"></div>
-    <button id="kd-geri" style="width:100%;margin-top:16px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">← Geri Dön</button>
-  </div>
-</div>
-
 <!-- NAV -->
 <nav class="nav">
   <div style="display:flex;align-items:center;gap:.6rem;">
-    <div class="nav-logo-badge">ACU</div>
+    <div class="nav-badge">ACU</div>
     <div>
-      <div class="nav-logo-isim">ACU Kampüs</div>
-      <div class="nav-logo-uni">Artvin Çoruh Üniversitesi</div>
+      <div class="nav-isim">ACU Kampüs</div>
+      <div class="nav-uni">Artvin Çoruh Üniversitesi</div>
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:.6rem;">
@@ -200,21 +187,29 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
   </div>
 </nav>
 
+
+<!-- GÜNCELLEME BANDI -->
+<div style="background:rgba(124,58,237,.12);border-bottom:1px solid rgba(124,58,237,.2);padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;">
+  <span style="font-size:.65rem;font-weight:700;color:var(--mor-c);">✨ Mayıs 2026 güncellendi</span>
+  <span style="font-size:.6rem;color:var(--soluk);">· Son güncelleme: 16.05.2026</span>
+</div>
 <!-- HERO -->
 <div class="hero">
+  <h1 style="display:none">ACU Kampüs — Artvin Çoruh Üniversitesi Öğrenci Platformu 2026</h1>
   <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mor-c);margin-bottom:.35rem;">📅 Bugün Kampüste</div>
   <div style="font-size:1.3rem;font-weight:900;color:var(--text);line-height:1.2;letter-spacing:-.02em;margin-bottom:.25rem;">Merhaba, <span style="background:linear-gradient(135deg,#c4b5fd,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Açü'lü!</span> 👋</div>
-  <div style="font-size:.78rem;color:var(--dim);line-height:1.5;">Kampüsün nabzını tut. Anonim paylaş, soru sor, ilan ver.</div>
+  <div style="font-size:.78rem;color:var(--dim);line-height:1.5;">Kampüsün nabzını tut. Paylaş, soru sor, ilan ver.</div>
   <div class="hero-stats">
     <div class="hero-stat"><div class="hero-stat-n" id="statGonderi">—</div><div class="hero-stat-l">Gönderi</div></div>
-    <div class="hero-stat"><div class="hero-stat-n" id="statBugün">—</div><div class="hero-stat-l">Bugün</div></div>
     <div class="hero-stat"><div class="hero-stat-n">8.5K</div><div class="hero-stat-l">Öğrenci</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">ACU</div><div class="hero-stat-l">Artvin Çoruh</div></div>
   </div>
 </div>
 
 <!-- KATEGORİ -->
 <div class="kat-wrap">
-  <div class="kat-ic">
+  <h2 style="display:none">ACU Kampüs Gönderi Akışı — İtiraf, Soru, İlan</h2>
+<div class="kat-ic">
     <button class="kat-btn aktif" onclick="katSec(this,'hepsi')">🏠 Tümü</button>
     <button class="kat-btn" onclick="katSec(this,'itiraf')">🤫 İtiraf</button>
     <button class="kat-btn" onclick="katSec(this,'soru')">❓ Soru</button>
@@ -233,9 +228,10 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
   <div class="modal">
     <div style="font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:.9rem;display:flex;align-items:center;justify-content:space-between;">
       ✍️ Paylaş
-      <button style="background:rgba(255,255,255,.08);border:none;color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.9rem;" onclick="modalKapat()">✕</button>
+      <button style="background:rgba(255,255,255,.08);border:none;color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.9rem;font-family:'Inter',sans-serif;" onclick="modalKapat()">✕</button>
     </div>
-    <div class="kural-bant">🛡️ Hakaret, ifşa ve zorbalık yasaktır. İnceleme sonrası yayınlanır.</div>
+    <div class="kural-bant">🛡️ Hakaret ve ifşa yasaktır. İnceleme sonrası yayınlanır.</div>
+
     <label class="form-label">Kategori</label>
     <select class="form-select" id="fKat">
       <option value="">— Seç —</option>
@@ -243,13 +239,32 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
       <option value="soru">❓ Soru & Yardım</option>
       <option value="ilan">🏠 İlan</option>
     </select>
-    <label class="form-label">Ne yazmak istiyorsun?</label>
-    <textarea class="form-textarea" id="fMetin" placeholder="Yaz..."></textarea>
+
+    <!-- ANONİM TOGGLE -->
     <div class="anonim-row" onclick="anonimToggle()">
       <div class="toggle on" id="tog"></div>
-      <div style="font-size:.82rem;font-weight:500;">Anonim paylaş</div>
-      <div style="font-size:.65rem;color:var(--soluk);margin-left:auto;">Kimliğin gizli</div>
+      <div>
+        <div style="font-size:.82rem;font-weight:600;" id="anonimLbl">Anonim paylaş</div>
+        <div style="font-size:.65rem;color:var(--soluk);" id="anonimAlt">Otomatik kullanıcı adı atanır</div>
+      </div>
     </div>
+
+    <!-- İSİM (anonim değilse) -->
+    <div id="isimAlan" style="display:none;">
+      <label class="form-label">Kullanıcı Adın</label>
+      <input type="text" class="form-input" id="fIsim" placeholder="Adın veya takma adın" maxlength="30">
+
+      <label class="form-label">Cinsiyet <span style="color:var(--soluk);font-weight:400;text-transform:none;letter-spacing:0;">(isteğe bağlı)</span></label>
+      <div class="cinsiyet-wrap">
+        <button class="c-btn" id="cErkek" onclick="cinsiyetSec('erkek')">👦 Erkek</button>
+        <button class="c-btn" id="cKadin" onclick="cinsiyetSec('kadin')">👧 Kadın</button>
+        <button class="c-btn aktif" id="cBelirtme" onclick="cinsiyetSec('belirtme')">🙂 Belirtme</button>
+      </div>
+    </div>
+
+    <label class="form-label">Ne yazmak istiyorsun?</label>
+    <textarea class="form-textarea" id="fMetin" placeholder="Yaz..."></textarea>
+
     <button class="gonder-btn" id="gBtn" onclick="gonder()">🚀 Gönder</button>
     <div class="basari" id="basari">✅ Gönderildi! İnceleme sonrası yayınlanacak.</div>
   </div>
@@ -265,11 +280,24 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </nav>
 
 <!-- FOOTER -->
+<h2 style="display:none">ACU Kampüs Topluluk Kuralları ve KVKK</h2>
 <div class="footer">
-  <div class="footer-h">📋 Topluluk Kuralları</div>
+  
+<div style="margin-bottom:1.25rem;">
+  <div class="footer-h">🔗 Artvin Rehberi</div>
+  <div style="display:flex;flex-direction:column;gap:.4rem;">
+    <a href="/artvin-kampus-ulasim.html" rel="noopener" style="font-size:.78rem;color:var(--mor-c);text-decoration:none;">🏫 Artvin Kampüs Ulaşım Rehberi</a>
+    <a href="/havas.html" rel="noopener" style="font-size:.78rem;color:var(--mor-c);text-decoration:none;">✈️ Artvin Havaş Saatleri 2026</a>
+    <a href="/artvinmetre.html" rel="noopener" style="font-size:.78rem;color:var(--mor-c);text-decoration:none;">📊 ArtvinMetre — Sayılarla Artvin</a>
+    <a href="/imece.html" rel="noopener" style="font-size:.78rem;color:var(--mor-c);text-decoration:none;">🌿 İmece — Paylaşım Platformu</a>
+  </div>
+</div>
+<div class="footer-h">📋 Topluluk Kuralları</div>
   <div class="footer-metin">1. Saygılı iletişim şarttır<br>2. Kişileri ifşa etmek yasaktır<br>3. Hakaret ve küfür kullanılamaz<br>4. Kişisel bilgi paylaşılamaz<br>5. Siyasi nefret söylemi yasaktır<br>6. Öğrenci dayanışması önceliklidir</div>
   <div class="footer-h">🔐 Gizlilik & KVKK</div>
-  <div class="footer-metin">Platform moderasyon amacıyla tarayıcı bilgisi işleyebilir. Veriler Firebase altyapısında saklanır, üçüncü taraflarla paylaşılmaz.</div>
+  <div class="footer-metin">Platform moderasyon amacıyla tarayıcı bilgisi işleyebilir. Veriler Firebase altyapısında saklanır, üçüncü taraflarla paylaşılmaz. Veri silme için iletişime geçin.</div>
+  <div class="footer-h">📄 Kullanım Şartları</div>
+  <div class="footer-metin">Kullanıcı içeriklerinin sorumluluğu paylaşan kişiye aittir. Platform kurallara aykırı içerikleri kaldırma hakkını saklı tutar.</div>
   <div style="text-align:center;border-top:1px solid rgba(255,255,255,.06);padding-top:1rem;">
     <a href="https://wa.me/905434290908" target="_blank" rel="noopener" style="font-size:.75rem;color:var(--mor-c);text-decoration:none;">📱 İletişim & İçerik Kaldırma</a>
     <div style="font-size:.62rem;color:rgba(238,238,245,.15);margin-top:.5rem;">ACU Kampüs · artvinrehber.com/acukampus © 2026</div>
@@ -289,29 +317,21 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
-// ── TELEGRAM ──
 var TG_TOKEN = '8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
 var TG_CHATID = '1032454830';
 
-// ── VERİLER ──
 var KAT = {
   itiraf:{l:'İtiraf',e:'🤫',c:'#a855f7',bg:'rgba(168,85,247,.13)'},
   soru:{l:'Soru',e:'❓',c:'#3b82f6',bg:'rgba(59,130,246,.13)'},
   ilan:{l:'İlan',e:'🏠',c:'#22c55e',bg:'rgba(34,197,94,.13)'},
 };
 var RENKLER=['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
-var anonimAktif=true;
+var CİNSİYET_EMOJI={erkek:'👦',kadin:'👧',belirtme:'🙂'};
+
+var anonimAktif = true;
+var seciliCinsiyet = 'belirtme';
 
 function renkAl(s){var i=0;for(var j=0;j<s.length;j++)i+=s.charCodeAt(j);return RENKLER[i%RENKLER.length];}
-
-function anonimIsim(){
-  return db.collection('acukampus').doc('__sayac__').get().then(function(doc){
-    var n=(doc.exists?(doc.data().userSayac||0):0)+1;
-    return db.collection('acukampus').doc('__sayac__').set({userSayac:n},{merge:true}).then(function(){
-      return 'User'+String(n).padStart(3,'0');
-    });
-  });
-}
 
 function zamanFmt(ts){
   if(!ts)return '';
@@ -322,184 +342,226 @@ function zamanFmt(ts){
   return Math.floor(f/86400)+' gün önce';
 }
 
-// ── KABUL SİSTEMİ ──
-var METINLER={
-  kullanim:{baslik:'📄 Kullanım Şartları',icerik:'ACU Kampüs, Artvin Çoruh Üniversitesi öğrencilerine yönelik bir topluluk platformudur.\n\nKullanıcı içeriklerinin hukuki sorumluluğu içeriği paylaşan kişiye aittir. Platform, kurallara aykırı içerikleri önceden haber vermeksizin kaldırma hakkını saklı tutar.\n\n5651 sayılı Kanun kapsamında yer sağlayıcı olarak faaliyet gösterilmektedir.'},
-  gizlilik:{baslik:'🔐 Gizlilik & KVKK',icerik:'6698 sayılı KVKK kapsamında aydınlatma metnidir.\n\nPlatform, moderasyon ve güvenlik amacıyla tarayıcı bilgisi işleyebilir. Kişisel kimlik bilgisi toplanmamaktadır.\n\nVeriler Firebase (Google) altyapısında saklanmakta olup üçüncü taraflarla paylaşılmamaktadır.'}
-};
-
-if(localStorage.getItem('acu_kabul')==='1'){
-  document.getElementById('km-wrap').style.display='none';
-}else{
-  setTimeout(function(){document.getElementById('km-kart').classList.add('goster');},50);
-}
-
-function kmDurum(){
-  var a=document.getElementById('cb1').checked&&document.getElementById('cb2').checked;
-  document.getElementById('km-btn').className=a?'aktif':'pasif';
-  document.getElementById('kutu1').className='km-kutu'+(document.getElementById('cb1').checked?' secili':'');
-  document.getElementById('kutu2').className='km-kutu'+(document.getElementById('cb2').checked?' secili':'');
-  if(a)document.getElementById('km-uyari').style.display='none';
-}
-
-function kdAc(tip){
-  var m=METINLER[tip];
-  document.getElementById('kd-baslik').textContent=m.baslik;
-  document.getElementById('kd-icerik').textContent=m.icerik;
-  document.getElementById('kd-wrap').classList.add('acik');
-}
-function kdKapat(){document.getElementById('kd-wrap').classList.remove('acik');}
-
-function kmGir(){
-  var cb1=document.getElementById('cb1').checked;
-  var cb2=document.getElementById('cb2').checked;
-  if(!cb1||!cb2){document.getElementById('km-uyari').style.display='block';return;}
-  var btn=document.getElementById('km-btn');
-  btn.textContent='⏳ Giriş yapılıyor...';btn.disabled=true;
-  setTimeout(function(){
-    localStorage.setItem('acu_kabul','1');
-    document.getElementById('km-wrap').style.display='none';
-  },500);
-}
-
-document.getElementById('kutu1').addEventListener('click',function(e){
-  if(e.target.id==='btnKullanim'||e.target.id==='btnGizlilik')return;
-  var cb=document.getElementById('cb1');cb.checked=!cb.checked;kmDurum();
-});
-document.getElementById('kutu2').addEventListener('click',function(){
-  var cb=document.getElementById('cb2');cb.checked=!cb.checked;kmDurum();
-});
-document.getElementById('cb1').addEventListener('change',kmDurum);
-document.getElementById('cb2').addEventListener('change',kmDurum);
-document.getElementById('btnKullanim').addEventListener('click',function(e){e.stopPropagation();kdAc('kullanim');});
-document.getElementById('btnGizlilik').addEventListener('click',function(e){e.stopPropagation();kdAc('gizlilik');});
-document.getElementById('kd-kapat').addEventListener('click',kdKapat);
-document.getElementById('kd-geri').addEventListener('click',kdKapat);
-document.getElementById('km-btn').addEventListener('click',kmGir);
-
-// ── İSTATİSTİK ──
-function istatistik(){
-  db.collection('acukampus').where('durum','==','aktif').get().then(function(s){
-    document.getElementById('statGonderi').textContent=s.size;
-  }).catch(function(){});
-  document.getElementById('statBugün').textContent='—';
-}
-
-// ── LİSTELE ──
-function listele(kat){
-  var akis=document.getElementById('akis');
-  var sorgu=db.collection('acukampus').where('durum','==','aktif').limit(30);
-  if(kat&&kat!=='hepsi')sorgu=sorgu.where('kategori','==',kat);
-  sorgu.onSnapshot(function(snap){
-    if(snap.empty){akis.innerHTML='<div class="bos"><div class="bos-icon">🌿</div><div class="bos-h">Henüz gönderi yok</div><p style="font-size:.8rem;">İlk paylaşımı sen yap!</p></div>';return;}
-    var html='';
-    snap.forEach(function(doc){
-      var d=doc.data();
-      var k=KAT[d.kategori]||{l:d.kategori,e:'📌',c:'#888',bg:'rgba(136,136,136,.1)'};
-      var nick=d.anonim?(d.anonimIsim||'Anonim'):(d.nick||'Anonim');
-      var r=renkAl(nick);
-      html+='<div class="kart">';
-      html+='<div class="kart-ust"><div class="avatar" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
-      html+='<div style="flex:1;min-width:0"><div class="kart-nick">'+nick+'</div><div class="kart-zaman">'+zamanFmt(d.olusturma)+'</div></div>';
-      html+='<span class="kat-badge" style="background:'+k.bg+';color:'+k.c+'">'+k.e+' '+k.l+'</span></div>';
-      html+='<div class="kart-metin">'+d.metin.replace(/\n/g,'<br>')+'</div>';
-      html+='<div class="kart-alt">';
-      html+='<button class="k-btn" id="bg'+doc.id+'" onclick="begeni(\''+doc.id+'\',this)">👍 '+(d.begeni||0)+'</button>';
-      html+='<button class="k-btn" onclick="yorumAc(\''+doc.id+'\')">💬 <span id="ys'+doc.id+'">'+(d.yorumSayi||0)+'</span></button>';
-      html+='<button class="k-btn" onclick="bildir(\''+doc.id+'\')" style="margin-left:auto">🚩</button>';
-      html+='</div>';
-      html+='<div class="yorum-alan" id="ya'+doc.id+'">';
-      html+='<div id="yl'+doc.id+'"><div style="font-size:.72rem;color:var(--soluk);">Yorumlar yükleniyor...</div></div>';
-      html+='<div class="yorum-yaz"><input class="y-input" id="yi'+doc.id+'" placeholder="Yorum yaz..." onkeydown="if(event.key===\'Enter\')yorumGonder(\''+doc.id+'\')"><button class="y-gonder" onclick="yorumGonder(\''+doc.id+'\')">▶</button></div>';
-      html+='</div></div>';
+// ── SIRAYLI KULLANICI ADI ──
+function kullaniciAdi(){
+  return db.collection('acukampus').doc('__sayac__').get().then(function(doc){
+    var n = (doc.exists ? (doc.data().userSayac||0) : 0) + 1;
+    return db.collection('acukampus').doc('__sayac__').set({userSayac:n},{merge:true}).then(function(){
+      return 'User' + String(n).padStart(3,'0');
     });
-    akis.innerHTML=html;
-  },function(){
-    akis.innerHTML='<div class="bos"><div class="bos-icon">⚠️</div><div class="bos-h">Yüklenemedi</div><p style="font-size:.8rem;">Bağlantını kontrol et.</p></div>';
   });
 }
 
-// ── KATEGORİ ──
-function katSec(el,kat){
-  document.querySelectorAll('.kat-btn,.bnav-btn').forEach(function(b){b.classList.remove('aktif');});
-  if(el)el.classList.add('aktif');
-  listele(kat);
+// ── ANONİM TOGGLE ──
+function anonimToggle(){
+  anonimAktif = !anonimAktif;
+  var tog = document.getElementById('tog');
+  var isimAlan = document.getElementById('isimAlan');
+  var lbl = document.getElementById('anonimLbl');
+  var alt = document.getElementById('anonimAlt');
+  if(anonimAktif){
+    tog.classList.add('on');
+    isimAlan.style.display = 'none';
+    lbl.textContent = 'Anonim paylaş';
+    alt.textContent = 'Otomatik kullanıcı adı atanır';
+  } else {
+    tog.classList.remove('on');
+    isimAlan.style.display = 'block';
+    lbl.textContent = 'Kendi adınla paylaş';
+    alt.textContent = 'İsim ve cinsiyet bilgisi girebilirsin';
+  }
 }
 
-// ── ANONİM ──
-function anonimToggle(){
-  anonimAktif=!anonimAktif;
-  var t=document.getElementById('tog');
-  anonimAktif?t.classList.add('on'):t.classList.remove('on');
+// ── CİNSİYET ──
+function cinsiyetSec(c){
+  seciliCinsiyet = c;
+  ['Erkek','Kadin','Belirtme'].forEach(function(x){
+    document.getElementById('c'+x).className = 'c-btn' + (c === x.toLowerCase() ? ' secili' : '');
+  });
 }
 
 // ── MODAL ──
-function modalAc(){document.getElementById('overlay').classList.add('acik');document.body.style.overflow='hidden';}
+function modalAc(){
+  document.getElementById('overlay').classList.add('acik');
+  document.body.style.overflow='hidden';
+}
 function modalKapat(e){
-  if(e&&e.target!==document.getElementById('overlay'))return;
+  if(e && e.target !== document.getElementById('overlay')) return;
   document.getElementById('overlay').classList.remove('acik');
   document.body.style.overflow='';
 }
 
-// ── TELEGRAM ──
-function tgBildir(veri){
-  if(!TG_TOKEN)return;
-  var k=KAT[veri.kategori]||{e:'📌',l:veri.kategori};
-  var msg='🆕 ACU Kampüs\n📂 '+k.e+' '+k.l+'\n👤 '+veri.nick+'\n\n💬 '+veri.metin.substring(0,300)+'\n\n🔑 '+veri.id;
-  fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHATID,text:msg})}).catch(function(){});
+// ── KATEGORİ ──
+function katSec(el,kat){
+  document.querySelectorAll('.kat-btn').forEach(function(b){b.classList.remove('aktif');});
+  if(el) el.classList.add('aktif');
+  listele(kat);
+}
+
+// ── LİSTELE ──
+function listele(kat){
+  var akis = document.getElementById('akis');
+  var sorgu = db.collection('acukampus').where('durum','==','aktif').limit(30);
+  if(kat && kat !== 'hepsi') sorgu = sorgu.where('kategori','==',kat);
+
+  sorgu.onSnapshot(function(snap){
+    if(snap.empty){
+      akis.innerHTML='<div class="bos"><div style="font-size:2.8rem;margin-bottom:.75rem;">🌿</div><div style="font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem;">Henüz gönderi yok</div><div style="font-size:.8rem;">İlk paylaşımı sen yap!</div></div>';
+      return;
+    }
+    var html='';
+    snap.forEach(function(doc){
+      var d = doc.data();
+      var k = KAT[d.kategori]||{l:d.kategori,e:'📌',c:'#888',bg:'rgba(136,136,136,.1)'};
+      var nick = d.nick || 'Anonim';
+      var emoji = CİNSİYET_EMOJI[d.cinsiyet] || (d.anonim ? '🙂' : '🙂');
+      var r = renkAl(nick);
+
+      html += '<div class="kart">';
+      html += '<div class="kart-ust">';
+      html += '<div class="avatar" style="background:'+r+'22;color:'+r+';font-size:.9rem;">'+emoji+'</div>';
+      html += '<div style="flex:1;min-width:0"><div class="kart-nick">'+nick+'</div><div class="kart-zaman">'+zamanFmt(d.olusturma)+'</div></div>';
+      html += '<span class="kat-badge" style="background:'+k.bg+';color:'+k.c+'">'+k.e+' '+k.l+'</span>';
+      html += '</div>';
+      html += '<div class="kart-metin">'+d.metin.replace(/\n/g,'<br>')+'</div>';
+      html += '<div class="kart-alt">';
+      html += '<button class="k-btn" id="bg'+doc.id+'" onclick="begeni(\''+doc.id+'\',this)">👍 '+(d.begeni||0)+'</button>';
+      html += '<button class="k-btn" onclick="yorumAc(\''+doc.id+'\')">💬 <span id="ys'+doc.id+'">'+(d.yorumSayi||0)+'</span></button>';
+      html += '<button class="k-btn" onclick="bildir(\''+doc.id+'\')" style="margin-left:auto">🚩</button>';
+      html += '</div>';
+      // YORUM ALANI
+      html += '<div class="yorum-alan" id="ya'+doc.id+'">';
+      html += '<div id="yl'+doc.id+'"><div style="font-size:.72rem;color:var(--soluk);padding:.25rem 0;">Yorumlar yükleniyor...</div></div>';
+      html += '<div class="yorum-yaz">';
+      html += '<input class="y-input" id="yi'+doc.id+'" placeholder="Yorumunu yaz..." onkeydown="if(event.key===\'Enter\'){event.preventDefault();yorumGonder(\''+doc.id+'\')}">';
+      html += '<button class="y-gonder" onclick="yorumGonder(\''+doc.id+'\')">▶</button>';
+      html += '</div></div></div>';
+    });
+    akis.innerHTML = html;
+  }, function(err){
+    akis.innerHTML='<div class="bos"><div style="font-size:2.8rem;margin-bottom:.75rem;">⚠️</div><div style="font-size:.95rem;font-weight:700;color:var(--text);">Yüklenemedi</div><div style="font-size:.8rem;">Bağlantını kontrol et: '+err.message+'</div></div>';
+  });
+}
+
+// ── İSTATİSTİK ──
+function istatistik(){
+  db.collection('acukampus').where('durum','==','aktif').get().then(function(s){
+    document.getElementById('statGonderi').textContent = s.size;
+  }).catch(function(){});
 }
 
 // ── GÖNDER ──
 function gonder(){
-  var kat=document.getElementById('fKat').value;
-  var metin=document.getElementById('fMetin').value.trim();
-  var btn=document.getElementById('gBtn');
+  var kat = document.getElementById('fKat').value;
+  var metin = document.getElementById('fMetin').value.trim();
+  var btn = document.getElementById('gBtn');
+
   if(!kat){alert('Kategori seçmelisin.');return;}
-  if(!metin||metin.length<5){alert('Biraz daha uzun yaz.');return;}
+  if(!metin || metin.length<5){alert('Biraz daha uzun yaz.');return;}
   if(metin.length>800){alert('En fazla 800 karakter.');return;}
-  btn.disabled=true;btn.textContent='⏳ Gönderiliyor...';
-  anonimIsim().then(function(isim){
-    var veri={kategori:kat,metin:metin,anonim:anonimAktif,anonimIsim:isim,nick:isim,durum:'bekliyor',begeni:0,olusturma:firebase.firestore.FieldValue.serverTimestamp()};
+
+  btn.disabled=true; btn.textContent='⏳ Gönderiliyor...';
+
+  var isimPromise;
+  var cinsiyet = 'belirtme';
+
+  if(anonimAktif){
+    isimPromise = kullaniciAdi();
+  } else {
+    var isimGirilen = (document.getElementById('fIsim').value||'').trim();
+    cinsiyet = seciliCinsiyet;
+    if(isimGirilen){
+      isimPromise = Promise.resolve(isimGirilen);
+    } else {
+      isimPromise = kullaniciAdi();
+    }
+  }
+
+  isimPromise.then(function(isim){
+    var veri = {
+      kategori:kat, metin:metin,
+      anonim:anonimAktif, nick:isim,
+      cinsiyet:cinsiyet,
+      durum:'bekliyor', begeni:0, yorumSayi:0,
+      olusturma:firebase.firestore.FieldValue.serverTimestamp()
+    };
     db.collection('acukampus').add(veri).then(function(ref){
-      veri.id=ref.id;tgBildir(veri);
-      btn.disabled=false;btn.textContent='🚀 Gönder';
-      document.getElementById('fMetin').value='';document.getElementById('fKat').value='';
+      // Telegram bildirimi
+      var k = KAT[kat]||{e:'📌',l:kat};
+      var msg = '🆕 ACU Kampüs\n'+k.e+' '+k.l+'\n👤 '+isim+'\n\n'+metin.substring(0,300)+'\n\nID: '+ref.id;
+      fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({chat_id:TG_CHATID,text:msg})
+      }).catch(function(){});
+
+      btn.disabled=false; btn.textContent='🚀 Gönder';
+      document.getElementById('fMetin').value='';
+      document.getElementById('fKat').value='';
+      if(!anonimAktif) document.getElementById('fIsim').value='';
       document.getElementById('basari').style.display='block';
-      setTimeout(function(){document.getElementById('basari').style.display='none';modalKapat();},2500);
-    }).catch(function(){btn.disabled=false;btn.textContent='🚀 Gönder';alert('Hata oluştu.');});
+      setTimeout(function(){
+        document.getElementById('basari').style.display='none';
+        modalKapat();
+      },2500);
+    }).catch(function(e){
+      btn.disabled=false; btn.textContent='🚀 Gönder';
+      alert('Hata: '+e.message);
+    });
+  }).catch(function(e){
+    btn.disabled=false; btn.textContent='🚀 Gönder';
+    alert('Hata: '+e.message);
   });
 }
 
 // ── BEĞENİ ──
-function begeni(id,el){if(el.disabled)return;el.disabled=true;el.classList.add('begendi');db.collection('acukampus').doc(id).update({begeni:firebase.firestore.FieldValue.increment(1)});}
+function begeni(id,el){
+  if(el.disabled)return;
+  el.disabled=true; el.classList.add('begendi');
+  db.collection('acukampus').doc(id).update({begeni:firebase.firestore.FieldValue.increment(1)});
+}
 
 // ── BİLDİR ──
-function bildir(id){if(!confirm('Bu gönderiyi bildirmek istiyor musun?'))return;db.collection('acukampus').doc(id).update({bildirim:firebase.firestore.FieldValue.increment(1)});alert('✅ Bildirildi.');}
+function bildir(id){
+  if(!confirm('Bu gönderiyi bildirmek istiyor musun?'))return;
+  db.collection('acukampus').doc(id).update({bildirim:firebase.firestore.FieldValue.increment(1)});
+  alert('✅ Bildirildi, teşekkürler.');
+}
 
 // ── YORUM ──
 function yorumAc(postId){
-  var alan=document.getElementById('ya'+postId);
+  var alan = document.getElementById('ya'+postId);
   if(!alan)return;
-  var acik=alan.classList.toggle('acik');
-  if(acik)yorumlariYukle(postId);
+  var acikMi = alan.classList.toggle('acik');
+  if(acikMi) yorumlariYukle(postId);
 }
 
 function yorumlariYukle(postId){
-  var liste=document.getElementById('yl'+postId);
+  var liste = document.getElementById('yl'+postId);
   if(!liste)return;
-  db.collection('acukampus').doc(postId).collection('yorumlar').where('durum','==','aktif').get().then(function(snap){
-    if(snap.empty){liste.innerHTML='<div style="font-size:.75rem;color:var(--soluk);padding:.25rem 0;">Henüz yorum yok.</div>';return;}
-    var html='';
-    snap.forEach(function(doc){
-      var y=doc.data();
-      var nick=y.anonimIsim||y.nick||'Anonim';
-      var r=renkAl(nick);
-      html+='<div class="yorum-item"><div class="y-avatar" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
-      html+='<div><div><span class="y-nick">'+nick+'</span><span class="y-zaman">'+zamanFmt(y.olusturma)+'</span></div>';
-      html+='<div class="y-metin">'+y.metin.replace(/\n/g,'<br>')+'</div></div></div>';
+  db.collection('acukampus').doc(postId).collection('yorumlar')
+    .where('durum','==','aktif').get()
+    .then(function(snap){
+      if(snap.empty){
+        liste.innerHTML='<div style="font-size:.75rem;color:var(--soluk);padding:.3rem 0;">Henüz yorum yok. İlk yorumu yaz!</div>';
+        return;
+      }
+      var html='';
+      snap.forEach(function(doc){
+        var y=doc.data();
+        var nick=y.nick||'Anonim';
+        var emoji=CİNSİYET_EMOJI[y.cinsiyet]||'🙂';
+        var r=renkAl(nick);
+        html+='<div class="yorum-item">';
+        html+='<div class="y-av" style="background:'+r+'22;color:'+r+'">'+emoji+'</div>';
+        html+='<div style="flex:1;min-width:0">';
+        html+='<div><span class="y-nick">'+nick+'</span><span class="y-zaman">'+zamanFmt(y.olusturma)+'</span></div>';
+        html+='<div class="y-metin">'+y.metin.replace(/\n/g,'<br>')+'</div>';
+        html+='</div></div>';
+      });
+      liste.innerHTML=html;
+    }).catch(function(e){
+      liste.innerHTML='<div style="font-size:.72rem;color:#f87171;">Yüklenemedi: '+e.message+'</div>';
     });
-    liste.innerHTML=html;
-  }).catch(function(){liste.innerHTML='<div style="font-size:.72rem;color:#f87171;">Yorumlar yüklenemedi.</div>';});
 }
 
 function yorumGonder(postId){
@@ -507,18 +569,31 @@ function yorumGonder(postId){
   if(!input)return;
   var metin=input.value.trim();
   if(!metin||metin.length<2)return;
-  input.value='';input.disabled=true;
-  anonimIsim().then(function(isim){
+  if(metin.length>300){alert('En fazla 300 karakter.');return;}
+
+  input.disabled=true;
+  var eskiDeger=input.value;
+  input.value='';
+
+  kullaniciAdi().then(function(isim){
     db.collection('acukampus').doc(postId).collection('yorumlar').add({
-      metin:metin,anonim:true,anonimIsim:isim,nick:isim,
-      durum:'aktif',olusturma:firebase.firestore.FieldValue.serverTimestamp()
+      metin:metin, nick:isim, cinsiyet:'belirtme',
+      durum:'bekliyor',
+      olusturma:firebase.firestore.FieldValue.serverTimestamp()
     }).then(function(){
       input.disabled=false;
       db.collection('acukampus').doc(postId).update({yorumSayi:firebase.firestore.FieldValue.increment(1)});
-      yorumlariYukle(postId);
       var ys=document.getElementById('ys'+postId);
       if(ys)ys.textContent=parseInt(ys.textContent||0)+1;
-    }).catch(function(){input.disabled=false;});
+      yorumlariYukle(postId);
+    }).catch(function(e){
+      input.disabled=false;
+      input.value=eskiDeger;
+      alert('Yorum gönderilemedi: '+e.message);
+    });
+  }).catch(function(){
+    input.disabled=false;
+    input.value=eskiDeger;
   });
 }
 
