@@ -59,7 +59,7 @@
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:50;background:rgba(15,14,23,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.nav{position:sticky;top:0;z-index:9999;background:rgba(15,14,23,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between}
 .logo-badge{width:36px;height:36px;background:linear-gradient(135deg,#7c3aed,#a855f7,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.45);flex-shrink:0}
 .logo-text{font-size:.9rem;font-weight:800;background:linear-gradient(135deg,#c4b5fd,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .logo-sub{font-size:.55rem;color:var(--soluk)}
@@ -113,7 +113,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .bos-h{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.35rem}
 
 /* PAYLAS MODAL */
-.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.ac{opacity:1;pointer-events:all}
 .modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1rem 2rem;width:100%;max-width:640px;transform:translateY(100%);transition:transform .25s cubic-bezier(.32,.72,0,1);border-top:1px solid rgba(124,58,237,.3)}
 .overlay.ac .modal{transform:translateY(0)}
@@ -134,7 +134,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .basari{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:.8rem;font-size:.82rem;color:#4ade80;text-align:center;margin-top:.55rem}
 
 /* BOTTOM NAV */
-.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(15,14,23,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;safe-area-inset-bottom:env(safe-area-inset-bottom)}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(15,14,23,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;safe-area-inset-bottom:env(safe-area-inset-bottom)}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.65rem .5rem .5rem;background:transparent;border:none;color:var(--soluk);font-size:.58rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation}
 .nb.on{color:var(--morc)}
 .nb-ic{font-size:1.2rem;line-height:1}
@@ -237,10 +237,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </div>
 
 <!-- AKIS -->
-<div class="akis" id="akis">
-  <div class="kart">
-    <div class="kart-ust">
-      <div class="sk" style="width:36px;height:36px;border-radius:50%"></div>
+<div class="akis" id="akis"></div>
       <div style="flex:1"><div class="sk" style="height:11px;width:110px;margin-bottom:5px"></div><div class="sk" style="height:9px;width:65px"></div></div>
     </div>
     <div class="sk" style="height:13px;margin-bottom:6px"></div>
@@ -503,18 +500,15 @@ function istatistik() {
 // LISTELE
 function listele(kat) {
   var akis = document.getElementById('akis');
+  akis.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem;">⏳ Yukleniyor...</div>';
+
   var sorgu = db.collection('acukampus').where('durum','==','aktif').limit(30);
   if (kat && kat !== 'hepsi') sorgu = sorgu.where('kategori','==',kat);
 
-  // 5 saniye timeout
-  var timeout = setTimeout(function() {
-    document.getElementById('akis').innerHTML = '<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem;">⚠️ Bağlantı kurulamadı. Sayfayı yenile.</div>';
-  }, 5000);
-
   sorgu.onSnapshot(function(snap) {
-    clearTimeout(timeout);
+    akis.innerHTML = '';
     if (snap.empty) {
-      akis.innerHTML = '<div class="bos"><div class="bos-icon">🌿</div><div class="bos-h">Gonderi yok</div><p style="font-size:.8rem">Ilk paylasiimi sen yap!</p></div>';
+      akis.innerHTML = '<div class="bos"><div class="bos-icon">🌿</div><div class="bos-h">Gonderi yok</div><p style="font-size:.8rem">Ilk paylasimi sen yap!</p></div>';
       return;
     }
     var html = '';
@@ -609,22 +603,46 @@ function bildir(id) {
 }
 
 // EVENT LISTENERS
-document.getElementById('navPaylas').addEventListener('click', modalAc);
-document.getElementById('modalKapat').addEventListener('click', modalKapat);
-document.getElementById('gonderBtn').addEventListener('click', gonder);
-document.getElementById('anonRow').addEventListener('click', anonToggle);
-document.getElementById('nbPlus').addEventListener('click', modalAc);
+// EVENT DELEGATION
+document.addEventListener('click', function(e) {
+  var t = e.target;
 
-document.getElementById('overlay').addEventListener('click', function(e) {
-  if (e.target === this) modalKapat();
-});
+  // Kategori butonları
+  if (t.classList.contains('kat-btn')) {
+    katSec(t.dataset.kat);
+    return;
+  }
 
-document.querySelectorAll('.kat-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() { katSec(this.dataset.kat); });
-});
+  // Bottom nav butonları
+  if (t.classList.contains('nb') && t.dataset.kat) {
+    katSec(t.dataset.kat);
+    return;
+  }
+  if (t.closest('.nb') && t.closest('.nb').dataset.kat) {
+    katSec(t.closest('.nb').dataset.kat);
+    return;
+  }
 
-document.querySelectorAll('.nb[data-kat]').forEach(function(btn) {
-  btn.addEventListener('click', function() { katSec(this.dataset.kat); });
+  // Paylas butonlari
+  if (t.id === 'navPaylas' || t.closest('#nbPlus')) {
+    modalAc();
+    return;
+  }
+
+  // Modal kapat
+  if (t.id === 'modalKapat') { modalKapat(); return; }
+  if (t.id === 'overlay') { modalKapat(); return; }
+
+  // Gonder
+  if (t.id === 'gonderBtn') { gonder(); return; }
+
+  // Anonim toggle
+  if (t.id === 'anonRow' || t.closest('#anonRow')) { anonToggle(); return; }
+
+  // Radyo mini butonlar
+  if (t.id === 'rmbPower') { radyoSec('powertturk'); return; }
+  if (t.id === 'rmbKral') { radyoSec('kralfm'); return; }
+  if (t.id === 'radyoPlayBtn') { radyoPlayPause(); return; }
 });
 
 // FOOTER ACCORDION
