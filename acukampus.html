@@ -68,14 +68,14 @@
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(15,14,23,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;}
+.nav{position:sticky;top:0;z-index:400;background:rgba(15,14,23,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;}
 .nav-badge{width:36px;height:36px;background:linear-gradient(135deg,#7c3aed,#a855f7,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.45);}
 .nav-isim{font-size:.92rem;font-weight:800;background:linear-gradient(135deg,#c4b5fd,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .nav-uni{font-size:.58rem;color:var(--soluk);}
 .canli{display:flex;align-items:center;gap:.3rem;font-size:.65rem;font-weight:600;color:#22c55e;}
 .canli::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pls 2s infinite;}
 @keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-.nav-paylas{background:linear-gradient(135deg,var(--mor),var(--mor2));color:#fff;border:none;border-radius:8px;padding:.42rem .85rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+.nav-paylas{background:linear-gradient(135deg,var(--mor),var(--mor2));color:#fff;border:none;border-radius:8px;padding:.42rem .85rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 
 /* HERO */
 .hero{background:linear-gradient(160deg,#12102a,#1a1535,#0f0e17);padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
@@ -130,7 +130,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .bos{text-align:center;padding:3.5rem 1rem;color:var(--dim);}
 
 /* PAYLAŞIM MODAL */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .2s;}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9000;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .2s;}
 .overlay.acik{opacity:1;pointer-events:all;}
 .modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1.1rem 2rem;width:100%;max-width:640px;margin:0 auto;transform:translateY(100%);transition:transform .28s cubic-bezier(.32,.72,0,1);border-top:1px solid var(--border2);}
 .overlay.acik .modal{transform:translateY(0);}
@@ -143,7 +143,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .gonder-btn:disabled{opacity:.5;cursor:not-allowed;}
 .basari{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:.85rem;font-size:.82rem;color:#4ade80;text-align:center;margin-top:.6rem;}
 
-/* CİNSİYET */
+/* CINSIYET */
 .cinsiyet-wrap{display:flex;gap:.5rem;margin-bottom:.65rem;}
 .c-btn{flex:1;padding:.65rem;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--dim);font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;transition:.15s;}
 .c-btn.secili{border-color:var(--mor);color:var(--mor-c);background:var(--mor-a);}
@@ -156,12 +156,12 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .toggle.on::after{left:20px;}
 
 /* BOTTOM NAV */
-.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(15,14,23,.92);backdrop-filter:blur(24px);border-top:1px solid var(--border);display:flex;padding:0 0 env(safe-area-inset-bottom) 0;}
-.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.18rem;padding:.7rem .5rem .55rem;background:transparent;border:none;color:var(--soluk);font-size:.6rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(15,14,23,.92);backdrop-filter:blur(24px);border-top:1px solid var(--border);display:flex;padding:0 0 env(safe-area-inset-bottom) 0;}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:.18rem;padding:.7rem .5rem .55rem;background:transparent;border:none;color:var(--soluk);font-size:.6rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .bnav-btn.aktif{color:var(--mor-c);}
 .bnav-ic{font-size:1.25rem;line-height:1;}
 .bnav-plus-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:.18rem;padding:.55rem .5rem .45rem;}
-.bnav-plus{width:42px;height:42px;background:linear-gradient(135deg,var(--mor),var(--mor2));border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 4px 14px rgba(124,58,237,.45);cursor:pointer;border:none;margin-top:-14px;}
+.bnav-plus{width:42px;height:42px;background:linear-gradient(135deg,var(--mor),var(--mor2));border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 4px 14px rgba(124,58,237,.45);cursor:pointer;border:none;margin-top:-14px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
 .bnav-plus-lbl{font-size:.6rem;color:var(--mor-c);font-weight:600;}
 
 /* FOOTER */
@@ -189,7 +189,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 
 <!-- GÜNCELLEME BANDI -->
-<div style="background:rgba(124,58,237,.12);border-bottom:1px solid rgba(124,58,237,.2);padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;">
+<div style="background:rgba(124,58,237,.12);border-bottom:1px solid rgba(124,58,237,.2);padding:.45rem 1rem;display:flex;align-items:center;gap:.5rem;pointer-events:none;">
   <span style="font-size:.65rem;font-weight:700;color:var(--mor-c);">✨ Mayıs 2026 güncellendi</span>
   <span style="font-size:.6rem;color:var(--soluk);">· Son güncelleme: 16.05.2026</span>
 </div>
@@ -326,7 +326,7 @@ var KAT = {
   ilan:{l:'İlan',e:'🏠',c:'#22c55e',bg:'rgba(34,197,94,.13)'},
 };
 var RENKLER=['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
-var CİNSİYET_EMOJI={erkek:'👦',kadin:'👧',belirtme:'🙂'};
+var CINSIYET_EMOJI={erkek:'👦',kadin:'👧',belirtme:'🙂'};
 
 var anonimAktif = true;
 var seciliCinsiyet = 'belirtme';
@@ -372,7 +372,7 @@ function anonimToggle(){
   }
 }
 
-// ── CİNSİYET ──
+// ── CINSIYET ──
 function cinsiyetSec(c){
   seciliCinsiyet = c;
   ['Erkek','Kadin','Belirtme'].forEach(function(x){
@@ -414,7 +414,7 @@ function listele(kat){
       var d = doc.data();
       var k = KAT[d.kategori]||{l:d.kategori,e:'📌',c:'#888',bg:'rgba(136,136,136,.1)'};
       var nick = d.nick || 'Anonim';
-      var emoji = CİNSİYET_EMOJI[d.cinsiyet] || (d.anonim ? '🙂' : '🙂');
+      var emoji = CINSIYET_EMOJI[d.cinsiyet] || (d.anonim ? '🙂' : '🙂');
       var r = renkAl(nick);
 
       html += '<div class="kart">';
@@ -549,7 +549,7 @@ function yorumlariYukle(postId){
       snap.forEach(function(doc){
         var y=doc.data();
         var nick=y.nick||'Anonim';
-        var emoji=CİNSİYET_EMOJI[y.cinsiyet]||'🙂';
+        var emoji=CINSIYET_EMOJI[y.cinsiyet]||'🙂';
         var r=renkAl(nick);
         html+='<div class="yorum-item">';
         html+='<div class="y-av" style="background:'+r+'22;color:'+r+'">'+emoji+'</div>';
