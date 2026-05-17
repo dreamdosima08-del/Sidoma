@@ -259,6 +259,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
       <span class="flbl">Görünen Adın</span>
       <input type="text" class="fsel" id="fIsim" placeholder="Adın veya takma adın" maxlength="30" style="margin-bottom:0">
     </div>
+    <span class="flbl" style="margin-top:.1rem">📎 Drive Linki <span style="color:var(--soluk);font-weight:400;text-transform:none;letter-spacing:0">(isteğe bağlı)</span></span>
+    <input type="url" class="fsel" id="fLink" placeholder="https://drive.google.com/..." style="margin-bottom:.6rem">
     <button class="gonder-btn" id="btnGonder">🚀 Gönder</button>
     <div class="basari" id="basari">✅ Gönderildi! İnceleme sonrası yayınlanacak.</div>
   </div>
@@ -473,6 +475,17 @@ function listele(kat) {
       html += '<span class="badge" style="background:'+k.bg+';color:'+k.c+'">'+k.e+' '+k.l+'</span>';
       html += '</div>';
       html += '<div class="kart-metin">'+d.metin.replace(/\n/g,'<br>')+'</div>';
+      if(d.link){
+        var linkGoster = d.link;
+        var linkIsim = '📎 Dosyayı Aç';
+        if(d.link.indexOf('drive.google.com')>-1) linkIsim='📄 Google Drive'da Aç';
+        else if(d.link.indexOf('docs.google.com')>-1) linkIsim='📝 Google Docs'ta Aç';
+        html += '<a href="'+d.link+'" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.5rem;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.25);border-radius:10px;padding:.55rem .8rem;text-decoration:none;margin-bottom:.6rem;">';
+        html += '<span style="font-size:1.1rem">📄</span>';
+        html += '<div style="flex:1;min-width:0"><div style="font-size:.78rem;font-weight:700;color:#93c5fd;">'+linkIsim+'</div><div style="font-size:.62rem;color:var(--soluk);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+linkGoster.substring(0,50)+'...</div></div>';
+        html += '<span style="font-size:.75rem;color:#93c5fd;font-weight:700;flex-shrink:0">→</span>';
+        html += '</a>';
+      }
       html += '<div class="kart-alt">';
       html += '<button class="kbtn" data-id="'+doc.id+'" data-tip="begeni">👍 '+(d.begeni||0)+'</button>';
       html += '<button class="kbtn" data-id="'+doc.id+'" data-tip="yorum">💬 <span id="ys_'+doc.id+'">'+(d.yorumSayi||0)+'</span></button>';
@@ -554,6 +567,7 @@ function gonder(){
   if(!metin||metin.length<5){alert('Biraz daha uzun yaz.');return;}
   if(metin.length>800){alert('En fazla 800 karakter.');return;}
   btn.disabled=true; btn.textContent='Gonderiliyor...';
+  var link = document.getElementById('fLink').value.trim();
   var nick = anonAktif ? userAdi() : (document.getElementById('fIsim').value.trim() || userAdi());
   if(!anonAktif && document.getElementById('fIsim').value.trim()){
     localStorage.setItem('acu_nick', nick);
@@ -561,6 +575,7 @@ function gonder(){
   db.collection('acukampus').add({
     kategori:kat,metin:metin,anonim:anonAktif,nick:nick,
     durum:'bekliyor',begeni:0,yorumSayi:0,
+    link:link||null,
     olusturma:firebase.firestore.FieldValue.serverTimestamp()
   }).then(function(ref){
     fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{
@@ -570,6 +585,7 @@ function gonder(){
     btn.disabled=false; btn.textContent='🚀 Gonder';
     document.getElementById('fMetin').value='';
     document.getElementById('fKat').value='';
+    document.getElementById('fLink').value='';
     document.getElementById('basari').style.display='block';
     setTimeout(function(){document.getElementById('basari').style.display='none';modalKapat();},2500);
   }).catch(function(e){btn.disabled=false;btn.textContent='🚀 Gonder';alert('Hata: '+e.message);});
