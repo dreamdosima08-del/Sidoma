@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>ACU Kampus 2026 - Artvin Coruh Universitesi Ogrenci Platformu</title>
 <meta name="description" content="Artvin Coruh Universitesi ogrencileri icin anonim paylasim platformu. Itiraf, soru, ilan ve kampus haberleri. Acululer dijital bulusma noktasi 2026.">
-<meta name="keywords" content="acu kampus, artvin coruh universitesi, acu ogrenci platformu, anonim paylasim, artvin ogrenci, artvin kampus 2026">
+<meta name="keywords" content="acu kampus, artvin coruh universitesi, acu ogrenci platformu, bilgisayar muhendisligi, yazilim muhendisligi, orman muhendisligi, egitim fakultesi, hemsirelik, turizm, mimarlik, artvin kampus 2026, acu bolum kanallari">
 <meta name="robots" content="index,follow">
 <meta name="geo.region" content="TR-08">
 <link rel="canonical" href="https://artvinrehber.com/acukampus.html">
@@ -126,8 +126,16 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
   <div class="hero-sub">Kampüsün nabzını tut. Paylaşım yap, soru sor, ilan ver.</div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n" id="sGonderi">0</div><div class="stat-l">Gönderi</div></div>
-    <div class="stat"><div class="stat-n">8K</div><div class="stat-l">Öğrenci</div></div>
-    <div class="stat"><div class="stat-n">AÇÜ</div><div class="stat-l">Artvin Çoruh</div></div>
+    <div class="stat" onclick="katSec('bolum')" style="cursor:pointer">
+      <div class="stat-n" style="font-size:.72rem;">🏛️</div>
+      <div class="stat-l" style="line-height:1.4">Bölüm Kanalları</div>
+      <div style="font-size:.52rem;color:var(--soluk);margin-top:.1rem">Bilgisayar · Orman · Mimarlık...</div>
+    </div>
+    <div class="stat" onclick="katSec('program')" style="cursor:pointer">
+      <div class="stat-n" style="font-size:.72rem;">📋</div>
+      <div class="stat-l" style="line-height:1.4">Program Kanalları</div>
+      <div style="font-size:.52rem;color:var(--soluk);margin-top:.1rem">MYO · Lisansüstü · Sağlık...</div>
+    </div>
   </div>
 </div>
 
@@ -140,6 +148,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     <button class="kat-btn" data-kat="etkinlik">📢 Etkinlik</button>
     <button class="kat-btn" data-kat="mizah">😂 Mizah</button>
     <button class="kat-btn" data-kat="ders">🎓 Dersler</button>
+    <button class="kat-btn" data-kat="bolum">🏛️ Bölüm</button>
+    <button class="kat-btn" data-kat="program">📋 Program</button>
   </div>
 </div>
 
@@ -154,13 +164,47 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     <div class="kural">🛡️ Hakaret ve ifşa yasaktır. İnceleme sonrası yayınlanır.</div>
     <span class="flbl">Kategori</span>
     <select class="fsel" id="fKat">
-      <option value="">— Seç —</option>
-      <option value="itiraf">🤫 İtiraf</option>
-      <option value="soru">❓ Soru & Yardım</option>
-      <option value="ilan">🏠 İlan</option>
-      <option value="etkinlik">📢 Etkinlik</option>
-      <option value="mizah">😂 Mizah</option>
-      <option value="ders">🎓 Dersler</option>
+      <option value="">— Kategori Seç —</option>
+      <optgroup label="📢 Genel">
+        <option value="itiraf">🤫 İtiraf</option>
+        <option value="soru">❓ Soru & Yardım</option>
+        <option value="ilan">🏠 İlan</option>
+        <option value="etkinlik">📢 Etkinlik</option>
+        <option value="mizah">😂 Mizah</option>
+        <option value="ders">🎓 Dersler</option>
+      </optgroup>
+      <optgroup label="🏛️ Bölüm Kanalları — Lisans">
+        <option value="bolum_bilgisayar">💻 Bilgisayar Mühendisliği</option>
+        <option value="bolum_yazilim">💻 Yazılım Mühendisliği</option>
+        <option value="bolum_elektrik">⚡ Elektrik-Elektronik Müh.</option>
+        <option value="bolum_cevre">🌿 Çevre Mühendisliği</option>
+        <option value="bolum_harita">🗺️ Harita Mühendisliği</option>
+        <option value="bolum_orman">🌲 Orman Mühendisliği</option>
+        <option value="bolum_orman_end">🌲 Orman Endüstrisi Müh.</option>
+        <option value="bolum_egitim">📚 Eğitim Fakültesi</option>
+        <option value="bolum_hemsire">🏥 Hemşirelik</option>
+        <option value="bolum_saglik">🏥 Sağlık Bilimleri</option>
+        <option value="bolum_turizm">🏨 Turizm Fakültesi</option>
+        <option value="bolum_iktisat">📊 İktisat</option>
+        <option value="bolum_isletme">💼 İşletme</option>
+        <option value="bolum_mimarlik">🏛️ Mimarlık</option>
+        <option value="bolum_peyzaj">🌺 Peyzaj Mimarlığı</option>
+        <option value="bolum_spor">⚽ Spor Bilimleri</option>
+        <option value="bolum_sosyoloji">📖 Sosyoloji</option>
+        <option value="bolum_turk_dili">📖 Türk Dili ve Edebiyatı</option>
+        <option value="bolum_ilahiyat">🕌 İlahiyat</option>
+      </optgroup>
+      <optgroup label="📋 Program Kanalları — MYO & Lisansüstü">
+        <option value="prog_muhasebe">📋 Muhasebe</option>
+        <option value="prog_bilisim">💻 Bilişim Teknolojileri</option>
+        <option value="prog_tibbi">🏥 Tıbbi Görüntüleme</option>
+        <option value="prog_turizm_otel">🏨 Turizm ve Otel</option>
+        <option value="prog_insaat">🏗️ İnşaat Teknolojisi</option>
+        <option value="prog_elektrik">⚡ Elektrik Programı</option>
+        <option value="prog_cocuk">👶 Çocuk Gelişimi</option>
+        <option value="prog_saglik">💊 Sağlık Hizmetleri</option>
+        <option value="prog_yuksek">🎓 Lisansüstü</option>
+      </optgroup>
     </select>
     <span class="flbl">Ne yazmak istiyorsun?</span>
     <textarea class="ftxt" id="fMetin" placeholder="Yaz..."></textarea>
@@ -185,6 +229,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
   </div>
   <button class="nb" data-kat="soru"><span class="nb-ic">❓</span>Soru</button>
   <button class="nb" data-kat="ilan"><span class="nb-ic">🏠</span>İlan</button>
+  <button class="nb" data-kat="bolum"><span class="nb-ic">🏛️</span>Bölüm</button>
 </nav>
 
 <div class="footer">
@@ -217,6 +262,34 @@ var KAT={
   etkinlik:{l:'Etkinlik',e:'📢',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
   mizah:{l:'Mizah',e:'😂',c:'#f97316',bg:'rgba(249,115,22,.13)'},
   ders:{l:'Dersler',e:'🎓',c:'#06b6d4',bg:'rgba(6,182,212,.13)'},
+  bolum:{l:'Bölüm Kanalı',e:'🏛️',c:'#8b5cf6',bg:'rgba(139,92,246,.13)'},
+  program:{l:'Program Kanalı',e:'📋',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_muhasebe:{l:'Muhasebe',e:'📋',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_bilisim:{l:'Bilişim Teknolojileri',e:'💻',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_tibbi:{l:'Tıbbi Görüntüleme',e:'🏥',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_turizm_otel:{l:'Turizm ve Otel',e:'🏨',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_insaat:{l:'İnşaat Teknolojisi',e:'🏗️',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_elektrik:{l:'Elektrik Programı',e:'⚡',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_cocuk:{l:'Çocuk Gelişimi Prog.',e:'👶',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_saglik:{l:'Sağlık Hizmetleri',e:'💊',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  prog_yuksek:{l:'Lisansüstü',e:'🎓',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+
+  bolum_bilgisayar:{l:'Bilgisayar Müh.',e:'💻',c:'#8b5cf6',bg:'rgba(139,92,246,.13)'},
+  bolum_yazilim:{l:'Yazılım Müh.',e:'💻',c:'#8b5cf6',bg:'rgba(139,92,246,.13)'},
+  bolum_elektrik:{l:'Elektrik-Elektronik',e:'⚡',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},
+  bolum_cevre:{l:'Çevre Müh.',e:'🌿',c:'#22c55e',bg:'rgba(34,197,94,.13)'},
+  bolum_harita:{l:'Harita Müh.',e:'🗺️',c:'#3b82f6',bg:'rgba(59,130,246,.13)'},
+  bolum_orman:{l:'Orman Müh.',e:'🌲',c:'#16a34a',bg:'rgba(22,163,74,.13)'},
+  bolum_orman_end:{l:'Orman End. Müh.',e:'🌲',c:'#16a34a',bg:'rgba(22,163,74,.13)'},
+  bolum_egitim:{l:'Eğitim Fakültesi',e:'📚',c:'#06b6d4',bg:'rgba(6,182,212,.13)'},
+  bolum_hemsire:{l:'Hemşirelik',e:'🏥',c:'#ef4444',bg:'rgba(239,68,68,.13)'},
+  bolum_turizm:{l:'Turizm',e:'🏨',c:'#f97316',bg:'rgba(249,115,22,.13)'},
+  bolum_iktisat:{l:'İktisat',e:'📊',c:'#6366f1',bg:'rgba(99,102,241,.13)'},
+  bolum_isletme:{l:'İşletme',e:'💼',c:'#6366f1',bg:'rgba(99,102,241,.13)'},
+  bolum_mimarlik:{l:'Mimarlık',e:'🏛️',c:'#8b5cf6',bg:'rgba(139,92,246,.13)'},
+  bolum_peyzaj:{l:'Peyzaj Mimarlığı',e:'🌺',c:'#ec4899',bg:'rgba(236,72,153,.13)'},
+  bolum_spor:{l:'Spor Bilimleri',e:'⚽',c:'#22c55e',bg:'rgba(34,197,94,.13)'},
+
 };
 var RENKLER=['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
 var anonAktif=true;
@@ -251,7 +324,9 @@ function listele(kat){
   var akis=document.getElementById('akis');
   akis.innerHTML='<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem">Yukleniyor...</div>';
   var q=db.collection('acukampus').where('durum','==','aktif').limit(30);
-  if(kat&&kat!=='hepsi')q=q.where('kategori','==',kat);
+  if(kat&&kat!=='hepsi'&&kat!=='bolum')q=q.where('kategori','==',kat);
+  if(kat==='bolum')q=q.where('kategori','>=','bolum_').where('kategori','<=','bolum_z');
+  if(kat==='program')q=q.where('kategori','>=','prog_').where('kategori','<=','prog_z');
   q.onSnapshot(function(snap){
     if(snap.empty){
       akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.35rem">Gonderi yok</div><div style="font-size:.8rem">Ilk paylasimi sen yap!</div></div>';
