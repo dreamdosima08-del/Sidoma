@@ -306,37 +306,37 @@ var KAT = {
 };
 
 var BOLUMLER = [
-  {kat:'bolum_bilgisayar',e:'💻',isim:'Bilgisayar Mühendisliği'},
-  {kat:'bolum_yazilim',e:'💻',isim:'Yazılım Mühendisliği'},
-  {kat:'bolum_elektrik',e:'⚡',isim:'Elektrik-Elektronik Müh.'},
-  {kat:'bolum_cevre',e:'🌿',isim:'Çevre Mühendisliği'},
-  {kat:'bolum_harita',e:'🗺️',isim:'Harita Mühendisliği'},
-  {kat:'bolum_orman',e:'🌲',isim:'Orman Mühendisliği'},
-  {kat:'bolum_orman_end',e:'🌲',isim:'Orman Endüstrisi Müh.'},
-  {kat:'bolum_egitim',e:'📚',isim:'Eğitim Fakültesi'},
-  {kat:'bolum_hemsire',e:'🏥',isim:'Hemşirelik'},
-  {kat:'bolum_saglik',e:'💊',isim:'Sağlık Bilimleri'},
-  {kat:'bolum_turizm',e:'🏨',isim:'Turizm Fakültesi'},
-  {kat:'bolum_iktisat',e:'📊',isim:'İktisat'},
-  {kat:'bolum_isletme',e:'💼',isim:'İşletme'},
-  {kat:'bolum_mimarlik',e:'🏛️',isim:'Mimarlık'},
-  {kat:'bolum_peyzaj',e:'🌺',isim:'Peyzaj Mimarlığı'},
-  {kat:'bolum_spor',e:'⚽',isim:'Spor Bilimleri'},
-  {kat:'bolum_sosyoloji',e:'📖',isim:'Sosyoloji'},
-  {kat:'bolum_turk_dili',e:'📖',isim:'Türk Dili ve Edebiyatı'},
-  {kat:'bolum_ilahiyat',e:'🕌',isim:'İlahiyat'}
+  {kat:'bolum_bilgisayar',e:'💻',isim:'Bilgisayar Mühendisliği Grubu'},
+  {kat:'bolum_yazilim',e:'💻',isim:'Yazılım Mühendisliği Grubu'},
+  {kat:'bolum_elektrik',e:'⚡',isim:'Elektrik-Elektronik Müh. Grubu'},
+  {kat:'bolum_cevre',e:'🌿',isim:'Çevre Mühendisliği Grubu'},
+  {kat:'bolum_harita',e:'🗺️',isim:'Harita Mühendisliği Grubu'},
+  {kat:'bolum_orman',e:'🌲',isim:'Orman Mühendisliği Grubu'},
+  {kat:'bolum_orman_end',e:'🌲',isim:'Orman Endüstrisi Müh. Grubu'},
+  {kat:'bolum_egitim',e:'📚',isim:'Eğitim Fakültesi Grubu'},
+  {kat:'bolum_hemsire',e:'🏥',isim:'Hemşirelik Grubu'},
+  {kat:'bolum_saglik',e:'💊',isim:'Sağlık Bilimleri Grubu'},
+  {kat:'bolum_turizm',e:'🏨',isim:'Turizm Fakültesi Grubu'},
+  {kat:'bolum_iktisat',e:'📊',isim:'İktisat Grubu'},
+  {kat:'bolum_isletme',e:'💼',isim:'İşletme Grubu'},
+  {kat:'bolum_mimarlik',e:'🏛️',isim:'Mimarlık Grubu'},
+  {kat:'bolum_peyzaj',e:'🌺',isim:'Peyzaj Mimarlığı Grubu'},
+  {kat:'bolum_spor',e:'⚽',isim:'Spor Bilimleri Grubu'},
+  {kat:'bolum_sosyoloji',e:'📖',isim:'Sosyoloji Grubu'},
+  {kat:'bolum_turk_dili',e:'📖',isim:'Türk Dili ve Edebiyatı Grubu'},
+  {kat:'bolum_ilahiyat',e:'🕌',isim:'İlahiyat Grubu'}
 ];
 
 var PROGRAMLAR = [
-  {kat:'prog_muhasebe',e:'📋',isim:'Muhasebe'},
-  {kat:'prog_bilisim',e:'💻',isim:'Bilişim Teknolojileri'},
-  {kat:'prog_tibbi',e:'🏥',isim:'Tıbbi Görüntüleme'},
-  {kat:'prog_turizm_otel',e:'🏨',isim:'Turizm ve Otel'},
-  {kat:'prog_insaat',e:'🏗️',isim:'İnşaat Teknolojisi'},
-  {kat:'prog_elektrik_p',e:'⚡',isim:'Elektrik Programı'},
-  {kat:'prog_cocuk',e:'👶',isim:'Çocuk Gelişimi'},
-  {kat:'prog_saglik',e:'💊',isim:'Sağlık Hizmetleri'},
-  {kat:'prog_yuksek',e:'🎓',isim:'Lisansüstü'}
+  {kat:'prog_muhasebe',e:'📋',isim:'Muhasebe Grubu'},
+  {kat:'prog_bilisim',e:'💻',isim:'Bilişim Teknolojileri Grubu'},
+  {kat:'prog_tibbi',e:'🏥',isim:'Tıbbi Görüntüleme Grubu'},
+  {kat:'prog_turizm_otel',e:'🏨',isim:'Turizm ve Otel Grubu'},
+  {kat:'prog_insaat',e:'🏗️',isim:'İnşaat Teknolojisi Grubu'},
+  {kat:'prog_elektrik_p',e:'⚡',isim:'Elektrik Programı Grubu'},
+  {kat:'prog_cocuk',e:'👶',isim:'Çocuk Gelişimi Grubu'},
+  {kat:'prog_saglik',e:'💊',isim:'Sağlık Hizmetleri Grubu'},
+  {kat:'prog_yuksek',e:'🎓',isim:'Lisansüstü Grubu'}
 ];
 
 var RENKLER = ['#7c3aed','#3b82f6','#22c55e','#f59e0b','#ef4444','#f97316','#06b6d4','#ec4899'];
@@ -517,8 +517,14 @@ document.addEventListener('click',function(e){
   // Kanal item tıklama
   var ki=t.closest('.kanal-item');
   if(ki&&ki.dataset.bolumKat){
-    katSec(ki.dataset.bolumKat);
-    document.getElementById('heroSub').textContent='← '+ki.dataset.bolumIsim+' kanalı';
+    var bKat=ki.dataset.bolumKat;
+    var bIsim=ki.dataset.bolumIsim;
+    // Akışı göster
+    katSec(bKat);
+    document.getElementById('heroSub').textContent='📌 '+bIsim;
+    // Modalı aç, kategoriyi seç
+    document.getElementById('fKat').value=bKat;
+    modalAc();
     return;
   }
 
