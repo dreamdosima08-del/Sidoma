@@ -356,7 +356,7 @@ function kanalListesiGoster(tip) {
     {kat:'bolum_spor',e:'⚽',isim:'Spor Bilimleri'},
     {kat:'bolum_sosyoloji',e:'📖',isim:'Sosyoloji'},
     {kat:'bolum_turk_dili',e:'📖',isim:'Türk Dili ve Edebiyatı'},
-    {kat:'bolum_ilahiyat',e:'🕌',isim:'İlahiyat'},
+    {kat:'bolum_ilahiyat',e:'🕌',isim:'İlahiyat'}
   ];
   var PROGRAMLAR = [
     {kat:'prog_muhasebe',e:'📋',isim:'Muhasebe'},
@@ -367,20 +367,21 @@ function kanalListesiGoster(tip) {
     {kat:'prog_elektrik',e:'⚡',isim:'Elektrik Programı'},
     {kat:'prog_cocuk',e:'👶',isim:'Çocuk Gelişimi'},
     {kat:'prog_saglik',e:'💊',isim:'Sağlık Hizmetleri'},
-    {kat:'prog_yuksek',e:'🎓',isim:'Lisansüstü'},
+    {kat:'prog_yuksek',e:'🎓',isim:'Lisansüstü'}
   ];
-  var liste = tip==='bolum' ? BOLUMLER : PROGRAMLAR;
-  var baslik = tip==='bolum' ? '🏛️ Bölüm Kanalları — Lisans' : '📋 Program Kanalları — MYO & Lisansüstü';
-  var html='<div class="kanal-liste"><div class="kanal-grup-h">'+baslik+'</div>';
-  liste.forEach(function(item){
-    html+='<div class="kanal-item" onclick="katSec(''+item.kat+'',''+item.isim+'')">';
-    html+='<span class="kanal-emoji">'+item.e+'</span>';
-    html+='<span class="kanal-isim">'+item.isim+'</span>';
-    html+='<span class="kanal-ok">→</span>';
-    html+='</div>';
+  var liste = tip === 'bolum' ? BOLUMLER : PROGRAMLAR;
+  var baslik = tip === 'bolum' ? '🏛️ Bölüm Kanalları' : '📋 Program Kanalları';
+  var html = '<div style="padding:.75rem 0;display:flex;flex-direction:column;gap:.45rem;max-width:640px;margin:0 auto;">';
+  html += '<div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soluk);margin-bottom:.2rem;">'+baslik+'</div>';
+  liste.forEach(function(item) {
+    html += '<div onclick="katSec(''+item.kat+'',''+item.isim+'')" style="display:flex;align-items:center;gap:.75rem;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.85rem 1rem;cursor:pointer;touch-action:manipulation;">';
+    html += '<span style="font-size:1.3rem;flex-shrink:0;">'+item.e+'</span>';
+    html += '<span style="font-size:.88rem;font-weight:700;color:var(--text);flex:1;">'+item.isim+'</span>';
+    html += '<span style="font-size:.8rem;color:var(--morc);font-weight:700;">→</span>';
+    html += '</div>';
   });
-  html+='</div>';
-  akis.innerHTML=html;
+  html += '</div>';
+  akis.innerHTML = html;
 }
 
 function listele(kat){
