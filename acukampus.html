@@ -103,6 +103,15 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 1rem 5rem;margin-top:1rem}
 .ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
 .ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem;display:none}
+
+.kanal-liste{padding:.75rem .9rem;display:flex;flex-direction:column;gap:.5rem;max-width:640px;margin:0 auto;padding-bottom:120px;}
+.kanal-grup-h{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soluk);margin:.5rem 0 .35rem;padding-left:.25rem;}
+.kanal-item{display:flex;align-items:center;gap:.75rem;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.85rem 1rem;cursor:pointer;transition:all .15s;touch-action:manipulation;}
+.kanal-item:active{border-color:var(--morb);background:var(--mora);}
+.kanal-emoji{font-size:1.3rem;flex-shrink:0;}
+.kanal-isim{font-size:.88rem;font-weight:700;color:var(--text);flex:1;}
+.kanal-sayi{font-size:.65rem;color:var(--soluk);}
+.kanal-ok{font-size:.8rem;color:var(--morc);font-weight:700;}
 </style>
 </head>
 <body>
@@ -308,9 +317,15 @@ function modalKapat(){document.getElementById('overlay').classList.remove('ac');
 function anonToggle(){anonAktif=!anonAktif;document.getElementById('anonTog').className='tog'+(anonAktif?' on':'');}
 function ftrAc(id){var el=document.getElementById(id+'-ic');var ok=document.getElementById(id.replace('kural','kural')+'-ok');if(!el)return;var ac=el.style.display==='block';el.style.display=ac?'none':'block';if(ok)ok.textContent=ac?'▾':'▴';}
 
-function katSec(kat){
+function katSec(kat, bolumIsim){
   document.querySelectorAll('.kat-btn').forEach(function(b){b.classList.toggle('aktif',b.dataset.kat===kat);});
   document.querySelectorAll('.nb[data-kat]').forEach(function(b){b.classList.toggle('on',b.dataset.kat===kat);});
+  if(bolumIsim){
+    // Bölüm/program kanalı - başlık güncelle
+    document.querySelector('.hero-sub').textContent = '← ' + bolumIsim + ' kanalı';
+  } else {
+    document.querySelector('.hero-sub').textContent = 'Kampüsün nabzını tut. Paylaşım yap, soru sor, ilan ver.';
+  }
   listele(kat);
 }
 
@@ -320,8 +335,57 @@ function istatistik(){
     .catch(function(){});
 }
 
+function kanalListesiGoster(tip) {
+  var akis = document.getElementById('akis');
+  var BOLUMLER = [
+    {kat:'bolum_bilgisayar',e:'💻',isim:'Bilgisayar Mühendisliği'},
+    {kat:'bolum_yazilim',e:'💻',isim:'Yazılım Mühendisliği'},
+    {kat:'bolum_elektrik',e:'⚡',isim:'Elektrik-Elektronik Müh.'},
+    {kat:'bolum_cevre',e:'🌿',isim:'Çevre Mühendisliği'},
+    {kat:'bolum_harita',e:'🗺️',isim:'Harita Mühendisliği'},
+    {kat:'bolum_orman',e:'🌲',isim:'Orman Mühendisliği'},
+    {kat:'bolum_orman_end',e:'🌲',isim:'Orman Endüstrisi Müh.'},
+    {kat:'bolum_egitim',e:'📚',isim:'Eğitim Fakültesi'},
+    {kat:'bolum_hemsire',e:'🏥',isim:'Hemşirelik'},
+    {kat:'bolum_saglik',e:'💊',isim:'Sağlık Bilimleri'},
+    {kat:'bolum_turizm',e:'🏨',isim:'Turizm Fakültesi'},
+    {kat:'bolum_iktisat',e:'📊',isim:'İktisat'},
+    {kat:'bolum_isletme',e:'💼',isim:'İşletme'},
+    {kat:'bolum_mimarlik',e:'🏛️',isim:'Mimarlık'},
+    {kat:'bolum_peyzaj',e:'🌺',isim:'Peyzaj Mimarlığı'},
+    {kat:'bolum_spor',e:'⚽',isim:'Spor Bilimleri'},
+    {kat:'bolum_sosyoloji',e:'📖',isim:'Sosyoloji'},
+    {kat:'bolum_turk_dili',e:'📖',isim:'Türk Dili ve Edebiyatı'},
+    {kat:'bolum_ilahiyat',e:'🕌',isim:'İlahiyat'},
+  ];
+  var PROGRAMLAR = [
+    {kat:'prog_muhasebe',e:'📋',isim:'Muhasebe'},
+    {kat:'prog_bilisim',e:'💻',isim:'Bilişim Teknolojileri'},
+    {kat:'prog_tibbi',e:'🏥',isim:'Tıbbi Görüntüleme'},
+    {kat:'prog_turizm_otel',e:'🏨',isim:'Turizm ve Otel'},
+    {kat:'prog_insaat',e:'🏗️',isim:'İnşaat Teknolojisi'},
+    {kat:'prog_elektrik',e:'⚡',isim:'Elektrik Programı'},
+    {kat:'prog_cocuk',e:'👶',isim:'Çocuk Gelişimi'},
+    {kat:'prog_saglik',e:'💊',isim:'Sağlık Hizmetleri'},
+    {kat:'prog_yuksek',e:'🎓',isim:'Lisansüstü'},
+  ];
+  var liste = tip==='bolum' ? BOLUMLER : PROGRAMLAR;
+  var baslik = tip==='bolum' ? '🏛️ Bölüm Kanalları — Lisans' : '📋 Program Kanalları — MYO & Lisansüstü';
+  var html='<div class="kanal-liste"><div class="kanal-grup-h">'+baslik+'</div>';
+  liste.forEach(function(item){
+    html+='<div class="kanal-item" onclick="katSec(''+item.kat+'',''+item.isim+'')">';
+    html+='<span class="kanal-emoji">'+item.e+'</span>';
+    html+='<span class="kanal-isim">'+item.isim+'</span>';
+    html+='<span class="kanal-ok">→</span>';
+    html+='</div>';
+  });
+  html+='</div>';
+  akis.innerHTML=html;
+}
+
 function listele(kat){
   var akis=document.getElementById('akis');
+  if(kat==='bolum'||kat==='program'){kanalListesiGoster(kat);return;}
   akis.innerHTML='<div style="text-align:center;padding:2rem;color:var(--soluk);font-size:.85rem">Yukleniyor...</div>';
   var q=db.collection('acukampus').where('durum','==','aktif').limit(30);
   if(kat&&kat!=='hepsi'&&kat!=='bolum')q=q.where('kategori','==',kat);
