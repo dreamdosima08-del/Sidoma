@@ -223,7 +223,13 @@ var anonAktif=true;
 
 function renk(s){var n=0;for(var i=0;i<s.length;i++)n+=s.charCodeAt(i);return RENKLER[n%RENKLER.length];}
 function zaman(ts){if(!ts)return '';var s=Math.floor((Date.now()-ts.toMillis())/1000);if(s<60)return 'Az once';if(s<3600)return Math.floor(s/60)+' dk once';if(s<86400)return Math.floor(s/3600)+' sa once';return Math.floor(s/86400)+' gun once';}
-function userAdi(){return 'User'+String(Math.floor(Math.random()*900)+100).padStart(3,'0');}
+function userAdi(){
+  var nick=localStorage.getItem('acu_nick');
+  if(nick)return nick;
+  nick='User'+String(Math.floor(Math.random()*900)+100).padStart(3,'0');
+  localStorage.setItem('acu_nick',nick);
+  return nick;
+}
 function modalAc(){document.getElementById('overlay').classList.add('ac');document.body.style.overflow='hidden';}
 function modalKapat(){document.getElementById('overlay').classList.remove('ac');document.body.style.overflow='';}
 function anonToggle(){anonAktif=!anonAktif;document.getElementById('anonTog').className='tog'+(anonAktif?' on':'');}
@@ -272,10 +278,10 @@ function listele(kat){
       html+='<div class="yorum-wrap" id="yw_'+doc.id+'">';
       html+='<div class="yorum-liste" id="yl_'+doc.id+'"></div>';
       html+='<div class="yorum-yaz">';
-      html+='<input class="yorum-inp" id="yi_'+doc.id+'" placeholder="Yorum yaz..." maxlength="300">';
+      html+='<input class="yorum-inp" id="yi_'+doc.id+'" placeholder="Yorum yaz..." maxlength="300" onkeydown="if(event.key===\'Enter\'){event.preventDefault();yorumGonder(\''+doc.id+'\');}">';
       html+='<button class="yorum-gonder" data-id="'+doc.id+'" data-tip="yorumgonder">▶</button>';
       html+='</div>';
-      html+='<div class="yorum-bilgi" id="yb_'+doc.id+'">Yorumlar inceleme sonrasi yayinlanir.</div>';
+      html+='<div class="yorum-bilgi" id="yb_'+doc.id+'"></div>';
       html+='</div>';
       html+='</div>';
     });
@@ -288,6 +294,16 @@ function listele(kat){
   });
 }
 
+
+function replyAc(postId, yorumId, hedefNick) {
+  // Yorum input'una @nick yaz
+  var inp = document.getElementById('yi_' + postId);
+  if (!inp) return;
+  inp.value = '@' + hedefNick + ' ';
+  inp.focus();
+  // Sayfayi o input'a kaydir
+  inp.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
 function yorumAc(postId){
   var yw=document.getElementById('yw_'+postId);
   if(!yw)return;
@@ -311,7 +327,9 @@ function yorumlariYukle(postId){
         html+='<div class="yi">';
         html+='<div class="yi-av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
         html+='<div class="yi-ic"><span class="yi-nick">'+nick+'</span><span class="yi-zaman">'+zaman(y.olusturma)+'</span>';
-        html+='<div class="yi-metin">'+y.metin.replace(/\n/g,'<br>')+'</div></div></div>';
+        html+='<div class="yi-metin">'+y.metin.replace(/\n/g,'<br>')+'</div>';
+        html+='<button style="background:none;border:none;color:var(--morc);font-size:.65rem;cursor:pointer;padding:.15rem 0;font-family:Inter,sans-serif;" onclick="replyAc(\''+postId+'\',\''+doc.id+'\'  ,\''+nick+'\');">↩ Yanıtla</button>';
+        html+='</div></div>';
       });
       liste.innerHTML=html;
     }).catch(function(){
