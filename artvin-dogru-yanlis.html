@@ -245,6 +245,16 @@ button{cursor:pointer;border:none;font-family:inherit;}
         <button class="px" onclick="pX()">X</button>
         <button class="pcp" id="pCp" onclick="pCp()">📋 Kopyala</button>
       </div>
+
+      <!-- SIRALAMA -->
+      <div style="margin-top:1.25rem;background:rgba(255,255,255,.06);border-radius:14px;padding:1rem;">
+        <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.65rem;">🏆 En İyi 10 Oyuncu</div>
+        <div id="gercekSiralama" style="min-height:60px;"><div style="font-size:.75rem;color:rgba(255,255,255,.4);text-align:center;padding:.5rem">Yükleniyor...</div></div>
+        <button onclick="gercekSiralamayiYukle()" style="width:100%;margin-top:.5rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);border-radius:8px;padding:.4rem;font-size:.7rem;cursor:pointer;font-family:inherit;">🔄 Yenile</button>
+      </div>
+
+      <!-- TEKRAR OYNA -->
+      <button onclick="window.location.reload()" style="width:100%;margin-top:.75rem;background:linear-gradient(135deg,#2d7a4f,#1b5e38);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.95rem;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.02em;">🔄 Tekrar Oyna</button>
     </div>
     <button class="btk" onclick="git(1)">🔄 Tekrar Dene</button>
     <a href="/" style="font-size:.72rem;color:var(--d);text-decoration:none;padding:.4rem">Ana Sayfaya Don</a>
