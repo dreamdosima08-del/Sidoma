@@ -230,31 +230,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     <span class="flbl">Ders Adı *</span>
     <input type="text" class="finp" id="fDers" placeholder="Örn: Veri Yapıları ve Algoritmalar" maxlength="80">
 
-    <span class="flbl">Bölüm *</span>
-    <select class="finp" id="fBolum">
-      <option value="">— Bölüm Seçin —</option>
-      <option value="bilgisayar">💻 Bilgisayar Mühendisliği</option>
-      <option value="yazilim">💻 Yazılım Mühendisliği</option>
-      <option value="elektrik">⚡ Elektrik-Elektronik Müh.</option>
-      <option value="cevre">🌿 Çevre Mühendisliği</option>
-      <option value="harita">🗺️ Harita Mühendisliği</option>
-      <option value="orman">🌲 Orman Mühendisliği</option>
-      <option value="orman_end">🌲 Orman Endüstrisi Müh.</option>
-      <option value="egitim">📚 Eğitim Fakültesi</option>
-      <option value="hemsire">🏥 Hemşirelik</option>
-      <option value="saglik">💊 Sağlık Bilimleri</option>
-      <option value="turizm">🏨 Turizm</option>
-      <option value="iktisat">📊 İktisat</option>
-      <option value="isletme">💼 İşletme</option>
-      <option value="mimarlik">🏛️ Mimarlık</option>
-      <option value="peyzaj">🌺 Peyzaj Mimarlığı</option>
-      <option value="spor">⚽ Spor Bilimleri</option>
-      <option value="sosyoloji">📖 Sosyoloji</option>
-      <option value="turk_dili">📖 Türk Dili ve Edebiyatı</option>
-      <option value="ilahiyat">🕌 İlahiyat</option>
-      <option value="myo">🎓 MYO</option>
-      <option value="lisansustu">🎓 Lisansüstü</option>
-    </select>
+    <input type="hidden" id="fBolum">
+    <div id="seciliBolumGoster" style="background:var(--mora);border:1px solid var(--morb);border-radius:10px;padding:.65rem .9rem;font-size:.85rem;font-weight:700;color:var(--morc);margin-bottom:.5rem;display:none"></div>
 
     <span class="flbl">Not Tipi *</span>
     <select class="finp" id="fTip">
@@ -283,8 +260,17 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     <span class="flbl">Açıklama</span>
     <textarea class="ftxt" id="fAciklama" placeholder="Notun içeriği hakkında kısa bilgi..." maxlength="300"></textarea>
 
-    <span class="flbl">Nick / İsim</span>
-    <input type="text" class="finp" id="fNick" placeholder="Anonim kalabilirsin" maxlength="30">
+    <div id="anonRow" style="display:flex;align-items:center;gap:.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.65rem .9rem;margin-bottom:.5rem;cursor:pointer">
+      <div id="anonTog" style="width:40px;height:22px;background:var(--mor);border-radius:11px;position:relative;flex-shrink:0;transition:.2s"><div style="position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:3px;right:3px;transition:.2s"></div></div>
+      <div style="flex:1">
+        <div style="font-size:.82rem;font-weight:600" id="anonLbl">Anonim paylaş</div>
+        <div style="font-size:.63rem;color:var(--soluk)" id="anonAlt">Kullanıcı adın gizli kalır</div>
+      </div>
+    </div>
+    <div id="isimAlan" style="display:none;margin-bottom:.5rem">
+      <span class="flbl">Görünen Adın</span>
+      <input type="text" class="finp" id="fNick" placeholder="Adın veya takma adın" maxlength="30" style="margin-bottom:0">
+    </div>
 
     <button class="gonder-btn" id="btnGonder">📎 Notu Paylaş</button>
     <div class="basari" id="basari">✅ Notun gönderildi! İnceleme sonrası yayınlanacak.</div>
@@ -344,7 +330,21 @@ var aramaText = '';
 var tumNotlar = [];
 
 // MODAL
-function modalAc(){document.getElementById('overlay').classList.add('ac');document.body.style.overflow='hidden';}
+function modalAc(bolum){
+  document.getElementById('overlay').classList.add('ac');
+  document.body.style.overflow='hidden';
+  if(bolum && bolum !== 'hepsi'){
+    document.getElementById('fBolum').value = bolum;
+    var goster = document.getElementById('seciliBolumGoster');
+    var emoji = BOLUM_EMOJI[bolum] || '📚';
+    var label = BOLUM_LABEL[bolum] || bolum;
+    goster.textContent = emoji + ' ' + label;
+    goster.style.display = 'block';
+  } else {
+    document.getElementById('fBolum').value = '';
+    document.getElementById('seciliBolumGoster').style.display = 'none';
+  }
+}
 function modalKapat(){document.getElementById('overlay').classList.remove('ac');document.body.style.overflow='';}
 
 // NOTLARI YÜKLE
@@ -427,7 +427,7 @@ function gonder(){
   var tip = document.getElementById('fTip').value;
   var link = document.getElementById('fLink').value.trim();
   var aciklama = document.getElementById('fAciklama').value.trim();
-  var nick = document.getElementById('fNick').value.trim() || 'Anonim';
+  var nick = anonAktif ? 'Anonim' : (document.getElementById('fNick').value.trim() || 'Anonim');
   var donem = document.getElementById('fDonem').value;
   var btn = document.getElementById('btnGonder');
 
@@ -465,7 +465,7 @@ function gonder(){
 // EVENT LISTENER
 document.addEventListener('click',function(e){
   var t = e.target;
-  if(t.id==='ekleFab'||t.closest('#ekleFab')){modalAc();return;}
+  if(t.id==='ekleFab'||t.closest('#ekleFab')){modalAc(aktifBolum);return;}
   if(t.id==='btnKapat'||t.id==='overlay'){modalKapat();return;}
   if(t.id==='btnGonder'){gonder();return;}
 
@@ -489,6 +489,19 @@ document.addEventListener('click',function(e){
 document.getElementById('aramaInp').addEventListener('input',function(){
   aramaText = this.value.trim();
   renderNotlar();
+});
+
+
+var anonAktif = true;
+document.addEventListener('click', function(e){
+  if(e.target.id==='anonRow'||e.target.closest('#anonRow')){
+    anonAktif = !anonAktif;
+    var tog = document.getElementById('anonTog');
+    tog.style.background = anonAktif ? 'var(--mor)' : 'rgba(255,255,255,.12)';
+    document.getElementById('anonLbl').textContent = anonAktif ? 'Anonim paylaş' : 'İsimli paylaş';
+    document.getElementById('anonAlt').textContent = anonAktif ? 'Kullanıcı adın gizli kalır' : 'Görünen adını gir';
+    document.getElementById('isimAlan').style.display = anonAktif ? 'none' : 'block';
+  }
 });
 
 // BAŞLAT
