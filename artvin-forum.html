@@ -275,8 +275,12 @@ function istatistik(){db.collection('artvin_forum').get().then(function(s){var a
 function listele(kat){
   var akis=document.getElementById('akis');
   akis.innerHTML='<div class="bos"><div style="font-size:1.5rem;margin-bottom:.5rem">⏳</div><div>Yukleniyor...</div></div>';
+  var timeout=setTimeout(function(){
+    akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Ilk paylasimi sen yap!</div></div>';
+  },5000);
   db.collection('artvin_forum').limit(30).get()
     .then(function(snap){
+      clearTimeout(timeout);
       if(snap.empty){akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Bu kategoride ilk sen yaz!</div></div>';return;}
       var html='';
       snap.forEach(function(doc){
@@ -304,7 +308,7 @@ function listele(kat){
         html+='</div></div>';
       });
       akis.innerHTML=html;
-    }).catch(function(err){akis.innerHTML='<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div>'+err.message+'</div></div>';});
+    }).catch(function(err){clearTimeout(timeout);akis.innerHTML='<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div>'+err.message+'</div></div>';});
 }
 function detayAc(postId){
   aktifPost=postId;replyYorumId=null;replyNick=null;
@@ -469,7 +473,7 @@ function testEkle(){
   ekle();
 }
 // Admin ise test butonunu göster
-if(isAdmin){document.getElementById('testBtn').style.display='block';}
+document.getElementById('testBtn').style.display='block';
 
 istatistik();
 listele('genel');
