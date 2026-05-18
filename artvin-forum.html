@@ -264,16 +264,17 @@ function modalAc(){document.getElementById('overlay').classList.add('ac');docume
 function modalKapat(){document.getElementById('overlay').classList.remove('ac');document.body.style.overflow='';}
 function anonToggle(){anonAktif=!anonAktif;document.getElementById('anonTog').className='tog'+(anonAktif?'':' kapali');document.getElementById('anonLbl').textContent=anonAktif?'Anonim paylaş':'İsimli paylaş';document.getElementById('anonAlt').textContent=anonAktif?'Kullanıcı adın gizli kalır':'Görünen adını gir';document.getElementById('isimAlan').style.display=anonAktif?'none':'block';}
 function ftrAc(id){var el=document.getElementById(id+'Ic');var ok=document.getElementById(id+'Ok');if(!el)return;var ac=el.style.display==='block';el.style.display=ac?'none':'block';ok.textContent=ac?'▾':'▴';}
-function istatistik(){db.collection('artvin_forum').where('durum','==','aktif').get().then(function(s){document.getElementById('sGonderi').textContent=s.size;var t=0;s.forEach(function(d){t+=(d.data().yorumSayi||0);});document.getElementById('sYorum').textContent=t;}).catch(function(){});}
+function istatistik(){db.collection('artvin_forum').get().then(function(s){var aktif=0;s.forEach(function(d){if(d.data().durum==='aktif')aktif++;});document.getElementById('sGonderi').textContent=aktif;var t=0;s.forEach(function(d){t+=(d.data().yorumSayi||0);});document.getElementById('sYorum').textContent=t;}).catch(function(){});}
 function listele(kat){
   var akis=document.getElementById('akis');
   akis.innerHTML='<div class="bos"><div style="font-size:1.5rem;margin-bottom:.5rem">⏳</div><div>Yukleniyor...</div></div>';
-  db.collection('artvin_forum').where('durum','==','aktif').where('kategori','==',kat).limit(30).get()
+  db.collection('artvin_forum').where('kategori','==',kat).limit(30).get()
     .then(function(snap){
       if(snap.empty){akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Bu kategoride ilk sen yaz!</div></div>';return;}
       var html='';
       snap.forEach(function(doc){
         var d=doc.data();
+        if(d.durum!=='aktif')return;
         var k=KAT[d.kategori]||{l:d.kategori,e:'💬',c:'#94a3b8',bg:'rgba(148,163,184,.12)'};
         var nick=d.nick||'Anonim';
         var r=renk(nick);
