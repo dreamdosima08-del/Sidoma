@@ -172,6 +172,13 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     <span>Aklındakileri paylaş...</span>
   </button>
 </div>
+
+<div id="testBtn" style="max-width:640px;margin:0 auto;padding:0 .9rem .5rem;display:none">
+  <button onclick="testEkle()" style="width:100%;background:rgba(239,68,68,.15);border:1px dashed rgba(239,68,68,.4);border-radius:10px;padding:.6rem;color:#fca5a5;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">
+    🧪 Test Gönderisi Ekle (Admin)
+  </button>
+</div>
+
 <div class="akis" id="akis">
   <div class="bos"><div style="font-size:1.5rem;margin-bottom:.5rem">⏳</div><div>Yükleniyor...</div></div>
 </div>
@@ -268,13 +275,14 @@ function istatistik(){db.collection('artvin_forum').get().then(function(s){var a
 function listele(kat){
   var akis=document.getElementById('akis');
   akis.innerHTML='<div class="bos"><div style="font-size:1.5rem;margin-bottom:.5rem">⏳</div><div>Yukleniyor...</div></div>';
-  db.collection('artvin_forum').where('kategori','==',kat).limit(30).get()
+  db.collection('artvin_forum').limit(30).get()
     .then(function(snap){
       if(snap.empty){akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Bu kategoride ilk sen yaz!</div></div>';return;}
       var html='';
       snap.forEach(function(doc){
         var d=doc.data();
         if(d.durum!=='aktif')return;
+        if(kat!=='genel'&&d.kategori!==kat)return;
         var k=KAT[d.kategori]||{l:d.kategori,e:'💬',c:'#94a3b8',bg:'rgba(148,163,184,.12)'};
         var nick=d.nick||'Anonim';
         var r=renk(nick);
@@ -440,6 +448,29 @@ document.addEventListener('click',function(e){
 });
 document.getElementById('yorumInp').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();yorumGonder();}});
 document.getElementById('yorumInp').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';});
+
+function testEkle(){
+  var testler=[
+    {baslik:'Artvin merkezde kiralık daire arıyorum',icerik:'Merhaba, Artvin merkeze taşınmayı düşünüyorum. 1+1 veya 2+1 kiralık daire fiyatları nasıl? Ortalama kaç TL?',kategori:'yasam'},
+    {baslik:'Artvin Çoruh kenarında yürüyüş rotaları',icerik:'Hafta sonu Çoruh nehri kenarında yürüyüş yapmayı planlıyorum. Güzel rotalar önerir misiniz?',kategori:'doga'},
+    {baslik:'Artvin mutfağı en iyi yemekler',icerik:'Artvin yöresel yemekleri hakkında bilgi almak istiyorum. En çok hangi yemekler öneriliyor?',kategori:'yemek'}
+  ];
+  var i=0;
+  function ekle(){
+    if(i>=testler.length){alert('✅ 3 test gönderisi eklendi! Sayfayı yenile.');listele(aktifKat);return;}
+    var t=testler[i++];
+    db.collection('artvin_forum').add({
+      baslik:t.baslik,icerik:t.icerik,kategori:t.kategori,
+      nick:'TestUser',anonim:false,durum:'aktif',
+      begeni:0,yorumSayi:0,
+      olusturma:firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function(){ekle();}).catch(function(e){alert('Hata: '+e.message);});
+  }
+  ekle();
+}
+// Admin ise test butonunu göster
+if(isAdmin){document.getElementById('testBtn').style.display='block';}
+
 istatistik();
 listele('genel');
 </script>
