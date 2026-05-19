@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>ArtvinForum 2026 — Artvin Yaşam, Kültür ve Sosyal Hayat</title>
 <meta name="description" content="ArtvinForum — Artvin hakkında her şey. Kiralık ev, iş ilanı, yemek tarifleri, kültür, doğa ve öğrenci konuları. Artvinlilerin dijital buluşma noktası 2026.">
-<meta name="keywords" content="artvin forum, artvin kiralık ev, artvin iş ilanı, artvin yaşam, artvin kültür, artvin yemek, artvin sosyal hayat, artvin ekonomi, artvin öğrenci, artvin doğa yayla, artvin mahalle, artvin 2026">
+<meta name="keywords" content="artvin forum, artvin kiralık ev, artvin iş ilanı, artvin yaşam, artvin kültür, artvin yemek, artvin sosyal hayat, artvin ekonomi, artvin öğrenci, artvin doğa yayla, artvin 2026">
 <meta name="robots" content="index,follow">
 <meta name="geo.region" content="TR-08">
 <link rel="canonical" href="https://artvinrehber.com/artvin-forum.html">
@@ -14,23 +14,24 @@
 <meta property="og:url" content="https://artvinrehber.com/artvin-forum.html">
 <meta property="og:image" content="https://i.ibb.co/27mw4L16/1778614783558.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"ArtvinForum 2026","url":"https://artvinrehber.com/artvin-forum.html","dateModified":"2026-05-17","publisher":{"@type":"Organization","name":"Artvin Rehberi"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ArtvinForum nedir?","acceptedAnswer":{"@type":"Answer","text":"ArtvinForum, Artvin hakkında yaşam, ekonomi, kültür ve sosyal hayat konularında paylaşım yapılan topluluk platformudur."}},{"@type":"Question","name":"Artvin kiralık ev fiyatları nasıl?","acceptedAnswer":{"@type":"Answer","text":"Artvin kiralık ev fiyatları için ArtvinForum yaşam kategorisinden güncel bilgi alabilirsiniz."}},{"@type":"Question","name":"Artvin iş imkanları var mı?","acceptedAnswer":{"@type":"Answer","text":"Artvin iş ilanları için ArtvinForum iş kategorisinden bilgi alabilirsiniz."}}]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0a1a0f;--bg2:#0f2318;--bg3:#162d1e;--border:rgba(255,255,255,.07);--text:#e8f0ea;--dim:rgba(232,240,234,.55);--soluk:rgba(232,240,234,.28);--yesil:#2d7a4f;--yesil2:#3ddb8a;--yesilac:#a8e6c0;--altinac:#fcd34d}
+:root{--bg:#0a1a0f;--bg2:#0f2318;--bg3:#162d1e;--border:rgba(255,255,255,.07);--text:#e8f0ea;--dim:rgba(232,240,234,.55);--soluk:rgba(232,240,234,.28);--yesil:#2d7a4f;--yesil2:#3ddb8a;--yesilac:#a8e6c0;--altinac:#fcd34d;--mora:rgba(45,122,79,.14);--morb:rgba(45,122,79,.28)}
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
 .nav{position:sticky;top:0;z-index:100;background:rgba(10,26,15,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.65rem 1rem;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
-.nav-badge{width:34px;height:34px;background:linear-gradient(135deg,#1b5e38,#2d7a4f);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:900;color:#fff;flex-shrink:0}
+.nav-badge{width:34px;height:34px;background:linear-gradient(135deg,#1b5e38,#2d7a4f);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:900;color:#fff;flex-shrink:0;border:1px solid rgba(61,219,138,.3)}
 .nav-isim{font-size:.92rem;font-weight:900;color:var(--yesilac)}
 .nav-sub{font-size:.5rem;color:var(--soluk)}
 .nav-btn{background:linear-gradient(135deg,#1b5e38,#2d7a4f);color:#fff;border:none;border-radius:8px;padding:.42rem .85rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
 .guncelleme{background:var(--bg2);border-bottom:1px solid var(--border);padding:.4rem 1rem;display:flex;align-items:center;gap:.5rem}
 .guncelleme span{font-size:.65rem;font-weight:700;color:var(--yesilac)}
 .guncelleme small{font-size:.58rem;color:var(--soluk)}
-.hero{background:linear-gradient(160deg,#061209,#0a1a0f);padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--border)}
+.hero{background:linear-gradient(160deg,#061209,#0a1a0f,#061209);padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--border)}
 .hero-ust{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yesil2);margin-bottom:.35rem}
 .hero-h{font-size:1.4rem;font-weight:900;margin-bottom:.2rem}
 .hero-h span{color:var(--yesil2)}
@@ -43,11 +44,13 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .kat-bar::-webkit-scrollbar{display:none}
 .kat-ic{display:flex;padding:.5rem .75rem;gap:.3rem;min-width:max-content}
 .kat-btn{padding:.38rem .75rem;border-radius:16px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:.73rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
-.kat-btn.aktif{background:rgba(45,122,79,.2);border-color:rgba(61,219,138,.35);color:var(--yesilac);font-weight:600}
+.kat-btn.aktif{background:var(--mora);border-color:var(--morb);color:var(--yesilac);font-weight:600}
 .yaz-wrap{max-width:640px;margin:0 auto;padding:.75rem .9rem .35rem}
 .yaz-btn{width:100%;background:var(--bg2);border:1.5px dashed rgba(61,219,138,.2);border-radius:12px;padding:.75rem 1rem;color:var(--soluk);font-size:.85rem;font-family:'Inter',sans-serif;cursor:pointer;text-align:left;display:flex;align-items:center;gap:.6rem}
 .akis{padding:.35rem .9rem;display:flex;flex-direction:column;gap:.5rem;max-width:640px;margin:0 auto;padding-bottom:80px}
-.kart{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.95rem 1rem;cursor:pointer}
+.kart{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.95rem 1rem;cursor:pointer;animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.kart:active{border-color:var(--morb)}
 .kart-ust{display:flex;align-items:center;gap:.55rem;margin-bottom:.5rem}
 .av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
 .kart-nick{font-size:.78rem;font-weight:700}
@@ -60,37 +63,24 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .kbtn.begendi{color:var(--yesil2);background:rgba(61,219,138,.1)}
 .kbtn.kaydedildi{color:var(--altinac)}
 .bos{text-align:center;padding:3rem 1rem;color:var(--dim)}
-/* DETAY */
-.detay-overlay{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;transform:translateX(100%);transition:transform .25s cubic-bezier(.32,.72,0,1)}
-.detay-overlay.ac{transform:translateX(0)}
-.detay-nav{position:sticky;top:0;z-index:10;background:rgba(10,26,15,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.65rem 1rem;display:flex;align-items:center;gap:.6rem}
-.detay-geri{background:rgba(255,255,255,.07);border:none;color:var(--text);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Inter',sans-serif}
-.detay-baslik-kisa{font-size:.82rem;font-weight:700;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.detay-ic{padding:1rem .9rem;max-width:640px;margin:0 auto;padding-bottom:100px}
-.detay-baslik{font-size:1.15rem;font-weight:900;line-height:1.4;margin-bottom:.6rem}
-.detay-meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.85rem}
-.detay-metin{font-size:.88rem;color:var(--dim);line-height:1.75;margin-bottom:1rem;word-break:break-word;white-space:pre-wrap}
-.detay-alt{display:flex;align-items:center;gap:.2rem;margin-bottom:1.25rem;border-bottom:1px solid var(--border);padding-bottom:.85rem}
-.yorum-h{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soluk);margin-bottom:.65rem}
-.yi{display:flex;gap:.4rem;margin-bottom:.65rem}
-.yi.nested{margin-left:1.5rem;padding-left:.65rem;border-left:2px solid rgba(61,219,138,.2)}
-.yi-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;flex-shrink:0;margin-top:2px}
-.yi-ic{flex:1;background:rgba(255,255,255,.03);border-radius:10px;padding:.5rem .7rem;border:1px solid var(--border)}
-.yi-nick{font-size:.7rem;font-weight:700;color:var(--yesilac)}
-.yi-zaman{font-size:.56rem;color:var(--soluk);margin-left:.3rem}
-.yi-metin{font-size:.82rem;color:var(--dim);line-height:1.55;word-break:break-word;margin-top:.2rem}
-.yi-alt{display:flex;align-items:center;gap:.15rem;margin-top:.35rem}
-.yi-btn{background:none;border:none;color:var(--soluk);font-size:.67rem;cursor:pointer;padding:.2rem .35rem;border-radius:6px;font-family:'Inter',sans-serif}
-.yi-btn.begendi{color:var(--yesil2)}
-.yorum-yaz-alan{position:fixed;bottom:0;left:0;right:0;z-index:201;background:rgba(10,26,15,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:.6rem .9rem}
-.yorum-hedef{font-size:.65rem;color:var(--yesil2);margin-bottom:.3rem;display:none;cursor:pointer}
-.yorum-hedef.goster{display:block}
-.yorum-yaz{display:flex;gap:.4rem;align-items:flex-end}
-.yorum-inp{flex:1;background:var(--bg3);border:1.5px solid rgba(45,122,79,.25);border-radius:12px;padding:.5rem .75rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.82rem;outline:none;resize:none;min-height:38px;max-height:120px;line-height:1.5}
-.yorum-inp:focus{border-color:var(--yesil)}
-.yorum-gbtn{background:linear-gradient(135deg,#1b5e38,#2d7a4f);color:#fff;border:none;border-radius:10px;padding:.5rem .75rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;flex-shrink:0}
-/* MODAL */
-.overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(10,26,15,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.65rem .5rem .5rem;background:transparent;border:none;color:var(--soluk);font-size:.58rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif}
+.nb.on{color:var(--yesilac)}
+.nb-ic{font-size:1.2rem;line-height:1}
+.nb-plus-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.5rem .5rem .45rem;cursor:pointer}
+.nb-plus{width:44px;height:44px;background:linear-gradient(135deg,#1b5e38,#2d7a4f);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 16px rgba(45,122,79,.5);border:none;margin-top:-18px;cursor:pointer}
+.nb-plus-lbl{font-size:.58rem;color:var(--yesilac);font-weight:600}
+.ic-linkler{padding:.75rem .9rem 0;max-width:640px;margin:0 auto}
+.ic-link-h{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soluk);margin-bottom:.4rem}
+.ic-link{display:flex;align-items:center;gap:.55rem;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:.6rem .8rem;text-decoration:none;margin-bottom:.35rem}
+.ic-link-isim{font-size:.76rem;font-weight:700;color:var(--text);flex:1}
+.ic-link-alt{font-size:.6rem;color:var(--soluk)}
+.ic-link-ok{font-size:.72rem;color:var(--yesilac);font-weight:700}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem 1rem 3rem;margin-top:1rem;text-align:center}
+.ftr-h{font-size:.65rem;font-weight:700;color:var(--yesilac);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:.75rem;margin-bottom:.75rem}
+.ftr-p{font-size:.72rem;color:rgba(232,240,234,.38);line-height:1.9;margin-bottom:1rem;display:none}
+.footer a{color:var(--yesilac);text-decoration:none}
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.ac{opacity:1;pointer-events:all}
 .modal{background:var(--bg2);border-radius:22px 22px 0 0;padding:1.25rem 1rem 2rem;width:100%;max-width:640px;transform:translateY(100%);transition:transform .25s cubic-bezier(.32,.72,0,1);border-top:1.5px solid rgba(61,219,138,.25);max-height:92vh;overflow-y:auto}
 .overlay.ac .modal{transform:translateY(0)}
@@ -110,22 +100,12 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .gbtn{width:100%;background:linear-gradient(135deg,#1b5e38,#2d7a4f);color:#fff;border:none;border-radius:12px;padding:.88rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
 .gbtn:disabled{opacity:.5;cursor:not-allowed}
 .basari{display:none;background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);border-radius:10px;padding:.8rem;font-size:.82rem;color:var(--yesil2);text-align:center;margin-top:.5rem}
-.ic-linkler{padding:.75rem .9rem 0;max-width:640px;margin:0 auto}
-.ic-link-h{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soluk);margin-bottom:.4rem}
-.ic-link{display:flex;align-items:center;gap:.55rem;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:.6rem .8rem;text-decoration:none;margin-bottom:.35rem}
-.ic-link-isim{font-size:.76rem;font-weight:700;color:var(--text);flex:1}
-.ic-link-alt{font-size:.6rem;color:var(--soluk)}
-.ic-link-ok{font-size:.72rem;color:var(--yesilac);font-weight:700}
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem 1rem 3rem;margin-top:1rem;text-align:center}
-.ftr-h{font-size:.65rem;font-weight:700;color:var(--yesilac);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:.75rem;margin-bottom:.75rem}
-.ftr-p{font-size:.72rem;color:rgba(232,240,234,.38);line-height:1.9;margin-bottom:1rem;display:none}
-.footer a{color:var(--yesilac);text-decoration:none}
 </style>
 </head>
 <body>
-<h1 style="display:none">ArtvinForum — Artvin Yaşam, Kültür ve Sosyal Hayat 2026</h1>
-<h2 style="display:none">Artvin Kiralık Ev ve İş İlanı Forumu</h2>
-<h2 style="display:none">Artvin Yemek Kültür ve Doğa Forumu</h2>
+<h1 style="display:none">ArtvinForum — Artvin Yaşam Kültür Sosyal Hayat 2026</h1>
+<h2 style="display:none">Artvin Kiralık Ev İş İlanı Forumu</h2>
+<h2 style="display:none">Artvin Yemek Kültür Doğa Forumu</h2>
 <h3 style="display:none">Artvin Forum 2026</h3>
 
 <nav class="nav">
@@ -143,8 +123,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
   <div class="hero-h"><span>Artvin</span>Forum</div>
   <div class="hero-sub">Artvin'de yaşam, kira, iş, yemek, kültür ve daha fazlası. Anonim ya da isimle paylaş.</div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-n" id="sGonderi">—</div><div class="stat-l">Gönderi</div></div>
-    <div class="stat"><div class="stat-n" id="sYorum">—</div><div class="stat-l">Yorum</div></div>
+    <div class="stat"><div class="stat-n" id="sGonderi">0</div><div class="stat-l">Gönderi</div></div>
+    <div class="stat"><div class="stat-n" id="sYorum">0</div><div class="stat-l">Yorum</div></div>
     <div class="stat"><div class="stat-n">🌿</div><div class="stat-l">Artvin</div></div>
   </div>
 </div>
@@ -162,16 +142,11 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </div>
 
 <div class="yaz-wrap">
-  <button class="yaz-btn" id="yazBtn">
-    <span style="font-size:1.1rem">✏️</span>
-    <span>Aklındakileri paylaş...</span>
-  </button>
+  <button class="yaz-btn" id="yazBtn"><span style="font-size:1.1rem">✏️</span><span>Aklındakileri paylaş...</span></button>
 </div>
 
 <div style="max-width:640px;margin:0 auto;padding:0 .9rem .5rem">
-  <button id="testBtn" style="width:100%;background:rgba(239,68,68,.1);border:1px dashed rgba(239,68,68,.35);border-radius:10px;padding:.6rem;color:#fca5a5;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif">
-    🧪 Test Gönderisi Ekle
-  </button>
+  <button id="testBtn" style="width:100%;background:rgba(239,68,68,.1);border:1px dashed rgba(239,68,68,.35);border-radius:10px;padding:.6rem;color:#fca5a5;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif">🧪 Test Gönderisi Ekle</button>
 </div>
 
 <div class="akis" id="akis">
@@ -188,31 +163,21 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 <div class="footer">
   <div id="kuralH" class="ftr-h">📋 Topluluk Kuralları <span id="kuralOk">▾</span></div>
-  <div class="ftr-p" id="kuralIc">1. Saygılı ol<br>2. Hakaret yasaktır<br>3. Kişisel bilgi paylaşma<br>4. Reklam/spam yasaktır</div>
+  <div class="ftr-p" id="kuralIc">1. Saygılı ol<br>2. Hakaret yasaktır<br>3. Kişisel bilgi paylaşma<br>4. Reklam ve spam yasaktır</div>
   <div id="kvkkH" class="ftr-h" style="margin-top:.5rem">🔐 KVKK <span id="kvkkOk">▾</span></div>
   <div class="ftr-p" id="kvkkIc">Veriler Firebase altyapısında güvenli şekilde saklanır. Anonim paylaşımda kimliğiniz kaydedilmez.</div>
   <p style="margin-top:1rem"><a href="/" rel="noopener">Artvin Rehberi</a> · <a href="/acukampus.html" rel="noopener">ACU Kampüs</a></p>
   <p style="margin-top:.5rem;font-size:.6rem;color:var(--soluk)">© 2026 artvinrehber.com · ArtvinForum</p>
 </div>
 
-<!-- DETAY PANELİ -->
-<div class="detay-overlay" id="detayOverlay">
-  <div class="detay-nav">
-    <button class="detay-geri" id="detayGeri">←</button>
-    <div class="detay-baslik-kisa" id="detayBaslikKisa">Gönderi</div>
-    <button class="kbtn" id="detayKaydetBtn" style="margin-left:auto">🔖</button>
-  </div>
-  <div class="detay-ic" id="detayIc"></div>
-  <div class="yorum-yaz-alan">
-    <div class="yorum-hedef" id="yorumHedef"></div>
-    <div class="yorum-yaz">
-      <textarea class="yorum-inp" id="yorumInp" placeholder="Yorum yaz..." rows="1" maxlength="1000"></textarea>
-      <button class="yorum-gbtn" id="yorumGonderBtn">Gönder</button>
-    </div>
-  </div>
-</div>
+<nav class="bnav">
+  <button class="nb on" data-kat="hepsi"><span class="nb-ic">💬</span>Tümü</button>
+  <button class="nb" data-kat="yasam"><span class="nb-ic">🏘️</span>Yaşam</button>
+  <div class="nb-plus-wrap" id="nbPlus"><button class="nb-plus">➕</button><div class="nb-plus-lbl">Yaz</div></div>
+  <button class="nb" data-kat="is"><span class="nb-ic">💼</span>İş</button>
+  <button class="nb" data-kat="yemek"><span class="nb-ic">🍽️</span>Yemek</button>
+</nav>
 
-<!-- PAYLAŞIM MODALI -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-h">✏️ Gönderi Yaz <button class="modal-kapat" id="btnKapat">✕</button></div>
@@ -221,7 +186,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
     <input type="text" class="finp" id="fBaslik" placeholder="Ne hakkında yazmak istiyorsun?" maxlength="100">
     <span class="flbl">Kategori *</span>
     <select class="finp" id="fKat">
-      <option value="">— Seç —</option>
+      <option value="">— Kategori Seç —</option>
       <option value="yasam">🏘️ Yaşam</option>
       <option value="is">💼 İş</option>
       <option value="yemek">🍽️ Yemek</option>
@@ -248,488 +213,129 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 </div>
 
 <script>
-// Firebase başlat
-var firebaseConfig = {
-  apiKey: 'AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0',
-  authDomain: 'acu-kampus.firebaseapp.com',
-  projectId: 'acu-kampus',
-  storageBucket: 'acu-kampus.firebasestorage.app',
-  messagingSenderId: '356152793085',
-  appId: '1:356152793085:web:38a6ae1ad911880cb2ab94'
-};
-firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
-var TG = '8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
-var TC = '1032454830';
-
-// State
-var aktifKat = 'hepsi';
-var aktifPost = null;
-var replyYorumId = null;
-var replyNick = null;
-var anonAktif = true;
-var isAdmin = false;
-var yukleniyor = false;
-
-// Admin kontrol
-(function(){
-  try {
-    var p = new URLSearchParams(window.location.search);
-    if(p.get('admin') === '828615'){
-      isAdmin = true;
-      localStorage.setItem('af_admin','1');
-      window.history.replaceState({},'',window.location.pathname);
-    } else if(localStorage.getItem('af_admin') === '1'){
-      isAdmin = true;
-    }
-  } catch(e){}
-})();
-
-// Sabitler
-var KAT = {
-  yasam:{l:'Yaşam',e:'🏘️',c:'#22c55e',bg:'rgba(34,197,94,.12)'},
-  is:{l:'İş',e:'💼',c:'#f59e0b',bg:'rgba(245,158,11,.12)'},
-  yemek:{l:'Yemek',e:'🍽️',c:'#f97316',bg:'rgba(249,115,22,.12)'},
-  doga:{l:'Doğa',e:'🌿',c:'#3ddb8a',bg:'rgba(61,219,138,.12)'},
-  ogrenci:{l:'Öğrenci',e:'🎓',c:'#c4b5fd',bg:'rgba(196,181,253,.12)'},
-  genel:{l:'Genel',e:'💭',c:'#94a3b8',bg:'rgba(148,163,184,.12)'}
-};
-var RENKLER = ['#3ddb8a','#22c55e','#f59e0b','#f97316','#06b6d4','#ec4899','#a855f7','#3b82f6'];
-
-// Yardımcı
+firebase.initializeApp({
+  apiKey:'AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0',
+  authDomain:'acu-kampus.firebaseapp.com',
+  projectId:'acu-kampus',
+  storageBucket:'acu-kampus.firebasestorage.app',
+  messagingSenderId:'356152793085',
+  appId:'1:356152793085:web:38a6ae1ad911880cb2ab94'
+});
+var db=firebase.firestore();
+var TG='8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
+var TC='1032454830';
+var aktifKat='hepsi';
+var anonAktif=true;
+var isAdmin=false;
+(function(){try{var p=new URLSearchParams(window.location.search);if(p.get('admin')==='828615'){isAdmin=true;localStorage.setItem('af_admin','1');window.history.replaceState({},'',window.location.pathname);}else if(localStorage.getItem('af_admin')==='1')isAdmin=true;}catch(e){}})();
+var KAT={yasam:{l:'Yasam',e:'🏘️',c:'#22c55e',bg:'rgba(34,197,94,.13)'},is:{l:'Is',e:'💼',c:'#f59e0b',bg:'rgba(245,158,11,.13)'},yemek:{l:'Yemek',e:'🍽️',c:'#f97316',bg:'rgba(249,115,22,.13)'},doga:{l:'Doga',e:'🌿',c:'#3ddb8a',bg:'rgba(61,219,138,.13)'},ogrenci:{l:'Ogrenci',e:'🎓',c:'#a8e6c0',bg:'rgba(168,230,192,.13)'},genel:{l:'Genel',e:'💭',c:'#94a3b8',bg:'rgba(148,163,184,.13)'}};
+var RENKLER=['#3ddb8a','#22c55e','#f59e0b','#f97316','#06b6d4','#ec4899','#a855f7','#3b82f6'];
 function renk(s){var n=0;for(var i=0;i<s.length;i++)n+=s.charCodeAt(i);return RENKLER[n%RENKLER.length];}
-function zaman(ts){
-  try {
-    if(!ts||!ts.toMillis) return '';
-    var s = Math.floor((Date.now()-ts.toMillis())/1000);
-    var d = new Date(ts.toMillis());
-    var tarih = d.toLocaleDateString('tr-TR',{day:'2-digit',month:'2-digit',year:'numeric'});
-    var saat = d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
-    var fark = s<60?'Az once':s<3600?Math.floor(s/60)+' dk':s<86400?Math.floor(s/3600)+' sa':Math.floor(s/86400)+' gun';
-    return fark + ' · ' + tarih + ' ' + saat;
-  } catch(e){ return ''; }
-}
-function userAdi(){
-  try {
-    var n = localStorage.getItem('af_nick');
-    if(n) return n;
-    n = 'User' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
-    localStorage.setItem('af_nick', n);
-    return n;
-  } catch(e){ return 'Anonim'; }
-}
-
-// Modal
-function modalAc(){
-  document.getElementById('overlay').classList.add('ac');
-  document.body.style.overflow = 'hidden';
-}
-function modalKapat(){
-  document.getElementById('overlay').classList.remove('ac');
-  // body overflow sadece detay da kapalı değilse aç
-  if(!document.getElementById('detayOverlay').classList.contains('ac')){
-    document.body.style.overflow = '';
-  }
-}
-
-// Detay
-function detayAc(postId){
-  if(!postId) return;
-  aktifPost = postId;
-  replyYorumId = null;
-  replyNick = null;
-  var hedef = document.getElementById('yorumHedef');
-  if(hedef){ hedef.className = 'yorum-hedef'; }
-  var inp = document.getElementById('yorumInp');
-  if(inp){ inp.value = ''; inp.placeholder = 'Yorum yaz...'; }
-  document.getElementById('detayOverlay').classList.add('ac');
-  document.body.style.overflow = 'hidden';
-  var ic = document.getElementById('detayIc');
-  if(!ic) return;
-  ic.innerHTML = '<div class="bos"><div style="font-size:1.5rem;margin-bottom:.5rem">⏳</div><div>Yukleniyor...</div></div>';
-
-  db.collection('artvin_forum').doc(postId).get()
-    .then(function(doc){
-      try {
-        if(!doc.exists){ ic.innerHTML = '<div class="bos">Bulunamadi.</div>'; return; }
-        var d = doc.data();
-        if(!d){ ic.innerHTML = '<div class="bos">Veri yok.</div>'; return; }
-        var k = KAT[d.kategori] || {l:d.kategori||'',e:'💬',c:'#94a3b8',bg:'rgba(148,163,184,.12)'};
-        var nick = d.nick || 'Anonim';
-        var r = renk(nick);
-        var kayitli = false;
-        try { kayitli = localStorage.getItem('af_kayit_'+postId) === '1'; } catch(e){}
-        var baslik = document.getElementById('detayBaslikKisa');
-        if(baslik) baslik.textContent = d.baslik || 'Gonderi';
-        var kaydetBtn = document.getElementById('detayKaydetBtn');
-        if(kaydetBtn){ kaydetBtn.textContent = kayitli ? '🔖✓' : '🔖'; kaydetBtn.dataset.id = postId; kaydetBtn.dataset.tip = 'kaydet'; }
-        var html = '';
-        html += '<div class="detay-meta">';
-        html += '<div class="av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
-        html += '<div><div style="font-size:.78rem;font-weight:700">'+nick+'</div><div style="font-size:.6rem;color:var(--soluk)">'+zaman(d.olusturma)+'</div></div>';
-        html += '<span class="kart-kat" style="background:'+k.bg+';color:'+k.c+';margin-left:auto">'+k.e+' '+k.l+'</span>';
-        html += '</div>';
-        html += '<div class="detay-baslik">'+(d.baslik||'')+'</div>';
-        html += '<div class="detay-metin">'+(d.icerik||'')+'</div>';
-        html += '<div class="detay-alt">';
-        html += '<button class="kbtn" data-id="'+postId+'" data-tip="begeni">⬆️ '+(d.begeni||0)+'</button>';
-        html += '<button class="kbtn" data-id="'+postId+'" data-tip="bildir" style="margin-left:auto">🚩</button>';
-        if(isAdmin) html += '<button class="kbtn" data-id="'+postId+'" data-tip="sil" style="color:#f87171">🗑️</button>';
-        html += '</div>';
-        html += '<div class="yorum-h">Yorumlar</div>';
-        html += '<div id="yorumListe"></div>';
-        ic.innerHTML = html;
-        yorumlariYukle(postId);
-      } catch(e){ ic.innerHTML = '<div class="bos">Hata: '+e.message+'</div>'; }
-    })
-    .catch(function(e){ ic.innerHTML = '<div class="bos">Yuklenemedi: '+(e.message||'')+'</div>'; });
-}
-
-function detayKapat(){
-  document.getElementById('detayOverlay').classList.remove('ac');
-  document.body.style.overflow = '';
-  aktifPost = null;
-}
-
-// Anonim toggle
-function anonToggle(){
-  anonAktif = !anonAktif;
-  document.getElementById('anonTog').className = 'tog' + (anonAktif ? '' : ' kapali');
-  document.getElementById('anonLbl').textContent = anonAktif ? 'Anonim paylaş' : 'İsimli paylaş';
-  document.getElementById('anonAlt').textContent = anonAktif ? 'Kullanıcı adın gizli kalır' : 'Görünen adını gir';
-  document.getElementById('isimAlan').style.display = anonAktif ? 'none' : 'block';
-}
-
-// Accordion
-function ftrAc(id){
-  var el = document.getElementById(id+'Ic');
-  var ok = document.getElementById(id+'Ok');
-  if(!el) return;
-  var ac = el.style.display === 'block';
-  el.style.display = ac ? 'none' : 'block';
-  if(ok) ok.textContent = ac ? '▾' : '▴';
-}
-
-// İstatistik
-function istatistik(){
-  db.collection('artvin_forum').get()
-    .then(function(s){
-      var aktif = 0, yorum = 0;
-      s.forEach(function(d){ if(d.data().durum==='aktif'){ aktif++; yorum+=(d.data().yorumSayi||0); } });
-      var el1 = document.getElementById('sGonderi');
-      var el2 = document.getElementById('sYorum');
-      if(el1) el1.textContent = aktif;
-      if(el2) el2.textContent = yorum;
-    })
-    .catch(function(){});
-}
-
-// Listele
+function zaman(ts){try{if(!ts||!ts.toMillis)return '';var s=Math.floor((Date.now()-ts.toMillis())/1000);var d=new Date(ts.toMillis());var tarih=d.toLocaleDateString('tr-TR',{day:'2-digit',month:'2-digit',year:'numeric'});var saat=d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});var f=s<60?'Az once':s<3600?Math.floor(s/60)+' dk':s<86400?Math.floor(s/3600)+' sa':Math.floor(s/86400)+' gun';return f+' · '+tarih+' '+saat;}catch(e){return '';}}
+function userAdi(){try{var n=localStorage.getItem('af_nick');if(n)return n;n='User'+String(Math.floor(Math.random()*900)+100).padStart(3,'0');localStorage.setItem('af_nick',n);return n;}catch(e){return 'Anonim';}}
+function modalAc(){document.getElementById('overlay').classList.add('ac');document.body.style.overflow='hidden';}
+function modalKapat(){document.getElementById('overlay').classList.remove('ac');document.body.style.overflow='';}
+function anonToggle(){anonAktif=!anonAktif;document.getElementById('anonTog').className='tog'+(anonAktif?'':' kapali');document.getElementById('anonLbl').textContent=anonAktif?'Anonim paylaş':'İsimli paylaş';document.getElementById('anonAlt').textContent=anonAktif?'Kullanıcı adın gizli kalır':'Görünen adını gir';document.getElementById('isimAlan').style.display=anonAktif?'none':'block';}
+function ftrAc(id){var el=document.getElementById(id+'Ic');var ok=document.getElementById(id+'Ok');if(!el)return;var ac=el.style.display==='block';el.style.display=ac?'none':'block';if(ok)ok.textContent=ac?'▾':'▴';}
+function istatistik(){db.collection('artvin_forum').get().then(function(s){var a=0,y=0;s.forEach(function(d){if(d.data().durum==='aktif'){a++;y+=(d.data().yorumSayi||0);}});var e1=document.getElementById('sGonderi');var e2=document.getElementById('sYorum');if(e1)e1.textContent=a;if(e2)e2.textContent=y;}).catch(function(){});}
 function listele(kat){
-  if(yukleniyor) return;
-  yukleniyor = true;
-  var akis = document.getElementById('akis');
-  if(!akis){ yukleniyor = false; return; }
-  akis.innerHTML = '<div class="bos"><div style="font-size:1.5rem;margin-bottom:.5rem">⏳</div><div>Yukleniyor...</div></div>';
-
-  // 8 saniye fallback
-  var fallback = setTimeout(function(){
-    yukleniyor = false;
-    if(akis) akis.innerHTML = '<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Ilk paylasimi sen yap!</div></div>';
-  }, 8000);
-
+  var akis=document.getElementById('akis');
+  if(!akis)return;
+  akis.innerHTML='<div class="bos"><div style="font-size:1.5rem;margin-bottom:.5rem">⏳</div><div>Yukleniyor...</div></div>';
+  var fallback=setTimeout(function(){if(akis)akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Ilk paylasimi sen yap!</div></div>';},8000);
   db.collection('artvin_forum').limit(50).get()
     .then(function(snap){
       clearTimeout(fallback);
-      yukleniyor = false;
-      try {
-        var gonderiler = [];
-        snap.forEach(function(doc){
-          var d = doc.data();
-          if(!d || d.durum !== 'aktif') return;
-          if(kat !== 'hepsi' && d.kategori !== kat) return;
-          gonderiler.push({id: doc.id, d: d});
+      try{
+        var liste=[];
+        snap.forEach(function(doc){var d=doc.data();if(!d||d.durum!=='aktif')return;if(kat!=='hepsi'&&d.kategori!==kat)return;liste.push({id:doc.id,d:d});});
+        if(liste.length===0){akis.innerHTML='<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Ilk paylasimi sen yap!</div></div>';return;}
+        var html='';
+        liste.forEach(function(item){
+          var d=item.d;var k=KAT[d.kategori]||{l:d.kategori||'',e:'💬',c:'#94a3b8',bg:'rgba(148,163,184,.12)'};
+          var nick=d.nick||'Anonim';var r=renk(nick);
+          html+='<div class="kart" data-id="'+item.id+'">';
+          html+='<div class="kart-ust"><div class="av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
+          html+='<div style="flex:1;min-width:0"><div class="kart-nick">'+nick+'</div><div class="kart-zaman">'+zaman(d.olusturma)+'</div></div>';
+          html+='<span class="kart-kat" style="background:'+k.bg+';color:'+k.c+'">'+k.e+' '+k.l+'</span></div>';
+          if(d.baslik)html+='<div class="kart-baslik">'+d.baslik+'</div>';
+          if(d.icerik)html+='<div class="kart-ozet">'+d.icerik+'</div>';
+          html+='<div class="kart-alt" onclick="event.stopPropagation()">';
+          html+='<button class="kbtn" data-id="'+item.id+'" data-tip="begeni">⬆️ '+(d.begeni||0)+'</button>';
+          html+='<button class="kbtn" data-id="'+item.id+'" data-tip="bildir" style="margin-left:auto">🚩</button>';
+          if(isAdmin)html+='<button class="kbtn" data-id="'+item.id+'" data-tip="sil" style="color:#f87171">🗑️</button>';
+          html+='</div></div>';
         });
-        if(gonderiler.length === 0){
-          akis.innerHTML = '<div class="bos"><div style="font-size:2.5rem;margin-bottom:.75rem">🌿</div><div style="font-size:.95rem;font-weight:700;margin-bottom:.35rem">Henuz gonderi yok</div><div style="font-size:.8rem">Ilk paylasimi sen yap!</div></div>';
-          return;
-        }
-        var html = '';
-        gonderiler.forEach(function(item){
-          var d = item.d;
-          var k = KAT[d.kategori] || {l:d.kategori||'',e:'💬',c:'#94a3b8',bg:'rgba(148,163,184,.12)'};
-          var nick = d.nick || 'Anonim';
-          var r = renk(nick);
-          var kayitli = false;
-          try { kayitli = localStorage.getItem('af_kayit_'+item.id) === '1'; } catch(e){}
-          html += '<div class="kart" data-id="'+item.id+'">';
-          html += '<div class="kart-ust">';
-          html += '<div class="av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
-          html += '<div style="flex:1;min-width:0"><div class="kart-nick">'+nick+'</div><div class="kart-zaman">'+zaman(d.olusturma)+'</div></div>';
-          html += '<span class="kart-kat" style="background:'+k.bg+';color:'+k.c+'">'+k.e+' '+k.l+'</span>';
-          html += '</div>';
-          if(d.baslik) html += '<div class="kart-baslik">'+d.baslik+'</div>';
-          if(d.icerik) html += '<div class="kart-ozet">'+d.icerik+'</div>';
-          html += '<div class="kart-alt" onclick="event.stopPropagation()">';
-          html += '<button class="kbtn" data-id="'+item.id+'" data-tip="begeni">⬆️ '+(d.begeni||0)+'</button>';
-          html += '<button class="kbtn" data-id="'+item.id+'" data-tip="ac">💬 '+(d.yorumSayi||0)+'</button>';
-          html += '<button class="kbtn'+(kayitli?' kaydedildi':'')+'" data-id="'+item.id+'" data-tip="kaydet">'+(kayitli?'🔖✓':'🔖')+'</button>';
-          html += '<button class="kbtn" data-id="'+item.id+'" data-tip="bildir" style="margin-left:auto">🚩</button>';
-          if(isAdmin) html += '<button class="kbtn" data-id="'+item.id+'" data-tip="sil" style="color:#f87171">🗑️</button>';
-          html += '</div></div>';
-        });
-        akis.innerHTML = html;
-      } catch(e){
-        akis.innerHTML = '<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div>'+e.message+'</div></div>';
-      }
+        akis.innerHTML=html;
+      }catch(e){akis.innerHTML='<div class="bos">Hata: '+e.message+'</div>';}
     })
-    .catch(function(err){
-      clearTimeout(fallback);
-      yukleniyor = false;
-      if(akis) akis.innerHTML = '<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div>'+(err.message||'Baglanti hatasi')+'</div></div>';
-    });
+    .catch(function(err){clearTimeout(fallback);if(akis)akis.innerHTML='<div class="bos"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div>'+(err.message||'Baglanti hatasi')+'</div></div>';});
 }
-
-// Yorumlar
-function yorumlariYukle(postId){
-  var liste = document.getElementById('yorumListe');
-  if(!liste) return;
-  db.collection('artvin_forum').doc(postId).collection('yorumlar').get()
-    .then(function(snap){
-      try {
-        var aktif = [];
-        snap.forEach(function(doc){ if(doc.data().durum === 'aktif') aktif.push({id:doc.id, d:doc.data()}); });
-        if(aktif.length === 0){ liste.innerHTML = '<div style="font-size:.78rem;color:var(--soluk);text-align:center;padding:1rem 0">Henuz yorum yok. Ilk yorumu sen yaz!</div>'; return; }
-        var html = '';
-        aktif.forEach(function(item){
-          var y = item.d; var nick = y.nick||'Anonim'; var r = renk(nick);
-          html += '<div class="yi'+(y.replyId?' nested':'')+'">';
-          html += '<div class="yi-av" style="background:'+r+'22;color:'+r+'">'+nick.charAt(0).toUpperCase()+'</div>';
-          html += '<div class="yi-ic">';
-          html += '<span class="yi-nick">'+nick+'</span><span class="yi-zaman">'+zaman(y.olusturma)+'</span>';
-          if(y.replyNick) html += '<div style="font-size:.68rem;color:var(--yesil2);margin:.1rem 0">↩ @'+y.replyNick+'</div>';
-          html += '<div class="yi-metin">'+y.metin.replace(/
-/g,'<br>')+'</div>';
-          html += '<div class="yi-alt">';
-          html += '<button class="yi-btn" data-yid="'+item.id+'" data-pid="'+postId+'" data-tip="yorumBegeni">⬆️ '+(y.begeni||0)+'</button>';
-          html += '<button class="yi-btn" data-yid="'+item.id+'" data-ynick="'+nick+'" data-pid="'+postId+'" data-tip="reply">↩ Yanıtla</button>';
-          if(isAdmin) html += '<button class="yi-btn" data-yid="'+item.id+'" data-pid="'+postId+'" data-tip="yorumSil" style="color:#f87171">🗑️</button>';
-          html += '</div></div></div>';
-        });
-        liste.innerHTML = html;
-      } catch(e){}
-    }).catch(function(){});
-}
-
-// Yorum gönder
-function yorumGonder(){
-  if(!aktifPost) return;
-  var inp = document.getElementById('yorumInp');
-  if(!inp) return;
-  var metin = inp.value.trim();
-  if(!metin || metin.length < 2) return;
-  var btn = document.getElementById('yorumGonderBtn');
-  if(btn) btn.disabled = true;
-  var nick = userAdi();
-  var veri = {metin:metin, nick:nick, durum:'aktif', begeni:0, olusturma:firebase.firestore.FieldValue.serverTimestamp()};
-  if(replyNick) veri.replyNick = replyNick;
-  if(replyYorumId) veri.replyId = replyYorumId;
-  db.collection('artvin_forum').doc(aktifPost).collection('yorumlar').add(veri)
-    .then(function(){
-      if(btn) btn.disabled = false;
-      inp.value = ''; inp.style.height = 'auto';
-      replyYorumId = null; replyNick = null;
-      var hd = document.getElementById('yorumHedef');
-      if(hd){ hd.className = 'yorum-hedef'; }
-      inp.placeholder = 'Yorum yaz...';
-      db.collection('artvin_forum').doc(aktifPost).update({yorumSayi: firebase.firestore.FieldValue.increment(1)}).catch(function(){});
-      yorumlariYukle(aktifPost);
-    })
-    .catch(function(e){ if(btn) btn.disabled = false; alert('Hata: '+e.message); });
-}
-
-// Kaydet
-function kaydet(postId){
-  try {
-    var k = localStorage.getItem('af_kayit_'+postId) === '1';
-    if(k){ localStorage.removeItem('af_kayit_'+postId); return false; }
-    else{ localStorage.setItem('af_kayit_'+postId, '1'); return true; }
-  } catch(e){ return false; }
-}
-
-// Sil
-function gonderiSil(id){
-  if(!confirm('Bu gonderiyi silmek istiyor musun?')) return;
-  db.collection('artvin_forum').doc(id).update({durum:'silindi'})
-    .then(function(){ detayKapat(); listele(aktifKat); })
-    .catch(function(e){ alert('Hata: '+e.message); });
-}
-function yorumSil(postId, yorumId){
-  if(!confirm('Bu yorumu silmek istiyor musun?')) return;
-  db.collection('artvin_forum').doc(postId).collection('yorumlar').doc(yorumId).update({durum:'silindi'})
-    .then(function(){ db.collection('artvin_forum').doc(postId).update({yorumSayi: firebase.firestore.FieldValue.increment(-1)}).catch(function(){}); yorumlariYukle(postId); })
-    .catch(function(e){ alert('Hata: '+e.message); });
-}
-
-// Gönder
 function gonder(){
-  var baslik = document.getElementById('fBaslik').value.trim();
-  var kat = document.getElementById('fKat').value;
-  var icerik = document.getElementById('fIcerik').value.trim();
-  var btn = document.getElementById('btnGonder');
-  if(!baslik){ alert('Baslik zorunlu.'); return; }
-  if(!kat){ alert('Kategori sec.'); return; }
-  if(!icerik || icerik.length < 5){ alert('Biraz daha uzun yaz.'); return; }
-  if(btn) btn.disabled = true;
-  if(btn) btn.textContent = 'Gonderiliyor...';
-  var nick = anonAktif ? userAdi() : (document.getElementById('fNick').value.trim() || userAdi());
-  if(!anonAktif && document.getElementById('fNick').value.trim()){ try{ localStorage.setItem('af_nick', nick); }catch(e){} }
-  db.collection('artvin_forum').add({
-    baslik:baslik, icerik:icerik, kategori:kat, nick:nick,
-    anonim:anonAktif, durum:'bekliyor', begeni:0, yorumSayi:0,
-    olusturma: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function(ref){
-    try{ fetch('https://api.telegram.org/bot'+TG+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TC,text:'🌿 ArtvinForum\n'+nick+'\n\n'+baslik+'\n'+icerik.substring(0,200)+'\n\nID:'+ref.id})}).catch(function(){}); }catch(e){}
-    if(btn){ btn.disabled = false; btn.textContent = '🌿 Paylaş'; }
-    document.getElementById('fBaslik').value = '';
-    document.getElementById('fKat').value = '';
-    document.getElementById('fIcerik').value = '';
-    var basariEl = document.getElementById('basari');
-    if(basariEl){ basariEl.style.display = 'block'; setTimeout(function(){ basariEl.style.display='none'; modalKapat(); }, 2500); }
-  }).catch(function(e){
-    if(btn){ btn.disabled = false; btn.textContent = '🌿 Paylaş'; }
-    alert('Hata: '+e.message);
-  });
-}
+  var baslik=document.getElementById('fBaslik').value.trim();
+  var kat=document.getElementById('fKat').value;
+  var icerik=document.getElementById('fIcerik').value.trim();
+  var btn=document.getElementById('btnGonder');
+  if(!baslik){alert('Baslik zorunlu.');return;}
+  if(!kat){alert('Kategori sec.');return;}
+  if(!icerik||icerik.length<5){alert('Biraz daha uzun yaz.');return;}
+  if(btn){btn.disabled=true;btn.textContent='Gonderiliyor...';}
+  var nick=anonAktif?userAdi():(document.getElementById('fNick').value.trim()||userAdi());
+  if(!anonAktif){try{localStorage.setItem('af_nick',nick);}catch(e){}}
+  db.collection('artvin_forum').add({baslik:baslik,icerik:icerik,kategori:kat,nick:nick,anonim:anonAktif,durum:'bekliyor',begeni:0,yorumSayi:0,olusturma:firebase.firestore.FieldValue.serverTimestamp()})
+    .then(function(ref){
+      try{fetch('https://api.telegram.org/bot'+TG+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TC,text:'🌿 ArtvinForum
+'+nick+'
 
-// Test gönderisi
+'+baslik+'
+'+icerik.substring(0,200)+'
+
+ID:'+ref.id})}).catch(function(){});}catch(e){}
+      if(btn){btn.disabled=false;btn.textContent='🌿 Paylaş';}
+      document.getElementById('fBaslik').value='';document.getElementById('fKat').value='';document.getElementById('fIcerik').value='';
+      var b=document.getElementById('basari');if(b){b.style.display='block';setTimeout(function(){b.style.display='none';modalKapat();},2500);}
+    })
+    .catch(function(e){if(btn){btn.disabled=false;btn.textContent='🌿 Paylaş';}alert('Hata: '+e.message);});
+}
 function testEkle(){
-  var btn = document.getElementById('testBtn');
-  if(btn){ btn.disabled = true; btn.textContent = '⏳ Ekleniyor...'; }
-  var testler = [
-    {baslik:'Artvin merkezde kiralik daire ariyorum',icerik:'Merhaba, Artvin merkeze tasinmayi dusunuyorum. 1+1 veya 2+1 kiralik daire fiyatlari nasil?',kategori:'yasam'},
+  var btn=document.getElementById('testBtn');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Ekleniyor...';}
+  var testler=[
+    {baslik:'Artvin merkezde kiralik daire ariyorum',icerik:'Merhaba, Artvin merkeze tasinmayi dusunuyorum. 1+1 veya 2+1 kiralik daire fiyatlari nasil? Ortalama kac TL?',kategori:'yasam'},
     {baslik:'Coruh nehri yuruyus rotasi',icerik:'Hafta sonu Coruh nehri kenarinda yuruyus yapmak istiyorum. Guzel rotalar onerir misiniz?',kategori:'doga'},
     {baslik:'Artvin mutfagi en iyi yemekler',icerik:'Artvin yoresel yemekleri hakkinda bilgi almak istiyorum. En cok hangi yemekler oneriliyor?',kategori:'yemek'}
   ];
-  var i = 0;
+  var i=0;
   function ekle(){
-    if(i >= testler.length){
-      if(btn){ btn.disabled = false; btn.textContent = '✅ Eklendi! Sayfayi yenile'; }
-      listele(aktifKat);
-      istatistik();
-      return;
-    }
-    var t = testler[i++];
-    db.collection('artvin_forum').add({
-      baslik:t.baslik, icerik:t.icerik, kategori:t.kategori,
-      nick:'TestUser', anonim:false, durum:'aktif',
-      begeni:0, yorumSayi:0,
-      olusturma: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(function(){ ekle(); }).catch(function(e){ alert('Hata: '+e.message); if(btn){ btn.disabled=false; btn.textContent='🧪 Test Gönderisi Ekle'; } });
+    if(i>=testler.length){if(btn){btn.disabled=false;btn.textContent='✅ Eklendi!';}istatistik();listele(aktifKat);return;}
+    var t=testler[i++];
+    db.collection('artvin_forum').add({baslik:t.baslik,icerik:t.icerik,kategori:t.kategori,nick:'TestUser',anonim:false,durum:'aktif',begeni:0,yorumSayi:0,olusturma:firebase.firestore.FieldValue.serverTimestamp()})
+      .then(function(){ekle();}).catch(function(e){alert('Hata: '+e.message);if(btn){btn.disabled=false;btn.textContent='🧪 Test Gönderisi Ekle';}});
   }
   ekle();
 }
-
-// TEK EVENT LISTENER
-document.addEventListener('click', function(e){
-  var t = e.target;
-  if(!t) return;
-
-  // Modal aç
-  if(t.id==='navYaz' || t.id==='yazBtn' || t.closest('#yazBtn')){ modalAc(); return; }
-  if(t.id==='testBtn'){ testEkle(); return; }
-  if(t.id==='btnKapat'){ modalKapat(); return; }
-  if(t.id==='overlay' && t === e.currentTarget){ modalKapat(); return; }
-  if(t.id==='btnGonder'){ gonder(); return; }
-  if(t.id==='anonRow' || t.closest('#anonRow')){ anonToggle(); return; }
-
-  // Detay kapat
-  if(t.id==='detayGeri'){ detayKapat(); return; }
-
-  // Yorum gönder
-  if(t.id==='yorumGonderBtn'){ yorumGonder(); return; }
-
-  // Accordion
-  if(t.id==='kuralH' || t.closest('#kuralH')){ ftrAc('kural'); return; }
-  if(t.id==='kvkkH' || t.closest('#kvkkH')){ ftrAc('kvkk'); return; }
-
-  // Kat btn
-  var kb = t.closest('.kat-btn');
-  if(kb && kb.dataset.kat){
-    aktifKat = kb.dataset.kat;
-    document.querySelectorAll('.kat-btn').forEach(function(b){ b.classList.toggle('aktif', b===kb); });
-    listele(aktifKat);
-    return;
-  }
-
-  // Kart tıklama — detay
-  var kart = t.closest('.kart');
-  if(kart && kart.dataset.id && !t.closest('.kart-alt')){ detayAc(kart.dataset.id); return; }
-
-  // Kart butonları
-  if(t.dataset && t.dataset.tip){
-    var tip = t.dataset.tip;
-    if(tip==='begeni'){
-      if(t.classList.contains('begendi')) return;
-      t.classList.add('begendi'); t.disabled = true;
-      db.collection('artvin_forum').doc(t.dataset.id).update({begeni: firebase.firestore.FieldValue.increment(1)}).catch(function(){});
-      return;
-    }
-    if(tip==='ac'){ detayAc(t.dataset.id); return; }
-    if(tip==='kaydet'){
-      var s = kaydet(t.dataset.id);
-      t.classList.toggle('kaydedildi', s);
-      t.textContent = s ? '🔖✓' : '🔖';
-      var dk = document.getElementById('detayKaydetBtn');
-      if(dk && dk.dataset.id === t.dataset.id){ dk.textContent = s ? '🔖✓' : '🔖'; }
-      return;
-    }
-    if(tip==='bildir'){
-      if(!confirm('Bu gonderiyi bildirmek istiyor musun?')) return;
-      db.collection('artvin_forum').doc(t.dataset.id).update({bildirim: firebase.firestore.FieldValue.increment(1)}).catch(function(){});
-      alert('Bildirildi.');
-      return;
-    }
-    if(tip==='sil'){ gonderiSil(t.dataset.id); return; }
-    if(tip==='reply'){
-      replyYorumId = t.dataset.yid;
-      replyNick = t.dataset.ynick;
-      var hd = document.getElementById('yorumHedef');
-      if(hd){ hd.textContent = '↩ @'+replyNick+' — iptal'; hd.className = 'yorum-hedef goster'; hd.dataset.tip = 'replyIptal'; }
-      var inp2 = document.getElementById('yorumInp');
-      if(inp2){ inp2.placeholder = '@'+replyNick+'...'; inp2.focus(); }
-      return;
-    }
-    if(tip==='replyIptal'){
-      replyYorumId = null; replyNick = null;
-      t.className = 'yorum-hedef';
-      var inp3 = document.getElementById('yorumInp');
-      if(inp3) inp3.placeholder = 'Yorum yaz...';
-      return;
-    }
-    if(tip==='yorumBegeni'){
-      if(t.classList.contains('begendi')) return;
-      t.classList.add('begendi'); t.disabled = true;
-      db.collection('artvin_forum').doc(t.dataset.pid).collection('yorumlar').doc(t.dataset.yid).update({begeni: firebase.firestore.FieldValue.increment(1)}).catch(function(){});
-      return;
-    }
-    if(tip==='yorumSil'){ yorumSil(t.dataset.pid, t.dataset.yid); return; }
+document.addEventListener('click',function(e){
+  var t=e.target;
+  if(!t)return;
+  if(t.id==='navYaz'||t.id==='yazBtn'||t.closest('#yazBtn')){modalAc();return;}
+  if(t.id==='nbPlus'||t.closest('#nbPlus')){modalAc();return;}
+  if(t.id==='testBtn'){testEkle();return;}
+  if(t.id==='btnKapat'||t.id==='overlay'){modalKapat();return;}
+  if(t.id==='btnGonder'){gonder();return;}
+  if(t.id==='anonRow'||t.closest('#anonRow')){anonToggle();return;}
+  if(t.id==='kuralH'||t.closest('#kuralH')){ftrAc('kural');return;}
+  if(t.id==='kvkkH'||t.closest('#kvkkH')){ftrAc('kvkk');return;}
+  var kb=t.closest('.kat-btn')||(t.classList.contains('kat-btn')?t:null);
+  if(kb&&kb.dataset.kat){aktifKat=kb.dataset.kat;document.querySelectorAll('.kat-btn').forEach(function(b){b.classList.toggle('aktif',b===kb);});document.querySelectorAll('.nb[data-kat]').forEach(function(b){b.classList.toggle('on',b.dataset.kat===aktifKat);});listele(aktifKat);return;}
+  var nb=t.closest('.nb[data-kat]');
+  if(nb&&nb.dataset.kat){aktifKat=nb.dataset.kat;document.querySelectorAll('.kat-btn').forEach(function(b){b.classList.toggle('aktif',b.dataset.kat===aktifKat);});document.querySelectorAll('.nb[data-kat]').forEach(function(b){b.classList.toggle('on',b===nb);});listele(aktifKat);return;}
+  if(t.dataset&&t.dataset.tip){
+    var tip=t.dataset.tip;
+    if(tip==='begeni'){if(t.classList.contains('begendi'))return;t.classList.add('begendi');t.disabled=true;db.collection('artvin_forum').doc(t.dataset.id).update({begeni:firebase.firestore.FieldValue.increment(1)}).catch(function(){});return;}
+    if(tip==='bildir'){if(!confirm('Bildirmek istiyor musun?'))return;db.collection('artvin_forum').doc(t.dataset.id).update({bildirim:firebase.firestore.FieldValue.increment(1)}).catch(function(){});alert('Bildirildi.');return;}
+    if(tip==='sil'){if(!confirm('Silmek istiyor musun?'))return;db.collection('artvin_forum').doc(t.dataset.id).update({durum:'silindi'}).then(function(){listele(aktifKat);}).catch(function(e){alert('Hata: '+e.message);});return;}
   }
 });
-
-// Enter ile yorum
-var yorumInpEl = document.getElementById('yorumInp');
-if(yorumInpEl){
-  yorumInpEl.addEventListener('keydown', function(e){
-    if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); yorumGonder(); }
-  });
-  yorumInpEl.addEventListener('input', function(){
-    this.style.height = 'auto';
-    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-  });
-}
-
-// Başlat
 istatistik();
 listele('hepsi');
 </script>
