@@ -275,7 +275,17 @@ function tarihStr(d) {
 
 function saatStr(saat) {
   var p = saat.split(':');
-  return p[0].padStart(2,'0') + ':' + p[1].padStart(2,'0');
+  var saat_int = parseInt(p[0]);
+  var dakika = p[1].padStart(2,'0');
+  // Türkiye UTC+3 - API bazen 1 saat geri veriyor
+  // Gerçek vakitle karşılaştırarak ayarla
+  return saat_int.toString().padStart(2,'0') + ':' + dakika;
+}
+
+function saatStrDuzelt(saat, fark) {
+  var p = saat.split(':');
+  var s = (parseInt(p[0]) + fark + 24) % 24;
+  return s.toString().padStart(2,'0') + ':' + p[1].padStart(2,'0');
 }
 
 function saateDonustur(saat) {
@@ -344,7 +354,7 @@ async function vakitleriYukle() {
     var yil = bugun.getFullYear();
 
     var url = 'https://api.aladhan.com/v1/timingsByCity/' + gun + '-' + ay + '-' + yil + 
-              '?city=Artvin&country=Turkey&method=13&school=1';
+              '?city=Artvin&country=Turkey&method=3&school=1&tune=0,2,2,2,2,2,2,0,0';
 
     var resp = await fetch(url);
     var json = await resp.json();
