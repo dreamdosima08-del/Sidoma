@@ -1,33 +1,79 @@
 {
-  "name": "Artvin Rehberi",
+  "name": "Artvin Rehber",
   "short_name": "ArtvinRehber",
-  "description": "Artvin taksi, dolmuş, eczane, namaz vakitleri ve daha fazlası.",
+  "description": "Artvin rehberi, havaş, dolmuş, taksi, namaz vakitleri, hava durumu ve daha fazlası.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a1a12",
   "theme_color": "#15803d",
   "orientation": "portrait",
+  "lang": "tr",
+  "scope": "/",
   "icons": [
     {
-      "src": "https://i.ibb.co/0jxv0d38/MG-20260430-172113.png",
+      "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "https://i.ibb.co/0jxv0d38/MG-20260430-172113.png",
+      "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["travel", "lifestyle"],
-  "lang": "tr",
-  "scope": "/",
+  "screenshots": [],
+  "categories": [
+    "travel",
+    "lifestyle",
+    "navigation"
+  ],
   "shortcuts": [
-    {"name": "Artvin Taksi", "url": "/taksi.html"},
-    {"name": "Nöbetçi Eczane", "url": "/eczane.html"},
-    {"name": "Namaz Vakitleri", "url": "/namaz.html"},
-    {"name": "Dolmuş Durakları", "url": "/dolmus.html"}
-  ]
+    {
+      "name": "Artvin Taksi",
+      "short_name": "Taksi",
+      "url": "/taksi.html",
+      "icons": [
+        {
+          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Nöbetçi Eczane",
+      "short_name": "Eczane",
+      "url": "/eczane.html",
+      "icons": [
+        {
+          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Namaz Vakitleri",
+      "short_name": "Namaz",
+      "url": "/namaz.html",
+      "icons": [
+        {
+          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Hava Durumu",
+      "short_name": "Hava",
+      "url": "/hava.html",
+      "icons": [
+        {
+          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "dir": "ltr"
 }
