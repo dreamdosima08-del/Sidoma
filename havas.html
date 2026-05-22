@@ -746,6 +746,7 @@ function formatSure(saniye) {
 function sayacGuncelle() {
   var simdi = new Date();
   var simdiBd = simdi.getHours() * 3600 + simdi.getMinutes() * 60 + simdi.getSeconds();
+  var gunSaniye = 24 * 3600;
 
   Object.keys(SEFERLER).forEach(function(durak) {
     var seferler = SEFERLER[durak];
@@ -754,8 +755,14 @@ function sayacGuncelle() {
 
     seferler.forEach(function(s) {
       var bd = saniyeyeCevir(s.saat);
+      // Gece yarısından sonraki saatler (00:00-04:00) için ertesi gün say
+      if (bd < 4 * 3600) {
+        bd = bd + gunSaniye;
+      }
       var fark = bd - simdiBd;
-      if (fark > 0 && fark < enAz) {
+      // Eger fark negatifse (sefer gecti) yarına ekle
+      if (fark <= 0) fark = fark + gunSaniye;
+      if (fark < enAz) {
         enAz = fark;
         sonraki = s;
       }
@@ -766,21 +773,14 @@ function sayacGuncelle() {
     var kartEl = document.getElementById('s-' + durak);
 
     if (sonraki) {
+      var etiket = sonraki.gecici ? '⭐ Geçici · ' : '';
       zEl.textContent = formatSure(enAz);
-      sfEl.textContent = sonraki.ad + ' — Saat ' + sonraki.saat;
-      if (enAz <= 30) {
+      sfEl.textContent = etiket + sonraki.ad + ' — Saat ' + sonraki.saat;
+      if (enAz <= 1800) {
         kartEl.classList.add('aktif-sefer');
       } else {
         kartEl.classList.remove('aktif-sefer');
       }
-    } else {
-      // Bugün sefer kalmadı, yarının ilk seferine say
-      var ilkSefer = seferler[0];
-      var ilkBd = saniyeyeCevir(ilkSefer.saat);
-      var kalanDk = (24 * 3600 - simdiBd) + ilkBd;
-      zEl.textContent = formatSure(kalanDk);
-      sfEl.textContent = 'Yarın ' + ilkSefer.ad + ' — Saat ' + ilkSefer.saat;
-      kartEl.classList.remove('aktif-sefer');
     }
   });
 }
