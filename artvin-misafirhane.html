@@ -161,10 +161,10 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <a href="tel:04662123635" class="btn btn-tel">📞 0466 212 36 35</a>
         <a href="tel:05059182665" class="btn btn-cep">📱 0505 918 26 65</a>
         <a href="https://maps.app.goo.gl/erTA1BS3UyTyDoog6" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('ogretmenevi')">📷 Resmi Gör</button>
+        <button class="btn-foto" onclick="fotoAc('ogretmenevi')">📷 Fotoğrafı Gör</button>
       </div>
       <div class="puan-bolum">
-        <div class="puan-baslik">Bu misafirhanеyi puanlayın</div>
+        <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-ogretmenevi">
           <span class="yildiz" data-val="1">★</span>
           <span class="yildiz" data-val="2">★</span>
@@ -179,8 +179,12 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   <!-- FOTO MODAL: Öğretmenevi -->
   <div class="foto-modal" id="modal-ogretmenevi">
-    <button class="foto-modal-kapat">✕</button>
-    <img src="https://i.ibb.co/8CRdJyv" alt="Öğretmenevi fotoğrafı" loading="lazy">
+    <button class="foto-modal-kapat" onclick="document.getElementById('modal-ogretmenevi').classList.remove('aktif')">✕</button>
+    <img src="https://i.ibb.co/8CRdJyv" 
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+         alt="Misafirhane fotoğrafı" loading="lazy"
+         style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain">
+    <a href="https://ibb.co/8CRdJyv" target="_blank" style="display:none;color:#fff;font-size:.9rem;text-decoration:underline;margin-top:1rem;">Fotoğrafı yeni sekmede aç →</a>
   </div>
 
   
@@ -201,10 +205,10 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
       <div class="btn-row">
         <a href="tel:05323727388" class="btn btn-cep">📱 0532 372 73 88</a>
         <a href="https://maps.app.goo.gl/gzaxaHoH4t3dwZXFA" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('orman')">📷 Resmi Gör</button>
+        <button class="btn-foto" onclick="fotoAc('orman')">📷 Fotoğrafı Gör</button>
       </div>
       <div class="puan-bolum">
-        <div class="puan-baslik">Bu misafirhanеyi puanlayın</div>
+        <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-orman">
           <span class="yildiz" data-val="1">★</span>
           <span class="yildiz" data-val="2">★</span>
@@ -219,8 +223,12 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   <!-- FOTO MODAL: Orman Bölge Müdürlüğü Misafirhanesi -->
   <div class="foto-modal" id="modal-orman">
-    <button class="foto-modal-kapat">✕</button>
-    <img src="https://i.ibb.co/0RVd8XDF" alt="Orman Bölge Müdürlüğü Misafirhanesi fotoğrafı" loading="lazy">
+    <button class="foto-modal-kapat" onclick="document.getElementById('modal-orman').classList.remove('aktif')">✕</button>
+    <img src="https://i.ibb.co/0RVd8XDF" 
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+         alt="Misafirhane fotoğrafı" loading="lazy"
+         style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain">
+    <a href="https://ibb.co/0RVd8XDF" target="_blank" style="display:none;color:#fff;font-size:.9rem;text-decoration:underline;margin-top:1rem;">Fotoğrafı yeni sekmede aç →</a>
   </div>
 
   </div>
@@ -242,10 +250,10 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
       <div class="btn-row">
         <a href="tel:04662382502" class="btn btn-tel">📞 0466 238 25 02</a>
         <a href="https://maps.app.goo.gl/G69V19CidTtzCzf88" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('dsi')">📷 Resmi Gör</button>
+        <button class="btn-foto" onclick="fotoAc('dsi')">📷 Fotoğrafı Gör</button>
       </div>
       <div class="puan-bolum">
-        <div class="puan-baslik">Bu misafirhanеyi puanlayın</div>
+        <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-dsi">
           <span class="yildiz" data-val="1">★</span>
           <span class="yildiz" data-val="2">★</span>
@@ -260,8 +268,12 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   <!-- FOTO MODAL: DSİ Misafirhanesi -->
   <div class="foto-modal" id="modal-dsi">
-    <button class="foto-modal-kapat">✕</button>
-    <img src="https://i.ibb.co/bj576gTg" alt="DSİ Misafirhanesi fotoğrafı" loading="lazy">
+    <button class="foto-modal-kapat" onclick="document.getElementById('modal-dsi').classList.remove('aktif')">✕</button>
+    <img src="https://i.ibb.co/bj576gTg" 
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+         alt="Misafirhane fotoğrafı" loading="lazy"
+         style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain">
+    <a href="https://ibb.co/bj576gTg" target="_blank" style="display:none;color:#fff;font-size:.9rem;text-decoration:underline;margin-top:1rem;">Fotoğrafı yeni sekmede aç →</a>
   </div>
 
   </div>
@@ -283,10 +295,10 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
       <div class="btn-row">
         <a href="tel:04662123511" class="btn btn-tel">📞 0466 212 35 11</a>
         <a href="https://maps.app.goo.gl/3otyB9wfuiTxeUsF9" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('polisevi')">📷 Resmi Gör</button>
+        <button class="btn-foto" onclick="fotoAc('polisevi')">📷 Fotoğrafı Gör</button>
       </div>
       <div class="puan-bolum">
-        <div class="puan-baslik">Bu misafirhanеyi puanlayın</div>
+        <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-polisevi">
           <span class="yildiz" data-val="1">★</span>
           <span class="yildiz" data-val="2">★</span>
@@ -301,8 +313,12 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   <!-- FOTO MODAL: Polisevi -->
   <div class="foto-modal" id="modal-polisevi">
-    <button class="foto-modal-kapat">✕</button>
-    <img src="https://i.ibb.co/gL2bPbQm" alt="Polisevi fotoğrafı" loading="lazy">
+    <button class="foto-modal-kapat" onclick="document.getElementById('modal-polisevi').classList.remove('aktif')">✕</button>
+    <img src="https://i.ibb.co/gL2bPbQm" 
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+         alt="Misafirhane fotoğrafı" loading="lazy"
+         style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain">
+    <a href="https://ibb.co/gL2bPbQm" target="_blank" style="display:none;color:#fff;font-size:.9rem;text-decoration:underline;margin-top:1rem;">Fotoğrafı yeni sekmede aç →</a>
   </div>
 
   </div>
@@ -324,10 +340,10 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
       <div class="btn-row">
         <a href="tel:04662151000" class="btn btn-tel">📞 0466 215 1000</a>
         <a href="https://maps.app.goo.gl/nUqfb5a4xpgA6zjC9" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('acu')">📷 Resmi Gör</button>
+        <button class="btn-foto" onclick="fotoAc('acu')">📷 Fotoğrafı Gör</button>
       </div>
       <div class="puan-bolum">
-        <div class="puan-baslik">Bu misafirhanеyi puanlayın</div>
+        <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-acu">
           <span class="yildiz" data-val="1">★</span>
           <span class="yildiz" data-val="2">★</span>
@@ -342,8 +358,12 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   <!-- FOTO MODAL: AÇÜ Konukevi -->
   <div class="foto-modal" id="modal-acu">
-    <button class="foto-modal-kapat">✕</button>
-    <img src="https://i.ibb.co/1ky8jww" alt="AÇÜ Konukevi fotoğrafı" loading="lazy">
+    <button class="foto-modal-kapat" onclick="document.getElementById('modal-acu').classList.remove('aktif')">✕</button>
+    <img src="https://i.ibb.co/1ky8jww" 
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+         alt="Misafirhane fotoğrafı" loading="lazy"
+         style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain">
+    <a href="https://ibb.co/1ky8jww" target="_blank" style="display:none;color:#fff;font-size:.9rem;text-decoration:underline;margin-top:1rem;">Fotoğrafı yeni sekmede aç →</a>
   </div>
 
   
@@ -364,10 +384,10 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
       <div class="btn-row">
         <a href="tel:04662122365" class="btn btn-tel">📞 0466 212 23 65</a>
         <a href="https://maps.app.goo.gl/Aj421TTKUNzUmjqu5" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('orduevi')">📷 Resmi Gör</button>
+        <button class="btn-foto" onclick="fotoAc('orduevi')">📷 Fotoğrafı Gör</button>
       </div>
       <div class="puan-bolum">
-        <div class="puan-baslik">Bu misafirhanеyi puanlayın</div>
+        <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-orduevi">
           <span class="yildiz" data-val="1">★</span>
           <span class="yildiz" data-val="2">★</span>
@@ -382,8 +402,12 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   <!-- FOTO MODAL: Astsubay Orduevi -->
   <div class="foto-modal" id="modal-orduevi">
-    <button class="foto-modal-kapat">✕</button>
-    <img src="https://i.ibb.co/YTQjqtsN" alt="Astsubay Orduevi fotoğrafı" loading="lazy">
+    <button class="foto-modal-kapat" onclick="document.getElementById('modal-orduevi').classList.remove('aktif')">✕</button>
+    <img src="https://i.ibb.co/YTQjqtsN" 
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+         alt="Misafirhane fotoğrafı" loading="lazy"
+         style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain">
+    <a href="https://ibb.co/YTQjqtsN" target="_blank" style="display:none;color:#fff;font-size:.9rem;text-decoration:underline;margin-top:1rem;">Fotoğrafı yeni sekmede aç →</a>
   </div>
 
   
@@ -402,10 +426,10 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
       <div class="btn-row">
         <a href="tel:04662121369" class="btn btn-cep">📱 0466 212 13 69</a>
         <a href="https://maps.app.goo.gl/GpnvjPBVigT7yCdq6" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('cevre')">📷 Resmi Gör</button>
+        <button class="btn-foto" onclick="fotoAc('cevre')">📷 Fotoğrafı Gör</button>
       </div>
       <div class="puan-bolum">
-        <div class="puan-baslik">Bu misafirhanеyi puanlayın</div>
+        <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-cevre">
           <span class="yildiz" data-val="1">★</span>
           <span class="yildiz" data-val="2">★</span>
@@ -420,8 +444,12 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   <!-- FOTO MODAL: Çevre Şehircilik -->
   <div class="foto-modal" id="modal-cevre">
-    <button class="foto-modal-kapat">✕</button>
-    <img src="https://i.ibb.co/fYBbz3kf" alt="Çevre Şehircilik İl Müdürlüğü Misafirhanesi fotoğrafı" loading="lazy">
+    <button class="foto-modal-kapat" onclick="document.getElementById('modal-cevre').classList.remove('aktif')">✕</button>
+    <img src="https://i.ibb.co/fYBbz3kf" 
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+         alt="Misafirhane fotoğrafı" loading="lazy"
+         style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain">
+    <a href="https://ibb.co/fYBbz3kf" target="_blank" style="display:none;color:#fff;font-size:.9rem;text-decoration:underline;margin-top:1rem;">Fotoğrafı yeni sekmede aç →</a>
   </div>
 
 <!-- SEO METİN -->
@@ -562,8 +590,9 @@ document.querySelectorAll('.foto-modal').forEach(function(m) {
     }
   });
 });
-function fotoAc(id) {
-  document.getElementById('modal-' + id).classList.add('aktif');
+window.fotoAc = function(id) {
+  var modal = document.getElementById('modal-' + id);
+  if (modal) modal.classList.add('aktif');
 }
 </script>
 
