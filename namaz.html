@@ -354,7 +354,7 @@ async function vakitleriYukle() {
     var yil = bugun.getFullYear();
 
     var url = 'https://api.aladhan.com/v1/timingsByCity/' + gun + '-' + ay + '-' + yil + 
-              '?city=Artvin&country=Turkey&method=3&school=1&tune=0,2,2,2,2,2,2,0,0';
+              '?city=Artvin&country=Turkey&method=13&school=1&tune=0,2,2,2,2,2,2,0,0';
 
     var resp = await fetch(url);
     var json = await resp.json();
