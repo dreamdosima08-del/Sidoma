@@ -640,7 +640,7 @@ function gonder(){
   if(!anonAktif&&document.getElementById('fIsim').value.trim()){
     localStorage.setItem('acu_nick',nick);
   }
-  var veri={kategori:kat,metin:metin,anonim:anonAktif,nick:nick,durum:'bekliyor',begeni:0,yorumSayi:0,olusturma:firebase.firestore.FieldValue.serverTimestamp()};
+  var veri={kategori:kat,metin:metin,anonim:anonAktif,nick:nick,durum:'yayinda',begeni:0,yorumSayi:0,olusturma:firebase.firestore.FieldValue.serverTimestamp()};
   if(link) veri.link=link;
   db.collection('acukampus').add(veri).then(function(ref){
     fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{
