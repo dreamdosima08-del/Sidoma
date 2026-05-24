@@ -134,9 +134,33 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 1rem 5rem;margin-top:1rem}
 .ftr-h{font-size:.62rem;font-weight:700;color:var(--morc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
 .ftr-p{font-size:.73rem;color:rgba(238,238,245,.38);line-height:1.8;margin-bottom:1rem;display:none}
+
+/* RUMUZ MODAL */
+.rumuz-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;align-items:center;justify-content:center;padding:1.5rem}
+.rumuz-modal.aktif{display:flex}
+.rumuz-kart{background:#1a0a2e;border:1px solid rgba(124,58,237,.3);border-radius:16px;padding:1.75rem 1.5rem;width:100%;max-width:340px}
+.rumuz-baslik{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:#fff;margin-bottom:.35rem}
+.rumuz-acik{font-size:.72rem;color:rgba(255,255,255,.45);margin-bottom:1.1rem;line-height:1.5}
+.rumuz-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(124,58,237,.3);border-radius:10px;padding:.75rem 1rem;color:#fff;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;margin-bottom:.75rem}
+.rumuz-input:focus{border-color:rgba(124,58,237,.7)}
+.rumuz-btn{width:100%;background:linear-gradient(135deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:10px;padding:.8rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
+.rumuz-degistir{font-size:.65rem;color:rgba(124,58,237,.7);cursor:pointer;text-decoration:underline;margin-top:.5rem;display:inline-block}
+
 </style>
 </head>
 <body>
+
+<!-- RUMUZ MODAL -->
+<div class="rumuz-modal" id="rumuzModal">
+  <div class="rumuz-kart">
+    <div class="rumuz-baslik">👤 Rumuzunu Belirle</div>
+    <div class="rumuz-acik">Platforma katılmak için bir rumuz seç. Bu isimle paylaşım yapacaksın. Sonra değiştirebilirsin.</div>
+    <div id="aktifRumuz" style="font-size:.72rem;color:rgba(124,58,237,.8);margin-bottom:.5rem;"></div>
+    <input class="rumuz-input" id="rumuzInput" type="text" placeholder="Örn: Artvinli, Kampüslü..." maxlength="20">
+    <button class="rumuz-btn" onclick="rumuzKaydet()">Devam Et →</button>
+  </div>
+</div>
+
 
 <h1 style="display:none">ACU Kampüs — Artvin Çoruh Üniversitesi Öğrenci Platformu ve Bölüm Grupları 2026</h1>
 <h2 style="display:none">AÇÜ Bölüm Grupları — Bilgisayar, Orman, Mimarlık, Eğitim</h2>
@@ -303,7 +327,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
   <div style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:.85rem 1rem;margin:1rem 0">
     <div style="font-size:.72rem;font-weight:800;color:var(--morc);margin-bottom:.5rem">📬 Bize Ulaş</div>
-    <input type="text" id="mesajIsim" placeholder="Adın (isteğe bağlı)" maxlength="30"
+    <input type="text" id="mesajIsim" style="display:none" placeholder="Adın (isteğe bağlı)" maxlength="30"
       style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.78rem;outline:none;margin-bottom:.4rem;display:block">
     <textarea id="mesajIcerik" placeholder="Soru, öneri veya şikayetiniz..." maxlength="400"
       style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.78rem;outline:none;resize:none;height:70px;line-height:1.5;display:block;margin-bottom:.4rem"></textarea>
@@ -635,10 +659,58 @@ function gonder(){
 }
 
 // MESAJ
+// İsmi localStorage'dan yükle
+
+// RUMUZ SİSTEMİ
+function rumuzKontrol(){
+  var kayitli = localStorage.getItem('acuIsim');
+  if(!kayitli){
+    document.getElementById('rumuzModal').classList.add('aktif');
+  } else {
+    var isimEl = document.getElementById('mesajIsim');
+    if(isimEl) isimEl.value = kayitli;
+    // Değiştir linkini göster
+    rumuzGoster(kayitli);
+  }
+}
+
+function rumuzKaydet(){
+  var isim = document.getElementById('rumuzInput').value.trim();
+  if(!isim || isim.length < 2){ alert('En az 2 karakter gir.'); return; }
+  localStorage.setItem('acuIsim', isim);
+  document.getElementById('rumuzModal').classList.remove('aktif');
+  var isimEl = document.getElementById('mesajIsim');
+  if(isimEl) isimEl.value = isim;
+  rumuzGoster(isim);
+}
+
+function rumuzGoster(isim){
+  var el = document.getElementById('aktifRumuz');
+  if(el) el.innerHTML = '👤 ' + isim + ' · <span class="rumuz-degistir" onclick="rumuzDegistir()">Değiştir</span>';
+}
+
+function rumuzDegistir(){
+  localStorage.removeItem('acuIsim');
+  document.getElementById('rumuzInput').value = '';
+  document.getElementById('rumuzModal').classList.add('aktif');
+}
+
+window.addEventListener('DOMContentLoaded', rumuzKontrol);
+
+window.addEventListener('DOMContentLoaded', function(){
+  var kayitliIsim = localStorage.getItem('acuIsim');
+  if(kayitliIsim){
+    var isimEl = document.getElementById('mesajIsim');
+    if(isimEl) isimEl.value = kayitliIsim;
+  }
+});
+
 function mesajGonder(){
   var isim=document.getElementById('mesajIsim').value.trim()||'Anonim';
   var icerik=document.getElementById('mesajIcerik').value.trim();
   if(!icerik||icerik.length<3){alert('Mesaj yazin.');return;}
+  // İsmi hatırla
+  if(isim!=='Anonim') localStorage.setItem('acuIsim', isim);
   var btn=document.getElementById('mesajBtn');
   btn.disabled=true;
   db.collection('acu_mesajlar').add({isim:isim,mesaj:icerik,olusturma:firebase.firestore.FieldValue.serverTimestamp()})
