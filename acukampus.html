@@ -593,6 +593,9 @@ function yorumlariYukle(postId){
         html+='</div></div>';
       });
       liste.innerHTML=html;
+      // Sayaci gercek yorumdan guncelle
+      var sayacEl=document.getElementById('ys_'+postId);
+      if(sayacEl) sayacEl.textContent=snap.size;
     }).catch(function(){});
 }
 
