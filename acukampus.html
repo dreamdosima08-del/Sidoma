@@ -446,7 +446,16 @@ var aktifListener = null;
 // YARDIMCI
 function renk(s){var n=0;for(var i=0;i<s.length;i++)n+=s.charCodeAt(i);return RENKLER[n%RENKLER.length];}
 function zaman(ts){if(!ts)return '';var s=Math.floor((Date.now()-ts.toMillis())/1000);if(s<60)return 'Az once';if(s<3600)return Math.floor(s/60)+' dk once';if(s<86400)return Math.floor(s/3600)+' sa once';return Math.floor(s/86400)+' gun once';}
-function userAdi(){var n=localStorage.getItem('acu_nick');if(n)return n;n='User'+String(Math.floor(Math.random()*900)+100).padStart(3,'0');localStorage.setItem('acu_nick',n);return n;}
+function userAdi(){
+  // Önce acuIsim'e bak (rumuz modal), sonra acu_nick'e
+  var n = localStorage.getItem('acuIsim') || localStorage.getItem('acu_nick');
+  if(n) return n;
+  // Hiç yoksa random üret ve kaydet
+  n = 'User' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
+  localStorage.setItem('acu_nick', n);
+  localStorage.setItem('acuIsim', n);
+  return n;
+}
 
 // MODAL
 function modalAc(){document.getElementById('overlay').classList.add('ac');document.body.style.overflow='hidden';}
@@ -502,6 +511,8 @@ function kanalGoster(tip){
   }
   html+='</div>';
   akis.innerHTML=html;
+  // Her post için yorum sayacini yukle
+  snap.forEach(function(doc){ yorumSayisiniGetir(doc.id); });
 }
 
 // LİSTELE - onSnapshot yerine get() kullan (performans)
@@ -552,8 +563,9 @@ function listele(kat){
       }
       html+='<div class="kart-metin">'+d.metin.replace(/\n/g,'<br>')+'</div>';
       html+='<div class="kart-alt">';
-      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="begeni">👍 '+(d.begeni||0)+'</button>';
-      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="yorum">💬 <span id="ys_'+doc.id+'">'+(d.yorumSayi||0)+'</span></button>';
+      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="begeni" id="beg_'+doc.id+'">👍 <span id="begs_'+doc.id+'">'+(d.begeni||0)+'</span></button>';
+      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="begenmeme" id="begme_'+doc.id+'">👎 <span id="begmes_'+doc.id+'">'+(d.begenmeme||0)+'</span></button>';
+      html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="yorum">💬 <span id="ys_'+doc.id+'" data-post-id="'+doc.id+'">0</span></button>';
       html+='<button class="kbtn" data-id="'+doc.id+'" data-tip="bildir" style="margin-left:auto">🚩</button>';
       html+='</div>';
       html+='<div class="yorum-alan">';
@@ -571,6 +583,16 @@ function listele(kat){
 }
 
 // YORUM
+
+function yorumSayisiniGetir(postId){
+  db.collection('acukampus').doc(postId).collection('yorumlar')
+    .where('durum','==','aktif').get()
+    .then(function(snap){
+      var el=document.getElementById('ys_'+postId);
+      if(el) el.textContent=snap.size;
+    }).catch(function(){});
+}
+
 function yorumlariYukle(postId){
   var liste=document.getElementById('yl_'+postId);
   if(!liste)return;
@@ -681,6 +703,7 @@ function rumuzKaydet(){
   var isim = document.getElementById('rumuzInput').value.trim();
   if(!isim || isim.length < 2){ alert('En az 2 karakter gir.'); return; }
   localStorage.setItem('acuIsim', isim);
+  localStorage.setItem('acu_nick', isim);
   document.getElementById('rumuzModal').classList.remove('aktif');
   var isimEl = document.getElementById('mesajIsim');
   if(isimEl) isimEl.value = isim;
@@ -769,10 +792,33 @@ document.addEventListener('click',function(e){
 
   // Kart butonları
   if(t.dataset&&t.dataset.tip==='begeni'){
-    if(t.classList.contains('begendi'))return;
+    var bKey = 'beg_'+t.dataset.id;
+    if(localStorage.getItem(bKey)) return; // Zaten beğendi
+    localStorage.setItem(bKey, '1');
     t.classList.add('begendi');
-    t.disabled=true;
-    db.collection('acukampus').doc(t.dataset.id).update({begeni:firebase.firestore.FieldValue.increment(1)});
+    t.style.color='#7c3aed';
+    db.collection('acukampus').doc(t.dataset.id).update({begeni:firebase.firestore.FieldValue.increment(1)})
+      .then(function(){
+        db.collection('acukampus').doc(t.dataset.id).get().then(function(d){
+          var el=document.getElementById('begs_'+t.dataset.id);
+          if(el) el.textContent=d.data().begeni||0;
+        });
+      });
+    return;
+  }
+  if(t.dataset&&t.dataset.tip==='begenmeme'){
+    var dKey = 'dis_'+t.dataset.id;
+    if(localStorage.getItem(dKey)) return; // Zaten beğenmedi
+    localStorage.setItem(dKey, '1');
+    t.classList.add('begendi');
+    t.style.color='#dc2626';
+    db.collection('acukampus').doc(t.dataset.id).update({begenmeme:firebase.firestore.FieldValue.increment(1)})
+      .then(function(){
+        db.collection('acukampus').doc(t.dataset.id).get().then(function(d){
+          var el=document.getElementById('begmes_'+t.dataset.id);
+          if(el) el.textContent=d.data().begenmeme||0;
+        });
+      });
     return;
   }
   if(t.dataset&&t.dataset.tip==='yorum'){
