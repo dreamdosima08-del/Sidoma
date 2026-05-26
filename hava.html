@@ -330,6 +330,20 @@ footer a { color: rgba(255,255,255,.5); text-decoration: none; }
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
   <a class="nav-back" href="/">← Ana Sayfa</a>
 </nav>
+<!-- BAYRAM TAHMİN BANDI -->
+<div style="background:linear-gradient(135deg,#1e3a5f,#1a6b3a);border-bottom:1px solid rgba(255,255,255,.15);padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;">
+  <div style="display:flex;align-items:center;gap:.6rem;">
+    <span style="font-size:1.1rem;">🌤️</span>
+    <div>
+      <div style="font-size:.72rem;font-weight:800;color:#fff;letter-spacing:.04em;">BAYRAM TATİLİ HAVA TAHMİNİ</div>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.6);">4 günlük Artvin tahmini Instagram'da</div>
+    </div>
+  </div>
+  <a href="https://www.instagram.com/p/DYyzkrPirN2/?igsh=MWRxYzlqenF6MDNrMg==" target="_blank" rel="noopener"
+     style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:.4rem .9rem;font-size:.72rem;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap;">
+    Instagram'da Gör →
+  </a>
+</div>
 
 <!-- İLÇE SEÇİCİ -->
 <div class="ilce-bar" id="ilceBar"></div>
@@ -473,7 +487,7 @@ var ILCELER = [
   {ad:'Murgul', lat:41.1833, lon:41.5167},
 ];
 
-var OW_KEY = 'bd5e378503939ddaee76f12ad7a97608';
+// Open-Meteo kullaniliyor - API key gerekmiyor
 var aktif = 0;
 
 function ikon(id) {
@@ -539,75 +553,108 @@ async function yukle(idx) {
   document.getElementById('hata').style.display = 'none';
 
   try {
-    var anlikUrl = 'https://api.openweathermap.org/data/2.5/weather?lat='+ilce.lat+'&lon='+ilce.lon+'&appid='+OW_KEY+'&units=metric&lang=tr';
-    var tahminUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+ilce.lat+'&lon='+ilce.lon+'&appid='+OW_KEY+'&units=metric&lang=tr&cnt=40';
+    // Open-Meteo API - ucretsiz, API key yok, cok dogru
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude='+ilce.lat+'&longitude='+ilce.lon+
+      '&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,visibility,surface_pressure,precipitation'+
+      '&hourly=temperature_2m,weather_code,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum'+
+      '&timezone=Europe%2FIstanbul&forecast_days=7&wind_speed_unit=kmh';
 
-    var res = await Promise.all([fetch(anlikUrl), fetch(tahminUrl)]);
-    var anlik = await res[0].json();
-    var tahmin = await res[1].json();
+    var res = await fetch(url);
+    var d = await res.json();
+    var cur = d.current;
 
-    if(anlik.cod !== 200) throw new Error('API');
+    // Hava kodu -> ikon ve aciklama
+    function wIkon(code) {
+      if(code===0) return '☀️';
+      if(code<=2) return '⛅';
+      if(code===3) return '☁️';
+      if(code<=49) return '🌫️';
+      if(code<=59) return '🌦️';
+      if(code<=69) return '🌧️';
+      if(code<=79) return '❄️';
+      if(code<=82) return '🌧️';
+      if(code<=84) return '🌨️';
+      if(code<=99) return '⛈️';
+      return '🌡️';
+    }
+    function wAciklama(code) {
+      if(code===0) return 'Açık';
+      if(code===1) return 'Çoğunlukla açık';
+      if(code===2) return 'Parçalı bulutlu';
+      if(code===3) return 'Bulutlu';
+      if(code<=45) return 'Sisli';
+      if(code<=49) return 'Kırağılı sis';
+      if(code<=55) return 'Çiseleyen yağmur';
+      if(code<=59) return 'Dondurucu çisenti';
+      if(code<=65) return 'Yağmurlu';
+      if(code<=69) return 'Dondurucu yağmur';
+      if(code<=75) return 'Karlı';
+      if(code<=77) return 'Kar taneleri';
+      if(code<=82) return 'Sağanak yağış';
+      if(code<=84) return 'Kar sağanağı';
+      if(code<=99) return 'Gök gürültülü fırtına';
+      return 'Bilinmiyor';
+    }
 
-    // Arka plan
-    document.body.className = bgSinif(anlik.weather[0].id);
+    // Arkaplan
+    var bgMap = {0:'gunes',1:'gunes',2:'parcali',3:'bulutlu'};
+    document.body.className = bgMap[cur.weather_code] || (cur.weather_code>=61?'yagmurlu':'bulutlu');
 
     // Tarih
     var bugun = new Date();
     document.getElementById('tarihEl').textContent = GUN[bugun.getDay()] + ', ' + bugun.getDate() + ' ' + AY[bugun.getMonth()] + ' ' + bugun.getFullYear();
 
     document.getElementById('yerAdi').textContent = 'Artvin — ' + ilce.ad;
-    document.getElementById('anaIkon').textContent = ikon(anlik.weather[0].id);
-    document.getElementById('anaSicak').innerHTML = Math.round(anlik.main.temp) + '<sup>°C</sup>';
-    document.getElementById('anaDurum').textContent = anlik.weather[0].description.charAt(0).toUpperCase() + anlik.weather[0].description.slice(1);
-    document.getElementById('hissedilen').textContent = 'Hissedilen ' + Math.round(anlik.main.feels_like) + '°';
-    document.getElementById('nemEl').textContent = '%' + anlik.main.humidity;
-    document.getElementById('ruzgarEl').textContent = Math.round(anlik.wind.speed * 3.6) + ' km/s';
-    document.getElementById('gorusEl').textContent = anlik.visibility ? (anlik.visibility/1000).toFixed(0) + ' km' : '—';
-    document.getElementById('egGunDogum').textContent = tsStr(anlik.sys.sunrise);
-    document.getElementById('egGunBatim').textContent = tsStr(anlik.sys.sunset);
-    document.getElementById('egMaksMins').textContent = Math.round(anlik.main.temp_max) + '° / ' + Math.round(anlik.main.temp_min) + '°';
-    document.getElementById('egBasinc').textContent = anlik.main.pressure;
+    document.getElementById('anaIkon').textContent = wIkon(cur.weather_code);
+    document.getElementById('anaSicak').innerHTML = Math.round(cur.temperature_2m) + '<sup>°C</sup>';
+    document.getElementById('anaDurum').textContent = wAciklama(cur.weather_code);
+    document.getElementById('hissedilen').textContent = 'Hissedilen ' + Math.round(cur.apparent_temperature) + '°';
+    document.getElementById('nemEl').textContent = '%' + cur.relative_humidity_2m;
+    document.getElementById('ruzgarEl').textContent = Math.round(cur.wind_speed_10m) + ' km/s';
+    document.getElementById('gorusEl').textContent = cur.visibility ? (cur.visibility/1000).toFixed(0) + ' km' : '—';
+    document.getElementById('egBasinc').textContent = Math.round(cur.surface_pressure);
 
-    // Saatlik
+    // Gün doğumu/batımı
+    var todayIdx = 0;
+    if(d.daily && d.daily.sunrise) {
+      var sunrise = new Date(d.daily.sunrise[todayIdx]);
+      var sunset = new Date(d.daily.sunset[todayIdx]);
+      document.getElementById('egGunDogum').textContent = sunrise.getHours()+':'+(sunrise.getMinutes()<10?'0':'')+sunrise.getMinutes();
+      document.getElementById('egGunBatim').textContent = sunset.getHours()+':'+(sunset.getMinutes()<10?'0':'')+sunset.getMinutes();
+    }
+    document.getElementById('egMaksMins').textContent = Math.round(d.daily.temperature_2m_max[0])+'° / '+Math.round(d.daily.temperature_2m_min[0])+'°';
+
+    // Saatlik (sonraki 8 saat)
+    var simdiSaat = new Date().getHours();
     var saatHTML = '';
-    tahmin.list.slice(0, 8).forEach(function(item, i) {
-      var d = new Date(item.dt * 1000);
-      var simdi = i === 0;
-      saatHTML += '<div class="saat-kart' + (simdi?' simdi':'') + '">';
-      saatHTML += '<div class="sk-saat' + (simdi?' simdi-label':'') + '">' + (simdi ? 'Şimdi' : d.getHours().toString().padStart(2,'0')+':00') + '</div>';
-      saatHTML += '<span class="sk-ikon">' + ikon(item.weather[0].id) + '</span>';
-      saatHTML += '<div class="sk-sicak">' + Math.round(item.main.temp) + '°</div>';
-      saatHTML += '</div>';
-    });
-    document.getElementById('saatSerit').innerHTML = saatHTML;
+    var saatSayac = 0;
+    for(var i=0; i<d.hourly.time.length && saatSayac<8; i++) {
+      var t = new Date(d.hourly.time[i]);
+      if(t <= new Date()) continue;
+      var simdi = saatSayac === 0;
+      saatHTML += '<div class="saat-kart'+(simdi?' simdi':'')+'">'+
+        '<div class="sk-saat'+(simdi?' simdi':'')+'">'+t.getHours()+':00</div>'+
+        '<div class="sk-ikon">'+wIkon(d.hourly.weather_code[i])+'</div>'+
+        '<div class="sk-sicak">'+Math.round(d.hourly.temperature_2m[i])+'°</div>'+
+        '<div class="sk-yagis">%'+( d.hourly.precipitation_probability[i]||0)+'</div>'+
+        '</div>';
+      saatSayac++;
+    }
+    document.getElementById('saatlikSaritlar').innerHTML = saatHTML;
 
-    // 5 günlük
-    var gunler = {};
-    tahmin.list.forEach(function(item) {
-      var d = new Date(item.dt * 1000);
-      var key = d.toLocaleDateString('tr-TR');
-      if(!gunler[key]) gunler[key] = {tarih:d, maks:item.main.temp_max, min:item.main.temp_min, id:item.weather[0].id, durum:item.weather[0].description};
-      else {
-        if(item.main.temp_max > gunler[key].maks) gunler[key].maks = item.main.temp_max;
-        if(item.main.temp_min < gunler[key].min) gunler[key].min = item.main.temp_min;
-      }
-    });
-
+    // 7 günlük tahmin
     var tahminHTML = '';
-    var say = 0;
-    Object.values(gunler).forEach(function(g) {
-      if(say >= 5) return;
-      var isToday = g.tarih.toLocaleDateString() === new Date().toLocaleDateString();
-      var durum = g.durum.charAt(0).toUpperCase() + g.durum.slice(1);
-      tahminHTML += '<div class="tahmin-satir">';
-      tahminHTML += '<div class="ts-gun">' + (isToday ? 'Bugün' : GUN[g.tarih.getDay()]) + '</div>';
-      tahminHTML += '<span class="ts-ikon">' + ikon(g.id) + '</span>';
-      tahminHTML += '<div class="ts-durum">' + durum + '</div>';
-      tahminHTML += '<div class="ts-sicaklik"><span class="ts-maks">' + Math.round(g.maks) + '°</span><span class="ts-min">' + Math.round(g.min) + '°</span></div>';
-      tahminHTML += '</div>';
-      say++;
+    d.daily.time.forEach(function(tarih, i) {
+      var dt = new Date(tarih);
+      var gunAdi = i===0?'Bugün':(i===1?'Yarın':GUN[dt.getDay()]);
+      tahminHTML += '<div class="tahmin-gun">'+
+        '<div class="tg-gun">'+gunAdi+'</div>'+
+        '<div class="tg-ikon">'+wIkon(d.daily.weather_code[i])+'</div>'+
+        '<div class="tg-sicak"><span class="maks">'+Math.round(d.daily.temperature_2m_max[i])+'°</span>'+
+        '<span class="mins">'+Math.round(d.daily.temperature_2m_min[i])+'°</span></div>'+
+        '</div>';
     });
-    document.getElementById('tahminWrap').innerHTML = tahminHTML;
+    document.getElementById('tahminList').innerHTML = tahminHTML;
 
     document.getElementById('loading').style.display = 'none';
     document.getElementById('weatherContent').style.display = 'block';
