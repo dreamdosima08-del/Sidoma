@@ -358,15 +358,35 @@ async function vakitleriYukle() {
     var ay = bugun.getMonth() + 1;
     var yil = bugun.getFullYear();
 
-    var url = 'https://api.aladhan.com/v1/timingsByCity/' + gun + '-' + ay + '-' + yil + 
-              '?city=Artvin&country=Turkey&method=13&school=1&tune=0,0,0,5,0,0,0,0,0';
+    // Diyanet resmi verileri - ezanvakti proxy (Artvin Merkez: 9544)
+    var bugunStr = yil + '-' + String(ay).padStart(2,'0') + '-' + String(gun).padStart(2,'0');
+    var url = 'https://ezanvakti.emre.com.tr/vakitler/ilce/9544';
 
     var resp = await fetch(url);
     var json = await resp.json();
 
-    if(json.code !== 200) throw new Error('API hatası');
+    // Bugünün verisini bul
+    var bugunVeri = null;
+    for (var i = 0; i < json.length; i++) {
+      if (json[i].MiladiTarihKisa === bugunStr || json[i].MiladiTarihUzun && json[i].MiladiTarihUzun.indexOf(bugunStr) >= 0) {
+        bugunVeri = json[i];
+        break;
+      }
+    }
+    // Bulunamazsa ilk kaydı kullan
+    if (!bugunVeri && json.length > 0) bugunVeri = json[0];
+    if (!bugunVeri) throw new Error('Veri bulunamadı');
 
-    var t = json.data.timings;
+    // Diyanet field isimlerini Aladhan formatına çevir
+    var t = {
+      Imsak:   bugunVeri.Imsak,
+      Fajr:    bugunVeri.Imsak,
+      Sunrise: bugunVeri.Gunes,
+      Dhuhr:   bugunVeri.Ogle,
+      Asr:     bugunVeri.Ikindi,
+      Maghrib: bugunVeri.Aksam,
+      Isha:    bugunVeri.Yatsi
+    };
     VAKITLER = t;
 
     // Vakitleri göster
