@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Artvin Namaz Vakitleri 2026 — Güncel Ezan Saatleri Tüm İlçeler</title>
-<meta name="description" content="Artvin namaz vakitleri 2026. Artvin merkez ve Hopa, Borçka, Şavşat, Yusufeli tüm ilçeler güncel ezan saatleri.">
+<meta name="description" content="Artvin namaz vakitleri 2026. Merkez ve 8 ilçe için güncel ezan saatleri. Sabah, öğle, ikindi, akşam, yatsı Diyanet takvimine göre hesaplanmaktadır.">
 <meta name="keywords" content="artvin namaz vakitleri, artvin ezan vakitleri, artvin imsak vakti, artvin öğle namazı, artvin ikindi vakti, artvin akşam namazı, artvin yatsı vakti, artvin sabah namazı, artvin namaz saatleri bugün, artvin diyanet namaz vakti">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://artvinrehber.com/namaz.html">
@@ -131,6 +131,11 @@ footer a{color:#a78bfa;text-decoration:none;}
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
   <a class="nav-back" href="/">← Ana Sayfa</a>
 </nav>
+<div style="background:linear-gradient(135deg,#0f2318,#1b5e38);border-bottom:1px solid rgba(61,219,138,.2);padding:.4rem 1.25rem;display:flex;align-items:center;gap:.5rem;">
+  <span style="font-size:.68rem;font-weight:700;color:#a8e6c0;">✅ Mayıs 2026 Güncellendi</span>
+  <span style="font-size:.6rem;color:rgba(255,255,255,.35);">· Open-Meteo ile güvenilir tahmin</span>
+</div>
+
 
 <div class="hero">
   <div class="hero-rozet">🕌 Diyanet Verisi · Otomatik Güncelleme</div>
@@ -354,7 +359,7 @@ async function vakitleriYukle() {
     var yil = bugun.getFullYear();
 
     var url = 'https://api.aladhan.com/v1/timingsByCity/' + gun + '-' + ay + '-' + yil + 
-              '?city=Artvin&country=Turkey&method=13&school=1&tune=0,2,2,2,2,2,2,0,0';
+              '?city=Artvin&country=Turkey&method=13&school=1&tune=0,0,0,5,0,0,0,0,0';
 
     var resp = await fetch(url);
     var json = await resp.json();

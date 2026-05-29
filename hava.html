@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Artvin Hava Durumu Bugün — 9 İlçe Güncel Tahmin ve 5 Günlük Tahmin 2026</title>
-<meta name="description" content="Artvin hava durumu bugün: sıcaklık, nem, rüzgar. Hopa, Borçka, Şavşat, Yusufeli, Ardanuç, Arhavi, Murgul, Kemalpaşa hava tahmini. MGM resmi verileri ile anlık güncelleme.">
+<title>Artvin Hava Durumu 2026 — 9 İlçe Anlık ve 5 Günlük Tahmin</title>
+<meta name="description" content="Artvin hava durumu 2026. Merkez ve 9 ilçe için anlık sıcaklık, nem, rüzgar ve 5 günlük hava tahmini. GPS ile konumuna en yakın Artvin ilçesini seç.">
 <meta name="keywords" content="artvin hava durumu, artvin hava, artvin hava bugün, artvin hava tahmini, artvin hava durumu bugün, artvin 5 günlük hava, artvin hava saati, artvin meteoroloji, artvin hava sıcaklığı, artvin nem oranı, hopa hava durumu, borçka hava durumu, şavşat hava durumu, yusufeli hava durumu, ardanuç hava durumu, arhavi hava durumu, murgul hava durumu, kemalpaşa hava durumu, artvin yarın hava, artvin haftalık hava, artvin kar yağışı, artvin yağmur, artvin rüzgar, artvin sis, artvin hava durumu mgm, artvin meteoroloji genel müdürlüğü">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://artvinrehber.com/hava.html">
@@ -320,6 +320,16 @@ footer {
   font-size: .65rem; color: rgba(255,255,255,.3); line-height: 2;
 }
 footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+
+.tahmin-wrap{display:flex;gap:.5rem;overflow-x:auto;padding:.5rem 0;scrollbar-width:none}
+.tahmin-wrap::-webkit-scrollbar{display:none}
+.tahmin-gun{display:flex;flex-direction:column;align-items:center;gap:.3rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem .6rem;min-width:70px;flex-shrink:0}
+.tg-gun{font-size:.62rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em}
+.tg-ikon{font-size:1.4rem}
+.tg-sicak{display:flex;flex-direction:column;align-items:center;gap:.1rem}
+.maks{font-size:.85rem;font-weight:700;color:#fff}
+.mins{font-size:.72rem;color:rgba(255,255,255,.4)}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://artvinrehber.com/hava.html","dateModified":"2026-05-11","datePublished":"2026-01-01"}</script>
 </head>
@@ -330,12 +340,11 @@ footer a { color: rgba(255,255,255,.5); text-decoration: none; }
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
   <a class="nav-back" href="/">← Ana Sayfa</a>
 </nav>
-<!-- BAYRAM TAHMİN BANDI -->
-<div style="background:linear-gradient(135deg,#1e3a5f,#1a6b3a);border-bottom:1px solid rgba(255,255,255,.15);padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;">
-  <div style="display:flex;align-items:center;gap:.6rem;">
-    <span style="font-size:1.1rem;">🌤️</span>
-    <div>
-      <div style="font-size:.72rem;font-weight:800;color:#fff;letter-spacing:.04em;">BAYRAM TATİLİ HAVA TAHMİNİ</div>
+<div style="background:linear-gradient(135deg,#0f2318,#1b5e38);border-bottom:1px solid rgba(61,219,138,.2);padding:.4rem 1.25rem;display:flex;align-items:center;gap:.5rem;">
+  <span style="font-size:.68rem;font-weight:700;color:#a8e6c0;">✅ Mayıs 2026 Güncellendi</span>
+  <span style="font-size:.6rem;color:rgba(255,255,255,.35);">· Open-Meteo ile güvenilir tahmin</span>
+</div>
+
       <div style="font-size:.62rem;color:rgba(255,255,255,.6);">4 günlük Artvin tahmini Instagram'da</div>
     </div>
   </div>
@@ -345,12 +354,6 @@ footer a { color: rgba(255,255,255,.5); text-decoration: none; }
   </a>
 </div>
 
-<!-- BAYRAM TAHMİN BANDI -->
-<div style="background:linear-gradient(135deg,#1e3a5f,#1a6b3a);border-bottom:1px solid rgba(255,255,255,.15);padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;">
-  <div style="display:flex;align-items:center;gap:.6rem;">
-    <span style="font-size:1.1rem;">🌤️</span>
-    <div>
-      <div style="font-size:.72rem;font-weight:800;color:#fff;letter-spacing:.04em;">BAYRAM TATİLİ HAVA TAHMİNİ</div>
       <div style="font-size:.62rem;color:rgba(255,255,255,.6);">4 günlük Artvin tahmini Instagram'da</div>
     </div>
   </div>
@@ -408,7 +411,7 @@ footer a { color: rgba(255,255,255,.5); text-decoration: none; }
 
   <!-- 5 GÜNLÜK -->
   <div class="tahmin-baslik">📅 5 Günlük Tahmin</div>
-  <div class="tahmin-wrap" id="tahminWrap"></div>
+  <div class="tahmin-wrap" id="tahminWrap" class="tahmin-wrap"></div>
 
   <!-- EKSTRA -->
   <div class="ekstra-grid">
