@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Artvin Namaz Vakitleri 2026 — Güncel Ezan Saatleri Tüm İlçeler</title>
-<meta name="description" content="Artvin namaz vakitleri 2026. Merkez ve 8 ilçe için güncel ezan saatleri. Sabah, öğle, ikindi, akşam, yatsı Diyanet takvimine göre hesaplanmaktadır.">
+<meta name="description" content="Artvin namaz vakitleri 2026. Artvin merkez ve Hopa, Borçka, Şavşat, Yusufeli tüm ilçeler güncel ezan saatleri.">
 <meta name="keywords" content="artvin namaz vakitleri, artvin ezan vakitleri, artvin imsak vakti, artvin öğle namazı, artvin ikindi vakti, artvin akşam namazı, artvin yatsı vakti, artvin sabah namazı, artvin namaz saatleri bugün, artvin diyanet namaz vakti">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://artvinrehber.com/namaz.html">
@@ -131,11 +131,6 @@ footer a{color:#a78bfa;text-decoration:none;}
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
   <a class="nav-back" href="/">← Ana Sayfa</a>
 </nav>
-<div style="background:linear-gradient(135deg,#0f2318,#1b5e38);border-bottom:1px solid rgba(61,219,138,.2);padding:.4rem 1.25rem;display:flex;align-items:center;gap:.5rem;">
-  <span style="font-size:.68rem;font-weight:700;color:#a8e6c0;">✅ Mayıs 2026 Güncellendi</span>
-  <span style="font-size:.6rem;color:rgba(255,255,255,.35);">· Open-Meteo ile güvenilir tahmin</span>
-</div>
-
 
 <div class="hero">
   <div class="hero-rozet">🕌 Diyanet Verisi · Otomatik Güncelleme</div>
@@ -358,35 +353,16 @@ async function vakitleriYukle() {
     var ay = bugun.getMonth() + 1;
     var yil = bugun.getFullYear();
 
-    // Diyanet resmi verileri - ezanvakti proxy (Artvin Merkez: 9544)
-    var bugunStr = yil + '-' + String(ay).padStart(2,'0') + '-' + String(gun).padStart(2,'0');
-    var url = 'https://ezanvakti.emre.com.tr/vakitler/ilce/9544';
+    // Koordinat bazlı istek - Artvin Merkez
+    var url = 'https://api.aladhan.com/v1/timings/' + gun + '-' + ay + '-' + yil +
+              '?latitude=41.1828&longitude=41.8183&method=13&school=1';
 
     var resp = await fetch(url);
     var json = await resp.json();
 
-    // Bugünün verisini bul
-    var bugunVeri = null;
-    for (var i = 0; i < json.length; i++) {
-      if (json[i].MiladiTarihKisa === bugunStr || json[i].MiladiTarihUzun && json[i].MiladiTarihUzun.indexOf(bugunStr) >= 0) {
-        bugunVeri = json[i];
-        break;
-      }
-    }
-    // Bulunamazsa ilk kaydı kullan
-    if (!bugunVeri && json.length > 0) bugunVeri = json[0];
-    if (!bugunVeri) throw new Error('Veri bulunamadı');
+    if(json.code !== 200) throw new Error('API hatası');
 
-    // Diyanet field isimlerini Aladhan formatına çevir
-    var t = {
-      Imsak:   bugunVeri.Imsak,
-      Fajr:    bugunVeri.Imsak,
-      Sunrise: bugunVeri.Gunes,
-      Dhuhr:   bugunVeri.Ogle,
-      Asr:     bugunVeri.Ikindi,
-      Maghrib: bugunVeri.Aksam,
-      Isha:    bugunVeri.Yatsi
-    };
+    var t = json.data.timings;
     VAKITLER = t;
 
     // Vakitleri göster
