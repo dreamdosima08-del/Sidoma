@@ -475,9 +475,9 @@ document.getElementById('kmOnay').addEventListener('change', function() {
 document.getElementById('kmBtnOnayla').addEventListener('click', function() {
   localStorage.setItem('imeceKvkk', '1');
   var o = document.getElementById('kmOverlay');
-  o.style.opacity = '0';
-  o.style.transition = 'opacity .3s';
-  setTimeout(function(){ o.style.display = 'none'; }, 300);
+  o.style.display = 'none';
+  document.body.style.overflow = '';
+  window.scrollTo(0, 0);
 });
 document.getElementById('kmBtnReddet').addEventListener('click', function() {
   window.location.href = '/';
