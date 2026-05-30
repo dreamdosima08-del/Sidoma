@@ -516,7 +516,21 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;}
     }
   }
 
-  function basarili(pozisyon) {
+  function enYakinBul() {
+  if (!navigator.geolocation) {
+    hataGoster('Tarayıcınız konum özelliğini desteklemiyor.');
+    return;
+  }
+  var btn = document.getElementById('gpsBtn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '⏳ Konum alınıyor...'; }
+  navigator.geolocation.getCurrentPosition(basarili, hatali, {
+    enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+  });
+}
+
+function basarili(pozisyon) {
     try {
       yukleniyor(false);
 
