@@ -266,13 +266,11 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
   <a class="nav-back" href="/">← Ana Sayfa</a>
 </nav>
-<!-- BAYRAM GEÇİCİ SEFER BANDI -->
-<div style="background:linear-gradient(135deg,#92400e,#b45309);border-bottom:1px solid rgba(251,191,36,.3);padding:.5rem 1.25rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;">
-  <span style="font-size:.9rem;">⭐</span>
-  <div style="flex:1">
-    <span style="font-size:.7rem;font-weight:800;color:#fde68a;letter-spacing:.05em;">BAYRAM DÖNEMİ GEÇİCİ SEFER</span>
-    <span style="font-size:.65rem;color:rgba(253,230,138,.7);margin-left:.5rem;">· Gece seferleri günlük değişebilir</span>
-  </div>
+<!-- HAVAŞ GECELERİ NOTU -->
+<div style="background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);padding:.5rem 1.25rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;">
+  <span style="font-size:.85rem;">ℹ️</span>
+  <div style="flex:1"><span style="font-size:.68rem;color:rgba(255,255,255,.6);">Yaz döneminde nadiren gece 1 seferleri eklenebilir. Güncel tarife için </span><a href="https://havas.net" target="_blank" rel="noopener" style="font-size:.68rem;color:#f0c040;font-weight:700;text-decoration:none;">havas.net</a><span style="font-size:.68rem;color:rgba(255,255,255,.6);"> sayfasını kontrol edin.</span></div>
+</div>
   <a href="https://havas.net" target="_blank" rel="noopener" style="font-size:.65rem;color:#fde68a;font-weight:700;text-decoration:underline;white-space:nowrap;">havas.net →</a>
 </div>
 <!-- UYARI BİLDİRİMİ -->
@@ -386,10 +384,6 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
           <div class="saat-label">1. Sefer</div>
           <div class="saat-deger">05:00</div>
         </div>
-        <div class="saat-kart" style="border:1px dashed rgba(251,191,36,.4);background:rgba(251,191,36,.06);">
-          <div class="saat-label" style="color:#fbbf24;">⭐ Gece · Geçici</div>
-          <div class="saat-deger" style="color:#fbbf24;">01:00</div>
-        </div>
         <div class="saat-kart aktif">
           <div class="saat-label">2. Sefer</div>
           <div class="saat-deger">11:00</div>
@@ -418,10 +412,6 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
           <div class="saat-label">1. Sefer</div>
           <div class="saat-deger">05:30</div>
         </div>
-        <div class="saat-kart" style="border:1px dashed rgba(251,191,36,.4);background:rgba(251,191,36,.06);">
-          <div class="saat-label" style="color:#fbbf24;">⭐ Gece · Geçici</div>
-          <div class="saat-deger" style="color:#fbbf24;">01:30</div>
-        </div>
         <div class="saat-kart aktif">
           <div class="saat-label">2. Sefer</div>
           <div class="saat-deger">11:30</div>
@@ -449,10 +439,6 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
         <div class="saat-kart">
           <div class="saat-label">1. Sefer</div>
           <div class="saat-deger">06:00</div>
-        </div>
-        <div class="saat-kart" style="border:1px dashed rgba(251,191,36,.4);background:rgba(251,191,36,.06);">
-          <div class="saat-label" style="color:#fbbf24;">⭐ Gece · Geçici</div>
-          <div class="saat-deger" style="color:#fbbf24;">02:00</div>
         </div>
         <div class="saat-kart">
           <div class="saat-label">2. Sefer</div>
@@ -493,10 +479,6 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
         <div class="saat-kart">
           <div class="saat-label">1. Sefer</div>
           <div class="saat-deger">06:15</div>
-        </div>
-        <div class="saat-kart" style="border:1px dashed rgba(251,191,36,.4);background:rgba(251,191,36,.06);">
-          <div class="saat-label" style="color:#fbbf24;">⭐ Gece · Geçici</div>
-          <div class="saat-deger" style="color:#fbbf24;">02:15</div>
         </div>
         <div class="saat-kart">
           <div class="saat-label">2. Sefer</div>
@@ -699,14 +681,12 @@ var SEFERLER = {
   artvin: [
     {saat:'05:00', ad:'1. Sefer'},
     {saat:'11:00', ad:'2. Sefer'},
-    {saat:'16:45', ad:'3. Sefer'},
-    {saat:'01:00', ad:'Gece Seferi ⭐', gecici:true}
+    {saat:'16:45', ad:'3. Sefer'}
   ],
   borcka: [
     {saat:'05:30', ad:'1. Sefer'},
     {saat:'11:30', ad:'2. Sefer'},
-    {saat:'17:15', ad:'3. Sefer'},
-    {saat:'01:30', ad:'Gece Seferi ⭐', gecici:true}
+    {saat:'17:15', ad:'3. Sefer'}
   ],
   hopa: [
     {saat:'06:00', ad:'1. Sefer'},
@@ -714,8 +694,7 @@ var SEFERLER = {
     {saat:'12:00', ad:'3. Sefer'},
     {saat:'17:45', ad:'4. Sefer'},
     {saat:'19:45', ad:'5. Sefer'},
-    {saat:'21:30', ad:'6. Sefer'},
-    {saat:'02:00', ad:'Gece Seferi ⭐', gecici:true}
+    {saat:'21:30', ad:'6. Sefer'}
   ],
   arhavi: [
     {saat:'06:15', ad:'1. Sefer'},
@@ -723,8 +702,7 @@ var SEFERLER = {
     {saat:'12:15', ad:'3. Sefer'},
     {saat:'18:00', ad:'4. Sefer'},
     {saat:'20:00', ad:'5. Sefer'},
-    {saat:'20:45', ad:'6. Sefer'},
-    {saat:'02:15', ad:'Gece Seferi ⭐', gecici:true}
+    {saat:'20:45', ad:'6. Sefer'}
   ]
 };
 
