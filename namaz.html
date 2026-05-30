@@ -355,7 +355,7 @@ async function vakitleriYukle() {
 
     // Koordinat bazlı istek - Artvin Merkez
     var url = 'https://api.aladhan.com/v1/timings/' + gun + '-' + ay + '-' + yil +
-              '?latitude=41.1828&longitude=41.8183&method=13&school=1';
+              '?latitude=41.1828&longitude=41.8183&method=13&school=0&timezonestring=Europe/Istanbul';
 
     var resp = await fetch(url);
     var json = await resp.json();
