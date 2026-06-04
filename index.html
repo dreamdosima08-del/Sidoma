@@ -1135,7 +1135,70 @@ border-radius:20px;}
       <a class="hp" href="/artvinmetre.html">📊 ArtvinMetre</a>
     </nav>
   </div>
-</section>
+</section><!-- CANLI KONUM WİDGET -->
+<div id="konumWidget" style="background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;cursor:pointer;" onclick="konumAl()">
+  <div style="display:flex;align-items:center;gap:.65rem;">
+    <span style="font-size:1.1rem" id="konumIkon">📍</span>
+    <div>
+      <div style="font-size:.7rem;font-weight:700;color:#fff" id="konumBaslik">Bulunduğun yerin rakımı ve sıcaklığı</div>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.4)" id="konumAlt">Öğrenmek için tıkla</div>
+    </div>
+  </div>
+  <span style="font-size:.68rem;font-weight:700;color:#3ddb8a;flex-shrink:0" id="konumSonuc">→</span>
+</div>
+
+<script>
+async function konumAl() {
+  var baslik = document.getElementById('konumBaslik');
+  var alt = document.getElementById('konumAlt');
+  var sonuc = document.getElementById('konumSonuc');
+  var ikon = document.getElementById('konumIkon');
+
+  if (!navigator.geolocation) {
+    baslik.textContent = 'Konum desteklenmiyor';
+    return;
+  }
+
+  baslik.textContent = 'Konum alınıyor...';
+  sonuc.textContent = '⏳';
+
+  navigator.geolocation.getCurrentPosition(async function(pos) {
+    var lat = pos.coords.latitude.toFixed(4);
+    var lon = pos.coords.longitude.toFixed(4);
+
+    try {
+      var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon +
+                '&current=temperature_2m&timezone=Europe/Istanbul';
+      var res = await fetch(url);
+      var d = await res.json();
+      var sicaklik = Math.round(d.current.temperature_2m);
+
+      // Rakım için elevation API
+      var elevUrl = 'https://api.open-meteo.com/v1/elevation?latitude=' + lat + '&longitude=' + lon;
+      var elevRes = await fetch(elevUrl);
+      var elevD = await elevRes.json();
+      var rakim = Math.round(elevD.elevation[0]);
+
+      ikon.textContent = sicaklik > 20 ? '☀️' : sicaklik > 10 ? '🌤️' : sicaklik > 0 ? '🌥️' : '❄️';
+      baslik.textContent = rakim + ' m rakımda ' + sicaklik + '°C';
+      alt.textContent = 'Enlem ' + lat + ' · Boylam ' + lon;
+      sonuc.textContent = '✅';
+
+      document.getElementById('konumWidget').onclick = null;
+      document.getElementById('konumWidget').style.cursor = 'default';
+
+    } catch(e) {
+      baslik.textContent = 'Veri alınamadı';
+      sonuc.textContent = '❌';
+    }
+  }, function() {
+    baslik.textContent = 'Konum izni verilmedi';
+    alt.textContent = 'Tarayıcı ayarlarından izin ver';
+    sonuc.textContent = '❌';
+  }, {enableHighAccuracy: true, timeout: 8000});
+}
+</script>
+
 <section id="sehir" style="padding:3rem 0 2rem">
   <div class="w">
     <p class="slbl">Genel Bilgiler</p>
