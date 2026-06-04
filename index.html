@@ -1108,9 +1108,106 @@ border-radius:20px;}
     
     <h1 class="hero-city">Artvin Rehber</h1>
     <div class="hero-sub">Artvin'in Dijital Rehberi</div>
-    <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,192,64,.5);margin-top:.85rem;">Gez · Keşfet · Oyna · Öğren</div>
+    
+    <!-- KONUM WIDGET -->
+<div id="konumWidget" style="background:linear-gradient(135deg,rgba(61,219,138,.08),rgba(240,192,64,.06));border:1px solid rgba(61,219,138,.2);border-radius:14px;margin:.85rem auto .5rem;max-width:440px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;cursor:pointer;backdrop-filter:blur(8px);" onclick="konumAl()">
+  <div style="display:flex;align-items:center;gap:.65rem;">
+    <div style="background:rgba(61,219,138,.15);border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0" id="konumIkon">🏔️</div>
+    <div>
+      <div style="font-size:.72rem;font-weight:800;color:#fff;letter-spacing:.02em" id="konumBaslik">Rakım & Sıcaklık</div>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.45);margin-top:.1rem" id="konumAlt">Konumunu öğrenmek için tıkla</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:.4rem;flex-shrink:0">
+    <span style="font-size:.85rem;font-weight:800;color:#3ddb8a" id="konumSonuc">→</span>
+    <button id="konumYenile" onclick="event.stopPropagation();konumSifirla()" style="display:none;background:rgba(255,255,255,.08);border:none;border-radius:6px;color:rgba(255,255,255,.5);font-size:.75rem;padding:.25rem .4rem;cursor:pointer" title="Yenile">🔄</button>
+  </div>
+</div>
+
+<script>
+function konumSifirla() {
+  localStorage.removeItem('konumVeri');
+  document.getElementById('konumBaslik').textContent = 'Rakım & Sıcaklık';
+  document.getElementById('konumAlt').textContent = 'Konumunu öğrenmek için tıkla';
+  document.getElementById('konumSonuc').textContent = '→';
+  document.getElementById('konumIkon').textContent = '🏔️';
+  document.getElementById('konumYenile').style.display = 'none';
+  document.getElementById('konumWidget').style.cursor = 'pointer';
+  document.getElementById('konumWidget').onclick = konumAl;
+}
+
+function konumGoster(rakim, sicaklik, lat, lon) {
+  var ikon = sicaklik > 25 ? '☀️🏔️' : sicaklik > 15 ? '🌤️🏔️' : sicaklik > 5 ? '🌥️🏔️' : '❄️🏔️';
+  document.getElementById('konumIkon').textContent = ikon;
+  document.getElementById('konumBaslik').textContent = rakim + ' m · ' + sicaklik + '°C';
+  document.getElementById('konumAlt').textContent = lat + '° K · ' + lon + '° D';
+  document.getElementById('konumSonuc').textContent = '✅';
+  document.getElementById('konumYenile').style.display = 'inline-block';
+  document.getElementById('konumWidget').style.cursor = 'default';
+  document.getElementById('konumWidget').onclick = null;
+}
+
+// localStorage'dan yükle
+(function() {
+  var kayitli = localStorage.getItem('konumVeri');
+  if (kayitli) {
+    try {
+      var v = JSON.parse(kayitli);
+      // 30 dakikadan eskiyse gösterme
+      if (Date.now() - v.zaman < 30 * 60 * 1000) {
+        konumGoster(v.rakim, v.sicaklik, v.lat, v.lon);
+      }
+    } catch(e) {}
+  }
+})();
+
+async function konumAl() {
+  if (!navigator.geolocation) {
+    document.getElementById('konumBaslik').textContent = 'Konum desteklenmiyor';
+    return;
+  }
+  document.getElementById('konumBaslik').textContent = 'Konum alınıyor...';
+  document.getElementById('konumSonuc').textContent = '⏳';
+  document.getElementById('konumWidget').onclick = null;
+
+  navigator.geolocation.getCurrentPosition(async function(pos) {
+    var lat = pos.coords.latitude.toFixed(3);
+    var lon = pos.coords.longitude.toFixed(3);
+    try {
+      var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon +
+                '&current=temperature_2m&timezone=Europe/Istanbul';
+      var elevUrl = 'https://api.open-meteo.com/v1/elevation?latitude=' + lat + '&longitude=' + lon;
+
+      var results = await Promise.all([fetch(url), fetch(elevUrl)]);
+      var hava = await results[0].json();
+      var elev = await results[1].json();
+
+      var sicaklik = Math.round(hava.current.temperature_2m);
+      var rakim = Math.round(elev.elevation[0]);
+
+      localStorage.setItem('konumVeri', JSON.stringify({
+        rakim: rakim, sicaklik: sicaklik,
+        lat: lat, lon: lon,
+        zaman: Date.now()
+      }));
+
+      konumGoster(rakim, sicaklik, lat, lon);
+    } catch(e) {
+      document.getElementById('konumBaslik').textContent = 'Veri alınamadı';
+      document.getElementById('konumSonuc').textContent = '❌';
+      document.getElementById('konumWidget').onclick = konumAl;
+    }
+  }, function() {
+    document.getElementById('konumBaslik').textContent = 'Konum izni gerekli';
+    document.getElementById('konumAlt').textContent = 'Tarayıcı ayarlarından izin ver';
+    document.getElementById('konumSonuc').textContent = '❌';
+    document.getElementById('konumWidget').onclick = konumAl;
+  }, {enableHighAccuracy: true, timeout: 8000, maximumAge: 0});
+}
+</script>
+
     <nav class="hero-pills" role="navigation" aria-label="Hızlı erişim">
-      <div style="grid-column:1/-1;padding:.15rem .25rem .05rem;font-size:.55rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);">🏥 Günlük Hayat</div>
+      
             <a class="hp" href="/dolmus.html">🚐 Dolmuş Durakları</a>
       <a class="hp" href="/havas.html">✈️ Havaş Servisi</a>
       <a class="hp" href="/otobus.html">🚌 Otobüs Rehberi</a>
@@ -1135,69 +1232,7 @@ border-radius:20px;}
       <a class="hp" href="/artvinmetre.html">📊 ArtvinMetre</a>
     </nav>
   </div>
-</section><!-- CANLI KONUM WİDGET -->
-<div id="konumWidget" style="background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;cursor:pointer;" onclick="konumAl()">
-  <div style="display:flex;align-items:center;gap:.65rem;">
-    <span style="font-size:1.1rem" id="konumIkon">📍</span>
-    <div>
-      <div style="font-size:.7rem;font-weight:700;color:#fff" id="konumBaslik">Bulunduğun yerin rakımı ve sıcaklığı</div>
-      <div style="font-size:.62rem;color:rgba(255,255,255,.4)" id="konumAlt">Öğrenmek için tıkla</div>
-    </div>
-  </div>
-  <span style="font-size:.68rem;font-weight:700;color:#3ddb8a;flex-shrink:0" id="konumSonuc">→</span>
-</div>
-
-<script>
-async function konumAl() {
-  var baslik = document.getElementById('konumBaslik');
-  var alt = document.getElementById('konumAlt');
-  var sonuc = document.getElementById('konumSonuc');
-  var ikon = document.getElementById('konumIkon');
-
-  if (!navigator.geolocation) {
-    baslik.textContent = 'Konum desteklenmiyor';
-    return;
-  }
-
-  baslik.textContent = 'Konum alınıyor...';
-  sonuc.textContent = '⏳';
-
-  navigator.geolocation.getCurrentPosition(async function(pos) {
-    var lat = pos.coords.latitude.toFixed(4);
-    var lon = pos.coords.longitude.toFixed(4);
-
-    try {
-      var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon +
-                '&current=temperature_2m&timezone=Europe/Istanbul';
-      var res = await fetch(url);
-      var d = await res.json();
-      var sicaklik = Math.round(d.current.temperature_2m);
-
-      // Rakım için elevation API
-      var elevUrl = 'https://api.open-meteo.com/v1/elevation?latitude=' + lat + '&longitude=' + lon;
-      var elevRes = await fetch(elevUrl);
-      var elevD = await elevRes.json();
-      var rakim = Math.round(elevD.elevation[0]);
-
-      ikon.textContent = sicaklik > 20 ? '☀️' : sicaklik > 10 ? '🌤️' : sicaklik > 0 ? '🌥️' : '❄️';
-      baslik.textContent = rakim + ' m rakımda ' + sicaklik + '°C';
-      alt.textContent = 'Enlem ' + lat + ' · Boylam ' + lon;
-      sonuc.textContent = '✅';
-
-      document.getElementById('konumWidget').onclick = null;
-      document.getElementById('konumWidget').style.cursor = 'default';
-
-    } catch(e) {
-      baslik.textContent = 'Veri alınamadı';
-      sonuc.textContent = '❌';
-    }
-  }, function() {
-    baslik.textContent = 'Konum izni verilmedi';
-    alt.textContent = 'Tarayıcı ayarlarından izin ver';
-    sonuc.textContent = '❌';
-  }, {enableHighAccuracy: true, timeout: 8000});
-}
-</script>
+</section>
 
 <section id="sehir" style="padding:3rem 0 2rem">
   <div class="w">
