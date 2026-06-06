@@ -1136,10 +1136,10 @@ function konumSifirla() {
   document.getElementById('konumWidget').onclick = konumAl;
 }
 
-function konumGoster(rakim, sicaklik, lat, lon) {
+function konumGoster(rakim, sicaklik, nem, lat, lon) {
   var ikon = sicaklik > 25 ? '☀️🏔️' : sicaklik > 15 ? '🌤️🏔️' : sicaklik > 5 ? '🌥️🏔️' : '❄️🏔️';
   document.getElementById('konumIkon').textContent = ikon;
-  document.getElementById('konumBaslik').textContent = rakim + ' m · ' + sicaklik + '°C';
+  document.getElementById('konumBaslik').textContent = rakim + ' m · ' + sicaklik + '°C · %' + nem + ' nem';
   document.getElementById('konumAlt').textContent = lat + '° K · ' + lon + '° D';
   document.getElementById('konumSonuc').textContent = '✅';
   document.getElementById('konumYenile').style.display = 'inline-block';
@@ -1155,7 +1155,7 @@ function konumGoster(rakim, sicaklik, lat, lon) {
       var v = JSON.parse(kayitli);
       // 30 dakikadan eskiyse gösterme
       if (Date.now() - v.zaman < 30 * 60 * 1000) {
-        konumGoster(v.rakim, v.sicaklik, v.lat, v.lon);
+        konumGoster(v.rakim, v.sicaklik, v.nem || 0, v.lat, v.lon);
       }
     } catch(e) {}
   }
@@ -1175,7 +1175,7 @@ async function konumAl() {
     var lon = pos.coords.longitude.toFixed(3);
     try {
       var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon +
-                '&current=temperature_2m&timezone=Europe/Istanbul';
+                '&current=temperature_2m,relative_humidity_2m&timezone=Europe/Istanbul';
       var elevUrl = 'https://api.open-meteo.com/v1/elevation?latitude=' + lat + '&longitude=' + lon;
 
       var results = await Promise.all([fetch(url), fetch(elevUrl)]);
@@ -1183,15 +1183,16 @@ async function konumAl() {
       var elev = await results[1].json();
 
       var sicaklik = Math.round(hava.current.temperature_2m);
+      var nem = hava.current.relative_humidity_2m;
       var rakim = Math.round(elev.elevation[0]);
 
       localStorage.setItem('konumVeri', JSON.stringify({
-        rakim: rakim, sicaklik: sicaklik,
+        rakim: rakim, sicaklik: sicaklik, nem: nem,
         lat: lat, lon: lon,
         zaman: Date.now()
       }));
 
-      konumGoster(rakim, sicaklik, lat, lon);
+      konumGoster(rakim, sicaklik, nem, lat, lon);
     } catch(e) {
       document.getElementById('konumBaslik').textContent = 'Veri alınamadı';
       document.getElementById('konumSonuc').textContent = '❌';
