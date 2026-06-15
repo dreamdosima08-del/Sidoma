@@ -1,25 +1,7 @@
-const CACHE_NAME = 'artvinrehber-v8';
+const CACHE_NAME = 'artvinrehber-v9';
 const URLS = [
   '/',
   '/index.html',
-  '/taksi.html',
-  '/dolmus.html',
-  '/havas.html',
-  '/namaz.html',
-  '/eczane.html',
-  '/hava.html',
-  '/oteller.html',
-  '/artvin-kampus-ulasim.html',
-  '/artvinmetre.html',
-  '/acukampus.html',
-  '/artvin-mesafe.html',
-  '/artvin-rakim-altimetre.html',
-  '/artvin-misafirhane.html',
-  '/artvin-forum.html',
-  '/acu-ders-notu.html',
-  '/blog1.html',
-  '/blog2.html',
-  '/blog3.html',
   '/manifest.json'
 ];
 
@@ -49,22 +31,25 @@ self.addEventListener('activate', function(e) {
   self.clients.claim();
 });
 
+// NETWORK-FIRST: Once internetten guncel halini cek, internet yoksa cache kullan
 self.addEventListener('fetch', function(e) {
   if (e.request.method !== 'GET') return;
+
+  // HTML sayfalari icin her zaman network-first
   e.respondWith(
-    caches.match(e.request).then(function(cached) {
-      if (cached) return cached;
-      return fetch(e.request).then(function(response) {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
-        }
+    fetch(e.request).then(function(response) {
+      // Basarili cevap geldiyse cache'i guncelle
+      if (response && response.status === 200 && response.type === 'basic') {
         var clone = response.clone();
         caches.open(CACHE_NAME).then(function(cache) {
           cache.put(e.request, clone);
         });
-        return response;
-      }).catch(function() {
-        return caches.match('/index.html');
+      }
+      return response;
+    }).catch(function() {
+      // Internet yoksa cache'den ver
+      return caches.match(e.request).then(function(cached) {
+        return cached || caches.match('/index.html');
       });
     })
   );
