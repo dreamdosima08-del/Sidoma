@@ -1219,6 +1219,7 @@ async function konumAl() {
       <a class="hp" href="/artvin-acil-telefonlar.html">📞 Acil Telefonlar</a>
       <a class="hp" href="/hastane.html">🏥 Hastane Rehberi</a>
       <a class="hp" href="/acukampus.html">🎓 AÇÜ Kampüs</a>
+      <a class="hp" href="/acu-bolum-gruplari.html">📲 AÇÜ Bölüm Grupları</a>
       <a class="hp" href="/artvin-kampus-ulasim.html">🏫 Kampüs Ulaşım</a>
       <a class="hp" href="/artvin-sehir-bilgileri.html">🏙️ Artvin Kart</a>
       <a class="hp" href="/gezi.html">🗺️ Gezi Rehberi</a>
@@ -2794,6 +2795,27 @@ function dovizCek() {
 }
 dovizCek();
 setInterval(dovizCek, 300000); // 5 dakikada bir güncelle
+</script>
+
+
+<!-- ÇEREZ ONAY BANNER -->
+<div id="cerezBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:rgba(10,26,18,.98);backdrop-filter:blur(12px);border-top:2px solid rgba(240,192,64,.4);padding:1rem 1.25rem;box-shadow:0 -4px 20px rgba(0,0,0,.4)">
+  <div style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem">
+    <div style="display:flex;align-items:flex-start;gap:.65rem">
+      <span style="font-size:1.3rem;flex-shrink:0">🍪</span>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5">
+        Bu site, deneyiminizi iyileştirmek ve trafiği analiz etmek için çerezler kullanır. Siteyi kullanmaya devam ederek çerez kullanımını kabul etmiş olursunuz.
+        <a href="/cerez-politikasi.html" style="color:#f0c040;text-decoration:underline">Çerez Politikası</a>
+      </div>
+    </div>
+    <div style="display:flex;gap:.5rem;justify-content:flex-end">
+      <button onclick="cerezKabul()" style="background:#f0c040;color:#0a1a12;border:none;border-radius:8px;padding:.5rem 1.25rem;font-size:.75rem;font-weight:800;cursor:pointer;font-family:inherit">Kabul Et</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){if(!localStorage.getItem('cerezOnay')){var b=document.getElementById('cerezBanner');if(b)b.style.display='block';}})();
+function cerezKabul(){localStorage.setItem('cerezOnay','1');var b=document.getElementById('cerezBanner');if(b)b.style.display='none';}
 </script>
 
 </body>
