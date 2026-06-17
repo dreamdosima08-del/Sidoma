@@ -1094,7 +1094,7 @@ border-radius:20px;}
     <div class="arama-sonuclar" id="aramaSonuclar"></div>
   </div>
 </div>
-  <div class="hero-bayrak">
+  <div class="hero-bayrak" style="justify-content:flex-start;text-align:left">
     <svg viewBox="0 0 30 20" width="32" height="21" xmlns="http://www.w3.org/2000/svg">
       <rect width="30" height="20" fill="#E30A17"/>
       <circle cx="10" cy="10" r="6" fill="white"/>
@@ -1103,6 +1103,7 @@ border-radius:20px;}
       <polygon points="20,8.5 21.5,10 20,11.5 21,10.5 21,9.5" fill="white"/>
     </svg>
     <span class="hero-bayrak-yazi">T.C. Artvin</span>
+    <span style="font-style:italic;font-size:.62rem;color:rgba(255,255,255,.5);margin-left:.5rem;font-weight:500">Gülümseyin, Artvin'desiniz</span>
   </div>
 <div class="hero-content">
     
@@ -1112,14 +1113,14 @@ border-radius:20px;}
     <!-- KONUM WIDGET -->
 <div id="konumWidget" style="background:linear-gradient(135deg,rgba(240,192,64,.07),rgba(240,192,64,.03));border:1px solid rgba(240,192,64,.35);border-radius:12px;margin:.5rem auto .3rem;max-width:440px;padding:.55rem .85rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 0 12px rgba(240,192,64,.12),inset 0 1px 0 rgba(255,255,255,.06);" onclick="konumAl()">
   <div style="display:flex;align-items:center;gap:.65rem;">
-    <div style="background:rgba(240,192,64,.12);border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0" id="konumIkon">🏔️</div>
+    <div style="background:rgba(240,192,64,.14);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0" id="konumIkon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f0c040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18L14 8l-3 5-2-3-6 10z"/><circle cx="17" cy="5" r="2.2" fill="#f0c040" stroke="none"/></svg></div>
     <div>
-      <div style="font-size:.72rem;font-weight:800;color:#f0c040;letter-spacing:.02em;text-shadow:0 0 8px rgba(240,192,64,.3)" id="konumBaslik">Rakım & Sıcaklık</div>
-      <div style="font-size:.62rem;color:rgba(255,255,255,.45);margin-top:.1rem" id="konumAlt">Konumunu öğrenmek için tıkla</div>
+      <div style="font-size:.8rem;font-weight:800;color:#f0c040;letter-spacing:.01em;text-shadow:0 0 8px rgba(240,192,64,.3);line-height:1.3" id="konumBaslik">Rakım · Sıcaklık · Nem · Konum Öğren</div>
+      <div style="display:none" id="konumAlt"></div>
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:.4rem;flex-shrink:0">
-    <span style="font-size:.85rem;font-weight:800;color:#f0c040" id="konumSonuc">→</span>
+    <span style="display:flex;align-items:center;color:#f0c040" id="konumSonuc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0c040" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     <button id="konumYenile" onclick="event.stopPropagation();konumSifirla()" style="display:none;background:rgba(255,255,255,.08);border:none;border-radius:6px;color:rgba(255,255,255,.5);font-size:.75rem;padding:.25rem .4rem;cursor:pointer" title="Yenile">🔄</button>
   </div>
 </div>
@@ -1137,11 +1138,9 @@ function konumSifirla() {
 }
 
 function konumGoster(rakim, sicaklik, nem, lat, lon) {
-  var ikon = sicaklik > 25 ? '☀️🏔️' : sicaklik > 15 ? '🌤️🏔️' : sicaklik > 5 ? '🌥️🏔️' : '❄️🏔️';
-  document.getElementById('konumIkon').textContent = ikon;
-  document.getElementById('konumBaslik').textContent = rakim + ' m · ' + sicaklik + '°C · %' + nem + ' nem';
-  document.getElementById('konumAlt').textContent = lat + '° K · ' + lon + '° D';
-  document.getElementById('konumSonuc').textContent = '✅';
+  document.getElementById('konumBaslik').textContent = rakim + ' m  ·  ' + sicaklik + '°C  ·  %' + nem;
+  // alt yazi gizli
+  // sonuc ikonu sabit ok kalir
   document.getElementById('konumYenile').style.display = 'inline-block';
   document.getElementById('konumWidget').style.cursor = 'default';
   document.getElementById('konumWidget').onclick = null;
