@@ -433,7 +433,7 @@ document.getElementById('fFoto').addEventListener('change', function() {
   var dosya = this.files[0];
   if (!dosya) return;
   if (dosya.size > 3 * 1024 * 1024) {
-    alert('⚠️ Fotoğraf 3MB'dan küçük olmalıdır.');
+    alert('Fotograf 3MB dan kucuk olmalidir.');
     this.value = '';
     return;
   }
@@ -466,17 +466,28 @@ var tumIlanlar = [];
 // ── KVKK Modal ──
 function kmKontrol() {
   if (localStorage.getItem('imeceKvkk') === '1') {
-    document.getElementById('kmOverlay').style.display = 'none';
+    var o = document.getElementById('kmOverlay');
+    o.style.display = 'none';
+    o.style.visibility = 'hidden';
+    o.style.pointerEvents = 'none';
+    document.body.style.overflow = '';
   }
 }
 document.getElementById('kmOnay').addEventListener('change', function() {
   document.getElementById('kmBtnOnayla').classList.toggle('aktif', this.checked);
 });
 document.getElementById('kmBtnOnayla').addEventListener('click', function() {
+  if(!document.getElementById('kmOnay').checked){
+    alert('Devam etmek icin kosullari kabul etmelisiniz.');
+    return;
+  }
   localStorage.setItem('imeceKvkk', '1');
   var o = document.getElementById('kmOverlay');
   o.style.display = 'none';
+  o.style.visibility = 'hidden';
+  o.style.pointerEvents = 'none';
   document.body.style.overflow = '';
+  document.body.style.overflowY = 'auto';
   window.scrollTo(0, 0);
 });
 document.getElementById('kmBtnReddet').addEventListener('click', function() {
@@ -545,7 +556,7 @@ function ilanListele() {
   });
 
   if (liste.length === 0) {
-    grid.innerHTML = '<div class="bos"><span>🌿</span>Bu kategoride henüz ilan yok.<br>İlk ilanı siz verin!</div>';
+    grid.innerHTML = boslukIcerigi();
     return;
   }
 
@@ -641,6 +652,35 @@ document.getElementById('btnYayinla').addEventListener('click', async function()
   } catch(e) { alert('Hata: ' + e.message); }
   finally { btn.textContent = '🌿 İlanı Yayınla'; btn.disabled = false; }
 });
+
+
+// Bos durum - cazibeli icerik + ORNEK demo kartlar
+function boslukIcerigi() {
+  var html = '';
+  // Cagri kutusu
+  html += '<div style="grid-column:1/-1;text-align:center;padding:1.5rem 1rem;background:linear-gradient(135deg,rgba(46,204,113,.08),rgba(46,204,113,.02));border:1px dashed rgba(46,204,113,.3);border-radius:16px;margin-bottom:1rem">';
+  html += '<div style="font-size:2.5rem;margin-bottom:.5rem">🌱</div>';
+  html += '<div style="font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:.4rem">Bu Hikayeyi Sen Başlat</div>';
+  html += '<div style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;max-width:380px;margin:0 auto 1rem">Evinde kullanmadığın bir eşya, başkası için tam bir ihtiyaç olabilir. Artvin İmece, komşuluğu ve dayanışmayı yaşatmak için kuruldu. İlk adımı atan sen ol — bir eşyanı paylaş, birine dokun.</div>';
+  html += '<button onclick="document.querySelector(\"ilanVerSekme\")?document.querySelector(\"ilanVerSekme\").click():window.scrollTo(0,400)" style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;border:none;border-radius:10px;padding:.7rem 1.5rem;font-size:.85rem;font-weight:800;cursor:pointer;font-family:inherit">✋ İlk İlanı Ver</button>';
+  html += '</div>';
+  // ORNEK demo kartlar
+  var ornekler = [
+    {ikon:'🚲', tip:'Veriyorum', baslik:'Cocuk Bisikleti', aciklama:'Az kullanilmis, ihtiyaci olan cocuga hediye. Ornek ilandir.'},
+    {ikon:'📚', tip:'Veriyorum', baslik:'Universite Ders Kitaplari', aciklama:'Bolum bitti, ihtiyaci olan ogrenciye. Ornek ilandir.'},
+    {ikon:'🍼', tip:'Ihtiyacim Var', baslik:'Bebek Arabasi', aciklama:'Yeni dogan bebek icin ariyorum. Ornek ilandir.'}
+  ];
+  ornekler.forEach(function(o) {
+    html += '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:1rem;opacity:.55;position:relative">';
+    html += '<div style="position:absolute;top:.6rem;right:.6rem;background:rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:.55rem;font-weight:700;padding:.2rem .5rem;border-radius:20px;letter-spacing:.05em">ORNEK</div>';
+    html += '<div style="font-size:1.8rem;margin-bottom:.5rem">' + o.ikon + '</div>';
+    html += '<div style="font-size:.6rem;font-weight:700;color:#2ecc71;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem">' + o.tip + '</div>';
+    html += '<div style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.3rem">' + o.baslik + '</div>';
+    html += '<div style="font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.4">' + o.aciklama + '</div>';
+    html += '</div>';
+  });
+  return html;
+}
 
 // ── İlan Sil ──
 async function ilanSil(id) {
