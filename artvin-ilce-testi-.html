@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="artvin ilçe testi, hangi artvin ilçesisin, artvin kişilik testi, artvin quiz, artvin ilçeleri, artvin testi oyunu">
+<meta name="description" content="Sen hangi Artvin ilçesisin? Kişiliğine göre Hopa, Borçka, Şavşat, Yusufeli, Ardanuç veya Arhavi'den hangisine benziyorsun? Eğlenceli ücretsiz kişilik testi.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sen Hangi Artvin İlçesisin? — Artvin Kişilik Testi 2026</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sen Hangi Artvin İlçesisin? — Kişilik Testi 2026">
+<meta property="og:description" content="Kişiliğine göre hangi Artvin ilçesine benziyorsun? Eğlenceli test.">
+<meta property="og:url" content="https://artvinrehber.com/artvin-ilce-testi.html">
+<meta property="og:site_name" content="Artvin Rehberi">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1f14;
+    --bg2: #0a1a10;
+    --card: #122018;
+    --card2: #172a1e;
+    --green: #2d7a4f;
+    --vivid: #3ddb8a;
+    --gold: #f0c040;
+    --sea: #4ab8c1;
+    --mist: #a8c4ac;
+    --text: #deeee2;
+    --text2: #8fae96;
+    --border: rgba(61,219,138,0.15);
+    --shadow: rgba(0,0,0,0.5);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* BG TEXTURE */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(45,122,79,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(74,184,193,0.08) 0%, transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  #app {
+    position:relative;
+    z-index:1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* ── INTRO SCREEN ── */
+  #screen-intro {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding-top: 32px;
+    animation: fadeUp .6s ease both;
+  }
+
+  .logo-badge {
+    background: linear-gradient(135deg, var(--green), #1a5c38);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size:.75rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color: var(--vivid);
+    margin-bottom:20px;
+  }
+
+  #screen-intro h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height:1.1;
+    color:#fff;
+    margin-bottom:12px;
+  }
+  #screen-intro h1 span { color: var(--gold); }
+
+  .intro-sub {
+    font-size:.95rem;
+    color: var(--text2);
+    font-style:italic;
+    line-height:1.6;
+    max-width:400px;
+    margin-bottom:28px;
+  }
+
+  .mountain-art {
+    width:100%;
+    max-width:360px;
+    height:120px;
+    margin-bottom:28px;
+    position:relative;
+  }
+
+  .mountain-art svg { width:100%; height:100%; }
+
+  .stats-row {
+    display:flex;
+    gap:20px;
+    margin-bottom:32px;
+    justify-content:center;
+  }
+  .stat {
+    text-align:center;
+  }
+  .stat-n {
+    font-family:'Playfair Display',serif;
+    font-size:1.8rem;
+    color: var(--gold);
+    display:block;
+  }
+  .stat-l {
+    font-size:.72rem;
+    color: var(--text2);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+
+  .btn-start {
+    background: linear-gradient(135deg, var(--vivid), #28b86a);
+    color: #0a1a10;
+    border:none;
+    border-radius:14px;
+    padding:16px 48px;
+    font-family:'Playfair Display',serif;
+    font-size:1.1rem;
+    font-weight:700;
+    cursor:pointer;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(61,219,138,0.3);
+    letter-spacing:.02em;
+  }
+  .btn-start:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(61,219,138,0.45); }
+  .btn-start:active { transform:translateY(0); }
+
+  /* ── QUIZ SCREEN ── */
+  #screen-quiz { display:none; }
+
+  .progress-wrap {
+    margin-bottom:24px;
+  }
+  .progress-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .q-counter {
+    font-size:.8rem;
+    color: var(--text2);
+    letter-spacing:.06em;
+  }
+  .q-counter strong { color: var(--vivid); }
+  .progress-bar {
+    height:4px;
+    background: rgba(61,219,138,0.15);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .progress-fill {
+    height:100%;
+    background: linear-gradient(90deg, var(--vivid), var(--sea));
+    border-radius:4px;
+    transition: width .5s cubic-bezier(.4,0,.2,1);
+  }
+
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius:20px;
+    padding:28px 24px;
+    margin-bottom:16px;
+    box-shadow: 0 8px 40px var(--shadow);
+    animation: fadeUp .4s ease both;
+  }
+
+  .q-emoji {
+    font-size:2rem;
+    margin-bottom:10px;
+    display:block;
+  }
+
+  .q-text {
+    font-family:'Playfair Display',serif;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    line-height:1.5;
+    color:#fff;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+
+  .q-sub {
+    font-size:.82rem;
+    color: var(--text2);
+    font-style:italic;
+    margin-bottom:20px;
+    line-height:1.4;
+  }
+
+  .choices {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .choice-btn {
+    background: var(--card2);
+    border: 1.5px solid rgba(61,219,138,0.12);
+    border-radius:13px;
+    padding:14px 18px;
+    text-align:left;
+    cursor:pointer;
+    transition: border-color .2s, background .2s, transform .15s;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    color: var(--text);
+    font-family:'Source Serif 4',serif;
+    font-size:.93rem;
+    line-height:1.45;
+  }
+
+  .choice-btn:hover {
+    border-color: rgba(61,219,138,0.45);
+    background: rgba(61,219,138,0.07);
+    transform: translateX(4px);
+  }
+
+  .choice-btn.selected {
+    border-color: var(--vivid);
+    background: rgba(61,219,138,0.12);
+    color:#fff;
+  }
+
+  .choice-btn.wrong {
+    opacity:.35;
+    pointer-events:none;
+  }
+
+  .choice-letter {
+    flex-shrink:0;
+    width:26px;
+    height:26px;
+    border-radius:8px;
+    background: rgba(61,219,138,0.12);
+    color: var(--vivid);
+    font-family:'Playfair Display',serif;
+    font-size:.8rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: background .2s;
+  }
+
+  .choice-btn.selected .choice-letter {
+    background: var(--vivid);
+    color:#0a1a10;
+  }
+
+  /* ── RESULT SCREEN ── */
+  #screen-result { display:none; }
+
+  .result-header {
+    text-align:center;
+    padding-top:24px;
+    margin-bottom:28px;
+    animation: fadeUp .5s ease both;
+  }
+
+  .result-badge {
+    display:inline-block;
+    background: rgba(240,192,64,0.12);
+    border:1px solid rgba(240,192,64,0.3);
+    border-radius:50px;
+    padding:6px 18px;
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color: var(--gold);
+    margin-bottom:16px;
+  }
+
+  .result-ilce {
+    font-family:'Playfair Display',serif;
+    font-size: clamp(2.2rem,8vw,3.2rem);
+    font-weight:900;
+    color:#fff;
+    line-height:1.1;
+    margin-bottom:6px;
+  }
+  .result-ilce span { color: var(--vivid); }
+
+  .result-tagline {
+    font-size:.95rem;
+    color: var(--text2);
+    font-style:italic;
+  }
+
+  .result-card {
+    background: var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px 24px;
+    margin-bottom:16px;
+    animation: fadeUp .5s .1s ease both;
+    opacity:0;
+    animation-fill-mode:forwards;
+  }
+
+  .result-icon {
+    font-size:3rem;
+    display:block;
+    margin-bottom:14px;
+    text-align:center;
+  }
+
+  .result-title {
+    font-family:'Playfair Display',serif;
+    font-size:1.1rem;
+    color: var(--gold);
+    text-align:center;
+    margin-bottom:12px;
+    font-weight:700;
+  }
+
+  .result-desc {
+    font-size:.93rem;
+    line-height:1.75;
+    color: var(--text);
+    text-align:center;
+  }
+
+  /* MATCH BARS */
+  .match-section {
+    background: var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px 20px;
+    margin-bottom:16px;
+    animation: fadeUp .5s .2s ease both;
+    opacity:0;
+    animation-fill-mode:forwards;
+  }
+
+  .match-section h3 {
+    font-family:'Playfair Display',serif;
+    font-size:.9rem;
+    color: var(--text2);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    margin-bottom:16px;
+  }
+
+  .match-item {
+    margin-bottom:12px;
+  }
+
+  .match-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:5px;
+  }
+
+  .match-name {
+    font-size:.88rem;
+    color: var(--text);
+    font-weight:600;
+  }
+
+  .match-pct {
+    font-size:.8rem;
+    color: var(--vivid);
+    font-family:'Playfair Display',serif;
+  }
+
+  .match-bar {
+    height:6px;
+    background: rgba(255,255,255,0.07);
+    border-radius:4px;
+    overflow:hidden;
+  }
+
+  .match-fill {
+    height:100%;
+    border-radius:4px;
+    background: linear-gradient(90deg, var(--vivid), var(--sea));
+    transition: width 1s cubic-bezier(.4,0,.2,1) .4s;
+    width:0;
+  }
+
+  .match-fill.gold { background: linear-gradient(90deg, var(--gold), #e0a010); }
+
+  /* RUNNER UP */
+  .runner-up-card {
+    background: var(--card);
+    border:1px solid rgba(74,184,193,0.2);
+    border-radius:16px;
+    padding:18px 20px;
+    margin-bottom:16px;
+    animation: fadeUp .5s .3s ease both;
+    opacity:0;
+    animation-fill-mode:forwards;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+
+  .runner-up-icon { font-size:1.8rem; flex-shrink:0; }
+
+  .runner-up-label {
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color: var(--sea);
+    margin-bottom:3px;
+  }
+
+  .runner-up-name {
+    font-family:'Playfair Display',serif;
+    font-size:1rem;
+    color:#fff;
+    font-weight:700;
+  }
+
+  .runner-up-sub {
+    font-size:.8rem;
+    color: var(--text2);
+    font-style:italic;
+    margin-top:2px;
+  }
+
+  /* SHARE */
+  .share-wrap {
+    animation: fadeUp .5s .4s ease both;
+    opacity:0;
+    animation-fill-mode:forwards;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .btn-share {
+    background: linear-gradient(135deg, #25a244, #1a7a34);
+    border:none;
+    border-radius:13px;
+    padding:15px;
+    color:#fff;
+    font-family:'Playfair Display',serif;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:transform .2s, box-shadow .2s;
+    box-shadow:0 4px 16px rgba(37,162,68,0.3);
+  }
+  .btn-share:hover { transform:translateY(-2px); }
+
+  .btn-retry {
+    background: transparent;
+    border:1.5px solid var(--border);
+    border-radius:13px;
+    padding:14px;
+    color: var(--text2);
+    font-family:'Playfair Display',serif;
+    font-size:.95rem;
+    cursor:pointer;
+    transition:border-color .2s, color .2s;
+    text-align:center;
+  }
+  .btn-retry:hover { border-color: var(--vivid); color: var(--vivid); }
+
+  .share-hint {
+    text-align:center;
+    font-size:.75rem;
+    color: var(--text2);
+    font-style:italic;
+    padding:0 8px;
+  }
+
+  /* TOAST */
+  .toast {
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%) translateY(80px);
+    background: var(--vivid);
+    color:#0a1a10;
+    font-family:'Source Serif 4',serif;
+    font-size:.85rem;
+    font-weight:600;
+    padding:10px 22px;
+    border-radius:50px;
+    z-index:100;
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
+    white-space:nowrap;
+  }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  @keyframes pop {
+    0%   { transform:scale(1); }
+    50%  { transform:scale(1.08); }
+    100% { transform:scale(1); }
+  }
+
+  .pop { animation:pop .3s ease; }
+
+  /* DIVIDER */
+  .divider {
+    height:1px;
+    background:var(--border);
+    margin:8px 0 20px;
+  }
+</style>
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin, Türkiye">
+<meta name="geo.position" content="41.1833;41.8167">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Quiz",
+  "name": "Sen Hangi Artvin İlçesisin? — Kişilik Testi",
+  "description": "10 soruda hangi Artvin ilçesine benzediğini keşfet. Hopa, Şavşat, Yusufeli ve diğerleri.",
+  "url": "https://artvinrehber.com/artvin-ilce-testi.html",
+  "inLanguage": "tr",
+  "about": {"@type":"Place","name":"Artvin","address":{"@type":"PostalAddress","addressRegion":"Artvin","addressCountry":"TR"}},
+  "author": {"@type":"Organization","name":"Artvin Rehberi","url":"https://artvinrehber.com"},
+  "numberOfQuestions": 10
+}
+</script>
+<link rel="canonical" href="https://artvinrehber.com/artvin-ilce-testi.html">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
+     crossorigin="anonymous"></script>
+<meta property="og:image" content="https://i.ibb.co/0jxv0d38/MG-20260430-172113.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.ibb.co/0jxv0d38/MG-20260430-172113.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-05-12"}</script>
+</head>
+<body>
+<div id="app">
+
+  <!-- INTRO -->
+  <div id="screen-intro">
+    <div class="logo-badge">🏔️ artvinrehber.com</div>
+    <h1>Sen Hangi<br><span>Artvin İlçesi</span>sin?</h1>
+<h2 style="display:none">Artvin İlçe Kişilik Testi</h2>
+    <p class="intro-sub">10 soru, 1 dakika, binlerce olasılık.<br>Karakterin seni hangi ilçeyle buluşturuyor?</p>
+
+    <div class="mountain-art">
+      <svg viewBox="0 0 360 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 110 L40 55 L70 80 L110 20 L150 70 L190 35 L230 80 L270 45 L310 75 L360 30 L360 120 L0 120Z" fill="rgba(45,122,79,0.25)"/>
+        <path d="M0 120 L50 75 L90 95 L130 50 L170 85 L210 55 L250 90 L290 60 L330 85 L360 65 L360 120Z" fill="rgba(45,122,79,0.18)"/>
+        <path d="M110 20 L90 20 L110 0 L130 20Z" fill="rgba(240,192,64,0.4)"/>
+        <path d="M190 35 L175 35 L190 18 L205 35Z" fill="rgba(240,192,64,0.25)"/>
+        <circle cx="190" cy="18" r="3" fill="rgba(240,192,64,0.6)"/>
+        <!-- Stars -->
+        <circle cx="30" cy="15" r="1.5" fill="rgba(61,219,138,0.5)"/>
+        <circle cx="280" cy="10" r="1" fill="rgba(61,219,138,0.4)"/>
+        <circle cx="340" cy="20" r="1.5" fill="rgba(74,184,193,0.5)"/>
+        <circle cx="60" cy="8" r="1" fill="rgba(240,192,64,0.5)"/>
+      </svg>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><span class="stat-n">10</span><span class="stat-l">Soru</span></div>
+      <div class="stat"><span class="stat-n">9</span><span class="stat-l">İlçe</span></div>
+      <div class="stat"><span class="stat-n">~2dk</span><span class="stat-l">Süre</span></div>
+    </div>
+
+    <button class="btn-start" onclick="startQuiz()">Testi Başlat →</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="screen-quiz">
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="q-counter">Soru <strong id="q-num">1</strong> / 10</span>
+        <span class="q-counter" id="q-label" style="color:var(--vivid);font-style:italic"></span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div id="q-container"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="screen-result">
+    <div class="result-header">
+      <div class="result-badge" id="r-badge">Sonuç</div>
+      <div class="result-ilce" id="r-ilce"></div>
+      <div class="result-tagline" id="r-tagline"></div>
+    </div>
+    <div class="result-card">
+      <span class="result-icon" id="r-icon"></span>
+      <div class="result-title" id="r-title"></div>
+      <div class="result-desc" id="r-desc"></div>
+    </div>
+    <div class="match-section">
+      <h3>Uyum Oranın</h3>
+      <div id="match-bars"></div>
+    </div>
+    <div class="runner-up-card" id="runner-up-card">
+      <div class="runner-up-icon" id="ru-icon"></div>
+      <div>
+        <div class="runner-up-label">İkinci Olasılığın</div>
+        <div class="runner-up-name" id="ru-name"></div>
+        <div class="runner-up-sub" id="ru-sub"></div>
+      </div>
+    </div>
+    <div class="share-wrap">
+      <button class="btn-share" id="btn-share" onclick="shareResult()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        Sonucu Paylaş
+      </button>
+      <div class="share-hint">📲 "Ben <span id="share-ilce-hint"></span> çıktım! Sen hangi Artvin ilçesisin?"</div>
+      <button class="btn-retry" onclick="resetQuiz()">↩ Tekrar Oyna</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Kopyalandı! 📋</div>
+
+<script>
+/* ─── VERİ ─────────────────────────────────────────── */
+
+const ILCELER = {
+  savsat:   { ad:"Şavşat",       icon:"🌲", tagline:"Şair Ruhlu Bir Filozof",    renk:"#3ddb8a" },
+  hopa:     { ad:"Hopa",         icon:"⚓", tagline:"Dinamik Bir Aktivist",      renk:"#4ab8c1" },
+  yusufeli: { ad:"Yusufeli",     icon:"🏔️", tagline:"Zirveye Oynayan İnatçı",   renk:"#f0c040" },
+  borcka:   { ad:"Borçka",       icon:"🌫️", tagline:"Gizemli Bir Romantik",     renk:"#a8c4ac" },
+  arhavi:   { ad:"Arhavi",       icon:"🎶", tagline:"Kültür Elçisi",            renk:"#e88c4a" },
+  murgul:   { ad:"Murgul",       icon:"⚒️", tagline:"Dışı Kaya, İçi Cevher",   renk:"#c48a6e" },
+  ardanuc:  { ad:"Ardanuç",      icon:"🏛️", tagline:"Kadim Bir Bilge",          renk:"#d4aa70" },
+  merkez:   { ad:"Artvin Merkez",icon:"🗺️", tagline:"Stratejik Gözlemci",       renk:"#8fae96" },
+  kemalp:   { ad:"Kemalpaşa",    icon:"🌊", tagline:"Sınırları Zorlamayan Özgür Ruh", renk:"#60c8e0" }
+};
+
+const ACIKLAMALAR = {
+  savsat:   "Karçal Dağları'na bakıp saatlerce düşünebilirsin. Gürültü sana göre değil; sen sessizliğin içinde kelimeler bulursun. Çevren 'neden bu kadar az konuşuyorsun' der, sen 'neden bu kadar çok konuşuyorsunuz' diye düşünürsün. 🌲",
+  hopa:     "Sabah erken kalkar, günü bir aktiviste gibi doldurursun. Haksızlık görünce susan değil, konuşansın. Enerji deponu hiç bitmiyor — hem limandaki gürültüyü hem de denizin sessizliğini taşıyorsun içinde. ⚡",
+  yusufeli: "Çoruh sana benziyor: hızlı, derin, kimsenin kolayca geçemeyeceği bir yerde akıyor. Engel seni durdurmaz, ayarlamaz — aksine gazı verir. En büyük motivasyonun 'olmaz' diyenler. 🪨",
+  borcka:   "Karagöl sabahları gibi; üzerinde bir sis var ama altında inanılmaz bir güzellik. İnsanlar seni tam anlayamaz ama etrafında bir çekim alanı hisseder. Hem ormansın hem şehirsin. 🌫️",
+  arhavi:   "Tulumun sesi çaldığında ilk kalkan sensin. Ama ayak uydurmakla sınırlı değilsin — sen kültürü taşıyan, estetik kaygısı olan, hem eğlenen hem düşünen nadir tiptensın. 🎶",
+  murgul:   "İlk bakışta 'bu biri ile nasıl konuşulur?' dedirtecek kadar sert görünürsün. Ama kapını açan için dünyayı altüst edersin. Dostluğun maden gibi — nadir, ağır ve gerçek. ⚒️",
+  ardanuc:  "Bir şeyin tarihi yoksa seni ilgilendirmez. Geçmişin yükünü değil, asaletini taşırsın. 'Eski toprak' derler sana — ve bundan gurur duyarsın. Sözün bir çıkar, bin düşünüldüğü belli olur. 📜",
+  merkez:   "Artvin'in dik yokuşlarını çıkmak adaptasyon uzmanı yapar insanı. Sen her ortamda var olursun, her insanla bulur bir ortak nokta. Ama gözlemlemeden adım atmayan birisin — önce izler, sonra hareket edersin. 🗺️",
+  kemalp:   "Dünya koşuşturuyor, sen çayını içiyorsun. Ve aslında doğru yapan sensin. Deniz kenarında bir bank, hafif rüzgar, elinde bir şey — işte anlam orada. Stres? Bilmiyorsun, tanımıyorsun, tanımak da istemiyorsun. 🌊"
+};
+
+const SORULAR = [
+  {
+    emoji:"🌄",
+    metin:"Sabah gözlerini açıyorsun. İlk düşüncen ne?",
+    alt:"(Acı gerçek versiyonu lütfen 😄)",
+    secenekler:[
+      { metin:"'Bugün bir şeyleri değiştireceğim.' Ciddi olarak.", puan:{hopa:3, yusufeli:2, merkez:1} },
+      { metin:"'Şu yataktan çıkmadan düşüneyim bir dakika...'", puan:{savsat:3, borcka:2, ardanuc:1} },
+      { metin:"'Bugün ne güzel şeyler olacak?' (gerçekten öyle düşünürsün)", puan:{kemalp:3, arhavi:2, merkez:1} },
+      { metin:"'Canıma okuyor bu alarm ama kalkmam lazım.'", puan:{murgul:3, yusufeli:2, borcka:1} }
+    ]
+  },
+  {
+    emoji:"🍃",
+    metin:"Sana 3 gün tatil verdiler. Ne yaparsın?",
+    alt:"(Dürüstçe — ideal değil, gerçekte)",
+    secenekler:[
+      { metin:"Bir dağ yoluna çıkar, kimseye söylemeden kaybolur dönerim.", puan:{savsat:3, yusufeli:2, borcka:1} },
+      { metin:"Etkinlik dolu 3 gün: konser, gezinti, arkadaşlar...", puan:{hopa:3, arhavi:2, merkez:1} },
+      { metin:"Deniz kenarında kitap + çay kombinasyonu, hiç plan yok.", puan:{kemalp:3, borcka:2, savsat:1} },
+      { metin:"Hiç bilmediğim bir rotaya çıkar, kendimi sınarım.", puan:{yusufeli:3, hopa:2, murgul:1} }
+    ]
+  },
+  {
+    emoji:"💬",
+    metin:"Birisi sana çok haksız bir şey yaptı. Ne yaparsın?",
+    alt:"(İçin içini yiyor — nasıl çözersin?)",
+    secenekler:[
+      { metin:"Direkt karşısına geçer, net konuşurum. Uzatmam.", puan:{hopa:3, murgul:2, yusufeli:1} },
+      { metin:"Bir süre taşırım, sonra doğru anı bekliyorum.", puan:{savsat:3, ardanuc:2, merkez:1} },
+      { metin:"Arkadaşıma anlatır, biraz hava atarım, geçer.", puan:{arhavi:3, kemalp:2, borcka:1} },
+      { metin:"İçimde çöker, belki hiç söylemem ama unutmam da.", puan:{murgul:3, ardanuc:2, savsat:1} }
+    ]
+  },
+  {
+    emoji:"🏡",
+    metin:"İdeal ev senin için nasıl olmalı?",
+    alt:"",
+    secenekler:[
+      { metin:"Ormana bakan, sakin, komşu görmesem olur.", puan:{savsat:3, borcka:2, ardanuc:1} },
+      { metin:"Şehir merkezi, yürüyüş mesafesi her yere.", puan:{hopa:3, merkez:2, arhavi:1} },
+      { metin:"Denize yakın, sahilde çay içebileyim.", puan:{kemalp:3, arhavi:2, hopa:1} },
+      { metin:"Tarihi, karakteri olan bir yer. Ruh taşıyan.", puan:{ardanuc:3, savsat:2, borcka:1} }
+    ]
+  },
+  {
+    emoji:"👥",
+    metin:"Bir toplantıda herkes konuşuyor, sen ne yapıyorsun?",
+    alt:"(Gerçek tepki, sahte değil 😄)",
+    secenekler:[
+      { metin:"Sessizce dinler, ancak gerekince söz alırım.", puan:{savsat:3, ardanuc:2, merkez:1} },
+      { metin:"Aktif katılır, fikir üretir, yönlendiririm.", puan:{hopa:3, merkez:2, yusufeli:1} },
+      { metin:"Gözlemler, sonradan doğru kişiye doğru şeyi söylerim.", puan:{merkez:3, borcka:2, murgul:1} },
+      { metin:"Zaten toplantıdan önce birini kaçırmayı düşünürüm.", puan:{kemalp:3, savsat:2, murgul:1} }
+    ]
+  },
+  {
+    emoji:"🌧️",
+    metin:"Karadeniz yağmuru yağıyor. Dışarıdayken ne yaparsın?",
+    alt:"",
+    secenekler:[
+      { metin:"Islanırım, önemli değil. Yağmur güzeldir.", puan:{yusufeli:3, savsat:2, murgul:1} },
+      { metin:"Hızlıca bir kahve dükkanına dal, bekle.", puan:{kemalp:3, arhavi:2, merkez:1} },
+      { metin:"Şemsiyeyi çoktan çantama koymuştum.", puan:{merkez:3, ardanuc:2, borcka:1} },
+      { metin:"Yağmurda yürümeyi sever, düşünür gelirim.", puan:{savsat:3, borcka:2, ardanuc:1} }
+    ]
+  },
+  {
+    emoji:"🍽️",
+    metin:"Akşam yemeğinde sen ne yapıyorsun?",
+    alt:"(Sofra senin için ne ifade ediyor?)",
+    secenekler:[
+      { metin:"Hazırlarken müzik aç, pişirme benim meditasyonum.", puan:{savsat:3, arhavi:2, kemalp:1} },
+      { metin:"Büyük masa, kalabalık insan, gürültülü sohbet.", puan:{hopa:3, arhavi:2, merkez:1} },
+      { metin:"Misafir gelsin, ben ikram edeyim — en büyük mutluluğum.", puan:{murgul:3, ardanuc:2, borcka:1} },
+      { metin:"Ne pişirirsem piş, asıl önemli olan sohbet.", puan:{kemalp:3, borcka:2, merkez:1} }
+    ]
+  },
+  {
+    emoji:"🔥",
+    metin:"Bir sorunu çözerken nasıl düşünürsün?",
+    alt:"",
+    secenekler:[
+      { metin:"Analiz ederim, parçalara ayırırım, adım adım çözerim.", puan:{merkez:3, ardanuc:2, savsat:1} },
+      { metin:"İçgüdüme güvenirim, düşünceden fazla hareket.", puan:{hopa:3, yusufeli:2, murgul:1} },
+      { metin:"Oturup beklerim — her şeyin bir zamanı var.", puan:{kemalp:3, savsat:2, borcka:1} },
+      { metin:"Farklı insanlardan fikir alır, sentez yaparım.", puan:{borcka:3, arhavi:2, merkez:1} }
+    ]
+  },
+  {
+    emoji:"🌙",
+    metin:"Gece uykuya dalarken aklında ne dönüyor?",
+    alt:"(Beyin kapanmıyor bazen...)",
+    secenekler:[
+      { metin:"Yarın ne yapacağım, listemde ne var.", puan:{hopa:3, merkez:2, yusufeli:1} },
+      { metin:"Hiçbir şey. Kafayı yastığa koyar uyurum.", puan:{kemalp:3, murgul:2, yusufeli:1} },
+      { metin:"Derin sorular. Anlam, geçmiş, gelecek...", puan:{savsat:3, ardanuc:2, borcka:1} },
+      { metin:"O gün olan küçük detayları, anları tekrar yaşarım.", puan:{borcka:3, arhavi:2, kemalp:1} }
+    ]
+  },
+  {
+    emoji:"🎯",
+    metin:"Seni en iyi tanımlayan cümle hangisi?",
+    alt:"(Gerçekten hangisi — abartma olmadan)",
+    secenekler:[
+      { metin:"'Az söz, çok anlam.' Konuştuğumda dinlenir.", puan:{savsat:3, ardanuc:2, murgul:1} },
+      { metin:"'Durdum duruyor değil, her şeye müdahilim.'", puan:{hopa:3, yusufeli:2, merkez:1} },
+      { metin:"'İki dünyayı da yaşarım — anlarım, ayak uydururum.'", puan:{borcka:3, merkez:2, arhavi:1} },
+      { metin:"'Hayat zaten güzel, daha ne isterim ki?'", puan:{kemalp:3, savsat:1, borcka:1} }
+    ]
+  }
+];
+
+/* ─── STATE ───────────────────────────────────────── */
+let puanlar = {};
+let mevcutSoru = 0;
+let secimler = [];
+
+function sifirla() {
+  puanlar = {};
+  Object.keys(ILCELER).forEach(k => puanlar[k] = 0);
+  mevcutSoru = 0;
+  secimler = [];
+}
+
+/* ─── QUIZ LOGIC ──────────────────────────────────── */
+function startQuiz() {
+  sifirla();
+  document.getElementById('screen-intro').style.display='none';
+  document.getElementById('screen-quiz').style.display='block';
+  renderSoru();
+}
+
+function renderSoru() {
+  const q = SORULAR[mevcutSoru];
+  const pct = (mevcutSoru / SORULAR.length * 100).toFixed(0);
+
+  document.getElementById('q-num').textContent = mevcutSoru+1;
+  document.getElementById('progress-fill').style.width = pct+'%';
+
+  const harfler = ['A','B','C','D'];
+  let html = `<div class="q-card">
+    <span class="q-emoji">${q.emoji}</span>
+    <div class="q-text">${q.metin}</div>
+    ${q.alt ? `<div class="q-sub">${q.alt}</div>` : '<div style="margin-bottom:16px"></div>'}
+    <div class="choices">`;
+  
+  q.secenekler.forEach((s,i) => {
+    html += `<button class="choice-btn" onclick="secimYap(${i})">
+      <span class="choice-letter">${harfler[i]}</span>
+      <span>${s.metin}</span>
+    </button>`;
+  });
+
+  html += `</div></div>`;
+  document.getElementById('q-container').innerHTML = html;
+}
+
+function secimYap(idx) {
+  // Animasyon
+  const btns = document.querySelectorAll('.choice-btn');
+  btns[idx].classList.add('selected','pop');
+  btns.forEach((b,i) => { if(i!==idx) b.classList.add('wrong'); });
+
+  // Puan ekle
+  const s = SORULAR[mevcutSoru].secenekler[idx];
+  Object.entries(s.puan).forEach(([k,v]) => { puanlar[k] = (puanlar[k]||0)+v; });
+  secimler.push(idx);
+
+  setTimeout(() => {
+    mevcutSoru++;
+    if(mevcutSoru >= SORULAR.length) {
+      gosterSonuc();
+    } else {
+      renderSoru();
+    }
+  }, 420);
+}
+
+/* ─── RESULT ──────────────────────────────────────── */
+function gosterSonuc() {
+  document.getElementById('screen-quiz').style.display='none';
+  document.getElementById('screen-result').style.display='block';
+
+  // Sırala
+  const siralanmis = Object.entries(puanlar)
+    .sort((a,b)=>b[1]-a[1]);
+
+  const [birinci, ikinci] = siralanmis;
+  const toplamPuan = Object.values(puanlar).reduce((a,b)=>a+b,0);
+
+  const b = ILCELER[birinci[0]];
+  const ik = ILCELER[ikinci[0]];
+
+  // Header
+  document.getElementById('r-badge').textContent = '✨ Sonucun';
+  document.getElementById('r-ilce').innerHTML = `Sen bir <span style="color:var(--vivid)">${b.ad}</span>'sın`;
+  document.getElementById('r-tagline').textContent = b.tagline;
+
+  // Card
+  document.getElementById('r-icon').textContent = b.icon;
+  document.getElementById('r-title').textContent = `"${b.tagline}"`;
+  document.getElementById('r-desc').textContent = ACIKLAMALAR[birinci[0]];
+
+  // Bars — top 5
+  const top5 = siralanmis.slice(0,5);
+  const maxPuan = top5[0][1];
+  let barsHtml = '';
+  top5.forEach(([k,v],i) => {
+    const pct = maxPuan>0 ? Math.round(v/maxPuan*100) : 0;
+    const gold = i===0;
+    barsHtml += `<div class="match-item">
+      <div class="match-top">
+        <span class="match-name">${ILCELER[k].icon} ${ILCELER[k].ad}</span>
+        <span class="match-pct">${pct}%</span>
+      </div>
+      <div class="match-bar">
+        <div class="match-fill${gold?' gold':''}" data-w="${pct}"></div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('match-bars').innerHTML = barsHtml;
+
+  // Runner up
+  document.getElementById('ru-icon').textContent = ik.icon;
+  document.getElementById('ru-name').textContent = ik.ad;
+  document.getElementById('ru-sub').textContent = ik.tagline;
+
+  // Share hint
+  document.getElementById('share-ilce-hint').textContent = b.ad;
+  document.getElementById('btn-share').setAttribute('data-ilce', b.ad);
+
+  // Animate bars after paint
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.match-fill').forEach(el => {
+        el.style.width = el.dataset.w + '%';
+      });
+    });
+  });
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function shareResult() {
+  const ilce = document.getElementById('btn-share').getAttribute('data-ilce');
+  const metin = `Ben ${ilce} çıktım! 🏔️ Sen hangi Artvin ilçesisin?\nartvinrehber.com'da test et → `;
+
+  if(navigator.share) {
+    navigator.share({ title:"Sen Hangi Artvin İlçesisin?", text:metin, url:"https://artvinrehber.com" });
+  } else {
+    navigator.clipboard.writeText(metin+"https://artvinrehber.com").then(()=>{
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),2200);
+    });
+  }
+}
+
+function resetQuiz() {
+  document.getElementById('screen-result').style.display='none';
+  document.getElementById('screen-intro').style.display='flex';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
