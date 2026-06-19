@@ -1,1 +1,39 @@
+> Artvin iline dair kapsamlı, güncel ve özgün dijital rehber. Günlük yaşam, ulaşım, kültür, eğitim, oyunlar ve yerel bilgileri tek çatı altında toplar. İçerikler Türkçe ağırlıklıdır; bazı sayfalarda İngilizce bölümler bulunur.
 
+## Hakkında
+
+Artvin Rehberi, Türkiye'nin Karadeniz bölgesindeki Artvin ilini tanıtan bağımsız bir bilgi platformudur. Amaç; Artvin'de yaşayanlar, okuyan öğrenciler ve şehri ziyaret edecekler için doğru, güncel ve pratik bilgi sunmaktır. Tüm içerikler özgün olarak hazırlanır ve düzenli güncellenir.
+
+## Ana İçerik Kategorileri
+
+### Günlük Yaşam ve Ulaşım
+- [Artvin Otobüs Saatleri](https://www.artvinrehber.com/otobus.html): Şehirlerarası otobüs firmaları, hatlar ve otogar bilgileri.
+- [Artvin Havaş Servis Saatleri](https://www.artvinrehber.com/havas.html): Rize-Artvin Havalimanı servis saatleri ve ücretleri.
+- [Rize-Artvin Havalimanı Rehberi](https://www.artvinrehber.com/artvin-havalimani.html): Uçuşlar, havayolları ve ulaşım (Türkçe + İngilizce).
+- [Artvin Dolmuş Saatleri](https://www.artvinrehber.com/dolmus.html): İlçeler arası dolmuş güzergahları ve ücretleri.
+- [Artvin Taksi Ücretleri](https://www.artvinrehber.com/taksi.html): Taksi tarifeleri ve durak bilgileri.
+- [Artvin Nöbetçi Eczaneler](https://www.artvinrehber.com/eczane-rehber.html): Güncel nöbetçi eczane listesi.
+- [Artvin Hava Durumu](https://www.artvinrehber.com/hava.html): İlçe ve özel nokta bazlı hava tahminleri.
+- [Artvin Acil Telefonlar](https://www.artvinrehber.com/artvin-acil-telefonlar.html): Acil durum ve kurum iletişim numaraları.
+
+### Üniversite ve Öğrenci
+- [Artvin Çoruh Üniversitesi Rehberi](https://www.artvinrehber.com/blog42-acu-rehberi.html): AÇÜ fakülteleri, kampüs, yurt ve öğrenci bilgileri.
+- [AÇÜ Kampüs Platformu](https://www.artvinrehber.com/acukampus.html): Öğrenci soru-cevap ve ilan platformu.
+- [AÇÜ Bölüm WhatsApp Grupları](https://www.artvinrehber.com/acu-bolum-gruplari.html): Bölüm bazlı öğrenci grupları dizini.
+- [AÇÜ Ders Notu Arşivi](https://www.artvinrehber.com/acu-ders-notu.html): Vize-final notları ve ders materyalleri.
+
+### Kültür, Tarih ve İstatistik
+- [Artvin Tarihi](https://www.artvinrehber.com/blog39-artvin-tarihi.html): Antik çağdan günümüze Artvin tarihi.
+- [Sayılarla Artvin](https://www.artvinrehber.com/blog41-sayilarla-artvin.html): Nüfus, coğrafya, ekonomi istatistikleri.
+- [ArtvinMetre](https://www.artvinrehber.com/artvinmetre.html): Artvin'in sayısal verileri ve rekorları.
+- [Kafkasör Festivali](https://www.artvinrehber.com/blog43-kafkasor-festivali.html): Geleneksel boğa güreşleri ve festival rehberi.
+- [Artvin Köyleri Ansiklopedisi](https://www.artvinrehber.com/koyler.html): 323 köyün tam listesi ve bilgileri.
+
+### Oyunlar ve Etkileşim
+- [Artvin Oyunları](https://www.artvinrehber.com/artvin-oyunlar.html): Artvin temalı online oyunlar ve testler.
+- [Artvin İmece](https://www.artvinrehber.com/imece.html): Ücretsiz eşya paylaşım ve dayanışma platformu.
+
+## Notlar
+- İçerikler düzenli güncellenir; tarih damgalı bilgiler için sayfa üzerindeki güncelleme bandına bakılmalıdır.
+- Ulaşım saatleri ve fiyatları resmi kaynaklardan derlenir ancak kesinlik için ilgili kuruluş teyit edilmelidir.
+- Site ticari olmayan, bilgilendirme amaçlı bağımsız bir rehberdir.
