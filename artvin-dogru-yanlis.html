@@ -218,12 +218,13 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <h3 style="display:none">Artvin Kültürü Quiz</h3>
 
 <h2 style="display:none">Artvin Doğru Yanlış Oyunu</h2>
-    <p class="sub">Gerçek Artvinli misin?<br><strong style="color:#fff">4 Konu, 10 Soruluk Turlar</strong><br>Kendini Test Et</p>
+    <p class="sub">Gerçek Artvinli misin?<br><strong style="color:#fff">60 Soru, 4 Konu</strong><br>Her turda 10 soru · Konu konu ilerle</p>
     <button class="abtn" onclick="git(1)">OYUNA BAŞLA<span class="okc">→</span></button>
     <div class="sts">
       <div class="st"><span class="n">60</span><span class="l">Soru</span></div>
       <div class="st"><span class="n">4</span><span class="l">Konu</span></div>
-      <div class="st"><span class="n">🏆</span><span class="l">Siralama</span></div>
+      <div class="st"><span class="n">10</span><span class="l">Tur Başı</span></div>
+      <div class="st" onclick="liderlikGoster(0)" style="cursor:pointer;"><span class="n">🏆</span><span class="l">Siralama</span></div>
     </div>
   </div>
 </div>
@@ -297,7 +298,8 @@ button{cursor:pointer;border:none;font-family:inherit;}
   <div class="bar">
     <div class="kb"><span class="kav" id="kAv">🏔️</span><div><div class="kad" id="kAd">—</div><div class="svc" id="svC">🎒 Ogrenci</div></div></div>
     <div class="skb"><span class="skn" id="skN">0</span><span class="skl">Puan</span></div>
-    <div><div class="iln" id="ilN">1/60</div><div style="font-size:.44rem;color:var(--d);letter-spacing:.08em;text-align:right">SORU</div></div>
+    <div><div class="iln" id="ilN">1/10</div><div style="font-size:.44rem;color:var(--d);letter-spacing:.08em;text-align:right">SORU</div></div>
+    <button id="sesBtn" onclick="sesToggle()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;width:36px;height:36px;font-size:1rem;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">🔊</button>
   </div>
   <div class="prg"><div class="prc" id="prc" style="width:0%"></div></div>
   <div class="oia">
@@ -345,13 +347,84 @@ button{cursor:pointer;border:none;font-family:inherit;}
       <!-- TEKRAR OYNA -->
       <button onclick="window.location.reload()" style="width:100%;margin-top:.75rem;background:linear-gradient(135deg,#2d7a4f,#1b5e38);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.95rem;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.02em;">🔄 Tekrar Oyna</button>
     </div>
-    <button onclick="skorPaylas()" style="width:100%;background:linear-gradient(135deg,#25D366,#1da851);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.92rem;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.02em;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">📲 Skorumu Paylaş</button>
+    <div id="rekorBox" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem;font-size:.82rem;text-align:center;margin-bottom:.7rem;font-family:'Outfit',sans-serif;"></div>
+    <div id="sonrakiKonuBox" style="background:rgba(61,219,138,.05);border:1px solid rgba(61,219,138,.15);border-radius:12px;padding:.85rem;margin-bottom:.7rem;"></div>
+    <button onclick="liderlikGoster()" style="width:100%;background:linear-gradient(135deg,#f0c040,#d99a28);color:#1a1206;border:none;border-radius:13px;padding:.9rem;font-size:.92rem;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:.02em;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">🏆 Liderlik Tablosu</button>
+    <button onclick="skorPaylas()" style="width:100%;background:linear-gradient(135deg,#25D366,#1da851);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.92rem;font-weight:800;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:.02em;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">📲 Skorumu Paylaş</button>
     <button class="btk" onclick="git(1)">🔄 Tekrar Dene</button>
     <a href="/" style="font-size:.72rem;color:var(--d);text-decoration:none;padding:.4rem">Ana Sayfaya Don</a>
   </div>
 </div>
 
+<div class="p" id="pL" style="display:none">
+  <div style="flex:1;display:flex;flex-direction:column;padding:1.5rem 1.25rem;max-width:480px;margin:0 auto;width:100%;">
+    <div style="text-align:center;margin-bottom:1.2rem;">
+      <div style="font-size:1.6rem;font-weight:700;color:#fff;font-family:'Oswald',sans-serif;letter-spacing:.02em;text-transform:uppercase;">🏆 Liderlik Tablosu</div>
+      <div style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:.25rem;font-family:'Outfit',sans-serif;">En yuksek skoru yapan Artvin bilginleri</div>
+    </div>
+    <div id="liderListe" style="flex:1;">
+      <div style="text-align:center;color:rgba(255,255,255,.4);padding:2rem;font-family:'Outfit',sans-serif;">Yukleniyor...</div>
+    </div>
+    <button onclick="git(liderGeri)" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:13px;padding:.9rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;margin-top:1rem;">← Geri Don</button>
+  </div>
+</div>
+
 <script>
+
+// ===== SES EFEKTLERI (telifsiz, Web Audio) =====
+var sesAcik=true;
+try{var eskiSes=localStorage.getItem("adySes");if(eskiSes==="0")sesAcik=false;}catch(e){}
+var actx=null;
+function sesBaslat(){if(!actx){try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}}
+function ses(tip){
+  if(!sesAcik||!actx)return;
+  try{
+    var t=actx.currentTime;
+    if(tip==="dogru"){
+      // Yukselen iki nota (ding-ding)
+      [[660,0],[880,.09]].forEach(function(n){
+        var o=actx.createOscillator(),g=actx.createGain();
+        o.type="sine";o.frequency.value=n[0];
+        o.connect(g);g.connect(actx.destination);
+        g.gain.setValueAtTime(.0001,t+n[1]);
+        g.gain.exponentialRampToValueAtTime(.2,t+n[1]+.02);
+        g.gain.exponentialRampToValueAtTime(.0001,t+n[1]+.18);
+        o.start(t+n[1]);o.stop(t+n[1]+.2);
+      });
+    }else if(tip==="yanlis"){
+      // Alcalan buzz
+      var o=actx.createOscillator(),g=actx.createGain();
+      o.type="square";o.frequency.setValueAtTime(200,t);
+      o.frequency.exponentialRampToValueAtTime(110,t+.22);
+      o.connect(g);g.connect(actx.destination);
+      g.gain.setValueAtTime(.0001,t);
+      g.gain.exponentialRampToValueAtTime(.13,t+.02);
+      g.gain.exponentialRampToValueAtTime(.0001,t+.28);
+      o.start(t);o.stop(t+.3);
+    }else if(tip==="bitis"){
+      // Kutlama - dort nota yukselen
+      [523,659,784,1047].forEach(function(f,i){
+        var o=actx.createOscillator(),g=actx.createGain();
+        o.type="triangle";o.frequency.value=f;
+        o.connect(g);g.connect(actx.destination);
+        var st=t+i*.12;
+        g.gain.setValueAtTime(.0001,st);
+        g.gain.exponentialRampToValueAtTime(.2,st+.03);
+        g.gain.exponentialRampToValueAtTime(.0001,st+.3);
+        o.start(st);o.stop(st+.32);
+      });
+    }
+  }catch(e){}
+}
+function sesGuncelle(){var b=document.getElementById("sesBtn");if(b)b.textContent=sesAcik?"🔊":"🔇";}
+function sesToggle(){
+  sesAcik=!sesAcik;
+  try{localStorage.setItem("adySes",sesAcik?"1":"0");}catch(e){}
+  var b=document.getElementById("sesBtn");
+  if(b)b.textContent=sesAcik?"🔊":"🔇";
+  if(sesAcik){sesBaslat();ses("dogru");}
+}
+
 var SDB="https://sheetdb.io/api/v1/xm2jronau7zt1";
 var Q=[
 {s:"Artvin, Turkiye'nin Karadeniz Bolgesi'nde yer alir.",c:true,a:"Artvin, Dogu Karadeniz Bolumu'nun en dogusunda, Gurcistan sinirinda yer alir.",k:1},
@@ -421,6 +494,7 @@ var kul="",emj="🏔️",srlar=[],ix=0,sk=0,dg=0,yn=0,sr=0,enSr=0,tmInt=null,tmK
 
 function git(n){
   var pk=document.getElementById("pk");if(pk)pk.style.display="none";
+  var pL=document.getElementById("pL");if(pL)pL.style.display="none";
   ["p0","p1","p2","p3"].forEach(function(id,i){
     var e=document.getElementById(id);
     e.style.display=i===n?"flex":"none";
@@ -451,6 +525,8 @@ function svGun(){var v=svAl(sk);document.getElementById("svC").textContent=v.r+"
 var aktifKat=0;
 var KAT_AD=["Tum Konular","Cografya","Tarih ve Kultur","Doga ve Cevre","Ekonomi ve Nufus"];
 function oyun(kat){
+  sesBaslat();
+  sesGuncelle();
   aktifKat=kat;
   var havuz=kat===0?Q.slice():Q.filter(function(x){return x.k===kat;});
   havuz.sort(function(){return Math.random()-.5;});
@@ -468,7 +544,7 @@ function soru(){
   document.getElementById("sK").className="sk";
   document.getElementById("btnD").disabled=false;
   document.getElementById("btnY").disabled=false;
-  document.getElementById("ilN").textContent=(ix+1)+"/60";
+  document.getElementById("ilN").textContent=(ix+1)+"/"+srlar.length;
   document.getElementById("prc").style.width=((ix+1)/srlar.length*100)+"%";
   svGun();
   tmK=15;clearInterval(tmInt);
@@ -481,16 +557,16 @@ function cvp(c){
   document.getElementById("btnD").disabled=true;document.getElementById("btnY").disabled=true;
   if(c===null){
     yn++;sr=0;sk=Math.max(0,sk-5);k.classList.add("ky");fb.className="fb fby";
-    fb.textContent="Sure doldu! Dogru: "+(s.c?"DOGRU":"YANLIS")+" — "+s.a;fb.style.display="block";fl("fy");
+    fb.textContent="Sure doldu! Dogru: "+(s.c?"DOGRU":"YANLIS")+" — "+s.a;fb.style.display="block";fl("fy");ses("yanlis");
   }else if(c===s.c){
     dg++;sr++;if(sr>enSr)enSr=sr;sk+=10+hz;
     if(sr===3){sk+=10;stk("🔥 3 SERİ!","+10 Bonus");}
     else if(sr===5){sk+=25;stk("🔥🔥 5 SERİ!","+25 Bonus");}
     else if(sr===10){sk+=50;stk("💥 10 SERİ!","+50 Bonus");}
-    k.classList.add("kd");fb.className="fb fbd";fb.textContent="Dogru! "+s.a;fb.style.display="block";fl("fd");zing();
+    k.classList.add("kd");fb.className="fb fbd";fb.textContent="Dogru! "+s.a;fb.style.display="block";fl("fd");zing();ses("dogru");
   }else{
     yn++;sr=0;sk=Math.max(0,sk-5);k.classList.add("ky");fb.className="fb fby";
-    fb.textContent="Yanlis! Dogru: "+(s.c?"DOGRU":"YANLIS")+" — "+s.a;fb.style.display="block";fl("fy");
+    fb.textContent="Yanlis! Dogru: "+(s.c?"DOGRU":"YANLIS")+" — "+s.a;fb.style.display="block";fl("fy");ses("yanlis");
   }
   document.getElementById("skN").textContent=sk;svGun();
   setTimeout(function(){ix++;soru();},1900);
@@ -511,7 +587,47 @@ function bitis(){
   document.getElementById("stC").textContent=enSr;
   var bd=new Date().toISOString().split("T")[0];
   fetch(SDB,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:[{kullanici:kul,avatar:emj,skor:sk,seviye:sv.a,yuzde:yz,tarih:bd,zaman:new Date().toLocaleTimeString("tr-TR")}]})}).catch(function(){});
+  rekorKontrol(yz);
+  sonrakiKonu();
+  ses("bitis");
   git(3);
+}
+
+function sonrakiKonu(){
+  var kutu=document.getElementById("sonrakiKonuBox");
+  if(!kutu)return;
+  // Cozulen konulari hatirla
+  try{
+    var cozulen=JSON.parse(localStorage.getItem("adyCozulenKonu")||"[]");
+    if(aktifKat>0 && cozulen.indexOf(aktifKat)<0){cozulen.push(aktifKat);localStorage.setItem("adyCozulenKonu",JSON.stringify(cozulen));}
+    // Sonraki cozulmemis konuyu bul
+    var tumKonu=[1,2,3,4];
+    var kalan=tumKonu.filter(function(k){return cozulen.indexOf(k)<0;});
+    if(kalan.length===0){
+      kutu.innerHTML="<div style=\"text-align:center;\"><div style=\"color:#ffd968;font-weight:800;font-size:.9rem;margin-bottom:.3rem;\">🎓 Tum konulari tamamladin!</div><div style=\"font-size:.78rem;color:rgba(255,255,255,.55);\">Gercek bir Artvin bilginisin. Tekrar oynayarak skorunu yukseltebilirsin.</div></div>";
+    }else{
+      var sonraki=kalan[0];
+      var ad=KAT_AD[sonraki];
+      var ikon=["","🗺️","🏛️","🌿","📊"][sonraki];
+      kutu.innerHTML="<div style=\"font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:.5rem;\">📚 Sirada bekleyen konu ("+kalan.length+" konu kaldi):</div><button onclick=\"oyun("+sonraki+")\" style=\"width:100%;background:linear-gradient(135deg,rgba(61,219,138,.18),rgba(61,219,138,.06));border:1px solid rgba(61,219,138,.35);color:#fff;border-radius:13px;padding:.85rem;font-size:.92rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;display:flex;align-items:center;justify-content:center;gap:.5rem;\">"+ikon+" "+ad+" Konusunu Çöz <span style=\"color:#3ddb8a;\">→</span></button>";
+    }
+  }catch(e){}
+}
+
+function rekorKontrol(yz){
+  try{
+    var eskiRekor=parseInt(localStorage.getItem("adyRekor")||"0");
+    var eskiOyun=parseInt(localStorage.getItem("adyOyunSayisi")||"0");
+    localStorage.setItem("adyOyunSayisi",(eskiOyun+1));
+    var rb=document.getElementById("rekorBox");
+    if(sk>eskiRekor){
+      localStorage.setItem("adyRekor",sk);
+      localStorage.setItem("adyRekorYzd",yz);
+      if(rb)rb.innerHTML="<span style=\"color:#ffd968;font-weight:800;\">🎉 YENI REKOR!</span> Onceki en iyin gecildi.";
+    }else{
+      if(rb)rb.innerHTML="<span style=\"color:rgba(255,255,255,.55);\">En yuksek skorun: <b style=\"color:#ffd968;\">"+eskiRekor+"</b> puan</span>";
+    }
+  }catch(e){}
 }
 
 function skorPaylas(){
@@ -524,6 +640,36 @@ function skorPaylas(){
     var wa="https://wa.me/?text="+encodeURIComponent(metin);
     window.open(wa,"_blank");
   }
+}
+
+var liderGeri=3;
+function liderlikGoster(geri){
+  liderGeri=(typeof geri==="number")?geri:(document.getElementById("p3").style.display==="flex"?3:0);
+  ["p0","p1","p2","p3","pk"].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display="none";});
+  var pL=document.getElementById("pL");pL.style.display="flex";
+  window.scrollTo(0,0);
+  var liste=document.getElementById("liderListe");
+  liste.innerHTML="<div style=\"text-align:center;color:rgba(255,255,255,.4);padding:2rem;font-family:'Outfit',sans-serif;\">Yukleniyor...</div>";
+  fetch(SDB).then(function(r){return r.json();}).then(function(d){
+    if(!d||!d.length){liste.innerHTML="<div style=\"text-align:center;color:rgba(255,255,255,.4);padding:2rem;font-family:'Outfit',sans-serif;\">Henuz skor yok. Ilk sen ol!</div>";return;}
+    d.sort(function(a,b){return parseInt(b.skor||0)-parseInt(a.skor||0);});
+    var top=d.slice(0,15);
+    var html="";
+    top.forEach(function(x,i){
+      var madalya=i===0?"🥇":i===1?"🥈":i===2?"🥉":(i+1)+".";
+      var renk=i===0?"#ffd968":i===1?"#cbd5e1":i===2?"#d97706":"rgba(255,255,255,.5)";
+      var bg=i<3?"rgba(240,192,64,.07)":"rgba(255,255,255,.03)";
+      html+="<div style=\"display:flex;align-items:center;gap:.7rem;background:"+bg+";border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:.65rem .85rem;margin-bottom:.4rem;font-family:'Outfit',sans-serif;\">"+
+        "<span style=\"font-weight:800;color:"+renk+";min-width:28px;font-size:.9rem;\">"+madalya+"</span>"+
+        "<span style=\"font-size:1.3rem;\">"+(x.avatar||"🏔️")+"</span>"+
+        "<span style=\"flex:1;font-weight:600;color:#fff;font-size:.88rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;\">"+(x.kullanici||"Anonim")+"</span>"+
+        "<span style=\"font-weight:800;color:#ffd968;font-size:1rem;\">"+(x.skor||0)+"</span>"+
+      "</div>";
+    });
+    liste.innerHTML=html;
+  }).catch(function(){
+    liste.innerHTML="<div style=\"text-align:center;color:rgba(255,255,255,.4);padding:2rem;font-family:'Outfit',sans-serif;\">Liderlik tablosu su an yuklenemedi.</div>";
+  });
 }
 function pMtn(){var sv=svAl(sk),yz=Math.round(dg/srlar.length*100);return sv.r+" Artvin Dogru/Yanlis: "+sk+" puan | "+sv.a+" | %"+yz+" | artvinrehber.com/artvin-dogru-yanlis.html";}
 function pWP(){window.open("https://api.whatsapp.com/send?text="+encodeURIComponent(pMtn()),"_blank");}
