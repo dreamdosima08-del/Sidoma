@@ -7,7 +7,7 @@
 <meta name="description" content="Artvin hakkında ne kadar bilgi sahibisin? Doğru mu Yanlış mı oyunuyla test et! 20 soru, anlık sıralama ve Artvin kültürü 2026.">
 <meta name="geo.region" content="TR-08">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#060d0a;--v:#3ddb8a;--g:#f0c040;--r:#ff4757;--o:#e0ede3;--d:rgba(224,237,227,.4);--b:rgba(61,219,138,.15);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -25,19 +25,24 @@ button{cursor:pointer;border:none;font-family:inherit;}
   mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 25%,transparent 100%);}
 .a0{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.1rem;max-width:400px;width:100%;}
 .rz{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);border-radius:50px;padding:.28rem .9rem;font-size:.58rem;font-weight:900;letter-spacing:.18em;color:var(--v);text-transform:uppercase;}
-.h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(3.5rem,15vw,6rem);letter-spacing:.05em;line-height:.88;color:#fff;}
+.h1{font-family:"Oswald",sans-serif;font-size:clamp(3.5rem,15vw,6rem);letter-spacing:.05em;line-height:.88;color:#fff;}
 .h1 em{background:linear-gradient(135deg,var(--v),#7cffc0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;}
 .sub{font-size:1rem;color:rgba(255,255,255,.5);line-height:1.65;}
-.abtn{padding:1rem 2.8rem;border-radius:50px;background:linear-gradient(135deg,var(--v),#1fc46a);color:#030f06;font-family:"Bebas Neue",sans-serif;font-size:1.45rem;letter-spacing:.16em;animation:glw 2s ease infinite;transition:.15s;}
+.abtn{position:relative;display:inline-flex;align-items:center;gap:.7rem;padding:1.15rem 2.6rem;border-radius:16px;background:linear-gradient(135deg,#ffe08a,#f0c040 55%,#d99a28);color:#1a1206;font-family:"Outfit",sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.02em;border:none;cursor:pointer;box-shadow:0 14px 38px rgba(240,192,64,.32),0 2px 0 rgba(180,130,30,.6),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;margin-top:.5rem;overflow:hidden;}
+.abtn .okc{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(26,18,6,.15);transition:transform .25s;}
+.abtn:active{transform:scale(.95);box-shadow:0 6px 20px rgba(240,192,64,.28),0 1px 0 rgba(180,130,30,.6);}
+.abtn:hover .okc{transform:translateX(3px);}
+.abtn::after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.8s ease-in-out infinite;}
+@keyframes shine{0%,100%{left:-120%;}45%,55%{left:160%;}}
 @keyframes glw{0%,100%{box-shadow:0 0 22px rgba(61,219,138,.35);}50%{box-shadow:0 0 50px rgba(61,219,138,.65);}}
 .abtn:hover{transform:scale(1.04);}
 .sts{display:flex;gap:.65rem;}
 .st{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.55rem 1rem;text-align:center;}
-.st .n{font-family:"Bebas Neue",sans-serif;font-size:1.5rem;color:#fff;display:block;line-height:1;}
+.st .n{font-family:"Oswald",sans-serif;font-weight:600;font-size:1.5rem;color:#fff;display:block;line-height:1;}
 .st .l{font-size:.5rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);}
 #p1{align-items:center;justify-content:center;padding:2rem 1.5rem;}
 .gi{width:100%;max-width:400px;display:flex;flex-direction:column;gap:1.2rem;}
-.gh{font-family:"Bebas Neue",sans-serif;font-size:1.75rem;letter-spacing:.1em;color:#fff;text-align:center;}
+.gh{font-family:"Oswald",sans-serif;font-size:1.75rem;letter-spacing:.1em;color:#fff;text-align:center;}
 .ga{font-size:.8rem;color:var(--d);text-align:center;margin-top:-.8rem;}
 .krt{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:1.5rem;}
 .lbl{font-size:.58rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--d);margin-bottom:.4rem;display:block;}
@@ -47,7 +52,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 .av{aspect-ratio:1;border-radius:10px;border:2px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);font-size:1.35rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;}
 .av:hover{background:rgba(255,255,255,.12);transform:scale(1.1);}
 .av.on{background:rgba(61,219,138,.12);border-color:var(--v);box-shadow:0 0 14px rgba(61,219,138,.3);}
-.bgc{width:100%;padding:.88rem;border-radius:12px;background:linear-gradient(135deg,var(--v),#1fc46a);color:#030f06;font-family:"Bebas Neue",sans-serif;font-size:1.2rem;letter-spacing:.14em;transition:.15s;}
+.bgc{width:100%;padding:.88rem;border-radius:12px;background:linear-gradient(135deg,var(--v),#1fc46a);color:#030f06;font-family:"Oswald",sans-serif;font-size:1.2rem;letter-spacing:.14em;transition:.15s;}
 .bgc:hover{transform:translateY(-2px);}
 #p2{background:var(--bg);}
 .bar{display:flex;align-items:center;justify-content:space-between;padding:.58rem 1rem;background:rgba(6,13,10,.97);border-bottom:1px solid var(--b);flex-shrink:0;}
@@ -56,10 +61,10 @@ button{cursor:pointer;border:none;font-family:inherit;}
 .kad{font-size:.76rem;font-weight:800;color:#fff;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .svc{font-size:.5rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:.17rem .48rem;border-radius:4px;background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.2);color:var(--v);}
 .skb{text-align:center;}
-.skn{font-family:"Bebas Neue",sans-serif;font-size:1.65rem;color:var(--g);display:block;line-height:1;transition:transform .15s;}
+.skn{font-family:"Oswald",sans-serif;font-size:1.65rem;color:var(--g);display:block;line-height:1;transition:transform .15s;}
 .skn.z{transform:scale(1.35);}
 .skl{font-size:.46rem;font-weight:900;color:var(--d);letter-spacing:.1em;text-transform:uppercase;}
-.iln{font-family:"Bebas Neue",sans-serif;font-size:1rem;color:rgba(255,255,255,.35);text-align:right;}
+.iln{font-family:"Oswald",sans-serif;font-size:1rem;color:rgba(255,255,255,.35);text-align:right;}
 .prg{height:3px;background:rgba(255,255,255,.06);flex-shrink:0;}
 .prc{height:100%;background:linear-gradient(90deg,var(--v),var(--g));transition:width .4s ease;}
 .oia{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem 1.25rem 1.5rem;gap:.85rem;}
@@ -82,7 +87,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 .ts{background:var(--g)!important;}
 .tk{background:var(--r)!important;}
 .br{display:flex;gap:.75rem;width:100%;max-width:460px;}
-.bd,.by{flex:1;padding:.88rem .5rem;border-radius:14px;font-family:"Bebas Neue",sans-serif;font-size:1.28rem;letter-spacing:.1em;transition:.15s;}
+.bd,.by{flex:1;padding:.88rem .5rem;border-radius:14px;font-family:"Oswald",sans-serif;font-size:1.28rem;letter-spacing:.1em;transition:.15s;}
 .bd{background:rgba(61,219,138,.1);border:2px solid rgba(61,219,138,.25);color:var(--v);}
 .bd:hover{background:rgba(61,219,138,.2);border-color:rgba(61,219,138,.55);}
 .by{background:rgba(255,71,87,.08);border:2px solid rgba(255,71,87,.2);color:var(--r);}
@@ -94,20 +99,20 @@ button{cursor:pointer;border:none;font-family:inherit;}
 .fly{background:rgba(255,71,87,.15);}
 .str{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:200;background:rgba(240,192,64,.14);border:2px solid var(--g);border-radius:20px;padding:.9rem 2rem;text-align:center;pointer-events:none;animation:pop .32s ease;}
 @keyframes pop{from{opacity:0;transform:translate(-50%,-50%) scale(.4)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-.stt{font-family:"Bebas Neue",sans-serif;font-size:2rem;color:var(--g);letter-spacing:.1em;}
+.stt{font-family:"Oswald",sans-serif;font-size:2rem;color:var(--g);letter-spacing:.1em;}
 .sts2{font-size:.7rem;color:rgba(240,192,64,.7);}
 #p3{align-items:center;padding:2.5rem 1.25rem 3rem;background:radial-gradient(ellipse 100% 50% at 50% 0%,rgba(61,219,138,.09) 0%,transparent 55%),var(--bg);}
 .si{width:100%;max-width:440px;display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;}
 .srz{font-size:4rem;animation:rz .55s cubic-bezier(.2,.8,.4,1);}
 @keyframes rz{from{opacity:0;transform:scale(0) rotate(-30deg)}to{opacity:1;transform:none}}
-.ssv{font-family:"Bebas Neue",sans-serif;font-size:1.4rem;letter-spacing:.1em;padding:.32rem 1.1rem;border-radius:50px;background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);color:var(--v);}
-.spu{font-family:"Bebas Neue",sans-serif;font-size:3.5rem;color:var(--g);line-height:1;}
+.ssv{font-family:"Oswald",sans-serif;font-size:1.4rem;letter-spacing:.1em;padding:.32rem 1.1rem;border-radius:50px;background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);color:var(--v);}
+.spu{font-family:"Oswald",sans-serif;font-size:3.5rem;color:var(--g);line-height:1;}
 .spl{font-size:.57rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--d);}
-.syz{font-family:"Bebas Neue",sans-serif;font-size:1.2rem;color:#fff;}
+.syz{font-family:"Oswald",sans-serif;font-size:1.2rem;color:#fff;}
 .sms{font-size:.9rem;color:var(--d);line-height:1.7;max-width:310px;}
 .stg{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;width:100%;}
 .sti{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.7rem .4rem;text-align:center;}
-.stn{font-family:"Bebas Neue",sans-serif;font-size:1.5rem;display:block;letter-spacing:.06em;}
+.stn{font-family:"Oswald",sans-serif;font-size:1.5rem;display:block;letter-spacing:.06em;}
 .stl{font-size:.5rem;font-weight:900;color:var(--d);letter-spacing:.1em;text-transform:uppercase;}
 .pyk{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.1rem;}
 .pym{font-size:.78rem;color:var(--d);margin-bottom:.6rem;text-align:center;}
@@ -116,10 +121,48 @@ button{cursor:pointer;border:none;font-family:inherit;}
 .pwp{background:#25D366;color:#fff;}
 .px{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--o);}
 .pcp{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.2);color:var(--v);}
-.btk{width:100%;padding:.85rem;border-radius:12px;background:linear-gradient(135deg,var(--v),#1fc46a);color:#030f06;font-family:"Bebas Neue",sans-serif;font-size:1.15rem;letter-spacing:.12em;box-shadow:0 4px 20px rgba(61,219,138,.25);transition:.15s;}
+.btk{width:100%;padding:.85rem;border-radius:12px;background:linear-gradient(135deg,var(--v),#1fc46a);color:#030f06;font-family:"Oswald",sans-serif;font-size:1.15rem;letter-spacing:.12em;box-shadow:0 4px 20px rgba(61,219,138,.25);transition:.15s;}
 .btk:hover{transform:translateY(-2px);}
 .tst{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(255,255,255,.92);color:#060d0a;font-size:.7rem;font-weight:800;padding:.42rem 1rem;border-radius:6px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:999;white-space:nowrap;}
 .tst.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+
+/* ===== YENI ARTVIN KAPAGI ===== */
+#p0{position:relative;overflow:hidden;background:linear-gradient(180deg,#0a1f2e 0%,#0c2438 30%,#0d2a26 65%,#081813 100%);justify-content:center;}
+/* Atmosferik isik */
+.sky-glow{position:absolute;top:-5%;left:50%;transform:translateX(-50%);width:120%;height:45%;background:radial-gradient(ellipse at 50% 30%,rgba(240,192,64,.22),rgba(240,192,64,.05) 45%,transparent 70%);z-index:0;}
+.sun{position:absolute;top:14%;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(255,224,140,.95),rgba(240,192,64,.5) 50%,transparent 72%);filter:blur(2px);z-index:0;box-shadow:0 0 60px rgba(240,192,64,.4);animation:sunRise 6s ease-in-out infinite;}
+@keyframes sunRise{0%,100%{transform:translateX(-50%) translateY(0);opacity:.9;}50%{transform:translateX(-50%) translateY(-8px);opacity:1;}}
+/* Katmanli sisli daglar */
+.mtn{position:absolute;left:0;right:0;width:100%;z-index:1;}
+.mtn-far{bottom:32%;opacity:.4;}
+.mtn-mid{bottom:20%;opacity:.6;}
+.mtn-near{bottom:0;opacity:1;}
+/* Sis katmanlari */
+.mist{position:absolute;left:0;right:0;height:60px;background:linear-gradient(180deg,transparent,rgba(180,210,200,.08));z-index:1;}
+.mist1{bottom:30%;animation:drift 9s ease-in-out infinite;}
+.mist2{bottom:18%;animation:drift 11s ease-in-out infinite reverse;}
+@keyframes drift{0%,100%{transform:translateX(-12px);opacity:.5;}50%{transform:translateX(12px);opacity:.85;}}
+/* Cam panel */
+.a0{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:1.05rem;max-width:430px;width:100%;padding:1.6rem 1.5rem;}
+.rz{background:rgba(10,31,46,.55);border:1px solid rgba(240,192,64,.4);border-radius:50px;padding:.42rem 1.15rem;font-size:.6rem;font-weight:800;letter-spacing:.24em;color:#ffd968;text-transform:uppercase;font-family:'Outfit',sans-serif;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,.3);}
+.h1{font-family:"Oswald",sans-serif;font-weight:700;font-size:clamp(2.9rem,12vw,4.8rem);letter-spacing:.01em;line-height:.98;text-transform:uppercase;color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.6),0 2px 4px rgba(0,0,0,.4);margin:.15rem 0;}
+.h1 em{font-style:normal;background:linear-gradient(135deg,#ffd968,#f0c040);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.h1 .yanlis{background:linear-gradient(135deg,#5fe89d,#3ddb8a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.kapak-ayrac{display:flex;align-items:center;gap:.6rem;margin:.1rem 0;}
+.kapak-ayrac::before,.kapak-ayrac::after{content:"";width:36px;height:2px;background:linear-gradient(90deg,transparent,rgba(240,192,64,.6));border-radius:2px;}
+.kapak-ayrac::after{background:linear-gradient(90deg,rgba(240,192,64,.6),transparent);}
+.kapak-ayrac span{color:#f0c040;font-size:.7rem;}
+.sub{font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.7;font-family:'Outfit',sans-serif;font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.4);}
+.sub strong{font-weight:700;color:#fff;}
+
+
+50%{left:130%;}}
+
+.sts{display:flex;gap:.55rem;margin-top:1.1rem;}
+.st{background:rgba(10,31,46,.45);border:1px solid rgba(255,255,255,.1);border-radius:15px;padding:.75rem 1.15rem;display:flex;flex-direction:column;align-items:center;gap:.2rem;backdrop-filter:blur(12px);min-width:74px;box-shadow:0 4px 20px rgba(0,0,0,.2);}
+.st .n{font-family:"Oswald",sans-serif;font-weight:600;font-size:1.7rem;color:#ffd968;line-height:1;}
+.st .l{font-size:.56rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-family:'Outfit',sans-serif;}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
@@ -127,7 +170,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://i.ibb.co/0jxv0d38/MG-20260430-172113.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","dateModified": "2026-05-17"}</script>
-<meta name="keywords" content="artvin bilgi yarışması, artvin doğru yanlış oyunu, artvin quiz, artvin trivia, artvin hakkında sorular, artvin bilgi testi 2026, artvin oyun, artvin kültür quiz, artvin genel kültür, artvin sınavı, artvin bilgi oyunu online">
+<meta name="keywords" content="artvin bilgi yarışması, artvin doğru yanlış oyunu, artvin quiz, artvin testi 2026, artvin trivia, artvin hakkında sorular, artvin coğrafya soruları, artvin tarihi soruları, artvin kültür testi, artvin genel kültür, ne kadar artvinlisin, gerçek artvinli misin, artvin online oyun, artvin bilgi testi, artvin sınavı, artvin eğitici oyun, artvin doğa quiz, artvin ekonomi nüfus, eğlenceli artvin oyunu">
 <link rel="canonical" href="https://artvinrehber.com/artvin-dogru-yanlis.html">
 <meta property="og:title" content="Artvin Doğru mu Yanlış mı? — Bilgi Yarışması 2026">
 <meta property="og:description" content="Artvin hakkında ne kadar biliyorsun? Test et!">
@@ -148,7 +191,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
-<div style="background:linear-gradient(135deg,#166534,#15803d);display:flex;align-items:center;padding:.5rem 1rem;gap:.5rem;"><span style="font-size:.7rem;font-weight:700;color:#fff;">✅ Mayıs 2026 Güncellendi</span><span style="font-size:.6rem;color:rgba(255,255,255,.6);">· Son güncelleme: 17.05.2026</span></div>
+<div style="background:linear-gradient(135deg,#166534,#15803d);display:flex;align-items:center;padding:.5rem 1rem;gap:.5rem;"><span style="font-size:.7rem;font-weight:700;color:#fff;">✅ Haziran 2026 Güncellendi</span><span style="font-size:.6rem;color:rgba(255,255,255,.6);">· Son güncelleme: 22.06.2026</span></div>
 
 <div class="fl fld" id="fd"></div>
 <div class="fl fly" id="fy"></div>
@@ -156,21 +199,30 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <div class="tst" id="tst"></div>
 
 <div class="p ac" id="p0">
+  <div class="sky-glow"></div>
+  <div class="sun"></div>
+  <!-- Sisli katmanli daglar -->
+  <svg class="mtn mtn-far" viewBox="0 0 400 100" preserveAspectRatio="none"><path d="M0,100 L0,55 L70,18 L130,50 L200,12 L270,45 L340,15 L400,40 L400,100 Z" fill="#1a3a4a"/></svg>
+  <div class="mist mist1"></div>
+  <svg class="mtn mtn-mid" viewBox="0 0 400 110" preserveAspectRatio="none"><path d="M0,110 L0,60 L55,25 L120,58 L180,20 L250,52 L320,22 L400,48 L400,110 Z" fill="#14302a"/></svg>
+  <div class="mist mist2"></div>
+  <svg class="mtn mtn-near" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0,120 L0,72 L50,38 L110,70 L165,30 L230,65 L295,32 L355,62 L400,42 L400,120 Z" fill="#0a1f17"/></svg>
   <div class="a0">
     <span class="rz">🏔️ artvinrehber.com sunar</span>
-    <h1 class="h1">ARTVİN<br><em>DOĞRU mu?</em><br>YANLIŞ mı?</h1>
-<h2 style="display:none">Artvin Bilgi Yarışması Soruları 2026</h2>
+    <h1 class="h1">ARTVİN<br><em>DOĞRU mu?</em><br><span class="yanlis">YANLIŞ mı?</span></h1>
+    <div class="kapak-ayrac"><span>✦</span></div>
+    <h2 style="display:none">Artvin Bilgi Yarışması Soruları 2026</h2>
 <h2 style="display:none">Artvin Hakkında Doğru Yanlış Testi</h2>
 <h3 style="display:none">Artvin Tarihi Soruları</h3>
 <h3 style="display:none">Artvin Coğrafyası Soruları</h3>
 <h3 style="display:none">Artvin Kültürü Quiz</h3>
 
 <h2 style="display:none">Artvin Doğru Yanlış Oyunu</h2>
-    <p class="sub">Gerçek Artvinli misin?<br><strong style="color:#fff">60 Soruda</strong> Kendini Test Et</p>
-    <button class="abtn" onclick="git(1)">OYUNA BAŞLA →</button>
+    <p class="sub">Gerçek Artvinli misin?<br><strong style="color:#fff">4 Konu, 10 Soruluk Turlar</strong><br>Kendini Test Et</p>
+    <button class="abtn" onclick="git(1)">OYUNA BAŞLA<span class="okc">→</span></button>
     <div class="sts">
       <div class="st"><span class="n">60</span><span class="l">Soru</span></div>
-      <div class="st"><span class="n">5</span><span class="l">Seviye</span></div>
+      <div class="st"><span class="n">4</span><span class="l">Konu</span></div>
       <div class="st"><span class="n">🏆</span><span class="l">Siralama</span></div>
     </div>
   </div>
@@ -204,6 +256,43 @@ button{cursor:pointer;border:none;font-family:inherit;}
   </div>
 </div>
 
+<div class="p" id="pk" style="display:none">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:1.5rem 1.25rem;">
+    <div style="width:100%;max-width:420px;">
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <div style="font-size:1.4rem;font-weight:800;color:#fff;font-family:'Oswald',sans-serif;letter-spacing:.03em;">KONU SEÇ</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.55);margin-top:.3rem;">Her turda o konudan 10 soru gelir</div>
+      </div>
+      <div style="display:grid;gap:.7rem;">
+        <button class="katBtn" onclick="oyun(1)" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(59,130,246,.05));border:1px solid rgba(59,130,246,.3);border-radius:14px;padding:1rem;color:#fff;cursor:pointer;text-align:left;">
+          <span style="font-size:1.8rem;">🗺️</span>
+          <span style="flex:1;"><span style="display:block;font-weight:800;font-size:.95rem;">Coğrafya</span><span style="font-size:.7rem;color:rgba(255,255,255,.5);">Konum, sınırlar, dağlar, nehirler, iklim</span></span>
+          <span style="color:#3b82f6;font-weight:800;">→</span>
+        </button>
+        <button class="katBtn" onclick="oyun(2)" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:1rem;color:#fff;cursor:pointer;text-align:left;">
+          <span style="font-size:1.8rem;">🏛️</span>
+          <span style="flex:1;"><span style="display:block;font-weight:800;font-size:.95rem;">Tarih ve Kültür</span><span style="font-size:.7rem;color:rgba(255,255,255,.5);">Eski çağlar, kiliseler, uygarlıklar</span></span>
+          <span style="color:#f59e0b;font-weight:800;">→</span>
+        </button>
+        <button class="katBtn" onclick="oyun(3)" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(34,197,94,.05));border:1px solid rgba(34,197,94,.3);border-radius:14px;padding:1rem;color:#fff;cursor:pointer;text-align:left;">
+          <span style="font-size:1.8rem;">🌿</span>
+          <span style="flex:1;"><span style="display:block;font-weight:800;font-size:.95rem;">Doğa ve Çevre</span><span style="font-size:.7rem;color:rgba(255,255,255,.5);">Milli parklar, yaylalar, göller, ormanlar</span></span>
+          <span style="color:#22c55e;font-weight:800;">→</span>
+        </button>
+        <button class="katBtn" onclick="oyun(4)" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(168,85,247,.05));border:1px solid rgba(168,85,247,.3);border-radius:14px;padding:1rem;color:#fff;cursor:pointer;text-align:left;">
+          <span style="font-size:1.8rem;">📊</span>
+          <span style="flex:1;"><span style="display:block;font-weight:800;font-size:.95rem;">Ekonomi ve Nüfus</span><span style="font-size:.7rem;color:rgba(255,255,255,.5);">Tarım, madencilik, nüfus, göç</span></span>
+          <span style="color:#a855f7;font-weight:800;">→</span>
+        </button>
+        <button class="katBtn" onclick="oyun(0)" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(240,192,64,.18),rgba(240,192,64,.05));border:1px solid rgba(240,192,64,.4);border-radius:14px;padding:1rem;color:#fff;cursor:pointer;text-align:left;">
+          <span style="font-size:1.8rem;">🎲</span>
+          <span style="flex:1;"><span style="display:block;font-weight:800;font-size:.95rem;">Karışık (Tüm Konular)</span><span style="font-size:.7rem;color:rgba(255,255,255,.5);">Hepsinden rastgele 10 soru</span></span>
+          <span style="color:#f0c040;font-weight:800;">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="p" id="p2">
   <div class="bar">
     <div class="kb"><span class="kav" id="kAv">🏔️</span><div><div class="kad" id="kAd">—</div><div class="svc" id="svC">🎒 Ogrenci</div></div></div>
@@ -256,6 +345,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
       <!-- TEKRAR OYNA -->
       <button onclick="window.location.reload()" style="width:100%;margin-top:.75rem;background:linear-gradient(135deg,#2d7a4f,#1b5e38);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.95rem;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.02em;">🔄 Tekrar Oyna</button>
     </div>
+    <button onclick="skorPaylas()" style="width:100%;background:linear-gradient(135deg,#25D366,#1da851);color:#fff;border:none;border-radius:13px;padding:.9rem;font-size:.92rem;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.02em;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">📲 Skorumu Paylaş</button>
     <button class="btk" onclick="git(1)">🔄 Tekrar Dene</button>
     <a href="/" style="font-size:.72rem;color:var(--d);text-decoration:none;padding:.4rem">Ana Sayfaya Don</a>
   </div>
@@ -264,72 +354,73 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <script>
 var SDB="https://sheetdb.io/api/v1/xm2jronau7zt1";
 var Q=[
-{s:"Artvin, Turkiye'nin Karadeniz Bolgesi'nde yer alir.",c:true,a:"Artvin, Dogu Karadeniz Bolumu'nun en dogusunda, Gurcistan sinirinda yer alir.",z:0},
-{s:"Artvin'in simgesi bogadir.",c:true,a:"Kafkasor yaylasinDA duzenlenen boga guresleri festivali nedeniyle boga, sehrin sembolu olmustur.",z:0},
-{s:"Coruh Nehri tek kol uzerinden beslenir.",c:false,a:"Coruh Nehri; Barhal Cayi, Savshat Suyu, Tortum Cayi gibi bircok kolla beslenir.",z:0},
-{s:"Artvin Ermenistan ile sinir komsusuDUR.",c:false,a:"Artvin doguda Gurcistan ile sinir komsusuDUR. Ermenistan ile siniri yoktur.",z:0},
-{s:"Artvin'in en buyuk ilcesi merkezden sonra nufus bakimindan Hopa'dir.",c:true,a:"Artvin merkez ilceden sonra en yuksek nufusa sahip ilce Hopa'dir.",z:0},
-{s:"Artvin sadece cay ve findik tarimina uygundur.",c:false,a:"Artvin'de elma, armut, kivi, ceviz, zeytin, fasulye, misir gibi cok cesitli urunler yetisir.",z:0},
-{s:"2025 yilinda Artvin nufusu 169 binden 167.500'e dusmistir.",c:true,a:"TUIK 2025 verilerine gore Artvin nufusu 167.500'e gerileMISTIR.",z:0},
-{s:"Artvin, Gurcistan ile sinir komsusuDUR.",c:true,a:"Artvin'in kuzeyDOGUSUNDA Gurcistan ile kara siniri bulunur.",z:0},
-{s:"Artvin'in gumruk kapisi Sarp koyundedir.",c:true,a:"Hopa'ya bagli Sarp koyu, Turkiye-Gurcistan sinirindaki en yogun kara gumruk kapilarindan biridir.",z:0},
-{s:"Karagol, Artvin'de bir tane vardir.",c:false,a:"Artvin'de birden fazla Karagol bulunur. En bilinenleri Borcka ve Savshat Karagol'dur.",z:0},
-{s:"Artvin'in trafik plakasi 08'dir.",c:true,a:"Turkiye'de illerin plaka kodlari alfabetik siraya gore verilmistir; Artvin 08'dir.",z:0},
-{s:"Deriner Baraji Artvin Merkezdedir.",c:true,a:"Deriner Baraji, Artvin merkez ilce sinirLARI icinde, Coruh Nehri uzerinde yer alir.",z:0},
-{s:"Artvin ekonomisinde madencilik onemli yer tutar.",c:true,a:"Murgul bakir madeni ve Cerattepe altin-bakir madenciligi Artvin ekonomisinde onemli paya sahiptir.",z:0},
-{s:"Artvin'de orman orani Turkiye ortalamasinin oldukca altindadir.",c:false,a:"Artvin, Turkiye'nin en yuksek ormanlik alan oranina sahip illerinden biridir (%57 civari).",z:0},
-{s:"Kemalpaşa ilçesi Arhavi'den ayrılarak kurulmuştur.",c:false,a:"Kemalpaşa, 1990 yılında Hopa'dan ayrılarak ilçe olmuştur.",z:0},
-{s:"Artvin ili 9 ilceden olusur.",c:true,a:"Artvin'in 9 ilcesi: Merkez, Ardanuc, Arhavi, Borcka, Hopa, Murgul, Savshat, Yusufeli, Kemalpaşa.",z:1},
-{s:"Artvin'in yuzolcumu yaklasik 7.436 km karedir.",c:true,a:"Artvin ilinin yuzolcumu resmi kayitlarda 7.436 km kare olarak gecmektedir.",z:1},
-{s:"Coruh Nehri dunyanin en hizli akan ikinci nehridir.",c:true,a:"Coruh, dunyanin en hizli akan nehirleri arasinda ikinci sirada gosterilir.",z:1},
-{s:"Artvin'de kirsal ve kiyi kesimler ayni iklime sahiptir.",c:false,a:"Kiyida nemli Karadeniz iklimi hakimken, ic kesimlerde yazlar sicak ve kurak, kislar soguk gecer.",z:1},
-{s:"Sahara Karagol Milli Parki Borcka'dadir.",c:false,a:"Karagol-Sahara Milli Parki, Savshat ilce sinirlari icinde yer alir.",z:1},
-{s:"Artvin'in butun ilceleri denize kiyidir.",c:false,a:"Sadece Arhavi, Hopa, Kemalpaşa ve Borcka denize kiyilidir.",z:1},
-{s:"Bulbulan Yaylasi Kars il sinirINA yakin konumdadir.",c:true,a:"Bulbulan Yaylasi, Savshat ilcesinde olup Kars il sinIRINA yakin konumdadir.",z:1},
-{s:"Artvin'in eski adi Livane'dir.",c:true,a:"Artvin sehrinin Osmanli donemindeki adi Livane (Liva-i Livane) olarak bilinir.",z:1},
-{s:"Artvin nufus yogunlugu Turkiye ortalamasinin cok uzerindedir.",c:false,a:"Artvin, daglik yapisi nedeniyle nufus yogunlugu Turkiye ortalamasinin altindadir.",z:1},
-{s:"Borcka Karagol, Savshat Karagol'den daha yuksek konumdadir.",c:false,a:"Savshat Karagol (2.150 m), Borcka Karagol'e (1.200 m) gore cok daha yuksek rakimlidir.",z:1},
-{s:"Coruh Havzasi Turkiye HES uretiminin yaklasik yuzde 20'sini saglar.",c:true,a:"Deriner, Borcka, Muratli, Artvin, Yusufeli barajlari toplam HES uretiminin yuzde 20'sini saglar.",z:1},
-{s:"Artvin Osmanli doneminde hicbir zaman Rus isgali gormemistir.",c:false,a:"93 Harbi (1877-1878) sonrasinda Artvin ve cevresi yaklasik 40 yil Rus isgalinde kalmistir.",z:1},
-{s:"Hatila Vadisi Milli Parki Borcka sinIRLARI icerisindedir.",c:false,a:"Hatila Vadisi Milli Parki, Artvin Merkez ilce sinirLARI icinde, Hatila Deresi boyuncadir.",z:1},
-{s:"Artvin'de son yillarda kivi uretimi artmistir.",c:true,a:"Ozellikle Arhavi ve Hopa'da kivi bahceleri yayginlasmis, uretim artmistir.",z:1},
-{s:"Kackar Daglari'nin tamami Artvin sinirlari icindedir.",c:false,a:"Kackar Daglari'nin buyuk bolumu Rize sinirlari icerisindedir.",z:1},
-{s:"Isxan Kilisesi Gurcu yapimIdir.",c:true,a:"Isxan Kilisesi (Yusufeli), Orta Cag Gurcu kralligi doneminde insa edilmistir.",z:2},
-{s:"Camili bolgesi Turkiye'nin tek UNESCO Biyosfer Rezervi'dir.",c:true,a:"Macahel, 2005 yilinda UNESCO tarafindan Biyosfer Rezervi ilan edilmistir.",z:2},
-{s:"Deriner Baraji yuksekligi 249 metredir.",c:true,a:"Deriner Baraji temelden itibaren 249 metre govde yuksekligine sahiptir.",z:2},
-{s:"Artvin'de Bronz Cagi'na ait bakir baltalar bulunmustur.",c:true,a:"Bolgedeki yuzey arastirmalarinda Erken ve Orta Bronz Cagi'na tarihlenen bakir eserler tespit edilmistir.",z:2},
-{s:"Karcal Dagi Artvin'in en yuksek dagidir.",c:false,a:"Artvin'in en yuksek dagi Kackar (3.937 m)'dir. Karcal (3.428 m) ikinci siradadir.",z:2},
-{s:"Artvin 1877-78 Savasi sonrasi kisa sure Rusya'ya birakilmistir.",c:true,a:"93 Harbi sonrasinda Artvin Rus isgaline girmis, bu sure yaklasik 40 yil surmustur.",z:2},
-{s:"Ardanuc Cehennem Deresi Kanyonu dunyanin sayili kanyonlari arasinda anilir.",c:true,a:"Derinligi ve dik yamacLARIYLA dunyanin en etkileyici kanyonlari arasinda gosterilir.",z:2},
-{s:"Turkiye'de Artvin kutugune bagli 450 bin kisi yasamaktadir.",c:true,a:"Gurbetci ve disarida yasayan Artvinlilerle birlikte kutuk nufusu 450 bine ulaşır.",z:2},
-{s:"Artvin yagisinin buyuk cogunlugunu sonbahar ve kis aylarin inda alir.",c:true,a:"Artvin'de en fazla yagis sonbahar ve kis aylarinda duşer.",z:2},
-{s:"Karagol-Sahara Milli Parki ladin ormanlariyla unludur.",c:true,a:"Milli park, saf ve karisik Dogu Ladini ormanlari ile bilinir.",z:2},
-{s:"Yusufeli havzasinda pirinc yetistiriciligi yapilmaktadir.",c:true,a:"Yusufeli'nin Coruh vadisi boyunca sulak alanlarda pirinc uretimi vardir.",z:2},
-{s:"Tbeti Kilisesi Yusufeli ilcesindedir.",c:false,a:"Tbeti Kilisesi, Savshat ilcesine bagli Cevizlik koyundedir.",z:2},
-{s:"Murgul'da bakir madeni merkezinin ismi Kure'dir.",c:false,a:"Murgul'daki bakir madeni merkezi Murgul beldesidir. Kure ise Kastamonu'da bir ilcedir.",z:2},
-{s:"Artvin tarih boyunca sadece Turk ve Gurcu uygarliklarINA ev sahipligi yapmistir.",c:false,a:"Artvin'de Hurriler, Urartular, Roma, Bizans, Selcuklu, Osmanli ve Rus gibi bircok uygarlik iz birakmistir.",z:2},
-{s:"Yusufeli barajlari sayesinde ilce nufusu artis gostermistir.",c:false,a:"Baraj insaati nedeniyle ilce merkezi tasinmis, bircok koy sular altinda kalmis, nufus azalmistir.",z:2},
-{s:"Artvin cevresinde Cilali Tas Devri'nden Demir Cagi'na kesintisiz arkeolojik katmanlar tespit edilmistir.",c:true,a:"Savshat Meydancik ve diger alanlarda yuzey arastirmalarinda Neolitik'ten Demir Cagi'na bulgular bulunmustur.",z:3},
-{s:"Artvin'in 1048 Pasinler Savasi sonrasi Selcuklu egemenligine girdigi kabul edilir.",c:true,a:"Pasinler Savasi 1048 yilinda yapilmistir. Artvin cevresi de kisa surede Selcuklu hakimiyetine girmistir.",z:3},
-{s:"Butko zeytini Yusufeli Demirkent koyune ozgudur.",c:true,a:"Butko zeytini, Demirkent koyunde yetisen, cografi isaretli ve uluslararasi odullu bir zeytin turudur.",z:3},
-{s:"1933'te Artvin ve Rize birlestirilerek Coruh Vilayeti yapilmistir.",c:true,a:"1933'te Artvin ve Rize birlestirilerek Coruh Vilayeti kurulmustur. Bu uygulama 1936'da sona ermistir.",z:3},
-{s:"Artvin ormanlarinda geyik ve karaca populasyonu yoktur.",c:false,a:"Artvin ormanlarinda kizil geyik ve karaca populasyonu bulunmaktadir.",z:3},
-{s:"Artvin'de Anadolu parsi yasamaktadir.",c:true,a:"Anadolu parsi Artvin Savshat ve Borcka ormanlarinda gorulmus, fotokaPANLA kayitlari alinmistir.",z:3},
-{s:"Artvin nufusunda sayisal zirve yillari 1975-1985 arasindadir.",c:true,a:"Artvin nufusu 1975'te 229.000, 1985'te 230.000 ile zirve yapmis, sonrasinda goc nedeniyle dusmustUR.",z:3},
-{s:"Artvin Hopa'da Laz nufus yogunlugu diger ilcelere gore fazladir.",c:false,a:"Arhavi ve Kemalpaşa, Laz nufus yogunlugunun daha yuksek oldugu ilcelerdir.",z:3},
-{s:"Artvin'in en eski yerlesim izleri Savshat ve Yusufeli civarindadir (MO 4000).",c:true,a:"Savshat Meydancik ve Yusufeli Kilickaya cevresinde MO 4000-3000'e tarihlenen yerlesim izleri bulunmustur.",z:3},
-{s:"Atabari Kayak Merkezi Mersivan Yaylasi'nda Artvin merkeze baglidir.",c:true,a:"Atabari Kayak Merkezi, Artvin merkeze bagli Mersivan Yaylasi'nda yer alir.",z:3},
-{s:"Rize-Artvin Havalimani Rize Findikli ile Artvin Arhavi arasindadir.",c:false,a:"Rize-Artvin Havalimani, Rize Pazar ile Artvin Hopa arasinda, Yesilkoy mevkiinde yer alir.",z:3},
-{s:"Artvin orman orani yuzde 57 ile Turkiye ilk 10 icerisindedir.",c:true,a:"Artvin orman varligi orani yaklasik yuzde 57 ile Turkiye'de genellikle 3. veya 4. siradadir.",z:3},
-{s:"Artvin Hopa-Arhavi-Kemalpaşa sahil hatti yillik 2000 mm'ye yakin yagis alir.",c:true,a:"Bu sahil seridi yillik 1800-2200 mm arasinda yagis alir.",z:3},
-{s:"Artvin'in toplam koy sayisi 300'den azdir.",c:false,a:"Artvin'de 2024 itibariyla 320 civarinda koy bulunmaktadir.",z:3},
-{s:"Artvin en cok gocu Istanbul'a vermistir.",c:false,a:"Artvin'den en cok goc alan sehir Bursa'dir. Bursa'daki Artvin nufusu Istanbul'dakinin uzerindedir.",z:3}
+{s:"Artvin, Turkiye'nin Karadeniz Bolgesi'nde yer alir.",c:true,a:"Artvin, Dogu Karadeniz Bolumu'nun en dogusunda, Gurcistan sinirinda yer alir.",k:1},
+{s:"Artvin'in simgesi bogadir.",c:true,a:"Kafkasor yaylasinda duzenlenen boga guresleri festivali nedeniyle boga, sehrin sembolu olmustur.",k:2},
+{s:"Coruh Nehri tek kol uzerinden beslenir.",c:false,a:"Coruh Nehri; Barhal Cayi, Savshat Suyu, Tortum Cayi gibi bircok kolla beslenir.",k:1},
+{s:"Artvin Ermenistan ile sinir komsusudur.",c:false,a:"Artvin doguda Gurcistan ile sinir komsusudur. Ermenistan ile siniri yoktur.",k:1},
+{s:"Artvin'in en buyuk ilcesi merkezden sonra nufus bakimindan Hopa'dir.",c:true,a:"Artvin merkez ilceden sonra en yuksek nufusa sahip ilce Hopa'dir.",k:4},
+{s:"Artvin sadece cay ve findik tarimina uygundur.",c:false,a:"Artvin'de elma, armut, kivi, ceviz, zeytin, fasulye, misir gibi cok cesitli urunler yetisir.",k:4},
+{s:"2025 yilinda Artvin nufusu 169 binden 167.500'e dusmistir.",c:true,a:"TUIK 2025 verilerine gore Artvin nufusu 167.500'e gerilemistir.",k:4},
+{s:"Artvin, Gurcistan ile sinir komsusudur.",c:true,a:"Artvin'in kuzeydogusunda Gurcistan ile kara siniri bulunur.",k:1},
+{s:"Artvin'in gumruk kapisi Sarp koyundedir.",c:true,a:"Hopa'ya bagli Sarp koyu, Turkiye-Gurcistan sinirindaki en yogun kara gumruk kapilarindan biridir.",k:1},
+{s:"Karagol, Artvin'de bir tane vardir.",c:false,a:"Artvin'de birden fazla Karagol bulunur. En bilinenleri Borcka ve Savshat Karagol'dur.",k:3},
+{s:"Artvin'in trafik plakasi 08'dir.",c:true,a:"Turkiye'de illerin plaka kodlari alfabetik siraya gore verilmistir; Artvin 08'dir.",k:1},
+{s:"Deriner Baraji Artvin Merkezdedir.",c:true,a:"Deriner Baraji, Artvin merkez ilce sinirlari icinde, Coruh Nehri uzerinde yer alir.",k:4},
+{s:"Artvin ekonomisinde madencilik onemli yer tutar.",c:true,a:"Murgul bakir madeni ve Cerattepe altin-bakir madenciligi Artvin ekonomisinde onemli paya sahiptir.",k:4},
+{s:"Artvin'de orman orani Turkiye ortalamasinin oldukca altindadir.",c:false,a:"Artvin, Turkiye'nin en yuksek ormanlik alan oranina sahip illerinden biridir (%57 civari).",k:3},
+{s:"Kemalpaşa ilçesi Arhavi'den ayrılarak kurulmuştur.",c:false,a:"Kemalpaşa, 1990 yılında Hopa'dan ayrılarak ilçe olmuştur.",k:4},
+{s:"Artvin ili 9 ilceden olusur.",c:true,a:"Artvin'in 9 ilcesi: Merkez, Ardanuc, Arhavi, Borcka, Hopa, Murgul, Savshat, Yusufeli, Kemalpaşa.",k:1},
+{s:"Artvin'in yuzolcumu yaklasik 7.436 km karedir.",c:true,a:"Artvin ilinin yuzolcumu resmi kayitlarda 7.436 km kare olarak gecmektedir.",k:1},
+{s:"Coruh Nehri dunyanin en hizli akan ikinci nehridir.",c:true,a:"Coruh, dunyanin en hizli akan nehirleri arasinda ikinci sirada gosterilir.",k:1},
+{s:"Artvin'de kirsal ve kiyi kesimler ayni iklime sahiptir.",c:false,a:"Kiyida nemli Karadeniz iklimi hakimken, ic kesimlerde yazlar sicak ve kurak, kislar soguk gecer.",k:1},
+{s:"Sahara Karagol Milli Parki Borcka'dadir.",c:false,a:"Karagol-Sahara Milli Parki, Savshat ilce sinirlari icinde yer alir.",k:3},
+{s:"Artvin'in butun ilceleri denize kiyidir.",c:false,a:"Sadece Arhavi, Hopa, Kemalpaşa ve Borcka denize kiyilidir.",k:1},
+{s:"Bulbulan Yaylasi Kars il sinirina yakin konumdadir.",c:true,a:"Bulbulan Yaylasi, Savshat ilcesinde olup Kars il sinirina yakin konumdadir.",k:1},
+{s:"Artvin'in eski adi Livane'dir.",c:true,a:"Artvin sehrinin Osmanli donemindeki adi Livane (Liva-i Livane) olarak bilinir.",k:2},
+{s:"Artvin nufus yogunlugu Turkiye ortalamasinin cok uzerindedir.",c:false,a:"Artvin, daglik yapisi nedeniyle nufus yogunlugu Turkiye ortalamasinin altindadir.",k:4},
+{s:"Borcka Karagol, Savshat Karagol'den daha yuksek konumdadir.",c:false,a:"Savshat Karagol (2.150 m), Borcka Karagol'e (1.200 m) gore cok daha yuksek rakimlidir.",k:3},
+{s:"Coruh Havzasi Turkiye HES uretiminin yaklasik yuzde 20'sini saglar.",c:true,a:"Deriner, Borcka, Muratli, Artvin, Yusufeli barajlari toplam HES uretiminin yuzde 20'sini saglar.",k:4},
+{s:"Artvin Osmanli doneminde hicbir zaman Rus isgali gormemistir.",c:false,a:"93 Harbi (1877-1878) sonrasinda Artvin ve cevresi yaklasik 40 yil Rus isgalinde kalmistir.",k:2},
+{s:"Hatila Vadisi Milli Parki Borcka sinirlari icerisindedir.",c:false,a:"Hatila Vadisi Milli Parki, Artvin Merkez ilce sinirlari icinde, Hatila Deresi boyuncadir.",k:3},
+{s:"Artvin'de son yillarda kivi uretimi artmistir.",c:true,a:"Ozellikle Arhavi ve Hopa'da kivi bahceleri yayginlasmis, uretim artmistir.",k:4},
+{s:"Kackar Daglari'nin tamami Artvin sinirlari icindedir.",c:false,a:"Kackar Daglari'nin buyuk bolumu Rize sinirlari icerisindedir.",k:1},
+{s:"Isxan Kilisesi Gurcu yapimIdir.",c:true,a:"Isxan Kilisesi (Yusufeli), Orta Cag Gurcu kralligi doneminde insa edilmistir.",k:2},
+{s:"Camili bolgesi Turkiye'nin tek UNESCO Biyosfer Rezervi'dir.",c:true,a:"Macahel, 2005 yilinda UNESCO tarafindan Biyosfer Rezervi ilan edilmistir.",k:2},
+{s:"Deriner Baraji yuksekligi 249 metredir.",c:true,a:"Deriner Baraji temelden itibaren 249 metre govde yuksekligine sahiptir.",k:3},
+{s:"Artvin'de Bronz Cagi'na ait bakir baltalar bulunmustur.",c:true,a:"Bolgedeki yuzey arastirmalarinda Erken ve Orta Bronz Cagi'na tarihlenen bakir eserler tespit edilmistir.",k:2},
+{s:"Karcal Dagi Artvin'in en yuksek dagidir.",c:false,a:"Artvin'in en yuksek dagi Kackar (3.937 m)'dir. Karcal (3.428 m) ikinci siradadir.",k:1},
+{s:"Artvin 1877-78 Savasi sonrasi kisa sure Rusya'ya birakilmistir.",c:true,a:"93 Harbi sonrasinda Artvin Rus isgaline girmis, bu sure yaklasik 40 yil surmustur.",k:2},
+{s:"Ardanuc Cehennem Deresi Kanyonu dunyanin sayili kanyonlari arasinda anilir.",c:true,a:"Derinligi ve dik yamaclariyla dunyanin en etkileyici kanyonlari arasinda gosterilir.",k:3},
+{s:"Turkiye'de Artvin kutugune bagli 450 bin kisi yasamaktadir.",c:true,a:"Gurbetci ve disarida yasayan Artvinlilerle birlikte kutuk nufusu 450 bine ulaşır.",k:4},
+{s:"Artvin yagisinin buyuk cogunlugunu sonbahar ve kis aylarin inda alir.",c:true,a:"Artvin'de en fazla yagis sonbahar ve kis aylarinda duşer.",k:1},
+{s:"Karagol-Sahara Milli Parki ladin ormanlariyla unludur.",c:true,a:"Milli park, saf ve karisik Dogu Ladini ormanlari ile bilinir.",k:3},
+{s:"Yusufeli havzasinda pirinc yetistiriciligi yapilmaktadir.",c:true,a:"Yusufeli'nin Coruh vadisi boyunca sulak alanlarda pirinc uretimi vardir.",k:4},
+{s:"Tbeti Kilisesi Yusufeli ilcesindedir.",c:false,a:"Tbeti Kilisesi, Savshat ilcesine bagli Cevizlik koyundedir.",k:2},
+{s:"Murgul'da bakir madeni merkezinin ismi Kure'dir.",c:false,a:"Murgul'daki bakir madeni merkezi Murgul beldesidir. Kure ise Kastamonu'da bir ilcedir.",k:4},
+{s:"Artvin tarih boyunca sadece Turk ve Gurcu uygarliklarina ev sahipligi yapmistir.",c:false,a:"Artvin'de Hurriler, Urartular, Roma, Bizans, Selcuklu, Osmanli ve Rus gibi bircok uygarlik iz birakmistir.",k:2},
+{s:"Yusufeli barajlari sayesinde ilce nufusu artis gostermistir.",c:false,a:"Baraj insaati nedeniyle ilce merkezi tasinmis, bircok koy sular altinda kalmis, nufus azalmistir.",k:4},
+{s:"Artvin cevresinde Cilali Tas Devri'nden Demir Cagi'na kesintisiz arkeolojik katmanlar tespit edilmistir.",c:true,a:"Savshat Meydancik ve diger alanlarda yuzey arastirmalarinda Neolitik'ten Demir Cagi'na bulgular bulunmustur.",k:2},
+{s:"Artvin'in 1048 Pasinler Savasi sonrasi Selcuklu egemenligine girdigi kabul edilir.",c:true,a:"Pasinler Savasi 1048 yilinda yapilmistir. Artvin cevresi de kisa surede Selcuklu hakimiyetine girmistir.",k:2},
+{s:"Butko zeytini Yusufeli Demirkent koyune ozgudur.",c:true,a:"Butko zeytini, Demirkent koyunde yetisen, cografi isaretli ve uluslararasi odullu bir zeytin turudur.",k:2},
+{s:"1933'te Artvin ve Rize birlestirilerek Coruh Vilayeti yapilmistir.",c:true,a:"1933'te Artvin ve Rize birlestirilerek Coruh Vilayeti kurulmustur. Bu uygulama 1936'da sona ermistir.",k:2},
+{s:"Artvin ormanlarinda geyik ve karaca populasyonu yoktur.",c:false,a:"Artvin ormanlarinda kizil geyik ve karaca populasyonu bulunmaktadir.",k:3},
+{s:"Artvin'de Anadolu parsi yasamaktadir.",c:true,a:"Anadolu parsi Artvin Savshat ve Borcka ormanlarinda gorulmus, fotokapanla kayitlari alinmistir.",k:3},
+{s:"Artvin nufusunda sayisal zirve yillari 1975-1985 arasindadir.",c:true,a:"Artvin nufusu 1975'te 229.000, 1985'te 230.000 ile zirve yapmis, sonrasinda goc nedeniyle dusmustur.",k:4},
+{s:"Artvin Hopa'da Laz nufus yogunlugu diger ilcelere gore fazladir.",c:false,a:"Arhavi ve Kemalpaşa, Laz nufus yogunlugunun daha yuksek oldugu ilcelerdir.",k:4},
+{s:"Artvin'in en eski yerlesim izleri Savshat ve Yusufeli civarindadir (MO 4000).",c:true,a:"Savshat Meydancik ve Yusufeli Kilickaya cevresinde MO 4000-3000'e tarihlenen yerlesim izleri bulunmustur.",k:2},
+{s:"Atabari Kayak Merkezi Mersivan Yaylasi'nda Artvin merkeze baglidir.",c:true,a:"Atabari Kayak Merkezi, Artvin merkeze bagli Mersivan Yaylasi'nda yer alir.",k:3},
+{s:"Rize-Artvin Havalimani Rize Findikli ile Artvin Arhavi arasindadir.",c:false,a:"Rize-Artvin Havalimani, Rize Pazar ile Artvin Hopa arasinda, Yesilkoy mevkiinde yer alir.",k:1},
+{s:"Artvin orman orani yuzde 57 ile Turkiye ilk 10 icerisindedir.",c:true,a:"Artvin orman varligi orani yaklasik yuzde 57 ile Turkiye'de genellikle 3. veya 4. siradadir.",k:3},
+{s:"Artvin Hopa-Arhavi-Kemalpaşa sahil hatti yillik 2000 mm'ye yakin yagis alir.",c:true,a:"Bu sahil seridi yillik 1800-2200 mm arasinda yagis alir.",k:1},
+{s:"Artvin'in toplam koy sayisi 300'den azdir.",c:false,a:"Artvin'de 2024 itibariyla 320 civarinda koy bulunmaktadir.",k:4},
+{s:"Artvin en cok gocu Istanbul'a vermistir.",c:false,a:"Artvin'den en cok goc alan sehir Bursa'dir. Bursa'daki Artvin nufusu Istanbul'dakinin uzerindedir.",k:4}
 ];
 var SV=[{m:0,a:"Ogrenci",r:"🎒"},{m:151,a:"Ogretmen",r:"📚"},{m:351,a:"Akademisyen",r:"🎓"},{m:701,a:"Artvin Uzmani",r:"🧠"},{m:1201,a:"Artvin Efsanesi",r:"👑"}];
-var ZC=["z0","z1","z2","z3"],ZA=["🟢 Ogrenci","🔵 Ogretmen","🟡 Akademisyen","🔴 Uzman"];
+var ZC=["z0","z1","z2","z3","z0"],ZA=["🎲 Karisik","🗺️ Cografya","🏛️ Tarih ve Kultur","🌿 Doga ve Cevre","📊 Ekonomi ve Nufus"];
 var kul="",emj="🏔️",srlar=[],ix=0,sk=0,dg=0,yn=0,sr=0,enSr=0,tmInt=null,tmK=15,bkl=false;
 
 function git(n){
+  var pk=document.getElementById("pk");if(pk)pk.style.display="none";
   ["p0","p1","p2","p3"].forEach(function(id,i){
     var e=document.getElementById(id);
     e.style.display=i===n?"flex":"none";
@@ -346,19 +437,31 @@ function girisYap(){
   kul=v;
   document.getElementById("kAv").textContent=emj;
   document.getElementById("kAd").textContent=kul;
-  oyun();
+  katEkrani();
+}
+function katEkrani(){
+  ["p0","p1","p2","p3","pk"].forEach(function(id){
+    var e=document.getElementById(id);if(e)e.style.display="none";
+  });
+  document.getElementById("pk").style.display="flex";
+  window.scrollTo(0,0);
 }
 function svAl(s){var v=SV[0];for(var i=0;i<SV.length;i++){if(s>=SV[i].m)v=SV[i];}return v;}
 function svGun(){var v=svAl(sk);document.getElementById("svC").textContent=v.r+" "+v.a;}
-function oyun(){
-  srlar=Q.slice().sort(function(){return Math.random()-.5;});
+var aktifKat=0;
+var KAT_AD=["Tum Konular","Cografya","Tarih ve Kultur","Doga ve Cevre","Ekonomi ve Nufus"];
+function oyun(kat){
+  aktifKat=kat;
+  var havuz=kat===0?Q.slice():Q.filter(function(x){return x.k===kat;});
+  havuz.sort(function(){return Math.random()-.5;});
+  srlar=havuz.slice(0,10);
   ix=0;sk=0;dg=0;yn=0;sr=0;enSr=0;
   git(2);soru();
 }
 function soru(){
   if(ix>=srlar.length){bitis();return;}
   var s=srlar[ix];bkl=false;
-  var ze=document.getElementById("zEl");ze.className="zc "+ZC[s.z];ze.textContent=ZA[s.z];
+  var ze=document.getElementById("zEl");ze.className="zc "+ZC[s.k];ze.textContent=ZA[s.k];
   document.getElementById("sNo").textContent="Soru "+(ix+1)+" / "+srlar.length;
   document.getElementById("sTx").textContent=s.s;
   var fb=document.getElementById("fbEl");fb.style.display="none";fb.textContent="";fb.className="fb";
@@ -397,7 +500,7 @@ function zing(){var e=document.getElementById("skN");e.classList.add("z");setTim
 function stk(t,s){var el=document.getElementById("str");document.getElementById("stT").textContent=t;document.getElementById("stS").textContent=s;el.style.display="block";setTimeout(function(){el.style.display="none";},1400);}
 function bitis(){
   var sv=svAl(sk),yz=Math.round(dg/srlar.length*100);
-  var ms=yz<40?"Biraz calismani lazim! Artvin seni bekliyor.":yz<70?"Fena degil! Ama daha iyisi mumkun.":yz<90?"Gercek Artvinlisin! Yaylalar sana selam ediyor.":"EFSANESIN! Artvin'in tum sirlarini biliyorsun!";
+  var ms=yz<40?"Artvin'i tanima yolculugun daha yeni basliyor. Bazi sorular zorladi ama merak etme; sehrin coğrafyasini, tarihini ve doğasini biraz daha kesfettikce skorun hizla yukselir. Tekrar dene, gelisimini gor.":yz<70?"Fena degil, temel bilgin saglam! Artvin'in cogu yonune asinasin, yalnizca birkac detay gozunden kacmis. Biraz daha okuyup tekrar denersen 'gercek Artvinli' seviyesine cikman cok yakin.":yz<90?"Helal olsun, gercek bir Artvinli gibi cevapladin! Coğrafyadan tarihe, yaylalardan baraj ve nehirlere kadar sehri gercekten taniyorsun. Birkac ince ayrinti kalmis; onlari da ogrenirsen zirve senin.":"Efsanesin! Artvin'in coğrafyasini, tarihini, doğasini ve kulturunu adeta avucunun ici gibi biliyorsun. Bu skor herkese nasip olmaz; sen bu sehrin gercek bir bilgini, yasayan ansiklopedisisin. Tebrikler!";
   document.getElementById("sRz").textContent=sv.r;
   document.getElementById("sSv").textContent=sv.r+" "+sv.a;
   document.getElementById("sPu").textContent=sk;
@@ -409,6 +512,18 @@ function bitis(){
   var bd=new Date().toISOString().split("T")[0];
   fetch(SDB,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:[{kullanici:kul,avatar:emj,skor:sk,seviye:sv.a,yuzde:yz,tarih:bd,zaman:new Date().toLocaleTimeString("tr-TR")}]})}).catch(function(){});
   git(3);
+}
+
+function skorPaylas(){
+  var yz=Math.round(dg/srlar.length*100);
+  var katAd=KAT_AD[aktifKat];
+  var metin="Artvin Dogru-Yanlis oyununda "+katAd+" konusunda "+dg+"/"+srlar.length+" dogru yaptim! Artvin bilgim %"+yz+" 🏔️\n\nSen de dene:\nhttps://artvinrehber.com/artvin-dogru-yanlis.html";
+  if(navigator.share){
+    navigator.share({title:"Artvin Dogru mu Yanlis mi?",text:metin}).catch(function(){});
+  }else{
+    var wa="https://wa.me/?text="+encodeURIComponent(metin);
+    window.open(wa,"_blank");
+  }
 }
 function pMtn(){var sv=svAl(sk),yz=Math.round(dg/srlar.length*100);return sv.r+" Artvin Dogru/Yanlis: "+sk+" puan | "+sv.a+" | %"+yz+" | artvinrehber.com/artvin-dogru-yanlis.html";}
 function pWP(){window.open("https://api.whatsapp.com/send?text="+encodeURIComponent(pMtn()),"_blank");}
