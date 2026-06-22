@@ -113,6 +113,11 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 .btn-foto{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);border-radius:8px;padding:.5rem .85rem;font-size:.72rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem}
 .btn-foto:hover{background:rgba(255,255,255,.12)}
 
+
+.mkart-foto{width:100%;height:160px;border-radius:12px;overflow:hidden;margin-bottom:.85rem;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);}
+.mkart-foto img{width:100%;height:100%;object-fit:cover;transition:transform .3s;display:block;}
+.mkart-foto:active img{transform:scale(.97);}
+.mkart-foto::after{content:"🔍 Büyüt";position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.6);color:#fff;font-size:.62rem;font-weight:600;padding:.25rem .55rem;border-radius:20px;backdrop-filter:blur(4px);}
 </style>
 </head>
 <body>
@@ -131,8 +136,8 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 </nav>
 
 <div class="guncelleme">
-  <span>✅ Mayıs 2026 Güncellendi</span>
-  <small>· Son güncelleme: 19.05.2026</small>
+  <span>✅ Haziran 2026 Güncellendi</span>
+  <small>· Son güncelleme: 22.06.2026</small>
 </div>
 
 <div class="hero">
@@ -152,17 +157,17 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <div class="mkart-tip">Kamu Misafirhanesi</div>
       </div>
     </div>
+    <div class="mkart-foto" onclick="fotoAc('ogretmenevi')"><img src="https://i.ibb.co/7xD95gXt/MG-20260524-214232.png" alt="Artvin Öğretmenevi fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Çarşı, Öğrt. Süleyman Yurttaş Sk. No:2, 08000 Artvin Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 212 36 35</div></div>
       <div class="info-row"><span class="info-ikon">📱</span><div class="info-metin"><strong>Cep:</strong> 0505 918 26 65</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> Otogardan mavi-beyaz belediye dolmuşu ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz belediye dolmuşu ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662123635" class="btn btn-tel">📞 0466 212 36 35</a>
         <a href="tel:05059182665" class="btn btn-cep">📱 0505 918 26 65</a>
         <a href="https://maps.app.goo.gl/erTA1BS3UyTyDoog6" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('ogretmenevi')">📷 Fotoğrafı Gör</button>
-      </div>
+        </div>
       <div class="puan-bolum">
         <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-ogretmenevi">
@@ -195,15 +200,15 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <div class="mkart-tip">Kamu Misafirhanesi</div>
       </div>
     </div>
+    <div class="mkart-foto" onclick="fotoAc('orman')"><img src="https://i.ibb.co/21bfnBBv/1779646102355.png" alt="Orman Bölge Müdürlüğü Misafirhanesi fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Çamlık, Çamlık Cd. No:10, 08000 Artvin Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📱</span><div class="info-metin"><strong>Tel:</strong> 0532 372 73 88</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> Otogardan mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:05323727388" class="btn btn-cep">📱 0532 372 73 88</a>
         <a href="https://maps.app.goo.gl/gzaxaHoH4t3dwZXFA" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('orman')">📷 Fotoğrafı Gör</button>
-      </div>
+        </div>
       <div class="puan-bolum">
         <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-orman">
@@ -237,15 +242,15 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <div class="mkart-tip">Kamu Misafirhanesi</div>
       </div>
     </div>
+    <div class="mkart-foto" onclick="fotoAc('dsi')"><img src="https://i.ibb.co/k2Gc0xtP/Screenshot-2026-05-24-21-10-11-045-com-google-android-googlequicksearchbox-edit.jpg" alt="DSİ Misafirhanesi fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Artvin-Ardanuç yolu 10. km, Salkımlı Köyü mevkii</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 238 25 02</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> Otogardan gündüz saatlerinde saat başı kalkan Ardanuç/Şavşat dolmuşları ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> gündüz saatlerinde saat başı kalkan Ardanuç/Şavşat dolmuşları ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662382502" class="btn btn-tel">📞 0466 238 25 02</a>
         <a href="https://maps.app.goo.gl/G69V19CidTtzCzf88" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('dsi')">📷 Fotoğrafı Gör</button>
-      </div>
+        </div>
       <div class="puan-bolum">
         <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-dsi">
@@ -279,15 +284,15 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <div class="mkart-tip">Kamu Misafirhanesi</div>
       </div>
     </div>
+    <div class="mkart-foto" onclick="fotoAc('polisevi')"><img src="https://i.ibb.co/7dm8gHQT/MG-20260524-214147.png" alt="Artvin Polisevi fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Yeni, Edip Dinç Sk. No:19, 08000 Artvin Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 212 35 11</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> Otogardan mavi-beyaz dolmuş (Yenimahalle/işkembe hattı) ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş (Yenimahalle/İskebe hattı) ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662123511" class="btn btn-tel">📞 0466 212 35 11</a>
         <a href="https://maps.app.goo.gl/3otyB9wfuiTxeUsF9" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('polisevi')">📷 Fotoğrafı Gör</button>
-      </div>
+        </div>
       <div class="puan-bolum">
         <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-polisevi">
@@ -321,15 +326,15 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <div class="mkart-tip">Üniversite Konukevi</div>
       </div>
     </div>
+    <div class="mkart-foto" onclick="fotoAc('acu')"><img src="https://i.ibb.co/yBWS68Tn/MG-20260524-214055.png" alt="AÇÜ Konukevi fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Çayağzı Mahallesi, Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 215 1000 — Dahili: 2222</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> Otogardan mavi-beyaz belediye dolmuşu ile üniversiteye direkt ulaşım. Ticari taksi</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz belediye dolmuşu ile üniversiteye direkt ulaşım. Ticari taksi</div>
       <div class="btn-row">
         <a href="tel:04662151000" class="btn btn-tel">📞 0466 215 1000</a>
         <a href="https://maps.app.goo.gl/nUqfb5a4xpgA6zjC9" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('acu')">📷 Fotoğrafı Gör</button>
-      </div>
+        </div>
       <div class="puan-bolum">
         <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-acu">
@@ -362,15 +367,15 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <div class="mkart-tip">Orduevi</div>
       </div>
     </div>
+    <div class="mkart-foto" onclick="fotoAc('orduevi')"><img src="https://i.ibb.co/zvhVhf1/MG-20260524-213821.png" alt="Astsubay Orduevi fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Orta Mahallesi, Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 212 23 65</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> Otogardan mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662122365" class="btn btn-tel">📞 0466 212 23 65</a>
         <a href="https://maps.app.goo.gl/Aj421TTKUNzUmjqu5" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('orduevi')">📷 Fotoğrafı Gör</button>
-      </div>
+        </div>
       <div class="puan-bolum">
         <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-orduevi">
@@ -402,14 +407,14 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
         <div class="mkart-tip">Kamu Misafirhanesi</div>
       </div>
     </div>
+    <div class="mkart-foto" onclick="fotoAc('cevre')"><img src="https://i.ibb.co/201k5yKG/MG-20260524-213723.png" alt="Çevre fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📱</span><div class="info-metin"><strong>Tel:</strong> 0 (466) 212 13 69</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> Otogardan yürüme mesafesi, ticari taksi ve mavi-beyaz dolmuş ile ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> yürüme mesafesi, ticari taksi ve mavi-beyaz dolmuş ile ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662121369" class="btn btn-cep">📱 0466 212 13 69</a>
         <a href="https://maps.app.goo.gl/GpnvjPBVigT7yCdq6" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
-        <button class="btn-foto" onclick="fotoAc('cevre')">📷 Fotoğrafı Gör</button>
-      </div>
+        </div>
       <div class="puan-bolum">
         <div class="puan-baslik">⭐ Bu işletmeyi puanlayın</div>
         <div class="yildizlar" id="yildiz-cevre">
@@ -471,6 +476,54 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
     <button class="p-btn p-btn-kop" id="kopBtn" onclick="navigator.clipboard.writeText('https://artvinrehber.com/artvin-misafirhane.html');document.getElementById('kopBtn').textContent='✅ Kopyalandı!';setTimeout(()=>document.getElementById('kopBtn').textContent='🔗 Kopyala',2000)">🔗 Kopyala</button>
   </div>
 </div>
+</div>
+
+
+<!-- İÇERİK ZENGİNLEŞTİRME + GÖRÜNÜR FAQ -->
+<div style="max-width:600px;margin:2rem auto;padding:0 1.1rem;">
+
+  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 .75rem;">Artvin Kamu Misafirhanesi Nedir?</h2>
+  <p style="font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:.85rem;">Kamu misafirhaneleri, devlet kurumlarına bağlı olarak işletilen ve genellikle otellere kıyasla daha uygun fiyatlı konaklama imkânı sunan tesislerdir. Artvin'de öğretmenevi, orduevi, polisevi, DSİ ve Orman Bölge Müdürlüğü misafirhaneleri ile Artvin Çoruh Üniversitesi konukevi gibi seçenekler bulunur. Bu tesisler hem resmi görevle şehre gelenler hem de uygun konaklama arayan ziyaretçiler için önemli bir alternatiftir.</p>
+
+  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 .75rem;">Misafirhanelerden Kimler Yararlanabilir?</h2>
+  <p style="font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:.85rem;">Misafirhanelerin kullanım koşulları kuruma göre değişir. Öğretmenevleri genellikle hem öğretmenlere hem de dışarıdan gelen misafirlere açıktır. Orduevi ve polisevi gibi tesisler öncelikle kendi personeline hizmet verse de, boş kapasite durumunda dışarıdan rezervasyon kabul edebilir. DSİ ve Orman misafirhaneleri ise çoğunlukla kurum personeli ve resmi görevlilere yöneliktir. Kesin bilgi için ilgili misafirhaneyi telefonla aramak en doğrusudur.</p>
+
+  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 .75rem;">Misafirhane mi Otel mi?</h2>
+  <p style="font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:.85rem;">Misafirhaneler genellikle otellere göre daha ekonomiktir ve sade ama temiz bir konaklama sunar. Ancak otellerdeki gibi 24 saat resepsiyon, restoran veya ek hizmetler her zaman bulunmayabilir. Tatil veya turistik amaçlı, daha donanımlı bir konaklama arıyorsanız Artvin'in otelleri daha uygun olabilir. Kısa süreli, ekonomik ve merkezi bir konaklama içinse misafirhaneler ideal bir seçimdir.</p>
+
+  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 1rem;">Sıkça Sorulan Sorular</h2>
+
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;margin-bottom:.6rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Artvin misafirhanelerinde herkes kalabilir mi?</h3>
+    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Öğretmenevleri genellikle dışarıdan misafir kabul eder. Orduevi, polisevi gibi tesisler öncelikle personeline hizmet verir ancak boş kapasitede dışarıdan rezervasyon alabilir. En doğrusu ilgili misafirhaneyi arayıp sormaktır.</p>
+  </div>
+
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;margin-bottom:.6rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Misafirhane fiyatları ne kadar?</h3>
+    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Misafirhane fiyatları otellere göre belirgin şekilde daha uygundur ve her kurum kendi tarifesini belirler. Güncel fiyat için doğrudan misafirhaneyle telefonla görüşmeniz gerekir; fiyatlar dönemsel olarak değişebilir.</p>
+  </div>
+
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;margin-bottom:.6rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Rezervasyon nasıl yapılır?</h3>
+    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Çoğu kamu misafirhanesinde rezervasyon telefonla yapılır. Yukarıdaki listede her misafirhanenin telefon numarası bulunmaktadır. Özellikle yoğun dönemlerde önceden aramanız tavsiye edilir.</p>
+  </div>
+
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Artvin merkeze en yakın misafirhane hangisi?</h3>
+    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Artvin Öğretmenevi şehir merkezinde, çarşıya yakın konumdadır ve otogardan dolmuş veya taksiyle kolayca ulaşılır. Diğer misafirhanelerin konumları yukarıdaki haritalardan görülebilir.</p>
+  </div>
+
+  <!-- İlgili sayfalar -->
+  <div style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.08);">
+    <div style="font-size:.95rem;font-weight:800;color:#f0c040;margin-bottom:.6rem;">İlgili Sayfalar</div>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+      <a href="/oteller.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">🏨 Artvin Otelleri</a>
+      <a href="/havas.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">✈️ Havalimanı Servisi</a>
+      <a href="/otobus.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">🚌 Otobüs Saatleri</a>
+      <a href="/gezi.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">📍 Gezilecek Yerler</a>
+    </div>
+  </div>
+
 </div>
 
 <footer>
