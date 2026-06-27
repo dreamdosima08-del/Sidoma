@@ -2844,19 +2844,14 @@ setInterval(dovizCek, 300000); // 5 dakikada bir güncelle
 </script>
 
 
-<!-- ÇEREZ ONAY BANNER -->
-<div id="cerezBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:rgba(10,26,18,.98);backdrop-filter:blur(12px);border-top:2px solid rgba(240,192,64,.4);padding:1rem 1.25rem;box-shadow:0 -4px 20px rgba(0,0,0,.4)">
-  <div style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem">
-    <div style="display:flex;align-items:flex-start;gap:.65rem">
-      <span style="font-size:1.3rem;flex-shrink:0">🍪</span>
-      <div style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5">
-        Bu site, deneyiminizi iyileştirmek ve trafiği analiz etmek için çerezler kullanır. Siteyi kullanmaya devam ederek çerez kullanımını kabul etmiş olursunuz.
-        <a href="/cerez-politikasi.html" style="color:#f0c040;text-decoration:underline">Çerez Politikası</a>
-      </div>
+<!-- ÇEREZ ONAY BANNER (kompakt, kose) -->
+<div id="cerezBanner" style="display:none;position:fixed;bottom:.85rem;left:.85rem;right:.85rem;max-width:330px;z-index:99999;background:rgba(10,26,18,.97);backdrop-filter:blur(12px);border:1px solid rgba(240,192,64,.3);border-radius:14px;padding:.8rem .9rem;box-shadow:0 6px 24px rgba(0,0,0,.35)">
+  <div style="display:flex;align-items:center;gap:.6rem;">
+    <span style="font-size:1.1rem;flex-shrink:0">🍪</span>
+    <div style="font-size:.7rem;color:rgba(255,255,255,.7);line-height:1.45;flex:1">
+      Çerez kullanıyoruz. <a href="/cerez-politikasi.html" style="color:#f0c040;text-decoration:underline">Detay</a>
     </div>
-    <div style="display:flex;gap:.5rem;justify-content:flex-end">
-      <button onclick="cerezKabul()" style="background:#f0c040;color:#0a1a12;border:none;border-radius:8px;padding:.5rem 1.25rem;font-size:.75rem;font-weight:800;cursor:pointer;font-family:inherit">Kabul Et</button>
-    </div>
+    <button onclick="cerezKabul()" style="background:#f0c040;color:#0a1a12;border:none;border-radius:8px;padding:.4rem .85rem;font-size:.72rem;font-weight:800;cursor:pointer;font-family:inherit;flex-shrink:0">Tamam</button>
   </div>
 </div>
 <script>
