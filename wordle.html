@@ -419,8 +419,8 @@ body.boyut-b #boyutBtn { color:var(--vivid)!important; border-color:rgba(61,219,
   </div>
 </nav>
 <div style="background:linear-gradient(135deg,#0f2318,#1b5e38);border-bottom:1px solid rgba(61,219,138,.2);padding:.4rem 1.25rem;display:flex;align-items:center;gap:.5rem;">
-  <span style="font-size:.68rem;font-weight:700;color:#a8e6c0;">✅ Mayıs 2026 Güncellendi</span>
-  <span style="font-size:.6rem;color:rgba(255,255,255,.35);">· Son güncelleme: 20.05.2026</span>
+  <span style="font-size:.68rem;font-weight:700;color:#a8e6c0;">✅ Haziran 2026 Güncellendi</span>
+  <span style="font-size:.6rem;color:rgba(255,255,255,.35);">· Son güncelleme: 28.06.2026</span>
 </div>
 <!-- SEO AÇIKLAMA BÖLÜMÜ -->
 <div style="max-width:580px;margin:.5rem auto 0;padding:0 .75rem;">
@@ -500,11 +500,12 @@ body.boyut-b #boyutBtn { color:var(--vivid)!important; border-color:rgba(61,219,
 
   <div class="grid-wrap" id="grid"></div>
 
+  <div style="font-size:.62rem;color:rgba(255,255,255,.4);text-align:center;margin:.5rem 0 .3rem;">💡 İpucu alırsan o kelimeden kazanacağın puandan 5 puan düşer</div>
   <div class="ipucu-bar">
-    <button class="ip-btn" id="ib0" onclick="ipucu(0)"><span>📍</span><span>Coğrafi</span><span class="ip-maliyet">-4p</span></button>
-    <button class="ip-btn" id="ib1" onclick="ipucu(1)"><span>🧠</span><span>Kültürel</span><span class="ip-maliyet">-4p</span></button>
-    <button class="ip-btn" id="ib2" onclick="ipucu(2)"><span>🗣️</span><span>Yerel</span><span class="ip-maliyet">-3p</span></button>
-    <button class="ip-btn" id="ib3" onclick="ipucu(3)"><span>🌄</span><span>Yaşam</span><span class="ip-maliyet">-4p</span></button>
+    <button class="ip-btn" id="ib0" onclick="ipucu(0)"><span>📍</span><span>Coğrafi</span><span class="ip-maliyet">-5p</span></button>
+    <button class="ip-btn" id="ib1" onclick="ipucu(1)"><span>🧠</span><span>Kültürel</span><span class="ip-maliyet">-5p</span></button>
+    <button class="ip-btn" id="ib2" onclick="ipucu(2)"><span>🗣️</span><span>Yerel</span><span class="ip-maliyet">-5p</span></button>
+    <button class="ip-btn" id="ib3" onclick="ipucu(3)"><span>🌄</span><span>Yaşam</span><span class="ip-maliyet">-5p</span></button>
   </div>
 
 
@@ -512,10 +513,10 @@ body.boyut-b #boyutBtn { color:var(--vivid)!important; border-color:rgba(61,219,
   <div class="joker-bar" id="jokerBar">
     <span class="joker-puan-chip">💰 <span id="jokerPuanNo">0</span> puan</span>
     <button class="jbtn jbtn-konum" id="jBtnKonum" onclick="jokerKonumMod()" title="Bir kareyi tıkla, harf açılır">
-      🃏 Konum Aç <span class="jbtn-maliyet">-50p</span>
+      🃏 Konum Aç <span class="jbtn-maliyet">-15p</span>
     </button>
     <button class="jbtn jbtn-harf" id="jBtnHarf" onclick="jokerHarfSorAc()" title="Rastgele bir harf açılır">
-      🎲 Rastgele Harf <span class="jbtn-maliyet">-30p</span>
+      🎲 Rastgele Harf <span class="jbtn-maliyet">-10p</span>
     </button>
   </div>
 
@@ -1379,14 +1380,14 @@ function gonder(){
   DENEME++;KOLON=0;
 
   setTimeout(()=>{
-    gecmisSatirEkle(_tahminKopya, _sonucKopya);
+    gecmisSatirEkle(tahmin.split(""), res);
     if(kazandi){
       BİTTİ=true;
       tahminler[d].forEach((_,i)=>setTimeout(()=>{
         const el=document.getElementById('k0_'+i);
         if(el) el.classList.add('zipla');
       },i*70));
-      const ipM=gosterilen_ip.reduce((acc,idx)=>acc+[6,5,3,4][idx],0);
+      const ipM=gosterilen_ip.length*5; // Her ipucu sabit -5 puan
       const kaz=Math.max(10,60-Math.max(0,d*5)-ipM);
       PUAN+=kaz;level_puan+=kaz;level_dogru++;
       jokerBarGuncelle();
