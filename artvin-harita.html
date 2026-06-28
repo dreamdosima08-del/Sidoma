@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artvin Haritası 2026 — İlçeler, Gezilecek Yerler ve Konum Rehberi</title>
+<meta name="description" content="Artvin haritası: 9 ilçe, 53+ gezilecek yer, Google Maps konumları. Merkez, Yusufeli, Borçka, Şavşat, Hopa, Arhavi ve daha fazlası tek haritada.">
+<meta name="keywords" content="artvin haritası, artvin maps, artvin ilçeleri haritası, artvin gezilecek yerler haritası, artvin yol haritası, artvin merkez harita, yusufeli haritası, borçka haritası, şavşat haritası, hopa haritası, arhavi haritası, artvin konum, artvin nerede, artvin uydu görüntüsü">
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://artvinrehber.com/artvin-harita.html">
+<meta property="og:title" content="Artvin Haritası 2026 — İlçeler ve Gezilecek Yerler">
+<meta property="og:description" content="Artvin'in 9 ilçesi ve 53+ gezilecek yeri tek haritada. Google Maps konumlarıyla.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://artvinrehber.com/artvin-harita.html">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1a12;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.09);--gold:#f0c040;--vivid:#3ddb8a;--offwhite:#e8ede9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--offwhite);line-height:1.6}
+a{color:inherit}
+.wrap{max-width:680px;margin:0 auto;padding:0 1rem}
+/* Ust bar */
+.topbar{background:linear-gradient(135deg,#166534,#15803d);padding:.5rem 1rem;display:flex;align-items:center;gap:.5rem}
+.topbar a{display:flex;align-items:center;gap:.4rem;color:#fff;text-decoration:none;font-size:.8rem;font-weight:700}
+/* Hero */
+.hero{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180deg,rgba(240,192,64,.06),transparent)}
+.hero h1{font-size:1.7rem;font-weight:800;color:#fff;margin-bottom:.5rem;line-height:1.25}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto}
+.hero-stats{display:flex;justify-content:center;gap:.6rem;margin-top:1.1rem;flex-wrap:wrap}
+.hs{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.6rem .95rem;min-width:80px}
+.hs .n{font-size:1.3rem;font-weight:800;color:var(--gold);line-height:1}
+.hs .l{font-size:.6rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+/* Harita embed */
+.harita-box{margin:1.5rem 0;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.harita-box iframe{width:100%;height:340px;border:0;display:block}
+/* Filtreler */
+.filtreler{display:flex;flex-wrap:wrap;gap:.45rem;margin:1.25rem 0}
+.hf-btn{background:var(--card);border:1px solid var(--border);color:rgba(255,255,255,.75);border-radius:20px;padding:.5rem .9rem;font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.hf-btn.aktif{background:linear-gradient(135deg,var(--gold),#d99a28);color:#1a1206;border-color:transparent}
+/* Yer kartlari */
+.hy-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:2rem}
+.hy-kart{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.9rem;display:flex;flex-direction:column;gap:.4rem}
+.hy-ilce{font-size:.62rem;color:var(--vivid);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.hy-ad{font-size:.88rem;font-weight:700;color:#fff;line-height:1.3}
+.hy-konum{font-size:.72rem;color:rgba(255,255,255,.5)}
+.hy-btn{margin-top:auto;background:rgba(61,219,138,.12);border:1px solid rgba(61,219,138,.3);color:var(--vivid);border-radius:10px;padding:.5rem;font-size:.74rem;font-weight:700;text-align:center;text-decoration:none}
+/* Icerik bolumleri */
+.icerik{padding:1rem 0 2rem}
+.icerik h2{font-size:1.2rem;font-weight:800;color:var(--gold);margin:1.75rem 0 .7rem}
+.icerik h3{font-size:.98rem;font-weight:700;color:#fff;margin:1.1rem 0 .4rem}
+.icerik p{font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:.8rem}
+.icerik a.ic{color:var(--vivid);text-decoration:underline}
+/* FAQ */
+.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:.6rem}
+.faq h3{margin:0 0 .35rem;font-size:.9rem;color:#fff}
+.faq p{font-size:.82rem;color:rgba(255,255,255,.6);margin:0}
+/* Ilgili */
+.ilgili{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.ilgili a{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:.5rem .9rem;font-size:.78rem;color:#fff;text-decoration:none}
+footer{text-align:center;padding:2rem 1rem;border-top:1px solid var(--border);font-size:.75rem;color:rgba(255,255,255,.4)}
+@media(max-width:400px){.hy-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="/"><span style="background:#fff;color:#166534;width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:.7rem">AR</span> Artvin Rehber</a>
+  <a href="/" style="margin-left:auto">← Ana Sayfa</a>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Artvin <span>Haritası</span><br>İlçeler ve Gezilecek Yerler</h1>
+    <p>Artvin'in 9 ilçesi ve 53+ gezilecek yeri tek haritada. Konuma tıkla, Google Haritalar'da yol tarifi al.</p>
+    <div class="hero-stats">
+      <div class="hs"><div class="n">9</div><div class="l">İlçe</div></div>
+      <div class="hs"><div class="n">53+</div><div class="l">Konum</div></div>
+      <div class="hs"><div class="n">2026</div><div class="l">Güncel</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- GOOGLE MAPS EMBED -->
+  <div class="harita-box">
+    <iframe src="https://www.google.com/maps?q=Artvin,Türkiye&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Artvin Haritası"></iframe>
+  </div>
+
+  <!-- FILTRELER -->
+  <div class="filtreler">
+    <button class="hf-btn aktif" onclick="filtrele(this,'hepsi')">🌍 Tümü</button>
+      <button class="hf-btn" onclick="filtrele(this,'Merkez')">🏛️ Merkez</button>
+      <button class="hf-btn" onclick="filtrele(this,'Ardanuç')">🏰 Ardanuç</button>
+      <button class="hf-btn" onclick="filtrele(this,'Yusufeli')">⛪ Yusufeli</button>
+      <button class="hf-btn" onclick="filtrele(this,'Borçka')">🌿 Borçka</button>
+      <button class="hf-btn" onclick="filtrele(this,'Şavşat')">🏔️ Şavşat</button>
+      <button class="hf-btn" onclick="filtrele(this,'Hopa')">🌊 Hopa</button>
+      <button class="hf-btn" onclick="filtrele(this,'Arhavi')">🏘️ Arhavi</button>
+      <button class="hf-btn" onclick="filtrele(this,'Murgul')">💧 Murgul</button>
+      <button class="hf-btn" onclick="filtrele(this,'Kemalpaşa')">🐦 Kemalpaşa</button>
+
+  </div>
+
+  <!-- YER KARTLARI -->
+  <div class="hy-grid" id="yerGrid">
+      <div class="hy-kart" data-ilce="Merkez">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏛️ Merkez</span>
+        </div>
+        <div class="hy-ad">Kafkasör Yaylası ve Kent Ormanı</div>
+        <div class="hy-konum">📍 Merkeze 8 km · 1.250 m</div>
+        <a class="hy-btn" href="https://goo.gl/maps/ZpA8tfKUzaUW3w1H9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Merkez">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏛️ Merkez</span>
+        </div>
+        <div class="hy-ad">Hatila Vadisi Cam Seyir Terası</div>
+        <div class="hy-konum">📍 Merkeze 12 km · 220 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/ckjSnxJ6qe9nNj8M8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Merkez">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏛️ Merkez</span>
+        </div>
+        <div class="hy-ad">Atabarı Kayak Merkezi</div>
+        <div class="hy-konum">📍 Merkeze 18 km · 1.750 m</div>
+        <a class="hy-btn" href="https://goo.gl/maps/2JvMxe3wows9kQAt7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Merkez">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏛️ Merkez</span>
+        </div>
+        <div class="hy-ad">Deriner Barajı Seyir Terası</div>
+        <div class="hy-konum">📍 Merkeze 10 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/prYr1wGZPQ316cfZ8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Merkez">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏛️ Merkez</span>
+        </div>
+        <div class="hy-ad">Atatepe — Dünyanın En Büyük Atatürk Heykeli</div>
+        <div class="hy-konum">📍 Artvin merkez · 360° panorama</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/FNr9g6pwVJjxsSHB6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Merkez">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏛️ Merkez</span>
+        </div>
+        <div class="hy-ad">Opiza Manastırı</div>
+        <div class="hy-konum">📍 Merkez çevresi · 5. yüzyıl</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/tTcb5LwYeej633rw8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Merkez">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏛️ Merkez</span>
+        </div>
+        <div class="hy-ad">Sarıbudak (Melo) Kalesi</div>
+        <div class="hy-konum">📍 Sarıbudak Köyü · derin vadi</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/BVcnAH2LeU4Hc6n97" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Ardanuç">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏰 Ardanuç</span>
+        </div>
+        <div class="hy-ad">Cehennem Deresi Kanyonu</div>
+        <div class="hy-konum">📍 Merkeze 7 km · Artvin-Ardanuç yolu 25. km</div>
+        <a class="hy-btn" href="https://goo.gl/maps/PebBnPkfy1eC6viQ7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Ardanuç">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏰 Ardanuç</span>
+        </div>
+        <div class="hy-ad">Ferhatlı (Kalmaklı) Kalesi</div>
+        <div class="hy-konum">📍 Ahıza Köyü · merkeze 5 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/YjTCp5Kia1MGdKhT9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Ardanuç">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏰 Ardanuç</span>
+        </div>
+        <div class="hy-ad">Ardanuç Kültür Evi</div>
+        <div class="hy-konum">📍 Adakale Mahallesi</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/xCDvzoCDUDBW7aVL9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Ardanuç">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏰 Ardanuç</span>
+        </div>
+        <div class="hy-ad">Curuspil Yaylası ve Kara Göl</div>
+        <div class="hy-konum">📍 Konaklı Köyü · merkeze 15 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/wUV9wRKHoVMFkap5A" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Ardanuç">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏰 Ardanuç</span>
+        </div>
+        <div class="hy-ad">Yeni Rabat Kilisesi</div>
+        <div class="hy-konum">📍 Bulanık Köyü · merkeze 17 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/vfQ4gRLcJsrahZgn6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Ardanuç">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏰 Ardanuç</span>
+        </div>
+        <div class="hy-ad">Aydın Köyü Kilisesi</div>
+        <div class="hy-konum">📍 Ardanuç · 1843</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/sRKo7jw75hCAgFTw7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Ardanuç">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏰 Ardanuç</span>
+        </div>
+        <div class="hy-ad">Yanıklı Köyü Yaylası</div>
+        <div class="hy-konum">📍 Ardanuç · 2.100 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/USZqZHdMoheghoKi8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">İşhan Kilisesi</div>
+        <div class="hy-konum">📍 İşhan Köyü · Oltu yolu 7 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/B3hGXQYeL5pFiuNaA" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Ciro Şelalesi</div>
+        <div class="hy-konum">📍 Özgüven Köyü · merkeze 45 km · 2.400 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/dnwXVRm1AgpcKrVU9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Dört Kilise</div>
+        <div class="hy-konum">📍 Tekkale Köyü · merkeze 4 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/jPYkUY24BEqCThbh9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Barhal Kilisesi</div>
+        <div class="hy-konum">📍 Altıparmak Köyü · merkeze 30 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/KKuNMuqbNvs1Jzn87" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Esbeki Kalesi ve Manastırı</div>
+        <div class="hy-konum">📍 Danca (Tivasori) Köyü</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/XGT1HnotT1NEEEbR7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Yüncüler Köyü — Büyük Deniz Gölü</div>
+        <div class="hy-konum">📍 Yüncüler Köyü · 3.384 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/vQUKjXGvcuV2QCYw7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Olgunlar — Dilberdüzü Kamp Alanı</div>
+        <div class="hy-konum">📍 Hastaf Vadisi · 2.860 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/yyn3nYMJaFcRGSfW6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Güloğlu Yaylası</div>
+        <div class="hy-konum">📍 Arılı güzergâhı</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/XjvgCsyCpCZsXwpP9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Yusufeli">
+        <div class="hy-ust">
+          <span class="hy-ilce">⛪ Yusufeli</span>
+        </div>
+        <div class="hy-ad">Aros Yaylası</div>
+        <div class="hy-konum">📍 Kılıçkaya'ya 28 km</div>
+        <a class="hy-btn" href="https://goo.gl/maps/LDxfHF1r2w5pQEY77" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Macahel Camili Biyosfer Rezervi</div>
+        <div class="hy-konum">📍 Borçka · UNESCO 2005</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/ZsJG8xoPLhqgxJTN8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Karçal Yıldız Gölü</div>
+        <div class="hy-konum">📍 Beyazsu'dan 2,5 saat · 2.740 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/YBJitAgJBfgF8ou78" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Naçadirev Gölü</div>
+        <div class="hy-konum">📍 Karçal Dağı · 2.750 m</div>
+        <a class="hy-btn" href="https://goo.gl/maps/3UM1DDAoTbEr2YoS8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Beyazsu Yaylası</div>
+        <div class="hy-konum">📍 Borçka'ya 41 km</div>
+        <a class="hy-btn" href="https://goo.gl/maps/kajZRPDNVVSf28Uj7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Gorgit Yaylası</div>
+        <div class="hy-konum">📍 Borçka Karagöl üzeri · eski orman</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/HQWj6Ugd49FxAPDF6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Lekoban Yaylası</div>
+        <div class="hy-konum">📍 Macahel · iki güzergâh</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/ctgz7cZDcCZswV2V6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Muratlı (Maradit) Camii</div>
+        <div class="hy-konum">📍 Muratlı Köyü · 1846</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/Cy5iq4Xjy6w9KhYo7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Borçka">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌿 Borçka</span>
+        </div>
+        <div class="hy-ad">Çihala (Düzköy) Camii</div>
+        <div class="hy-konum">📍 Düzköy · merkeze 9 km · 1266</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/6Skj7N8fXKqMUouF7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Şavşat Karagöl ve Sahara Milli Parkı</div>
+        <div class="hy-konum">📍 Şavşat'a 20 km · 3.250 hektar</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/WaVqyMwzCxKcvwi49" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Balıklı Göl</div>
+        <div class="hy-konum">📍 Pınarlı Köyü</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/GMsiwAZeybuBdsvd8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Arsiyan Yaylası</div>
+        <div class="hy-konum">📍 Şavşat'a 36 km · 2.600 m geçit</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/DA2J3GcQ4JJQkNxG7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Papart Doğal Sit Alanı</div>
+        <div class="hy-konum">📍 Şavşat · ormanlık vadi</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/rTpT9G93P83aJDQU7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Yavuzköy Seyir Terası ve Şavşat Evi</div>
+        <div class="hy-konum">📍 Şavşat'a 15 km · Sahara MP</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/4RAYyJfbedxHBAD1A" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Tbeti Kilisesi</div>
+        <div class="hy-konum">📍 Cevizli Köyü · merkeze 10 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/1tYTcndKgkSdHZtW7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Tamara Odaları</div>
+        <div class="hy-konum">📍 Aşağı Koyunlu · 2 saat yürüyüş</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/21uJpno1v2dg9NYL8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Bazgiret (Maden) Köyü</div>
+        <div class="hy-konum">📍 Şavşat'a 37 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/CXdy48wPSViiU1tt9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Şavşat">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏔️ Şavşat</span>
+        </div>
+        <div class="hy-ad">Yanıklı Yaylası (Şavşat)</div>
+        <div class="hy-konum">📍 Şavşat</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/GJ7YQzFMbMtuYfsx7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Hopa">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌊 Hopa</span>
+        </div>
+        <div class="hy-ad">Çağçağan Şelalesi</div>
+        <div class="hy-konum">📍 merkeze 12 km · 1.300 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/2DJjQQh5uGu3sDeS7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Hopa">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌊 Hopa</span>
+        </div>
+        <div class="hy-ad">Hopa Yaşam Müzesi</div>
+        <div class="hy-konum">📍 Liman yakını · 2.000 eser</div>
+        <a class="hy-btn" href="https://goo.gl/maps/Aio3h9EtyHR97xjr6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Hopa">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌊 Hopa</span>
+        </div>
+        <div class="hy-ad">Kopmuş Plajı ve Kamp Alanı</div>
+        <div class="hy-konum">📍 Hopa · deniz kenarı</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/obTTT3zAQ7pvqBVr6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Hopa">
+        <div class="hy-ust">
+          <span class="hy-ilce">🌊 Hopa</span>
+        </div>
+        <div class="hy-ad">Orta Hopa Camii</div>
+        <div class="hy-konum">📍 Orta Cadde · 19. yüzyıl</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/YJpg8TyAWRAXag7M7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Arhavi">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏘️ Arhavi</span>
+        </div>
+        <div class="hy-ad">Tarihi Arılı (Papilat) Köyü</div>
+        <div class="hy-konum">📍 Arhavi'ye 15 km · 1. derece sit</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/E4FdPhWDDrpcV39S7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Arhavi">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏘️ Arhavi</span>
+        </div>
+        <div class="hy-ad">Kamparna (Dikyamaç) Yaşam Müzesi</div>
+        <div class="hy-konum">📍 Arhavi'ye 18 km</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/eTyrSJKB3ha8E5qC7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Arhavi">
+        <div class="hy-ust">
+          <span class="hy-ilce">🏘️ Arhavi</span>
+        </div>
+        <div class="hy-ad">Sırt Yaylası</div>
+        <div class="hy-konum">📍 Yusufeli-Fındıklı komşu · Marsis</div>
+        <a class="hy-btn" href="https://goo.gl/maps/wSBHZnANCepDQkJZ7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Murgul">
+        <div class="hy-ust">
+          <span class="hy-ilce">💧 Murgul</span>
+        </div>
+        <div class="hy-ad">Delikli Kaya Şelalesi</div>
+        <div class="hy-konum">📍 Başköy · 7 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/oTfcniCqRQD7L6Ga6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Murgul">
+        <div class="hy-ust">
+          <span class="hy-ilce">💧 Murgul</span>
+        </div>
+        <div class="hy-ad">Damar Kara Göl</div>
+        <div class="hy-konum">📍 Damar Köyü · merkeze 16 km · 1.800 m</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/PUcBNHGSkkmt8maV9" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Murgul">
+        <div class="hy-ust">
+          <span class="hy-ilce">💧 Murgul</span>
+        </div>
+        <div class="hy-ad">Matkapın Şelalesi</div>
+        <div class="hy-konum">📍 Petek (Gurbin) Köyü</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/AGXnCujtZCoyweNz7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Murgul">
+        <div class="hy-ust">
+          <span class="hy-ilce">💧 Murgul</span>
+        </div>
+        <div class="hy-ad">Gemikaya (Rockship)</div>
+        <div class="hy-konum">📍 Küre Köyü ormanları</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/NkXx7NUWj5fABJ9e7" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Kemalpaşa">
+        <div class="hy-ust">
+          <span class="hy-ilce">🐦 Kemalpaşa</span>
+        </div>
+        <div class="hy-ad">Makrialis Kilisesi</div>
+        <div class="hy-konum">📍 Kemalpaşa · 13. yüzyıl</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/vevfozC4a3zmx3Qv6" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+      <div class="hy-kart" data-ilce="Kemalpaşa">
+        <div class="hy-ust">
+          <span class="hy-ilce">🐦 Kemalpaşa</span>
+        </div>
+        <div class="hy-ad">Fırındüzü Kuş Gözetleme İstasyonu</div>
+        <div class="hy-konum">📍 Kemalpaşa · 32 kuş türü</div>
+        <a class="hy-btn" href="https://maps.app.goo.gl/KKZxkJiSkPzpTDUE8" target="_blank" rel="noopener">🗺️ Haritada Aç</a>
+      </div>
+  </div>
+
+  <!-- ICERIK (SEO + AdSense) -->
+  <div class="icerik">
+    <h2>Artvin Nerede? Coğrafi Konum</h2>
+    <p>Artvin, Türkiye'nin kuzeydoğusunda, Doğu Karadeniz Bölgesi'nde yer alan bir sınır ilidir. Doğusunda Ardahan, güneyinde Erzurum, batısında Rize, kuzeyinde ise Gürcistan bulunur. Karadeniz'e kıyısı olan il, Çoruh Nehri'nin derin vadileri ve sarp dağlarıyla Türkiye'nin en engebeli coğrafyalarından birine sahiptir. Bu dağlık yapı, Artvin'i hem görsel açıdan etkileyici hem de ulaşım açısından zorlu kılar.</p>
+
+    <h2>Artvin'in 9 İlçesi</h2>
+    <p>Artvin; <strong>Merkez, Ardanuç, Arhavi, Borçka, Hopa, Murgul, Şavşat, Yusufeli ve Kemalpaşa</strong> olmak üzere 9 ilçeden oluşur. Her ilçenin kendine has bir coğrafyası ve cazibesi vardır:</p>
+    <h3>Sahil İlçeleri</h3>
+    <p>Hopa, Arhavi ve Kemalpaşa Karadeniz kıyısında yer alır; nemli iklimi, çay bahçeleri ve sahil yaşamıyla tanınır.</p>
+    <h3>İç Kesim ve Dağ İlçeleri</h3>
+    <p>Şavşat, Ardanuç, Yusufeli, Borçka ve Murgul ise iç kesimde, yüksek yaylalar, tarihi kaleler, göller ve derin vadilerle çevrilidir. Yusufeli özellikle rafting ve baraj manzaralarıyla, Şavşat ise yaylaları ve gölleriyle öne çıkar.</p>
+
+    <h2>Haritayı Nasıl Kullanırım?</h2>
+    <p>Yukarıdaki ilçe filtrelerinden birine dokunarak yalnızca o ilçedeki gezilecek yerleri görebilirsiniz. Her kartın altındaki <strong>"Haritada Aç"</strong> butonuna tıkladığınızda, ilgili konum doğrudan Google Haritalar'da açılır ve oradan yol tarifi alabilirsiniz. Böylece Artvin'e gelmeden önce rotanızı kolayca planlayabilirsiniz.</p>
+
+    <h2>Artvin'e Ulaşım</h2>
+    <p>Artvin'in kendi havalimanı yoktur; en yakın havalimanları Trabzon ve Batum'dadır. Çoğu ziyaretçi <a class="ic" href="/havas.html">havalimanı servisi</a> veya otobüsle ulaşır. İl içi ulaşım için <a class="ic" href="/otobus.html">otobüs saatleri</a> ve <a class="ic" href="/dolmus.html">ilçe dolmuşları</a> sayfalarımızdan yararlanabilirsiniz. Mesafeleri hesaplamak için <a class="ic" href="/artvin-mesafe.html">mesafe rehberini</a> kullanabilirsiniz.</p>
+
+    <h2>Sıkça Sorulan Sorular</h2>
+    <div class="faq">
+      <h3>Artvin hangi bölgede yer alır?</h3>
+      <p>Artvin, Türkiye'nin Doğu Karadeniz Bölgesi'nde, Gürcistan sınırında yer alan bir ildir.</p>
+    </div>
+    <div class="faq">
+      <h3>Artvin'in kaç ilçesi var?</h3>
+      <p>Artvin'in 9 ilçesi vardır: Merkez, Ardanuç, Arhavi, Borçka, Hopa, Murgul, Şavşat, Yusufeli ve Kemalpaşa.</p>
+    </div>
+    <div class="faq">
+      <h3>Artvin'e en yakın havalimanı hangisi?</h3>
+      <p>Artvin'in havalimanı yoktur. En yakın havalimanları Trabzon (yaklaşık 4 saat) ve Gürcistan'daki Batum'dur.</p>
+    </div>
+    <div class="faq">
+      <h3>Artvin'de mutlaka görülmesi gereken yerler nereler?</h3>
+      <p>Kafkasör Yaylası, Hatila Vadisi Milli Parkı, Karagöl-Sahara Milli Parkı, Maral Şelalesi ve Macahel (Camili) Havzası en çok ziyaret edilen yerler arasındadır.</p>
+    </div>
+
+    <div class="ilgili">
+      <a href="/gezi.html">🗺️ Gezilecek Yerler</a>
+      <a href="/oteller.html">🏨 Oteller</a>
+      <a href="/artvin-mesafe.html">🧭 Mesafe</a>
+      <a href="/otobus.html">🚌 Otobüs Rehberi</a>
+      <a href="/koyler.html">📖 Köy Ansiklopedisi</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Artvin Rehber · Haziran 2026 güncel · artvinrehber.com
+</footer>
+
+<script>
+function filtrele(btn, ilce){
+  document.querySelectorAll('.hf-btn').forEach(function(b){b.classList.remove('aktif');});
+  btn.classList.add('aktif');
+  document.querySelectorAll('.hy-kart').forEach(function(k){
+    if(ilce==='hepsi' || k.getAttribute('data-ilce')===ilce){
+      k.style.display='flex';
+    }else{
+      k.style.display='none';
+    }
+  });
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Artvin hangi bölgede yer alır?","acceptedAnswer":{"@type":"Answer","text":"Artvin, Türkiye'nin Doğu Karadeniz Bölgesi'nde, Gürcistan sınırında yer alan bir ildir."}},
+    {"@type":"Question","name":"Artvin'in kaç ilçesi var?","acceptedAnswer":{"@type":"Answer","text":"Artvin'in 9 ilçesi vardır: Merkez, Ardanuç, Arhavi, Borçka, Hopa, Murgul, Şavşat, Yusufeli ve Kemalpaşa."}},
+    {"@type":"Question","name":"Artvin'e en yakın havalimanı hangisi?","acceptedAnswer":{"@type":"Answer","text":"Artvin'in havalimanı yoktur. En yakın havalimanları Trabzon ve Gürcistan'daki Batum'dur."}},
+    {"@type":"Question","name":"Artvin'de mutlaka görülmesi gereken yerler nereler?","acceptedAnswer":{"@type":"Answer","text":"Kafkasör Yaylası, Hatila Vadisi, Karagöl-Sahara Milli Parkı, Maral Şelalesi ve Macahel Havzası en çok ziyaret edilen yerlerdir."}}
+  ]
+}
+</script>
+
+</body>
+</html>
