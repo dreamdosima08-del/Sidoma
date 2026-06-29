@@ -276,10 +276,31 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <span style="color:#60a5fa;font-weight:800;font-size:.9rem;flex-shrink:0">→</span>
 </a>
 
-<!-- HAVAŞ GECELERİ NOTU -->
-<div style="background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);padding:.5rem 1.25rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;">
-  <span style="font-size:.85rem;">ℹ️</span>
-  <div style="flex:1"><span style="font-size:.68rem;color:rgba(255,255,255,.6);">Yaz döneminde nadiren gece 1 seferleri eklenebilir. Güncel tarife için </span><a href="https://havas.net" target="_blank" rel="noopener" style="font-size:.68rem;color:#f0c040;font-weight:700;text-decoration:none;">havas.net</a><span style="font-size:.68rem;color:rgba(255,255,255,.6);"> sayfasını kontrol edin.</span></div>
+<!-- HAVAŞ SEFER BILDIRIMI -->
+<style>
+@keyframes havasPulse{0%,100%{box-shadow:0 0 0 0 rgba(240,192,64,.5),0 4px 20px rgba(0,0,0,.3);}50%{box-shadow:0 0 0 8px rgba(240,192,64,0),0 4px 20px rgba(0,0,0,.3);}}
+@keyframes havasYanip{0%,100%{opacity:1;}50%{opacity:.45;}}
+@keyframes havasKayan{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.havas-bildirim{margin:1rem 1.1rem;border-radius:16px;padding:1rem 1.1rem;background:linear-gradient(120deg,#1a1206,#2a1d08,#1a1206);background-size:200% 200%;animation:havasKayan 5s ease infinite,havasPulse 2.5s infinite;border:1.5px solid rgba(240,192,64,.45);}
+.havas-bildirim-ust{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;}
+.havas-nokta{width:10px;height:10px;border-radius:50%;background:#f0c040;animation:havasYanip 1s infinite;flex-shrink:0;box-shadow:0 0 8px #f0c040;}
+.havas-baslik{font-size:.92rem;font-weight:800;color:#ffd968;letter-spacing:.01em;}
+.havas-metin{font-size:.8rem;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:.85rem;}
+.havas-metin b{color:#fff;}
+.havas-btn{display:flex;align-items:center;justify-content:center;gap:.55rem;width:100%;background:linear-gradient(135deg,#f0c040,#e0a82e);color:#1a1206;border-radius:12px;padding:.85rem;font-size:.92rem;font-weight:800;text-decoration:none;box-shadow:0 6px 20px rgba(240,192,64,.3);transition:transform .15s;}
+.havas-btn:active{transform:scale(.97);}
+</style>
+<div class="havas-bildirim">
+  <div class="havas-bildirim-ust">
+    <span class="havas-nokta"></span>
+    <span class="havas-baslik">📢 Sefer Saatleri Hakkında</span>
+  </div>
+  <div class="havas-metin">
+    Bu sayfada gördüğünüz saatler <b>Havaş yaz tarifesinin ana sefer saatleridir.</b> Yoğunluğa göre <b>ek seferler eklenebilir veya kaldırılabilir.</b> Gece ve ara sefer saatlerinin en güncel halini Havaş'ın resmî sayfasından kontrol edebilirsiniz.
+  </div>
+  <a class="havas-btn" href="https://havas.net/otobus-hizmetleri" target="_blank" rel="noopener">
+    🚌 Havaş Güncel Otobüs Saatleri →
+  </a>
 </div>
   <a href="https://havas.net" target="_blank" rel="noopener" style="font-size:.65rem;color:#fde68a;font-weight:700;text-decoration:underline;white-space:nowrap;">havas.net →</a>
 </div>
@@ -327,7 +348,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
     <div class="fiyat-sol">
       <div class="fiyat-etiket">Havalimanı → Artvin Havaş Ücreti</div>
       <div class="fiyat-rakam">550 ₺</div>
-      <div class="fiyat-acik">Rize-Artvin Havalimanı → Artvin · Mayıs 2026</div>
+      <div class="fiyat-acik">Rize-Artvin Havalimanı → Artvin · Haziran 2026</div>
     </div>
     <div class="fiyat-sag">
       <div class="fiyat-not">GÜNCEL FİYAT VE SAAT<br>İÇİN RESMİ SİTEYİ KONTROL EDİN</div>
@@ -600,7 +621,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <p><strong>Artvin Otogar yanından</strong> günde 3 sefer kalkış yapılmaktadır: 05:00, 11:00 ve 16:45. Bu saatler yaz-kış tarifesine göre değişebilmektedir. <strong>Hopa'dan</strong> ise günde 6 sefer bulunmakta olup (06:00, 07:30, 12:00, 17:45, 19:45, 21:30) Hopa, havalimanına en fazla sefer yapılan duraktır.</p>
 
   <h3>Rize-Artvin Havalimanı Havaş Fiyatları</h3>
-  <p>Mayıs 2026 itibarıyla Rize-Artvin Havalimanı'ndan Artvin'e Havaş bileti <strong>520 TL</strong>'dir. Güncel fiyat için <a href="https://www.havas.net/otobus-hizmetleri" target="_blank" rel="noopener">havas.net</a> adresini ziyaret edebilirsiniz.</p>
+  <p>Haziran 2026 itibarıyla Rize-Artvin Havalimanı'ndan Artvin'e Havaş bileti <strong>520 TL</strong>'dir. Güncel fiyat için <a href="https://www.havas.net/otobus-hizmetleri" target="_blank" rel="noopener">havas.net</a> adresini ziyaret edebilirsiniz.</p>
 
   <h3>Taksi ile Havalimanından Artvin'e Ulaşım</h3>
   <p>Havaş saatlerine yetişemeyenler veya bireysel transfer isteyenler için <a href="/taksi.html">Artvin taksi</a> seçeneği mevcuttur. Rize-Artvin Havalimanı'ndan Artvin'e taksi transfer ücreti 2026 yılında yaklaşık <strong>6.600 TL</strong>'dir. Artvin taksi rezervasyonu için <a href="/taksi.html">taksi sayfamızı</a> ziyaret edebilirsiniz.</p>
@@ -884,7 +905,7 @@ havaDurumuGetir();
       </tbody>
     </table>
   </div>
-  <p style="font-size:.62rem;color:var(--gray2);margin-top:.4rem;text-align:center;">* Mayıs 2026 tarifleri · Güncel bilgi için Havaş'ı arayın</p>
+  <p style="font-size:.62rem;color:var(--gray2);margin-top:.4rem;text-align:center;">* Haziran 2026 tarifleri · Güncel bilgi için Havaş'ı arayın</p>
 </div>
 
 
@@ -1050,7 +1071,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var onerilens = uygunlar.length > 0 ? uygunlar[uygunlar.length - 1] : null;
 
     if (!onerilens) {
-      sonuc.innerHTML = '<div class="plan-uyari">⚠️ ' + DURAK_ISIMLERI[durak] + ''dan bu uçuşa yetişecek Havaş seferi bulunamamıştır. Taksi ile gidebilirsiniz: <a href="/taksi.html" style="color:#fcd34d;">Artvin Taksi →</a></div>';
+      sonuc.innerHTML = '<div class="plan-uyari">⚠️ ' + DURAK_ISIMLERI[durak] + ' konumundan bu uçuşa yetişecek Havaş seferi bulunamamıştır. Taksi ile gidebilirsiniz: <a href="/taksi.html" style="color:#fcd34d;">Artvin Taksi →</a></div>';
       sonuc.style.display = 'block';
       return;
     }
