@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artvin'e Havalimanından Nasıl Gidilir? İnteraktif Rota Rehberi 2026</title>
+<meta name="description" content="Rize-Artvin, Erzurum veya Kars havalimanından Artvin'e interaktif rota rehberi. Yol üzeri duraklar, seyir noktaları, yemek molaları, tüneller, barajlar ve süreler — yerel bilgilerle.">
+<meta name="keywords" content="artvin havalimanı, artvine nasıl gidilir, artvin en yakın havalimanı, rize artvin havalimanı, erzurum artvin arası, kars artvin arası, artvin ulaşım, yeşil artvin ekspres, artvin otobüs, erzurum yusufeli hattı, kars ardahan şavşat, hopa borçka hattı, artvin havalimanı mesafe, artvin rota rehberi, artvine uçakla ulaşım, artvin taksi, tortum gölü yol, artvin baraj yolu, artvin havaş">
+<meta name="author" content="Artvin Rehber">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin">
+<meta name="geo.position" content="41.1828;41.8183">
+<link rel="canonical" href="https://artvinrehber.com/artvin-havalimanlari.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Artvin'e Havalimanından Nasıl Gidilir? İnteraktif Rota Rehberi">
+<meta property="og:description" content="Rize-Artvin, Erzurum veya Kars havalimanından Artvin'e yerel bilgilerle interaktif rota: duraklar, seyir noktaları, yemek molaları, tüneller, barajlar.">
+<meta property="og:url" content="https://artvinrehber.com/artvin-havalimanlari.html">
+<meta property="og:image" content="https://i.ibb.co/SDJJxrLd/file-0000000026f472439a7841e916602d13.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Artvin Rehber">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Artvin'e Havalimanından İnteraktif Rota Rehberi">
+<meta name="twitter:image" content="https://i.ibb.co/SDJJxrLd/file-0000000026f472439a7841e916602d13.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto',Arial,sans-serif;background:#FFFFFF;color:#222222;font-weight:400;line-height:1.75;letter-spacing:0.2px;text-align:left}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+.topnav{border-bottom:1px solid #e5e5e5;padding:14px 0;position:sticky;top:0;background:#fff;z-index:50}
+.topnav .wrap{display:flex;align-items:center;justify-content:space-between}
+.topnav a{color:#222;text-decoration:none;font-size:15px;font-weight:700}
+.topnav a.geri{color:#666;font-weight:400;font-size:14px}
+/* Hero foto */
+.hero-foto{width:100%;max-height:340px;object-fit:cover;display:block;border-radius:0 0 6px 6px}
+.baslik-alani{padding:26px 0 10px}
+.kategori{font-size:12px;font-weight:700;color:#c0392b;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+h1{font-size:27px;font-weight:900;line-height:1.35;color:#111;margin-bottom:14px}
+.meta{font-size:13px;color:#777;border-bottom:1px solid #eee;padding-bottom:18px}
+.giris{font-size:18px;margin:20px 0}
+/* Secici yonerge */
+.secici-baslik{font-size:17px;font-weight:700;color:#111;margin:28px 0 6px;text-align:center}
+.secici-alt{font-size:14px;color:#888;text-align:center;margin-bottom:16px}
+.tik-isaret{display:inline-block;animation:zipla 1.2s infinite}
+@keyframes zipla{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+/* Havalimani secici - dikey grid, kisadan uzuna */
+.hl-secici{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.hl-btn{position:relative;background:#fff;border:2px solid #e0e0e0;border-radius:16px;padding:16px 18px;cursor:pointer;text-align:left;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:14px;width:100%}
+.hl-btn:hover{border-color:#c0392b;box-shadow:0 4px 14px rgba(192,57,43,.12)}
+.hl-btn.aktif{border-color:#c0392b;background:#c0392b;color:#fff}
+.hl-btn .ikon{font-size:30px;flex-shrink:0}
+.hl-btn .orta{flex:1}
+.hl-btn .ad{font-size:17px;font-weight:700;color:inherit;display:block}
+.hl-btn .alt{font-size:13px;color:#777;margin-top:2px;display:block}
+.hl-btn.aktif .alt{color:#ffe0dc}
+.hl-btn .tik{font-size:20px;color:#c0392b;flex-shrink:0;transition:transform .2s}
+.hl-btn.aktif .tik{color:#fff;transform:rotate(90deg)}
+.hl-btn .sira-rozet{position:absolute;top:-8px;left:14px;background:#27ae60;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
+.hl-btn:nth-child(2) .sira-rozet{background:#e67e22}
+.hl-btn:nth-child(3) .sira-rozet{background:#8e44ad}
+/* Rota govde */
+.rota-govde{display:none;animation:ac .4s ease}
+.rota-govde.acik{display:block}
+@keyframes ac{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.rota-ust{background:#fafafa;border:1px solid #e5e5e5;border-radius:10px;padding:16px 18px;margin:20px 0}
+.rota-ust h2{font-size:20px;color:#111;margin-bottom:10px}
+.rota-sure{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.sure-chip{background:#fff;border:1px solid #ddd;border-radius:20px;padding:5px 12px;font-size:13px;font-weight:600;color:#333}
+.sure-chip b{color:#c0392b}
+.rota-ozet{font-size:15px;color:#555}
+.rota-ozet b{color:#c0392b}
+/* Timeline */
+.tl{position:relative;margin:24px 0 8px;padding-left:8px}
+.tl-adim{position:relative;padding:0 0 26px 34px;border-left:2px solid #e0d0d0;margin-left:8px}
+.tl-adim:last-child{border-left:2px solid transparent}
+.tl-nokta{position:absolute;left:-11px;top:0;width:22px;height:22px;border-radius:50%;background:#c0392b;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.tl-adim.seyir .tl-nokta{background:#27ae60}
+.tl-adim.yemek .tl-nokta{background:#e67e22}
+.tl-adim.uyari .tl-nokta{background:#e74c3c}
+.tl-adim.baraj .tl-nokta{background:#2980b9}
+.tl-adim.varis .tl-nokta{background:#111}
+.tl-ad{font-size:17px;font-weight:700;color:#111;margin-bottom:3px}
+.tl-aciklama{font-size:15px;color:#555;margin-bottom:8px}
+.tl-etiket{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.et-seyir{background:#e8f8ef;color:#1e8449}
+.et-yemek{background:#fdf0e3;color:#ca6f1e}
+.et-uyari{background:#fdeaea;color:#c0392b}
+.et-baraj{background:#eaf2fb;color:#21618c}
+.et-durak{background:#f2eafb;color:#7d3c98}
+.tl-linkler{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.mini-btn{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;text-decoration:none;padding:7px 13px;border-radius:20px;border:1px solid #ddd;color:#c0392b;background:#fff;transition:all .15s}
+.mini-btn:hover{background:#c0392b;color:#fff;border-color:#c0392b}
+/* Konum butonlari - daha belirgin, tiklanabilir oldugu belli */
+.mini-btn.konum{background:#c0392b;color:#fff;border-color:#c0392b;box-shadow:0 2px 6px rgba(192,57,43,.25)}
+.mini-btn.konum:hover{background:#a93226;transform:translateY(-1px)}
+.mini-btn.konum .ac-ibare{font-size:11px;opacity:.85;font-weight:500}
+.mini-btn.ic{border-color:#2980b9;color:#2980b9}
+.mini-btn.ic:hover{background:#2980b9;color:#fff}
+.mini-btn.dis{border-color:#27ae60;color:#27ae60}
+.mini-btn.dis:hover{background:#27ae60;color:#fff}
+.rakim-uyari{background:#fff8e6;border:1px solid #f0d060;border-left:4px solid #e67e22;border-radius:6px;padding:14px 16px;margin:18px 0;font-size:15px;color:#7a5c00}
+/* Alt rehberler */
+h2.blok{font-size:22px;font-weight:700;color:#111;margin:34px 0 14px}
+.rehber-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.rehber-kart{border:1px solid #e0e0e0;border-radius:12px;padding:16px 10px;text-align:center;text-decoration:none;color:#111;transition:all .2s}
+.rehber-kart:hover{border-color:#c0392b;background:#fafafa}
+.rehber-kart .ik{font-size:26px;display:block;margin-bottom:6px}
+.rehber-kart .ya{font-size:13px;font-weight:700}
+.rehber-kart.vardim{grid-column:span 3;background:#fff8e6;border-color:#f0d060}
+.rehber-kart.vardim:hover{background:#fdf6d8;border-color:#e6c04a}
+.rehber-kart.vardim .ya{color:#7a5c00}
+@media(max-width:600px){.rehber-kart.vardim{grid-column:span 3}}
+/* Taksi + iletisim serit */
+.iletisim-serit{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+.serit-kutu{border-radius:14px;padding:18px 16px;text-align:center}
+.serit-taksi{background:#111;color:#fff}
+.serit-wp{background:#e8f8ef;border:1px solid #27ae60}
+.serit-kutu .baslik{font-size:13px;margin-bottom:8px;font-weight:600}
+.serit-taksi .baslik{color:#ccc}
+.serit-wp .baslik{color:#1e8449}
+.serit-kutu .no{font-size:19px;font-weight:900;letter-spacing:.5px}
+.serit-taksi .no a{color:#f0c040;text-decoration:none}
+.serit-wp .no a{color:#1e8449;text-decoration:none}
+.serit-btn{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:700;text-decoration:none;padding:8px 16px;border-radius:20px}
+.serit-taksi .serit-btn{background:#f0c040;color:#111}
+.serit-wp .serit-btn{background:#27ae60;color:#fff}
+@media(max-width:520px){.iletisim-serit{grid-template-columns:1fr}}
+/* FAQ */
+.faq-item{border-bottom:1px solid #eee;padding:16px 0}
+.faq-item h3{font-size:17px;font-weight:700;color:#111;margin:0 0 6px}
+.faq-item p{font-size:15px;margin:0;color:#444}
+/* Yorum */
+.yorum-alani{background:#fafafa;border:1px solid #e5e5e5;border-radius:12px;padding:20px;margin:26px 0}
+.yorum-baslik{font-size:19px;font-weight:700;color:#111;margin-bottom:14px}
+.yorum-form input,.yorum-form textarea{width:100%;border:1px solid #ddd;border-radius:8px;padding:11px 13px;font-size:15px;font-family:inherit;margin-bottom:10px;background:#fff}
+.yorum-form textarea{min-height:90px;resize:vertical}
+.yorum-gonder{background:#c0392b;color:#fff;border:none;border-radius:8px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+.yorum-gonder:hover{background:#a93226}
+.yorum-liste{margin-top:20px}
+.yorum-item{background:#fff;border:1px solid #eee;border-radius:8px;padding:13px 15px;margin-bottom:10px}
+.yorum-item .ad{font-weight:700;font-size:14px;color:#111}
+.yorum-item .tar{font-size:12px;color:#999;margin-left:8px;font-weight:400}
+.yorum-item .metin{font-size:15px;color:#444;margin-top:5px}
+.yorum-bos{font-size:14px;color:#999;font-style:italic}
+.ilgili{border-top:2px solid #111;margin-top:30px;padding-top:22px}
+.ilgili-baslik{font-size:19px;font-weight:700;margin-bottom:14px}
+.ilgili-liste{display:flex;flex-direction:column;gap:2px}
+.ilgili-liste a{font-size:16px;color:#c0392b;text-decoration:none;padding:9px 0;border-bottom:1px solid #f0f0f0}
+footer{border-top:1px solid #e5e5e5;padding:26px 0;font-size:13px;color:#999;text-align:center;margin-top:30px}
+@media(max-width:600px){.giris,.tl-ad{font-size:17px}h1{font-size:24px}}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="wrap">
+    <a href="/">Artvin Rehber</a>
+    <a class="geri" href="/">← Ana Sayfa</a>
+  </div>
+</div>
+
+<img class="hero-foto" src="https://i.ibb.co/SDJJxrLd/file-0000000026f472439a7841e916602d13.png" alt="Artvin'e havalimanından ulaşım rota rehberi — Rize, Erzurum, Kars güzergahları">
+
+<div class="wrap">
+
+  <div class="baslik-alani">
+    <div class="kategori">İnteraktif Ulaşım Rehberi · Artvin</div>
+    <h1>Artvin'e Havalimanından Nasıl Gidilir? İnteraktif Rota Rehberi</h1>
+    <div class="meta">📍 Artvin · 🗓️ Temmuz 2026 · ⏱️ İnteraktif rehber</div>
+  </div>
+
+  <p class="giris">Rize-Artvin Havalimanı var, ama maalesef Artvin il sınırları içinde değil — Rize'nin Pazar ilçesinde. Bu yüzden Artvin'e uçakla gelenler için birkaç farklı rota var. Aşağıdan <strong>hangi havalimanına ineceğinizi seçin</strong>, size o rotanın tüm hikâyesini çıkaralım: yol üzeri seyir noktaları, yemek molaları, tüneller, barajlar ve süreler — hepsi tıklanabilir konumlarla.</p>
+
+  <div class="secici-baslik">Hangi havalimanına iniyorsunuz?</div>
+  <div class="secici-alt">👆 Aşağıdaki kutulardan birine dokunun — rota açılacak <span class="tik-isaret">👇</span></div>
+  <div class="hl-secici">
+    <button class="hl-btn" onclick="rotaGoster('rize', this)">
+      <span class="sira-rozet">En Yakın</span>
+      <span class="ikon">🌊</span>
+      <span class="orta">
+        <span class="ad">Rize-Artvin Havalimanı</span>
+        <span class="alt">Hopa-Borçka hattı · ~115 km · Havaş var</span>
+      </span>
+      <span class="tik">▶</span>
+    </button>
+    <button class="hl-btn" onclick="rotaGoster('erzurum', this)">
+      <span class="sira-rozet">Orta Mesafe</span>
+      <span class="ikon">🏔️</span>
+      <span class="orta">
+        <span class="ad">Erzurum Havalimanı</span>
+        <span class="alt">Erzurum-Yusufeli hattı · ~215 km · Seyirlik</span>
+      </span>
+      <span class="tik">▶</span>
+    </button>
+    <button class="hl-btn" onclick="rotaGoster('kars', this)">
+      <span class="sira-rozet">En Uzak</span>
+      <span class="ikon">❄️</span>
+      <span class="orta">
+        <span class="ad">Kars Havalimanı</span>
+        <span class="alt">Kars-Ardahan-Şavşat hattı · ~230 km</span>
+      </span>
+      <span class="tik">▶</span>
+    </button>
+  </div>
+
+  <!-- RIZE ROTASI -->
+  <div class="rota-govde" id="rota-rize">
+    <div class="rota-ust">
+      <h2>🌊 Rize-Artvin Havalimanı → Artvin (Hopa-Borçka Hattı)</h2>
+      <div class="rota-sure">
+        <span class="sure-chip">🚗 Özel araç: <b>~1.5 saat</b></span>
+        <span class="sure-chip">🚌 Havaş/otobüs: <b>~2.5 saat</b></span>
+      </div>
+      <div class="rota-ozet">Sahil rotası. <b>Havaş servisleri</b> mevcut. Yol üzeri <b>Hopa, Cankurtaran Dağı, Borçka Barajı</b> ve çay molaları var.</div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-adim">
+        <div class="tl-nokta">1</div>
+        <span class="tl-etiket et-durak">Havaş / Otobüs</span>
+        <div class="tl-ad">Havalimanından Hareket</div>
+        <div class="tl-aciklama">Rize-Artvin Havalimanı'ndan Artvin'e <b>Havaş servisleri</b> mevcuttur. Rize hattından otobüslere de binebilirsiniz. Yeşil Artvin Ekspres sık sık sefer düzenler.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn ic" href="havas.html" target="_blank" rel="noopener">🚌 Havaş Saatleri</a>
+          <a class="mini-btn dis" href="https://www.yesilartvinekspres.com.tr" target="_blank" rel="noopener">🎫 Bilet Al</a>
+        </div>
+      </div>
+      <div class="tl-adim yemek">
+        <div class="tl-nokta">🍽</div>
+        <span class="tl-etiket et-yemek">Yemek Molası</span>
+        <div class="tl-ad">Hopa'da Yemek</div>
+        <div class="tl-aciklama">Sahil yolunda Hopa'da yemek yiyebilirsiniz. Karadeniz lezzetleri için güzel bir durak.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/TKoAmzupGYaEqWHH8" target="_blank" rel="noopener">📍 Hopa Yemek <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim seyir">
+        <div class="tl-nokta">★</div>
+        <span class="tl-etiket et-seyir">Seyirlik</span>
+        <div class="tl-ad">Cankurtaran Dağı</div>
+        <div class="tl-aciklama">Şahsi araçla Cankurtaran Dağı'na çıkabilir, fotoğraf çekebilirsiniz. Manzara muhteşemdir.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/3YWAEqbYwARxv1Mb8" target="_blank" rel="noopener">📍 Cankurtaran Dağı <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim baraj">
+        <div class="tl-nokta">🌊</div>
+        <span class="tl-etiket et-baraj">Baraj</span>
+        <div class="tl-ad">Borçka Barajı</div>
+        <div class="tl-aciklama">Borçka Barajı'nı fotoğraflayabilirsiniz. Yol üzeri güzel bir durak.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/Qq5zKcDsLceCc8Yk7" target="_blank" rel="noopener">📍 Borçka Barajı <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim yemek">
+        <div class="tl-nokta">☕</div>
+        <span class="tl-etiket et-yemek">Çay Molası</span>
+        <div class="tl-ad">Hopa-Borçka Arası</div>
+        <div class="tl-aciklama">Hopa-Borçka ve Borçka-Hopa arasında çay içmek için dinlenebilirsiniz. Karadeniz'in çay keyfini yaşayın.</div>
+      </div>
+      <div class="tl-adim varis">
+        <div class="tl-nokta">🏁</div>
+        <div class="tl-ad">Varış: Artvin</div>
+        <div class="tl-aciklama">Sahil ve orman manzarası eşliğinde Artvin'e ulaşırsınız.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/hRUBbhW6SX1Sceqj7" target="_blank" rel="noopener">📍 Artvin Otogar <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ERZURUM ROTASI -->
+  <div class="rota-govde" id="rota-erzurum">
+    <div class="rota-ust">
+      <h2>🏔️ Erzurum Havalimanı → Artvin (Erzurum-Yusufeli Hattı)</h2>
+      <div class="rota-sure">
+        <span class="sure-chip">🚗 Özel araç: <b>~2.5-3 saat</b></span>
+        <span class="sure-chip">🚌 Otobüs: <b>~3-3.5 saat</b></span>
+      </div>
+      <div class="rota-ozet">Güzergâh üzerinde <b>Tortum Gölü, Tortum Şelalesi, cağ döner durakları</b> ve üç baraj var. En "seyirlik" rotadır. <b>50'den fazla tünel</b> içerir.</div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-adim">
+        <div class="tl-nokta">1</div>
+        <div class="tl-ad">Erzurum Havalimanı → Otogar</div>
+        <div class="tl-aciklama">Havalimanından şehir merkezine/otogara belediye otobüsü veya ticari taksi ile ulaşın.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/EnehwxwxNhB6LD3w8" target="_blank" rel="noopener">📍 Havalimanı-Otogar <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim">
+        <div class="tl-nokta">2</div>
+        <span class="tl-etiket et-durak">Otobüs</span>
+        <div class="tl-ad">Yeşil Artvin Ekspres Otobüsü</div>
+        <div class="tl-aciklama">Erzurum otogarından Artvin'e günde <b>4-5 sefer</b> düzenlenir. Bileti online alabilirsiniz.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/DCzgsYAHr5i6PxNz7" target="_blank" rel="noopener">📍 Otobüs Kalkış <span class="ac-ibare">›Aç</span></a>
+          <a class="mini-btn dis" href="https://www.yesilartvinekspres.com.tr" target="_blank" rel="noopener">🎫 Bilet Al</a>
+        </div>
+      </div>
+      <div class="tl-adim seyir">
+        <div class="tl-nokta">★</div>
+        <span class="tl-etiket et-seyir">Seyirlik</span>
+        <div class="tl-ad">Tortum Gölü</div>
+        <div class="tl-aciklama">Güzergâh üzerindeki en güzel doğal manzaralardan biri. Bir de seyir terası var.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/pBSKkKXYDzvTq7Lm7" target="_blank" rel="noopener">📍 Tortum Gölü <span class="ac-ibare">›Aç</span></a>
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/9AiPwPctoc6dXEiYA" target="_blank" rel="noopener">📍 Seyir Terası <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim seyir">
+        <div class="tl-nokta">★</div>
+        <span class="tl-etiket et-seyir">Seyirlik</span>
+        <div class="tl-ad">Tortum Şelalesi</div>
+        <div class="tl-aciklama">Türkiye'nin en görkemli şelalelerinden. Yol güzergâhına yakındır.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/vTRPQLUW9u7zcz2z8" target="_blank" rel="noopener">📍 Tortum Şelalesi <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim yemek">
+        <div class="tl-nokta">🍽</div>
+        <span class="tl-etiket et-yemek">Lezzet Durağı</span>
+        <div class="tl-ad">Cağ Döner Mekânları</div>
+        <div class="tl-aciklama">Tortum ve Uzundere ilçeleri arasında meşhur cağ döner mekânları ve lezzet durakları bulunur. Yol molası için ideal.</div>
+      </div>
+      <div class="tl-adim uyari">
+        <div class="tl-nokta">!</div>
+        <span class="tl-etiket et-uyari">Dikkat</span>
+        <div class="tl-ad">Tüneller (50'den fazla)</div>
+        <div class="tl-aciklama">Uzundere-Artvin arasında 50'den fazla karayolu tüneli var. Tüneller gidiş-gelişli olduğu için, kendi aracıyla gelen şoförler için dikkat gerektirir.</div>
+      </div>
+      <div class="tl-adim baraj">
+        <div class="tl-nokta">🌊</div>
+        <span class="tl-etiket et-baraj">Baraj</span>
+        <div class="tl-ad">Yusufeli Barajı (275 m)</div>
+        <div class="tl-aciklama">Türkiye'nin en yüksek barajlarından. Ancak yol tünel içinden geçtiği için baraj yoldan görünmez.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/s4Ypgg9oiVnwyzfSA" target="_blank" rel="noopener">📍 Konum <span class="ac-ibare">›Aç</span></a>
+          <a class="mini-btn ic" href="blog22.html" target="_blank" rel="noopener">📖 Barajlar Yazısı</a>
+        </div>
+      </div>
+      <div class="tl-adim baraj">
+        <div class="tl-nokta">🌊</div>
+        <span class="tl-etiket et-baraj">Baraj</span>
+        <div class="tl-ad">Artvin Barajı ve HES (180 m)</div>
+        <div class="tl-aciklama">Yol güzergâhı tünel içinde olduğu için bu baraj da yoldan görünmez.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/HzAbYxwpeoTejAwH8" target="_blank" rel="noopener">📍 Konum <span class="ac-ibare">›Aç</span></a>
+          <a class="mini-btn ic" href="blog22.html" target="_blank" rel="noopener">📖 Barajlar Yazısı</a>
+        </div>
+      </div>
+      <div class="tl-adim baraj">
+        <div class="tl-nokta">🌊</div>
+        <span class="tl-etiket et-baraj">Baraj</span>
+        <div class="tl-ad">Deriner Barajı ve HES</div>
+        <div class="tl-aciklama">Diğerlerinin aksine, Deriner Barajı yol güzergâhından her iki taraftan da görülebilir. Kaçırmayın!</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/X66NSCg1FV4P2pMc8" target="_blank" rel="noopener">📍 Konum <span class="ac-ibare">›Aç</span></a>
+          <a class="mini-btn ic" href="blog22.html" target="_blank" rel="noopener">📖 Barajlar Yazısı</a>
+        </div>
+      </div>
+      <div class="tl-adim varis">
+        <div class="tl-nokta">🏁</div>
+        <div class="tl-ad">Varış: Artvin Otogar</div>
+        <div class="tl-aciklama">Yolculuğunuz Artvin otogarında sona erer. İlçelere geçiş için dolmuş duraklarını kullanabilirsiniz.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/hRUBbhW6SX1Sceqj7" target="_blank" rel="noopener">📍 Artvin Otogar <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rakim-uyari">
+      ⛰️ <strong>Rakım Uyarısı:</strong> Erzurum-Artvin güzergâhı 2000 rakımdan 200 rakıma inen bir yoldur. Basınç farkından dolayı baş ağrısı, kulak tıkanması veya uyum sorunları yaşanabilir. Su için, sakız çiğneyin.
+    </div>
+  </div>
+
+  <!-- KARS ROTASI -->
+  <div class="rota-govde" id="rota-kars">
+    <div class="rota-ust">
+      <h2>❄️ Kars Havalimanı → Artvin (Kars-Ardahan-Şavşat Hattı)</h2>
+      <div class="rota-sure">
+        <span class="sure-chip">🚗 Özel araç: <b>~3 saat</b></span>
+        <span class="sure-chip">🚌 Otobüs: <b>~3.5-4 saat</b></span>
+      </div>
+      <div class="rota-ozet">Ardahan çevre yolundan <b>Şavşat üzeri</b> gelen rota. <b>Sahara Dağı, Kocabey Köyü</b> fotoğraf için harika. Havaş servisi <b>yoktur</b>.</div>
+    </div>
+
+    <div class="tl">
+      <div class="tl-adim">
+        <div class="tl-nokta">1</div>
+        <div class="tl-ad">Kars Havalimanı → Şehir Otogarı</div>
+        <div class="tl-aciklama">Havalimanı otobüsü veya ticari taksi ile şehir otogarına ulaşın. <b>Havaş servisi bulunmamaktadır.</b></div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/o83nHwQX3vfPJu2s5" target="_blank" rel="noopener">📍 Kars Havalimanı <span class="ac-ibare">›Aç</span></a>
+          <a class="mini-btn konum" href="https://share.google/8S5cZ3pSm2WFA8dZn" target="_blank" rel="noopener">📍 Kars Otogarı <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim">
+        <div class="tl-nokta">2</div>
+        <span class="tl-etiket et-durak">Otobüs</span>
+        <div class="tl-ad">Yeşil Artvin Ekspres</div>
+        <div class="tl-aciklama">Kars otogarından Artvin seferi mevcuttur. Bileti online alabilirsiniz.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn dis" href="https://www.yesilartvinekspres.com.tr" target="_blank" rel="noopener">🎫 Bilet Al</a>
+        </div>
+      </div>
+      <div class="tl-adim seyir">
+        <div class="tl-nokta">★</div>
+        <span class="tl-etiket et-seyir">Seyirlik</span>
+        <div class="tl-ad">Sahara Dağı & Kocabey Köyü</div>
+        <div class="tl-aciklama">Ardahan çevre yolundan Şavşat'a inerken Sahara Dağı ve Kocabey Köyü fotoğraf çekimi için oldukça elverişli ve güzeldir. Tavsiye edilir.</div>
+      </div>
+      <div class="tl-adim yemek">
+        <div class="tl-nokta">🍽</div>
+        <span class="tl-etiket et-yemek">Yemek Molası</span>
+        <div class="tl-ad">Şavşat İlçesi</div>
+        <div class="tl-aciklama">Şavşat ilçesinde yemek yiyebilirsiniz. Yolun güzel bir dinlenme noktası.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/2JKagoPh6EKoQCsh7" target="_blank" rel="noopener">📍 Şavşat Yemek <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim yemek">
+        <div class="tl-nokta">🌽</div>
+        <span class="tl-etiket et-yemek">Yerel Lezzet</span>
+        <div class="tl-ad">Soğuksu Mevkii — Közde Mısır & Çay</div>
+        <div class="tl-aciklama">Şavşat-Artvin arasında Soğuksu mevkiinde, yaz döneminde su ve közde pişmiş mısır ile çay tavsiye edilir. Yerel bir keyif.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/ZJMQyriwDHwawPeX9" target="_blank" rel="noopener">📍 Soğuksu Mevkii <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+      <div class="tl-adim baraj">
+        <div class="tl-nokta">🌊</div>
+        <span class="tl-etiket et-baraj">Seyir</span>
+        <div class="tl-ad">Deriner Baraj Gölü Seyir Terası</div>
+        <div class="tl-aciklama">Deriner baraj gölünü seyir terasından izlemeniz tavsiye edilir. Muhteşem bir manzara.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/bmUDNddGwUJLP4yUA" target="_blank" rel="noopener">📍 Seyir Terası <span class="ac-ibare">›Aç</span></a>
+          <a class="mini-btn ic" href="blog22.html" target="_blank" rel="noopener">📖 Barajlar Yazısı</a>
+        </div>
+      </div>
+      <div class="tl-adim varis">
+        <div class="tl-nokta">🏁</div>
+        <div class="tl-ad">Varış: Artvin Otogar</div>
+        <div class="tl-aciklama">Yolculuk otogarda sona erer. İlçelere geçiş için dolmuş rehberini kullanın.</div>
+        <div class="tl-linkler">
+          <a class="mini-btn konum" href="https://maps.app.goo.gl/hRUBbhW6SX1Sceqj7" target="_blank" rel="noopener">📍 Artvin Otogar <span class="ac-ibare">›Aç</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rakim-uyari">
+      ⛰️ <strong>Rakım Uyarısı:</strong> Kars-Artvin yolculuğu 2000 rakımdan 200 rakıma inen bir güzergâh içerir. Basınç farkından dolayı baş ağrısı ve uyum sorunları yaşanabilir. Su için, sakız çiğneyin.
+    </div>
+  </div>
+
+  <!-- Alt rehberler -->
+  <h2 class="blok">🧭 Artvin Ulaşım Rehberlerine Göz At</h2>
+  <div class="rehber-grid">
+    <a class="rehber-kart" href="otobus.html">
+      <span class="ik">🚌</span>
+      <span class="ya">Otobüs Rehberi</span>
+    </a>
+    <a class="rehber-kart" href="dolmus.html">
+      <span class="ik">🚐</span>
+      <span class="ya">Dolmuş Rehberi</span>
+    </a>
+    <a class="rehber-kart" href="havas.html">
+      <span class="ik">✈️</span>
+      <span class="ya">Havaş Saatleri</span>
+    </a>
+    <a class="rehber-kart" href="taksi.html">
+      <span class="ik">🚕</span>
+      <span class="ya">Taksi Rehberi</span>
+    </a>
+    <a class="rehber-kart vardim" href="gezi.html">
+      <span class="ik">🧳</span>
+      <span class="ya">Artvin'e Vardım, Şimdi Ne Yapacağım?</span>
+    </a>
+  </div>
+
+  <!-- Taksi + WhatsApp serit (rehberlerin altinda) -->
+  <div class="iletisim-serit">
+    <div class="serit-kutu serit-taksi">
+      <div class="baslik">🚕 Artvin'de taksiye ihtiyacınız mı var?</div>
+      <div class="no"><a href="tel:05372647608">0537 264 76 08</a></div>
+      <a class="serit-btn" href="tel:05372647608">📞 Ara</a>
+    </div>
+    <div class="serit-kutu serit-wp">
+      <div class="baslik">💬 Sorularınız için WhatsApp</div>
+      <div class="no"><a href="https://wa.me/905434290908" target="_blank" rel="noopener">0543 429 09 08</a></div>
+      <a class="serit-btn" href="https://wa.me/905434290908" target="_blank" rel="noopener">💬 Mesaj Gönder</a>
+    </div>
+  </div>
+
+  <!-- Yorum alani -->
+  <div class="yorum-alani">
+    <div class="yorum-baslik">💬 Yorumlar & Deneyimler</div>
+    <p style="font-size:14px;color:#666;margin-bottom:14px">Bu rotalardan birini kullandınız mı? Deneyiminizi paylaşın, diğer yolculara yardımcı olun.</p>
+    <div class="yorum-form">
+      <input type="text" id="y-ad" placeholder="Adınız" maxlength="40">
+      <textarea id="y-metin" placeholder="Yorumunuz veya deneyiminiz..." maxlength="600"></textarea>
+      <button class="yorum-gonder" onclick="yorumEkle()">Yorum Gönder</button>
+    </div>
+    <div class="yorum-liste" id="yorum-liste">
+      <div class="yorum-bos" id="yorum-bos">Henüz yorum yok. İlk yorumu siz yapın!</div>
+    </div>
+  </div>
+
+  <h2 class="blok">Sıkça Sorulan Sorular</h2>
+  <div class="faq-item"><h3>Artvin'e en yakın havalimanı hangisi?</h3><p>Rize-Artvin Havalimanı, yaklaşık 115 km ile en yakın havalimanıdır ve Havaş servisi vardır. Rize'nin Pazar ilçesinde, Artvin il sınırları dışında yer alır.</p></div>
+  <div class="faq-item"><h3>Rize-Artvin Havalimanı Artvin'de mi?</h3><p>Hayır. İsminde "Artvin" geçse de havalimanı Rize'nin Pazar ilçesindedir, Artvin il sınırları içinde değildir. Artvin merkeze yaklaşık 115 km mesafededir.</p></div>
+  <div class="faq-item"><h3>Rize-Artvin Havalimanı'ndan Artvin'e ne kadar sürede gidilir?</h3><p>Özel araçla yaklaşık 1.5 saat, Havaş veya otobüsle yaklaşık 2.5 saat sürer. Rota Hopa-Borçka hattından geçer.</p></div>
+  <div class="faq-item"><h3>Erzurum'dan Artvin'e nasıl gidilir?</h3><p>Erzurum-Yusufeli hattından gidilir. Özel araçla ~2.5-3 saat, otobüsle ~3-3.5 saat sürer. Yeşil Artvin Ekspres günde 4-5 sefer düzenler.</p></div>
+  <div class="faq-item"><h3>Erzurum-Artvin yolunda görülecek yerler neler?</h3><p>Tortum Gölü, Tortum Şelalesi, seyir terası ve cağ döner durakları öne çıkar. Ayrıca Yusufeli, Artvin ve Deriner barajları güzergâh üzerindedir.</p></div>
+  <div class="faq-item"><h3>Kars'tan Artvin'e nasıl gidilir?</h3><p>Kars-Ardahan-Şavşat hattından gidilir. Özel araçla ~3 saat, otobüsle ~3.5-4 saat sürer. Havaş servisi yoktur; havalimanı otobüsü veya taksiyle otogara gidilir.</p></div>
+  <div class="faq-item"><h3>Kars-Artvin yolunda nereler görülür?</h3><p>Ardahan çevre yolundan Şavşat'a inerken Sahara Dağı ve Kocabey Köyü fotoğraf için idealdir. Soğuksu mevkiinde közde mısır ve çay molası tavsiye edilir.</p></div>
+  <div class="faq-item"><h3>Erzurum-Artvin yolunda baraj görünür mü?</h3><p>Yusufeli ve Artvin barajları tünel içinden geçildiği için yoldan görünmez. Ancak Deriner Barajı her iki taraftan da görülebilir.</p></div>
+  <div class="faq-item"><h3>Artvin yollarında tünel var mı?</h3><p>Evet, özellikle Uzundere-Artvin arasında 50'den fazla tünel bulunur. Tüneller gidiş-gelişli olduğu için kendi aracıyla gelenlerin dikkatli olması gerekir.</p></div>
+  <div class="faq-item"><h3>Artvin yolculuğunda baş ağrısı olur mu?</h3><p>Erzurum ve Kars güzergâhları 2000 rakımdan 200 rakıma iner. Basınç farkından baş ağrısı, kulak tıkanması olabilir. Su içmek ve sakız çiğnemek yardımcı olur.</p></div>
+  <div class="faq-item"><h3>Artvin'e uçak bileti hangi havalimanına alınır?</h3><p>En yakını için "Rize-Artvin Havalimanı" aratın. Alternatif olarak Erzurum veya Kars havalimanları da kullanılabilir.</p></div>
+  <div class="faq-item"><h3>Kars'ta Havaş var mı?</h3><p>Hayır, Kars'ta Artvin'e Havaş servisi yoktur. Havalimanı otobüsü veya ticari taksi ile otogara gidip Yeşil Artvin Ekspres otobüsüne binebilirsiniz.</p></div>
+  <div class="faq-item"><h3>Artvin havalimanı transferi nasıl yapılır?</h3><p>Rize-Artvin Havalimanı'ndan Havaş servisiyle; Erzurum ve Kars'tan ise otobüs (Yeşil Artvin Ekspres) veya taksiyle transfer yapılır.</p></div>
+  <div class="faq-item"><h3>Artvin'e giderken nerede yemek yenir?</h3><p>Erzurum hattında cağ döner durakları, Kars hattında Şavşat ve Soğuksu közde mısır, Rize hattında Hopa öne çıkar.</p></div>
+
+  <div class="ilgili">
+    <div class="ilgili-baslik">🔗 İlgili Sayfalar</div>
+    <div class="ilgili-liste">
+      <a href="havas.html">Artvin Havaş Saatleri & Rehberi</a>
+      <a href="otobus.html">Artvin Otobüs Rehberi</a>
+      <a href="dolmus.html">Artvin İlçe Dolmuşları</a>
+      <a href="blog22.html">Artvin Barajları: Çoruh Enerji Yolu</a>
+      <a href="artvin-nasil-gidilir.html">Artvin'e Nasıl Gidilir? (Genel Rehber)</a>
+      <a href="artvin-mesafe.html">Artvin Mesafe Hesaplama</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Artvin Rehber · artvinrehber.com
+</footer>
+
+<script>
+function rotaGoster(rota, btn){
+  var btns = document.querySelectorAll('.hl-btn');
+  for(var i=0;i<btns.length;i++){ btns[i].classList.remove('aktif'); }
+  btn.classList.add('aktif');
+  var govdeler = document.querySelectorAll('.rota-govde');
+  for(var j=0;j<govdeler.length;j++){ govdeler[j].classList.remove('acik'); }
+  var hedef = document.getElementById('rota-'+rota);
+  if(hedef){
+    hedef.classList.add('acik');
+    setTimeout(function(){ hedef.scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+  }
+}
+// Yorum sistemi (tarayici hafizasi yok, sadece oturum ici gosterim)
+var yorumlar = [];
+function yorumEkle(){
+  var ad = document.getElementById('y-ad').value.trim();
+  var metin = document.getElementById('y-metin').value.trim();
+  if(!ad || !metin){ alert('Lutfen adinizi ve yorumunuzu yazin.'); return; }
+  var bugun = new Date();
+  var tarih = bugun.getDate()+'.'+(bugun.getMonth()+1)+'.'+bugun.getFullYear();
+  yorumlar.unshift({ad:ad, metin:metin, tarih:tarih});
+  document.getElementById('y-ad').value='';
+  document.getElementById('y-metin').value='';
+  yorumGoster();
+}
+function yorumGoster(){
+  var liste = document.getElementById('yorum-liste');
+  if(yorumlar.length===0){ return; }
+  var html='';
+  for(var i=0;i<yorumlar.length;i++){
+    var y=yorumlar[i];
+    var adEsc=y.ad.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var metinEsc=y.metin.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    html += '<div class="yorum-item"><span class="ad">'+adEsc+'</span><span class="tar">'+y.tarih+'</span><div class="metin">'+metinEsc+'</div></div>';
+  }
+  liste.innerHTML=html;
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Artvin'e Havalimanından Nasıl Gidilir? İnteraktif Rota Rehberi",
+  "datePublished":"2026-07-06",
+  "dateModified":"2026-07-06",
+  "author":{"@type":"Organization","name":"Artvin Rehber"},
+  "publisher":{"@type":"Organization","name":"Artvin Rehber"},
+  "image":"https://i.ibb.co/SDJJxrLd/file-0000000026f472439a7841e916602d13.png",
+  "mainEntityOfPage":"https://artvinrehber.com/artvin-havalimanlari.html"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Artvin'e en yakın havalimanı hangisi?","acceptedAnswer":{"@type":"Answer","text":"Rize-Artvin Havalimanı, yaklaşık 115 km ile en yakın havalimanıdır ve Havaş servisi vardır. Rize'nin Pazar ilçesinde, Artvin il sınırları dışında yer alır."}},
+    {"@type":"Question","name":"Rize-Artvin Havalimanı Artvin'de mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. İsminde Artvin geçse de havalimanı Rize'nin Pazar ilçesindedir. Artvin merkeze yaklaşık 115 km mesafededir."}},
+    {"@type":"Question","name":"Rize-Artvin Havalimanı'ndan Artvin'e ne kadar sürede gidilir?","acceptedAnswer":{"@type":"Answer","text":"Özel araçla yaklaşık 1.5 saat, Havaş veya otobüsle yaklaşık 2.5 saat sürer. Rota Hopa-Borçka hattından geçer."}},
+    {"@type":"Question","name":"Erzurum'dan Artvin'e nasıl gidilir?","acceptedAnswer":{"@type":"Answer","text":"Erzurum-Yusufeli hattından gidilir. Özel araçla 2.5-3 saat, otobüsle 3-3.5 saat sürer. Yeşil Artvin Ekspres günde 4-5 sefer düzenler."}},
+    {"@type":"Question","name":"Erzurum-Artvin yolunda görülecek yerler neler?","acceptedAnswer":{"@type":"Answer","text":"Tortum Gölü, Tortum Şelalesi, seyir terası ve cağ döner durakları öne çıkar. Ayrıca Yusufeli, Artvin ve Deriner barajları güzergâh üzerindedir."}},
+    {"@type":"Question","name":"Kars'tan Artvin'e nasıl gidilir?","acceptedAnswer":{"@type":"Answer","text":"Kars-Ardahan-Şavşat hattından gidilir. Özel araçla 3 saat, otobüsle 3.5-4 saat sürer. Havaş servisi yoktur."}},
+    {"@type":"Question","name":"Kars-Artvin yolunda nereler görülür?","acceptedAnswer":{"@type":"Answer","text":"Ardahan çevre yolundan Şavşat'a inerken Sahara Dağı ve Kocabey Köyü fotoğraf için idealdir. Soğuksu mevkiinde közde mısır ve çay molası tavsiye edilir."}},
+    {"@type":"Question","name":"Erzurum-Artvin yolunda baraj görünür mü?","acceptedAnswer":{"@type":"Answer","text":"Yusufeli ve Artvin barajları tünel içinden geçildiği için yoldan görünmez. Ancak Deriner Barajı her iki taraftan da görülebilir."}},
+    {"@type":"Question","name":"Artvin yollarında tünel var mı?","acceptedAnswer":{"@type":"Answer","text":"Evet, özellikle Uzundere-Artvin arasında 50'den fazla tünel bulunur. Tüneller gidiş-gelişli olduğu için dikkatli olunmalıdır."}},
+    {"@type":"Question","name":"Artvin yolculuğunda baş ağrısı olur mu?","acceptedAnswer":{"@type":"Answer","text":"Erzurum ve Kars güzergâhları 2000 rakımdan 200 rakıma iner. Basınç farkından baş ağrısı olabilir. Su içmek ve sakız çiğnemek yardımcı olur."}},
+    {"@type":"Question","name":"Kars'ta Havaş var mı?","acceptedAnswer":{"@type":"Answer","text":"Hayır, Kars'ta Artvin'e Havaş servisi yoktur. Havalimanı otobüsü veya taksi ile otogara gidip Yeşil Artvin Ekspres otobüsüne binebilirsiniz."}}
+  ]
+}
+</script>
+
+</body>
+</html>
