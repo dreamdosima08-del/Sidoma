@@ -111,6 +111,18 @@ body{background:var(--bg);color:var(--off);font-family:'Nunito',sans-serif;min-h
 .ist-lbl{font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
 footer{border-top:1px solid var(--border);padding:1.5rem 1.25rem;text-align:center;font-size:.7rem;color:rgba(255,255,255,.3);margin-top:2rem}
 footer a{color:var(--vivid);text-decoration:none}
+
+/* Otel kart butonlari - yeni */
+.otel-butonlar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.otel-btn{display:inline-flex;align-items:center;gap:5px;font-size:.8rem;font-weight:700;text-decoration:none;padding:9px 15px;border-radius:22px;transition:all .15s;border:1.5px solid transparent}
+.otel-btn-maps{background:#c0392b;color:#fff}
+.otel-btn-maps:hover{background:#a93226;transform:translateY(-2px)}
+.otel-btn-google{background:rgba(240,192,64,.12);color:#f0c040;border-color:rgba(240,192,64,.4)}
+.otel-btn-google:hover{background:#f0c040;color:#0a1a12;transform:translateY(-2px)}
+.otel-btn-tel{background:rgba(61,219,138,.12);color:#3ddb8a;border-color:rgba(61,219,138,.4)}
+.otel-btn-tel:hover{background:#3ddb8a;color:#0a1a12;transform:translateY(-2px)}
+.otel-item{transition:all .2s;cursor:default}
+.otel-item:hover{border-color:rgba(240,192,64,.3)!important;transform:translateY(-1px)}
 </style><script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -253,6 +265,14 @@ footer a{color:var(--vivid);text-decoration:none}
   </div>
 </section>
 
+
+<!-- ILGILI SAYFALAR (ic linkleme) -->
+<div style="max-width:600px;margin:2rem auto;padding:1.5rem 1.1rem;border-top:1px solid rgba(255,255,255,.08);">
+  <div style="font-size:1rem;font-weight:800;color:#f0c040;margin-bottom:.85rem;">🔗 İlgili Sayfalar</div>
+  <div style="display:flex;flex-wrap:wrap;gap:.55rem;">
+    <a href="artvin-misafirhane.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🛏️ Misafirhaneler</a><a href="gezi.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🗺️ Gezilecek Yerler</a><a href="havas.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">✈️ Havalimanı Servisi</a><a href="otobus.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🚌 Otobüs Rehberi</a><a href="artvin-nasil-gidilir.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🚗 Nasıl Gidilir</a>
+  </div>
+</div>
 <footer>
   <div class="w">
     <a href="/">artvinrehber.com</a> &nbsp;·&nbsp; Artvin Şehir Rehberi &nbsp;·&nbsp;
@@ -404,18 +424,22 @@ function yildizHtml(n){
 
 function otelKart(o){
   var tip = TIP_ETIKET[o.tip] || {lbl:'Tesis', cls:'tip-otel'};
-  var tel = o.tel ? '<a class="otel-tel" href="tel:' + o.tel.replace(/[^0-9+]/g,'') + '" onclick="event.stopPropagation()">📞 ' + o.tel + '</a>' : '';
   var yildizSpan = o.yildiz ? '<span class="otel-yildiz">' + yildizHtml(o.yildiz) + '</span>' : '';
+  // Otel adi + ilce ile otomatik arama sorgusu olustur
+  var sorgu = encodeURIComponent(o.ad + ' Artvin ' + (o.adres || ''));
+  var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + sorgu;
+  var googleUrl = 'https://www.google.com/search?q=' + sorgu;
+  var tel = o.tel ? '<a class="otel-btn otel-btn-tel" href="tel:' + o.tel.replace(/[^0-9+]/g,'') + '" onclick="event.stopPropagation()">📞 Ara</a>' : '';
+  var mapsBtn = '<a class="otel-btn otel-btn-maps" href="' + mapsUrl + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">📍 Haritada Gör</a>';
+  var googleBtn = '<a class="otel-btn otel-btn-google" href="' + googleUrl + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">🔍 İncele</a>';
   return '<div class="otel-item">'
-    + '<div class="otel-sol">'
     + '<div class="otel-ust">'
     + '<span class="otel-ad">' + o.ad + '</span>'
     + yildizSpan
     + '<span class="otel-tip ' + tip.cls + '">' + tip.lbl + '</span>'
     + '</div>'
     + '<div class="otel-adres">📍 ' + o.adres + '</div>'
-    + '</div>'
-    + '<div class="otel-sag">' + tel + '</div>'
+    + '<div class="otel-butonlar">' + mapsBtn + googleBtn + tel + '</div>'
     + '</div>';
 }
 
