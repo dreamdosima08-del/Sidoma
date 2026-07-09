@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Artvin Dolmuş Durakları & Fiyatları 2026 — İlçeler Arası</title>
 <meta name="description" content="Artvin dolmuş durakları ve fiyatları 2026. Artvin-Hopa 280₺, Borçka 170₺, Şavşat 280₺, Yusufeli 300₺. Durak adresleri, telefon ve güzergah sorgulama.">
-<meta name="keywords" content="artvin dolmuş fiyatları 2026, artvin borçka dolmuş kaç TL, artvin hopa dolmuş ücreti, artvin şavşat dolmuş fiyatı, artvin yusufeli dolmuş, artvin ardanuç dolmuş, artvin dolmuş durağı, artvin minibüs kooperatifi, artvin ilçeler arası dolmuş">
+<meta name="keywords" content="artvin dolmuş fiyatları 2026, artvin borçka dolmuş kaç TL, artvin hopa dolmuş ücreti, artvin şavşat dolmuş fiyatı, artvin yusufeli dolmuş, artvin ardanuç dolmuş, artvin dolmuş durağı, artvin minibüs kooperatifi, artvin ilçeler arası dolmuş, artvin dolmuş durağı nerede, artvin dolmuş durak konumu, borçka dolmuş durağı nerede, hopa dolmuş durağı konum, şavşat dolmuş nereden kalkıyor, yusufeli dolmuş durağı, ardanuç dolmuş durağı nerede, murgul dolmuş durağı, sarp hopa dolmuş, arhavi hopa dolmuş durağı, artvin dolmuş telefon numarası, artvin dolmuş kaçta kalkıyor, artvin dolmuş saatleri belli mi, artvin ilçeler arası dolmuş, artvin terminal dolmuş durağı, artrium dolmuş durağı, borçka terminali dolmuş, artvin dolmuş bekleme süresi, artvin dolmuş nasıl bulunur, artvin köy dolmuşu, artvin dolmuş kooperatifi telefon, kemalpaşa dolmuş durağı, artvin dolmuş haritası">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://artvinrehber.com/dolmus.html">
 <meta property="og:type" content="website">
@@ -160,6 +160,174 @@ footer a{color:var(--yesil-b);text-decoration:none;}
 .gz-durak-btns{display:flex;gap:.4rem;}
 .gz-ara{flex:1;display:flex;align-items:center;justify-content:center;gap:.3rem;background:var(--yesil);color:#fff;border-radius:8px;padding:.55rem;text-decoration:none;font-size:.75rem;font-weight:700;}
 .gz-rezerv{flex:1;display:flex;align-items:center;justify-content:center;gap:.3rem;background:var(--white);color:var(--yesil);border:1.5px solid var(--yesil-b);border-radius:8px;padding:.55rem;text-decoration:none;font-size:.75rem;font-weight:700;}
+
+/* ===== DURAK FOTOGRAFLARI — tek ebat + karartma + filigran ===== */
+.durak-foto-kutu{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;          /* hepsi ayni ebat */
+  border-radius:12px;
+  overflow:hidden;
+  margin-bottom:.75rem;
+  background:#e8f0e8;
+}
+.durak-foto-kutu img{
+  width:100%;
+  height:100%;
+  object-fit:cover;           /* tasmadan doldur */
+  display:block;
+  filter:brightness(.86) saturate(1.05);  /* hafif karartma */
+  transition:transform .35s ease, filter .35s ease;
+}
+.durak-foto-kutu:hover img{
+  transform:scale(1.03);
+  filter:brightness(.94) saturate(1.08);
+}
+/* Ust karartma gradyani - yazi okunsun */
+.durak-foto-kutu::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.06) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,.28) 100%);
+  pointer-events:none;z-index:1;
+}
+/* Filigran */
+.durak-foto-kutu::after{
+  content:'Artvin Rehber';
+  position:absolute;
+  right:10px;bottom:8px;
+  font-size:.6rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:rgba(255,255,255,.72);
+  text-shadow:0 1px 4px rgba(0,0,0,.55);
+  pointer-events:none;z-index:2;
+  font-family:'Inter',sans-serif;
+}
+
+/* ===== IMKAN ETIKETLERI ===== */
+.imkan-satir{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  margin:.65rem 0 .2rem;
+}
+.imkan-etk{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.66rem;font-weight:600;
+  background:var(--yesil-a);
+  border:1px solid var(--yesil-b);
+  color:#15803d;
+  padding:.3rem .6rem;
+  border-radius:20px;
+  white-space:nowrap;
+}
+.imkan-etk .ik{font-size:.78rem;line-height:1}
+
+/* ===== KONUM BUTONU ===== */
+.durak-konum-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
+  width:100%;
+  font-size:.72rem;font-weight:700;
+  background:var(--mavi);color:#fff;
+  border:none;border-radius:10px;
+  padding:.6rem .8rem;
+  text-decoration:none;
+  margin-top:.5rem;
+  transition:.15s;
+}
+.durak-konum-btn:hover{background:#1d4ed8;transform:translateY(-1px)}
+
+/* Tam durak karti */
+.tam-durak-kart{
+  background:var(--kart);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:.9rem;
+  margin-bottom:1rem;
+}
+.tam-durak-kart.artvin-merkez{
+  border-color:var(--yesil-b);
+  background:linear-gradient(180deg, var(--yesil-a) 0%, var(--kart) 30%);
+}
+.tdk-isim{font-size:.92rem;font-weight:800;color:var(--koyu);margin-bottom:.2rem}
+.tdk-adres{font-size:.7rem;color:var(--dim);margin-bottom:.15rem}
+.tdk-hatlar{font-size:.66rem;color:var(--soluk);margin-bottom:.5rem}
+.tdk-rozet{
+  display:inline-block;font-size:.58rem;font-weight:800;
+  background:var(--yesil);color:#fff;
+  padding:.15rem .5rem;border-radius:10px;
+  letter-spacing:.05em;margin-left:.4rem;vertical-align:middle;
+}
+
+/* ===== DURAK FOTOGRAFLARI (tek ebat + karartma + filigran) ===== */
+.dk-foto{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:.7rem;
+  background:rgba(0,0,0,.25);
+}
+.dk-foto img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  filter:brightness(.88);
+  transition:transform .35s ease, filter .25s ease;
+}
+.dk-foto:hover img{transform:scale(1.04);filter:brightness(.95)}
+/* Ust gradyan (yazi okunurlugu) */
+.dk-foto::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.12) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,.30) 100%);
+  pointer-events:none;z-index:1;
+}
+/* Filigran */
+.dk-foto::after{
+  content:"Artvin Rehber";
+  position:absolute;right:.6rem;bottom:.5rem;z-index:2;
+  font-size:.58rem;font-weight:700;letter-spacing:.06em;
+  color:rgba(255,255,255,.72);
+  text-shadow:0 1px 4px rgba(0,0,0,.75);
+  pointer-events:none;
+}
+
+/* ===== IMKAN ETIKETLERI ===== */
+.dk-imkan{
+  display:flex;flex-wrap:wrap;gap:.32rem;
+  margin:.55rem 0 .6rem;
+}
+.imk{
+  display:inline-flex;align-items:center;gap:.22rem;
+  font-size:.6rem;font-weight:600;
+  padding:.24rem .52rem;border-radius:20px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.72);
+  white-space:nowrap;
+}
+.imk-cay{background:rgba(217,119,6,.12);border-color:rgba(217,119,6,.28);color:#fbbf24}
+.imk-yemek{background:rgba(220,38,38,.1);border-color:rgba(220,38,38,.25);color:#f87171}
+.imk-corba{background:rgba(234,88,12,.1);border-color:rgba(234,88,12,.25);color:#fb923c}
+.imk-aparatif{background:rgba(101,163,13,.1);border-color:rgba(101,163,13,.25);color:#a3e635}
+.imk-bankamatik{background:rgba(37,99,235,.1);border-color:rgba(37,99,235,.25);color:#60a5fa}
+.imk-kapali{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.25);color:#a78bfa}
+.imk-alisveris{background:rgba(8,145,178,.1);border-color:rgba(8,145,178,.25);color:#22d3ee}
+
+/* ===== KONUM BUTONU ===== */
+.dk-konum{
+  display:flex;align-items:center;justify-content:center;gap:.35rem;
+  width:100%;
+  font-size:.7rem;font-weight:700;
+  text-decoration:none;
+  padding:.6rem .8rem;
+  margin-top:.45rem;
+  border-radius:9px;
+  background:rgba(37,99,235,.12);
+  border:1px solid rgba(37,99,235,.32);
+  color:#60a5fa;
+  transition:all .16s;
+}
+.dk-konum:hover{background:#2563eb;color:#fff;transform:translateY(-1px)}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
@@ -199,11 +367,11 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   <div style="display:flex;align-items:center;gap:.5rem;">
     <span style="font-size:.9rem;">✅</span>
     <div>
-      <div style="font-size:.7rem;font-weight:800;color:#fff;letter-spacing:.04em;">Güncel Bilgi — Mayıs 2026</div>
+      <div style="font-size:.7rem;font-weight:800;color:#fff;letter-spacing:.04em;">Güncel Bilgi — Temmuz 2026</div>
       <div style="font-size:.6rem;color:rgba(255,255,255,.6);">Tarifeler kooperatif tarafından doğrulandı</div>
     </div>
   </div>
-  <div style="font-size:.62rem;color:rgba(255,255,255,.5);">Son güncelleme:<br>2026-05-11</div>
+  <div style="font-size:.62rem;color:rgba(255,255,255,.5);">Son güncelleme:<br>2026-07-10</div>
 </div>
 
 <!-- GÜZERGAH SORGULAMA MODÜLÜ -->
@@ -299,96 +467,138 @@ footer a{color:var(--yesil-b);text-decoration:none;}
 <div style="padding:0 1.25rem .35rem;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--yesil);">📍 Artvin Merkez Kalkışlı</div>
 <div class="durak-grid">
   <div class="dkart dkart-yesil">
+    <div class="dk-foto"><img src="https://i.ibb.co/Nd0HZKYd/MG-20260709-WA0012.jpg" alt="Artvin Merkez Durak 1 - ilceler arasi dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-yesil">Artvin</span><span class="dk-yon">→ Hopa · Arhavi · Şavşat · Yusufeli · Murgul</span></div>
     <div class="dk-isim">Artvin İlçeler Arası Dolmuş Durağı</div>
     <div class="dk-adres">📍 Erzurum Caddesi No:9, Artvin</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-yemek">🍽️ Yemek & Kahvaltı</span><span class="imk imk-bankamatik">🏧 Bankamatik 300m</span></div>
     <a class="dk-tel" href="tel:04662122236">📞 0466 212 22 36</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/t3yCrPd9uQ1xtHZy6" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-yesil">
+    <div class="dk-foto"><img src="https://i.ibb.co/kVKfVW5k/1783596269660.png" alt="Artvin Merkez Durak 2 - Artrium alt viraj dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-yesil">Artvin</span><span class="dk-yon">→ Borçka · Ardanuç · Murgul</span></div>
     <div class="dk-isim">Artvin İlçeler Arası Dolmuş Durağı</div>
     <div class="dk-adres">📍 Artrium AVM Alt Virajı, Artvin</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-aparatif">🥪 Aparatif</span><span class="imk imk-kapali">🏠 Kapalı Alan</span><span class="imk imk-bankamatik">🏧 Bankamatik 300m</span></div>
     <a class="dk-tel" href="tel:04662122240">📞 0466 212 22 40</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/dmyK4eYJA7hQ5xRLA" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
 </div>
 
 <div style="padding:0 1.25rem .35rem;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--turuncu);">🏔️ İlçe Kalkışlı Duraklar</div>
 <div class="durak-grid">
   <div class="dkart dkart-turuncu">
+    <div class="dk-foto"><img src="https://i.ibb.co/cSnhHm0Y/Screenshot-2026-07-09-14-45-34-765-com-google-android-apps-maps-edit.jpg" alt="Borcka Terminali - Artvin dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-turuncu">Borçka</span><span class="dk-yon">→ Artvin</span></div>
     <div class="dk-isim">Borçka → Artvin Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Borçka</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-corba">🍲 Çorba</span><span class="imk imk-aparatif">🥪 Aparatif</span></div>
     <a class="dk-tel" href="tel:04664153353">📞 0466 415 33 53</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/Doyfy8VnYBuSPBch7" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-turuncu">
+    <div class="dk-foto"><img src="https://i.ibb.co/8gk3mJ4B/Screenshot-2026-07-09-14-45-34-765-com-google-android-apps-maps-edit.jpg" alt="Borcka - Murgul dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-turuncu">Borçka</span><span class="dk-yon">→ Murgul</span></div>
     <div class="dk-isim">Borçka → Murgul Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Borçka</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-alisveris">🛍️ Alışveriş</span></div>
     <a class="dk-tel" href="tel:04664153353">📞 0466 415 33 53</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/fC3hfwQnfiK1FVTG6" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-turuncu">
+    <div class="dk-foto"><img src="https://i.ibb.co/G4TFQ992/MG-20260709-145908.jpg" alt="Borcka - Hopa ve Arhavi dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-turuncu">Borçka</span><span class="dk-yon">→ Hopa · Arhavi</span></div>
     <div class="dk-isim">Borçka → Hopa & Arhavi Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Borçka</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-alisveris">🛍️ Alışveriş</span></div>
     <a class="dk-tel" href="tel:04664153156">📞 0466 415 31 56</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/rt2zALXqfJtzGyCTA" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-mor">
+    <div class="dk-foto"><img src="https://i.ibb.co/TBfC5kg4/MG-20260709-150954.png" alt="Ardanuc - Artvin dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-mor">Ardanuç</span><span class="dk-yon">→ Artvin</span></div>
     <div class="dk-isim">Ardanuç → Artvin Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Ardanuç</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-alisveris">🛍️ Alışveriş</span></div>
     <a class="dk-tel" href="tel:04666113435">📞 0466 611 34 35</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/cQ3FKyEurcV4C3zb9" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-mavi">
+    <div class="dk-foto"><img src="https://i.ibb.co/3yvqYntG/Screenshot-2026-07-09-15-12-59-113-com-google-android-apps-maps-edit.jpg" alt="Savsat - Artvin dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-mavi">Şavşat</span><span class="dk-yon">→ Artvin</span></div>
     <div class="dk-isim">Şavşat → Artvin Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Şavşat</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-alisveris">🛍️ Alışveriş</span><span class="imk imk-kapali">🏠 Kapalı Alan</span></div>
     <a class="dk-tel" href="tel:04665171250">📞 0466 517 12 50</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/ABZAZ2SrgNjNKC517" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-mavi">
+    <div class="dk-foto"><img src="https://i.ibb.co/t6r6JDq/1783603193949.png" alt="Yusufeli - Artvin dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-mavi">Yusufeli</span><span class="dk-yon">→ Artvin</span></div>
     <div class="dk-isim">Yusufeli → Artvin Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Yusufeli</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-aparatif">🥪 Aparatif</span></div>
     <a class="dk-tel" href="tel:04662122474">📞 0466 212 24 74</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/Z9SSzNjonAKqjusb9" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-turuncu">
+    <div class="dk-foto"><img src="https://i.ibb.co/c5Lzqp0/1783600934295.png" alt="Murgul - Borcka dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-turuncu">Murgul</span><span class="dk-yon">→ Borçka</span></div>
     <div class="dk-isim">Murgul → Borçka Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Murgul</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-aparatif">🥪 Aparatif</span></div>
     <a class="dk-tel" href="tel:04667113066">📞 0466 711 30 66</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/vES42fALiduUBHUZA" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
 </div>
 
 <div style="padding:0 1.25rem .35rem;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--deniz);">🌊 Sahil Hattı Durakları</div>
 <div class="durak-grid">
   <div class="dkart dkart-deniz">
+    <div class="dk-foto"><img src="https://i.ibb.co/ycD08zV0/1783603971681.png" alt="Hopa - Artvin dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-deniz">Hopa</span><span class="dk-yon">→ Artvin</span></div>
     <div class="dk-isim">Hopa → Artvin Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Hopa</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-aparatif">🥪 Aparatif</span></div>
     <a class="dk-tel" href="tel:04663516670">📞 0466 351 66 70</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/FqDGkJMT6tQ5sAV47" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-deniz">
+    <div class="dk-foto"><img src="https://i.ibb.co/ycD08zV0/1783603971681.png" alt="Hopa - Kemalpasa ve Sarp dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-deniz">Hopa</span><span class="dk-yon">→ Kemalpaşa · Sarp</span></div>
     <div class="dk-isim">Hopa → Kemalpaşa & Sarp Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Hopa</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-aparatif">🥪 Aparatif</span></div>
     <a class="dk-tel" href="tel:04663515775">📞 0466 351 57 75</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/FqDGkJMT6tQ5sAV47" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-deniz">
+    <div class="dk-foto"><img src="https://i.ibb.co/ZQJRHND/1783603429201.png" alt="Hopa - Arhavi dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-deniz">Hopa</span><span class="dk-yon">→ Arhavi</span></div>
     <div class="dk-isim">Hopa → Arhavi Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Hopa</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-aparatif">🥪 Aparatif</span></div>
     <a class="dk-tel" href="tel:04663516670">📞 0466 351 66 70</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/TrHvLecWMDAZHYCP6" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-deniz">
+    <div class="dk-foto"><img src="https://i.ibb.co/fVp8k1mZ/Screenshot-2026-07-10-00-26-33-204-com-facebook-katana-edit.jpg" alt="Arhavi - Hopa dolmus duragi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-deniz">Arhavi</span><span class="dk-yon">→ Hopa</span></div>
     <div class="dk-isim">Arhavi → Hopa Dolmuş Durağı</div>
     <div class="dk-adres">📍 Kalkış: Arhavi</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span><span class="imk imk-aparatif">🥪 Aparatif</span></div>
     <a class="dk-tel" href="tel:04663126050">📞 0466 312 60 50</a>
+    <a class="dk-konum" href="https://maps.app.goo.gl/bCSJo6npsqeVovyw9" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
   <div class="dkart dkart-sarp">
+    <div class="dk-foto"><img src="https://i.ibb.co/GQ29P2w6/Screenshot-2026-07-09-17-11-43-056-com-google-android-apps-maps-edit.jpg" alt="Sarp - Hopa dolmus duragi, Sarp Sinir Kapisi" loading="lazy" width="640" height="360"></div>
     <div class="dk-ust"><span class="dk-badge badge-sarp">Sarp</span><span class="dk-yon">→ Hopa</span></div>
     <div class="dk-isim">Sarp → Hopa Dolmuş</div>
     <div class="dk-adres">📍 Sarp Camii yanı · Sabit durak yok</div>
-    <div class="dk-tel">⏱️ Her 20 dakikada bir kalkış</div>
+    <div class="dk-imkan"><span class="imk imk-cay">☕ Çay & Kahve</span></div>
+    <div class="dk-tel">⏱️ Sabit kalkış saati bulunmamaktadır</div>
+    <a class="dk-konum" href="https://maps.app.goo.gl/9ZLWTBKHqQV6ajnM6" target="_blank" rel="noopener">📍 Konumu Haritada Aç</a>
   </div>
 </div>
 
@@ -423,7 +633,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   • Fiyatlar 2026 yılı güncel kooperatif tarifesidir<br>
   • Murgul güzergahına Artvin'den günde tek sefer: <b>saat 16:00</b><br>
   • Meydancık seferleri yalnızca yaz sezonunda düzenlenmektedir<br>
-  • Dolmuşlar genel olarak her saat başı hareket eder, yolcu az olduğunda sefer iptali yaşanabilir
+  • Dolmuşlar genellikle saat başı hareket eder, yolcu az olduğunda sefer iptali yaşanabilir
 </div>
 
 <div class="seo-bolum">
@@ -437,7 +647,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   <h3>Artvin'den Dolmuş ile Havalimanına Gidilebilir mi?</h3>
   <p>Artvin'den <a href="/havas.html">Havaş otobüsü</a> ile Rize-Artvin Havalimanı'na ulaşım mümkündür. Alternatif olarak <a href="/taksi.html">Artvin taksi</a> ile havalimanı transferi de tercih edilebilir.</p>
   <h3>Sahil Hattı Dolmuş Seferleri</h3>
-  <p>Hopa, Arhavi ve Sarp arasında sık seferler yapılmaktadır. Sarp'tan Hopa'ya her 20 dakikada bir minibüs kalkmakta olup Sarp Camii yanından biniş yapılmaktadır.</p>
+  <p>Hopa, Arhavi ve Sarp arasında sık seferler yapılmaktadır. Sarp'tan Hopa'ya minibüsler sık aralıklarla kalkar. Biniş noktası Sarp Camii yanıdır; yoğun saatlerde bekleme süresi kısalır.</p>
 </div>
 
 <div class="paylas">
@@ -562,6 +772,17 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   <p style="font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.7">Dağ yollarındaki hava koşulları dolmuş seferlerini doğrudan etkiler. Kış aylarında kar ve buzlanma nedeniyle özellikle Şavşat ve Ardanuç gibi yüksek rakımlı ilçelere giden seferlerde gecikmeler yaşanabilir. Bu nedenle kış döneminde yolculuk planlarken hava durumunu da göz önünde bulundurmak gerekir. Güncel sefer saatleri ve ücretler için ilgili dolmuş kooperatifiyle iletişime geçmeniz en doğru bilgiyi sağlar.</p>
 </div>
 
+
+<div style="max-width:520px;margin:1.5rem auto;padding:1.25rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;font-family:'Inter',sans-serif">
+  <h2 style="font-size:1rem;font-weight:800;color:#f0c040;margin-bottom:1rem">Sıkça Sorulan Sorular</h2>
+  <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Artvin'de dolmuş nereden kalkar?</h3>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Artvin'de ilçelere giden dolmuşlar şehir merkezindeki kooperatif durağından kalkar. Yolcular güzergah üzerindeki duraklardan da binebilir.</p>
+  <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Artvin dolmuş ücretleri ne kadar?</h3>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Dolmuş ücretleri mesafeye göre değişir. Borçka ve Ardanuç gibi yakın ilçeler daha uygunken, Hopa, Şavşat ve Yusufeli için ücret artar. Güncel ücretler sayfada listelenmiştir.</p>
+  <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Kışın dolmuş seferleri çalışır mı?</h3>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Kış aylarında kar ve buzlanma nedeniyle özellikle Şavşat ve Ardanuç gibi yüksek rakımlı ilçelere giden seferlerde gecikmeler yaşanabilir. Yolculuk öncesi hava durumunu kontrol etmek önerilir.</p>
+</div>
+
 <footer>
   <p>© 2026 <a href="/">artvinrehber.com</a> — Artvin Dolmuş Rehberi</p>
   <p><a href="/">Ana Sayfa</a> · <a href="/taksi.html">Artvin Taksi</a> · <a href="/havas.html">Artvin Havaş</a> · <a href="/gizlilik.html">Gizlilik</a></p>
@@ -595,16 +816,31 @@ var VERI = {
 };
 
 var DURAK = {
-  d1:       {isim:'Artvin Durak 1 — Kooperatif', adres:'Erzurum Cad. No:9, Otogar Yanı', tel:'04662122236', fmt:'0466 212 22 36', hatlar:'Hopa · Şavşat · Arhavi · Yusufeli', maps:'https://maps.app.goo.gl/2YY8KSzJF6UTX7JS8'},
-  d2:       {isim:'Artvin Durak 2 — Artrium Alt Viraj', adres:'Artrium AVM Alt Virajı', tel:'04662122240', fmt:'0466 212 22 40', hatlar:'Borçka · Ardanuç · Murgul', maps:'https://maps.app.goo.gl/d24Wvi2kLnL8ekXD8'},
-  hopa:     {isim:'Hopa Dolmuş Durağı', adres:'Hopa Merkez', tel:'04663516670', fmt:'0466 351 66 70', hatlar:'Hopa → Artvin', maps:''},
-  borcka:   {isim:'Borçka Dolmuş Durağı', adres:'Borçka Merkez', tel:'04664153353', fmt:'0466 415 33 53', hatlar:'Borçka → Artvin', maps:''},
-  ardanuc:  {isim:'Ardanuç Dolmuş Durağı', adres:'Ardanuç Merkez', tel:'04666113435', fmt:'0466 611 34 35', hatlar:'Ardanuç → Artvin', maps:''},
-  savsat:   {isim:'Şavşat Dolmuş Durağı', adres:'Şavşat Merkez', tel:'04665171250', fmt:'0466 517 12 50', hatlar:'Şavşat → Artvin', maps:''},
-  arhavi:   {isim:'Arhavi Dolmuş Durağı', adres:'Arhavi Merkez', tel:'04663126050', fmt:'0466 312 60 50', hatlar:'Arhavi → Artvin', maps:''},
-  murgul:   {isim:'Murgul Dolmuş Durağı', adres:'Murgul Merkez', tel:'04667113066', fmt:'0466 711 30 66', hatlar:'Murgul → Artvin', maps:''},
-  yusufeli: {isim:'Yusufeli Dolmuş Durağı', adres:'Yusufeli Merkez', tel:'04662122474', fmt:'0466 212 24 74', hatlar:'Yusufeli → Artvin', maps:''},
-  kemalpasa:{isim:'Kemalpaşa Dolmuş Durağı', adres:'Kemalpaşa Merkez', tel:'04663515775', fmt:'0466 351 57 75', hatlar:'Kemalpaşa → Artvin', maps:''}
+  d1:       {isim:'Artvin Durak 1 — Kooperatif', adres:'Erzurum Cad. No:9, Otogar Yanı', tel:'04662122236', fmt:'0466 212 22 36', hatlar:'Hopa · Şavşat · Arhavi · Yusufeli', maps:'https://maps.app.goo.gl/t3yCrPd9uQ1xtHZy6', foto:'https://i.ibb.co/Nd0HZKYd/MG-20260709-WA0012.jpg', bilgi:['cay','yemek','bankamatik']},
+  d2:       {isim:'Artvin Durak 2 — Artrium Alt Viraj', adres:'Artrium AVM Alt Virajı', tel:'04662122240', fmt:'0466 212 22 40', hatlar:'Borçka · Ardanuç · Murgul', maps:'https://maps.app.goo.gl/dmyK4eYJA7hQ5xRLA', foto:'https://i.ibb.co/kVKfVW5k/1783596269660.png', bilgi:['cay','aparatif','kapali','bankamatik']},
+  borcka:   {isim:'Borçka Dolmuş Durağı — Terminal', adres:'Borçka Terminali', tel:'04664153353', fmt:'0466 415 33 53', hatlar:'Borçka → Artvin', maps:'https://maps.app.goo.gl/Doyfy8VnYBuSPBch7', foto:'https://i.ibb.co/cSnhHm0Y/Screenshot-2026-07-09-14-45-34-765-com-google-android-apps-maps-edit.jpg', bilgi:['cay','corba','aparatif']},
+  borcka_arhavi: {isim:'Borçka — Arhavi / Hopa Durağı', adres:'Borçka Merkez', tel:'04664153353', fmt:'0466 415 33 53', hatlar:'Borçka → Arhavi · Hopa', maps:'https://maps.app.goo.gl/rt2zALXqfJtzGyCTA', foto:'https://i.ibb.co/G4TFQ992/MG-20260709-145908.jpg', bilgi:['cay','alisveris']},
+  borcka_murgul: {isim:'Borçka — Murgul Durağı', adres:'Borçka Merkez', tel:'04664153353', fmt:'0466 415 33 53', hatlar:'Borçka → Murgul', maps:'https://maps.app.goo.gl/fC3hfwQnfiK1FVTG6', foto:'https://i.ibb.co/8gk3mJ4B/Screenshot-2026-07-09-14-45-34-765-com-google-android-apps-maps-edit.jpg', bilgi:['cay','alisveris']},
+  ardanuc:  {isim:'Ardanuç Dolmuş Durağı', adres:'Ardanuç Merkez', tel:'04666113435', fmt:'0466 611 34 35', hatlar:'Ardanuç → Artvin', maps:'https://maps.app.goo.gl/cQ3FKyEurcV4C3zb9', foto:'https://i.ibb.co/TBfC5kg4/MG-20260709-150954.png', bilgi:['cay','alisveris']},
+  savsat:   {isim:'Şavşat Dolmuş Durağı', adres:'Şavşat Merkez', tel:'04665171250', fmt:'0466 517 12 50', hatlar:'Şavşat → Artvin', maps:'https://maps.app.goo.gl/ABZAZ2SrgNjNKC517', foto:'https://i.ibb.co/3yvqYntG/Screenshot-2026-07-09-15-12-59-113-com-google-android-apps-maps-edit.jpg', bilgi:['cay','alisveris','kapali']},
+  yusufeli: {isim:'Yusufeli Dolmuş Durağı', adres:'Yusufeli Merkez', tel:'04662122474', fmt:'0466 212 24 74', hatlar:'Yusufeli → Artvin', maps:'https://maps.app.goo.gl/Z9SSzNjonAKqjusb9', foto:'https://i.ibb.co/t6r6JDq/1783603193949.png', bilgi:['cay','aparatif']},
+  murgul:   {isim:'Murgul Dolmuş Durağı', adres:'Murgul Merkez', tel:'04667113066', fmt:'0466 711 30 66', hatlar:'Murgul → Borçka', maps:'https://maps.app.goo.gl/vES42fALiduUBHUZA', foto:'https://i.ibb.co/c5Lzqp0/1783600934295.png', bilgi:['cay','aparatif']},
+  hopa_arhavi: {isim:'Hopa — Arhavi Durağı', adres:'Hopa Merkez', tel:'04663516670', fmt:'0466 351 66 70', hatlar:'Hopa → Arhavi', maps:'https://maps.app.goo.gl/TrHvLecWMDAZHYCP6', foto:'https://i.ibb.co/ZQJRHND/1783603429201.png', bilgi:['cay','aparatif']},
+  hopa:     {isim:'Hopa — Artvin Durağı', adres:'Hopa Merkez', tel:'04663516670', fmt:'0466 351 66 70', hatlar:'Hopa → Artvin', maps:'https://maps.app.goo.gl/FqDGkJMT6tQ5sAV47', foto:'https://i.ibb.co/ycD08zV0/1783603971681.png', bilgi:['cay','aparatif']},
+  kemalpasa:{isim:'Hopa — Kemalpaşa / Sarp Durağı', adres:'Hopa Merkez', tel:'04663515775', fmt:'0466 351 57 75', hatlar:'Hopa → Kemalpaşa · Sarp', maps:'https://maps.app.goo.gl/FqDGkJMT6tQ5sAV47', foto:'https://i.ibb.co/ycD08zV0/1783603971681.png', bilgi:['cay','aparatif']},
+  sarp:     {isim:'Sarp — Hopa Durağı', adres:'Sarp Sınır Kapısı', tel:'04663515775', fmt:'0466 351 57 75', hatlar:'Sarp → Hopa', maps:'https://maps.app.goo.gl/9ZLWTBKHqQV6ajnM6', foto:'https://i.ibb.co/GQ29P2w6/Screenshot-2026-07-09-17-11-43-056-com-google-android-apps-maps-edit.jpg', bilgi:['cay']},
+  arhavi:   {isim:'Arhavi Dolmuş Durağı', adres:'Arhavi Merkez', tel:'04663126050', fmt:'0466 312 60 50', hatlar:'Arhavi → Artvin', maps:'', foto:'', bilgi:[]}
+};
+
+// Durak imkanlari - standart etiketler
+var IMKAN = {
+  cay:        {ikon:'☕', ad:'Çay & Kahve'},
+  yemek:      {ikon:'🍲', ad:'Çorba & Kahvaltı'},
+  corba:      {ikon:'🍲', ad:'Çorba'},
+  aparatif:   {ikon:'🥪', ad:'Atıştırmalık'},
+  bankamatik: {ikon:'🏧', ad:'Bankamatik ~300m'},
+  kapali:     {ikon:'🏠', ad:'Kapalı Bekleme Alanı'},
+  alisveris:  {ikon:'🛍️', ad:'Alışveriş Yakın'}
 };
 
 var ADLAR = {
