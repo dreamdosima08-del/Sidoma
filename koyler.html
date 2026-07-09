@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Artvin Köyleri 2026 — 323 Köy Tam Liste ve Ansiklopedi</title>
-<meta name="description" content="Artvin ilinin 9 ilçesine bağlı 323 köyün tam listesi 2026. Merkez, Ardanuç, Arhavi, Borçka, Hopa, Şavşat, Yusufeli köyleri alfabetik sıralı rehber.">
-<meta name="keywords" content="artvin köyleri, artvin köy listesi, ardanuç köyleri, arhavi köyleri, borçka köyleri, hopa köyleri, kemalpaşa köyleri, murgul köyleri, şavşat köyleri, yusufeli köyleri">
+<title>Artvin Köyleri: 323 Köy — Nüfus, Rakım, Konum ve Harita</title>
+<meta name="description" content="Artvin\'in 323 köyü tek sayfada: nüfus, rakım, Artvin merkeze uzaklık ve harita. Köyünüzü arayın, konumunu görün — 9 ilçenin tam köy rehberi.">
+<meta name="keywords" content="artvin köyleri, artvin köy listesi, artvin köyleri nüfus, artvin köy rakım, ardanuç köyleri, arhavi köyleri, borçka köyleri, hopa köyleri, kemalpaşa köyleri, murgul köyleri, şavşat köyleri, yusufeli köyleri, artvin merkez köyleri, artvin köy haritası, artvin köy nerede, artvin köyleri yerel adları, artvin köy ansiklopedisi">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://artvinrehber.com/koyler.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Artvin Rehberi">
-<meta property="og:title" content="Artvin Köy Ansiklopedisi 2026 — 323 Köy">
-<meta property="og:description" content="Artvin 9 ilçe 323 köy tam liste, arama ve filtreleme.">
+<meta property="og:title" content="Artvin Köyleri: 323 Köy — Nüfus, Rakım, Konum">
+<meta property="og:description" content="Artvin\'in 323 köyü tek sayfada: nüfus, rakım, uzaklık ve harita. 9 ilçenin tam köy rehberi.">
 <meta property="og:image" content="https://i.ibb.co/0jxv0d38/MG-20260430-172113.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://i.ibb.co/0jxv0d38/MG-20260430-172113.png">
@@ -89,6 +89,82 @@ footer a{color:var(--vivid);text-decoration:none}
 .km-harita{width:100%;height:240px;border:none;border-radius:6px;margin-top:.75rem}
 .koy-etk.detayli{cursor:pointer;border-color:rgba(240,192,64,.3);color:var(--gold)}
 .koy-etk.detayli:hover{background:rgba(240,192,64,.1)}
+
+/* ===== YENI: Koy etiket formatlari ve butonlar ===== */
+.koy-etk{
+  display:inline-flex;align-items:center;gap:.4rem;
+  cursor:pointer;transition:all .18s;
+  border-radius:10px !important;
+}
+.koy-etk:hover{transform:translateY(-2px)}
+/* Detayli koy - altin vurgulu */
+.koy-etk.detayli{
+  background:rgba(240,192,64,.10) !important;
+  border:1px solid rgba(240,192,64,.35) !important;
+  color:#f0c040 !important;
+}
+.koy-etk.detayli:hover{
+  background:rgba(240,192,64,.2) !important;
+  border-color:#f0c040 !important;
+  box-shadow:0 4px 12px rgba(240,192,64,.15);
+}
+.koy-rozet{
+  font-size:.58rem;font-weight:700;letter-spacing:.04em;
+  background:#f0c040;color:#0a1a12;
+  padding:1px 6px;border-radius:8px;text-transform:uppercase;
+}
+/* Basit koy - yesil, konum ikonu */
+.koy-etk.basit{
+  background:rgba(61,219,138,.06) !important;
+  border:1px solid rgba(61,219,138,.18) !important;
+  color:rgba(255,255,255,.75) !important;
+}
+.koy-etk.basit:hover{
+  background:rgba(61,219,138,.15) !important;
+  border-color:rgba(61,219,138,.5) !important;
+  color:#fff !important;
+}
+.koy-rozet-mini{font-size:.7rem;opacity:.65}
+
+/* Modal aksiyon butonlari */
+.km-aksiyon{display:flex;gap:.6rem;margin-top:.9rem;flex-wrap:wrap}
+.km-btn{
+  flex:1;min-width:130px;
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  font-size:.82rem;font-weight:700;text-decoration:none;
+  padding:.75rem 1rem;border-radius:22px;transition:all .15s;
+}
+.km-btn-maps{background:#c0392b;color:#fff;box-shadow:0 2px 10px rgba(192,57,43,.3)}
+.km-btn-maps:hover{background:#a93226;transform:translateY(-2px)}
+.km-btn-google{background:rgba(240,192,64,.12);color:#f0c040;border:1px solid rgba(240,192,64,.4)}
+.km-btn-google:hover{background:#f0c040;color:#0a1a12;transform:translateY(-2px)}
+
+.km-bilgi-yok{
+  font-size:.78rem;color:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:.7rem .9rem;margin:.7rem 0;
+  line-height:1.6;
+}
+.km-katki{
+  font-size:.72rem;color:rgba(255,255,255,.35);
+  margin-top:.9rem;text-align:center;
+}
+.km-katki a{color:#3ddb8a;text-decoration:none;font-weight:600}
+.km-katki a:hover{text-decoration:underline}
+
+/* Aciklama seridi - kullaniciya ne yapacagini soyle */
+.koy-yonerge{
+  display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;padding:.85rem 1rem;margin:1rem 0 1.4rem;
+  font-size:.72rem;
+}
+.ky-item{display:flex;align-items:center;gap:.45rem;color:rgba(255,255,255,.6)}
+.ky-nokta{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+.ky-altin{background:#f0c040}
+.ky-yesil{background:rgba(61,219,138,.5)}
 </style><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">
@@ -102,18 +178,7 @@ footer a{color:var(--vivid);text-decoration:none}
   ]
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "Artvin'de kaç köy var?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin ilinde merkez ve ilçelere bağlı toplam 323 köy bulunmaktadır. Bu köyler 9 ilçeye dağılmış durumdadır."}},
-    {"@type": "Question", "name": "Artvin'in en büyük ilçesi hangisidir?", "acceptedAnswer": {"@type": "Answer", "text": "Yusufeli, yüzölçümü bakımından Artvin'in en büyük ilçelerinden biridir ve çok sayıda köyü barındırır."}},
-    {"@type": "Question", "name": "Artvin köyleri hangi ilçelere bağlı?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin köyleri Merkez, Hopa, Borçka, Arhavi, Şavşat, Yusufeli, Ardanuç, Murgul ve Kemalpaşa ilçelerine bağlıdır."}},
-    {"@type": "Question", "name": "Artvin köylerinin isimleri nasıl öğrenilir?", "acceptedAnswer": {"@type": "Answer", "text": "Bu sayfada Artvin'in tüm köylerinin ilçelere göre düzenlenmiş tam listesini bulabilirsiniz. Köyler alfabetik ve ilçe bazlı olarak listelenmiştir."}}
-  ]
-}
-</script>
+
 
 </head>
 <body>
@@ -150,6 +215,10 @@ footer a{color:var(--vivid);text-decoration:none}
     </select>
     <div class="sonuc-sayisi" id="sonucSayisi">323 köy gösteriliyor</div>
   </div>
+  <div class="koy-yonerge">
+    <div class="ky-item"><span class="ky-nokta ky-altin"></span> Detaylı bilgi (nüfus, rakım, harita)</div>
+    <div class="ky-item"><span class="ky-nokta ky-yesil"></span> Konum &amp; arama bağlantısı</div>
+  </div>
   <div id="koyListesi"></div>
   <div class="bos-mesaj" id="bosMesaj"><div class="bos-ikon">&#127956;&#65039;</div><div>Bu aramaya uygun köy bulunamadı.</div></div>
 </div>
@@ -174,6 +243,14 @@ footer a{color:var(--vivid);text-decoration:none}
   </div>
 </div>
 
+
+<!-- ILGILI SAYFALAR (ic linkleme) -->
+<div style="max-width:600px;margin:2rem auto;padding:1.5rem 1.1rem;border-top:1px solid rgba(255,255,255,.08);">
+  <div style="font-size:1rem;font-weight:800;color:#f0c040;margin-bottom:.85rem;">🔗 İlgili Sayfalar</div>
+  <div style="display:flex;flex-wrap:wrap;gap:.55rem;">
+    <a href="gezi.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🗺️ Gezilecek Yerler</a><a href="artvin-tarihi.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🏛️ Artvin Tarihi</a><a href="oteller.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🏨 Oteller</a><a href="dolmus.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🚐 İlçe Dolmuşları</a><a href="artvin-sehir-bilgileri.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🪪 Şehir Bilgileri</a>
+  </div>
+</div>
 <footer><div class="w"><a href="/">artvinrehber.com</a> &nbsp;·&nbsp; Artvin Şehir Rehberi &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#a5c4d7d1d3cccbd6c0cdccd7d7c0cdc7c0d7cce5c2c8c4ccc98bc6cac8"><span class="__cf_email__" data-cfemail="79180b0d0f10170a1c11100b0b1c111b1c0b10391e14181015571a1614">[email&#160;protected]</span></a></div></footer>
 
 <!-- KÖY MODAL -->
@@ -523,6 +600,28 @@ const KOY_DETAY = {
 };
 
 
+
+// Bilgisi olmayan koyler icin otomatik konum/arama modali
+function koyBasitAc(ad, ilce) {
+  var sorgu = encodeURIComponent(ad + ' Koyu ' + ilce + ' Artvin');
+  var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + sorgu;
+  var googleUrl = 'https://www.google.com/search?q=' + sorgu;
+  document.getElementById('koyModalBody').innerHTML =
+    '<div class="km-foto-placeholder">🏘️</div>' +
+    '<div class="km-body">' +
+      '<div class="km-baslik">' + ad + '</div>' +
+      '<div class="km-yerel">' + ilce + ' · Artvin</div>' +
+      '<div class="km-bilgi-yok">Bu köy için henüz detaylı bilgimiz yok. Aşağıdaki bağlantılarla köyü keşfedebilirsiniz.</div>' +
+      '<div class="km-aksiyon">' +
+        '<a class="km-btn km-btn-maps" href="' + mapsUrl + '" target="_blank" rel="noopener">📍 Haritada Gör</a>' +
+        '<a class="km-btn km-btn-google" href="' + googleUrl + '" target="_blank" rel="noopener">🔍 İncele</a>' +
+      '</div>' +
+      '<div class="km-katki">Bu köy hakkında bilginiz mi var? <a href="https://wa.me/905434290908" target="_blank" rel="noopener">Bize bildirin</a></div>' +
+    '</div>';
+  document.getElementById('koyModalOverlay').classList.add('acik');
+  document.body.style.overflow = 'hidden';
+}
+
 function koyModalAc(ad) {
   const d = KOY_DETAY[ad];
   if (!d) return;
@@ -540,6 +639,10 @@ function koyModalAc(ad) {
       <div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-bottom:.5rem;letter-spacing:.06em">📍 ${d.ilce || "Artvin Merkez"} İlçesi</div>
       ${d.ardanuc_km ? '<span class="km-chip km-uzaklik" style="background:rgba(240,192,64,.07);border-color:rgba(240,192,64,.2);color:rgba(240,192,64,.7)">📍 ' + (d.ilce||"") + " " + d.ardanuc_km + ' km · ' + d.ardanuc_sure + '</span>' : ''}
       <iframe class="km-harita" src="${d.harita}" allowfullscreen loading="lazy"></iframe>
+      <div class="km-aksiyon">
+        <a class="km-btn km-btn-maps" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ad + ' Koyu ' + (d.ilce || 'Artvin') + ' Artvin')}" target="_blank" rel="noopener">📍 Haritada Aç</a>
+        <a class="km-btn km-btn-google" href="https://www.google.com/search?q=${encodeURIComponent(ad + ' Koyu ' + (d.ilce || 'Artvin') + ' Artvin')}" target="_blank" rel="noopener">🔍 İncele</a>
+      </div>
     </div>`;
   document.getElementById('koyModalOverlay').classList.add('acik');
   document.body.style.overflow = 'hidden';
@@ -561,9 +664,9 @@ function render(){
     for(const k of sirali){
       const detay = KOY_DETAY[k];
       if(detay){
-        html+=`<span class="koy-etk detayli" onclick="koyModalAc('${k}')">${k} ℹ️</span>`;
+        html+=`<span class="koy-etk detayli" onclick="koyModalAc('${k}')">${k}<span class="koy-rozet">Detay</span></span>`;
       } else {
-        html+=`<span class="koy-etk">${k}</span>`;
+        html+=`<span class="koy-etk basit" onclick="koyBasitAc('${k}','${ilce}')">${k}<span class="koy-rozet-mini">📍</span></span>`;
       }
     }
     html+='</div></div>';
@@ -928,5 +1031,114 @@ render();
     <li>Zeytincik köyü, Yusufeli, Artvin</li>
   </ul>
 </div>
+
+
+<div style="max-width:900px;margin:2.5rem auto 1rem;padding:0 1rem">
+  <div style="border-top:2px solid rgba(240,192,64,.3);padding-top:1.5rem">
+    <div style="font-size:1.1rem;font-weight:800;color:#f0c040;margin-bottom:1rem;letter-spacing:.02em">🔗 Artvin'i Keşfetmeye Devam Edin</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem">
+      <a href="gezi.html" style="display:flex;flex-direction:column;gap:.3rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.9rem;text-decoration:none;transition:.15s">
+        <span style="font-size:1.4rem">🏞️</span>
+        <span style="font-size:.85rem;font-weight:700;color:#fff">Gezilecek Yerler</span>
+        <span style="font-size:.7rem;color:rgba(255,255,255,.4)">Artvin'in doğa harikaları</span>
+      </a>
+      <a href="dolmus.html" style="display:flex;flex-direction:column;gap:.3rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.9rem;text-decoration:none;transition:.15s">
+        <span style="font-size:1.4rem">🚐</span>
+        <span style="font-size:.85rem;font-weight:700;color:#fff">İlçe Dolmuşları</span>
+        <span style="font-size:.7rem;color:rgba(255,255,255,.4)">Köylere ulaşım</span>
+      </a>
+      <a href="artvin-havalimanlari.html" style="display:flex;flex-direction:column;gap:.3rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.9rem;text-decoration:none;transition:.15s">
+        <span style="font-size:1.4rem">🛫</span>
+        <span style="font-size:.85rem;font-weight:700;color:#fff">Havalimanı Rotaları</span>
+        <span style="font-size:.7rem;color:rgba(255,255,255,.4)">İnteraktif rehber</span>
+      </a>
+      <a href="rakim.html" style="display:flex;flex-direction:column;gap:.3rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.9rem;text-decoration:none;transition:.15s">
+        <span style="font-size:1.4rem">⛰️</span>
+        <span style="font-size:.85rem;font-weight:700;color:#fff">Rakım Ölçer</span>
+        <span style="font-size:.7rem;color:rgba(255,255,255,.4)">Bulunduğun yükseklik</span>
+      </a>
+      <a href="oteller.html" style="display:flex;flex-direction:column;gap:.3rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.9rem;text-decoration:none;transition:.15s">
+        <span style="font-size:1.4rem">🏨</span>
+        <span style="font-size:.85rem;font-weight:700;color:#fff">Konaklama</span>
+        <span style="font-size:.7rem;color:rgba(255,255,255,.4)">104 tesis</span>
+      </a>
+      <a href="blog51-artvin-mikroklima.html" style="display:flex;flex-direction:column;gap:.3rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.9rem;text-decoration:none;transition:.15s">
+        <span style="font-size:1.4rem">🌦️</span>
+        <span style="font-size:.85rem;font-weight:700;color:#fff">Artvin Mikroklima</span>
+        <span style="font-size:.7rem;color:rgba(255,255,255,.4)">Eşsiz iklim coğrafyası</span>
+      </a>
+    </div>
+    <div style="margin-top:1.2rem;padding:1rem;background:rgba(61,219,138,.06);border:1px solid rgba(61,219,138,.2);border-radius:12px;text-align:center">
+      <div style="font-size:.85rem;color:rgba(255,255,255,.8);margin-bottom:.6rem">📝 Köyünüz hakkında bilgi mi eklemek istiyorsunuz?</div>
+      <a href="https://wa.me/905434290908" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;background:#25D366;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;padding:.65rem 1.3rem;border-radius:20px">💬 WhatsApp'tan Bildirin</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Artvin Köyleri Tam Listesi",
+  "description": "Artvin ilinin 9 ilçesine bağlı 323 köyün tam listesi",
+  "numberOfItems": 323,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Merkez Köyleri",
+      "description": "Merkez ilçesine bağlı 36 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Ardanuç Köyleri",
+      "description": "Ardanuç ilçesine bağlı 49 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Arhavi Köyleri",
+      "description": "Arhavi ilçesine bağlı 30 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Borçka Köyleri",
+      "description": "Borçka ilçesine bağlı 41 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Hopa Köyleri",
+      "description": "Hopa ilçesine bağlı 16 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Kemalpaşa Köyleri",
+      "description": "Kemalpaşa ilçesine bağlı 12 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "name": "Murgul Köyleri",
+      "description": "Murgul ilçesine bağlı 11 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "name": "Şavşat Köyleri",
+      "description": "Şavşat ilçesine bağlı 65 köy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "name": "Yusufeli Köyleri",
+      "description": "Yusufeli ilçesine bağlı 63 köy"
+    }
+  ]
+}
+</script>
 </body>
 </html>
