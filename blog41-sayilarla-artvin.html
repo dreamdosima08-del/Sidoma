@@ -50,7 +50,13 @@
     {"@type": "Question", "name": "Artvin'de kaç tünel var?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin'de 128 tünel bulunmaktadır. Toplam tünel uzunluğu 115 km'dir. En uzun tünel 5.228 metreyle Cankurtaran Tüneli'dir."}},
     {"@type": "Question", "name": "Türkiye'nin en yüksek barajı hangisi?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin'deki Yusufeli Barajı, 272 metre gövde yüksekliğiyle Türkiye'nin en yüksek barajıdır."}},
     {"@type": "Question", "name": "Artvin'den İstanbul kaç km?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin'den İstanbul yaklaşık 1.285 km, Ankara ise yaklaşık 1.000 km uzaklıktadır."}}
-  ]
+  ,
+    {"@type":"Question","name":"Artvin'in en kalabalık ilçesi hangisi?","acceptedAnswer":{"@type":"Answer","text":"Artvin'in en kalabalık ilçesi 35.710 nüfusla Merkez'dir. Onu 27.844 ile Hopa ve 22.025 ile Arhavi izler (TÜİK 2025)."}},
+    {"@type":"Question","name":"Artvin'in en az nüfuslu ilçesi hangisi?","acceptedAnswer":{"@type":"Answer","text":"Artvin'in en az nüfuslu ilçesi 6.457 kişiyle Murgul'dur (TÜİK 2025)."}},
+    {"@type":"Question","name":"Artvin'de kaç ilçe var?","acceptedAnswer":{"@type":"Answer","text":"Artvin'de 9 ilçe vardır: Merkez, Hopa, Arhavi, Borçka, Yusufeli, Şavşat, Ardanuç, Kemalpaşa ve Murgul."}},
+    {"@type":"Question","name":"Artvin'de kaç köy var?","acceptedAnswer":{"@type":"Answer","text":"Artvin'de 323 köy bulunmaktadır. Ayrıca 9 belediye ve 42 mahalle vardır."}},
+    {"@type":"Question","name":"Artvin nüfusu neden azalıyor?","acceptedAnswer":{"@type":"Answer","text":"Artvin nüfusu 2024'te 169.280 iken 2025'te 167.531'e geriledi (-%1,03). Başlıca nedenler: sınırlı iş olanakları, genç nüfusun büyükşehirlere göçü ve kırsal alanların boşalmasıdır."}},
+    {"@type":"Question","name":"Artvin'in nüfus yoğunluğu kaç?","acceptedAnswer":{"@type":"Answer","text":"Artvin'de kilometrekareye yaklaşık 23 kişi düşmektedir. 7.393 km² yüzölçümüyle Türkiye'nin en az yoğun illerinden biridir."}}]
 }
 </script>
 
@@ -156,6 +162,22 @@ p.metin a{color:var(--yesil);font-weight:600;text-decoration:none;}
 
 footer{background:var(--koyu);padding:1.5rem 1.25rem;text-align:center;font-size:.68rem;color:rgba(255,255,255,.3);line-height:2;}
 footer a{color:var(--yesil-c);text-decoration:none;}
+
+/* ===== VERI TABLOLARI (snippet + zengin icerik) ===== */
+.veri-tablo-wrap{overflow-x:auto;margin:1.2rem 0;border-radius:12px;border:1px solid var(--border2)}
+.veri-tablo{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--white);min-width:340px}
+.veri-tablo caption{text-align:left;font-size:.78rem;color:var(--dim);padding:.6rem .8rem;background:#eef5ef;font-weight:600}
+.veri-tablo thead th{background:var(--yesil);color:#fff;padding:.7rem .85rem;text-align:left;font-weight:700;font-size:.82rem}
+.veri-tablo thead th.sag{text-align:right}
+.veri-tablo tbody td{padding:.6rem .85rem;border-bottom:1px solid var(--border);color:var(--metin)}
+.veri-tablo tbody td.sag{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.veri-tablo tbody tr:nth-child(even){background:#f7faf7}
+.veri-tablo tbody tr:hover{background:#eef5ef}
+.veri-tablo tbody tr.vurgu{background:rgba(21,128,61,.06)}
+.veri-tablo .rozet{display:inline-block;font-size:.62rem;font-weight:700;padding:1px 6px;border-radius:6px;margin-left:.4rem;vertical-align:middle}
+.rozet-max{background:#dcfce7;color:#15803d}
+.rozet-min{background:#fee2e2;color:#b91c1c}
+.tablo-not{font-size:.72rem;color:var(--soluk);margin-top:.5rem;line-height:1.5}
 </style>
 
 <style>
@@ -290,6 +312,28 @@ footer a{color:var(--yesil-c);text-decoration:none;}
   <div class="veri-satir"><span class="veri-etiket">Şehir nüfusu oranı</span><span class="veri-deger">~%65</span></div>
 </div>
 
+
+<h3 style="font-size:1.05rem;font-weight:700;color:var(--koyu);margin:1.6rem 0 .3rem">Artvin İlçe Nüfusları (2025)</h3>
+<p style="font-size:.88rem;color:var(--dim);margin-bottom:.4rem">TÜİK 31 Aralık 2025 ADNKS verilerine göre Artvin'in 9 ilçesinin nüfusu, büyükten küçüğe:</p>
+<div class="veri-tablo-wrap">
+<table class="veri-tablo">
+  <caption>Kaynak: TÜİK ADNKS 2025 · Artvin il toplamı: 167.531</caption>
+  <thead><tr><th>Sıra</th><th>İlçe</th><th class="sag">Nüfus (2025)</th></tr></thead>
+  <tbody>
+    <tr class="vurgu"><td>1</td><td>Merkez<span class="rozet rozet-max">En kalabalık</span></td><td class="sag">35.710</td></tr>
+    <tr><td>2</td><td>Hopa</td><td class="sag">27.844</td></tr>
+    <tr><td>3</td><td>Arhavi</td><td class="sag">22.025</td></tr>
+    <tr><td>4</td><td>Borçka</td><td class="sag">21.628</td></tr>
+    <tr><td>5</td><td>Yusufeli</td><td class="sag">17.564</td></tr>
+    <tr><td>6</td><td>Şavşat</td><td class="sag">16.151</td></tr>
+    <tr><td>7</td><td>Ardanuç</td><td class="sag">10.889</td></tr>
+    <tr><td>8</td><td>Kemalpaşa</td><td class="sag">9.263</td></tr>
+    <tr class="vurgu"><td>9</td><td>Murgul<span class="rozet rozet-min">En az</span></td><td class="sag">6.457</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="tablo-not">📉 Artvin nüfusu 2024'te 169.280 iken 2025'te 167.531'e geriledi (yıllık -%1,03). En hızlı azalan ilçe Borçka (-%2,96), tek artan ilçe ise Murgul (+%1,99) oldu.</p>
+
 <h2>İdari Yapı ve Sosyoekonomik Durum</h2>
 
 <div class="bolum-kart">
@@ -345,6 +389,36 @@ footer a{color:var(--yesil-c);text-decoration:none;}
   <div class="veri-satir"><span class="veri-etiket">Muratlı Barajı</span><span class="veri-deger">49 m</span></div>
 </div>
 
+
+<h2 style="font-size:1.35rem;font-weight:800;color:var(--koyu);margin:2rem 0 .6rem">📉 Artvin Nüfusu Neden Azalıyor?</h2>
+<p style="font-size:.95rem;color:var(--metin);line-height:1.75;margin-bottom:.8rem">Artvin, Türkiye'nin nüfusu düzenli azalan illerinden biridir. 2023'te 172.356 olan il nüfusu, 2024'te 169.280'e, 2025'te ise 167.531'e geriledi. Bu düşüşün arkasında birkaç yapısal neden var:</p>
+<ul style="font-size:.93rem;color:var(--metin);line-height:1.8;margin:0 0 1rem 1.3rem">
+  <li><strong>Sınırlı iş olanakları:</strong> Sanayi ve büyük ölçekli istihdamın az olması, çalışma çağındaki nüfusu büyükşehirlere yöneltiyor.</li>
+  <li><strong>Genç nüfus göçü:</strong> Üniversite ve iş için İstanbul, Ankara, Bursa gibi illere göç belirgin.</li>
+  <li><strong>Kırsalın boşalması:</strong> Köylerden ilçe ve il merkezlerine, oradan da büyükşehirlere kademeli göç sürüyor.</li>
+  <li><strong>Coğrafi zorluklar:</strong> Dağlık arazi, ulaşım ve yerleşim maliyetlerini artırıyor.</li>
+</ul>
+<p style="font-size:.95rem;color:var(--metin);line-height:1.75;margin-bottom:.8rem">Buna karşın <strong>Murgul (+%1,99)</strong> 2025'te nüfusu artan tek ilçe oldu. Artvin Çoruh Üniversitesi'nin öğrenci nüfusu ise merkez ilçede dengeleyici bir etki yaratıyor.</p>
+
+<h2 style="font-size:1.35rem;font-weight:800;color:var(--koyu);margin:2rem 0 .6rem">🏔️ Rakamlarla Artvin'in Coğrafi Uçları</h2>
+<div class="veri-tablo-wrap">
+<table class="veri-tablo">
+  <caption>Artvin'in coğrafi ve idari kilit verileri</caption>
+  <thead><tr><th>Özellik</th><th class="sag">Değer</th></tr></thead>
+  <tbody>
+    <tr><td>Yüzölçümü</td><td class="sag">7.393 km²</td></tr>
+    <tr><td>Nüfus yoğunluğu</td><td class="sag">~23 kişi/km²</td></tr>
+    <tr><td>İlçe sayısı</td><td class="sag">9</td></tr>
+    <tr><td>Köy sayısı</td><td class="sag">323</td></tr>
+    <tr><td>Mahalle sayısı</td><td class="sag">42</td></tr>
+    <tr><td>Plaka kodu</td><td class="sag">08</td></tr>
+    <tr><td>Telefon kodu</td><td class="sag">0466</td></tr>
+    <tr><td>Ormanlık alan oranı</td><td class="sag">~%55</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="tablo-not">Artvin, yüzölçümünün büyük kısmı ormanlarla kaplı, Türkiye'nin en yeşil illerinden biridir.</p>
+
 <h2>Ulaşım</h2>
 
 <div class="bolum-kart">
@@ -393,5 +467,36 @@ footer a{color:var(--yesil-c);text-decoration:none;}
   <p style="margin-top:.3rem;font-size:.6rem;color:var(--soluk)">Veriler TÜİK, MGM ve resmi kaynaklardan derlenmiştir.</p>
 </footer>
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Sayılarla Artvin 2025 - Nüfus ve İstatistik Verileri",
+  "description": "Artvin ilinin ve 9 ilçesinin nüfus, yüzölçümü, rakım, iklim ve sosyoekonomik istatistik verileri. TÜİK 2025 ADNKS kaynaklı.",
+  "url": "https://artvinrehber.com/blog41-sayilarla-artvin.html",
+  "keywords": [
+    "Artvin nüfusu",
+    "Artvin ilçe nüfusları",
+    "Artvin yüzölçümü",
+    "Artvin istatistik"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "Artvin Rehber"
+  },
+  "temporalCoverage": "2025",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Artvin, Türkiye"
+  },
+  "variableMeasured": [
+    "Nüfus",
+    "Yüzölçümü",
+    "Nüfus yoğunluğu",
+    "İlçe nüfusları"
+  ]
+}
+</script>
 </body>
 </html>
