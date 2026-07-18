@@ -278,28 +278,20 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <a class="nav-logo" href="/">ARTVİN REHBERİ</a>
   <a class="nav-back" href="/">← Ana Sayfa</a>
 </nav>
-<!-- HAVALIMANI GRID -->
-<a href="/artvin-havalimani.html" style="display:flex;align-items:center;gap:1rem;background:linear-gradient(135deg,#0d1f2e,#1a3550);border:1px solid rgba(96,165,250,.3);border-radius:14px;padding:1.1rem 1.25rem;text-decoration:none;margin:1rem auto;max-width:520px">
-  <span style="font-size:2.2rem;flex-shrink:0">✈️</span>
-  <div style="flex:1">
-    <div style="font-size:.92rem;font-weight:800;color:#fff;line-height:1.2">Rize-Artvin Havalimanı Rehberi</div>
-    <div style="font-size:.7rem;color:rgba(255,255,255,.6);margin-top:.3rem">Uçuş seferleri, havayolları, canlı uçuş takibi ve bilet</div>
-  </div>
-  <span style="color:#60a5fa;font-weight:800;font-size:.9rem;flex-shrink:0">→</span>
-</a>
+
 
 <!-- HAVAŞ SEFER BILDIRIMI -->
 <style>
 @keyframes havasPulse{0%,100%{box-shadow:0 0 0 0 rgba(240,192,64,.5),0 4px 20px rgba(0,0,0,.3);}50%{box-shadow:0 0 0 8px rgba(240,192,64,0),0 4px 20px rgba(0,0,0,.3);}}
 @keyframes havasYanip{0%,100%{opacity:1;}50%{opacity:.45;}}
 @keyframes havasKayan{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-.havas-bildirim{margin:1rem 1.1rem;border-radius:16px;padding:1rem 1.1rem;background:linear-gradient(120deg,#1a1206,#2a1d08,#1a1206);background-size:200% 200%;animation:havasKayan 5s ease infinite,havasPulse 2.5s infinite;border:1.5px solid rgba(240,192,64,.45);}
-.havas-bildirim-ust{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;}
+.havas-bildirim{margin:.5rem 1.1rem;border-radius:14px;padding:.75rem .9rem;background:linear-gradient(120deg,#1a1206,#2a1d08,#1a1206);background-size:200% 200%;animation:havasKayan 5s ease infinite,havasPulse 2.5s infinite;border:1.5px solid rgba(240,192,64,.45);}
+.havas-bildirim-ust{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem;}
 .havas-nokta{width:10px;height:10px;border-radius:50%;background:#f0c040;animation:havasYanip 1s infinite;flex-shrink:0;box-shadow:0 0 8px #f0c040;}
 .havas-baslik{font-size:.92rem;font-weight:800;color:#ffd968;letter-spacing:.01em;}
-.havas-metin{font-size:.8rem;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:.85rem;}
+.havas-metin{font-size:.75rem;color:rgba(255,255,255,.78);line-height:1.5;margin-bottom:.6rem;}
 .havas-metin b{color:#fff;}
-.havas-btn{display:flex;align-items:center;justify-content:center;gap:.55rem;width:100%;background:linear-gradient(135deg,#f0c040,#e0a82e);color:#1a1206;border-radius:12px;padding:.85rem;font-size:.92rem;font-weight:800;text-decoration:none;box-shadow:0 6px 20px rgba(240,192,64,.3);transition:transform .15s;}
+.havas-btn{display:flex;align-items:center;justify-content:center;gap:.55rem;width:100%;background:linear-gradient(135deg,#f0c040,#e0a82e);color:#1a1206;border-radius:10px;padding:.65rem;font-size:.92rem;font-weight:800;text-decoration:none;box-shadow:0 6px 20px rgba(240,192,64,.3);transition:transform .15s;}
 .havas-btn:active{transform:scale(.97);}
 </style>
 <div class="havas-bildirim">
@@ -308,7 +300,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
     <span class="havas-baslik">📢 Sefer Saatleri Hakkında</span>
   </div>
   <div class="havas-metin">
-    Bu sayfada gördüğünüz saatler <b>Havaş yaz tarifesinin ana sefer saatleridir.</b> Yoğunluğa göre <b>ek seferler eklenebilir veya kaldırılabilir.</b> Gece ve ara sefer saatlerinin en güncel halini Havaş'ın resmî sayfasından kontrol edebilirsiniz.
+    Buradaki saatler <b>Havaş yaz tarifesinin ana seferleridir.</b> Yoğunluğa göre ek sefer olabilir; en güncel hali için resmî sayfayı kontrol edin.
   </div>
   <a class="havas-btn" href="https://havas.net/otobus-hizmetleri" target="_blank" rel="noopener">
     🚌 Havaş Resmi Otobüs Sayfası →
@@ -321,10 +313,10 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <a href="https://havas.net" target="_blank" rel="noopener" style="font-size:.65rem;color:#fde68a;font-weight:700;text-decoration:underline;white-space:nowrap;">havas.net →</a>
 </div>
 <!-- UYARI BİLDİRİMİ -->
-<div id="uyariBant" style="background:linear-gradient(135deg,#b45309,#d97706);padding:.65rem 3rem .65rem 1rem;position:relative;">
+<div id="uyariBant" style="background:linear-gradient(135deg,#b45309,#d97706);padding:.5rem 2.5rem .5rem .9rem;position:relative;">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;">
     <p style="font-size:.72rem;font-weight:600;color:#fff;line-height:1.5;margin:0;flex:1;">
-      📞 Havaş duraklarında fiziksel iletişim hattı bulunmamaktadır. Sefer ve bilet işlemleri için <strong style="color:#fef3c7;">Havaş Müşteri Hizmetleri</strong>
+      📞 Duraklarda fiziksel hat yoktur. Sefer/bilet için <strong style="color:#fef3c7;">Havaş Müşteri Hizmetleri</strong>
     </p>
     <a href="tel:08502220487" style="display:inline-flex;align-items:center;gap:.35rem;background:#fff;color:#b45309;border-radius:8px;padding:.4rem .85rem;text-decoration:none;font-size:.75rem;font-weight:800;white-space:nowrap;flex-shrink:0;">📞 0850 222 0 487</a>
   </div>
@@ -680,6 +672,17 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 </div>
 
 <!-- İLETİŞİM -->
+
+<!-- HAVALIMANI GRID (alta taşındı) -->
+<a href="/artvin-havalimani.html" style="display:flex;align-items:center;gap:.75rem;background:linear-gradient(135deg,#0d1f2e,#1a3550);border:1px solid rgba(96,165,250,.3);border-radius:12px;padding:.7rem 1rem;text-decoration:none;margin:.7rem auto;max-width:520px">
+  <span style="font-size:1.6rem;flex-shrink:0">✈️</span>
+  <div style="flex:1">
+    <div style="font-size:.92rem;font-weight:800;color:#fff;line-height:1.2">Rize-Artvin Havalimanı Rehberi</div>
+    <div style="font-size:.68rem;color:rgba(255,255,255,.6);margin-top:.2rem">Uçuş seferleri, canlı takip ve bilet</div>
+  </div>
+  <span style="color:#60a5fa;font-weight:800;font-size:.9rem;flex-shrink:0">→</span>
+</a>
+
 <div class="bolum">📞 Bilgi & İletişim</div>
 <div class="iletisim-wrap">
   <a class="wp-btn" href="https://wa.me/905434290908" target="_blank" rel="noopener">
