@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artvin Blog — Tüm Yazılar | Gezi, Lezzet, Kültür ve Tarih Rehberi</title>
+<meta name="description" content="Artvin hakkında tüm blog yazıları tek sayfada. Gezilecek yerler, yöresel lezzetler, tarih, kültür, öğrenci rehberleri ve daha fazlası. 55+ Artvin rehberi.">
+<meta name="keywords" content="artvin blog, artvin yazıları, artvin rehber, artvin gezi, artvin lezzet, artvin tarih, artvin kültür, artvin makaleleri, artvin tüm yazılar">
+<link rel="canonical" href="https://artvinrehber.com/artvin-blog.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Artvin Blog — Tüm Yazılar">
+<meta property="og:description" content="Artvin hakkında tüm blog yazıları: gezi, lezzet, kültür, tarih ve öğrenci rehberleri.">
+<meta property="og:url" content="https://artvinrehber.com/artvin-blog.html">
+<meta name="geo.region" content="TR-08">
+<meta name="geo.placename" content="Artvin">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1a12;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.09);--gold:#f0c040;--vivid:#3ddb8a;--offwhite:#e8ede9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg,#0a1a12);color:var(--text,#e8f0e8);font-family:'Roboto',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.topnav{background:rgba(10,26,18,.95);border-bottom:1px solid var(--border,rgba(255,255,255,.1));padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.topnav a{color:var(--gold,#f0c040);text-decoration:none;font-weight:700}
+.topnav .geri{font-size:.85rem;color:var(--text,#e8f0e8);opacity:.8}
+.wrap{max-width:1200px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.sayfa-baslik{text-align:center;padding:2rem 1rem 1.5rem}
+.sayfa-baslik h1{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;color:var(--gold,#f0c040);line-height:1.1}
+.sayfa-baslik p{font-size:.95rem;color:var(--dim,rgba(232,240,232,.65));max-width:600px;margin:.5rem auto 0}
+.arama-kutu{max-width:500px;margin:1.5rem auto 0;position:relative}
+.arama-kutu input{width:100%;padding:.85rem 1.1rem .85rem 2.6rem;border-radius:12px;border:1.5px solid var(--border,rgba(255,255,255,.12));background:rgba(255,255,255,.05);color:var(--text,#e8f0e8);font-size:.95rem;font-family:inherit}
+.arama-kutu input:focus{outline:none;border-color:var(--gold,#f0c040)}
+.arama-kutu::before{content:"🔍";position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:1rem}
+.sonuc-say{text-align:center;font-size:.8rem;color:var(--dim,rgba(232,240,232,.5));margin-top:1rem}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:.5rem}
+.blog-card{background:var(--card);border:1px solid var(--border);text-decoration:none;display:block;transition:.3s;overflow:hidden;position:relative}
+.blog-card:hover{border-color:rgba(61,219,138,.35);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.blog-card-img{width:100%;height:200px;object-fit:cover;display:block;filter:brightness(.85);transition:.3s}
+.blog-card:hover .blog-card-img{filter:brightness(1);transform:scale(1.03)}
+.blog-card-img-placeholder{width:100%;height:200px;background:linear-gradient(135deg,rgba(61,219,138,.1),rgba(10,26,18,.8));display:flex;align-items:center;justify-content:center;font-size:3rem}
+.blog-card-body{padding:1.4rem}
+.blog-card-cat{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vivid);font-weight:700;margin-bottom:.5rem}
+.blog-card-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--offwhite);line-height:1.2;margin-bottom:.6rem}
+.blog-card-desc{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:1rem}
+.blog-card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.05)}
+.blog-card-date{font-size:.65rem;color:rgba(255,255,255,.25)}
+.blog-card-link{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.05em}
+.blog-card-badge{position:absolute;top:.85rem;left:.85rem;background:var(--vivid);color:var(--bg);font-size:.58rem;font-weight:800;letter-spacing:.1em;padding:.2rem .6rem;text-transform:uppercase}
+.blog-empty{text-align:center;padding:4rem 2rem;border:1px dashed rgba(255,255,255,.1)}
+.blog-empty-ico{font-size:3rem;margin-bottom:1rem}
+.blog-empty-txt{font-size:.88rem;color:rgba(255,255,255,.3);line-height:1.7}
+.blog-paylasim{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin:1.5rem 0 2rem;padding:1rem 1.2rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
+.blog-paylasim-lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-right:.25rem}
+.blog-card:hover{
+  box-shadow:0 16px 48px rgba(0,0,0,.5),0 0 0 1px rgba(61,219,138,.15);
+}
+.bulunamadi{text-align:center;padding:3rem;color:var(--dim,rgba(232,240,232,.5));display:none}
+footer{text-align:center;padding:2rem;font-size:.8rem;color:var(--dim,rgba(232,240,232,.4));border-top:1px solid var(--border,rgba(255,255,255,.08))}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a href="/">🌿 Artvin Rehber</a>
+  <a class="geri" href="/">← Ana Sayfa</a>
+</div>
+
+<div class="wrap">
+  <div class="sayfa-baslik">
+    <h1>Artvin Blog — Tüm Yazılar</h1>
+    <p>Artvin'in gezilecek yerleri, yöresel lezzetleri, tarihi, kültürü ve yerel yaşamından tüm hikayeler tek sayfada.</p>
+    <div class="arama-kutu">
+      <input type="text" id="aramaInput" placeholder="Yazılarda ara... (örn: karagöl, kete, tarih)" oninput="araBlog()">
+    </div>
+    <div class="sonuc-say" id="sonucSay"></div>
+  </div>
+
+  <div class="blog-grid" id="blogGrid" style="display:grid">
+<a class="blog-card" href="blog54-misir-ekmegi-cadi.html">
+<div class="blog-card-img">
+<img src="https://i.ibb.co/N6zT90Mk/copilot-image-1783744196525.png" alt="Cadı Artvin mısır ekmeği yöresel lezzet" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+</div>
+<div class="blog-card-body">
+<span class="blog-card-cat">🍽️ Yöresel Lezzet</span>
+<div class="blog-card-title">Cadı (Mısır Ekmeği): Artvin'in Geleneksel Lezzeti</div>
+<div class="blog-card-desc">Mısır unuyla yapılan geleneksel Artvin ekmeği. Adım adım yapılışı, karalahana ile buluşması ve hikâyesi.</div>
+</div>
+</a>
+<a class="blog-card" href="blog53-silor.html">
+<div class="blog-card-img">
+<img src="https://i.ibb.co/Lzg0QpP3/1783743074007.png" alt="Silor Artvin yöresel yoğurtlu yufka yemeği" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+</div>
+<div class="blog-card-body">
+<span class="blog-card-cat">🍽️ Yöresel Lezzet</span>
+<div class="blog-card-title">Silor: Artvin'in Sade Ama Eşsiz Yoğurtlu Lezzeti</div>
+<div class="blog-card-desc">Kurutulmuş yufka, yoğurt ve tereyağıyla hazırlanan geleneksel Artvin yemeği. Adım adım yapılışı.</div>
+</div>
+</a>
+<a class="blog-card" href="blog52-savsat-ketesi.html">
+<div class="blog-card-img">
+<img src="https://i.ibb.co/pr5RD5qH/1783741988685.png" alt="Şavşat Ketesi coğrafi işaretli tereyağlı kete Artvin" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+</div>
+<div class="blog-card-body">
+<span class="blog-card-cat">🍽️ Yöresel Lezzet</span>
+<div class="blog-card-title">Şavşat Ketesi: Coğrafi İşaretli Lezzetin Hikâyesi</div>
+<div class="blog-card-desc">745 tescil numaralı bu Artvin lezzetinin tereyağı sırrı, katlama tekniği ve kültürel hikâyesi.</div>
+</div>
+</a>
+<a class="blog-card" href="blog51-artvin-mikroklima.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/Q3xxZqxv/image-1783316502197.jpg" alt="Artvin mikroklima çay kivi üzüm Çoruh Vadisi iklim" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🌦️ Doğa</span>
+          <div class="blog-card-title">Artvin ve Mikroklima: Hem Karadeniz Hem Akdeniz İklimi</div>
+          <div class="blog-card-desc">Aynı ilde çay, kivi, üzüm ve endemik bitkiler. Çoruh Vadisi'nin iklim mucizesi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog50-ishan-kilisesi.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/jZVhD3FR/MG-20260705-054620-502.jpg" alt="İşhan Kilisesi Manastırı Yusufeli Artvin tarihi Gürcü mimari" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🏛️ Tarih</span>
+          <div class="blog-card-title">İşhan Kilisesi Nasıl Gidilir? 1200 Yıllık Bir Şaheser</div>
+          <div class="blog-card-desc">Yusufeli'ndeki Gürcü manastırının tarihi, mimarisi, freskleri ve "Kanlı Kilise" efsanesi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog49-mencuna-selalesi.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/CKNY4XSk/1783218988958.png" alt="Mençuna Şelalesi Arhavi Artvin Kamilet Vadisi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">💧 Gezi</span>
+          <div class="blog-card-title">Mençuna Şelalesi Nasıl Gidilir? Arhavi'nin Saklı Cenneti</div>
+          <div class="blog-card-desc">90 metrelik iki kademeli şelale, yol tarifi, Kamilet Vadisi ve en iyi ziyaret zamanı.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog48-savsat-yolu.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/4gwRsRWQ/Screenshot-2026-07-02-07-15-56-899-com-google-android-apps-maps-edit.jpg" alt="Artvin Şavşat yolu baraj sorunu tehlikeli güzergah" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🛣️ Gündem</span>
+          <div class="blog-card-title">Artvin-Şavşat Yolu: Yıllardır Bekleyen Bir Zorunluluk</div>
+          <div class="blog-card-desc">Baraj sürecinin gölgesinde kalan yol, dere yatağındaki tehlike ve çözüm ihtiyacı.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog47-artvin-felsefesi.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/4wYPJyNW/MG-20260702-065644.jpg" alt="Artvin Felsefesi Artvinli olmak dağlar sis" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">✨ Deneme</span>
+          <div class="blog-card-title">Artvin Felsefesi: Artvinli Olmak</div>
+          <div class="blog-card-desc">Dağların sabrı, sisin huzuru, horonun birlikteliği — Artvinli olmanın anlamı üzerine.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog46-karagol-sahara.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/placeholder/karagol-sahara.jpg" alt="Karagöl-Sahara Milli Parkı heyelan gölü Şavşat Artvin" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🌲 Milli Park</span>
+          <div class="blog-card-title">Karagöl-Sahara Milli Parkı: Şavşat'ın Saklı Cenneti</div>
+          <div class="blog-card-desc">Heyelan gölü, 57 endemik bitki, Meşeli Peribacaları ve Sahara Yaylası'yla doğa harikası.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog45-hatila-vadisi.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/Kpg9L18F/Hatila-Vadisi-Milli-Park.jpg" alt="Hatila Vadisi Milli Parkı V tipi vadi cam teras Artvin" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🌲 Milli Park</span>
+          <div class="blog-card-title">Hatila Vadisi Milli Parkı: Artvin'in Derin Yeşil Cenneti</div>
+          <div class="blog-card-desc">1994'te ilan edilen vadi, 125 endemik bitki, cam seyir terası ve orman mücadelesi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog44-macahel-camili.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/tPCX9fmH/MG-20260628-WA0000.jpg" alt="Macahel Camili Havzası UNESCO biyosfer rezervi Artvin" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🏔️ Doğa</span>
+          <div class="blog-card-title">Macahel (Camili): Türkiye'nin İlk Biyosfer Rezervi</div>
+          <div class="blog-card-desc">1921 referandumu, UNESCO kararı, kapalı yollar ve Macahel Tüneli — tüm gerçekleriyle.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog43-kafkasor-festivali.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/XfnddFXM/kafkasor-festivali-boga-barisi.jpg" alt="Kafkasör Festivali 2026 boğa güreşleri" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🐂 Festival</span>
+          <div class="blog-card-title">Kafkasör Festivali 2026 Yaklaşıyor — Boğa Güreşleri</div>
+          <div class="blog-card-desc">8-12 Temmuz tarihleri, program ve 1.400.000 TL ödül detayları.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog42-acu-rehberi.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/9kqJSmHq/headline-1.jpg" alt="Artvin Çoruh Üniversitesi rehberi 2026 AÇÜ kampüs" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🎓 Üniversite</span>
+          <div class="blog-card-title">AÇÜ Rehberi 2026 — Fakülteler, Yurt ve Kampüs</div>
+          <div class="blog-card-desc">Artvin Çoruh Üniversitesi fakülteleri, bölümleri, yurt ve ulaşım bilgileri.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog41-sayilarla-artvin.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/rG3mgqZq/file-0000000003b471f491ab8d5f26655dca.png" alt="Sayılarla Artvin 2026 istatistik rehberi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">📊 İstatistik</span>
+          <div class="blog-card-title">Sayılarla Artvin 2026 — Kapsamlı İstatistik Rehberi</div>
+          <div class="blog-card-desc">Nüfus, coğrafya, iklim, barajlar, ulaşım ve sosyal veriler tek sayfada.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog40-artvin-trafik-kazalari.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/7N1FCN9q/MG-20260604-063029.jpg" alt="Artvin trafik kazaları 2021-2025 istatistik" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🚗 Trafik Güvenliği</span>
+          <div class="blog-card-title">Artvin'de Trafik Kazaları: 2021-2025 Verileri</div>
+          <div class="blog-card-desc">5 yıllık kaza istatistikleri, analiz ve trafik güvenliği değerlendirmesi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="galeri.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/rGncy3LT/20140730-160940.jpg" alt="Artvin Fotoğraf Galerisi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">📷 Fotoğraf Galerisi</span>
+          <div class="blog-card-title">Artvin Galerisi — Yaylalar, Köyler, Doğa</div>
+          <div class="blog-card-desc">Artvin'den özgün fotoğraflar. Berta yaylası, Çoruh nehri, Ardanuç, Murgul ve daha fazlası.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog38.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/yFq0nzZL/MG-20260506-091936.png" alt="Kafkasör Festivali Artvin boğa güreşleri rehberi 2026" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🐂 Festival Rehberi</span>
+          <div class="blog-card-title">Kafkasör Festivali & Boğa Güreşleri Rehberi 2026</div>
+          <div class="blog-card-desc">Artvin'in en büyük festivali. Tarih, ulaşım, kurallar ve Kafkasör Yaylası rehberi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog37.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/S45m9pw3/file-00000000c66071f4897d5ef74358d4fd.png" alt="Artvin Çoruh Üniversitesi fakülte bölüm programlar rehberi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🎓 Üniversite Rehberi</span>
+          <div class="blog-card-title">Artvin Çoruh Üniversitesi Fakülte, Bölüm ve Programlar Rehberi 2026</div>
+          <div class="blog-card-desc">11 fakülte, 7 meslek yüksekokulu, tüm bölümler. ACÜ rehberi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog36.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/nNRb9bMC/1777504085529.png" alt="Artvin'in en çok göç verdiği iller 2025" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">📊 Nüfus & Göç</span>
+          <div class="blog-card-title">Artvin'in En Çok Göç Verdiği İller (2025)</div>
+          <div class="blog-card-desc">İstanbul 1.023, Bursa 713, Rize 644... Artvinliler nereye gidiyor?</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog35.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/xqJNNTGJ/1777505256026.png" alt="Artvin'e en çok göç veren iller 2025" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">📊 Nüfus & Göç</span>
+          <div class="blog-card-title">Artvin'e En Çok Göç Veren İller (2025)</div>
+          <div class="blog-card-desc">İstanbul 1.048, Kocaeli 616, Bursa 593... Kimler Artvin'i tercih ediyor?</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog34.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/xqGW5Zgm/2122025174636627manset-1140-568.jpg" alt="Şavşat Karagöl Nasıl Gidilir" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🗺️ Gezi Rehberi</span>
+          <div class="blog-card-title">Şavşat Karagöl'e Nasıl Gidilir? Ulaşım Rehberi 2026</div>
+          <div class="blog-card-desc">1.630 metre rakımda ladin ormanlarının ortasındaki Karagöl-Sahara Milli Parkı'na ulaşım rehberi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog33.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/sd39qbMQ/IMG-20260419-170936.png" alt="Borçka Karagöl Nasıl Gidilir" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🗺️ Gezi Rehberi</span>
+          <div class="blog-card-title">Borçka Karagöl'e Nasıl Gidilir? Ulaşım Rehberi</div>
+          <div class="blog-card-desc">İstanbul, Ankara, Bursa ve İzmir'den Borçka Karagöl'e ulaşım. Otobüs, uçak, taksi rehberi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog32.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/JjSwSbZQ/1776543997735.png" alt="Artvin 2025 Göç Analizi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">📊 Veri & Analiz</span>
+          <div class="blog-card-title">Artvin 2025 Göç Analizi: Nüfus Nereye Akıyor?</div>
+          <div class="blog-card-desc">7.329 gelen, 8.928 giden, net -1.599. TÜİK 2025 verilerine dayalı Artvin göç raporu.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog31.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/gZfwK8BW/Screenshot-2026-04-11-08-29-13-103-com-google-android-googlequicksearchbox-edit.jpg" alt="Artvin Muhlaması Tarifi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🍳 Artvin Mutfağı</span>
+          <div class="blog-card-title">Artvin Muhlaması: Yaylanın En Sıcak Lokması</div>
+          <div class="blog-card-desc">Kolot peyniri, mısır unu ve Artvin tereyağıyla hazırlanan otantik muhlama tarifi. Dört malzeme, yüzyıllık gelenek.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog30.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/8DxdzbkX/IMG-20260410-125721.png" alt="Artvinliler nasıldır" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🏔️ Kültür & Yaşam</span>
+          <div class="blog-card-title">Bir Sevdadır Artvinli Olmak: Bizim Kafanın İçinde Neler Döner?</div>
+          <div class="blog-card-desc">Artvinliler nasıl insanlardır? Eğim, eğitim, doğa sevgisi ve horon kültürüyle içeriden bir bakış.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog29.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/Z1BZ38ng/IMG-20260410-122915.png" alt="Artvin Rus İşgali Elviye-i Selase" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🏛️ Tarih</span>
+          <div class="blog-card-title">Yeşil Artvin'in Kırk Yıllık Hasreti: Rus İşgali ve Elviye-i Selâse</div>
+          <div class="blog-card-desc">43 yıllık Rus işgali, 93 Harbi, Brest-Litovsk ve 7 Mart 1921 Kurtuluş Bayramı'nın tam hikayesi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog28.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/JjXpsNs6/file-000000008bf4724388251d601f39431f.png" alt="Artvin Türkiye'nin en güvenli şehirlerinden biri mi?" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🛡️ Artvin Yaşam</span>
+          <div class="blog-card-title">Artvin, Türkiye'nin En Güvenli Şehirlerinden Biri mi?</div>
+          <div class="blog-card-desc">Coğrafya, kültür ve sosyal bağlar — Artvin'in doğal güvenlik sisteminin perde arkası.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog28.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/W4gLrLFg/IMG-20260407-184125.jpg" alt="Artvin Çoruh Üniversitesi öğrenci rehberi" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">🎓 Üniversite Rehberi</span>
+          <div class="blog-card-title">Artvin Çoruh Üniversitesi Öğrenci Rehberi 2026</div>
+          <div class="blog-card-desc">Kampüs, yurt, dolmuş, AVM — kimsenin söylemediği yerel pratik bilgiler. Yeni öğrenciler için kapsamlı rehber.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog27.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/qM7JH5gB/IMG-20260407-033909.png" alt="Artvin en çok kullanılan soy isimler" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">📋 Artvin Kültürü</span>
+          <div class="blog-card-title">Artvin'de En Çok Kullanılan 30 Soy İsim</div>
+          <div class="blog-card-desc">Yılmaz 4.576 kişiyle açık ara birinci. Artvin'in soyadı haritasına baktık — senin soyadın listede var mı?</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog26.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/HDsLn23q/IMG-20260406-230142.png" alt="Artvin en çok kullanılan erkek isimleri" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">👨 Artvin Kültürü</span>
+          <div class="blog-card-title">Artvin'de En Çok Kullanılan 10 Erkek İsmi</div>
+          <div class="blog-card-desc">Mehmet zirvede. Artvin'in erkek isim haritasına baktık — liste hem tanıdık hem sürpriz içeriyor.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog25.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/S4BDDwrK/MG-20260405-223934.png" alt="Artvin en çok kullanılan kadın isimleri" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">👩 Artvin Kültürü</span>
+          <div class="blog-card-title">Artvin'de En Çok Kullanılan 10 Kadın İsmi</div>
+          <div class="blog-card-desc">Fatma 3.094 kişiyle zirvede. Artvin'in isim haritasına baktık — liste hem tanıdık hem sürpriz.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog24.html">
+        <div class="blog-card-img">
+          <img src="https://i.ibb.co/Pv9dPNqq/1775377622188.png" alt="Artvin hakkında doğru bilinen yanlışlar" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-cat">📋 Artvin Gerçekleri</span>
+          <div class="blog-card-title">Artvin Hakkında Doğru Bilinen 8 Yanlış</div>
+          <div class="blog-card-desc">Artvin'in denizi yok mu? Karagöl sadece Şavşat'ta mı? Kaçkar yalnızca Rize'ye mi ait? 8 yaygın yanlışı ve gerçeklerini ele aldık.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog23.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/67CmXSPD/1774937646100.png" alt="Büyük Şehirden Artvin'e Taşınan Birinin Günlüğü" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">✍️ Yaşam & Deneyim</div>
+          <div class="blog-card-title">Büyük Şehirden Artvin'e Taşınan Birinin Günlüğü</div>
+          <div class="blog-card-desc">İlk gün sessizlik garip geldi. Bir hafta sonra büyük şehrin gürültüsü yabancı hissettirdi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog22.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/zTgqrZ2J/MG-20260328-172118.jpg" alt="Çoruh Nehri Dev Enerji Zinciri" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">⚡ Enerji & Mühendislik</div>
+          <div class="blog-card-title">Akarsuyun Gücü: Çoruh Nehri Üzerindeki Dev Enerji Zinciri</div>
+          <div class="blog-card-desc">5 baraj, kaskad sistem, dünyanın 3. ve 6. yüksek barajları — Çoruh'un altın gerdanlığı.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog21.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/cKtvzbDw/MG-20260328-153902.png" alt="Çoruh Nehri Enerji mi Ekoloji mi" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">💧 Çoruh & Artvin</div>
+          <div class="blog-card-title">Çoruh Nehri: Enerji mi, Ekoloji mi? Bir Vadi, İki Gelecek</div>
+          <div class="blog-card-desc">Deriner, Yusufeli, Berta Köprüsü — sular altında kalan tarih ve kazanılan enerji.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog20.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/FbMX335Q/IMG-20260328-105629.png" alt="Puçuko — Artvin'in Tescilli Lezzeti" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🍲 Artvin Mutfağı</div>
+          <div class="blog-card-title">Puçuko Nedir? Artvin'in Tescilli Coğrafi İşaretli Lezzeti</div>
+          <div class="blog-card-desc">3.428 metrelik zirve, Gorgit Buzulu ve Yıldız Gölü. Trekking rotası ve GPS kaydı.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog19.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/ksgkZ7Rs/Screenshot-2026-03-28-09-37-19-026-com-instagram-android-edit.jpg" alt="Karçal Dağları — Salkımlı ve Ahlat Yaylalarından" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🏔️ Doğa Rehberi</div>
+          <div class="blog-card-title">Karçal Dağları: Zirve, Buzul Gölleri ve Trekking Rehberi</div>
+          <div class="blog-card-desc">3.415 metre, krater göller, boz ayı, vaşak — Karçal'ı keşfet.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog18.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/276czjGn/image-1774363184121.jpg" alt="Artvin'de Yaşanacak En İyi İlçeler" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">📍 İlçe Rehberi</div>
+          <div class="blog-card-title">Artvin'de Yaşanacak En İyi İlçeler (2026)</div>
+          <div class="blog-card-desc">Merkez'den Murgul'a — 9 ilçeyi gelişmişlik sırasına göre karşılaştırdık.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog17.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/sXPrgmJ/MG-20260324-150053.png" alt="Artvin Öğrenci İçin Uygun mu" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🎓 Öğrenci Rehberi</div>
+          <div class="blog-card-title">Artvin Öğrenci İçin Uygun mu? 2026 Güncel Rehber</div>
+          <div class="blog-card-desc">Yurt, kira, ulaşım ve kampüs hayatı — dürüst ve güncel öğrenci rehberi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog16.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/C3G9kW1Y/file-00000000cb3c720a966a0951f021a1c1.png" alt="Artvin'de Hayat Pahalı mı" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">💰 Yaşam Rehberi</div>
+          <div class="blog-card-title">Artvin'de Hayat Pahalı mı? 2026 Güncel Fiyat Rehberi</div>
+          <div class="blog-card-desc">Kira, market, ulaşım — öğrenciler ve tayinciler için Artvin'de yaşam maliyeti.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog15.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/fG22H4TD/file-00000000f1e07246b9684fafcb21b26a.png" alt="Artvin'de Bir Gün Nasıl Geçer" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">📍 Gezi Rehberi</div>
+          <div class="blog-card-title">Artvin'de Bir Gün Nasıl Geçer?</div>
+          <div class="blog-card-desc">Sabahtan akşama, yayladan çarşıya — gerçek bir Artvin günü rehberi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog14.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/C51B0yyX/1773819651960.png" alt="Artvin'den Batum'a Ne Kadar Tutar" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">&#9992;&#65039; Gezi</div>
+          <div class="blog-card-title">Artvin'den Batum'a Ne Kadar Tutar? Sarp Sınır Kapısı Gerçek Maliyet Rehberi 2026</div>
+          <div class="blog-card-desc">Dolmuş ~1.990 ₺, taksi ~6.150 ₺ — giriş harcı ve sigorta dahil gerçek hesap.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog13.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/k6BmSrH9/1773812868531.png" alt="Artvin Otobüs Bilet Fiyatları 2026" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">&#128652; Ulaşım</div>
+          <div class="blog-card-title">Artvin Otobüs Bilet Fiyatları 2026</div>
+          <div class="blog-card-desc">Ankara 1.800 ₺, İstanbul 2.300 ₺, Trabzon 600 ₺ — Mart 2026 güncel fiyat listesi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog12.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/7J0G9S2Z/MG-20260315-053747.png" alt="Artvin İklimi" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">&#127807; İklim &amp; Doğa</div>
+          <div class="blog-card-title">Artvin İklimi: Karadeniz'in Yeşili ile Dağların Sertliği Bir Arada</div>
+          <div class="blog-card-desc">Kısa mesafede birbirinden farklı iklimler — Artvin'i bu kadar özel yapan şeyin özü.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog11.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/t7xTyx0/MG-20260315-030009.png" alt="Artvin Yöresel Sözlük" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">&#128218; Yöresel Sözlük</div>
+          <div class="blog-card-title">Artvin Yöresel Sözlük</div>
+          <div class="blog-card-desc">Bilmeyenler şaşıracak — Artvin'e özgü yerel kelimeler ve anlamları. A'dan C'ye, devamı geliyor.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog10.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/xS1xzdmS/image-1773518784953.jpg" alt="2026 Artvin Boğa Güreşi Takvimi" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">&#128004; Boğa Güreşi</div>
+          <div class="blog-card-title">2026 Artvin Boğa Güreşi Takvimi</div>
+          <div class="blog-card-desc">Sarıgöl'den Kafkasör'e — 2026 yılı güncel program, tarih ve lokasyonlar.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog9.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/DH4c22k9/1773478832399.png" alt="Artvin İlçe Rehberi 2026" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">📍 İlçe Rehberi</div>
+          <div class="blog-card-title">Artvin İlçe Rehberi 2026</div>
+          <div class="blog-card-desc">9 ilçe, 9 farklı karakter — nüfus, ekonomi, doğa ve yerel yaşamdan notlar.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog8.html">
+        <div class="blog-card-badge" style="display:none"></div>
+        <img class="blog-card-img" src="https://i.ibb.co/3Y7wYbML/1773309751666.png" alt="Demirkent kavurmalı hinkal" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🍽️ Yöresel Lezzetler</div>
+          <div class="blog-card-title">Kırk Hinkal Yiyip Doymamak: Demirkent Köyü'nün Efsane Lezzeti</div>
+          <div class="blog-card-desc">Artvin Yusufeli'nin Demirkent köyüne özgü kavurmalı hinkal — şiirlere geçmiş, dillerden düşmeyen bir damak tadı.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog7.html">
+        <div class="blog-card-badge" style="opacity:.6">7</div>
+        <img class="blog-card-img" src="https://i.ibb.co/353xBxPD/Kackar-Dagi-from-North-hory.jpg" alt="Kaçkar Dağı — Artvin'in En Yüksek Yeri" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">⛰️ Doğa & Coğrafya</div>
+          <div class="blog-card-title">Artvin'in En Yüksek Yeri Neresi? Kaçkar Dağı</div>
+          <div class="blog-card-desc">3.937 metre ile Türkiye'nin 4. yüksek zirvesi. Tırmanış rotaları, buzul gölleri ve Heveg Köyü güzergahı.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog6.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/bT3nkHD/kafkasor-festivali-boga-barisi.jpg" alt="Artvin Boğa Güreşleri Kafkasör Festivali" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🐂 Festival & Gelenek</div>
+          <div class="blog-card-title">Artvin Boğa Güreşleri: Nerede İzlenir, Ne Zaman Başlar?</div>
+          <div class="blog-card-desc">200 yıllık geleneğin Temmuz'daki buluşması: Kafkasör. Sarıgöl'den Türkiye Şampiyonası'na, Artvin'in tüm güreş lokasyonları.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog5.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/W4yYCfW4/1772656217998.png" alt="Artvin ne zaman il oldu" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🏛️ Tarih</div>
+          <div class="blog-card-title">Artvin Ne Zaman İl Oldu?</div>
+          <div class="blog-card-desc">1924'te vilayet, 1933'te kaza, 1936'da yeniden merkez, 1956'da Artvin. Bir ilin kimliğini kazanma hikayesi.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog4.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/Kz0bTbKV/MG-20260304-101611.jpg" alt="Artvin Coğrafi İşaret" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">🏆 Coğrafi İşaret</div>
+          <div class="blog-card-title">Artvin'in Tescilli Lezzetleri</div>
+          <div class="blog-card-desc">Arhavi kestane balından Hopa laz böreğine, Şavşat ketesinden pucukoya — devlet güvencesiyle tescil edilmiş Artvin lezzetleri.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog3.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/fz7Lt08b/1772545454067.png" alt="Artvin Ulaşım" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">✈️ Ulaşım Rehberi</div>
+          <div class="blog-card-title">Artvin'den Her Yere: Havalimanı ve Otobüs Rehberi</div>
+          <div class="blog-card-desc">4 havalimanı, 2 otobüs terminali. Hangisi sana daha yakın, ring servisi var mı, kışın ne olur? Hepsini anlattık.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog2.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/VWrnR99j/MG-20260221-130134.jpg" alt="Artvin" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">😄 Kültür & Mizah</div>
+          <div class="blog-card-title">Artvinliye Sorulmaz: Tepkisel Cevap Alacağınız 10 Soru</div>
+          <div class="blog-card-desc">Bir Artvinliyle sohbet kurmadan önce şu listeye bir göz atın. Bazı sorular var ki sabır taşını çatlatmaya yeter.</div>
+        </div>
+      </a>
+<a class="blog-card" href="blog1.html">
+        <div class="blog-card-badge">YENİ</div>
+        <img class="blog-card-img" src="https://i.ibb.co/SXstYhQ5/artvin-merkez-notlar.png" alt="Artvin Merkez" loading="lazy">
+        <div class="blog-card-body">
+          <div class="blog-card-cat">📣 Tanitim & Yaşam Rehberi</div>
+          <div class="blog-card-title">Artvin'e Geliyorsanız Bunları Mutlaka Bilin</div>
+          <div class="blog-card-desc">Okul ya da iş için Artvin'e taşınmayı düşünüyorsanız, bu satırlar tam size göre. Süslü kelimeler yok, samimi notlar var.</div>
+        </div>
+      </a>
+  </div>
+  <div class="bulunamadi" id="bulunamadi">Aramanıza uygun yazı bulunamadı. Farklı bir kelime deneyin.</div>
+</div>
+
+<footer>
+  © 2026 Artvin Rehber · artvinrehber.com · Tüm Artvin rehberleri tek sayfada
+</footer>
+
+<script>
+function araBlog(){
+  var q = document.getElementById('aramaInput').value.toLowerCase().trim();
+  var kartlar = document.querySelectorAll('#blogGrid .blog-card');
+  var gorunen = 0;
+  kartlar.forEach(function(k){
+    var metin = k.textContent.toLowerCase();
+    if(q==='' || metin.indexOf(q)>-1){ k.style.display=''; gorunen++; }
+    else { k.style.display='none'; }
+  });
+  document.getElementById('bulunamadi').style.display = gorunen===0 ? 'block' : 'none';
+  var say = document.getElementById('sonucSay');
+  say.textContent = q==='' ? kartlar.length+' yazı' : gorunen+' / '+kartlar.length+' yazı';
+}
+// başlangıç sayısı
+document.getElementById('sonucSay').textContent = document.querySelectorAll('#blogGrid .blog-card').length + ' yazı';
+</script>
+</body>
+</html>
