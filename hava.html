@@ -320,6 +320,25 @@ footer {
   font-size: .65rem; color: rgba(255,255,255,.3); line-height: 2;
 }
 footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+
+/* ═══ 5 GÜNLÜK TAHMİN — PREMIUM KART ═══ */
+.tahmin-baslik { font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); margin: 1.5rem 0 .6rem; padding: 0 1.25rem;
+  position: relative; z-index: 1; }
+.tahmin-wrap { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .4rem; padding: 0 1.25rem 1.25rem; }
+.tahmin-gun { display: flex; align-items: center; gap: .8rem;
+  background: rgba(255,255,255,.08); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.12); border-radius: 16px;
+  padding: .7rem 1rem; transition: background .2s; }
+.tahmin-gun:active { background: rgba(255,255,255,.13); }
+.tg-gun { flex: 0 0 64px; font-size: .78rem; font-weight: 700; color: #fff; }
+.tg-ikon { flex: 0 0 34px; font-size: 1.4rem; text-align: center; }
+.tg-sicak { flex: 1; display: flex; align-items: center; gap: .55rem; }
+.tg-sicak .mins { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.45); flex: 0 0 26px; text-align: right; }
+.tg-sicak .maks { font-size: .82rem; font-weight: 800; color: #fff; flex: 0 0 30px; }
+.tg-bar { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,.12); position: relative; overflow: hidden; }
+.tg-bar-ic { position: absolute; top: 0; bottom: 0; border-radius: 3px;
+  background: linear-gradient(90deg, #60a5fa, #fbbf24, #f87171); }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://artvinrehber.com/hava.html","dateModified":"2026-05-11","datePublished":"2026-01-01"}</script>
 </head>
@@ -459,7 +478,7 @@ footer a { color: rgba(255,255,255,.5); text-decoration: none; }
 <div style="max-width:600px;margin:2rem auto;padding:1.5rem 1.1rem;border-top:1px solid rgba(255,255,255,.08);">
   <div style="font-size:1rem;font-weight:800;color:#f0c040;margin-bottom:.85rem;">🔗 İlgili Sayfalar</div>
   <div style="display:flex;flex-wrap:wrap;gap:.55rem;">
-    <a href="/namaz.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🕌 Namaz Vakitleri</a><a href="/gezi.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🗺️ Gezilecek Yerler</a><a href="/artvin-rakim-altimetre.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">⛰️ Rakım/Altimetre</a><a href="/eczane-rehber.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">💊 Nöbetçi Eczane</a>
+    <a href="namaz.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🕌 Namaz Vakitleri</a><a href="gezi.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">🗺️ Gezilecek Yerler</a><a href="artvin-rakim-altimetre.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">⛰️ Rakım/Altimetre</a><a href="eczane-rehber.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.5rem .95rem;font-size:.8rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;">💊 Nöbetçi Eczane</a>
   </div>
 </div>
 <footer>
@@ -648,17 +667,27 @@ async function yukle(idx) {
     }
     document.getElementById('saatSerit').innerHTML = saatHTML;
 
-    // 7 günlük tahmin
+    // 7 günlük tahmin (premium - sıcaklık bar'lı)
+    var haftaMaks = Math.max.apply(null, d.daily.temperature_2m_max);
+    var haftaMin = Math.min.apply(null, d.daily.temperature_2m_min);
+    var araplik = Math.max(1, haftaMaks - haftaMin);
     var tahminHTML = '';
     d.daily.time.forEach(function(tarih, i) {
       var dt = new Date(tarih);
       var gunAdi = i===0?'Bugün':(i===1?'Yarın':GUN[dt.getDay()]);
+      var mx = Math.round(d.daily.temperature_2m_max[i]);
+      var mn = Math.round(d.daily.temperature_2m_min[i]);
+      var solYuzde = ((mn - haftaMin) / araplik) * 100;
+      var genislikYuzde = ((mx - mn) / araplik) * 100;
       tahminHTML += '<div class="tahmin-gun">'+
         '<div class="tg-gun">'+gunAdi+'</div>'+
         '<div class="tg-ikon">'+wIkon(d.daily.weather_code[i])+'</div>'+
-        '<div class="tg-sicak"><span class="maks">'+Math.round(d.daily.temperature_2m_max[i])+'°</span>'+
-        '<span class="mins">'+Math.round(d.daily.temperature_2m_min[i])+'°</span></div>'+
-        '</div>';
+        '<div class="tg-sicak">'+
+          '<span class="mins">'+mn+'°</span>'+
+          '<div class="tg-bar"><div class="tg-bar-ic" style="left:'+solYuzde.toFixed(0)+'%;width:'+genislikYuzde.toFixed(0)+'%"></div></div>'+
+          '<span class="maks">'+mx+'°</span>'+
+        '</div>'+
+      '</div>';
     });
     document.getElementById('tahminWrap').innerHTML = tahminHTML;
 
