@@ -850,6 +850,12 @@ border-radius:20px;}
 .ok-inline{display:inline-flex;width:14px;height:14px;vertical-align:middle;margin-left:2px;animation:okKay 1.15s ease-in-out infinite}
 .ok-inline svg{width:100%;height:100%}
 
+
+.ok-asagi{width:20px;height:20px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;color:#f0c040;animation:okAsagiKay 1.15s ease-in-out infinite;filter:drop-shadow(0 0 4px rgba(240,192,64,.5))}
+.ok-asagi svg{width:100%;height:100%;display:block}
+.ok-asagi:first-child{animation-delay:0s}
+.ok-asagi:last-child{animation-delay:.55s}
+@keyframes okAsagiKay{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(5px);opacity:1}}
 </style>
 
   <!-- ═══ SEO & GEO OPTİMİZASYON ═══ -->
@@ -1251,7 +1257,7 @@ async function konumAl() {
       <a class="hp gizli-pill" href="/artvin-havalimanlari.html" style="display:none">✈️ Hangi Havalimanı?</a>
       <a class="hp gizli-pill" href="/etkinlik.html" style="display:none">🎪 Artvin Etkinlik</a>
       <a class="hp gizli-pill" href="/artvin-kampus-ulasim.html" style="display:none">🏫 Kampüs & Yurt Ulaşımı</a>
-      <button id="dahaFazlaBtn" onclick="dahaFazlaToggle()" class="hp" style="grid-column:1/-1;background:rgba(240,192,64,.12);border-color:rgba(240,192,64,.4);color:#f0c040;font-weight:700;cursor:pointer;text-align:center;justify-content:center;">⋯ Daha Fazla</button>
+      <button id="dahaFazlaBtn" onclick="dahaFazlaToggle()" class="hp" style="grid-column:1/-1;background:rgba(240,192,64,.12);border-color:rgba(240,192,64,.4);color:#f0c040;font-weight:700;cursor:pointer;text-align:center;justify-content:center;gap:.6rem;"><span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span>Daha Fazla<span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span></button>
     </nav>
 <script>
 function dahaFazlaToggle(){
