@@ -429,6 +429,8 @@ footer a { color: rgba(255,255,255,.5); text-decoration: none; }
   background: linear-gradient(90deg, #60a5fa, #fbbf24, #f87171); }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://artvinrehber.com/hava.html","dateModified":"2026-05-11","datePublished":"2026-01-01"}</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 </head>
 <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Artvin Hava Durumu 2026</h1>
 <body>
@@ -441,6 +443,16 @@ footer a { color: rgba(255,255,255,.5); text-decoration: none; }
   <span style="font-size:.68rem;font-weight:700;color:#a8e6c0;">✅ Haziran 2026 Güncellendi</span>
   <span style="font-size:.6rem;color:rgba(255,255,255,.35);">· Open-Meteo · Anlık veri</span>
 </div>
+<!-- GÜNLÜK HAVA YORUMU -->
+<div id="gunlukYorumKutu" style="display:none;margin:1rem 1.25rem;background:linear-gradient(160deg,#0f2318,#153a24);border:1px solid rgba(61,219,138,.25);border-radius:16px;padding:1.1rem 1.25rem;">
+  <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem">
+    <span style="font-size:1.1rem">📝</span>
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.08em;color:#3ddb8a">GÜNÜN HAVA YORUMU</span>
+    <span id="yorumTarih" style="margin-left:auto;font-size:.62rem;color:rgba(255,255,255,.35)"></span>
+  </div>
+  <p id="yorumMetin" style="font-size:.82rem;color:rgba(255,255,255,.85);line-height:1.75;margin:0"></p>
+</div>
+
 <!-- İLÇE SEÇİCİ -->
 <div class="ilce-bar" id="ilceBar"></div>
 
@@ -806,6 +818,27 @@ async function yukle(idx) {
 
 butonlar();
 yukle(0);
+
+// ── GÜNLÜK HAVA YORUMU (Firestore'dan) ──
+firebase.initializeApp({
+  apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",
+  authDomain:"artvin-imece.firebaseapp.com",
+  projectId:"artvin-imece",
+  storageBucket:"artvin-imece.firebasestorage.app",
+  messagingSenderId:"30297800879",
+  appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"
+});
+var yorumDb = firebase.firestore();
+yorumDb.collection('gunluk-hava-yorum').doc('guncel').get().then(function(doc){
+  if (!doc.exists) return;
+  var d = doc.data();
+  document.getElementById('yorumMetin').textContent = d.yorum;
+  var tarihObj = new Date(d.tarih);
+  document.getElementById('yorumTarih').textContent = tarihObj.toLocaleDateString('tr-TR', {day:'numeric', month:'long'});
+  document.getElementById('gunlukYorumKutu').style.display = 'block';
+}).catch(function(err){
+  console.log('Gunluk yorum yuklenemedi:', err);
+});
 </script>
 </body>
 </html>
