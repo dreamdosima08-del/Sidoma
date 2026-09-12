@@ -577,12 +577,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://artvinrehber.com/sarp-sinir-kapisi.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://artvinrehber.com/eczane-rehber-1.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -752,6 +746,12 @@
   </url>
   <url>
     <loc>https://artvinrehber.com/reklam.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://artvinrehber.com/sarp-sinir-kapisi.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
