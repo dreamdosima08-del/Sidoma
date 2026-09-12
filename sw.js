@@ -1,16 +1,39 @@
-const CACHE_NAME = 'artvinrehber-v9';
+const CACHE_NAME = 'artvinrehber-v10';
 const URLS = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  // En çok ziyaret edilen / en kritik sayfalar - internet yokken de açılsın
+  '/havas.html',
+  '/dolmus.html',
+  '/taksi.html',
+  '/eczane-rehber.html',
+  '/oteller.html',
+  '/hava.html',
+  '/namaz.html',
+  '/artvinmetre.html',
+  '/artvin-rakim-altimetre.html',
+  '/artvin-harita.html',
+  '/artvin-mesafe.html',
+  '/gezi.html',
+  '/blog19.html',
+  '/blog9.html',
+  '/blog18.html',
+  '/acu-tercih-rehberi.html',
+  '/sehirici-dolmus.html'
 ];
 
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(URLS);
-    }).catch(function(err) {
-      console.log('Cache hatasi:', err);
+      // Tek tek dene - listedeki bir sayfa 404 olsa bile digerleri onbelleklensin
+      return Promise.allSettled(
+        URLS.map(function(url) {
+          return cache.add(url).catch(function(err) {
+            console.log('Onbelleklenemedi:', url, err);
+          });
+        })
+      );
     })
   );
   self.skipWaiting();
