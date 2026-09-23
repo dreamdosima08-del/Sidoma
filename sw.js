@@ -1,4 +1,13 @@
-const CACHE_NAME = 'artvinrehber-v10';
+// ── Yol durumu push bildirimleri (Firebase Cloud Messaging) ──
+try {
+  importScripts('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js',
+                'https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js');
+  firebase.initializeApp({apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",authDomain:"artvin-imece.firebaseapp.com",projectId:"artvin-imece",
+    storageBucket:"artvin-imece.firebasestorage.app",messagingSenderId:"30297800879",appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"});
+  firebase.messaging(); // bildirimi gösterme ve tıklayınca sayfayı açma işini SDK yapar
+} catch (e) { /* bildirim altyapısı yüklenemezse site normal çalışmaya devam eder */ }
+
+const CACHE_NAME = 'artvinrehber-v11';
 const URLS = [
   '/',
   '/index.html',

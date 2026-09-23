@@ -1037,6 +1037,36 @@ border-radius:20px;}
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Artvin Rehberi">
+<style id="katman3d">
+/* ===== 3D KATMAN — Artvin Rehberi ana sayfa derinlik efekti =====
+   Kaldırmak için bu stil bloğunu, .dag3d-sahne div'ini ve id="katman3d-js" script'ini silmek yeterli. */
+.hero{perspective:900px}
+.hero-bg{transform:scale(1.14) translate3d(var(--px,0px),var(--py,0px),0);transition:transform .35s cubic-bezier(.2,.7,.3,1);will-change:transform}
+.dag3d-sahne{position:absolute;top:0;left:0;right:0;height:min(640px,76vh);z-index:1;pointer-events:none;overflow:hidden}
+.dag3d{position:absolute;left:-8%;right:-8%;bottom:-2px;will-change:transform;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.dag3d svg{width:100%;height:100%;display:block}
+.dag-uzak{height:72%;transform:translate3d(calc(var(--px,0px)*.35),calc(var(--py,0px)*.35),0)}
+.dag-orta{height:46%;transform:translate3d(calc(var(--px,0px)*.75),calc(var(--py,0px)*.75),0)}
+.dag-yakin{height:24%;transform:translate3d(calc(var(--px,0px)*1.35),calc(var(--py,0px)*1.1),0)}
+.dag-sis{position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(to bottom,rgba(10,26,18,0),rgba(10,26,18,.55) 60%,rgba(10,26,18,.9))}
+.dag-sis.ust{bottom:18%;height:22%;background:linear-gradient(to bottom,rgba(10,26,18,0),rgba(200,220,210,.07),rgba(10,26,18,0))}
+.hero-city{display:inline-block;transform-style:preserve-3d;
+  transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:transform .35s cubic-bezier(.2,.7,.3,1);
+  text-shadow:0 1px 0 #d8a53c,0 2px 0 #c7962f,0 3px 0 #b38427,0 4px 0 #9d7220,0 5px 0 #86601a,0 6px 0 #6e4e14,
+    0 12px 22px rgba(0,0,0,.6),0 0 34px rgba(232,184,75,.28)}
+.hero-pills{perspective:700px}
+.hp{box-shadow:0 4px 0 rgba(0,0,0,.5),0 9px 18px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.2)!important;
+  transform:translateY(0) rotateX(6deg);transform-origin:50% 100%;
+  transition:transform .12s ease,box-shadow .12s ease,background .2s!important}
+.hp:active{transform:translateY(3px) rotateX(0deg);box-shadow:0 1px 0 rgba(0,0,0,.5),0 3px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.12)!important}
+.rocard,.blog-card,.ezcard{transform-style:preserve-3d}
+.k3d-bekle{opacity:0;transform:perspective(900px) rotateX(14deg) translateY(28px) scale(.97)}
+.k3d-gel{opacity:1;transform:perspective(900px) rotateX(0) translateY(0) scale(1);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion: reduce){
+  .hero-bg,.dag3d,.hero-city{transform:none!important;transition:none!important}
+  .k3d-bekle{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
 <a href="#main-content" style="position:absolute;top:-100px;left:0;background:#3ddb8a;color:#000;padding:.5rem 1rem;z-index:9999;border-radius:0 0 8px 0;font-weight:700;transition:top .2s" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">İçeriğe geç</a>
@@ -1078,6 +1108,18 @@ border-radius:20px;}
 <section id="main-content" class="hero" role="banner">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
+  <div class="dag3d-sahne" aria-hidden="true">
+    <div class="dag3d dag-uzak"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><defs><linearGradient id="gUzak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d5a45"/><stop offset="1" stop-color="#15301f"/></linearGradient></defs>
+      <path fill="url(#gUzak)" opacity=".7" d="M0 300 L0 170 L70 120 L130 150 L210 70 L260 110 L330 60 L400 120 L470 95 L540 140 L610 80 L680 42 L740 100 L820 75 L900 130 L960 90 L1040 120 L1110 68 L1200 110 L1200 300 Z"/>
+      <path fill="#f3efe4" opacity=".55" d="M195 84 L210 70 L225 82 L216 86 L210 80 L203 88 Z M316 74 L330 60 L346 72 L336 76 L330 70 L322 78 Z M662 58 L680 42 L699 56 L688 61 L680 54 L671 62 Z M1094 83 L1110 68 L1127 80 L1117 84 L1110 78 L1102 86 Z"/>
+      <path fill="none" stroke="#e8b84b" stroke-opacity=".28" stroke-width="1.5" d="M0 170 L70 120 L130 150 L210 70 L260 110 L330 60 L400 120 L470 95 L540 140 L610 80 L680 42 L740 100 L820 75 L900 130 L960 90 L1040 120 L1110 68 L1200 110"/></svg></div>
+    <div class="dag-sis ust"></div>
+    <div class="dag3d dag-orta"><svg viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <path fill="#12291c" opacity=".92" d="M0 300 L0 200 L90 150 L170 185 L260 125 L350 175 L440 140 L520 185 L600 145 L700 180 L780 128 L870 170 L960 142 L1050 182 L1130 150 L1200 170 L1200 300 Z"/></svg></div>
+    <div class="dag3d dag-yakin"><svg viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <path fill="#0a1a12" d="M0 300 L0 230 L0 225 L8 202 L16 225 L22 232 L27 200 L33 232 L41 237 L47 199 L52 237 L68 241 L74 213 L81 241 L93 240 L101 218 L108 240 L114 237 L119 214 L124 237 L133 233 L141 207 L148 233 L159 230 L165 209 L171 230 L193 229 L199 209 L206 229 L217 231 L223 200 L229 231 L246 234 L253 206 L259 234 L280 235 L285 205 L291 235 L296 233 L302 196 L309 233 L316 229 L323 192 L330 229 L347 220 L353 184 L358 220 L369 213 L374 177 L380 213 L397 207 L405 187 L412 207 L428 207 L436 170 L443 207 L456 211 L462 189 L467 211 L481 217 L486 189 L491 217 L511 223 L519 195 L526 223 L534 225 L539 202 L544 225 L554 225 L560 202 L566 225 L577 223 L585 189 L593 223 L600 222 L605 196 L611 222 L627 221 L632 184 L638 221 L656 225 L661 201 L666 225 L683 232 L689 207 L694 232 L706 238 L713 215 L719 238 L731 243 L738 217 L744 243 L754 245 L759 225 L764 245 L770 244 L776 216 L782 244 L801 238 L808 210 L815 238 L837 227 L842 208 L847 227 L853 223 L860 197 L867 223 L884 219 L892 194 L900 219 L904 219 L910 184 L915 219 L935 221 L943 203 L951 221 L968 224 L975 186 L982 224 L989 223 L995 186 L1002 223 L1007 221 L1014 191 L1020 221 L1033 216 L1038 195 L1043 216 L1058 211 L1063 184 L1069 211 L1081 207 L1088 175 L1095 207 L1107 208 L1113 182 L1119 208 L1128 211 L1134 189 L1140 211 L1146 216 L1153 183 L1160 216 L1175 225 L1182 207 L1188 225 L1199 232 L1207 213 L1215 232 L1200 230 L1200 300 Z"/></svg></div>
+    <div class="dag-sis"></div>
+  </div>
   
   <!-- Türk Bayrağı -->
 
@@ -1259,6 +1301,7 @@ async function konumAl() {
       <a class="hp gizli-pill" href="/etkinlik.html" style="display:none">🎪 Artvin Etkinlik</a>
       <a class="hp gizli-pill" href="/artvin-kampus-ulasim.html" style="display:none">🏫 Kampüs & Yurt Ulaşımı</a>
       <a class="hp gizli-pill" href="/sarp-sinir-kapisi.html" style="display:none">🇬🇪 Sarp Sınır Kapısı</a>
+      <a class="hp gizli-pill" href="/yol-durumu.html" style="display:none">🚧 Canlı Yol Durumu</a>
       <button id="dahaFazlaBtn" onclick="dahaFazlaToggle()" class="hp" style="grid-column:1/-1;background:rgba(240,192,64,.12);border-color:rgba(240,192,64,.4);color:#f0c040;font-weight:700;cursor:pointer;text-align:center;justify-content:center;gap:.6rem;"><span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span>Daha Fazla<span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span></button>
     </nav>
 <script>
@@ -2131,6 +2174,69 @@ function degerlendirKapat(){
   var k = document.getElementById('degerlendirKart');
   if(k) k.style.display = 'none';
 }
+</script>
+<script id="katman3d-js">
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hero = document.querySelector('.hero'); if(!hero) return;
+  var baslik = document.querySelector('.hero-city');
+  var hedefX=0, hedefY=0, taban=null, planli=false;
+  function uygula(){
+    planli=false;
+    var kaydir = Math.min(window.scrollY, 600);
+    var px = hedefX*14, py = hedefY*10 + kaydir*.12;
+    hero.style.setProperty('--px', px.toFixed(1)+'px');
+    hero.style.setProperty('--py', py.toFixed(1)+'px');
+    if (baslik){ baslik.style.setProperty('--ty',(hedefX*9).toFixed(2)+'deg'); baslik.style.setProperty('--tx',(-hedefY*7).toFixed(2)+'deg'); }
+  }
+  function iste(){ if(!planli){ planli=true; requestAnimationFrame(uygula); } }
+  function sinirla(v){ return Math.max(-1, Math.min(1, v)); }
+  function yon(e){
+    if (e.gamma==null) return;
+    if (!taban) taban={g:e.gamma,b:e.beta};
+    hedefX = sinirla((e.gamma-taban.g)/25);
+    hedefY = sinirla((e.beta-taban.b)/25);
+    iste();
+  }
+  function jiroBaslat(){
+    if (typeof DeviceOrientationEvent!=='undefined' && typeof DeviceOrientationEvent.requestPermission==='function'){
+      DeviceOrientationEvent.requestPermission().then(function(s){ if(s==='granted') window.addEventListener('deviceorientation',yon); }).catch(function(){});
+    } else { window.addEventListener('deviceorientation',yon); }
+  }
+  if (typeof DeviceOrientationEvent!=='undefined' && typeof DeviceOrientationEvent.requestPermission==='function'){
+    window.addEventListener('touchend', jiroBaslat, {once:true});
+  } else { jiroBaslat(); }
+  hero.addEventListener('pointermove', function(e){
+    if (e.pointerType!=='mouse') return;
+    var r = hero.getBoundingClientRect();
+    hedefX = sinirla(((e.clientX-r.left)/r.width-.5)*2);
+    hedefY = sinirla(((e.clientY-r.top)/r.height-.5)*2);
+    iste();
+  });
+  hero.addEventListener('pointerleave', function(){ hedefX=0; hedefY=0; iste(); });
+  window.addEventListener('scroll', iste, {passive:true});
+  var sahne = document.querySelector('.dag3d-sahne');
+  var pills = document.querySelector('.hero-pills');
+  function sahneBoyu(){
+    if(!sahne||!pills) return;
+    var ust = pills.getBoundingClientRect().top - hero.getBoundingClientRect().top;
+    sahne.style.height = Math.max(260, ust + 10) + 'px';
+  }
+  sahneBoyu();
+  window.addEventListener('resize', sahneBoyu);
+  window.addEventListener('load', sahneBoyu);
+  if ('IntersectionObserver' in window){
+    var kartlar = document.querySelectorAll('.rocard,.blog-card,.ezcard');
+    var io = new IntersectionObserver(function(girdiler){
+      girdiler.forEach(function(g){ if(g.isIntersecting){ g.target.classList.add('k3d-gel'); g.target.classList.remove('k3d-bekle'); io.unobserve(g.target); } });
+    }, {rootMargin:'0px 0px -8% 0px'});
+    kartlar.forEach(function(k){
+      var r = k.getBoundingClientRect();
+      if (r.top > window.innerHeight){ k.classList.add('k3d-bekle'); io.observe(k); }
+    });
+  }
+  uygula();
+})();
 </script>
 </body>
 </html>
