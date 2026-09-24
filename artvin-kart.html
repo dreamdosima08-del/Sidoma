@@ -845,5 +845,19 @@ function karti_indir(){
 tarih();
 havaCek();
 </script>
+<script>
+// Haberler sayfasından "Kart" ile gelince: haber modunu aç, başlığı doldur
+window.addEventListener('load', function(){
+  try {
+    var p = new URLSearchParams(location.search), baslik = p.get('haber');
+    if (!baslik) return;
+    modSec('haber');
+    document.getElementById('inHaberBaslik').value = baslik;
+    haberGuncelle('baslik');
+    var kaynak = p.get('kaynak');
+    if (kaynak) { var m = document.getElementById('inHaberMetin'); m.placeholder = 'Kaynak: ' + kaynak + ' — kısa özetini buraya yaz'; }
+  } catch(e) {}
+});
+</script>
 </body>
 </html>
