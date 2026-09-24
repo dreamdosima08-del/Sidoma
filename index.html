@@ -1067,6 +1067,16 @@ border-radius:20px;}
   .k3d-bekle{opacity:1;transform:none}
 }
 </style>
+<style id="yol-canli-css">
+.hp.yol-canli{grid-column:1/-1;justify-content:space-between;gap:.5rem;background:linear-gradient(90deg,rgba(61,219,138,.14),rgba(255,255,255,.06));border-color:rgba(61,219,138,.45)}
+.hp.yol-canli.sorun{background:linear-gradient(90deg,rgba(242,85,85,.22),rgba(255,255,255,.06));border-color:rgba(242,85,85,.6)}
+.hp.yol-canli.dikkat{background:linear-gradient(90deg,rgba(245,165,36,.2),rgba(255,255,255,.06));border-color:rgba(245,165,36,.55)}
+.yc-nokta{width:9px;height:9px;border-radius:50%;background:#3ddb8a;flex-shrink:0;box-shadow:0 0 0 0 rgba(61,219,138,.6);animation:ycNabiz 1.8s infinite}
+.yol-canli.sorun .yc-nokta{background:#f25555}.yol-canli.dikkat .yc-nokta{background:#f5a524}
+.yc-durum{font-size:.62rem;font-weight:800;letter-spacing:.04em;padding:.2rem .5rem;border-radius:100px;background:rgba(0,0,0,.25);white-space:nowrap}
+@keyframes ycNabiz{70%{box-shadow:0 0 0 7px rgba(61,219,138,0)}100%{box-shadow:0 0 0 0 rgba(61,219,138,0)}}
+@media (prefers-reduced-motion: reduce){.yc-nokta{animation:none}}
+</style>
 </head>
 <body>
 <a href="#main-content" style="position:absolute;top:-100px;left:0;background:#3ddb8a;color:#000;padding:.5rem 1rem;z-index:9999;border-radius:0 0 8px 0;font-weight:700;transition:top .2s" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">İçeriğe geç</a>
@@ -1270,6 +1280,9 @@ async function konumAl() {
 </script>
 
     <nav class="hero-pills" role="navigation" aria-label="Hızlı erişim">
+      <a class="hp yol-canli" id="yolCanli" href="/yol-durumu.html" aria-label="Artvin canlı yol durumu">
+        <span class="yc-nokta"></span><span style="white-space:nowrap;flex:1;text-align:left">🚧 Canlı Yol Durumu</span><span class="yc-durum" id="yolCanliDurum">Yollar açık mı?</span>
+      </a>
       <a class="hp" href="/eczane-rehber.html">💊 Nöbetçi Eczane</a>
       <a class="hp" href="/hava.html">🌦️ Hava Durumu</a>
       <a class="hp" href="/havas.html">🛫 Havaş Servisi</a>
@@ -1301,7 +1314,6 @@ async function konumAl() {
       <a class="hp gizli-pill" href="/etkinlik.html" style="display:none">🎪 Artvin Etkinlik</a>
       <a class="hp gizli-pill" href="/artvin-kampus-ulasim.html" style="display:none">🏫 Kampüs & Yurt Ulaşımı</a>
       <a class="hp gizli-pill" href="/sarp-sinir-kapisi.html" style="display:none">🇬🇪 Sarp Sınır Kapısı</a>
-      <a class="hp gizli-pill" href="/yol-durumu.html" style="display:none">🚧 Canlı Yol Durumu</a>
       <button id="dahaFazlaBtn" onclick="dahaFazlaToggle()" class="hp" style="grid-column:1/-1;background:rgba(240,192,64,.12);border-color:rgba(240,192,64,.4);color:#f0c040;font-weight:700;cursor:pointer;text-align:center;justify-content:center;gap:.6rem;"><span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span>Daha Fazla<span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span></button>
     </nav>
 <script>
@@ -1851,12 +1863,6 @@ function sayfaPaylas(){
   }
 }
 
-
-      // Bugünü bul ya da ilk kaydı al
-      vakitler = Array.isArray(data)
-        ? (data.find(d => d.MiladiTarihKisa === bugun) || data[0])
-        : data;
-
 </script>
 
 
@@ -2237,6 +2243,23 @@ function degerlendirKapat(){
   }
   uygula();
 })();
+</script>
+<script id="yol-canli-js">
+// Ana sayfa: canlı yol durumu kısayoluna anlık özet yaz (sayfa yüklendikten sonra, hafif)
+window.addEventListener('load', function(){
+  var el=document.getElementById('yolCanli'), yz=document.getElementById('yolCanliDurum'); if(!el) return;
+  var s=document.createElement('script'); s.src='/yol-ortak.js';
+  s.onload=function(){
+    var Y=window.YOL; if(!Y) return;
+    Y.restGetir().then(function(r){
+      var k=0,d=0; Y.YOLLAR.forEach(function(y){ var x=Y.durumHesapla(r,y.id).kod; if(x==='kapali')k++; else if(x==='dikkat')d++; });
+      if(k){ el.classList.add('sorun'); yz.textContent='⛔ '+k+' yol kapalı'; }
+      else if(d){ el.classList.add('dikkat'); yz.textContent='⚠️ '+d+' yolda dikkat'; }
+      else { yz.textContent='✓ Sorun yok'; }
+    }).catch(function(){});
+  };
+  document.head.appendChild(s);
+});
 </script>
 </body>
 </html>
