@@ -77,9 +77,9 @@
       .then(function(r){ return r.json(); })
       .then(function(sat){
         return (Array.isArray(sat)?sat:[]).filter(function(s){return s.document;}).map(function(s){
-          var f = s.document.fields||{}, g=function(k){ var v=f[k]; if(!v) return undefined; return v.stringValue!==undefined?v.stringValue:(v.integerValue!==undefined?+v.integerValue:(v.booleanValue!==undefined?v.booleanValue:(v.timestampValue||undefined))); };
+          var f = s.document.fields||{}, g=function(k){ var v=f[k]; if(!v) return undefined; return v.stringValue!==undefined?v.stringValue:(v.doubleValue!==undefined?+v.doubleValue:(v.integerValue!==undefined?+v.integerValue:(v.booleanValue!==undefined?v.booleanValue:(v.timestampValue||undefined)))); };
           return {id:s.document.name.split('/').pop(), yol:g('yol'), durum:g('durum'), sebep:g('sebep'), not:g('not'),
-                  onay:g('onay')||0, acildiOy:g('acildiOy')||0, kaynak:g('kaynak'), foto:!!g('foto'),
+                  onay:g('onay')||0, acildiOy:g('acildiOy')||0, kaynak:g('kaynak'), foto:!!g('foto'), lat:g('lat'), lng:g('lng'),
                   zamanMs: g('zaman') ? Date.parse(g('zaman')) : Date.now()};
         });
       });

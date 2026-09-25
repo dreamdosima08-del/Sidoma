@@ -23,6 +23,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js"></script>
 <script src="/yol-ortak.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Artvin yol durumunu nereden öğrenebilirim?","acceptedAnswer":{"@type":"Answer","text":"Bu sayfada Artvin'in ana yollarının durumunu halkın anlık bildirimleriyle görebilirsiniz. Resmi bilgi için e-Devlet üzerinden Karayolları Genel Müdürlüğü'nün 'Trafiğe Kapalı Yol Sorgulama' hizmetini kullanabilir, acil durumlarda 112'yi arayabilirsiniz."}},
@@ -30,7 +32,7 @@
 {"@type":"Question","name":"Buradaki bilgiler resmi mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Bildirimler yolu kullanan vatandaşlardan gelir ve diğer kullanıcıların onaylarıyla güçlenir. Onay almayan bildirimler birkaç saat içinde otomatik olarak kaybolur. Yola çıkmadan önce resmi kaynakları da kontrol etmenizi öneririz."}},
 {"@type":"Question","name":"Yol durumunu nasıl bildiririm?","acceptedAnswer":{"@type":"Answer","text":"Sayfadaki 'Yol Durumu Bildir' butonuna basıp yolu, durumu (kapalı, dikkatli geçilir, açıldı) ve sebebi seçmeniz yeterli. Üyelik gerekmez. Başkalarının bildirimlerini 'Hâlâ böyle' veya 'Açıldı' butonlarıyla onaylayabilirsiniz."}}
 ]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://artvinrehber.com/yol-durumu.html","name":"Artvin Yol Durumu","dateModified":"2026-09-23","datePublished":"2026-09-23"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://artvinrehber.com/yol-durumu.html","name":"Artvin Yol Durumu","dateModified": "2026-09-25","datePublished":"2026-09-23"}</script>
 
 <style>
 :root{
@@ -137,7 +139,7 @@ footer{text-align:center;font-size:.7rem;color:var(--soluk);padding:1.6rem 1rem 
 footer a{color:var(--vivid);text-decoration:none;font-weight:700}
 
 /* BİLDİRİM PANELİ (alt sayfa) */
-.perde{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.perde{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:none;align-items:flex-end;justify-content:center}
 .perde.acik{display:flex}
 .sheet{background:#10261b;border:1px solid var(--border);border-bottom:0;border-radius:20px 20px 0 0;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;padding:1.1rem 1.1rem calc(1.2rem + env(safe-area-inset-bottom,0px));animation:yuk .22s ease}
 @keyframes yuk{from{transform:translateY(40px);opacity:.5}to{transform:none;opacity:1}}
@@ -159,7 +161,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
 .iptal{margin-top:.5rem;width:100%;background:transparent;border:0;color:var(--dim);font:600 .8rem 'DM Sans',sans-serif;padding:.6rem;cursor:pointer}
 .hp-alan{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 
-.toast{position:fixed;left:50%;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:#1d3a2a;border:1px solid rgba(61,219,138,.4);color:#fff;font-size:.8rem;font-weight:700;padding:.7rem 1rem;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:300;max-width:90vw;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:#1d3a2a;border:1px solid rgba(61,219,138,.4);color:#fff;font-size:.8rem;font-weight:700;padding:.7rem 1rem;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:3000;max-width:90vw;text-align:center}
 .toast.goster{opacity:1;transform:translateX(-50%) translateY(0)}
 
 .editor-bar{display:none;margin-top:.8rem;font-size:.72rem;background:rgba(240,192,64,.08);border:1px dashed rgba(240,192,64,.35);border-radius:10px;padding:.55rem .7rem;color:var(--gold);align-items:center;justify-content:space-between;gap:.5rem}
@@ -192,6 +194,30 @@ textarea:focus{outline:none;border-color:var(--gold)}
 .ed-btns button{flex:1;border:0;border-radius:8px;padding:.45rem .5rem;font:800 .68rem 'DM Sans',sans-serif;cursor:pointer}
 .eb-k{background:var(--kirmizi);color:#fff}.eb-d{background:var(--sari);color:#1a1405}.eb-a{background:var(--vivid);color:#062012}.eb-x{background:rgba(255,255,255,.1);color:var(--off)}
 .yol.vurgu{animation:vurgu 1.6s ease 2}
+/* HARİTA */
+.harita-kutu{isolation:isolate;z-index:0;margin:.2rem 0 1rem;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#0d2016;position:relative}
+#harita{height:300px;width:100%}
+#miniHarita{isolation:isolate;height:210px;width:100%;border-radius:12px;border:1.5px solid var(--border);overflow:hidden}
+.leaflet-container{background:#0d2016;font-family:'DM Sans',sans-serif}
+.leaflet-tile{filter:brightness(.62) invert(1) contrast(3) hue-rotate(200deg) saturate(.3) brightness(.72)}
+.leaflet-control-attribution{background:rgba(10,26,18,.75)!important;color:rgba(232,237,233,.5)!important;font-size:9px!important}
+.leaflet-control-attribution a{color:rgba(232,237,233,.7)!important}
+.leaflet-bar a{background:#10261b!important;color:#e8ede9!important;border-color:rgba(255,255,255,.12)!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#10261b;color:#e8ede9;border:1px solid rgba(255,255,255,.12)}
+.leaflet-popup-content{margin:.7rem .85rem;font-size:.78rem;line-height:1.45}
+.leaflet-popup-content b{color:#fff}
+.lp-btn{display:inline-block;margin-top:.45rem;background:rgba(240,192,64,.15);border:1px solid rgba(240,192,64,.4);color:#f0c040;border-radius:8px;padding:.25rem .55rem;font-weight:800;font-size:.7rem;cursor:pointer}
+.pin{width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2.5px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.5)}
+.pin.kapali{background:#f25555}.pin.dikkat{background:#f5a524}.pin.acik{background:#3ddb8a}.pin.sec{background:#f0c040;animation:pinz 1s ease}
+@keyframes pinz{0%{transform:rotate(-45deg) translateY(-14px)}100%{transform:rotate(-45deg)}}
+.yol-rozet{transform:translate(-50%,-50%);display:inline-block;padding:.18rem .45rem;border-radius:100px;font-size:.6rem;font-weight:800;white-space:nowrap;border:1.5px solid rgba(255,255,255,.7);box-shadow:0 2px 8px rgba(0,0,0,.45);color:#fff}
+.yol-rozet.kapali{background:#c93a3a}.yol-rozet.dikkat{background:#c7851a}.yol-rozet.acik{background:#23915a}.yol-rozet.yok{background:rgba(40,60,50,.85);border-color:rgba(255,255,255,.25);color:rgba(232,237,233,.75)}
+.yol-nokta{width:12px;height:12px;border-radius:50%;background:rgba(160,180,170,.85);border:2px solid rgba(255,255,255,.8);transform:translate(-50%,-50%);box-shadow:0 1px 5px rgba(0,0,0,.5)}
+.harita-lejant{display:flex;gap:.6rem;flex-wrap:wrap;padding:.5rem .75rem;font-size:.64rem;color:var(--dim);border-top:1px solid var(--border)}
+.harita-lejant i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.25rem;vertical-align:-1px}
+.konum-btns{display:flex;gap:.4rem;margin-top:.45rem}
+.konum-btns button{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--off);font:700 .72rem 'DM Sans',sans-serif;padding:.55rem;border-radius:10px;cursor:pointer}
+.konum-ipucu{font-size:.66rem;color:var(--soluk);margin-top:.35rem}
 @keyframes vurgu{50%{box-shadow:0 0 0 2px var(--gold)}}
 </style>
 </head>
@@ -217,6 +243,11 @@ textarea:focus{outline:none;border-color:var(--gold)}
   </header>
 
   <div class="uyari">⚠️<div>Bilgiler vatandaş bildirimidir, resmi değildir. Yola çıkmadan önce <a href="#resmi">resmi kaynakları</a> da kontrol et. Acil durumda <a href="tel:112">112</a>'yi ara.</div></div>
+
+  <div class="harita-kutu">
+    <div id="harita" role="application" aria-label="Artvin yol durumu haritası"></div>
+    <div class="harita-lejant"><span><i style="background:#f25555"></i>Kapalı</span><span><i style="background:#f5a524"></i>Dikkat</span><span><i style="background:#3ddb8a"></i>Açıldı</span><span><i style="background:#a0b4aa"></i>Bildirim yok</span><span>📍 = bildirilen nokta</span></div>
+  </div>
 
   <button class="bildir-btn" id="bildirAc">📢 Yol Durumu Bildir</button>
   <div class="arac-satir">
@@ -294,6 +325,11 @@ textarea:focus{outline:none;border-color:var(--gold)}
     <div style="font-size:.74rem;color:var(--dim)">Sadece kendi gördüğün ya da kesin bildiğin durumu bildir.</div>
 
     <div class="adim"><div class="adim-l">1 · Hangi yol?</div><div class="secim" id="sYol"></div></div>
+    <div class="adim"><div class="adim-l">📍 Yeri haritada işaretle (isteğe bağlı)</div>
+      <div id="miniHarita"></div>
+      <div class="konum-btns"><button type="button" id="konumBen">📍 Konumumu kullan</button><button type="button" id="konumSil">Temizle</button></div>
+      <div class="konum-ipucu" id="konumIpucu">Haritaya dokunarak sorunun olduğu yeri işaretle. Yol seçmediysen en yakın yolu biz seçeriz.</div>
+    </div>
     <div class="adim"><div class="adim-l">2 · Durum ne?</div>
       <div class="secim" id="sDurum">
         <button class="sc kapali" data-v="kapali">⛔ Kapalı</button>
@@ -368,7 +404,8 @@ textarea:focus{outline:none;border-color:var(--gold)}
         raporHtml = '<div class="yol-rapor">'+(r.kaynak==='editor'?'<span class="editor-rozet">ARTVİN REHBERİ</span>':'')+
           '<b>'+esc(baslik)+'</b>'+(r.not?' · '+esc(r.not):'')+
           '<div class="meta">'+once(zamanMs(r))+' · 👍 '+(r.onay||0)+' onay · ✅ '+(r.acildiOy||0)+' açıldı dedi</div>'+
-          (r.foto?'<button class="foto-btn" data-foto="'+r.id+'">📷 Fotoğrafı gör</button>':'')+
+          (r.foto?'<button class="foto-btn" data-foto="'+r.id+'">📷 Fotoğrafı gör</button> ':'')+
+          (typeof r.lat==='number'?'<button class="foto-btn" data-harita="'+r.id+'" style="color:#f0c040;border-color:rgba(240,192,64,.35);background:rgba(240,192,64,.08)">📍 Haritada gör</button>':'')+
           '<div>'+Y.havaChip(hava[y.id])+'</div></div>';
       } else {
         raporHtml = '<div class="yol-rapor"><span class="bos">Son saatlerde bildirim yok. Bu, yolun kesin açık olduğu anlamına gelmez.</span><div>'+Y.havaChip(hava[y.id])+'</div></div>';
@@ -408,7 +445,118 @@ textarea:focus{outline:none;border-color:var(--gold)}
     $('sKapali').textContent=s.kapali; $('sDikkat').textContent=s.dikkat; $('sAcik').textContent=s.acik;
     var son = raporlar.length ? Math.max.apply(null, raporlar.map(zamanMs)) : 0;
     $('guncel').textContent = son ? 'Son bildirim: '+once(son)+' · canlı güncelleniyor' : 'Son 24 saatte bildirim yok · canlı güncelleniyor';
+    haritaCiz();
   }
+
+  // ─── HARİTA ───
+  // Yolların yaklaşık uç ve orta noktaları (en yakın yol tahmini için)
+  var YOL_NOKTA = {
+    'artvin-savsat':[[41.1828,41.8183],[41.22,42.10],[41.2444,42.3667]],
+    'savsat-ardahan':[[41.2444,42.3667],[41.20,42.55],[41.1105,42.7022]],
+    'artvin-yusufeli':[[41.1828,41.8183],[40.98,41.65],[40.8167,41.5333]],
+    'artvin-ardanuc':[[41.1828,41.8183],[41.14,41.96],[41.1167,42.0667]],
+    'artvin-borcka':[[41.1828,41.8183],[41.28,41.72],[41.3667,41.6833]],
+    'borcka-hopa':[[41.3667,41.6833],[41.39,41.55],[41.4119,41.4239]],
+    'borcka-camili':[[41.3667,41.6833],[41.43,41.90],[41.3667,42.0333]],
+    'borcka-murgul':[[41.3667,41.6833],[41.27,41.58],[41.2800,41.5600]],
+    'artvin-kafkasor':[[41.1828,41.8183],[41.19,41.76],[41.1950,41.7350]],
+    'hopa-arhavi':[[41.4119,41.4239],[41.37,41.35],[41.3528,41.2978],[41.27,41.14]],
+    'hopa-sarp':[[41.4119,41.4239],[41.47,41.49],[41.5200,41.5470]]
+  };
+  var SINIR = {g:[40.55,40.95],b:[41.65,42.85]}; // Artvin + komşu geçitler kaba sınırı
+  function sinirda(la,lo){ return la>SINIR.g[0] && la<SINIR.b[0] && lo>SINIR.g[1] && lo<SINIR.b[1]; }
+  function enYakinYol(la,lo){
+    var en=null, d=1e9;
+    Object.keys(YOL_NOKTA).forEach(function(id){ YOL_NOKTA[id].forEach(function(n){ var x=(n[0]-la)*(n[0]-la)+((n[1]-lo)*.75)*((n[1]-lo)*.75); if(x<d){d=x;en=id;} }); });
+    return en;
+  }
+  var harita=null, katman=null, isaretler={};
+  function tileEkle(m){
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17, attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> katkıcıları'}).addTo(m);
+  }
+  function pinIkon(sinif){ return L.divIcon({className:'', html:'<div class="pin '+sinif+'"></div>', iconSize:[22,22], iconAnchor:[11,22], popupAnchor:[0,-20]}); }
+  function haritaKur(){
+    if (typeof L==='undefined' || harita) return;
+    harita = L.map('harita',{scrollWheelZoom:false, tap:true, attributionControl:true}).setView([41.24,41.85],9);
+    var sinirlar = YOLLAR.map(function(y){ return [y.lat,y.lon]; });
+    setTimeout(function(){ harita.invalidateSize(); harita.fitBounds(sinirlar, {padding:[18,18]}); }, 250);
+    tileEkle(harita);
+    katman = L.layerGroup().addTo(harita);
+    harita.on('click', function(){ harita.scrollWheelZoom.enable(); });
+    haritaCiz();
+  }
+  function popupHtml(y, r, kod){
+    var s = '<b>'+esc(y.ad)+'</b><br>'+ETIKET[kod];
+    if (r){ s += (r.durum!=='acildi'&&SEBEP[r.sebep]?' · '+esc(SEBEP[r.sebep]):'')+(r.not?'<br>“'+esc(r.not)+'”':'')+'<br><span style="color:rgba(232,237,233,.5)">'+once(zamanMs(r))+' · 👍 '+(r.onay||0)+'</span>'; }
+    else s += '<br><span style="color:rgba(232,237,233,.5)">Son saatlerde bildirim yok</span>';
+    return s+'<br><span class="lp-btn" data-git="'+y.id+'">Listede göster →</span>';
+  }
+  function haritaCiz(){
+    if (!harita) return;
+    katman.clearLayers(); isaretler={};
+    YOLLAR.forEach(function(y){
+      var d = durum(y.id);
+      // yolun orta noktasında durum rozeti
+      var rozet = L.marker([y.lat,y.lon],{icon:L.divIcon({className:'', html: d.kod==='yok' ? '<div class="yol-nokta" title="'+esc(y.ad)+'"></div>' : '<div class="yol-rozet '+d.kod+'">'+esc(y.kisa)+'</div>', iconSize:[0,0], iconAnchor:[0,0]}), zIndexOffset: d.kod==='kapali'?900:(d.kod==='dikkat'?600:(d.kod==='yok'?0:300))});
+      rozet.bindPopup(popupHtml(y, d.rapor, d.kod)); katman.addLayer(rozet);
+      // işaretlenmiş noktalar
+      d.liste.forEach(function(r){
+        if (typeof r.lat!=='number' || typeof r.lng!=='number') return;
+        var k = r.durum==='acildi' ? 'acik' : r.durum;
+        var m = L.marker([r.lat,r.lng],{icon:pinIkon(k), zIndexOffset:1000}).bindPopup(popupHtml(y, r, k));
+        katman.addLayer(m); isaretler[r.id]=m;
+      });
+    });
+  }
+  function haritadaGoster(id){
+    var m=isaretler[id]; if(!m||!harita) return;
+    $('harita').scrollIntoView({behavior:'smooth', block:'center'});
+    setTimeout(function(){ harita.setView(m.getLatLng(), 13); m.openPopup(); }, 350);
+  }
+  document.addEventListener('click', function(e){
+    var g=e.target.closest('.lp-btn'); if(!g) return;
+    var el=$('yol-'+g.dataset.git); if(!el) return;
+    if (harita) harita.closePopup();
+    el.classList.add('acik-detay','vurgu'); el.scrollIntoView({behavior:'smooth', block:'center'});
+    setTimeout(function(){ el.classList.remove('vurgu'); }, 3500);
+  });
+
+  // Bildirim formundaki mini harita
+  var mini=null, miniPin=null;
+  function miniKur(){
+    if (typeof L==='undefined') { $('miniHarita').style.display='none'; return; }
+    if (!mini){
+      mini = L.map('miniHarita',{scrollWheelZoom:false, attributionControl:true}).setView([41.24,41.85],9);
+      tileEkle(mini);
+      mini.on('click', function(e){ pinKoy(e.latlng.lat, e.latlng.lng, 'dokunma'); });
+    }
+    setTimeout(function(){ mini.invalidateSize(); }, 250);
+  }
+  function pinKoy(la, lo, kaynak){
+    if (!sinirda(la,lo)) { toast('Bu nokta Artvin yollarının dışında görünüyor'); return; }
+    secili.lat = Math.round(la*1e5)/1e5; secili.lng = Math.round(lo*1e5)/1e5;
+    if (miniPin) mini.removeLayer(miniPin);
+    miniPin = L.marker([la,lo],{icon:pinIkon('sec')}).addTo(mini);
+    if (kaynak==='gps') mini.setView([la,lo], 13);
+    if (!secili.yol){
+      var y = enYakinYol(la,lo);
+      if (y){ secili.yol=y; $('sYol').querySelectorAll('.sc').forEach(function(x){ x.classList.toggle('on', x.dataset.v===y); }); kontrol(); }
+      $('konumIpucu').textContent = '📍 İşaretlendi. En yakın yol olarak "'+(Y.yolBul(y)||{ad:''}).ad+'" seçildi, yanlışsa yukarıdan değiştir.';
+    } else {
+      $('konumIpucu').textContent = '📍 Yer işaretlendi.';
+    }
+  }
+  $('konumBen').addEventListener('click', function(){
+    if (!navigator.geolocation) return toast('Telefonun konum özelliğini desteklemiyor');
+    $('konumIpucu').textContent='Konum alınıyor…';
+    navigator.geolocation.getCurrentPosition(function(p){ pinKoy(p.coords.latitude, p.coords.longitude, 'gps'); },
+      function(){ $('konumIpucu').textContent='Konum alınamadı. Haritaya dokunarak işaretleyebilirsin.'; }, {enableHighAccuracy:true, timeout:10000});
+  });
+  $('konumSil').addEventListener('click', function(){
+    delete secili.lat; delete secili.lng;
+    if (miniPin){ mini.removeLayer(miniPin); miniPin=null; }
+    $('konumIpucu').textContent='Haritaya dokunarak sorunun olduğu yeri işaretle.';
+  });
 
   // ─── ETKİLEŞİM ───
   $('yollar').addEventListener('click', function(e){
@@ -420,6 +568,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
     if (t.dataset.bildir) return panelAc(t.dataset.bildir);
     if (t.dataset.sil) return sil(t.dataset.sil);
     if (t.dataset.foto) return fotoGoster(t.dataset.foto);
+    if (t.dataset.harita) return haritadaGoster(t.dataset.harita);
     if (t.dataset.ac) $('yol-'+t.dataset.ac).classList.toggle('acik-detay');
   });
   $('filtre').addEventListener('click', function(e){
@@ -520,6 +669,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
       secili[alan]=b.dataset.v;
       $(kapId).querySelectorAll('.sc').forEach(function(x){ x.classList.toggle('on', x===b); });
       if (alan==='durum') $('sebepAdim').style.display = secili.durum==='acildi' ? 'none' : 'block';
+      if (alan==='yol' && mini && typeof secili.lat!=='number'){ var yy=Y.yolBul(secili.yol); if(yy) mini.setView([yy.lat,yy.lon],11); }
       kontrol();
     });
   }
@@ -534,6 +684,10 @@ textarea:focus{outline:none;border-color:var(--gold)}
     $('fotoOnizle').textContent='📷'; $('fotoYazi').textContent='Fotoğraf ekle — onaydan sonra yayınlanır'; $('fotoInput').value='';
     if (yolId){ secili.yol=yolId; var b=$('sYol').querySelector('[data-v="'+yolId+'"]'); if(b) b.classList.add('on'); }
     kontrol(); $('perde').classList.add('acik');
+    if (miniPin && mini){ mini.removeLayer(miniPin); miniPin=null; }
+    $('konumIpucu').textContent='Haritaya dokunarak sorunun olduğu yeri işaretle. Yol seçmediysen en yakın yolu biz seçeriz.';
+    miniKur();
+    if (mini && yolId){ var yy=Y.yolBul(yolId); if(yy) setTimeout(function(){ mini.setView([yy.lat,yy.lon],11); },300); }
   }
   function panelKapat(){ $('perde').classList.remove('acik'); }
   $('bildirAc').addEventListener('click', function(){ panelAc(null); });
@@ -546,6 +700,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
     if (!editor && Date.now()-son < 10*60*1000) return toast('Bu yol için 10 dakikada bir bildirim yapabilirsin');
     var veri = {yol:secili.yol, durum:secili.durum, sebep:secili.durum==='acildi'?'':secili.sebep,
       not:$('sNot').value.trim().slice(0,140), onay:0, acildiOy:0, kaynak:editor?'editor':'halk'};
+    if (typeof secili.lat==='number' && typeof secili.lng==='number'){ veri.lat=secili.lat; veri.lng=secili.lng; }
     $('gonder').disabled=true;
     if (demo || !db){
       veri.id='demo'+Date.now(); veri._yerel=Date.now(); raporlar.push(veri); ls(anahtar,Date.now());
@@ -656,7 +811,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
     if (demo || typeof firebase==='undefined'){
       var t=Date.now();
       raporlar = demo ? [
-        {id:'d1', yol:'artvin-savsat', durum:'kapali', sebep:'heyelan', not:'25. km, kaya düşmüş', onay:4, acildiOy:0, kaynak:'editor', _yerel:t-35*60000},
+        {id:'d1', yol:'artvin-savsat', durum:'kapali', sebep:'heyelan', not:'25. km, kaya düşmüş', onay:4, acildiOy:0, kaynak:'editor', lat:41.2342, lng:42.0321, _yerel:t-35*60000},
         {id:'d2', yol:'savsat-ardahan', durum:'dikkat', sebep:'kar', not:'Sahara Geçidi zincirsiz geçmeyin', onay:2, acildiOy:0, kaynak:'halk', _yerel:t-80*60000},
         {id:'d3', yol:'hopa-arhavi', durum:'acildi', sebep:'', not:'Tek şerit verildi', onay:1, acildiOy:0, kaynak:'halk', _yerel:t-50*60000}
       ] : [];
@@ -696,6 +851,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
   var tb=document.createElement('button'); tb.className='fb'; tb.dataset.f='takip'; tb.textContent='⭐ Takip ettiklerim';
   $('filtre').insertBefore(tb, $('filtre').children[1]);
 
+  haritaKur();
   ciz();
   baslat();
   Y.havaGetir(YOLLAR).then(function(h){ hava=h; ciz(); }).catch(function(){});
