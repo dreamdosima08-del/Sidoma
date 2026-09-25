@@ -79,6 +79,7 @@ body[data-hava=bulut] .atmosfer{background:radial-gradient(120% 70% at 80% -10%,
 .yb{flex-shrink:0;white-space:nowrap;background:var(--kart);border:1px solid var(--cizgi);color:var(--dim);font:700 .74rem 'DM Sans',sans-serif;padding:.45rem .85rem;border-radius:100px;cursor:pointer}
 .yb.on{background:var(--off);color:#0b1a14;border-color:var(--off)}
 .yb.konum{color:var(--gold);border-color:rgba(240,192,64,.4)}
+.yb.konum.on{background:var(--gold);color:#1a1405;border-color:var(--gold)}
 .yer-grup{font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soluk);margin-top:.4rem}
 
 /* ANA */
@@ -399,26 +400,53 @@ footer a{color:var(--yesil);text-decoration:none;font-weight:700}
   });
 
   function sec(id, kaydir){
-    var y = YERLER.find(function(x){return x.id===id;}) || YERLER[0];
+    var y = (typeof id==='object') ? id : (YERLER.find(function(x){return x.id===id;}) || YERLER[0]);
     secili = y;
     document.querySelectorAll('.yb[data-id]').forEach(function(x){ x.classList.toggle('on', x.dataset.id===y.id); });
     document.querySelectorAll('.ik[data-id]').forEach(function(x){ x.classList.toggle('on', x.dataset.id===y.id); });
+    $('konumBtn').classList.toggle('on', y.id==='konum');
     var a = document.querySelector('.yb.on'); if (a && a.scrollIntoView) a.scrollIntoView({inline:'center', block:'nearest'});
-    try { history.replaceState(null,'', y.id==='merkez' ? location.pathname : '?yer='+y.id); } catch(e){}
-    $('yerAd').textContent = y.ad;
+    if (y.id!=='konum') { try { history.replaceState(null,'', y.id==='merkez' ? location.pathname : '?yer='+y.id); } catch(e){} }
+    $('yerAd').textContent = y.ad + (y.id==='konum' ? ' 📍' : '');
     yukle(y);
     if (kaydir) window.scrollTo({top:0, behavior:'smooth'});
   }
 
+  // 📍 Konumum: tam bulunduğun noktanın hava durumu (Artvin dışında da çalışır)
   function konum(){
-    if (!navigator.geolocation) return;
-    $('yerAlt').textContent = 'Konum alınıyor…';
+    var btn = $('konumBtn');
+    if (!navigator.geolocation) { bildir('Telefonun konum özelliğini desteklemiyor.'); return; }
+    btn.textContent = '📍 Konum alınıyor…';
     navigator.geolocation.getCurrentPosition(function(p){
-      var la=p.coords.latitude, lo=p.coords.longitude, en=null, d=1e9;
+      btn.textContent = '📍 Konumum';
+      var la = p.coords.latitude, lo = p.coords.longitude;
+      // Artvin içindeyse en yakın bilinen yerin adını yardımcı olarak göster
+      var en=null, d=1e9;
       YERLER.forEach(function(y){ var x=(y.lat-la)*(y.lat-la)+((y.lon-lo)*.75)*((y.lon-lo)*.75); if(x<d){d=x;en=y;} });
-      if (d > 0.5) { $('yerAlt').textContent = 'Artvin dışında görünüyorsun, en yakın yer gösteriliyor'; }
-      sec(en.id, false);
-    }, function(){ $('yerAlt').textContent = 'Konum alınamadı'; }, {timeout:10000});
+      var yer = {id:'konum', tur:'konum', lat:Math.round(la*1e4)/1e4, lon:Math.round(lo*1e4)/1e4,
+                 ad: d < 0.02 ? en.ad : 'Konumun'};
+      sec(yer, false);
+      $('yerAlt').textContent = d < 0.02 ? 'Konumuna göre · '+en.ad+' yakını' : 'Bulunduğun noktaya göre';
+      // Yer adını OpenStreetMap'ten al (ör. Hopa, Safranbolu)
+      fetch('https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&accept-language=tr&lat='+la+'&lon='+lo)
+        .then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+          if (!j || !j.address || secili!==yer) return;
+          var a = j.address, ad = a.town || a.city || a.county || a.village || a.state_district || a.province || a.state;
+          if (!ad) return;
+          yer.ad = ad; $('yerAd').textContent = ad + ' 📍';
+          if (sonVeri) { ozet(yer, sonVeri); document.title = ad+' Hava Durumu | Artvin Rehberi'; }
+        }).catch(function(){});
+    }, function(err){
+      btn.textContent = '📍 Konumum';
+      bildir(err && err.code===1
+        ? 'Konum izni verilmedi. Tarayıcının adres çubuğundaki kilit simgesine dokunup bu siteye <b>Konum</b> izni ver, sonra tekrar dene.'
+        : 'Konum alınamadı. Telefonunun konum (GPS) özelliğinin açık olduğundan emin olup tekrar dene.');
+    }, {enableHighAccuracy:false, timeout:12000, maximumAge:300000});
+  }
+  function bildir(m){
+    var el = document.createElement('div'); el.className='uyari mavi'; el.innerHTML='<span class="uyari-ikon">📍</span><div>'+m+'</div>';
+    $('uyarilar').prepend(el); setTimeout(function(){ el.remove(); }, 9000);
+    window.scrollTo({top:0, behavior:'smooth'});
   }
 
   function yukle(y){
@@ -449,14 +477,14 @@ footer a{color:var(--yesil);text-decoration:none;font-weight:700}
     $('anaDurum').textContent = k.t;
     $('anaHis').textContent = 'Hissedilen '+r(c.apparent_temperature)+'° · En yüksek '+r(dy.temperature_2m_max[0])+'° / En düşük '+r(dy.temperature_2m_min[0])+'°';
     var bugun = new Date(dy.time[0]+'T12:00');
-    $('yerAlt').textContent = GUNLER[bugun.getDay()]+', '+bugun.toLocaleDateString('tr-TR',{day:'numeric',month:'long'});
+    if (y.id!=='konum') $('yerAlt').textContent = GUNLER[bugun.getDay()]+', '+bugun.toLocaleDateString('tr-TR',{day:'numeric',month:'long'});
     var p = dy.precipitation_probability_max[0]||0, mm = dy.precipitation_sum[0]||0;
     $('chipler').innerHTML =
       '<span class="chip yagis">☔ Yağış ihtimali %'+p+(mm>=0.1?' · '+mm.toFixed(1)+' mm':'')+'</span>'+
       '<span class="chip">💨 '+r(c.wind_speed_10m)+' km/s '+yon(c.wind_direction_10m)+'</span>'+
       '<span class="chip">💧 %'+r(c.relative_humidity_2m)+'</span>';
     $('guncel').textContent = 'Güncellendi: '+saatStr(c.time)+' · Open-Meteo';
-    document.title = y.ad+' Hava Durumu: '+r(c.temperature_2m)+'°, '+k.t+' | Artvin Rehberi';
+    document.title = y.ad.replace(/ 📍$/,'')+' Hava Durumu: '+r(c.temperature_2m)+'°, '+k.t+' | Artvin Rehberi';
 
     uyarilar(y, d);
     ozet(y, d);
