@@ -171,10 +171,23 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 footer{border-top:1px solid var(--border);padding:1.5rem 1.1rem;text-align:center;font-size:.65rem;color:var(--dim);line-height:2;}
 footer a{color:var(--imece);text-decoration:none;}
+.foto-kutu{display:block;cursor:pointer;border:2px dashed rgba(46,204,113,.45);border-radius:14px;background:rgba(46,204,113,.06);overflow:hidden;transition:.2s}
+.foto-kutu:active{transform:scale(.99)}
+.fk-bos{padding:1.1rem 1rem;text-align:center}
+.fk-ikon{font-size:2rem;line-height:1.1}
+.fk-baslik{font-weight:800;font-size:.95rem;color:#fff;margin-top:.3rem}
+.fk-alt{font-size:.7rem;color:rgba(255,255,255,.55);margin-top:.25rem;line-height:1.5}
+.fk-dolu{position:relative}
+.fk-dolu img{width:100%;max-height:230px;object-fit:cover;display:block}
+.fk-btns{position:absolute;right:.5rem;bottom:.5rem;display:flex;gap:.35rem}
+.fk-btn{background:rgba(0,0,0,.65);color:#fff;font-size:.72rem;font-weight:700;padding:.35rem .65rem;border-radius:100px;backdrop-filter:blur(6px)}
+.fk-kaldir{background:rgba(180,40,40,.8)}
+.foto-kutu.dolu{border-style:solid;border-color:rgba(46,204,113,.6)}
+.foto-rozet{position:absolute;top:.5rem;left:.5rem;background:rgba(0,0,0,.6);color:#fff;font-size:.62rem;font-weight:800;padding:.2rem .5rem;border-radius:100px}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377"
      crossorigin="anonymous"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","dateModified": "2026-09-23"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","dateModified": "2026-09-25"}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -266,6 +279,21 @@ footer a{color:var(--imece);text-decoration:none;}
     </div>
 
     <div class="f-alan">
+      <label class="foto-kutu" id="fotoKutu" for="fFoto">
+        <input type="file" id="fFoto" accept="image/*" style="display:none">
+        <div class="fk-bos" id="fkBos">
+          <div class="fk-ikon">📷</div>
+          <div class="fk-baslik">Fotoğraf ekle</div>
+          <div class="fk-alt">Fotoğraflı ilanlar çok daha fazla ilgi görür.<br>Kamerayla çek ya da galeriden seç · isteğe bağlı</div>
+        </div>
+        <div class="fk-dolu" id="fotoOnizleme" style="display:none">
+          <img id="fotoImg" alt="Seçilen fotoğraf">
+          <div class="fk-btns"><span class="fk-btn">🔄 Değiştir</span><span class="fk-btn fk-kaldir" id="fotoKaldir">✕ Kaldır</span></div>
+        </div>
+      </label>
+    </div>
+
+    <div class="f-alan">
       <label class="f-label">Başlık *</label>
       <input type="text" class="f-input" id="fBaslik" placeholder="Örn: 5 adet çocuk kitabı">
     </div>
@@ -303,15 +331,6 @@ footer a{color:var(--imece);text-decoration:none;}
 
     
     <div style="font-size:.7rem;color:var(--dim);line-height:1.6;margin:-.2rem 0 .4rem">🔒 Numaran ilanda <b style="color:var(--imece)">yazı olarak görünmez</b>. İlgilenenler "WhatsApp'tan yaz" butonuyla sana ulaşır.</div>
-    <div class="f-alan" style="margin-top:.5rem;">
-      <label class="f-label">📷 Fotoğraf <span style="color:rgba(255,255,255,.3);font-weight:400;">(İsteğe bağlı)</span></label>
-      <input type="file" class="f-input" id="fFoto" accept="image/*" style="padding:.5rem;">
-      <div id="fotoOnizleme" style="display:none;margin-top:.5rem;">
-        <img id="fotoImg" style="width:100%;max-height:180px;object-fit:cover;border-radius:8px;border:1px solid rgba(46,204,113,.2);" alt="Ön izleme">
-      </div>
-      <div id="fotoYukleniyor" style="display:none;font-size:.7rem;color:var(--imece);margin-top:.3rem;">📤 Fotoğraf yükleniyor...</div>
-    </div>
-
     <div class="f-alan" style="background:rgba(46,204,113,.04);border:1px solid rgba(46,204,113,.1);border-radius:8px;padding:.75rem;margin-top:.25rem">
       <div style="font-size:.65rem;font-weight:700;color:var(--imece);margin-bottom:.25rem">🔑 İlan Silme Kodu</div>
       <div style="font-size:.72rem;color:var(--dim);line-height:1.65">Bu telefondan ilanını istediğin zaman tek dokunuşla kaldırabilirsin. Başka cihazdan kaldırmak için sana gösterilecek kısa kodu not al.</div>
@@ -350,7 +369,7 @@ footer a{color:var(--imece);text-decoration:none;}
   <div style="padding:1.5rem 1.1rem;display:flex;flex-direction:column;gap:1rem;">
     <div style="background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:1.1rem;display:flex;gap:.85rem;align-items:flex-start;">
       <span style="font-size:1.8rem;flex-shrink:0">1️⃣</span>
-      <div><div style="font-family:'Inter',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">İlan Ver</div><div style="font-size:.8rem;color:var(--dim);line-height:1.7">Paylaşmak istediğin eşyayı birkaç saniyede yayınla.</div></div>
+      <div><div style="font-family:'Inter',sans-serif;font-weight:700;color:#fff;margin-bottom:.3rem">İlan Ver</div><div style="font-size:.8rem;color:var(--dim);line-height:1.7">Paylaşmak istediğin eşyanın bir fotoğrafını çek, kısaca anlat ve birkaç saniyede yayınla. Fotoğraflı ilanlar çok daha çabuk sahibini bulur.</div></div>
     </div>
     <div style="background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:1.1rem;display:flex;gap:.85rem;align-items:flex-start;">
       <span style="font-size:1.8rem;flex-shrink:0">2️⃣</span>
@@ -393,14 +412,23 @@ function fotoKucult(dosya){
     img.src=url;
   });
 }
+function fotoTemizle(){
+  fotoVeri = null; document.getElementById('fFoto').value = '';
+  document.getElementById('fotoOnizleme').style.display = 'none';
+  document.getElementById('fkBos').style.display = '';
+  document.getElementById('fotoKutu').classList.remove('dolu');
+}
+document.getElementById('fotoKaldir').addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); fotoTemizle(); });
 document.getElementById('fFoto').addEventListener('change', function() {
   var dosya = this.files && this.files[0];
   fotoVeri = null;
-  if (!dosya) { document.getElementById('fotoOnizleme').style.display='none'; return; }
+  if (!dosya) return;
   fotoKucult(dosya).then(function(v){
     fotoVeri = v;
     document.getElementById('fotoImg').src = v;
     document.getElementById('fotoOnizleme').style.display = 'block';
+    document.getElementById('fkBos').style.display = 'none';
+    document.getElementById('fotoKutu').classList.add('dolu');
   }).catch(function(){ alert('Bu fotoğraf eklenemedi, başka bir fotoğraf deneyebilirsin. İlanını fotoğrafsız da verebilirsin.'); });
 });
 
@@ -510,7 +538,7 @@ function ilanListele() {
       + '<div class="ilan-baslik">' + esc(i.baslik) + '</div>'
       + '<div class="ilan-meta"><span>📍 ' + esc(i.ilce) + '</span><span>📦 ' + esc(DURUM[i.durum]||i.durum) + '</span></div>'
       + '<div class="ilan-acik">' + esc(i.aciklama) + '</div>'
-      + '<div class="ilan-alt"><div><div class="ilan-ad">' + esc(i.ad) + '</div>' + (benim ? '<div class="ilan-puan" style="color:var(--imece)">✓ Senin ilanın</div>' : '') + '</div>'
+      + '<div class="ilan-alt"><div><div class="ilan-ad">' + esc(i.ad) + '</div>' + (benim ? '<div class="ilan-puan" style="color:var(--imece)">✓ Senin ilanın'+(fotolar[i.id]?'':' · fotoğrafsız')+'</div>' : '') + '</div>'
       + '<div class="ilan-btns">'
       + (benim
           ? '<button class="i-btn btn-sil" data-kaldir="' + esc(i.id) + '">🗑️ İlanımı kaldır</button>'
@@ -586,7 +614,7 @@ document.getElementById('btnYayinla').addEventListener('click', async function()
     document.getElementById('fKat').value='';
     document.getElementById('fIlce').value='';
     document.getElementById('fKvkk').checked=false;
-    document.getElementById('fFoto').value=''; fotoVeri=null; document.getElementById('fotoOnizleme').style.display='none';
+    fotoTemizle();
 
     setTimeout(function(){
       document.getElementById('basariMesaj').classList.remove('goster');
