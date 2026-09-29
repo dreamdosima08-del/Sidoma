@@ -700,8 +700,8 @@ function girisGerekli(){
   });
 }
 function authHata(e){
-  var m={'auth/invalid-email':'E-posta adresi geçersiz.','auth/user-not-found':'Bu e-posta ile kayıtlı hesap yok.','auth/wrong-password':'Şifre hatalı.','auth/invalid-credential':'E-posta veya şifre hatalı.','auth/email-already-in-use':'Bu e-posta zaten kayıtlı. Giriş yapmayı dene.','auth/weak-password':'Şifre en az 8 karakter olmalı.','auth/too-many-requests':'Çok fazla deneme yapıldı, biraz bekleyip tekrar dene.','auth/network-request-failed':'Bağlantı hatası. İnternetini kontrol et.','auth/operation-not-allowed':'Bu giriş yöntemi henüz etkinleştirilmemiş.','auth/account-exists-with-different-credential':'Bu e-posta başka bir yöntemle kayıtlı. O yöntemle giriş yapmayı dene.'};
-  return m[e&&e.code]||'İşlem yapılamadı, tekrar dene.';
+  var m={'auth/invalid-email':'E-posta adresi geçersiz.','auth/user-not-found':'Bu e-posta ile kayıtlı hesap yok.','auth/wrong-password':'Şifre hatalı.','auth/invalid-credential':'E-posta veya şifre hatalı.','auth/email-already-in-use':'Bu e-posta zaten kayıtlı. Giriş yapmayı dene.','auth/weak-password':'Şifre en az 8 karakter olmalı.','auth/too-many-requests':'Çok fazla deneme yapıldı, biraz bekleyip tekrar dene.','auth/network-request-failed':'Bağlantı hatası. İnternetini kontrol et.','auth/operation-not-allowed':'Bu giriş yöntemi henüz etkinleştirilmemiş.','auth/unauthorized-domain':'Bu alan adı Firebase\'de yetkili değil (Authentication → Settings → Authorized domains listesine artvinrehber.com eklenmeli).','auth/operation-not-supported-in-this-environment':'Bu tarayıcı Google girişini desteklemiyor; Chrome veya Safari\'de aç ya da e-posta ile devam et.','auth/account-exists-with-different-credential':'Bu e-posta başka bir yöntemle kayıtlı. O yöntemle giriş yapmayı dene.'};
+  return m[e&&e.code]||('İşlem yapılamadı, tekrar dene.'+(e&&e.code?' ('+e.code+')':''));
 }
 function girisHataYaz(t){var h=$('girisHata'); if(h){h.textContent=t;h.classList.add('ac');}}
 function girisAc(){
