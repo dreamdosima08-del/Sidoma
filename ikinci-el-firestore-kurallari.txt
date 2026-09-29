@@ -1,0 +1,113 @@
+// ARTVİN İKİNCİ EL — FIRESTORE KURALLARI (EK BÖLÜM)
+//
+// NASIL EKLENİR:
+// Firebase Console -> Firestore Database -> Kurallar (Rules) sekmesi.
+// Mevcut kurallarını SİLME. Aşağıdaki bloğun "BAŞLA" ve "BİTTİ" satırları arasını kopyala,
+// mevcut "match /databases/{database}/documents {" satırının HEMEN ALTINA yapıştır
+// (diğer match bloklarının yanına). Sonra "Yayınla (Publish)" de.
+// Ardından "Kural Oyun Alanı (Rules Playground)" ile aşağıdaki testleri dene.
+
+// ─── BAŞLA ───────────────────────────────────────────────
+
+    function ie_admin() {
+      return request.auth != null
+        && request.auth.token.email == "dreamdosima08@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
+    function ie_giris() {
+      return request.auth != null;
+    }
+
+    // Özel ilan kaydı (onay bekleyenler dahil). Sadece sahibi ve yönetici okur.
+    match /ikinci_el_ilan/{id} {
+      allow read: if ie_giris() && (resource.data.uid == request.auth.uid || ie_admin());
+      allow create: if ie_giris()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid','ad','baslik','kategori','fiyat','pazarlik','hal','ilce','aciklama','kapak','oran','fotoSayisi','durum','zaman'])
+        && request.resource.data.durum == 'bekliyor'
+        && request.resource.data.zaman == request.time
+        && request.resource.data.baslik is string && request.resource.data.baslik.size() >= 5 && request.resource.data.baslik.size() <= 80
+        && request.resource.data.aciklama is string && request.resource.data.aciklama.size() >= 10 && request.resource.data.aciklama.size() <= 1500
+        && request.resource.data.ad is string && request.resource.data.ad.size() <= 40
+        && request.resource.data.kategori is string && request.resource.data.kategori.size() <= 20
+        && request.resource.data.hal is string && request.resource.data.hal.size() <= 20
+        && request.resource.data.ilce is string && request.resource.data.ilce.size() <= 20
+        && request.resource.data.pazarlik is bool
+        && request.resource.data.fiyat is number && request.resource.data.fiyat >= 1 && request.resource.data.fiyat <= 10000000
+        && request.resource.data.oran is number && request.resource.data.oran > 0.2 && request.resource.data.oran < 5
+        && request.resource.data.kapak is string && request.resource.data.kapak.size() <= 70000
+        && request.resource.data.fotoSayisi is int && request.resource.data.fotoSayisi >= 1 && request.resource.data.fotoSayisi <= 3;
+      // Sahibi sadece durumu "satildi" veya "kaldirildi" yapabilir. Yönetici her şeyi güncelleyebilir.
+      allow update: if ie_admin()
+        || (ie_giris() && resource.data.uid == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['durum'])
+            && request.resource.data.durum in ['satildi','kaldirildi']);
+      allow delete: if ie_admin();
+    }
+
+    // Herkese açık yayın kopyası (yönetici onaylayınca yazılır).
+    match /ikinci_el_yayin/{id} {
+      allow read: if true;
+      allow create, delete: if ie_admin();
+      allow update: if ie_admin()
+        || (ie_giris() && resource.data.uid == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['satildi'])
+            && request.resource.data.satildi == true);
+      allow delete: if ie_admin() || (ie_giris() && resource.data.uid == request.auth.uid);
+    }
+
+    // Tam boy fotoğraflar. Tek tek okunabilir (tarama/liste yok).
+    match /ikinci_el_foto/{id} {
+      allow get: if true;
+      allow list: if ie_admin();
+      allow create: if ie_giris()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid','ilan','veri','zaman'])
+        && request.resource.data.veri is string && request.resource.data.veri.size() <= 450000
+        && request.resource.data.veri.matches('^data:image/jpeg;base64,.*')
+        && request.resource.data.ilan is string && request.resource.data.ilan.size() <= 40
+        && request.resource.data.zaman == request.time;
+      allow delete: if ie_giris() && (resource == null || resource.data.uid == request.auth.uid || ie_admin());
+    }
+
+    // Telefon numarası. Sadece giriş yapmış kullanıcı tek tek okuyabilir; liste sadece yönetici.
+    match /ikinci_el_iletisim/{id} {
+      allow get: if ie_giris();
+      allow list: if ie_admin();
+      allow create: if ie_giris()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid','tel'])
+        && request.resource.data.tel is string
+        && request.resource.data.tel.matches('^05[0-9]{9}$');
+      allow delete: if ie_giris() && (resource == null || resource.data.uid == request.auth.uid || ie_admin());
+    }
+
+    // Şikayetler. Giriş yapan yazar, sadece yönetici okur.
+    match /ikinci_el_bildirim/{id} {
+      allow create: if ie_giris()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid','ilan','baslik','neden','zaman'])
+        && request.resource.data.neden is string && request.resource.data.neden.size() <= 300
+        && request.resource.data.baslik is string && request.resource.data.baslik.size() <= 80
+        && request.resource.data.ilan is string && request.resource.data.ilan.size() <= 40
+        && request.resource.data.zaman == request.time;
+      allow read, delete: if ie_admin();
+    }
+
+// ─── BİTTİ ───────────────────────────────────────────────
+
+// EĞER ZATEN VARSA (ana sayfadaki ilçe/buton sırası için), şunu da ekleyebilirsin:
+//    match /site_ayar/{doc} {
+//      allow read: if true;
+//      allow write: if ie_admin();
+//    }
+//
+// TEST (Kural Oyun Alanı):
+//  1) Giriş yapılmamış, get /ikinci_el_yayin/x            -> İZİN VERİLİR
+//  2) Giriş yapılmamış, get /ikinci_el_iletisim/x         -> REDDEDİLİR
+//  3) Giriş yapılmamış, get /ikinci_el_ilan/x             -> REDDEDİLİR
+//  4) Giriş yapılmış (başka uid), update ilan durum:yayinda -> REDDEDİLİR
+//  5) Yönetici e-postasıyla (email_verified true) create /ikinci_el_yayin/x -> İZİN VERİLİR
+//  6) Başka e-postayla create /ikinci_el_yayin/x           -> REDDEDİLİR
+// NOT: Bu kurallar sunucuda (Firebase) denenmeli; hazırlandığı ortamda emülatörle test edilemedi.
+// "Aynı kişi en fazla 5 aktif ilan" sınırı Firestore kurallarıyla sayılamaz; sadece sayfada uygulanır.
