@@ -2,5 +2,7 @@
   "name": "yorum-bot",
   "main": "index.js",
   "compatibility_date": "2026-09-01",
+  "keep_vars": true,
+  "vars": { "CHAT_ID": "1032454830" },
   "triggers": { "crons": ["* * * * *"] }
 }
