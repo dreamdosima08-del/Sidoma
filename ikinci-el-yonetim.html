@@ -88,7 +88,7 @@ function yukle(){
       a.sort(function(p,q){return ms(q.zaman)-ms(p.zaman);});
       $('nBil').textContent='('+a.length+')';
       if(!a.length){l.innerHTML='<div class="kart kucuk">Bildirim yok.</div>';return;}
-      l.innerHTML=a.map(function(b){return '<div class="kart"><b>'+esc(b.baslik)+'</b><div class="kucuk">İlan no: '+esc(b.ilan)+'</div><div class="acik">'+esc(b.neden)+'</div><div class="sat"><button class="btn v" data-ilan-kaldir="'+esc(b.ilan)+'" data-bid="'+esc(b.id)+'" type="button">İlanı kaldır</button><button class="btn g" data-bsil="'+esc(b.id)+'" type="button">Bildirimi sil</button></div></div>';}).join('');
+      l.innerHTML=a.map(function(b){return '<div class="kart"><b>'+esc(b.baslik)+'</b><div class="kucuk">İlan no: '+esc(b.ilan)+'</div><div class="acik">'+esc(b.neden)+'</div><div class="sat">'+(b.ilan!=='genel'?'<button class="btn v" data-ilan-kaldir="'+esc(b.ilan)+'" data-bid="'+esc(b.id)+'" type="button">İlanı kaldır</button>':'')+'<button class="btn g" data-bsil="'+esc(b.id)+'" type="button">Bildirimi sil</button></div></div>';}).join('');
     }).catch(hata);
   } else {
     db.collection('ikinci_el_yayin').orderBy('yayinZaman','desc').limit(60).get().then(function(s){
@@ -103,10 +103,17 @@ function yukle(){
 }
 function ms(t){return t&&t.toMillis?t.toMillis():0;}
 function hata(e){$('liste').innerHTML='<div class="kart kucuk" style="color:#ff9b9b">Hata: '+esc(e.code||e.message)+'<br>Firestore kurallarını eklediğinden ve yayınladığından emin ol.</div>';}
+function ekstraHtml(x){
+  var a=[]; [['Marka','marka'],['Model','model'],['Renk','renk'],['Ölçü','olcu'],['Kullanım','kullanim'],['Teslim','teslim'],['Mahalle','mahalle']].forEach(function(p){ if(x[p[1]]) a.push(p[0]+': '+esc(x[p[1]])); });
+  var h=a.length?'<div class="kucuk" style="margin-top:.5rem">'+a.join(' · ')+'</div>':'';
+  if(x.ozellikler&&x.ozellikler.length) h+='<div class="kucuk">Özellikler: '+x.ozellikler.map(esc).join(', ')+'</div>';
+  if(x.kusur) h+='<div class="kucuk" style="color:#ffd08a">Kusur: '+esc(x.kusur)+'</div>';
+  return h;
+}
 function bekleyenHtml(x){
   var n=Number(x.fotoSayisi)||1;
   return '<div class="kart" id="k_'+esc(x.id)+'"><div class="ust"><img src="'+img(x.kapak)+'" alt=""><div><h3>'+esc(x.baslik)+'</h3><div class="kucuk"><b>'+tl(x.fiyat)+'</b>'+(x.pazarlik?' (pazarlık)':'')+' · '+esc(x.ilce)+' · '+esc(x.kategori)+' · '+esc(x.hal)+'</div><div class="kucuk">'+esc(x.ad)+' · '+(x.zaman&&x.zaman.toDate?x.zaman.toDate().toLocaleString('tr-TR'):'')+'</div></div></div>'+
-    '<div class="acik">'+esc(x.aciklama)+'</div><div class="fotolar" id="f_'+esc(x.id)+'"><button class="btn g" data-fotogor="'+esc(x.id)+'" data-n="'+n+'" type="button">📷 Fotoğrafları göster ('+n+')</button></div>'+
+    '<div class="acik">'+esc(x.aciklama)+'</div>'+ekstraHtml(x)+'<div class="fotolar" id="f_'+esc(x.id)+'"><button class="btn g" data-fotogor="'+esc(x.id)+'" data-n="'+n+'" type="button">📷 Fotoğrafları göster ('+n+')</button></div>'+
     '<div class="sat"><button class="btn v" data-onay="'+esc(x.id)+'" type="button">✅ Onayla</button><input type="text" id="r_'+esc(x.id)+'" placeholder="Red nedeni" maxlength="140"><button class="btn k" data-red="'+esc(x.id)+'" type="button">Reddet</button></div></div>';
 }
 var onbellek={};
@@ -129,28 +136,41 @@ function onayla(id,btn){
     if(!d.exists||d.data().durum!=='bekliyor') throw new Error('İlan artık bekleyen durumda değil');
     var x=d.data(), yay={uid:x.uid,ad:x.ad,baslik:x.baslik,kategori:x.kategori,fiyat:x.fiyat,pazarlik:x.pazarlik,hal:x.hal,ilce:x.ilce,aciklama:x.aciklama,kapak:x.kapak,oran:x.oran,fotoSayisi:x.fotoSayisi,satildi:false,
       yayinZaman:firebase.firestore.FieldValue.serverTimestamp(),bitis:firebase.firestore.Timestamp.fromMillis(Date.now()+30*GUN)};
+    ['marka','model','renk','olcu','kullanim','ozellikler','kusur','teslim','mahalle'].forEach(function(k){ if(x[k]!==undefined&&x[k]!==null&&x[k]!=='') yay[k]=x[k]; });
     var b=db.batch(); b.set(db.collection('ikinci_el_yayin').doc(id),yay); b.update(db.collection('ikinci_el_ilan').doc(id),{durum:'yayinda'}); return b.commit();
   }).then(yukle).catch(function(e){btn.disabled=false;alert('Hata: '+(e.code||e.message));});
 }
+function veriSil(bt,id,n){ for(var i=1;i<=n;i++) bt.delete(db.collection('ikinci_el_foto').doc(id+'_'+i)); bt.delete(db.collection('ikinci_el_iletisim').doc(id)); }
 function reddet(id,btn){
   var neden=$('r_'+id).value.trim(); if(!neden){alert('Red nedeni yaz.');return;}
   btn.disabled=true;
-  db.collection('ikinci_el_ilan').doc(id).update({durum:'reddedildi',redNedeni:neden}).then(yukle).catch(function(e){btn.disabled=false;alert('Hata: '+(e.code||e.message));});
+  db.collection('ikinci_el_ilan').doc(id).get().then(function(d){
+    var n=Math.min(3,Number(d.data().fotoSayisi)||1), bt=db.batch();
+    bt.update(d.ref,{durum:'reddedildi',redNedeni:neden}); veriSil(bt,id,n); return bt.commit();
+  }).then(yukle).catch(function(e){btn.disabled=false;alert('Hata: '+(e.code||e.message));});
 }
 function kaldir(id,btn){
   btn.disabled=true;
-  var b=db.batch(); b.delete(db.collection('ikinci_el_yayin').doc(id)); b.update(db.collection('ikinci_el_ilan').doc(id),{durum:'kaldirildi'});
-  b.commit().then(function(){ return db.collection('ikinci_el_foto').where('ilan','==',id).get(); }).then(function(s){
-    var b2=db.batch(); s.forEach(function(d){b2.delete(d.ref);}); b2.delete(db.collection('ikinci_el_iletisim').doc(id)); return b2.commit();
+  db.collection('ikinci_el_ilan').doc(id).get().then(function(d){
+    var n=d.exists?Math.min(3,Number(d.data().fotoSayisi)||1):3, bt=db.batch();
+    bt.delete(db.collection('ikinci_el_yayin').doc(id));
+    if(d.exists) bt.update(d.ref,{durum:'kaldirildi'});
+    veriSil(bt,id,n); return bt.commit();
   }).then(yukle).catch(function(e){btn.disabled=false;alert('Hata: '+(e.code||e.message));});
 }
 $('bTemizle').onclick=function(){
   var b=this; b.disabled=true;
-  db.collection('ikinci_el_yayin').where('bitis','<',firebase.firestore.Timestamp.now()).get().then(function(s){
-    if(s.empty){alert('Süresi dolan ilan yok.');return;}
-    if(!confirm(s.size+' ilan yayından kaldırılacak. Devam?')) return;
-    var b3=db.batch(); s.forEach(function(d){b3.delete(d.ref);b3.update(db.collection('ikinci_el_ilan').doc(d.id),{durum:'kaldirildi'});});
-    return b3.commit().then(function(){alert('Temizlendi. (Fotoğraf kayıtları sahibi ilanı kaldırınca veya yönetici tek tek kaldırınca silinir.)');});
+  db.collection('ikinci_el_yayin').where('bitis','<',firebase.firestore.Timestamp.now()).get().then(function(sn){
+    if(sn.empty){alert('Süresi dolan ilan yok.');return;}
+    if(!confirm(sn.size+' ilan yayından kaldırılacak; fotoğrafları ve telefon numaraları silinecek. Devam?')) return;
+    var docs=[]; sn.forEach(function(d){docs.push(d);});
+    var p=Promise.resolve();
+    for(var i=0;i<docs.length;i+=40){ (function(parca){ p=p.then(function(){
+      var bt=db.batch();
+      parca.forEach(function(d){ bt.delete(d.ref); bt.update(db.collection('ikinci_el_ilan').doc(d.id),{durum:'kaldirildi'}); veriSil(bt,d.id,Math.min(3,Number(d.data().fotoSayisi)||1)); });
+      return bt.commit();
+    }); })(docs.slice(i,i+40)); }
+    return p.then(function(){alert('Temizlendi: '+docs.length+' ilan.');});
   }).then(function(){b.disabled=false;yukle();}).catch(function(e){b.disabled=false;alert('Hata: '+(e.code||e.message));});
 };
 })();

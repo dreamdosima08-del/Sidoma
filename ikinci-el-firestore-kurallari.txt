@@ -14,8 +14,13 @@
         && request.auth.token.email == "dreamdosima08@gmail.com"
         && request.auth.token.email_verified == true;
     }
+    // Giriş yapmış VE e-postası doğrulanmış kullanıcı (Google hesapları zaten doğrulanmış gelir)
     function ie_giris() {
-      return request.auth != null;
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+    // İsteğe bağlı metin alanı: yoksa serbest, varsa string ve en fazla n karakter
+    function ie_opt(d, k, n) {
+      return !(k in d) || (d[k] is string && d[k].size() <= n);
     }
 
     // Özel ilan kaydı (onay bekleyenler dahil). Sadece sahibi ve yönetici okur.
@@ -23,7 +28,7 @@
       allow read: if ie_giris() && (resource.data.uid == request.auth.uid || ie_admin());
       allow create: if ie_giris()
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.keys().hasOnly(['uid','ad','baslik','kategori','fiyat','pazarlik','hal','ilce','aciklama','kapak','oran','fotoSayisi','durum','zaman'])
+        && request.resource.data.keys().hasOnly(['uid','ad','baslik','kategori','fiyat','pazarlik','hal','ilce','aciklama','kapak','oran','fotoSayisi','durum','zaman','marka','model','renk','olcu','kullanim','ozellikler','kusur','teslim','mahalle'])
         && request.resource.data.durum == 'bekliyor'
         && request.resource.data.zaman == request.time
         && request.resource.data.baslik is string && request.resource.data.baslik.size() >= 5 && request.resource.data.baslik.size() <= 80
@@ -36,7 +41,16 @@
         && request.resource.data.fiyat is number && request.resource.data.fiyat >= 1 && request.resource.data.fiyat <= 10000000
         && request.resource.data.oran is number && request.resource.data.oran > 0.2 && request.resource.data.oran < 5
         && request.resource.data.kapak is string && request.resource.data.kapak.size() <= 70000
-        && request.resource.data.fotoSayisi is int && request.resource.data.fotoSayisi >= 1 && request.resource.data.fotoSayisi <= 3;
+        && request.resource.data.fotoSayisi is int && request.resource.data.fotoSayisi >= 1 && request.resource.data.fotoSayisi <= 3
+        && ie_opt(request.resource.data, 'marka', 40)
+        && ie_opt(request.resource.data, 'model', 60)
+        && ie_opt(request.resource.data, 'renk', 30)
+        && ie_opt(request.resource.data, 'olcu', 60)
+        && ie_opt(request.resource.data, 'kullanim', 10)
+        && ie_opt(request.resource.data, 'kusur', 300)
+        && ie_opt(request.resource.data, 'teslim', 10)
+        && ie_opt(request.resource.data, 'mahalle', 40)
+        && (!('ozellikler' in request.resource.data) || (request.resource.data.ozellikler is list && request.resource.data.ozellikler.size() <= 9));
       // Sahibi sadece durumu "satildi" veya "kaldirildi" yapabilir. Yönetici her şeyi güncelleyebilir.
       allow update: if ie_admin()
         || (ie_giris() && resource.data.uid == request.auth.uid
@@ -101,6 +115,10 @@
 //      allow read: if true;
 //      allow write: if ie_admin();
 //    }
+//
+// ÖNEMLİ: E-posta/şifre ile giriş için Firebase Console -> Authentication -> Sign-in method
+// bölümünde "E-posta/Şifre" (Email/Password) yöntemini ETKİNLEŞTİR. "E-posta bağlantısı" seçeneği kapalı kalsın.
+// Yeni kural: ilan vermek, telefon görmek ve bildirim göndermek için e-posta DOĞRULANMIŞ olmalı.
 //
 // TEST (Kural Oyun Alanı):
 //  1) Giriş yapılmamış, get /ikinci_el_yayin/x            -> İZİN VERİLİR
