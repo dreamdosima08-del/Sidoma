@@ -30,7 +30,7 @@ async function telegram(env, metin) {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ chat_id: env.CHAT_ID, text: metin, disable_web_page_preview: true })
   });
-  if (!r.ok) throw new Error('Telegram ' + r.status);
+  if (!r.ok) throw new Error('Telegram ' + r.status + ' ' + (await r.text()));
 }
 
 export default {
@@ -52,8 +52,14 @@ export default {
       return new Response(idler.length ? 'Sohbet numaran: ' + idler.join(', ') : 'Bulunamadı. Botuna Telegram\'dan bir mesaj yaz, sonra sayfayı yenile.');
     }
     if (u.pathname === '/test') {
-      await telegram(env, '✅ Yorum botu çalışıyor.');
-      return new Response('Test mesajı gönderildi.');
+      const eksik = [!env.TELEGRAM_TOKEN && 'TELEGRAM_TOKEN', !env.CHAT_ID && 'CHAT_ID'].filter(Boolean);
+      if (eksik.length) return new Response('Cloudflare ayarlarında eksik: ' + eksik.join(', '));
+      try {
+        await telegram(env, '✅ Yorum botu çalışıyor.');
+        return new Response('Test mesajı gönderildi.');
+      } catch (e) {
+        return new Response('Hata: ' + e.message);
+      }
     }
     return new Response('Yorum botu çalışıyor.');
   }
