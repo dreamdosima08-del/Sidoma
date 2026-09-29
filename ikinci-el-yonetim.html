@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>İkinci El Yönetim</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--bg:#0a1a12;--kart:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);--gold:#f0c040;--vivid:#3ddb8a;--off:#e8ede9;--dim:rgba(232,237,233,.66);--k:#f25555}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--off);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5;padding:1rem;max-width:760px;margin:0 auto;padding-bottom:4rem}
+h1{font-size:1.3rem;margin-bottom:.2rem}
+a{color:var(--vivid)}
+button{font:inherit;cursor:pointer}
+.btn{border:0;border-radius:10px;padding:.65rem 1rem;font-weight:800;font-size:.85rem}
+.p{background:var(--gold);color:#241b00}.v{background:var(--vivid);color:#062012}.k{background:rgba(242,85,85,.18);color:#ff9b9b;border:1px solid rgba(242,85,85,.35)}.g{background:var(--kart);color:var(--off);border:1px solid var(--border)}
+.btn:disabled{opacity:.5}
+.tabs{display:flex;gap:.4rem;margin:1rem 0;flex-wrap:wrap}
+.tab{border:1px solid var(--border);background:var(--kart);color:var(--dim);border-radius:999px;padding:.4rem .9rem;font-size:.8rem;font-weight:700}
+.tab.ak{background:var(--vivid);color:#062012;border-color:var(--vivid)}
+.kart{background:var(--kart);border:1px solid var(--border);border-radius:14px;padding:.8rem;margin-top:.7rem}
+.ust{display:flex;gap:.7rem}
+.ust img{width:92px;height:92px;object-fit:cover;border-radius:10px;flex:0 0 auto;background:#0e2216}
+.ust h3{font-size:.95rem;line-height:1.3}
+.kucuk{font-size:.75rem;color:var(--dim)}
+.acik{white-space:pre-wrap;word-break:break-word;font-size:.85rem;margin-top:.6rem;color:var(--off)}
+.fotolar{display:flex;gap:.4rem;margin-top:.6rem;overflow-x:auto}
+.fotolar img{height:130px;border-radius:8px}
+.sat{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+input[type=text]{background:var(--kart);border:1px solid var(--border);color:var(--off);border-radius:8px;padding:.55rem;font:inherit;font-size:.85rem;flex:1;min-width:140px}
+#durum{margin:.5rem 0;font-size:.85rem;color:var(--dim)}
+.uy{background:rgba(245,165,36,.1);border:1px solid rgba(245,165,36,.35);border-radius:10px;padding:.6rem .8rem;font-size:.78rem;color:#ffd08a;margin-top:.6rem}
+</style>
+</head>
+<body>
+<h1>🛠️ İkinci El Yönetim</h1>
+<div class="kucuk"><a href="/ikinci-el.html">← İkinci El sayfası</a></div>
+<div id="durum">Yükleniyor…</div>
+<div id="giris" style="display:none"><button class="btn p" id="bGoogle" type="button">Google ile giriş yap</button></div>
+<div id="panel" style="display:none">
+  <div class="tabs" id="tabs">
+    <button class="tab ak" data-t="bekleyen" type="button">Bekleyenler <span id="nB"></span></button>
+    <button class="tab" data-t="bildirim" type="button">Bildirimler <span id="nBil"></span></button>
+    <button class="tab" data-t="yayin" type="button">Yayındakiler</button>
+  </div>
+  <div id="liste"></div>
+  <div id="araclar" style="display:none;margin-top:1.4rem">
+    <button class="btn g" id="bTemizle" type="button">🧹 Süresi dolan ilanları yayından kaldır</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+'use strict';
+var CFG={apiKey:'AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI',authDomain:'artvin-imece.firebaseapp.com',projectId:'artvin-imece',storageBucket:'artvin-imece.firebasestorage.app',messagingSenderId:'30297800879',appId:'1:30297800879:web:a36f3b4ad6ba54d8bed45a'};
+var YONETICI='dreamdosima08@gmail.com', GUN=86400000;
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function img(s){return (typeof s==='string'&&/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(s))?s:'';}
+function tl(n){return '₺'+Number(n||0).toLocaleString('tr-TR');}
+firebase.initializeApp(CFG);
+var auth=firebase.auth(), db=firebase.firestore(), tab='bekleyen';
+
+auth.onAuthStateChanged(function(u){
+  if(!u){ $('durum').textContent='Giriş yapılmadı.'; $('giris').style.display='block'; $('panel').style.display='none'; return; }
+  if(u.email!==YONETICI){ $('durum').innerHTML='Bu hesapla ('+esc(u.email)+') yönetim paneline erişilemez. <button class="btn g" id="bCik" type="button">Çıkış</button>'; $('giris').style.display='none'; $('panel').style.display='none'; $('bCik').onclick=function(){auth.signOut();}; return; }
+  $('durum').textContent='Giriş: '+u.email; $('giris').style.display='none'; $('panel').style.display='block'; yukle();
+});
+$('bGoogle').onclick=function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){$('durum').textContent='Giriş hatası: '+(e.code||e.message);});};
+$('tabs').addEventListener('click',function(e){var b=e.target.closest('.tab'); if(!b) return; tab=b.getAttribute('data-t'); [].forEach.call(document.querySelectorAll('.tab'),function(x){x.classList.toggle('ak',x===b);}); yukle();});
+
+function yukle(){
+  var l=$('liste'); l.innerHTML='<div class="kucuk">Yükleniyor…</div>'; $('araclar').style.display=tab==='yayin'?'block':'none';
+  if(tab==='bekleyen'){
+    db.collection('ikinci_el_ilan').where('durum','==','bekliyor').get().then(function(s){
+      var a=[]; s.forEach(function(d){var o=d.data();o.id=d.id;a.push(o);});
+      a.sort(function(p,q){return ms(p.zaman)-ms(q.zaman);});
+      $('nB').textContent='('+a.length+')';
+      if(!a.length){l.innerHTML='<div class="kart kucuk">Bekleyen ilan yok. 🎉</div>';return;}
+      l.innerHTML=a.map(bekleyenHtml).join('');
+    }).catch(hata);
+  } else if(tab==='bildirim'){
+    db.collection('ikinci_el_bildirim').get().then(function(s){
+      var a=[]; s.forEach(function(d){var o=d.data();o.id=d.id;a.push(o);});
+      a.sort(function(p,q){return ms(q.zaman)-ms(p.zaman);});
+      $('nBil').textContent='('+a.length+')';
+      if(!a.length){l.innerHTML='<div class="kart kucuk">Bildirim yok.</div>';return;}
+      l.innerHTML=a.map(function(b){return '<div class="kart"><b>'+esc(b.baslik)+'</b><div class="kucuk">İlan no: '+esc(b.ilan)+'</div><div class="acik">'+esc(b.neden)+'</div><div class="sat">'+(b.ilan!=='genel'?'<button class="btn v" data-ilan-kaldir="'+esc(b.ilan)+'" data-bid="'+esc(b.id)+'" type="button">İlanı kaldır</button>':'')+'<button class="btn g" data-bsil="'+esc(b.id)+'" type="button">Bildirimi sil</button></div></div>';}).join('');
+    }).catch(hata);
+  } else {
+    db.collection('ikinci_el_yayin').orderBy('yayinZaman','desc').limit(60).get().then(function(s){
+      var a=[]; s.forEach(function(d){var o=d.data();o.id=d.id;a.push(o);});
+      if(!a.length){l.innerHTML='<div class="kart kucuk">Yayında ilan yok.</div>';return;}
+      l.innerHTML=a.map(function(x){var b=x.bitis&&x.bitis.toDate?x.bitis.toDate():null; var dol=b&&b.getTime()<Date.now();
+        return '<div class="kart"><div class="ust"><img src="'+img(x.kapak)+'" alt=""><div><h3>'+esc(x.baslik)+'</h3><div class="kucuk">'+tl(x.fiyat)+' · '+esc(x.ilce)+' · '+esc(x.ad)+'</div><div class="kucuk">'+(x.satildi?'Satıldı · ':'')+(dol?'<b style="color:#ff9b9b">Süresi doldu</b>':'Bitiş: '+(b?b.toLocaleDateString('tr-TR'):'-'))+'</div></div></div><div class="sat"><button class="btn k" data-ilan-kaldir="'+esc(x.id)+'" type="button">Yayından kaldır</button></div></div>';}).join('');
+    }).catch(hata);
+  }
+  // bildirim sayısı
+  if(tab!=='bildirim') db.collection('ikinci_el_bildirim').get().then(function(s){$('nBil').textContent='('+s.size+')';}).catch(function(){});
+}
+function ms(t){return t&&t.toMillis?t.toMillis():0;}
+function hata(e){$('liste').innerHTML='<div class="kart kucuk" style="color:#ff9b9b">Hata: '+esc(e.code||e.message)+'<br>Firestore kurallarını eklediğinden ve yayınladığından emin ol.</div>';}
+function ekstraHtml(x){
+  var a=[]; [['Marka','marka'],['Model','model'],['Renk','renk'],['Ölçü','olcu'],['Kullanım','kullanim'],['Teslim','teslim'],['Mahalle','mahalle']].forEach(function(p){ if(x[p[1]]) a.push(p[0]+': '+esc(x[p[1]])); });
+  var h=a.length?'<div class="kucuk" style="margin-top:.5rem">'+a.join(' · ')+'</div>':'';
+  if(x.ozellikler&&x.ozellikler.length) h+='<div class="kucuk">Özellikler: '+x.ozellikler.map(esc).join(', ')+'</div>';
+  if(x.kusur) h+='<div class="kucuk" style="color:#ffd08a">Kusur: '+esc(x.kusur)+'</div>';
+  return h;
+}
+function bekleyenHtml(x){
+  var n=Number(x.fotoSayisi)||1;
+  return '<div class="kart" id="k_'+esc(x.id)+'"><div class="ust"><img src="'+img(x.kapak)+'" alt=""><div><h3>'+esc(x.baslik)+'</h3><div class="kucuk"><b>'+tl(x.fiyat)+'</b>'+(x.pazarlik?' (pazarlık)':'')+' · '+esc(x.ilce)+' · '+esc(x.kategori)+' · '+esc(x.hal)+'</div><div class="kucuk">'+esc(x.ad)+' · '+(x.zaman&&x.zaman.toDate?x.zaman.toDate().toLocaleString('tr-TR'):'')+'</div></div></div>'+
+    '<div class="acik">'+esc(x.aciklama)+'</div>'+ekstraHtml(x)+'<div class="fotolar" id="f_'+esc(x.id)+'"><button class="btn g" data-fotogor="'+esc(x.id)+'" data-n="'+n+'" type="button">📷 Fotoğrafları göster ('+n+')</button></div>'+
+    '<div class="sat"><button class="btn v" data-onay="'+esc(x.id)+'" type="button">✅ Onayla</button><input type="text" id="r_'+esc(x.id)+'" placeholder="Red nedeni" maxlength="140"><button class="btn k" data-red="'+esc(x.id)+'" type="button">Reddet</button></div></div>';
+}
+var onbellek={};
+$('liste').addEventListener('click',function(e){
+  var t;
+  if((t=e.target.closest('[data-fotogor]'))){
+    var id=t.getAttribute('data-fotogor'), n=Number(t.getAttribute('data-n')), box=$('f_'+id); box.innerHTML='Yükleniyor…';
+    Promise.all(Array.apply(null,Array(n)).map(function(_,i){return db.collection('ikinci_el_foto').doc(id+'_'+(i+1)).get();})).then(function(r){
+      box.innerHTML=r.map(function(d){return d.exists?'<img src="'+img(d.data().veri)+'" alt="">':'';}).join('')||'Fotoğraf bulunamadı';
+    }).catch(hata);
+  }
+  if((t=e.target.closest('[data-onay]'))) onayla(t.getAttribute('data-onay'),t);
+  if((t=e.target.closest('[data-red]'))) reddet(t.getAttribute('data-red'),t);
+  if((t=e.target.closest('[data-ilan-kaldir]'))){ var i2=t.getAttribute('data-ilan-kaldir'); if(confirm('İlan yayından kaldırılsın mı?')) kaldir(i2,t); }
+  if((t=e.target.closest('[data-bsil]'))){ db.collection('ikinci_el_bildirim').doc(t.getAttribute('data-bsil')).delete().then(yukle).catch(hata); }
+});
+function onayla(id,btn){
+  btn.disabled=true;
+  db.collection('ikinci_el_ilan').doc(id).get().then(function(d){
+    if(!d.exists||d.data().durum!=='bekliyor') throw new Error('İlan artık bekleyen durumda değil');
+    var x=d.data(), yay={uid:x.uid,ad:x.ad,baslik:x.baslik,kategori:x.kategori,fiyat:x.fiyat,pazarlik:x.pazarlik,hal:x.hal,ilce:x.ilce,aciklama:x.aciklama,kapak:x.kapak,oran:x.oran,fotoSayisi:x.fotoSayisi,satildi:false,
+      yayinZaman:firebase.firestore.FieldValue.serverTimestamp(),bitis:firebase.firestore.Timestamp.fromMillis(Date.now()+30*GUN)};
+    ['marka','model','renk','olcu','kullanim','ozellikler','kusur','teslim','mahalle'].forEach(function(k){ if(x[k]!==undefined&&x[k]!==null&&x[k]!=='') yay[k]=x[k]; });
+    var b=db.batch(); b.set(db.collection('ikinci_el_yayin').doc(id),yay); b.update(db.collection('ikinci_el_ilan').doc(id),{durum:'yayinda'}); return b.commit();
+  }).then(yukle).catch(function(e){btn.disabled=false;alert('Hata: '+(e.code||e.message));});
+}
+function veriSil(bt,id,n){ for(var i=1;i<=n;i++) bt.delete(db.collection('ikinci_el_foto').doc(id+'_'+i)); bt.delete(db.collection('ikinci_el_iletisim').doc(id)); }
+function reddet(id,btn){
+  var neden=$('r_'+id).value.trim(); if(!neden){alert('Red nedeni yaz.');return;}
+  btn.disabled=true;
+  db.collection('ikinci_el_ilan').doc(id).get().then(function(d){
+    var n=Math.min(3,Number(d.data().fotoSayisi)||1), bt=db.batch();
+    bt.update(d.ref,{durum:'reddedildi',redNedeni:neden}); veriSil(bt,id,n); return bt.commit();
+  }).then(yukle).catch(function(e){btn.disabled=false;alert('Hata: '+(e.code||e.message));});
+}
+function kaldir(id,btn){
+  btn.disabled=true;
+  db.collection('ikinci_el_ilan').doc(id).get().then(function(d){
+    var n=d.exists?Math.min(3,Number(d.data().fotoSayisi)||1):3, bt=db.batch();
+    bt.delete(db.collection('ikinci_el_yayin').doc(id));
+    if(d.exists) bt.update(d.ref,{durum:'kaldirildi'});
+    veriSil(bt,id,n); return bt.commit();
+  }).then(yukle).catch(function(e){btn.disabled=false;alert('Hata: '+(e.code||e.message));});
+}
+$('bTemizle').onclick=function(){
+  var b=this; b.disabled=true;
+  db.collection('ikinci_el_yayin').where('bitis','<',firebase.firestore.Timestamp.now()).get().then(function(sn){
+    if(sn.empty){alert('Süresi dolan ilan yok.');return;}
+    if(!confirm(sn.size+' ilan yayından kaldırılacak; fotoğrafları ve telefon numaraları silinecek. Devam?')) return;
+    var docs=[]; sn.forEach(function(d){docs.push(d);});
+    var p=Promise.resolve();
+    for(var i=0;i<docs.length;i+=40){ (function(parca){ p=p.then(function(){
+      var bt=db.batch();
+      parca.forEach(function(d){ bt.delete(d.ref); bt.update(db.collection('ikinci_el_ilan').doc(d.id),{durum:'kaldirildi'}); veriSil(bt,d.id,Math.min(3,Number(d.data().fotoSayisi)||1)); });
+      return bt.commit();
+    }); })(docs.slice(i,i+40)); }
+    return p.then(function(){alert('Temizlendi: '+docs.length+' ilan.');});
+  }).then(function(){b.disabled=false;yukle();}).catch(function(e){b.disabled=false;alert('Hata: '+(e.code||e.message));});
+};
+})();
+</script>
+</body>
+</html>
