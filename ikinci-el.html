@@ -482,6 +482,22 @@ function restDoc(kol,id){
   }).then(function(d){return d?docObj(d):null;});
 }
 
+
+/* ───────── GÖRÜNTÜLENME SAYACI (SDK gerekmez, REST ile) ───────── */
+function sayacArtir(v){
+  try{
+    if(!v||!v.id) return;
+    if(kul && (kul.uid===v.uid || kul.email===YONETICI)) return;
+    var kendi=JSON.parse(localStorage.getItem('ieKendi')||'[]'); if(kendi.indexOf(v.id)>-1) return;
+    var g=JSON.parse(localStorage.getItem('ieG')||'{}'), bugun=new Date().toISOString().slice(0,10);
+    if(g[v.id]===bugun) return;             // aynı cihaz aynı ilanı günde 1 kez sayılır
+    g[v.id]=bugun; var k=Object.keys(g); if(k.length>300){ delete g[k[0]]; }
+    localStorage.setItem('ieG',JSON.stringify(g));
+    fetch(REST.replace(/\/documents$/,'')+'/documents:commit?key='+KEY,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({writes:[{transform:{document:'projects/'+PROJE+'/databases/(default)/documents/ikinci_el_sayac/'+v.id,fieldTransforms:[{fieldPath:'n',increment:{integerValue:'1'}}]}}]})}).catch(function(){});
+  }catch(e){}
+}
+
 /* ───────── DURUM ───────── */
 var tum=[], sonYz=null, bitti=false, yukleniyor=false;
 var st={kat:'',ilce:'',sira:'yeni',q:'',satilan:false};
@@ -600,7 +616,7 @@ function detayAc(id,derinLink){
   var x=tum.filter(function(y){return y.id===id;})[0];
   var git=function(v){
     if(!v){ if(derinLink) toast('Bu ilan artık yayında değil.'); return; }
-    aktif=v; detayCiz(v);
+    aktif=v; detayCiz(v); sayacArtir(v);
     ac('oDetay');
     try{ if(!derinLink) history.pushState({ilan:id},'','?ilan='+encodeURIComponent(id)); }catch(e){}
     fotoYukle(v);
@@ -977,13 +993,17 @@ function ilanlarimAc(){
   }).then(function(s){
     var a=[]; s.forEach(function(d){var o=d.data(); o.id=d.id; a.push(o);});
     a.sort(function(p,q){return ((q.zaman&&q.zaman.toMillis&&q.zaman.toMillis())||0)-((p.zaman&&p.zaman.toMillis&&p.zaman.toMillis())||0);});
+    try{ localStorage.setItem('ieKendi',JSON.stringify(a.map(function(x){return x.id;}))); }catch(e){}
     var box=$('ilanlarimIc');
     if(!a.length){ box.innerHTML='<p style="color:var(--dim);font-size:.9rem;margin-top:.6rem">Henüz ilanın yok.</p><button class="btn p" id="ilkIlan" type="button" style="margin-top:.8rem">📸 İlan ver</button>'; $('ilkIlan').onclick=function(){kapat('oIlanlarim');ilanAc();}; return; }
     box.innerHTML=a.map(function(x){
       var btn=''; if(x.durum==='yayinda') btn+='<button class="mini" data-satildi="'+esc(x.id)+'" type="button">Satıldı</button>';
       if(x.durum==='bekliyor'||x.durum==='yayinda'||x.durum==='satildi'||x.durum==='reddedildi') btn+='<button class="mini" data-kaldir="'+esc(x.id)+'" data-d="'+esc(x.durum)+'" data-n="'+(Number(x.fotoSayisi)||1)+'" type="button">Kaldır</button>';
-      return '<div class="satir"><img src="'+img(x.kapak)+'" alt=""><div class="b"><div>'+esc(x.baslik)+'</div><span style="font-size:.78rem;color:var(--gold);font-weight:700">'+tl(x.fiyat)+'</span><br><span class="durum d-'+esc(x.durum)+'">'+esc(durumAd[x.durum]||x.durum)+'</span>'+(x.durum==='reddedildi'&&x.redNedeni?'<div style="font-size:.7rem;color:var(--soluk);white-space:normal">'+esc(x.redNedeni)+'</div>':'')+'</div><div class="s">'+btn+'</div></div>';
+      return '<div class="satir"><img src="'+img(x.kapak)+'" alt=""><div class="b"><div>'+esc(x.baslik)+'</div><span style="font-size:.78rem;color:var(--gold);font-weight:700">'+tl(x.fiyat)+'</span><br><span class="durum d-'+esc(x.durum)+'">'+esc(durumAd[x.durum]||x.durum)+'</span>'+((x.durum==='yayinda'||x.durum==='satildi')?' <span class="gor" data-gor="'+esc(x.id)+'" style="font-size:.72rem;color:var(--soluk)">👁 …</span>':'')+(x.durum==='reddedildi'&&x.redNedeni?'<div style="font-size:.7rem;color:var(--soluk);white-space:normal">'+esc(x.redNedeni)+'</div>':'')+'</div><div class="s">'+btn+'</div></div>';
     }).join('');
+    [].forEach.call(box.querySelectorAll('[data-gor]'),function(el){
+      db.collection('ikinci_el_sayac').doc(el.getAttribute('data-gor')).get().then(function(d){ el.textContent='👁 '+(d.exists?(d.data().n||0):0)+' görüntülenme'; }).catch(function(){ el.textContent=''; });
+    });
   }).catch(function(){ $('ilanlarimIc').innerHTML='<p style="color:#ff9b9b;font-size:.85rem">İlanlar yüklenemedi.</p>'; });
 }
 $('ilanlarimIc').addEventListener('click',function(e){

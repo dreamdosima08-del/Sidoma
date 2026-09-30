@@ -95,7 +95,8 @@ function yukle(){
       var a=[]; s.forEach(function(d){var o=d.data();o.id=d.id;a.push(o);});
       if(!a.length){l.innerHTML='<div class="kart kucuk">Yayında ilan yok.</div>';return;}
       l.innerHTML=a.map(function(x){var b=x.bitis&&x.bitis.toDate?x.bitis.toDate():null; var dol=b&&b.getTime()<Date.now();
-        return '<div class="kart"><div class="ust"><img src="'+img(x.kapak)+'" alt=""><div><h3>'+esc(x.baslik)+'</h3><div class="kucuk">'+tl(x.fiyat)+' · '+esc(x.ilce)+' · '+esc(x.ad)+'</div><div class="kucuk">'+(x.satildi?'Satıldı · ':'')+(dol?'<b style="color:#ff9b9b">Süresi doldu</b>':'Bitiş: '+(b?b.toLocaleDateString('tr-TR'):'-'))+'</div></div></div><div class="sat"><button class="btn k" data-ilan-kaldir="'+esc(x.id)+'" type="button">Yayından kaldır</button></div></div>';}).join('');
+        return '<div class="kart"><div class="ust"><img src="'+img(x.kapak)+'" alt=""><div><h3>'+esc(x.baslik)+'</h3><div class="kucuk">'+tl(x.fiyat)+' · '+esc(x.ilce)+' · '+esc(x.ad)+'</div><div class="kucuk">'+(x.satildi?'Satıldı · ':'')+(dol?'<b style="color:#ff9b9b">Süresi doldu</b>':'Bitiş: '+(b?b.toLocaleDateString('tr-TR'):'-'))+' · <span data-gor="'+esc(x.id)+'">👁 …</span></div></div></div><div class="sat"><button class="btn k" data-ilan-kaldir="'+esc(x.id)+'" type="button">Yayından kaldır</button></div></div>';}).join('');
+      [].forEach.call(l.querySelectorAll('[data-gor]'),function(el){ db.collection('ikinci_el_sayac').doc(el.getAttribute('data-gor')).get().then(function(d){el.textContent='👁 '+(d.exists?(d.data().n||0):0)+' görüntülenme';}).catch(function(){el.textContent='';}); });
     }).catch(hata);
   }
   // bildirim sayısı
