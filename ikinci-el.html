@@ -192,6 +192,10 @@ footer a{color:var(--dim)}
 .d-reddedildi,.d-kaldirildi{background:rgba(242,85,85,.16);color:#ff9b9b}
 .d-satildi{background:rgba(255,255,255,.12);color:var(--dim)}
 .satir .s{display:flex;flex-direction:column;gap:.3rem}
+.fduz{background:var(--kart);border:1px solid var(--vivid);border-radius:14px;padding:.7rem;margin-top:.4rem;display:grid;gap:.5rem}
+.fduz input[type=number]{width:100%;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.07);color:var(--off);font:inherit;padding:.6rem .7rem}
+.fduz label{font-size:.78rem;color:var(--dim);display:flex;gap:.4rem;align-items:center}
+.fduz .r{display:flex;gap:.5rem}.fduz .r button{flex:1}
 .mini{border:1px solid var(--border);background:var(--kart2);color:var(--off);border-radius:8px;padding:.3rem .6rem;font-size:.7rem;font-weight:700}
 .toast{position:fixed;left:50%;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:#12281c;border:1px solid var(--vivid);color:var(--off);padding:.65rem 1.1rem;border-radius:12px;font-size:.84rem;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:900;max-width:88vw;text-align:center}
 .toast.ac{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -1046,7 +1050,7 @@ function ilanlarimAc(){
     var box=$('ilanlarimIc');
     if(!a.length){ box.innerHTML='<p style="color:var(--dim);font-size:.9rem;margin-top:.6rem">Henüz ilanın yok.</p><button class="btn p" id="ilkIlan" type="button" style="margin-top:.8rem">📸 İlan ver</button>'; $('ilkIlan').onclick=function(){kapat('oIlanlarim');ilanAc();}; return; }
     box.innerHTML=a.map(function(x){
-      var btn=''; if(x.durum==='yayinda') btn+='<button class="mini" data-satildi="'+esc(x.id)+'" type="button">Satıldı</button>';
+      var btn=''; if(x.durum==='yayinda') btn+='<button class="mini" data-fiyat="'+esc(x.id)+'" data-f="'+(Number(x.fiyat)||0)+'" data-p="'+(x.pazarlik?1:0)+'" type="button">Fiyat</button><button class="mini" data-satildi="'+esc(x.id)+'" type="button">Satıldı</button>';
       if(x.durum==='bekliyor'||x.durum==='yayinda'||x.durum==='satildi'||x.durum==='reddedildi') btn+='<button class="mini" data-kaldir="'+esc(x.id)+'" data-d="'+esc(x.durum)+'" data-n="'+(Number(x.fotoSayisi)||1)+'" type="button">Kaldır</button>';
       return '<div class="satir"><img src="'+img(x.kapak)+'" alt=""><div class="b"><div>'+esc(x.baslik)+'</div><span style="font-size:.78rem;color:var(--gold);font-weight:700">'+tl(x.fiyat)+'</span><br><span class="durum d-'+esc(x.durum)+'">'+esc(durumAd[x.durum]||x.durum)+'</span>'+((x.durum==='yayinda'||x.durum==='satildi')?' <span class="gor" data-gor="'+esc(x.id)+'" style="font-size:.72rem;color:var(--soluk)">👁 …</span>':'')+(x.durum==='reddedildi'&&x.redNedeni?'<div style="font-size:.7rem;color:var(--soluk);white-space:normal">'+esc(x.redNedeni)+'</div>':'')+'</div><div class="s">'+btn+'</div></div>';
     }).join('');
@@ -1061,7 +1065,25 @@ function ilanlarimAc(){
   }).catch(function(){ $('ilanlarimIc').innerHTML='<p style="color:#ff9b9b;font-size:.85rem">İlanlar yüklenemedi.</p>'; });
 }
 $('ilanlarimIc').addEventListener('click',function(e){
-  var s=e.target.closest('[data-satildi]'), k=e.target.closest('[data-kaldir]');
+  var s=e.target.closest('[data-satildi]'), k=e.target.closest('[data-kaldir]'), fz=e.target.closest('[data-fiyat]');
+  if(fz){
+    var satir=fz.closest('.satir'), once_=satir.nextElementSibling;
+    if(once_ && once_.classList.contains('fduz')){ once_.remove(); return; }
+    var fid=fz.getAttribute('data-fiyat'), eski=Number(fz.getAttribute('data-f')), ep=fz.getAttribute('data-p')==='1';
+    var kutu=document.createElement('div'); kutu.className='fduz';
+    kutu.innerHTML='<label for="fy_'+esc(fid)+'">Yeni fiyat (₺)</label><input type="number" inputmode="numeric" min="1" max="10000000" id="fy_'+esc(fid)+'" value="'+eski+'"><label><input type="checkbox" id="fp_'+esc(fid)+'"'+(ep?' checked':'')+'> Pazarlık payı var</label><div class="r"><button class="btn v" data-fk="'+esc(fid)+'" type="button">Kaydet</button><button class="btn g" data-fv="1" type="button">Vazgeç</button></div>';
+    satir.parentNode.insertBefore(kutu,satir.nextSibling); return;
+  }
+  var fvz=e.target.closest('[data-fv]'); if(fvz){ fvz.closest('.fduz').remove(); return; }
+  var fk=e.target.closest('[data-fk]');
+  if(fk){
+    var id3=fk.getAttribute('data-fk'), yf=Math.round(Number($('fy_'+id3).value)), yp=$('fp_'+id3).checked;
+    if(!(yf>=1&&yf<=10000000)){ toast('Geçerli bir fiyat yaz.'); return; }
+    fk.disabled=true;
+    var b3=db.batch(); b3.update(db.collection('ikinci_el_ilan').doc(id3),{fiyat:yf,pazarlik:yp}); b3.update(db.collection('ikinci_el_yayin').doc(id3),{fiyat:yf,pazarlik:yp});
+    b3.commit().then(function(){ toast('Fiyat güncellendi ✅'); tum=tum.map(function(x){ if(x.id===id3){ x.fiyat=yf; x.pazarlik=yp; } return x; }); ciz(); ilanlarimAc(); }).catch(function(){ fk.disabled=false; toast('Güncellenemedi, tekrar dene.'); });
+    return;
+  }
   if(s){
     var id=s.getAttribute('data-satildi'); s.disabled=true;
     var b=db.batch(); b.update(db.collection('ikinci_el_ilan').doc(id),{durum:'satildi'}); b.update(db.collection('ikinci_el_yayin').doc(id),{satildi:true});
