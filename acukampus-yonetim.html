@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AÇÜ Kampüs Yönetim</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0e6f73">
+<style>
+:root{--bg:#e9f0ee;--sf:#fff;--ink:#0d2a2c;--dim:#4a6366;--line:#d3dfdd;--brand:#0e6f73;--danger:#c2392b;--ok:#1f8a5b}
+@media(prefers-color-scheme:dark){:root{--bg:#0a1a1c;--sf:#102628;--ink:#e6f1ef;--dim:#9db6b4;--line:#1c3a3d;--brand:#3cc4bf;--danger:#ff7b6b;--ok:#4fd19b}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif;padding:1rem;max-width:720px;margin:0 auto 4rem}
+h1{font-size:1.3rem;margin:.3rem 0 .8rem}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--sf);color:inherit;border-radius:10px;padding:.5rem .9rem;font-weight:700}
+.p{background:var(--brand);border-color:var(--brand);color:#fff}
+.t{display:flex;gap:.4rem;margin:.8rem 0;flex-wrap:wrap}.t button.a{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.k{background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:.8rem;margin-top:.6rem}
+.k small{color:var(--dim);display:block}.k p{margin:.4rem 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.k .e{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+.r{color:var(--danger)}.ok{color:var(--ok)}
+#durum{color:var(--dim);margin:.5rem 0}
+</style></head><body>
+<h1>AÇÜ Kampüs Yönetim</h1>
+<div id="gir"><p id="durum">Yükleniyor…</p><button class="p" id="bG" style="display:none">Google ile giriş yap</button></div>
+<div id="panel" style="display:none">
+  <div><span id="kim"></span> <button id="bC">Çıkış</button></div>
+  <div class="t" id="sek"><button data-s="bekliyor" class="a">Onay bekleyen</button><button data-s="bildirilen">Bildirilen</button><button data-s="hepsi">Tüm paylaşımlar</button></div>
+  <div id="liste"></div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+var CFG={apiKey:'AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0',authDomain:'acu-kampus.firebaseapp.com',projectId:'acu-kampus',storageBucket:'acu-kampus.firebasestorage.app',messagingSenderId:'356152793085',appId:'1:356152793085:web:38a6ae1ad911880cb2ab94'};
+var ADMIN='dreamdosima08@gmail.com';
+firebase.initializeApp(CFG);var auth=firebase.auth(),db=firebase.firestore(),sek='bekliyor';
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+auth.onAuthStateChanged(function(u){
+  if(u&&u.emailVerified&&u.email===ADMIN){$('gir').style.display='none';$('panel').style.display='block';$('kim').textContent=u.email;yukle();}
+  else{$('panel').style.display='none';$('gir').style.display='block';$('bG').style.display='';$('durum').textContent=u?('Bu hesap ('+u.email+') yönetici değil.'):'Yönetici olarak giriş yap.';}
+});
+$('bG').onclick=function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){$('durum').textContent='Giriş yapılamadı: '+(e.code||e.message);});};
+$('bC').onclick=function(){auth.signOut();};
+$('sek').onclick=function(e){var b=e.target.closest('[data-s]');if(!b)return;sek=b.getAttribute('data-s');[].forEach.call($('sek').children,function(x){x.classList.toggle('a',x===b);});yukle();};
+function yukle(){
+  $('liste').innerHTML='<p id="durum">Yükleniyor…</p>';
+  var q=db.collection('acukampus').where('durum','==',sek==='bekliyor'?'bekliyor':'aktif').orderBy('olusturma','desc').limit(200);
+  q.get().then(function(s){
+    var a=[];s.forEach(function(d){var x=d.data();x.id=d.id;a.push(x);});
+    if(sek==='bildirilen')a=a.filter(function(x){return x.bildirim>0;}).sort(function(x,y){return y.bildirim-x.bildirim;});
+    if(!a.length){$('liste').innerHTML='<p id="durum">Burada bir şey yok.</p>';return;}
+    $('liste').innerHTML=a.map(function(x){var t=x.olusturma&&x.olusturma.toDate?x.olusturma.toDate().toLocaleString('tr-TR'):'';
+      return '<div class="k" data-id="'+esc(x.id)+'"><small>'+esc(x.kategori)+' · '+esc(x.nick||'?')+' · '+esc(t)+(x.bildirim?' · <b class="r">'+x.bildirim+' bildirim</b>':'')+' · '+(x.begeni||0)+' faydalı · '+(x.yorumSayi||0)+' yorum</small><p>'+esc(x.metin)+'</p>'+(x.link?'<small><a href="'+esc(x.link)+'" target="_blank" rel="noopener">'+esc(x.link)+'</a></small>':'')+
+      '<div class="e">'+(sek==='bekliyor'?'<button class="p" data-a="onay">Yayınla</button>':'')+(x.bildirim?'<button data-a="sifir">Bildirimi sıfırla</button>':'')+'<button class="r" data-a="sil">Sil</button></div></div>';}).join('');
+  }).catch(function(e){$('liste').innerHTML='<p id="durum" class="r">Yüklenemedi: '+esc(e.message)+'</p>';});
+}
+$('liste').onclick=function(e){
+  var b=e.target.closest('[data-a]');if(!b)return;var k=b.closest('.k'),id=k.getAttribute('data-id'),a=b.getAttribute('data-a'),ref=db.collection('acukampus').doc(id),p;
+  if(a==='onay')p=ref.update({durum:'aktif'});
+  else if(a==='sifir')p=ref.update({bildirim:0});
+  else{if(!confirm('Silinsin mi?'))return;p=ref.delete();}
+  p.then(function(){k.remove();}).catch(function(er){alert('Hata: '+er.message);});
+};
+})();
+</script></body></html>
