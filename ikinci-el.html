@@ -1026,6 +1026,7 @@ function ilanGonder(){
   b.set(ref,veri);
   fotolar.forEach(function(f,i){ b.set(db.collection('ikinci_el_foto').doc(id+'_'+(i+1)),{uid:kul.uid,ilan:id,veri:f.tam,zaman:ts}); });
   b.set(db.collection('ikinci_el_iletisim').doc(id),{uid:kul.uid,tel:'0'+tel});
+  b.set(db.collection('ikinci_el_haber').doc(id),{uid:kul.uid,baslik:baslik.slice(0,80),fiyat:fiyat,zaman:ts});
   b.commit().then(function(){
     $('ilanIc').innerHTML='<div class="basari"><b>✅</b><h2>İlanın onaya gönderildi</h2><p style="color:var(--dim);font-size:.9rem;margin:.6rem 0 1.2rem">Kurallara uygunluk kontrolünden sonra yayına girer. Durumunu <b>İlanlarım</b> bölümünden takip edebilirsin.</p><button class="btn v" id="tamam" type="button">Tamam</button></div>';
     $('tamam').onclick=function(){kapat('oIlan');};
