@@ -31,15 +31,15 @@ var SABIT=[
 
 /* ───── Stil ───── */
 var css=''+
-'#hikayeler{background:rgba(10,26,18,.97);border-bottom:1px solid rgba(232,184,75,.15)}'+
+'#hikayeler{background:linear-gradient(180deg,#1f6b43 0%,#16502f 55%,#0f3622 100%);border-bottom:1px solid rgba(240,192,64,.28);box-shadow:0 6px 18px rgba(0,0,0,.25)}'+
 '.hk-sira{display:flex;gap:.55rem;overflow-x:auto;padding:.7rem .8rem .55rem;scrollbar-width:none;max-width:900px;margin:0 auto}'+
 '.hk-sira::-webkit-scrollbar{display:none}'+
 '.hk{flex:none;width:76px;background:none;border:0;padding:0;cursor:pointer;color:#fff;font:inherit;text-align:center}'+
 '.hk-h{display:block;width:66px;height:66px;border-radius:50%;padding:3px;margin:0 auto;background:conic-gradient(from 210deg,#f5c542,#ff6a3d,#e6337a,#8a3ffc,#f5c542)}'+
-'.hk.gor .hk-h{background:rgba(255,255,255,.22)}'+
-'.hk-i{width:100%;height:100%;border-radius:50%;border:3px solid #0a1a12;background:#123224 center/cover no-repeat;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;line-height:1.05}'+
+'.hk.gor .hk-h{background:rgba(255,255,255,.35)}'+
+'.hk-i{width:100%;height:100%;border-radius:50%;border:3px solid #17553a;background:#123224 center/cover no-repeat;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;line-height:1.05}'+
 '.hk-i b{font-size:1.05rem;font-weight:800;color:#fff}.hk-i em{font-style:normal;font-size:1.25rem}'+
-'.hk-a{display:block;font-family:inherit;font-size:.68rem;font-weight:600;color:rgba(255,255,255,.85);margin-top:.3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+'.hk-a{display:block;font-family:inherit;font-size:.68rem;font-weight:600;color:#fff;margin-top:.3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
 '.hk-ov{position:fixed;inset:0;z-index:2147483000;background:#000;display:flex;align-items:center;justify-content:center;touch-action:none}'+
 '.hk-kt{font-family:\'DM Sans\',system-ui,sans-serif;position:relative;width:100%;height:100%;max-width:480px;max-height:860px;background:#111;overflow:hidden;user-select:none;-webkit-user-select:none}'+
 '@media(min-width:520px){.hk-kt{border-radius:14px;height:92vh}}'+
