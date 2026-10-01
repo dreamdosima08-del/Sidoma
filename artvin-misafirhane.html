@@ -79,21 +79,21 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
 
 /* İÇ LİNKLER */
 .ic-wrap{padding:.75rem .9rem 1rem;max-width:640px;margin:0 auto}
-.ic-h{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soluk);margin-bottom:.45rem}
+.ic-h{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:.45rem}
 .ic-link{display:flex;align-items:center;gap:.6rem;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:.65rem .85rem;text-decoration:none;margin-bottom:.4rem}
 .ic-link-isim{font-size:.78rem;font-weight:700;color:var(--text);flex:1}
-.ic-link-alt{font-size:.62rem;color:var(--soluk)}
+.ic-link-alt{font-size:.68rem;color:var(--dim)}
 .ic-link-ok{font-size:.75rem;color:var(--yesil2);font-weight:700}
 
 /* PAYLAŞIM */
 .paylasim{background:#fff;margin:.75rem .9rem;border-radius:14px;border:1.5px solid var(--border);padding:.9rem;text-align:center;max-width:640px;margin:0 auto .75rem}
-.paylasim p{font-size:.72rem;color:var(--soluk);margin-bottom:.6rem}
+.paylasim p{font-size:.78rem;color:var(--dim);margin-bottom:.6rem}
 .p-btnler{display:flex;gap:.5rem;justify-content:center}
 .p-btn{display:flex;align-items:center;gap:.35rem;border-radius:8px;padding:.5rem .9rem;font-size:.75rem;font-weight:700;cursor:pointer;border:none;font-family:'Inter',sans-serif}
 .p-btn-wa{background:#25d366;color:#fff}
 .p-btn-kop{background:var(--bg3);border:1.5px solid var(--border);color:var(--text)}
 footer{background:#fff;border-top:1.5px solid var(--border);padding:1.5rem 1rem;text-align:center;margin-top:.5rem}
-footer p{font-size:.72rem;color:var(--soluk);line-height:1.8;margin-bottom:.4rem}
+footer p{font-size:.76rem;color:var(--dim);line-height:1.8;margin-bottom:.4rem}
 footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
 /* FOTOĞRAF MODAL */
@@ -103,13 +103,13 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 .foto-modal-kapat{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.5rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
 
 /* YILDIZ PUANLAMA */
-.puan-bolum{margin-top:.75rem;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.07)}
-.puan-baslik{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.4rem}
+.puan-bolum{margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+.puan-baslik{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem}
 .yildizlar{display:flex;gap:.2rem;margin-bottom:.35rem}
 .yildiz{font-size:1.4rem;cursor:pointer;transition:.15s;filter:grayscale(1);opacity:.4}
 .yildiz.aktif,.yildiz:hover{filter:none;opacity:1}
-.puan-ozet{font-size:.68rem;color:rgba(255,255,255,.5)}
-.puan-ozet span{color:#f0c040;font-weight:700}
+.puan-ozet{font-size:.68rem;color:var(--dim)}
+.puan-ozet span{color:#b7790a;font-weight:700}
 .btn-foto{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);border-radius:8px;padding:.5rem .85rem;font-size:.72rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem}
 .btn-foto:hover{background:rgba(255,255,255,.12)}
 
@@ -125,13 +125,16 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 .sec-in::-webkit-scrollbar{display:none}
 .sec button{flex:none;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:700;color:var(--yesil);background:#fff;border:1.5px solid var(--border2);border-radius:20px;padding:.5rem .9rem;cursor:pointer;white-space:nowrap}
 .sec button.on{background:var(--yesil);border-color:var(--yesil);color:#fff}
-.sec-say{max-width:640px;margin:.4rem auto 0;padding:0 .95rem;font-size:.7rem;color:var(--soluk)}
+.sec-say{max-width:640px;margin:.4rem auto 0;padding:0 .95rem;font-size:.74rem;color:var(--dim)}
 .mkart-ust{cursor:pointer}
-.mkart-ok{margin-left:auto;color:#fff;font-size:1.2rem;transition:transform .2s}
-.mkart:not(.kapali) .mkart-ok{transform:rotate(180deg)}
+.mkart-ok{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:.7rem;font-weight:700;border-radius:20px;padding:.35rem .6rem;white-space:nowrap}
+.mkart-ok i{font-style:normal;font-size:.95rem;line-height:1;display:inline-block;animation:zipla 1.1s ease-in-out infinite}
+.mkart:not(.kapali) .mkart-ok i{animation:none;transform:rotate(180deg)}
+@keyframes zipla{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){.mkart-ok i{animation:none}}
 .mkart.kapali .mkart-foto,.mkart.kapali .info-row:not(.adres),.mkart.kapali .ulasim,.mkart.kapali .puan-bolum{display:none}
 .mkart.kapali .info-row.adres{margin-bottom:0}
-.ayr{width:100%;margin-top:.6rem;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:700;color:var(--yesil2);background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.55rem;cursor:pointer}
+.ayr{display:none;width:100%;margin-top:.6rem;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:700;color:var(--yesil2);background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.55rem;cursor:pointer}
 .mkart[hidden]{display:none}
 </style>
 </head>
@@ -180,7 +183,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Çarşı, Öğrt. Süleyman Yurttaş Sk. No:2, 08000 Artvin Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 212 36 35</div></div>
       <div class="info-row"><span class="info-ikon">📱</span><div class="info-metin"><strong>Cep:</strong> 0505 918 26 65</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz belediye dolmuşu ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#1b5e38;text-decoration:underline;">Otogardan</a> mavi-beyaz belediye dolmuşu ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662123635" class="btn btn-tel">📞 0466 212 36 35</a>
         <a href="tel:05059182665" class="btn btn-cep">📱 0505 918 26 65</a>
@@ -222,7 +225,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Çamlık, Çamlık Cd. No:10, 08000 Artvin Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📱</span><div class="info-metin"><strong>Tel:</strong> 0532 372 73 88</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#1b5e38;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:05323727388" class="btn btn-cep">📱 0532 372 73 88</a>
         <a href="https://maps.app.goo.gl/gzaxaHoH4t3dwZXFA" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
@@ -264,7 +267,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Artvin-Ardanuç yolu 10. km, Salkımlı Köyü mevkii</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 238 25 02</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> gündüz saatlerinde saat başı kalkan Ardanuç/Şavşat dolmuşları ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#1b5e38;text-decoration:underline;">Otogardan</a> gündüz saatlerinde saat başı kalkan Ardanuç/Şavşat dolmuşları ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662382502" class="btn btn-tel">📞 0466 238 25 02</a>
         <a href="https://maps.app.goo.gl/G69V19CidTtzCzf88" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
@@ -306,7 +309,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Yeni, Edip Dinç Sk. No:19, 08000 Artvin Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 212 35 11</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş (Yenimahalle/İskebe hattı) ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#1b5e38;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş (Yenimahalle/İskebe hattı) ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662123511" class="btn btn-tel">📞 0466 212 35 11</a>
         <a href="https://maps.app.goo.gl/3otyB9wfuiTxeUsF9" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
@@ -348,7 +351,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Çayağzı Mahallesi, Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 215 1000 — Dahili: 2222</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz belediye dolmuşu ile üniversiteye direkt ulaşım. Ticari taksi</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#1b5e38;text-decoration:underline;">Otogardan</a> mavi-beyaz belediye dolmuşu ile üniversiteye direkt ulaşım. Ticari taksi</div>
       <div class="btn-row">
         <a href="tel:04662151000" class="btn btn-tel">📞 0466 215 1000</a>
         <a href="https://maps.app.goo.gl/nUqfb5a4xpgA6zjC9" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
@@ -389,7 +392,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📍</span><div class="info-metin"><strong>Adres:</strong> Orta Mahallesi, Merkez/Artvin</div></div>
       <div class="info-row"><span class="info-ikon">📞</span><div class="info-metin"><strong>Tel:</strong> 0466 212 23 65</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#1b5e38;text-decoration:underline;">Otogardan</a> mavi-beyaz dolmuş ve ticari taksi ile direkt ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662122365" class="btn btn-tel">📞 0466 212 23 65</a>
         <a href="https://maps.app.goo.gl/Aj421TTKUNzUmjqu5" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
@@ -428,7 +431,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
     <div class="mkart-foto" onclick="fotoAc('cevre')"><img src="https://i.ibb.co/201k5yKG/MG-20260524-213723.png" alt="Çevre fotoğrafı" loading="lazy"></div>
     <div class="mkart-ic">
       <div class="info-row"><span class="info-ikon">📱</span><div class="info-metin"><strong>Tel:</strong> 0 (466) 212 13 69</div></div>
-      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#3ddb8a;text-decoration:underline;">Otogardan</a> yürüme mesafesi, ticari taksi ve mavi-beyaz dolmuş ile ulaşım</div>
+      <div class="ulasim">🚌 <strong>Ulaşım:</strong> <a href="/otobus.html" style="color:#1b5e38;text-decoration:underline;">Otogardan</a> yürüme mesafesi, ticari taksi ve mavi-beyaz dolmuş ile ulaşım</div>
       <div class="btn-row">
         <a href="tel:04662121369" class="btn btn-cep">📱 0466 212 13 69</a>
         <a href="https://maps.app.goo.gl/GpnvjPBVigT7yCdq6" target="_blank" rel="noopener" class="btn btn-harita">🗺️ Haritada Gör</a>
@@ -500,45 +503,45 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 <!-- İÇERİK ZENGİNLEŞTİRME + GÖRÜNÜR FAQ -->
 <div style="max-width:600px;margin:2rem auto;padding:0 1.1rem;">
 
-  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 .75rem;">Artvin Kamu Misafirhanesi Nedir?</h2>
-  <p style="font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:.85rem;">Kamu misafirhaneleri, devlet kurumlarına bağlı olarak işletilen ve genellikle otellere kıyasla daha uygun fiyatlı konaklama imkânı sunan tesislerdir. Artvin'de öğretmenevi, orduevi, polisevi, DSİ ve Orman Bölge Müdürlüğü misafirhaneleri ile Artvin Çoruh Üniversitesi konukevi gibi seçenekler bulunur. Bu tesisler hem resmi görevle şehre gelenler hem de uygun konaklama arayan ziyaretçiler için önemli bir alternatiftir.</p>
+  <h2 style="font-size:1.25rem;font-weight:800;color:#1b5e38;margin:2rem 0 .75rem;">Artvin Kamu Misafirhanesi Nedir?</h2>
+  <p style="font-size:.9rem;color:#3d5a3d;line-height:1.8;margin-bottom:.85rem;">Kamu misafirhaneleri, devlet kurumlarına bağlı olarak işletilen ve genellikle otellere kıyasla daha uygun fiyatlı konaklama imkânı sunan tesislerdir. Artvin'de öğretmenevi, orduevi, polisevi, DSİ ve Orman Bölge Müdürlüğü misafirhaneleri ile Artvin Çoruh Üniversitesi konukevi gibi seçenekler bulunur. Bu tesisler hem resmi görevle şehre gelenler hem de uygun konaklama arayan ziyaretçiler için önemli bir alternatiftir.</p>
 
-  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 .75rem;">Misafirhanelerden Kimler Yararlanabilir?</h2>
-  <p style="font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:.85rem;">Misafirhanelerin kullanım koşulları kuruma göre değişir. Öğretmenevleri genellikle hem öğretmenlere hem de dışarıdan gelen misafirlere açıktır. Orduevi ve polisevi gibi tesisler öncelikle kendi personeline hizmet verse de, boş kapasite durumunda dışarıdan rezervasyon kabul edebilir. DSİ ve Orman misafirhaneleri ise çoğunlukla kurum personeli ve resmi görevlilere yöneliktir. Kesin bilgi için ilgili misafirhaneyi telefonla aramak en doğrusudur.</p>
+  <h2 style="font-size:1.25rem;font-weight:800;color:#1b5e38;margin:2rem 0 .75rem;">Misafirhanelerden Kimler Yararlanabilir?</h2>
+  <p style="font-size:.9rem;color:#3d5a3d;line-height:1.8;margin-bottom:.85rem;">Misafirhanelerin kullanım koşulları kuruma göre değişir. Öğretmenevleri genellikle hem öğretmenlere hem de dışarıdan gelen misafirlere açıktır. Orduevi ve polisevi gibi tesisler öncelikle kendi personeline hizmet verse de, boş kapasite durumunda dışarıdan rezervasyon kabul edebilir. DSİ ve Orman misafirhaneleri ise çoğunlukla kurum personeli ve resmi görevlilere yöneliktir. Kesin bilgi için ilgili misafirhaneyi telefonla aramak en doğrusudur.</p>
 
-  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 .75rem;">Misafirhane mi Otel mi?</h2>
-  <p style="font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:.85rem;">Misafirhaneler genellikle otellere göre daha ekonomiktir ve sade ama temiz bir konaklama sunar. Ancak otellerdeki gibi 24 saat resepsiyon, restoran veya ek hizmetler her zaman bulunmayabilir. Tatil veya turistik amaçlı, daha donanımlı bir konaklama arıyorsanız Artvin'in otelleri daha uygun olabilir. Kısa süreli, ekonomik ve merkezi bir konaklama içinse misafirhaneler ideal bir seçimdir.</p>
+  <h2 style="font-size:1.25rem;font-weight:800;color:#1b5e38;margin:2rem 0 .75rem;">Misafirhane mi Otel mi?</h2>
+  <p style="font-size:.9rem;color:#3d5a3d;line-height:1.8;margin-bottom:.85rem;">Misafirhaneler genellikle otellere göre daha ekonomiktir ve sade ama temiz bir konaklama sunar. Ancak otellerdeki gibi 24 saat resepsiyon, restoran veya ek hizmetler her zaman bulunmayabilir. Tatil veya turistik amaçlı, daha donanımlı bir konaklama arıyorsanız Artvin'in otelleri daha uygun olabilir. Kısa süreli, ekonomik ve merkezi bir konaklama içinse misafirhaneler ideal bir seçimdir.</p>
 
-  <h2 style="font-size:1.25rem;font-weight:800;color:#f0c040;margin:2rem 0 1rem;">Sıkça Sorulan Sorular</h2>
+  <h2 style="font-size:1.25rem;font-weight:800;color:#1b5e38;margin:2rem 0 1rem;">Sıkça Sorulan Sorular</h2>
 
-  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;margin-bottom:.6rem;">
-    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Artvin misafirhanelerinde herkes kalabilir mi?</h3>
-    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Öğretmenevleri genellikle dışarıdan misafir kabul eder. Orduevi, polisevi gibi tesisler öncelikle personeline hizmet verir ancak boş kapasitede dışarıdan rezervasyon alabilir. En doğrusu ilgili misafirhaneyi arayıp sormaktır.</p>
+  <div style="background:#fff;border:1.5px solid #dce8dc;border-radius:12px;padding:1rem;margin-bottom:.6rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#1a2e1a;margin-bottom:.4rem;">Artvin misafirhanelerinde herkes kalabilir mi?</h3>
+    <p style="font-size:.84rem;color:#3d5a3d;line-height:1.65;">Öğretmenevleri genellikle dışarıdan misafir kabul eder. Orduevi, polisevi gibi tesisler öncelikle personeline hizmet verir ancak boş kapasitede dışarıdan rezervasyon alabilir. En doğrusu ilgili misafirhaneyi arayıp sormaktır.</p>
   </div>
 
-  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;margin-bottom:.6rem;">
-    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Misafirhane fiyatları ne kadar?</h3>
-    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Misafirhane fiyatları otellere göre belirgin şekilde daha uygundur ve her kurum kendi tarifesini belirler. Güncel fiyat için doğrudan misafirhaneyle telefonla görüşmeniz gerekir; fiyatlar dönemsel olarak değişebilir.</p>
+  <div style="background:#fff;border:1.5px solid #dce8dc;border-radius:12px;padding:1rem;margin-bottom:.6rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#1a2e1a;margin-bottom:.4rem;">Misafirhane fiyatları ne kadar?</h3>
+    <p style="font-size:.84rem;color:#3d5a3d;line-height:1.65;">Misafirhane fiyatları otellere göre belirgin şekilde daha uygundur ve her kurum kendi tarifesini belirler. Güncel fiyat için doğrudan misafirhaneyle telefonla görüşmeniz gerekir; fiyatlar dönemsel olarak değişebilir.</p>
   </div>
 
-  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;margin-bottom:.6rem;">
-    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Rezervasyon nasıl yapılır?</h3>
-    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Çoğu kamu misafirhanesinde rezervasyon telefonla yapılır. Yukarıdaki listede her misafirhanenin telefon numarası bulunmaktadır. Özellikle yoğun dönemlerde önceden aramanız tavsiye edilir.</p>
+  <div style="background:#fff;border:1.5px solid #dce8dc;border-radius:12px;padding:1rem;margin-bottom:.6rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#1a2e1a;margin-bottom:.4rem;">Rezervasyon nasıl yapılır?</h3>
+    <p style="font-size:.84rem;color:#3d5a3d;line-height:1.65;">Çoğu kamu misafirhanesinde rezervasyon telefonla yapılır. Yukarıdaki listede her misafirhanenin telefon numarası bulunmaktadır. Özellikle yoğun dönemlerde önceden aramanız tavsiye edilir.</p>
   </div>
 
-  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;">
-    <h3 style="font-size:.92rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Artvin merkeze en yakın misafirhane hangisi?</h3>
-    <p style="font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.65;">Artvin Öğretmenevi şehir merkezinde, çarşıya yakın konumdadır ve otogardan dolmuş veya taksiyle kolayca ulaşılır. Diğer misafirhanelerin konumları yukarıdaki haritalardan görülebilir.</p>
+  <div style="background:#fff;border:1.5px solid #dce8dc;border-radius:12px;padding:1rem;">
+    <h3 style="font-size:.92rem;font-weight:700;color:#1a2e1a;margin-bottom:.4rem;">Artvin merkeze en yakın misafirhane hangisi?</h3>
+    <p style="font-size:.84rem;color:#3d5a3d;line-height:1.65;">Artvin Öğretmenevi şehir merkezinde, çarşıya yakın konumdadır ve otogardan dolmuş veya taksiyle kolayca ulaşılır. Diğer misafirhanelerin konumları yukarıdaki haritalardan görülebilir.</p>
   </div>
 
   <!-- İlgili sayfalar -->
-  <div style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.08);">
-    <div style="font-size:.95rem;font-weight:800;color:#f0c040;margin-bottom:.6rem;">İlgili Sayfalar</div>
+  <div style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid #dce8dc;">
+    <div style="font-size:.95rem;font-weight:800;color:#1b5e38;margin-bottom:.6rem;">İlgili Sayfalar</div>
     <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-      <a href="/oteller.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">🏨 Artvin Otelleri</a>
-      <a href="/havas.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">✈️ Havalimanı Servisi</a>
-      <a href="/otobus.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">🚌 Otobüs Saatleri</a>
-      <a href="/gezi.html" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#fff;text-decoration:none;">📍 Gezilecek Yerler</a>
+      <a href="/oteller.html" style="background:#e8f5ee;border:1px solid #c8dcc8;border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#1a2e1a;text-decoration:none;">🏨 Artvin Otelleri</a>
+      <a href="/havas.html" style="background:#e8f5ee;border:1px solid #c8dcc8;border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#1a2e1a;text-decoration:none;">✈️ Havalimanı Servisi</a>
+      <a href="/otobus.html" style="background:#e8f5ee;border:1px solid #c8dcc8;border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#1a2e1a;text-decoration:none;">🚌 Otobüs Saatleri</a>
+      <a href="/gezi.html" style="background:#e8f5ee;border:1px solid #c8dcc8;border-radius:20px;padding:.45rem .9rem;font-size:.78rem;color:#1a2e1a;text-decoration:none;">📍 Gezilecek Yerler</a>
     </div>
   </div>
 
@@ -652,18 +655,19 @@ window.fotoAc = function(id) {
 var cards=[].slice.call(document.querySelectorAll('.mkart'));
 cards.forEach(function(c){
   var r=c.querySelector('.mkart-ic .info-row'); if(r) r.classList.add('adres');
-  var u=c.querySelector('.mkart-ust'); var o=document.createElement('span'); o.className='mkart-ok'; o.textContent='▾'; u.appendChild(o);
-  var br=c.querySelector('.btn-row'); var b=document.createElement('button'); b.type='button'; b.className='ayr'; b.textContent='Ayrıntı ve fotoğraf'; br.parentNode.insertBefore(b,br.nextSibling);
-  function tg(){var k=c.classList.toggle('kapali'); b.textContent=k?'Ayrıntı ve fotoğraf':'Ayrıntıyı kapat';}
-  b.addEventListener('click',tg); u.addEventListener('click',tg);
+  var u=c.querySelector('.mkart-ust'); var o=document.createElement('span'); o.className='mkart-ok'; o.innerHTML='<span class="ot">Ayrıntı ve fotoğraf</span><i>▼</i>'; u.appendChild(o);
+  u.setAttribute('role','button'); u.setAttribute('tabindex','0');
+  function tg(){var k=c.classList.toggle('kapali'); o.querySelector('.ot').textContent=k?'Ayrıntı ve fotoğraf':'Kapat'; u.setAttribute('aria-expanded',!k);}
+  u.addEventListener('click',tg); u.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tg();}});
 });
 var sec=document.getElementById('sec'),say=document.getElementById('secSay');
 function sec_(k,scroll){
   [].forEach.call(sec.children,function(b){b.classList.toggle('on',b.getAttribute('data-s')===k);});
   cards.forEach(function(c){
     var g=!k||c.getAttribute('data-k')===k; c.hidden=!g;
-    if(k){c.classList.remove('kapali');var a=c.querySelector('.ayr');if(a)a.textContent='Ayrıntıyı kapat';}
-    else{c.classList.add('kapali');var a2=c.querySelector('.ayr');if(a2)a2.textContent='Ayrıntı ve fotoğraf';}
+    var ot=c.querySelector('.mkart-ok .ot');
+    if(k){c.classList.remove('kapali');if(ot)ot.textContent='Kapat';}
+    else{c.classList.add('kapali');if(ot)ot.textContent='Ayrıntı ve fotoğraf';}
   });
   say.textContent=k?'Tek kurum gösteriliyor. Hepsini görmek için "Tümü"ne dokunun.':'Bir kuruma dokunun, yalnızca onu görün.';
   if(scroll){var y=sec.getBoundingClientRect().bottom+window.scrollY-6;window.scrollTo({top:Math.max(0,document.querySelector('.liste').getBoundingClientRect().top+window.scrollY-110),behavior:'smooth'});}
