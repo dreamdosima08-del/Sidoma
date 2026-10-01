@@ -118,6 +118,21 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 .mkart-foto img{width:100%;height:100%;object-fit:cover;transition:transform .3s;display:block;}
 .mkart-foto:active img{transform:scale(.97);}
 .mkart-foto::after{content:"🔍 Büyüt";position:absolute;bottom:.5rem;right:.5rem;background:rgba(0,0,0,.6);color:#fff;font-size:.62rem;font-weight:600;padding:.25rem .55rem;border-radius:20px;backdrop-filter:blur(4px);}
+
+/* KURUM SECICI + DARALTMA */
+.sec{position:sticky;top:60px;z-index:90;background:rgba(247,249,247,.98);border-bottom:1px solid var(--border);padding:.55rem 0}
+.sec-in{display:flex;gap:.4rem;overflow-x:auto;padding:0 .9rem;max-width:640px;margin:0 auto;scrollbar-width:none}
+.sec-in::-webkit-scrollbar{display:none}
+.sec button{flex:none;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:700;color:var(--yesil);background:#fff;border:1.5px solid var(--border2);border-radius:20px;padding:.5rem .9rem;cursor:pointer;white-space:nowrap}
+.sec button.on{background:var(--yesil);border-color:var(--yesil);color:#fff}
+.sec-say{max-width:640px;margin:.4rem auto 0;padding:0 .95rem;font-size:.7rem;color:var(--soluk)}
+.mkart-ust{cursor:pointer}
+.mkart-ok{margin-left:auto;color:#fff;font-size:1.2rem;transition:transform .2s}
+.mkart:not(.kapali) .mkart-ok{transform:rotate(180deg)}
+.mkart.kapali .mkart-foto,.mkart.kapali .info-row:not(.adres),.mkart.kapali .ulasim,.mkart.kapali .puan-bolum{display:none}
+.mkart.kapali .info-row.adres{margin-bottom:0}
+.ayr{width:100%;margin-top:.6rem;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:700;color:var(--yesil2);background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.55rem;cursor:pointer}
+.mkart[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -146,10 +161,13 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
   <div class="hero-badge">🏨 7 Tesis · Güncel Bilgi</div>
 </div>
 
+<div class="sec"><div class="sec-in" id="sec"><button class="on" data-s="">Tümü (7)</button><button data-s="ogretmenevi">📚 Öğretmenevi</button><button data-s="orman">🌲 Orman Bölge</button><button data-s="dsi">💧 DSİ</button><button data-s="polisevi">👮 Polisevi</button><button data-s="acu">🎓 AÇÜ Konukevi</button><button data-s="orduevi">🎖️ Orduevi</button><button data-s="cevre">🏛️ Çevre Şehircilik</button></div></div>
+<div class="sec-say" id="secSay">Bir kuruma dokunun, yalnızca onu görün.</div>
+
 <div class="liste">
 
   <!-- ÖĞRETMEN EVİ -->
-  <div class="mkart">
+  <div class="mkart kapali" id="ogretmenevi" data-k="ogretmenevi">
     <div class="mkart-ust">
       <span class="mkart-ikon">📚</span>
       <div>
@@ -192,7 +210,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
   
 
   <!-- ORMAN BÖLGE -->
-  <div class="mkart">
+  <div class="mkart kapali" id="orman" data-k="orman">
     <div class="mkart-ust">
       <span class="mkart-ikon">🌲</span>
       <div>
@@ -234,7 +252,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
   </div>
 
   <!-- DSİ -->
-  <div class="mkart">
+  <div class="mkart kapali" id="dsi" data-k="dsi">
     <div class="mkart-ust">
       <span class="mkart-ikon">💧</span>
       <div>
@@ -276,7 +294,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
   </div>
 
   <!-- POLİSEVİ -->
-  <div class="mkart">
+  <div class="mkart kapali" id="polisevi" data-k="polisevi">
     <div class="mkart-ust">
       <span class="mkart-ikon">👮</span>
       <div>
@@ -318,7 +336,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
   </div>
 
   <!-- AÇÜ KONUKEVİ -->
-  <div class="mkart">
+  <div class="mkart kapali" id="acu" data-k="acu">
     <div class="mkart-ust">
       <span class="mkart-ikon">🎓</span>
       <div>
@@ -359,7 +377,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
   
 
   <!-- ASTSUBAY ORDUEVİ -->
-  <div class="mkart">
+  <div class="mkart kapali" id="orduevi" data-k="orduevi">
     <div class="mkart-ust">
       <span class="mkart-ikon">🎖️</span>
       <div>
@@ -399,7 +417,7 @@ footer a{color:var(--yesil2);text-decoration:none;font-weight:600}
 
   
   <!-- ÇEVRE ŞEHİRCİLİK -->
-  <div class="mkart">
+  <div class="mkart kapali" id="cevre" data-k="cevre">
     <div class="mkart-ust">
       <span class="mkart-ikon">🏢</span>
       <div>
@@ -628,5 +646,33 @@ window.fotoAc = function(id) {
 }
 </script>
 
+
+<script>
+(function(){
+var cards=[].slice.call(document.querySelectorAll('.mkart'));
+cards.forEach(function(c){
+  var r=c.querySelector('.mkart-ic .info-row'); if(r) r.classList.add('adres');
+  var u=c.querySelector('.mkart-ust'); var o=document.createElement('span'); o.className='mkart-ok'; o.textContent='▾'; u.appendChild(o);
+  var br=c.querySelector('.btn-row'); var b=document.createElement('button'); b.type='button'; b.className='ayr'; b.textContent='Ayrıntı ve fotoğraf'; br.parentNode.insertBefore(b,br.nextSibling);
+  function tg(){var k=c.classList.toggle('kapali'); b.textContent=k?'Ayrıntı ve fotoğraf':'Ayrıntıyı kapat';}
+  b.addEventListener('click',tg); u.addEventListener('click',tg);
+});
+var sec=document.getElementById('sec'),say=document.getElementById('secSay');
+function sec_(k,scroll){
+  [].forEach.call(sec.children,function(b){b.classList.toggle('on',b.getAttribute('data-s')===k);});
+  cards.forEach(function(c){
+    var g=!k||c.getAttribute('data-k')===k; c.hidden=!g;
+    if(k){c.classList.remove('kapali');var a=c.querySelector('.ayr');if(a)a.textContent='Ayrıntıyı kapat';}
+    else{c.classList.add('kapali');var a2=c.querySelector('.ayr');if(a2)a2.textContent='Ayrıntı ve fotoğraf';}
+  });
+  say.textContent=k?'Tek kurum gösteriliyor. Hepsini görmek için "Tümü"ne dokunun.':'Bir kuruma dokunun, yalnızca onu görün.';
+  if(scroll){var y=sec.getBoundingClientRect().bottom+window.scrollY-6;window.scrollTo({top:Math.max(0,document.querySelector('.liste').getBoundingClientRect().top+window.scrollY-110),behavior:'smooth'});}
+  try{history.replaceState(null,'',k?'#'+k:location.pathname);}catch(e){}
+}
+sec.addEventListener('click',function(e){var b=e.target.closest('button');if(b)sec_(b.getAttribute('data-s'),true);});
+var h=(location.hash||'').slice(1);
+if(h&&document.getElementById(h)&&document.getElementById(h).classList.contains('mkart'))sec_(h,false);
+})();
+</script>
 </body>
 </html>
