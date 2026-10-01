@@ -307,8 +307,6 @@ firebase.initializeApp({
   appId:'1:356152793085:web:38a6ae1ad911880cb2ab94'
 });
 var db = firebase.firestore();
-var TG_TOKEN = '8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
-var TG_CHAT = '1032454830';
 
 var BOLUM_LABEL = {
   bilgisayar:'Bilgisayar Müh.',yazilim:'Yazılım Müh.',elektrik:'Elektrik-Elektronik',
@@ -458,10 +456,6 @@ function gonder(){
     durum:'bekliyor',begeni:0,
     olusturma:firebase.firestore.FieldValue.serverTimestamp()
   }).then(function(ref){
-    fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({chat_id:TG_CHAT,text:'📚 Yeni Ders Notu\n'+ders+'\n'+( BOLUM_LABEL[bolum]||bolum)+'\n👤 '+nick+'\n🔗 '+link+'\n\nID:'+ref.id})
-    }).catch(function(){});
     btn.disabled=false;btn.textContent='📎 Notu Paylaş';
     document.getElementById('fDers').value='';
     document.getElementById('fBolum').value='';

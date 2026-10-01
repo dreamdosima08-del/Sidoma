@@ -23,7 +23,7 @@ button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(-
 <div id="gir"><p id="durum">Yükleniyor…</p><button class="p" id="bG" style="display:none">Google ile giriş yap</button></div>
 <div id="panel" style="display:none">
   <div><span id="kim"></span> <button id="bC">Çıkış</button></div>
-  <div class="t" id="sek"><button data-s="bekliyor" class="a">Onay bekleyen</button><button data-s="bildirilen">Bildirilen</button><button data-s="hepsi">Tüm paylaşımlar</button></div>
+  <div class="t" id="sek"><button data-s="bekliyor" class="a">Onay bekleyen</button><button data-s="bildirilen">Bildirilen</button><button data-s="hepsi">Tüm paylaşımlar</button><button data-s="notlar">Ders notları</button></div>
   <div id="liste"></div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -45,6 +45,14 @@ $('bC').onclick=function(){auth.signOut();};
 $('sek').onclick=function(e){var b=e.target.closest('[data-s]');if(!b)return;sek=b.getAttribute('data-s');[].forEach.call($('sek').children,function(x){x.classList.toggle('a',x===b);});yukle();};
 function yukle(){
   $('liste').innerHTML='<p id="durum">Yükleniyor…</p>';
+  if(sek==='notlar'){
+    db.collection('ders_notlari').where('durum','==','bekliyor').limit(100).get().then(function(s){
+      var a=[];s.forEach(function(d){var x=d.data();x.id=d.id;a.push(x);});
+      if(!a.length){$('liste').innerHTML='<p id="durum">Onay bekleyen ders notu yok.</p>';return;}
+      $('liste').innerHTML=a.map(function(x){return '<div class="k" data-id="'+esc(x.id)+'" data-c="ders_notlari"><small>'+esc(x.bolum)+' · '+esc(x.tip)+' · '+esc(x.donem||'')+' · '+esc(x.nick||'?')+'</small><p><b>'+esc(x.dersAdi)+'</b>\n'+esc(x.aciklama||'')+'</p><small><a href="'+esc(x.link)+'" target="_blank" rel="noopener">'+esc(x.link)+'</a></small><div class="e"><button class="p" data-a="onay">Yayınla</button><button class="r" data-a="sil">Sil</button></div></div>';}).join('');
+    }).catch(function(e){$('liste').innerHTML='<p id="durum" class="r">Yüklenemedi: '+esc(e.message)+'</p>';});
+    return;
+  }
   var q=db.collection('acukampus').where('durum','==',sek==='bekliyor'?'bekliyor':'aktif').orderBy('olusturma','desc').limit(200);
   q.get().then(function(s){
     var a=[];s.forEach(function(d){var x=d.data();x.id=d.id;a.push(x);});
@@ -56,7 +64,7 @@ function yukle(){
   }).catch(function(e){$('liste').innerHTML='<p id="durum" class="r">Yüklenemedi: '+esc(e.message)+'</p>';});
 }
 $('liste').onclick=function(e){
-  var b=e.target.closest('[data-a]');if(!b)return;var k=b.closest('.k'),id=k.getAttribute('data-id'),a=b.getAttribute('data-a'),ref=db.collection('acukampus').doc(id),p;
+  var b=e.target.closest('[data-a]');if(!b)return;var k=b.closest('.k'),id=k.getAttribute('data-id'),a=b.getAttribute('data-a'),ref=db.collection(k.getAttribute('data-c')||'acukampus').doc(id),p;
   if(a==='onay')p=ref.update({durum:'aktif'});
   else if(a==='sifir')p=ref.update({bildirim:0});
   else{if(!confirm('Silinsin mi?'))return;p=ref.delete();}
