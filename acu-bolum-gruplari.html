@@ -210,8 +210,8 @@ firebase.initializeApp({
   appId:'1:356152793085:web:38a6ae1ad911880cb2ab94'
 });
 var db = firebase.firestore();
-var TG_TOKEN = '8844806695:AAGXL8xVsv70ZeTlkcUM8w-fwfam95PP-28';
-var TG_CHAT = '1032454830';
+var LINK_RE = /^https:\/\/chat\.whatsapp\.com\/[A-Za-z0-9_-]{10,40}(\?[^\s]{0,60})?$/;
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 // Bolum listesi - fakulte bazli
 var FAKULTELER = [
@@ -257,7 +257,7 @@ function render() {
       if (arama && bolum.toLowerCase().indexOf(arama) < 0 && fak.ad.toLowerCase().indexOf(arama) < 0) return;
 
       var grup = GRUPLAR[bolum];
-      var varmi = grup && grup.link;
+      var varmi = grup && grup.link && LINK_RE.test(grup.link);
 
       bolumHtml += '<div class="bolum-kart">';
       bolumHtml += '<div class="bolum-ust">';
@@ -266,7 +266,7 @@ function render() {
       bolumHtml += '</div>';
       bolumHtml += '<div class="bolum-alt">';
       if (varmi) {
-        bolumHtml += '<a class="bbtn btn-katil" href="' + grup.link + '" target="_blank" rel="noopener">📲 Gruba Katil</a>';
+        bolumHtml += '<a class="bbtn btn-katil" href="' + esc(grup.link) + '" target="_blank" rel="noopener">📲 Gruba Katil</a>';
         bolumHtml += '<button class="bbtn btn-kur" onclick="modalAc(\'' + bolum.replace(/'/g,"") + '\')">🔄 Guncelle</button>';
       } else {
         bolumHtml += '<button class="bbtn btn-kur" onclick="modalAc(\'' + bolum.replace(/'/g,"") + '\')" style="flex:1">📲 Grup Linki Ekle</button>';
@@ -308,11 +308,11 @@ function modalKapat() {
 
 function linkGonder() {
   var link = document.getElementById('linkInput').value.trim();
-  var nick = document.getElementById('nickInput').value.trim() || 'Anonim';
+  var nick = (document.getElementById('nickInput').value.trim() || 'Anonim').slice(0,30);
 
   // Link kontrolu - sadece chat.whatsapp.com
-  if (link.indexOf('chat.whatsapp.com') < 0) {
-    alert('Lutfen gecerli bir WhatsApp grup linki girin (chat.whatsapp.com ile baslamali).');
+  if (!LINK_RE.test(link)) {
+    alert('Lutfen gecerli bir WhatsApp grup davet linki girin (https://chat.whatsapp.com/... seklinde).');
     return;
   }
 
@@ -326,16 +326,9 @@ function linkGonder() {
     GRUPLAR[aktifBolum] = veri;
     modalKapat();
     render();
-    // Telegram bildirim
-    var msg = 'Yeni bolum grubu: ' + aktifBolum + ' - ' + nick;
-    fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({chat_id:TG_CHAT, text:msg})
-    }).catch(function(){});
     alert('Grup linki eklendi! Tesekkurler.');
   }).catch(function(e) {
-    alert('Bir hata olustu, tekrar deneyin.');
+    alert('Eklenemedi. Bu bolum icin baska biri grup eklemis olabilir, sayfayi yenileyip tekrar bak.');
     console.log(e);
   });
 }
