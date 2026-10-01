@@ -6,32 +6,35 @@
 var KOK=document.getElementById('hikayeler'); if(!KOK) return;
 
 /* ───── İçerik ───── */
+var DURAK='https://i.ibb.co/tMg1kRyj/file-00000000d578720a9f914ec28f759bcf.png';
 var SABIT=[
- {id:'guncel-2026-10-01',ad:'Güncel',ikon:'📰',kapak:'/otogar-foto-3.jpg',kareler:[
-   {foto:'/otogar-foto-3.jpg',ust:'Ulaşım haberi',baslik:'İlçeler arası dolmuş ücretleri güncellendi',metin:'Borçka 250 TL · Hopa, Şavşat, Yusufeli 400 TL · Arhavi, Kemalpaşa 450 TL',link:'/blog55-dolmus-ucretleri-guncellendi.html',dugme:'Tarifenin tamamı'},
-   {foto:'/kis-merkez-panorama.jpg',ust:'Yeni rehber',baslik:'Artvin Kış Rehberi yayında',metin:'Kar ne zaman yağar, hangi yollar kapanır? Rakım kaydırıcısı ve yol kartlarıyla.',link:'/blog56-artvin-kis-rehberi.html',dugme:'Rehberi aç'}
+ {id:'guncel-2026-10-01',ad:'Güncel',ikon:'📰',kapak:'/kis-merkez-panorama.jpg',kareler:[
+   {foto:'/kis-merkez-panorama.jpg',ust:'Yeni rehber',baslik:'Artvin Kış Rehberi yayında',metin:'Kar ne zaman yağar, hangi yollar kapanır? Rakım kaydırıcısı ve yol kartlarıyla.',link:'/blog56-artvin-kis-rehberi.html',dugme:'Rehberi aç'},
+   {foto:'/otogar-foto-3.jpg',ust:'Ulaşım haberi',baslik:'İlçeler arası dolmuş ücretleri güncellendi',metin:'22 Eylül 2026 tarifesi: eski ve yeni ücretler bir arada.',link:'/blog55-dolmus-ucretleri-guncellendi.html',dugme:'Haberi oku'}
  ]},
- {id:'kis-2026',ad:'Kış',ikon:'❄️',kapak:'/kis-gece-yagis.jpg',kareler:[
-   {foto:'/kis-mahalle-kar.jpg',ust:'Kar takvimi',baslik:'İlk kar Kasım ortasından sonra',metin:'Ana dönem Aralık–Ocak–Şubat. Son yıllarda kar Ocak–Şubat’a kaydı.',link:'/blog56-artvin-kis-rehberi.html#takvim',dugme:'Kar takvimi'},
-   {foto:'/kis-coruh-vadisi.jpg',ust:'Rakım farkı',baslik:'Yükseldikçe kar artar',metin:'Çoruh tabanı ~200 m, çarşı ~500 m, Şavşat ~1000 m. En şanslı ilçe merkezi Şavşat.',link:'/blog56-artvin-kis-rehberi.html#rakim',dugme:'Rakım kaydırıcısı'},
-   {foto:'/kis-gece-merkez.jpg',ust:'Kayak',baslik:'Atabarı kar yağdığı gibi açılır',metin:'Giriş ücretsiz, ekipman kiralanıyor. Yolda Kafkasör ve Yankı Tepesi’ne uğrayın.',link:'/blog56-artvin-kis-rehberi.html#kayak',dugme:'Atabarı bilgisi'}
+ {id:'ilce-dolmus-2026-09-22',ad:'İlçe Dolmuş',ikon:'🚐',kapak:'/otogar-foto-3.jpg',kareler:[
+   {foto:'/otogar-foto-3.jpg',ust:'22 Eylül 2026 tarifesi',baslik:'Borçka 250 ₺ · Murgul 330 ₺ · Ardanuç 350 ₺',metin:'Artvin merkezden ilçelere tek yön ücretler.',link:'/dolmus.html',dugme:'Tüm tarife'},
+   {foto:'/otogar-foto-3.jpg',ust:'22 Eylül 2026 tarifesi',baslik:'Hopa · Şavşat · Yusufeli 400 ₺',metin:'Arhavi ve Kemalpaşa 450 ₺.',link:'/dolmus.html',dugme:'Tüm tarife'},
+   {foto:'/otogar-foto-3.jpg',ust:'Nereden binilir?',baslik:'İki ayrı kalkış noktası var',metin:'Hopa, Arhavi, Şavşat, Yusufeli: terminal yanındaki durak. Borçka, Ardanuç, Murgul: Artrium AVM alt virajı.',link:'/dolmus.html',dugme:'Duraklar ve telefonlar'}
  ]},
- {id:'yol-2026',ad:'Yollar',ikon:'🚧',kapak:'/kis-greyder.jpg',kareler:[
-   {foto:'/kis-greyder.jpg',ust:'Kışın dikkat',baslik:'Sahara Geçidi sık kapanır',metin:'Artvin–Ardahan yolu ~2400 m’den geçer, çığ riski var. Yola çıkmadan bilgi alın.',link:'/yol-durumu.html',dugme:'Yol durumuna bak'},
-   {foto:'/kis-mahalle-kar.jpg',ust:'Bilgi hattı',baslik:'112 ve KGM hattı',metin:'Kapalı yol bilgisi bu hatlardan ve Yol Durumu sayfamızdan öğrenilir. Zincir ve kış lastiği şart.',link:'/yol-durumu.html',dugme:'Yol Durumu'}
+ {id:'sehirici-2026-08',ad:'Şehir İçi',ikon:'🚌',kapak:DURAK,kareler:[
+   {foto:DURAK,ust:'Ağustos 2026 tarifesi',baslik:'Tam 40 ₺ · Öğrenci 30 ₺',metin:'İndi-bindi 30 ₺.',link:'/sehirici-dolmus.html',dugme:'Ücret ve saatler'},
+   {foto:DURAK,ust:'Günde 243 sefer',baslik:'Ortalama 4 dakikada bir dolmuş',metin:'Terminal → Üst Geçit → Sigorta → Gökorman → AVM → Öğretmenevi. Sonra Orköy, İskebe, Balcıoğlu, M.E. Lojmanları.',link:'/sehirici-dolmus.html',dugme:'Sıradaki dolmuşu gör'}
  ]},
- {id:'konak-2026',ad:'Konaklama',ikon:'🛏️',kapak:'/ilce-foto-merkez.jpg',kareler:[
-   {foto:'/ilce-foto-merkez.jpg',ust:'En çok bakılan',baslik:'Kamu misafirhaneleri',metin:'Öğretmenevi, Polisevi, Orduevi, AÇÜ Konukevi… Telefon ve adresleriyle tek sayfada.',link:'/artvin-misafirhane.html',dugme:'Misafirhaneler'},
-   {foto:'/kis-merkez-panorama.jpg',ust:'Oteller',baslik:'Merkez, Hopa, Şavşat, Yusufeli',metin:'Kışın da otel ve pansiyon bulmakta sıkıntı olmaz.',link:'/oteller.html',dugme:'Otelleri gör'}
+ {id:'oyun-2026',ad:'Oyunlar',ikon:'🎮',renk:'#8a3ffc,#e6337a',kareler:[
+   {emoji:'🔤',renk:'#16a34a,#064e3b',ust:'Popüler',baslik:'Artvin Wordle',metin:'Her gün yeni bir Artvin kelimesi. 6 denemede bulabilir misin?',link:'/wordle.html',dugme:'Oyna'},
+   {emoji:'🧭',renk:'#f59e0b,#9a3412',ust:'Popüler',baslik:'Sen hangi Artvin ilçesisin?',metin:'Hopa mı, Şavşat mı, Yusufeli mi? Kişiliğine göre öğren.',link:'/artvin-ilce-testi.html',dugme:'Testi çöz'},
+   {emoji:'🧠',renk:'#2563eb,#1e1b4b',ust:'Bilgi yarışması',baslik:'Artvin’i ne kadar tanıyorsun?',metin:'Sorularla kendini test et.',link:'/quiz.html',dugme:'Başla'},
+   {emoji:'⚡',renk:'#e6337a,#4c1d95',ust:'Yeni',baslik:'Refleks oyunu',metin:'Hızlı mısın? Rekorunu kır.',link:'/reflex.html',dugme:'Oyna'}
  ]}
 ];
 
 /* ───── Stil ───── */
 var css=''+
 '#hikayeler{background:rgba(10,26,18,.97);border-bottom:1px solid rgba(232,184,75,.15)}'+
-'.hk-sira{display:flex;gap:.85rem;overflow-x:auto;padding:.7rem 1rem .55rem;scrollbar-width:none;max-width:900px;margin:0 auto}'+
+'.hk-sira{display:flex;gap:.55rem;overflow-x:auto;padding:.7rem .8rem .55rem;scrollbar-width:none;max-width:900px;margin:0 auto}'+
 '.hk-sira::-webkit-scrollbar{display:none}'+
-'.hk{flex:none;width:68px;background:none;border:0;padding:0;cursor:pointer;color:#fff;font:inherit;text-align:center}'+
+'.hk{flex:none;width:76px;background:none;border:0;padding:0;cursor:pointer;color:#fff;font:inherit;text-align:center}'+
 '.hk-h{display:block;width:66px;height:66px;border-radius:50%;padding:3px;margin:0 auto;background:conic-gradient(from 210deg,#f5c542,#ff6a3d,#e6337a,#8a3ffc,#f5c542)}'+
 '.hk.gor .hk-h{background:rgba(255,255,255,.22)}'+
 '.hk-i{width:100%;height:100%;border-radius:50%;border:3px solid #0a1a12;background:#123224 center/cover no-repeat;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;line-height:1.05}'+
@@ -144,7 +147,7 @@ function kare(){
   clearTimeout(zam);var h=LISTE[hi],x=h.kareler[ki];gorIsaretle(h.id);
   var bars=h.kareler.map(function(_,i){return '<i><s style="width:'+(i<ki?100:0)+'%"></s></i>';}).join('');
   var bg=x.foto?'background-image:url(\''+x.foto.replace(/'/g,'%27')+'\')':'background:linear-gradient(160deg,'+(x.renk||h.renk||'#0f766e,#064e3b')+')';
-  var govde=x.hava?'<div class="hk-hava">'+x.hava+'</div>':'';
+  var govde=x.hava?'<div class="hk-hava">'+x.hava+'</div>':(x.emoji?'<div class="hk-hava"><div class="bi">'+x.emoji+'</div></div>':'');
   var alt='<div class="hk-ic">'+(x.ust&&!x.hava?'<span class="u">'+esc(x.ust)+'</span>':'')+(x.baslik?'<h3>'+esc(x.baslik)+'</h3>':'')+(x.metin?'<p>'+esc(x.metin)+'</p>':'')+(x.link?'<a class="hk-go" href="'+esc(x.link)+'">'+esc(x.dugme||'Sayfaya git')+' ›</a>':'')+'</div>';
   var m=h.kapak?'<span class="m" style="background-image:url(\''+h.kapak.replace(/'/g,'%27')+'\')"></span>':'<span class="m">'+h.ikon+'</span>';
   ov.innerHTML='<div class="hk-kt"><div class="hk-bg" style="'+bg+'"></div>'+govde+'<div class="hk-bar">'+bars+'</div><div class="hk-ust">'+m+'<b>'+esc(h.ad)+'</b><small>'+esc(x.hava?x.ust:'')+'</small><button class="hk-x" aria-label="Kapat">×</button></div><div class="hk-sol"></div><div class="hk-sag"></div>'+alt+'</div>';
@@ -171,5 +174,5 @@ function geri(){if(ki>0){ki--;kare();}else if(hi>0){hi--;ki=LISTE[hi].kareler.le
 var yerHava={id:'hava-yukleniyor',ad:'Hava',ikon:'🌤️',renk:'#0ea5e9,#0f766e',kareler:[{renk:'#0ea5e9,#0f766e',ust:'Artvin',hava:'<div class="bi">🌤️</div><div class="bt">Hava durumu yükleniyor…</div>',link:'/hava.html',dugme:'Hava durumu'}]};
 LISTE=[yerHava].concat(SABIT);ciz();
 havaYukle().then(function(h){LISTE[0]=h;if(!ov)ciz();}).catch(function(){});
-ikinciElYukle().then(function(h){if(!h)return;var i=LISTE.indexOf(SABIT[1]);LISTE.splice(i<0?2:i,0,h);if(!ov)ciz();}).catch(function(){});
+
 })();
