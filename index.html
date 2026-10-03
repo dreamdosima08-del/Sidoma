@@ -1161,6 +1161,32 @@ border-radius:20px;}
       <span>Google Play'den İndir</span>
     </a>
     
+    <!-- BUGÜN ARTVİN -->
+    <div class="ba-kart" role="group" aria-label="Bugün Artvin nasıl?">
+      <a class="ba-ust" href="/bugun-artvin.html"><span class="ba-nokta"></span><b>Bugün Artvin nasıl?</b><small>Canlı nabız ›</small></a>
+      <div class="ba-yuz">
+        <a href="/bugun-artvin.html?m=4#nasilsin"><i>😄</i>Çok iyi</a>
+        <a href="/bugun-artvin.html?m=3#nasilsin"><i>🙂</i>İyi</a>
+        <a href="/bugun-artvin.html?m=2#nasilsin"><i>😐</i>İdare</a>
+        <a href="/bugun-artvin.html?m=1#nasilsin"><i>😣</i>Zor</a>
+      </div>
+      <p class="ba-alt">Hava durumunu uygulamalar söyler; Artvin'in nasıl olduğunu Artvinliler.</p>
+    </div>
+    <style>
+    .ba-kart{max-width:440px;margin:.55rem auto .3rem;padding:.7rem .75rem .6rem;border-radius:14px;background:linear-gradient(160deg,rgba(255,206,107,.13),rgba(10,25,20,.55));border:1px solid rgba(255,206,107,.4);backdrop-filter:blur(8px);text-align:left}
+    .ba-ust{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff}
+    .ba-ust b{font-size:.95rem;font-weight:800}
+    .ba-ust small{margin-left:auto;font-size:.72rem;font-weight:800;color:#ffce6b}
+    .ba-nokta{width:8px;height:8px;border-radius:50%;background:#53d39a;box-shadow:0 0 0 0 rgba(83,211,154,.6);animation:baNabiz 1.8s infinite}
+    @keyframes baNabiz{70%{box-shadow:0 0 0 8px rgba(83,211,154,0)}100%{box-shadow:0 0 0 0 rgba(83,211,154,0)}}
+    .ba-yuz{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin-top:.55rem}
+    .ba-yuz a{display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.45rem 0 .35rem;border-radius:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);font-size:.68rem;font-weight:800;text-decoration:none;transition:transform .12s}
+    .ba-yuz a:active{transform:scale(.93)}
+    .ba-yuz i{font-style:normal;font-size:1.55rem;line-height:1}
+    .ba-alt{margin:.45rem 0 0;font-size:.68rem;color:rgba(255,255,255,.6);line-height:1.4}
+    @media(prefers-reduced-motion:reduce){.ba-nokta{animation:none}}
+    </style>
+
     <!-- KONUM WIDGET -->
 <div id="konumWidget" style="background:linear-gradient(135deg,rgba(240,192,64,.07),rgba(240,192,64,.03));border:1px solid rgba(240,192,64,.35);border-radius:12px;margin:.5rem auto .3rem;max-width:440px;padding:.55rem .85rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 0 12px rgba(240,192,64,.12),inset 0 1px 0 rgba(255,255,255,.06);" onclick="konumAl()">
   <div style="display:flex;align-items:center;gap:.65rem;">
