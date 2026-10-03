@@ -1081,6 +1081,55 @@ border-radius:20px;}
   .k3d-bekle{opacity:1;transform:none}
 }
 </style>
+<style id="raf-css">
+/* ═══ Ana sayfa: Her gün + konu rafları ═══ */
+.gun-bas,.raf-bas{display:flex;align-items:center;gap:.55rem;text-align:left}
+.gun-bas{max-width:440px;margin:1rem auto .5rem;padding:0 .1rem}
+.raf-bas{padding:0 1.25rem;margin-bottom:.55rem}
+.gun-bas::after,.raf-bas::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--rk,#f0c040),transparent);opacity:.45}
+.raf-ik{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-size:.98rem;background:rgba(255,255,255,.08);background:color-mix(in srgb,var(--rk,#f0c040) 18%,transparent);border:1px solid color-mix(in srgb,var(--rk,#f0c040) 45%,transparent)}
+.gun-bas h3,.raf-bas h3{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.01em;white-space:nowrap}
+.raf-bas em{font-style:normal;font-size:.66rem;font-weight:800;color:var(--rk);padding:.12rem .48rem;border-radius:999px;background:rgba(255,255,255,.06);background:color-mix(in srgb,var(--rk) 14%,transparent)}
+.raflar{width:100vw;max-width:520px;position:relative;left:50%;margin:.4rem 0 .5rem calc(min(100vw,520px) / -2);text-align:left}
+.raflar .raf{margin:1.05rem 0 0!important;padding:0!important;min-height:0!important;background:none!important;border:0!important}
+.raf-cerceve{position:relative}
+.raf-cerceve::after{content:'';position:absolute;top:0;right:0;bottom:.9rem;width:64px;pointer-events:none;background:linear-gradient(90deg,rgba(8,22,15,0),rgba(8,22,15,.88));transition:opacity .3s}
+.raf-cerceve.sonda::after{opacity:0}
+.raf-yol{display:flex;gap:.6rem;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0 1.25rem;padding:.25rem 1.25rem .9rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.raf-yol::-webkit-scrollbar{display:none}
+.rk{flex:0 0 134px;scroll-snap-align:start;min-height:114px;border-radius:18px;padding:.75rem .75rem .7rem;text-decoration:none;color:#fff;display:flex;flex-direction:column;gap:.12rem;position:relative;
+  background:linear-gradient(165deg,rgba(255,255,255,.13),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 2px 0 color-mix(in srgb,var(--rk) 75%,transparent),0 8px 18px rgba(0,0,0,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .12s ease,border-color .2s,background .2s}
+.rk:hover{border-color:color-mix(in srgb,var(--rk) 60%,transparent);background:linear-gradient(165deg,color-mix(in srgb,var(--rk) 16%,transparent),rgba(255,255,255,.05))}
+.rk:active{transform:translateY(2px) scale(.97)}
+.rk:focus-visible{outline:2px solid var(--rk);outline-offset:2px}
+.rk-ik{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:color-mix(in srgb,var(--rk) 17%,transparent);margin-bottom:.4rem}
+.rk b{font-size:.82rem;font-weight:800;line-height:1.2}
+.rk small{font-size:.68rem;color:rgba(255,255,255,.62);line-height:1.3;font-weight:500}
+/* dolgun, hareketli oklar */
+.raf-ok{position:absolute;top:calc(50% - .45rem);width:44px;height:44px;border-radius:50%;border:0;padding:0;cursor:pointer;z-index:3;display:grid;place-items:center;color:#2a1a00;
+  background:radial-gradient(circle at 34% 28%,#fff1b8 0,#ffd863 32%,#f0c040 58%,#c48f17 100%);
+  box-shadow:0 7px 18px rgba(0,0,0,.5),0 0 0 4px rgba(240,192,64,.16),inset 0 -3px 0 rgba(0,0,0,.18),inset 0 2px 0 rgba(255,255,255,.45);
+  transform:translateY(-50%);transition:opacity .25s ease,transform .25s ease}
+.raf-ok svg{width:22px;height:22px;filter:drop-shadow(0 1px 0 rgba(255,255,255,.35))}
+.raf-ok.sag{right:.55rem}.raf-ok.sol{left:.55rem}.raf-ok.sol svg{transform:scaleX(-1)}
+.raf-ok.yok{opacity:0;pointer-events:none;transform:translateY(-50%) scale(.55)}
+.raf-ok:active{transform:translateY(-50%) scale(.9)}
+.raf-ok.davet{animation:okIt 1.15s cubic-bezier(.45,0,.3,1) infinite}
+.raf-ok.davet svg{animation:okUc 1.15s cubic-bezier(.45,0,.3,1) infinite}
+.raf-ok.davet::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2.5px solid rgba(255,216,99,.85);animation:okHalka 1.15s ease-out infinite}
+@keyframes okIt{0%,100%{transform:translateY(-50%) translateX(0)}45%{transform:translateY(-50%) translateX(6px)}}
+@keyframes okUc{0%,100%{transform:translateX(-1px)}45%{transform:translateX(3px)}}
+@keyframes okHalka{0%{transform:scale(.92);opacity:.95}100%{transform:scale(1.55);opacity:0}}
+@media(hover:hover){.raf-ok:hover{filter:brightness(1.08)}}
+@media(min-width:700px){.raflar{max-width:720px;margin-left:calc(min(100vw,720px) / -2)}.rk{flex-basis:150px}}
+@media(prefers-reduced-motion:reduce){.raf-ok.davet,.raf-ok.davet svg,.raf-ok.davet::before{animation:none}.raf-ok.davet::before{display:none}}
+/* düzenleme modu */
+.duzenleniyor-raf .rk,.duzenleniyor-raf .hero-pills a.hp:not(.yol-canli){outline:1.5px dashed rgba(240,192,64,.75);outline-offset:2px;cursor:grab}
+.duzenleniyor-raf .raf-yol{min-height:120px;flex-wrap:wrap;overflow:visible;scroll-snap-type:none}
+.duzenleniyor-raf .raf-ok,.duzenleniyor-raf .raf-cerceve::after{display:none}
+.duzenleniyor-raf .raf[hidden]{display:block!important;opacity:.6}
+</style>
 <style id="yol-canli-css">
 .hp.yol-canli{grid-column:1/-1;justify-content:space-between;gap:.5rem;background:linear-gradient(90deg,rgba(61,219,138,.14),rgba(255,255,255,.06));border-color:rgba(61,219,138,.45)}
 .hp.yol-canli.sorun{background:linear-gradient(90deg,rgba(242,85,85,.22),rgba(255,255,255,.06));border-color:rgba(242,85,85,.6)}
@@ -1307,94 +1356,162 @@ async function konumAl() {
 }
 </script>
 
+    <div class="gun-bas" style="--rk:#f0c040"><span class="raf-ik">⚡</span><h3>Her gün lazım olanlar</h3></div>
     <nav class="hero-pills" role="navigation" aria-label="Hızlı erişim">
       <a class="hp yol-canli" id="yolCanli" href="/yol-durumu.html" aria-label="Artvin canlı yol durumu">
         <span class="yc-nokta"></span><span style="white-space:nowrap;flex:1;text-align:left">🚧 Canlı Yol Durumu</span><span class="yc-durum" id="yolCanliDurum">Yollar açık mı?</span>
       </a>
       <a class="hp" href="/eczane-rehber.html">💊 Nöbetçi Eczane</a>
       <a class="hp" href="/hava.html">🌦️ Hava Durumu</a>
-      <a class="hp" href="/havas.html">🛫 Havaş Servisi</a>
       <a class="hp" href="/dolmus.html">🚐 İlçe Dolmuşları</a>
       <a class="hp" href="/sehirici-dolmus.html">🚌 Şehir İçi Dolmuş</a>
+      <a class="hp" href="/havas.html">🛫 Havaş Servisi</a>
       <a class="hp" href="/taksi.html">🚕 Artvin Taksi</a>
-      <a class="hp" href="/otobus.html">🚌 Otobüs Rehberi</a>
-      <a class="hp" href="/hastane.html">🏥 Hastane Rehberi</a>
-      <a class="hp" href="/artvin-acil-telefonlar.html">🚨 Acil Telefonlar</a>
-      <a class="hp" href="/artvin-blog.html">📰 Artvin Blog</a>
-      <a class="hp" href="/artvin-oyunlar.html">🎮 Online Oyunlar</a>
-      <a class="hp" href="/artvin-mesafe.html">🧭 Mesafe</a>
-      <a class="hp" href="/artvin-rakim-altimetre.html">⛰️ Rakım / Altimetre</a>
-      <a class="hp" href="/namaz.html">🕌 Namaz Vakitleri</a>
-      <a class="hp" href="/artvin-harita.html">🗺️ Artvin Harita</a>
-      <a class="hp" href="/blog42-acu-rehberi.html">🎓 AÇÜ Kampüs</a>
-      <a class="hp" href="/artvin-ilceleri.html">🗺️ Artvin İlçeleri</a>
-      <a class="hp" href="/blog18.html">🏡 Yaşanacak İlçeler</a>
-      <a class="hp" href="/ikinci-el.html">🛍️ İkinci El</a>
-      <a class="hp gizli-pill" href="/artvin-nasil-gidilir.html" style="display:none">🚌 Artvin'e Nasıl Gidilir</a>
-      <a class="hp gizli-pill" href="/gezi.html" style="display:none">🗺️ Gezi Rehberi</a>
-      <a class="hp gizli-pill" href="/oteller.html" style="display:none">🏨 Oteller</a>
-      <a class="hp gizli-pill" href="/artvin-misafirhane.html" style="display:none">🛏️ Misafirhaneler</a>
-      <a class="hp gizli-pill" href="/koyler.html" style="display:none">📖 Köy Ansiklopedisi</a>
-      <a class="hp gizli-pill" href="/kayipbuluntu.html" style="display:none">🔍 Kayıp & Buluntu</a>
-      <a class="hp gizli-pill" href="/imece.html" style="display:none">🌿 İmece</a>
-      <a class="hp gizli-pill" href="/artvin-sehir-bilgileri.html" style="display:none">🪪 Artvin Kart</a>
-      <a class="hp gizli-pill" href="/artvinmetre.html" style="display:none">📊 ArtvinMetre</a>
-      <a class="hp gizli-pill" href="/artvin-forum.html" style="display:none">💬 ArtvinForum</a>
-      <a class="hp gizli-pill" href="/blog39-artvin-tarihi.html" style="display:none">📜 Artvin Tarihi</a>
-      <a class="hp gizli-pill" href="/artvin-havalimanlari.html" style="display:none">✈️ Hangi Havalimanı?</a>
-      <a class="hp gizli-pill" href="/haberler.html" style="display:none">📰 Artvin Haberleri</a>
-      <a class="hp gizli-pill" href="/etkinlik.html" style="display:none">🎪 Artvin Etkinlik</a>
-      <a class="hp gizli-pill" href="/artvin-kampus-ulasim.html" style="display:none">🏫 Kampüs & Yurt Ulaşımı</a>
-      <a class="hp gizli-pill" href="/sarp-sinir-kapisi.html" style="display:none">🇬🇪 Sarp Sınır Kapısı</a>
-      <button id="dahaFazlaBtn" onclick="dahaFazlaToggle()" class="hp" style="grid-column:1/-1;background:rgba(240,192,64,.12);border-color:rgba(240,192,64,.4);color:#f0c040;font-weight:700;cursor:pointer;text-align:center;justify-content:center;gap:.6rem;"><span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span>Daha Fazla<span class="ok-asagi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 7 6-7"/></svg></span></button>
     </nav>
+    <div class="raflar" id="raflar">
+      <section class="raf" id="raf-ulasim" style="--rk:#f0c040" aria-label="Ulaşım ve yol">
+        <div class="raf-bas"><span class="raf-ik">🚗</span><h3>Ulaşım ve yol</h3><em>7</em></div>
+        <div class="raf-cerceve"><button type="button" class="raf-ok sol" aria-label="Ulaşım ve yol: geri kaydır" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="raf-yol" data-raf="ulasim">
+          <a class="rk" href="/otobus.html"><span class="rk-ik">🚌</span><b>Otobüs Rehberi</b><small>Saatler, firmalar, otogar</small></a>
+          <a class="rk" href="/artvin-nasil-gidilir.html"><span class="rk-ik">🧭</span><b>Artvin'e Nasıl Gidilir</b><small>Uçak, otobüs, araçla</small></a>
+          <a class="rk" href="/artvin-havalimanlari.html"><span class="rk-ik">✈️</span><b>Hangi Havalimanı?</b><small>Rize-Artvin, Batum, Trabzon</small></a>
+          <a class="rk" href="/sarp-sinir-kapisi.html"><span class="rk-ik">🇬🇪</span><b>Sarp Sınır Kapısı</b><small>Batum'a geçiş rehberi</small></a>
+          <a class="rk" href="/havalimani-sarp-batum.html"><span class="rk-ik">🛂</span><b>Havalimanından Batum'a</b><small>Havaş, dolmuş, taksi</small></a>
+          <a class="rk" href="/artvin-mesafe.html"><span class="rk-ik">📏</span><b>Mesafe Hesapla</b><small>81 ile kaç km?</small></a>
+          <a class="rk" href="/artvin-kampus-ulasim.html"><span class="rk-ik">🏫</span><b>Kampüs & Yurt Ulaşımı</b><small>AÇÜ servis ve dolmuş</small></a>
+        </div><button type="button" class="raf-ok sag" aria-label="Ulaşım ve yol: daha fazlasını gör" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      </section>
+      <section class="raf" id="raf-gezi" style="--rk:#3ddb8a" aria-label="Gez, gör, konakla">
+        <div class="raf-bas"><span class="raf-ik">🧭</span><h3>Gez, gör, konakla</h3><em>7</em></div>
+        <div class="raf-cerceve"><button type="button" class="raf-ok sol" aria-label="Gez, gör, konakla: geri kaydır" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="raf-yol" data-raf="gezi">
+          <a class="rk" href="/gezi.html"><span class="rk-ik">🏞️</span><b>Gezi Rehberi</b><small>En iyi 57 yer</small></a>
+          <a class="rk" href="/oteller.html"><span class="rk-ik">🏨</span><b>Oteller</b><small>Merkez ve ilçeler</small></a>
+          <a class="rk" href="/artvin-misafirhane.html"><span class="rk-ik">🛏️</span><b>Misafirhaneler</b><small>Öğretmenevi, orduevi…</small></a>
+          <a class="rk" href="/artvin-harita.html"><span class="rk-ik">🗺️</span><b>Artvin Haritası</b><small>İlçeler ve yerler</small></a>
+          <a class="rk" href="/blog56-artvin-kis-rehberi.html"><span class="rk-ik">❄️</span><b>Kış Rehberi</b><small>Kar, yol, Atabarı</small></a>
+          <a class="rk" href="/koyler.html"><span class="rk-ik">🏘️</span><b>Köy Ansiklopedisi</b><small>323 köy, rakım, konum</small></a>
+          <a class="rk" href="/artvin-rakim-altimetre.html"><span class="rk-ik">⛰️</span><b>Rakım / Altimetre</b><small>Kaç metredesin?</small></a>
+        </div><button type="button" class="raf-ok sag" aria-label="Gez, gör, konakla: daha fazlasını gör" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      </section>
+      <section class="raf" id="raf-saglik" style="--rk:#ff7a7a" aria-label="Sağlık ve acil">
+        <div class="raf-bas"><span class="raf-ik">🏥</span><h3>Sağlık ve acil</h3><em>3</em></div>
+        <div class="raf-cerceve"><button type="button" class="raf-ok sol" aria-label="Sağlık ve acil: geri kaydır" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="raf-yol" data-raf="saglik">
+          <a class="rk" href="/hastane.html"><span class="rk-ik">🏥</span><b>Hastane Rehberi</b><small>Telefon, adres, randevu</small></a>
+          <a class="rk" href="/artvin-acil-telefonlar.html"><span class="rk-ik">🚨</span><b>Acil Telefonlar</b><small>Polis, itfaiye, AFAD</small></a>
+          <a class="rk" href="/namaz.html"><span class="rk-ik">🕌</span><b>Namaz Vakitleri</b><small>Tüm ilçeler</small></a>
+        </div><button type="button" class="raf-ok sag" aria-label="Sağlık ve acil: daha fazlasını gör" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      </section>
+      <section class="raf" id="raf-sehir" style="--rk:#7cc4ff" aria-label="Şehir ve yaşam">
+        <div class="raf-bas"><span class="raf-ik">🏙️</span><h3>Şehir ve yaşam</h3><em>9</em></div>
+        <div class="raf-cerceve"><button type="button" class="raf-ok sol" aria-label="Şehir ve yaşam: geri kaydır" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="raf-yol" data-raf="sehir">
+          <a class="rk" href="/artvin-ilceleri.html"><span class="rk-ik">📍</span><b>Artvin İlçeleri</b><small>9 ilçe rehberi</small></a>
+          <a class="rk" href="/blog18.html"><span class="rk-ik">🏡</span><b>Yaşanacak İlçeler</b><small>Hangi ilçe sana göre?</small></a>
+          <a class="rk" href="/blog42-acu-rehberi.html"><span class="rk-ik">🎓</span><b>AÇÜ Kampüs</b><small>Üniversite rehberi</small></a>
+          <a class="rk" href="/haberler.html"><span class="rk-ik">📰</span><b>Artvin Haberleri</b><small>Son dakika, ilçeler</small></a>
+          <a class="rk" href="/etkinlik.html"><span class="rk-ik">🎪</span><b>Etkinlikler</b><small>Bu hafta ne var?</small></a>
+          <a class="rk" href="/artvinmetre.html"><span class="rk-ik">📊</span><b>ArtvinMetre</b><small>Sayılarla Artvin</small></a>
+          <a class="rk" href="/artvin-sehir-bilgileri.html"><span class="rk-ik">🪪</span><b>Şehir Bilgileri</b><small>Nüfus, yüzölçümü</small></a>
+          <a class="rk" href="/blog39-artvin-tarihi.html"><span class="rk-ik">📜</span><b>Artvin Tarihi</b><small>Tunç Çağından bugüne</small></a>
+          <a class="rk" href="/artvin-blog.html"><span class="rk-ik">📖</span><b>Artvin Blog</b><small>Tüm yazılar</small></a>
+        </div><button type="button" class="raf-ok sag" aria-label="Şehir ve yaşam: daha fazlasını gör" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      </section>
+      <section class="raf" id="raf-topluluk" style="--rk:#c39bff" aria-label="Topluluk ve eğlence">
+        <div class="raf-bas"><span class="raf-ik">🤝</span><h3>Topluluk ve eğlence</h3><em>6</em></div>
+        <div class="raf-cerceve"><button type="button" class="raf-ok sol" aria-label="Topluluk ve eğlence: geri kaydır" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="raf-yol" data-raf="topluluk">
+          <a class="rk" href="/ikinci-el.html"><span class="rk-ik">🛍️</span><b>İkinci El</b><small>Al, sat, ücretsiz ilan</small></a>
+          <a class="rk" href="/imece.html"><span class="rk-ik">🌿</span><b>İmece</b><small>Eşya paylaş, takas et</small></a>
+          <a class="rk" href="/kayipbuluntu.html"><span class="rk-ik">🔍</span><b>Kayıp & Buluntu</b><small>Kaybettin mi, buldun mu?</small></a>
+          <a class="rk" href="/artvin-forum.html"><span class="rk-ik">💬</span><b>ArtvinForum</b><small>Sor, anlat, tartış</small></a>
+          <a class="rk" href="/artvin-oyunlar.html"><span class="rk-ik">🎮</span><b>Online Oyunlar</b><small>Artvin temalı oyunlar</small></a>
+          <a class="rk" href="/wordle.html"><span class="rk-ik">🧩</span><b>Artvin'i Çöz</b><small>Günün kelimesi</small></a>
+        </div><button type="button" class="raf-ok sag" aria-label="Topluluk ve eğlence: daha fazlasını gör" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      </section>
+    </div>
 <script id="pill-sira-js">
-/* Hızlı erişim düğmelerinin sırası: yönetici ?duzenle ile sürükleyip kaydeder, herkes o sırayı görür */
+/* Ana sayfa düğme düzeni. Yönetici ?duzenle ile sürükleyip kaydeder; herkes aynı düzeni görür.
+   Kayıt biçimi: ['#gunluk','/eczane-rehber.html',…,'#ulasim','/otobus.html',…]  (eski '|' biçimi yok sayılır) */
 (function(){
-  var ANAHTAR='heroPillSira', DOC='https://firestore.googleapis.com/v1/projects/artvin-imece/databases/(default)/documents/site_ayar/hero_pills?key=AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI';
+  var ANAHTAR='heroPillSira2', DOC='https://firestore.googleapis.com/v1/projects/artvin-imece/databases/(default)/documents/site_ayar/hero_pills?key=AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI';
+  var nav=document.querySelector('.hero-pills');
+  function kaplar(){ var k={gunluk:nav}; document.querySelectorAll('.raf-yol[data-raf]').forEach(function(y){ k[y.getAttribute('data-raf')]=y; }); return k; }
+  function veriAl(a){
+    if(a.classList.contains('rk')) return {u:a.getAttribute('href'),ik:a.querySelector('.rk-ik').textContent,ad:a.querySelector('b').textContent,alt:a.querySelector('small').textContent};
+    var t=a.textContent.trim(), i=t.indexOf(' '); return {u:a.getAttribute('href'),ik:t.slice(0,i),ad:t.slice(i+1),alt:a.getAttribute('data-alt')||''};
+  }
+  function donustur(a,hedefGunluk){
+    var d=veriAl(a), y;
+    if(hedefGunluk){ if(a.classList.contains('hp')) return a; y=document.createElement('a'); y.className='hp'; y.href=d.u; y.textContent=d.ik+' '+d.ad; y.setAttribute('data-alt',d.alt); }
+    else { if(a.classList.contains('rk')) return a; y=document.createElement('a'); y.className='rk'; y.href=d.u; y.innerHTML='<span class="rk-ik"></span><b></b><small></small>'; y.querySelector('.rk-ik').textContent=d.ik; y.querySelector('b').textContent=d.ad; y.querySelector('small').textContent=d.alt||' '; }
+    a.parentNode.replaceChild(y,a); return y;
+  }
   function uygula(sira){
-    var nav=document.querySelector('.hero-pills'), btn=document.getElementById('dahaFazlaBtn'); if(!nav||!btn) return;
-    var harita={}, sirasiz=[];
-    nav.querySelectorAll('a.hp[href]').forEach(function(a){ harita[a.getAttribute('href')]=a; });
-    if (sira && sira.length){
-      var gizli=false, kullanildi={};
-      sira.forEach(function(k){
-        if (k==='|'){ gizli=true; return; }
-        var el=harita[k]; if(!el||kullanildi[k]) return; kullanildi[k]=1;
-        nav.insertBefore(el, btn);
-        if (gizli){ el.classList.add('gizli-pill'); el.style.display='none'; } else { el.classList.remove('gizli-pill'); el.style.display=''; }
-      });
-      Object.keys(harita).forEach(function(k){ if(!kullanildi[k]) sirasiz.push(harita[k]); });
-      sirasiz.forEach(function(el){ nav.insertBefore(el, btn); });
-    }
+    if(!sira||!sira.length||sira.indexOf('#gunluk')<0) { duzen(); return; }   // eski biçim: varsayılan düzen
+    var K=kaplar(), harita={}, kap=null, kullanildi={};
+    document.querySelectorAll('.hero-pills a.hp[href]:not(.yol-canli), .raf-yol a.rk').forEach(function(a){ harita[a.getAttribute('href')]=a; });
+    var liste={};
+    sira.forEach(function(x){
+      if(x.charAt(0)==='#'){ kap=K[x.slice(1)]?x.slice(1):null; if(kap) liste[kap]=[]; return; }
+      if(!kap||!harita[x]||kullanildi[x]) return; kullanildi[x]=1; liste[kap].push(harita[x]);
+    });
+    Object.keys(liste).forEach(function(ad){   // kayıttakiler sırayla başa, kayıtta olmayan yeni düğmeler sona
+      var k=K[ad], ref=ad==='gunluk'?(document.getElementById('yolCanli')||{}).nextSibling:k.firstChild;
+      liste[ad].forEach(function(el){ el=donustur(el,ad==='gunluk'); k.insertBefore(el,ref||null); });
+    });
     duzen();
   }
   function duzen(){
-    var nav=document.querySelector('.hero-pills'), btn=document.getElementById('dahaFazlaBtn'); if(!nav) return;
     nav.querySelectorAll('[data-tam]').forEach(function(el){ el.style.gridColumn=''; el.removeAttribute('data-tam'); });
-    var gorunen=[].filter.call(nav.querySelectorAll('a.hp'), function(a){ return !a.classList.contains('gizli-pill') && !a.classList.contains('yol-canli'); });
-    if (gorunen.length%2===1){ var son=gorunen[gorunen.length-1]; son.style.gridColumn='1/-1'; son.setAttribute('data-tam','1'); }
-    if (btn) btn.style.display = nav.querySelector('.gizli-pill') ? '' : 'none';
+    var g=[].filter.call(nav.querySelectorAll('a.hp'),function(a){ return !a.classList.contains('yol-canli'); });
+    if(g.length%2===1){ var son=g[g.length-1]; son.style.gridColumn='1/-1'; son.setAttribute('data-tam','1'); }
+    document.querySelectorAll('.raf').forEach(function(r){ var n=r.querySelectorAll('.rk').length; r.hidden=!n; var em=r.querySelector('.raf-bas em'); if(em) em.textContent=n; });
+    if(window.RAF) RAF.yenile();
   }
-  window.PILL_SIRA={uygula:uygula, duzen:duzen, anahtar:ANAHTAR};
+  window.PILL_SIRA={uygula:uygula,duzen:duzen,anahtar:ANAHTAR,donustur:donustur,kaplar:kaplar};
   var onbellek=null; try{ onbellek=JSON.parse(localStorage.getItem(ANAHTAR)||'null'); }catch(e){}
   uygula(onbellek);
-  window.PILL_SIRA.hazir = fetch(DOC).then(function(r){ return r.ok?r.json():null; }).then(function(j){
+  window.PILL_SIRA.hazir=fetch(DOC).then(function(r){ return r.ok?r.json():null; }).then(function(j){
     if(!j||!j.fields||!j.fields.sira) return;
-    var sira=((j.fields.sira.arrayValue||{}).values||[]).map(function(v){return v.stringValue;});
-    if (JSON.stringify(sira)!==JSON.stringify(onbellek)){ try{localStorage.setItem(ANAHTAR,JSON.stringify(sira));}catch(e){} uygula(sira); }
+    var sira=((j.fields.sira.arrayValue||{}).values||[]).map(function(v){ return v.stringValue; });
+    if(sira.indexOf('#gunluk')<0) return;
+    if(JSON.stringify(sira)!==JSON.stringify(onbellek)){ try{ localStorage.setItem(ANAHTAR,JSON.stringify(sira)); }catch(e){} uygula(sira); }
   }).catch(function(){});
 })();
 </script>
-<script>
-function dahaFazlaToggle(){
-  var g=document.querySelectorAll(".gizli-pill");
-  var b=document.getElementById("dahaFazlaBtn");
-  var acik=g.length && g[0].style.display!=="none";
-  g.forEach(function(p){p.style.display=acik?"none":"";});
-  b.textContent=acik?"⋯ Daha Fazla":"⌃ Daha Az";
-}
+<script id="raf-js">
+/* Raflar: kaydırma okları, ilk görünüşte "buradan kaydır" ipucu */
+(function(){
+  var azHareket=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raflar=[].slice.call(document.querySelectorAll('.raf'));
+  function durum(r){
+    var y=r.querySelector('.raf-yol'), sol=r.querySelector('.raf-ok.sol'), sag=r.querySelector('.raf-ok.sag'), c=r.querySelector('.raf-cerceve');
+    var tasma=y.scrollWidth-y.clientWidth>6, bas=y.scrollLeft<=6, son=y.scrollLeft>=y.scrollWidth-y.clientWidth-6;
+    sol.classList.toggle('yok',!tasma||bas); sag.classList.toggle('yok',!tasma||son); c.classList.toggle('sonda',!tasma||son);
+    sag.classList.toggle('davet',tasma&&!son&&!r._dokunuldu&&r._gorunur);
+  }
+  function kaydir(r,yon){ var y=r.querySelector('.raf-yol'); r._dokunuldu=true; y.scrollBy({left:yon*Math.max(140,y.clientWidth*.78),behavior:azHareket?'auto':'smooth'}); }
+  raflar.forEach(function(r){
+    var y=r.querySelector('.raf-yol');
+    r.querySelector('.raf-ok.sag').addEventListener('click',function(){ kaydir(r,1); });
+    r.querySelector('.raf-ok.sol').addEventListener('click',function(){ kaydir(r,-1); });
+    var bekle=false; y.addEventListener('scroll',function(){ if(bekle) return; bekle=true; requestAnimationFrame(function(){ bekle=false; durum(r); }); },{passive:true});
+    y.addEventListener('pointerdown',function(){ r._dokunuldu=true; durum(r); },{passive:true});
+    durum(r);
+  });
+  var ipucuGoruldu=false; try{ ipucuGoruldu=!!localStorage.getItem('rafIpucu'); }catch(e){}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(g){ g.forEach(function(e){
+      var r=e.target; r._gorunur=e.isIntersecting&&e.intersectionRatio>.6; durum(r);
+      if(r._gorunur&&!ipucuGoruldu&&!azHareket){ var y=r.querySelector('.raf-yol'); if(y.scrollWidth-y.clientWidth>6&&y.scrollLeft<6){
+        ipucuGoruldu=true; try{ localStorage.setItem('rafIpucu','1'); }catch(x){}
+        setTimeout(function(){ y.scrollTo({left:70,behavior:'smooth'}); setTimeout(function(){ y.scrollTo({left:0,behavior:'smooth'}); },650); },350); } }
+    }); },{threshold:[0,.6,1]});
+    raflar.forEach(function(r){ io.observe(r); });
+  } else raflar.forEach(function(r){ r._gorunur=true; durum(r); });
+  window.addEventListener('resize',function(){ raflar.forEach(durum); });
+  window.RAF={yenile:function(){ raflar.forEach(durum); }};
+})();
 </script>
+
 
   </div>
 </section>
@@ -2427,39 +2544,33 @@ window.addEventListener('load', function(){
   var EDITOR='dreamdosima08@gmail.com';
   (window.PILL_SIRA && PILL_SIRA.hazir ? PILL_SIRA.hazir : Promise.resolve()).then(kur, kur);
   function kur(){
-  var nav=document.querySelector('.hero-pills'), btn=document.getElementById('dahaFazlaBtn');
+  var nav=document.querySelector('.hero-pills'), K=PILL_SIRA.kaplar();
   var st=document.createElement('style');
-  st.textContent='.pd-panel{position:fixed;left:.75rem;right:.75rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:2147483000;background:rgba(10,20,15,.96);border:1.5px solid #f0c040;border-radius:16px;padding:.8rem;color:#fff;font:600 13px/1.4 system-ui,sans-serif;box-shadow:0 10px 40px rgba(0,0,0,.5)}'+
+  st.textContent='.pd-panel{position:fixed;left:.75rem;right:.75rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:2147483000;background:rgba(10,20,15,.96);border:1.5px solid #f0c040;border-radius:16px;padding:.8rem;color:#fff;font:600 13px/1.4 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.6)}'+
     '.pd-panel b{color:#f0c040}.pd-btns{display:flex;gap:.4rem;margin-top:.6rem}.pd-btns button{flex:1;border:0;border-radius:10px;padding:.6rem .3rem;font:800 12px system-ui;cursor:pointer}'+
     '.pd-kaydet{background:#3ddb8a;color:#062012}.pd-sifirla{background:rgba(255,255,255,.12);color:#fff}.pd-cik{background:rgba(255,255,255,.12);color:#fff}'+
-    '.hero-pills.duzenleniyor a.hp{outline:1.5px dashed rgba(240,192,64,.7);outline-offset:2px;cursor:grab;animation:pdSall 1.6s ease-in-out infinite}'+
-    '.hero-pills.duzenleniyor a.hp:nth-child(2n){animation-delay:.4s}'+
-    '@keyframes pdSall{0%,100%{transform:rotate(-.6deg)}50%{transform:rotate(.6deg)}}'+
-    '.pd-ayrac{grid-column:1/-1;text-align:center;font:800 11px system-ui;letter-spacing:.08em;color:#f0c040;border:1.5px dashed #f0c040;border-radius:10px;padding:.45rem;background:rgba(240,192,64,.08);cursor:grab;text-transform:uppercase}'+
     '.sortable-ghost{opacity:.35}.sortable-chosen{box-shadow:0 0 0 2px #3ddb8a!important}';
   document.head.appendChild(st);
-
-  // Tüm düğmeleri göster, "Daha fazla" sınırını sürüklenebilir bir çizgi yap
-  var ayrac=document.createElement('div'); ayrac.className='pd-ayrac'; ayrac.setAttribute('data-ayrac','1'); ayrac.textContent='▼ Bu çizginin altı "Daha Fazla" içinde ▼';
-  var ilkGizli=nav.querySelector('.gizli-pill'); nav.insertBefore(ayrac, ilkGizli||btn);
-  nav.querySelectorAll('a.hp').forEach(function(a){ a.style.display=''; a.style.gridColumn=''; });
-  btn.style.display='none';
-  nav.classList.add('duzenleniyor');
-  nav.addEventListener('click', function(e){ if(e.target.closest('a.hp')) e.preventDefault(); }, true);
+  document.body.classList.add('duzenleniyor-raf');
+  document.querySelectorAll('.raf').forEach(function(r){ r.hidden=false; });
+  document.addEventListener('click', function(e){ if(e.target.closest('.hero-pills a.hp, .raf-yol a.rk')) e.preventDefault(); }, true);
 
   var panel=document.createElement('div'); panel.className='pd-panel';
-  panel.innerHTML='✋ <b>Düzenleme modu:</b> Düğmeye basılı tut, sonra sürükle. Sarı çizginin altındakiler "Daha Fazla"ya girer.<div id="pdDurum" style="margin-top:.35rem;color:rgba(255,255,255,.6);font-weight:500"></div>'+
+  panel.innerHTML='✋ <b>Düzenleme modu:</b> Düğmeye basılı tut, sürükle. "Her gün" ile raflar arasında da taşıyabilirsin.<div id="pdDurum" style="margin-top:.35rem;color:rgba(255,255,255,.6);font-weight:500"></div>'+
     '<div class="pd-btns"><button class="pd-kaydet" id="pdKaydet">💾 Kaydet</button><button class="pd-sifirla" id="pdSifirla">↺ Varsayılan</button><button class="pd-cik" id="pdCik">Çık</button></div>';
   document.body.appendChild(panel);
   function durum(m){ document.getElementById('pdDurum').textContent=m; }
-
   function yukle(src){ return new Promise(function(ok,no){ var s=document.createElement('script'); s.src=src; s.onload=ok; s.onerror=no; document.head.appendChild(s); }); }
   yukle('https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js').then(function(){
-    Sortable.create(nav,{animation:180, draggable:'a.hp, .pd-ayrac', filter:'#dahaFazlaBtn', delay:180, delayOnTouchOnly:true, touchStartThreshold:6});
-    durum('Hazır. Sıralamayı bitirince Kaydet\'e bas.');
+    Object.keys(K).forEach(function(ad){
+      Sortable.create(K[ad],{group:'hp',animation:180,draggable:ad==='gunluk'?'a.hp:not(.yol-canli)':'a.rk, a.hp',delay:180,delayOnTouchOnly:true,touchStartThreshold:6,
+        onAdd:function(ev){ PILL_SIRA.donustur(ev.item, ad==='gunluk'); PILL_SIRA.duzen(); document.querySelectorAll('.raf').forEach(function(r){ r.hidden=false; }); },
+        onSort:function(){ PILL_SIRA.duzen(); document.querySelectorAll('.raf').forEach(function(r){ r.hidden=false; }); }});
+    });
+    durum('Hazır. Bitirince Kaydet\'e bas.');
   }).catch(function(){ durum('Sürükleme aracı yüklenemedi, sayfayı yenile.'); });
 
-  function siraAl(){ var s=[]; [].forEach.call(nav.children, function(el){ if(el.getAttribute('data-ayrac')) s.push('|'); else if(el.matches('a.hp[href]')) s.push(el.getAttribute('href')); }); return s; }
+  function siraAl(){ var s=[]; Object.keys(K).forEach(function(ad){ s.push('#'+ad); K[ad].querySelectorAll(ad==='gunluk'?'a.hp[href]:not(.yol-canli)':'a.rk[href]').forEach(function(a){ s.push(a.getAttribute('href')); }); }); return s; }
   var fbHazir=null;
   function firebaseHazirla(){
     if (fbHazir) return fbHazir;
@@ -2471,20 +2582,14 @@ window.addEventListener('load', function(){
   }
   document.getElementById('pdKaydet').onclick=function(){
     var sira=siraAl(); durum('Kaydediliyor…');
-    firebaseHazirla().then(function(){
-      var a=firebase.auth();
-      return (a.currentUser ? Promise.resolve({user:a.currentUser}) : a.signInWithPopup(new firebase.auth.GoogleAuthProvider()));
-    }).then(function(r){
-      var u=r.user||firebase.auth().currentUser;
-      if (!u || u.email!==EDITOR) throw new Error('Bu Google hesabının yetkisi yok');
-      return firebase.firestore().collection('site_ayar').doc('hero_pills').set({sira:sira, guncel:firebase.firestore.FieldValue.serverTimestamp()});
-    }).then(function(){
-      try{ localStorage.setItem(PILL_SIRA.anahtar, JSON.stringify(sira)); }catch(e){}
-      durum('✅ Kaydedildi! Artık herkes bu sırayı görecek.');
-    }).catch(function(e){ console.error(e); durum('❌ Kaydedilemedi: '+(e&&e.message?e.message:'hata')); });
+    firebaseHazirla().then(function(){ var a=firebase.auth(); return (a.currentUser ? Promise.resolve({user:a.currentUser}) : a.signInWithPopup(new firebase.auth.GoogleAuthProvider())); })
+    .then(function(r){ var u=r.user||firebase.auth().currentUser; if (!u || u.email!==EDITOR) throw new Error('Bu Google hesabının yetkisi yok');
+      return firebase.firestore().collection('site_ayar').doc('hero_pills').set({sira:sira, guncel:firebase.firestore.FieldValue.serverTimestamp()}); })
+    .then(function(){ try{ localStorage.setItem(PILL_SIRA.anahtar, JSON.stringify(sira)); }catch(e){} durum('✅ Kaydedildi! Artık herkes bu düzeni görecek.'); })
+    .catch(function(e){ console.error(e); durum('❌ Kaydedilemedi: '+(e&&e.message?e.message:'hata')); });
   };
   document.getElementById('pdSifirla').onclick=function(){
-    if(!confirm('Sıralama sıfırlanıp sayfanın varsayılan düzenine dönülsün mü?')) return;
+    if(!confirm('Düzen sıfırlanıp sayfanın varsayılan haline dönülsün mü?')) return;
     try{ localStorage.removeItem(PILL_SIRA.anahtar); }catch(e){}
     firebaseHazirla().then(function(){ var a=firebase.auth(); return a.currentUser?null:a.signInWithPopup(new firebase.auth.GoogleAuthProvider()); })
       .then(function(){ return firebase.firestore().collection('site_ayar').doc('hero_pills').delete(); })
