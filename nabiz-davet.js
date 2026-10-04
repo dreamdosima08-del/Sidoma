@@ -10,7 +10,7 @@ function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localSt
 function p2(x){ return String(x).padStart(2,'0'); }
 var d=new Date(), gun=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate()), saat=d.getHours();
 var dilim=saat>=5&&saat<12?'s':saat>=12&&saat<18?'o':'a';
-if(saat<10) return;                                         // sabah erken rahatsız etme
+if(saat>=2&&saat<10) return;                              // gece geç ve sabah erken rahatsız etme
 if(ls('baOy_'+gun+'_'+dilim)) return;                       // bu dilimde zaten oy vermiş
 if(ls('nbzDavetKapat')===gun) return;                       // bugün kapatmış
 var gosterildi=ls('nbzDavetGoster');

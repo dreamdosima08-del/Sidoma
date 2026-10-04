@@ -558,7 +558,7 @@ $('perde').addEventListener('click',function(e){ if(e.target===this) this.hidden
 var Y=null, PL=null, MPL=null, G={};
 function api(url,key){
   var c=ls(key); if(c && Date.now()-c.t<15*60*1000) return Promise.resolve(c.d);
-  return fetch(url).then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); }).then(function(d){ ls(key,{t:Date.now(),d:d}); return d; });
+  return fetch(url).then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); }).then(function(d){ if(!d||d.error||!d.hourly) throw new Error('veri yok'); ls(key,{t:Date.now(),d:d}); return d; });
 }
 function yuzeyUrl(i){
   return 'https://api.open-meteo.com/v1/forecast?latitude='+i.lat+'&longitude='+i.lon+'&timezone=Europe%2FIstanbul&forecast_days=2'
@@ -605,7 +605,7 @@ function keyifTahmini(c,w,maxP){
 }
 
 function gokCiz(){
-  if(!Y) return;
+  if(!Y||!Y.current||!Y.hourly||!Y.daily) return;
   var c=Y.current, i=ilceBul(K.ilce), w=wmo(c.weather_code,c.is_day), simdi=new Date(), hi=saatIndeks(Y.hourly.time,simdi);
   var kaynak=K.ilce==='merkez'?PL:MPL;
   var b=kaynak?katmanBul(kaynak,saatIndeks(kaynak.hourly.time,simdi)):null;
@@ -799,7 +799,7 @@ function ciplerCiz(){
   h+='<div class="cekler">'+cekSirali().map(function(c){
     var secili=c.id==='diger'?secE.indexOf('diger')>-1:c.l.filter(function(id){ return secE.indexOf(id)>-1; }).length, n=cekSayi(c), acik=acikC===c.id;
     var rozet=secili?'<em class="sec">✓ '+(c.id==='diger'?'yazıldı':secili)+'</em>':n>=2?'<em class="sicak">🔥 '+n+'</em>':'<span></span>';
-    return '<div class="cek'+(c.ozel?' ozel':'')+(acik?' acik':'')+(secili?' secili':'')+'"><button type="button" class="cek-bas" data-c="'+c.id+'" aria-expanded="'+acik+'"><i>'+c.ik+'</i><span><b>'+c.ad+'</b><small>'+c.o+'</small></span>'+rozet+'<span class="cek-ac"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>'+(acik?'Kapat':secili?'Değiştir':'Aç, seç')+'</small></span></button>'
+    return '<div class="cek'+(c.ozel?' ozel':'')+(acik?' acik':'')+(secili?' secili':'')+'"><button type="button" class="cek-bas" data-c="'+c.id+'" aria-expanded="'+acik+'"><i>'+c.ik+'</i><span><b>'+c.ad+'</b><small>'+c.o+'</small></span>'+rozet+'<span class="cek-ac"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><small>'+(acik?'Kapat':secili?'Değiştir':'Dokun, seç')+'</small></span></button>'
       +(acik&&c.l.length?'<div class="cek-ic"><div class="cipler">'+c.l.map(function(id){ return cipHtml(etiketBul(id)); }).join('')+'</div></div>':'')+'</div>';
   }).join('')+'</div>';
   $('cipler').innerHTML=h;
@@ -984,7 +984,7 @@ $('postBtn').addEventListener('click',function(){ paylas('post'); });
 /* ════════ YÜKLE ════════ */
 function yukle(){
   var i=ilceBul(K.ilce); konumYaz();
-  var p1=api(yuzeyUrl(i),'baY_'+i.id).then(function(d){ Y=d; });
+  var p1=api(yuzeyUrl(i),'baY_'+i.id).then(function(d){ if(!d.current) throw new Error('veri yok'); Y=d; });
   var p2=api(seviyeUrl(i),'baP_'+i.id).then(function(d){ PL=d; }).catch(function(){ PL=null; });
   var p3=i.id==='merkez'?Promise.resolve():api(seviyeUrl(ILCE[0]),'baP_merkez').then(function(d){ MPL=d; }).catch(function(){ MPL=null; });
   Promise.all([p1,p2,p3]).then(gokCiz).catch(function(){ $('cumle').textContent='Hava verisi şu an alınamadı. Biraz sonra tekrar dene.'; $('gokAlt').textContent='Veri yok'; });
