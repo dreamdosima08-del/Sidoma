@@ -133,7 +133,10 @@ h1.hero-h span{color:var(--yesil);}
 .p-wp{background:#25D366;color:#fff;}
 .p-kop{background:var(--white);border:1.5px solid var(--border2);color:var(--metin);}
 
-footer{background:var(--koyu);padding:1.5rem 1.25rem;text-align:center;font-size:.68rem;color:rgba(255,255,255,.4);line-height:2;}
+footer{background:var(--koyu);padding:1.5rem 1.25rem;text-align:center;font-size:.68rem;color:rgba(255,255,255,.88);line-height:2;}
+.saat-uyari{margin-top:.75rem;padding:.75rem .85rem;border-radius:12px;background:#fff7e6;border:1px solid #f5c26b;color:#7a4b00;font-size:.78rem;line-height:1.6}
+.saat-uyari b{color:#5c3700}
+.gz-sonuc:not(:empty)+.saat-uyari.ust{display:none}
 footer a{color:var(--yesil-b);text-decoration:none;}
 
 /* GÜZERGAH SORGULAMA */
@@ -198,7 +201,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   font-size:.6rem;
   font-weight:700;
   letter-spacing:.08em;
-  color:rgba(255,255,255,.72);
+  color:rgba(255,255,255,.88);
   text-shadow:0 1px 4px rgba(0,0,0,.55);
   pointer-events:none;z-index:2;
   font-family:'Inter',sans-serif;
@@ -286,7 +289,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   content:"Artvin Rehber";
   position:absolute;right:.6rem;bottom:.5rem;z-index:2;
   font-size:.58rem;font-weight:700;letter-spacing:.06em;
-  color:rgba(255,255,255,.72);
+  color:rgba(255,255,255,.88);
   text-shadow:0 1px 4px rgba(0,0,0,.75);
   pointer-events:none;
 }
@@ -302,7 +305,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   padding:.24rem .52rem;border-radius:20px;
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.1);
-  color:rgba(255,255,255,.72);
+  color:rgba(255,255,255,.88);
   white-space:nowrap;
 }
 .imk-cay{background:rgba(217,119,6,.12);border-color:rgba(217,119,6,.28);color:#fbbf24}
@@ -382,7 +385,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
       <div style="font-size:.62rem;color:rgba(255,255,255,.8);">22 Eylül 2026 tarifesi · Eski ve yeni ücretleri gör →</div>
     </div>
   </div>
-  <div style="font-size:.62rem;color:rgba(255,255,255,.7);text-align:right;white-space:nowrap;">Son güncelleme:<br>1 Ekim 2026</div>
+  <div style="font-size:.62rem;color:rgba(255,255,255,.88);text-align:right;white-space:nowrap;">Son güncelleme:<br>1 Ekim 2026</div>
 </a>
 
 <!-- GÜZERGAH SORGULAMA MODÜLÜ -->
@@ -423,6 +426,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
     </div>
     <button class="gz-btn" id="gzBtn">🔍 Güzergahı Göster</button>
     <div class="gz-sonuc" id="gzSonuc"></div>
+    <div class="saat-uyari ust" id="saatUyariUst">⏰ <b>Saatler kesin değildir.</b> Dolmuşlar hemen her saat başı kalkar; ancak araç dolmazsa sefer <b>gecikebilir ya da iptal olabilir</b>. Yola çıkmadan önce durağı arayıp güncel saati öğrenin.</div>
   </div>
 </div>
 
@@ -633,7 +637,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
       <tr><td>Artvin → Şavşat</td><td class="mesafe" style="text-align:center">65 km</td><td style="text-align:center"><span class="durak-badge b1">Durak 1</span></td><td><span class="fiyat">400 ₺</span></td></tr>
       <tr><td>Artvin → Arhavi</td><td class="mesafe" style="text-align:center">65 km</td><td style="text-align:center"><span class="durak-badge b1">Durak 1</span></td><td><span class="fiyat">450 ₺</span></td></tr>
       <tr><td>Artvin → Yusufeli</td><td class="mesafe" style="text-align:center">70 km</td><td style="text-align:center"><span class="durak-badge b1">Durak 1</span></td><td><span class="fiyat">400 ₺</span></td></tr>
-      <tr><td>Artvin → Kemalpaşa</td><td class="mesafe" style="text-align:center">72 km</td><td style="text-align:center"><span class="durak-badge b1">Durak 1</span></td><td><span class="fiyat">450 ₺</span></td></tr>
+      <tr><td>Artvin → Kemalpaşa<br><small style="color:var(--dim);font-size:.66rem">Hopa aktarmalı</small></td><td class="mesafe" style="text-align:center">72 km</td><td style="text-align:center"><span class="durak-badge b1">Durak 1</span></td><td><span class="fiyat">450 ₺</span></td></tr>
       <tr><td>Artvin → Meydancık</td><td class="mesafe" style="text-align:center">80 km</td><td style="text-align:center"><span class="durak-badge b1">Durak 1</span></td><td><span class="fiyat" style="color:var(--sarp)">Yaz Sezonu</span></td></tr>
     </tbody>
   </table>
@@ -644,7 +648,7 @@ footer a{color:var(--yesil-b);text-decoration:none;}
   • Fiyatlar 22 Eylül 2026 tarihli kooperatif tarifesidir<br>
   • Murgul güzergahına Artvin'den günde tek sefer: <b>saat 16:00</b><br>
   • Meydancık seferleri yalnızca yaz sezonunda düzenlenmektedir<br>
-  • Dolmuşlar genellikle saat başı hareket eder, yolcu az olduğunda sefer iptali yaşanabilir
+  • Dolmuşlar hemen her saat başı kalkar; araç dolmazsa sefer gecikebilir ya da iptal olabilir. <b>Güncel saati durağı arayarak öğrenin.</b>
 </div>
 
 <div class="seo-bolum">
@@ -719,30 +723,30 @@ footer a{color:var(--yesil-b);text-decoration:none;}
 </div>
 
 <!-- BILGI METNI SEO -->
-<div style="max-width:520px;margin:1.5rem auto;padding:1.25rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;font-family:'Inter',sans-serif">
+<div style="max-width:520px;margin:1.5rem auto;padding:1.25rem;background:linear-gradient(160deg,#17462e,#0f2f1f);border:1px solid rgba(240,192,64,.25);border-radius:16px;box-shadow:0 8px 24px rgba(15,47,31,.18);font-family:'Inter',sans-serif">
   <h2 style="font-size:1rem;font-weight:800;color:#f0c040;margin-bottom:.75rem">Artvin'de Dolmuş ile Ulaşım</h2>
-  <p style="font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:.75rem">Artvin, dağlık ve engebeli coğrafyası nedeniyle ilçeler arası ulaşımın büyük ölçüde dolmuş ve minibüslerle sağlandığı bir ildir. Çoruh Nehri vadisi boyunca uzanan yollar, ilçeleri birbirine bağlayan ana güzergahları oluşturur. Merkez ile Borçka, Hopa, Arhavi, Şavşat, Yusufeli ve Ardanuç arasında düzenli dolmuş seferleri bulunur. Bu seferler özellikle sabah ve öğleden sonra yoğunlaşır; akşam saatlerinde sefer sıklığı azalır.</p>
-  <p style="font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:.75rem">İlçelere göre ücretler mesafeye bağlı olarak değişir. Örneğin Artvin merkeze yakın olan Borçka ve Ardanuç için ücretler daha uygunken, Hopa, Şavşat ve Yusufeli gibi daha uzak noktalarda ücret artar. Dolmuşlar genellikle şehir merkezindeki kooperatif durağından kalkar; yolcular güzergah üzerindeki duraklardan da binebilir. Yoğun dönemlerde, özellikle hafta sonları ve resmi tatillerde dolmuşların dolması beklenenden hızlı olabileceği için erken gitmekte fayda vardır.</p>
-  <p style="font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.7">Dağ yollarındaki hava koşulları dolmuş seferlerini doğrudan etkiler. Kış aylarında kar ve buzlanma nedeniyle özellikle Şavşat ve Ardanuç gibi yüksek rakımlı ilçelere giden seferlerde gecikmeler yaşanabilir. Bu nedenle kış döneminde yolculuk planlarken hava durumunu da göz önünde bulundurmak gerekir. Güncel sefer saatleri ve ücretler için ilgili dolmuş kooperatifiyle iletişime geçmeniz en doğru bilgiyi sağlar.</p>
+  <p style="font-size:.82rem;color:rgba(255,255,255,.88);line-height:1.7;margin-bottom:.75rem">Artvin, dağlık ve engebeli coğrafyası nedeniyle ilçeler arası ulaşımın büyük ölçüde dolmuş ve minibüslerle sağlandığı bir ildir. Çoruh Nehri vadisi boyunca uzanan yollar, ilçeleri birbirine bağlayan ana güzergahları oluşturur. Merkez ile Borçka, Hopa, Arhavi, Şavşat, Yusufeli ve Ardanuç arasında düzenli dolmuş seferleri bulunur. Bu seferler özellikle sabah ve öğleden sonra yoğunlaşır; akşam saatlerinde sefer sıklığı azalır.</p>
+  <p style="font-size:.82rem;color:rgba(255,255,255,.88);line-height:1.7;margin-bottom:.75rem">İlçelere göre ücretler mesafeye bağlı olarak değişir. Örneğin Artvin merkeze yakın olan Borçka ve Ardanuç için ücretler daha uygunken, Hopa, Şavşat ve Yusufeli gibi daha uzak noktalarda ücret artar. Artvin merkezde iki kalkış noktası vardır: Hopa, Arhavi, Şavşat ve Yusufeli dolmuşları otogar yanındaki ana duraktan, Borçka, Ardanuç ve Murgul dolmuşları Artrium AVM alt virajındaki duraktan kalkar; yolcular güzergah üzerindeki duraklardan da binebilir. Yoğun dönemlerde, özellikle hafta sonları ve resmi tatillerde dolmuşların dolması beklenenden hızlı olabileceği için erken gitmekte fayda vardır.</p>
+  <p style="font-size:.82rem;color:rgba(255,255,255,.88);line-height:1.7">Dağ yollarındaki hava koşulları dolmuş seferlerini doğrudan etkiler. Kış aylarında kar ve buzlanma nedeniyle özellikle Şavşat ve Ardanuç gibi yüksek rakımlı ilçelere giden seferlerde gecikmeler yaşanabilir. Bu nedenle kış döneminde yolculuk planlarken hava durumunu da göz önünde bulundurmak gerekir. Güncel sefer saatleri ve ücretler için ilgili dolmuş kooperatifiyle iletişime geçmeniz en doğru bilgiyi sağlar.</p>
 </div>
 
 
-<div style="max-width:520px;margin:1.5rem auto;padding:1.25rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;font-family:'Inter',sans-serif">
+<div style="max-width:520px;margin:1.5rem auto;padding:1.25rem;background:linear-gradient(160deg,#17462e,#0f2f1f);border:1px solid rgba(240,192,64,.25);border-radius:16px;box-shadow:0 8px 24px rgba(15,47,31,.18);font-family:'Inter',sans-serif">
   <h2 style="font-size:1rem;font-weight:800;color:#f0c040;margin-bottom:1rem">Sıkça Sorulan Sorular</h2>
   <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Artvin'de dolmuş nereden kalkar?</h3>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Artvin merkezde iki kalkış noktası var. Hopa, Arhavi, Şavşat ve Yusufeli dolmuşları otogar yanındaki ana duraktan (Erzurum Caddesi No:9) kalkar. Borçka, Ardanuç ve Murgul dolmuşları ise Artrium AVM alt virajındaki duraktan kalkar; otogardaki görevliye bildirirseniz bu güzergahlara otogardan da binebilirsiniz.</p>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.86);line-height:1.6">Artvin merkezde iki kalkış noktası var. Hopa, Arhavi, Şavşat ve Yusufeli dolmuşları otogar yanındaki ana duraktan (Erzurum Caddesi No:9) kalkar. Borçka, Ardanuç ve Murgul dolmuşları ise Artrium AVM alt virajındaki duraktan kalkar; otogardaki görevliye bildirirseniz bu güzergahlara otogardan da binebilirsiniz.</p>
   <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Artvin dolmuş ücretleri ne kadar?</h3>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">22 Eylül 2026 tarifesine göre Artvin merkezden: Borçka 250 ₺, Murgul 330 ₺, Ardanuç 350 ₺, Hopa, Şavşat ve Yusufeli 400 ₺, Arhavi ve Kemalpaşa 450 ₺.</p>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.86);line-height:1.6">22 Eylül 2026 tarifesine göre Artvin merkezden: Borçka 250 ₺, Murgul 330 ₺, Ardanuç 350 ₺, Hopa, Şavşat ve Yusufeli 400 ₺, Arhavi ve Kemalpaşa 450 ₺.</p>
   <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Kışın dolmuş seferleri çalışır mı?</h3>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Kış aylarında kar ve buzlanma nedeniyle özellikle Şavşat ve Ardanuç gibi yüksek rakımlı ilçelere giden seferlerde gecikmeler yaşanabilir. Yolculuk öncesi hava durumunu kontrol etmek önerilir.</p>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.86);line-height:1.6">Kış aylarında kar ve buzlanma nedeniyle özellikle Şavşat ve Ardanuç gibi yüksek rakımlı ilçelere giden seferlerde gecikmeler yaşanabilir. Yolculuk öncesi hava durumunu kontrol etmek önerilir.</p>
   <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Hopa'dan Kemalpaşa'ya dolmuş var mı?</h3>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Evet, Hopa-Kemalpaşa arası sahil hattında sık dolmuş seferi bulunur ve yolculuk yaklaşık 15-20 dakika sürer.</p>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.86);line-height:1.6">Evet, Hopa-Kemalpaşa arası sahil hattında sık dolmuş seferi bulunur ve yolculuk yaklaşık 15-20 dakika sürer.</p>
   <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Borçka'dan Hopa'ya doğrudan dolmuş var mı?</h3>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Hayır, Borçka sahil hattında değildir. Borçka'dan Hopa veya Arhavi'ye gitmek için önce Artvin Merkez'e gelip oradan aktarma yapmak gerekir.</p>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.86);line-height:1.6">Hayır, Borçka sahil hattında değildir. Borçka'dan Hopa veya Arhavi'ye gitmek için önce Artvin Merkez'e gelip oradan aktarma yapmak gerekir.</p>
   <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Rize'den Artvin'e dolmuş var mı?</h3>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Rize ile Artvin arasında düzenli bir dolmuş seferi bulunmamaktadır; bu güzergahta genellikle şehirlerarası otobüs firmaları tercih edilir. Alternatif olarak Rize-Artvin Havalimanı üzerinden Havaş ile ulaşım sağlanabilir.</p>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.86);line-height:1.6">Rize ile Artvin arasında düzenli bir dolmuş seferi bulunmamaktadır; bu güzergahta genellikle şehirlerarası otobüs firmaları tercih edilir. Alternatif olarak Rize-Artvin Havalimanı üzerinden Havaş ile ulaşım sağlanabilir.</p>
   <h3 style="font-size:.85rem;font-weight:700;color:#fff;margin:1rem 0 .4rem">Artvin dolmuş durağı telefon numarası nedir?</h3>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6">Hopa, Arhavi, Şavşat ve Yusufeli güzergahı için ana terminal (otogar yanı) kooperatif hattı 0466 212 22 36'dır. Borçka, Ardanuç ve Murgul güzergahı için Artrium AVM alt viraj durağı 0466 212 22 32 numaralı hattan aranabilir.</p>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.86);line-height:1.6">Hopa, Arhavi, Şavşat ve Yusufeli güzergahı için ana terminal (otogar yanı) kooperatif hattı 0466 212 22 36'dır. Borçka, Ardanuç ve Murgul güzergahı için Artrium AVM alt viraj durağı 0466 212 22 32 numaralı hattan aranabilir.</p>
 </div>
 
 <footer>
@@ -886,6 +890,7 @@ btn.addEventListener('click', function() {
     html += '<a href="' + d.maps + '" target="_blank" rel="noopener" class="gz-rezerv">🗺️ Haritada Gör</a>';
   }
   html += '</div></div>';
+  html += '<div class="saat-uyari">⏰ <b>Saatler kesin değildir.</b> Dolmuşlar hemen her saat başı kalkar; ancak araç dolmazsa sefer <b>gecikebilir ya da iptal olabilir</b>. Yola çıkmadan önce durağı arayıp güncel saati öğrenin.</div>';
 
   sonuc.innerHTML = html;
   sonuc.style.display = 'block';
