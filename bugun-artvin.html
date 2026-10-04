@@ -849,19 +849,39 @@ function kimlik(){
 function gonder(){
   if(!secM) return; var btn=$('gonder'), gun=bugunKey(), d=dilim(), saat=new Date().getHours();
   var not=secE.indexOf('diger')>-1?$('digerYazi').value.trim().slice(0,100):'';
+  var kok='projects/'+FB_PROJE+'/databases/(default)/documents/', yol=null;
   btn.disabled=true; btn.textContent='Gönderiliyor…'; $('oyHata').hidden=true;
-  kimlik().then(function(a){
-    var kok='projects/'+FB_PROJE+'/databases/(default)/documents/', id=a.uid+'_'+d;
+  function hata(kod,ek){ var e=new Error(ek||kod); e.kod=kod; return e; }
+  function yolla(a,notIle){
+    var id=a.uid+'_'+d; yol='nabiz/'+gun+'/oy/'+id;
     var f={m:{integerValue:String(secM)},d:{stringValue:d},h:{integerValue:String(saat)},ilce:{stringValue:secIlce},e:{arrayValue:{values:secE.map(function(x){return {stringValue:x};})}}};
-    var yaz=[{update:{name:kok+'nabiz/'+gun+'/oy/'+id,fields:f},updateTransforms:[{fieldPath:'z',setToServerValue:'REQUEST_TIME'}],currentDocument:{exists:false}}];
+    var yaz=[{update:{name:kok+yol,fields:f},updateTransforms:[{fieldPath:'z',setToServerValue:'REQUEST_TIME'}],currentDocument:{exists:false}}];
     // "Diğer" notu herkese açık listeye girmez; yalnızca yönetici görür
-    if(not) yaz.push({update:{name:kok+'nabizNot/'+gun+'/not/'+id,fields:{n:{stringValue:not}}},updateTransforms:[{fieldPath:'z',setToServerValue:'REQUEST_TIME'}],currentDocument:{exists:false}});
-    return fetch(FS.replace(/\/documents$/,'')+'/documents:commit',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+a.id},body:JSON.stringify({writes:yaz})});
-  }).then(function(r){
-    if(r.ok) return true;
-    return r.text().then(function(tx){ if(/ALREADY_EXISTS|FAILED_PRECONDITION/.test(tx)) return true; throw new Error(tx); });
-  }).then(function(){ ls(oyKey(),{m:secM,e:secE}); gunEkle(); kilitGuncelle(); btn.disabled=false; btn.textContent='Gönder'; soruYaz(); window.scrollTo({top:$('nasilsin').offsetTop-10,behavior:'smooth'}); return cevaplariGetir(); })
-  .catch(function(){ btn.disabled=false; btn.textContent='Gönder'; $('oyHata').hidden=false; $('oyHata').textContent='Cevabın kaydedilemedi. İnternet bağlantını kontrol edip tekrar dene.'; });
+    if(notIle&&not) yaz.push({update:{name:kok+'nabizNot/'+gun+'/not/'+id,fields:{n:{stringValue:not}}},updateTransforms:[{fieldPath:'z',setToServerValue:'REQUEST_TIME'}],currentDocument:{exists:false}});
+    return fetch(FS.replace(/\/documents$/,'')+'/documents:commit',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+a.id},body:JSON.stringify({writes:yaz})})
+      .catch(function(){ throw hata('ag'); })
+      .then(function(r){ if(r.ok) return true; return r.text().then(function(tx){
+        if(/ALREADY_EXISTS|FAILED_PRECONDITION/.test(tx)) return true;
+        if(r.status===401||/UNAUTHENTICATED/.test(tx)) throw hata('oturum',tx);
+        if(r.status===403||/PERMISSION_DENIED/.test(tx)) throw hata('izin',tx);
+        throw hata('sunucu',r.status+' '+tx.slice(0,200)); }); });
+  }
+  function varMi(){ return fetch(FS+'/'+yol+'?key='+FB_KEY).then(function(r){ return r.ok; }).catch(function(){ return false; }); }
+  kimlik().catch(function(){ throw hata('giris'); })
+  .then(function(a){
+    return yolla(a,true).catch(function(e){
+      if(e.kod==='oturum'){ ls('baAuth',null); return kimlik().then(function(b){ return yolla(b,true); }); }          // süresi geçen oturumu yenile
+      if(e.kod==='izin'&&not) return yolla(a,false).catch(function(e2){ if(e2.kod==='izin') return varMi().then(function(v){ if(v) return true; throw e2; }); throw e2; });   // not kaydedilemese de oy kaydedilsin
+      if(e.kod==='izin') return varMi().then(function(v){ if(v) return true; throw e; });   // bu dilimde zaten oy verilmişse başarılı say
+      throw e;
+    });
+  })
+  .then(function(){ ls(oyKey(),{m:secM,e:secE}); gunEkle(); kilitGuncelle(); btn.disabled=false; btn.textContent='Gönder'; soruYaz(); window.scrollTo({top:$('nasilsin').offsetTop-10,behavior:'smooth'}); return cevaplariGetir(); })
+  .catch(function(e){
+    var k=(e&&e.kod)||'bilinmiyor', m={ag:'İnternet bağlantısı kurulamadı. Bağlantını kontrol edip tekrar dene.',giris:'Oy sistemine bağlanılamadı (giriş servisi). Biraz sonra tekrar dene.',izin:'Sunucu cevabı kabul etmedi. Biraz sonra tekrar dene.',oturum:'Oturum yenilenemedi. Sayfayı yenileyip tekrar dene.',sunucu:'Sunucuda geçici bir sorun var. Biraz sonra tekrar dene.'}[k]||'Cevabın kaydedilemedi. Biraz sonra tekrar dene.';
+    try{ console.warn('Bugün Artvin oy hatası:',k,e&&e.message); }catch(x){}
+    btn.disabled=false; btn.textContent='Gönder'; $('oyHata').hidden=false; $('oyHata').textContent=m+' (kod: '+k+')';
+  });
 }
 $('gonder').addEventListener('click',gonder);
 $('kilitPerde').addEventListener('click',function(){ $('nasilsin').scrollIntoView({behavior:'smooth',block:'start'}); });
