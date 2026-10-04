@@ -76,7 +76,7 @@ section.b{padding:24px 0 0}
 .nasil .soru{font-size:1.3rem;font-weight:800;line-height:1.25}
 .nasil .alt{font-size:.85rem;color:var(--dim);margin-top:3px}
 .yuzler{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.yuzler button{border-radius:18px;padding:12px 4px 10px;background:var(--kart2);border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.74rem;font-weight:800;color:var(--dim);transition:transform .12s}
+.yuzler button{border-radius:18px;padding:12px 2px 10px;line-height:1.15;text-align:center;background:var(--kart2);border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.74rem;font-weight:800;color:var(--dim);transition:transform .12s}
 .yuzler button i{font-style:normal;font-size:2.1rem;line-height:1}
 .yuzler button:active{transform:scale(.94)}
 .yuzler button.on{border-color:var(--gunes);background:rgba(255,206,107,.14);color:var(--yazi)}
@@ -155,6 +155,8 @@ section.b{padding:24px 0 0}
 .dagilim i{display:block;height:10px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
 .dagilim i s{display:block;height:100%;border-radius:6px}
 .dagilim em{font-style:normal;text-align:right;color:var(--dim);font-weight:700}
+.dagilim p.dg-neden{margin:-2px 0 4px 36px;font-size:.74rem;color:var(--soluk);line-height:1.4}
+.dagilim p.dg-neden b{color:var(--dim)}
 .ilceler{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .ilceler span{font-size:.76rem;font-weight:700;padding:5px 9px;border-radius:999px;background:var(--kart2)}
 
@@ -251,10 +253,10 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
       <div class="alt" id="soruAlt">Artvin'in bugün nasıl olduğunu Artvinliler söyler. İsim yok, kayıt yok.</div>
       <div id="oyAlani">
         <div class="yuzler" id="yuzler">
-          <button data-m="4"><i>😄</i>Çok iyi</button>
-          <button data-m="3"><i>🙂</i>İyi</button>
-          <button data-m="2"><i>😐</i>İdare</button>
-          <button data-m="1"><i>😣</i>Zor</button>
+          <button data-m="4"><i>🤩</i>Harika</button>
+          <button data-m="3"><i>😊</i>Keyifli</button>
+          <button data-m="2"><i>☕</i>Orta şekerli</button>
+          <button data-m="1"><i>😒</i>Can sıkıcı</button>
         </div>
         <div class="neden" id="neden" hidden>
           <div class="neden-bas"><b id="nedenBaslik">Neden?</b><span id="nedenSay">Gördüğünü bildir · En fazla 3 seçim</span></div>
@@ -316,7 +318,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
   <!-- PAYLAŞ -->
   <section class="b" id="paylasim">
     <h2>Bugünü paylaş</h2>
-    <p class="not">Instagram hikâyesi ya da gönderisi için hazır görsel: nabız çizgisi, keyif ve gökyüzü bir arada.</p>
+    <p class="not">Instagram hikâyesi ya da gönderisi için hazır görsel: Artvinlilerin bugünkü cevabı, nedenleriyle birlikte.</p>
     <div class="paylas"><button class="btn" id="storyBtn">📱 Hikâye</button><button class="btn ikinci" id="postBtn">🖼️ Gönderi</button></div>
     <div class="onizleme" id="onizleme"><img id="onizImg" alt="Bugün Artvin paylaşım görseli"></div>
   </section>
@@ -335,7 +337,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
   <section class="b nasil-calisir">
     <h2>Bu sayfa nasıl çalışır?</h2>
     <div class="kart">
-      <p><b>Nabız:</b> Artvinliler günde üç kez (sabah, öğleden sonra, akşam) dört yüzden birini seçer, istersen nedenini de söyler. 😄 100, 🙂 75, 😐 45, 😣 10 puan sayılır ve ortalaması alınır. Sorun bildirimleri (elektrik, su, yol, heyelan…) en fazla 35 puan düşürür; güzel şeyler (manzara, doğa, etkinlik…) en fazla 10 puan ekler.</p>
+      <p><b>Nabız:</b> Artvinliler günde üç kez (sabah, öğleden sonra, akşam) dört yüzden birini seçer, istersen nedenini de söyler. 🤩 Harika 100, 😊 Keyifli 75, ☕ Orta şekerli 45, 😒 Can sıkıcı 10 puan sayılır ve ortalaması alınır. Sorun bildirimleri (elektrik, su, yol, heyelan…) en fazla 15 puan düşürür; güzel şeyler (manzara, doğa, etkinlik…) en fazla 5 puan ekler.</p>
       <p><b>Güvenilirlik:</b> Her cihaz her zaman diliminde yalnızca bir cevap verebilir ve cevabı sonradan değiştirilemez. Bir konu, en az 3 farklı kişi bildirince öne çıkar; aynı kişinin gün içindeki tekrarları bir kez sayılır.</p>
       <p><b>Ritim:</b> 75 ve üzeri keyifli, 55–74 düzenli, 35–54 yorgun, altı çarpıntılı. Çizgide her saat bir atıştır; atışın boyu o saatteki cevap sayısını, rengi keyfi gösterir.</p>
       <p><b>Gökyüzü:</b> Hava verisi Open-Meteo'dan gelir. Bulut katmanı, modelin 8 farklı yükseklikteki bulut örtüsünden tahmin edilir. Katman yükseklikleri yaklaşıktır: Çoruh tabanı ~200 m, çarşı ~500 m, Kafkasör ~1.200 m, Atabarı ~1.800 m.</p>
@@ -364,7 +366,7 @@ var FB_KEY='AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI', FB_PROJE='artvin-imece';
 var FS='https://firestore.googleapis.com/v1/projects/'+FB_PROJE+'/databases/(default)/documents';
 var AGIRLIK={hava:0.35,konfor:0.25,yagis:0.20,nabiz:0.20};
 var NABIZ_ESIK=20, SORUN_ESIK=3, BULUT_ESIK=60;
-var YUZ={4:{i:'😄',ad:'Çok iyi',p:100,r:'#53d39a'},3:{i:'🙂',ad:'İyi',p:75,r:'#a6dc6a'},2:{i:'😐',ad:'İdare',p:45,r:'#f2c14e'},1:{i:'😣',ad:'Zor',p:10,r:'#ff6b6b'}};
+var YUZ={4:{i:'🤩',ad:'Harika',p:100,r:'#53d39a'},3:{i:'😊',ad:'Keyifli',p:75,r:'#a6dc6a'},2:{i:'☕',ad:'Orta şekerli',p:45,r:'#f2c14e'},1:{i:'😒',ad:'Can sıkıcı',p:10,r:'#ff6b6b'}};
 /* k: '+' güzel, '0' bilgi, '-' sorun · a: Artvin'e özgü (öne çıkar) */
 var ETIKET=[
   {id:'manzara',g:'harika manzara',ik:'🏔️',ad:'Manzara harikaydı',k:'+',a:1},
@@ -601,20 +603,22 @@ function cevaplariGetir(){
 }
 function hesapla(liste){
   var saat=[]; for(var i=0;i<24;i++) saat.push({n:0,top:0,e:{}});
-  var kisi={}, ilce={}, yuz={1:0,2:0,3:0,4:0}, top=0, n=0, cihaz={};
+  var kisi={}, ilce={}, yuz={1:0,2:0,3:0,4:0}, top=0, n=0, cihaz={}, yk={1:{},2:{},3:{},4:{}};
   liste.forEach(function(x){
     if(!YUZ[x.m]) return; n++; top+=YUZ[x.m].p; yuz[x.m]++; cihaz[x.u]=1;
     var s=saat[Math.max(0,Math.min(23,x.h))]; s.n++; s.top+=YUZ[x.m].p;
     x.e.slice(0,3).forEach(function(t){ if(!etiketBul(t)||t==='diger') return;
       if(!kisi[t]) kisi[t]={}; kisi[t][x.u]=1;           // aynı cihaz aynı konuyu günde bir kez sayılır
+      if(!yk[x.m][t]) yk[x.m][t]={}; yk[x.m][t][x.u]=1;
       s.e[t]=(s.e[t]||0)+1;
       if(x.ilce){ if(!ilce[t]) ilce[t]={}; ilce[t][x.ilce]=(ilce[t][x.ilce]||0)+1; } });
   });
   var etiket={}; Object.keys(kisi).forEach(function(t){ etiket[t]=Object.keys(kisi[t]).length; });
+  N.yk={}; [1,2,3,4].forEach(function(m){ N.yk[m]=Object.keys(yk[m]).map(function(t){ return {t:etiketBul(t),c:Object.keys(yk[m][t]).length}; }).sort(function(a,b){ return b.c-a.c; }); });
   N.toplam=n; N.kisi=Object.keys(cihaz).length; N.saat=saat; N.etiket=etiket; N.ilce=ilce; N.yuz=yuz; N.hazir=true;
   if(n){ var ort=top/n, sorun=0, iyi=0, kk=Math.max(1,N.kisi);
     ETIKET.forEach(function(t){ var c=etiket[t.id]||0; if(c<SORUN_ESIK) return; if(t.sorun) sorun+=c; if(t.iyi) iyi+=c; });
-    N.ort=R(ort); N.ceza=Math.min(35,R(60*sorun/kk)); N.bonus=Math.min(10,R(25*iyi/kk));
+    N.ort=R(ort); N.ceza=Math.min(15,R(25*sorun/kk)); N.bonus=Math.min(5,R(12*iyi/kk));
     N.puan=Math.max(0,Math.min(100,N.ort-N.ceza+N.bonus));
   } else { N.ort=null; N.puan=null; }
   nabizCiz(); hepsiniBirlestir(); if(!$('sonuc').hidden) sonucCiz(); else if(!$('neden').hidden) ciplerCiz();
@@ -626,8 +630,12 @@ function gundemListe(esik,adet){
 function gundemHtml(esik){
   return gundemListe(esik,3).map(function(t){ return '<div class="konu k-'+(t.k==='+'?'p':t.k==='-'?'n':'0')+'"><span>'+t.ik+'</span>'+esc(t.ad)+'<em>'+N.etiket[t.id]+' kişi</em></div>'; }).join('');
 }
+function nedenler(m,k){ return ((N.yk||{})[m]||[]).slice(0,k); }
+function siraliYuz(){ return [4,3,2,1].filter(function(m){ return N.yuz[m]; }).sort(function(a,b){ return N.yuz[b]-N.yuz[a]||b-a; }); }
 function dagilimHtml(){
-  return [4,3,2,1].map(function(m){ var v=N.yuz[m]||0, y=N.toplam?R(v/N.toplam*100):0; return '<div><span>'+YUZ[m].i+'</span><i><s style="width:'+y+'%;background:'+YUZ[m].r+'"></s></i><em>%'+y+'</em></div>'; }).join('');
+  return [4,3,2,1].map(function(m){ var v=N.yuz[m]||0, y=N.toplam?R(v/N.toplam*100):0, nd=nedenler(m,3);
+    return '<div><span>'+YUZ[m].i+'</span><i><s style="width:'+y+'%;background:'+YUZ[m].r+'"></s></i><em>%'+y+'</em></div>'
+      +(nd.length?'<p class="dg-neden"><b>'+YUZ[m].ad+'</b> diyenler: '+nd.map(function(x){ return x.t.ik+' '+esc(x.t.ad); }).join(' · ')+'</p>':''); }).join('');
 }
 function ritimAdi(p){ return p>=75?'Keyifli ritim':p>=55?'Düzenli ritim':p>=35?'Yorgun ritim':'Çarpıntılı ritim'; }
 function nabizCiz(){
@@ -806,41 +814,61 @@ function hepsiniBirlestir(){
 
 /* ════════ PAYLAŞIM KARTI ════════ */
 function kartCiz(tur){
-  var W=1080,H=tur==='story'?1920:1350,cv=document.createElement('canvas'); cv.width=W; cv.height=H; var x=cv.getContext('2d'), F="'Manrope',system-ui,sans-serif", pad=84;
-  var pal=G.pal||['#2f6f8f','#5aa0b8'], g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,pal[0]); g.addColorStop(.45,pal[1]); g.addColorStop(1,'#0f1f26'); x.fillStyle=g; x.fillRect(0,0,W,H);
-  var y=tur==='story'?210:130;
-  x.fillStyle='#fff'; x.font='800 120px '+F; x.fillText('Bugün Artvin',pad,y);
-  x.font='600 38px '+F; x.fillStyle='rgba(255,255,255,.82)'; x.fillText(tarihYaz(new Date()),pad,y+62);
-  // iki kutu
-  var ky=y+110, kh=tur==='story'?300:250, kw=(W-2*pad-24)/2;
-  [[pad,'☁️ GÖKYÜZÜ',(G.c?R(G.c.temperature_2m)+'°':'—'),G.w?G.w.t:''],[pad+kw+24,'❤️ NABIZ',(N.puan!=null?String(N.puan):'—'),N.toplam?ritimAdi(N.puan)+' · '+N.kisi+' Artvinli':'cevap bekleniyor']].forEach(function(k,i){
-    x.fillStyle='rgba(0,0,0,.22)'; rr(x,k[0],ky,kw,kh,40); x.fill();
-    x.fillStyle='rgba(255,255,255,.75)'; x.font='800 30px '+F; x.fillText(k[1],k[0]+36,ky+64);
-    x.fillStyle=i===1&&N.puan!=null?renk(N.puan):'#fff'; x.font='800 '+(tur==='story'?150:124)+'px '+F; x.fillText(k[2],k[0]+30,ky+kh-80);
-    x.fillStyle='rgba(255,255,255,.8)'; x.font='600 30px '+F; x.fillText(k[3],k[0]+36,ky+kh-30);
-  });
-  // EKG
-  var ey=ky+kh+(tur==='story'?90:60), eh=tur==='story'?300:200, ex0=pad, ex1=W-pad, B=ey+eh*.74;
-  x.fillStyle='rgba(0,0,0,.18)'; rr(x,pad-20,ey-30,W-2*pad+40,eh+60,40); x.fill();
-  x.fillStyle='rgba(255,255,255,.7)'; x.font='800 28px '+F; x.fillText("ARTVİN'İN BUGÜNKÜ NABZI",pad+10,ey+10);
-  var mx=Math.max.apply(null,N.saat.map(function(s){return s.n;}).concat([1])), hs=new Date().getHours(), xs=function(h){return ex0+(ex1-ex0)*h/24;};
-  x.lineWidth=5; x.lineJoin='round'; x.lineCap='round';
-  for(var h=0;h<24;h++){ var a=xs(h),z=xs(h+1),sd=N.saat[h]||{n:0},m=(a+z)/2,w=z-a;
-    if(h>hs){ x.strokeStyle='rgba(255,255,255,.18)'; x.setLineDash([6,10]); x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); x.setLineDash([]); continue; }
-    if(!sd.n){ x.strokeStyle='rgba(255,255,255,.35)'; x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); continue; }
-    var A=(eh*.14)+(eh*.38)*Math.sqrt(sd.n/mx); x.strokeStyle=renk(sd.top/sd.n); x.beginPath(); x.moveTo(a,B);
-    [[-.32,0],[-.22,-8],[-.14,0],[-.06,18],[0,-A],[.08,30],[.16,0],[.3,-12],[.4,0],[.5,0]].forEach(function(p){ x.lineTo(m+p[0]*w,B+p[1]); }); x.stroke(); }
-  // keyif + cümle
-  var ty=ey+eh+(tur==='story'?130:90);
-  if(G.keyif){ x.font='800 44px '+F; x.fillStyle='#fff'; x.fillText(G.keyif.i+' '+G.keyif.t,pad,ty); }
-  x.font='600 40px '+F; x.fillStyle='rgba(255,255,255,.9)'; satirYaz(x,G.cumle||'',pad,ty+70,W-2*pad,54);
-  if(tur==='story'){ var ly=ty+330;
-    if(N.toplam){ x.fillStyle='rgba(0,0,0,.2)'; rr(x,pad-20,ly-70,W-2*pad+40,N.yoranMetin?230:130,36); x.fill();
-      x.font='700 36px '+F; x.fillStyle='#fff'; x.fillText('Gökyüzü: '+(G.keyif?G.keyif.t:'—'),pad+10,ly);
-      x.fillStyle=renk(N.ort); x.fillText('Artvinliler: keyif '+N.ort+'/100',pad+10,ly+52);
-      if(N.yoranMetin){ x.fillStyle='#ffce6b'; x.font='700 34px '+F; x.fillText(N.yoranMetin,pad+10,ly+122); } }
-    else { x.font='700 38px '+F; x.fillStyle='#fff'; x.fillText('Sen nasılsın? Cevabını ver 👇',pad,ly); } }
-  x.font='800 34px '+F; x.fillStyle='rgba(255,206,107,.95)'; x.fillText('artvinrehber.com/bugun-artvin',pad,H-(tur==='story'?140:64));
+  var S=tur==='story', W=1080,H=S?1920:1350,cv=document.createElement('canvas'); cv.width=W; cv.height=H; var x=cv.getContext('2d'), F="'Manrope',system-ui,sans-serif", pad=80;
+  var pal=G.pal||['#2f6f8f','#5aa0b8'], g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,pal[0]); g.addColorStop(.38,pal[1]); g.addColorStop(1,'#0c1a20'); x.fillStyle=g; x.fillRect(0,0,W,H);
+  function kutu(a,b,w,h,r,renk){ x.fillStyle=renk||'rgba(0,0,0,.24)'; rr(x,a,b,w,h,r); x.fill(); }
+  function yaz(t,a,b,font,renk,hiza){ x.font=font+' '+F; x.fillStyle=renk||'#fff'; x.textAlign=hiza||'left'; x.fillText(t,a,b); x.textAlign='left'; }
+  function sigdir(t,mw){ if(x.measureText(t).width<=mw) return t; while(t.length>3&&x.measureText(t+'…').width>mw) t=t.slice(0,-1); return t+'…'; }
+  var y=S?190:118;
+  yaz('Bugün Artvin',pad,y,'800 '+(S?112:96)+'px');
+  var alt=tarihYaz(new Date())+(G.c?'  ·  '+(G.w?G.w.i+' ':'')+R(G.c.temperature_2m)+'°':'')+(N.puan!=null?'  ·  ❤️ Nabız '+N.puan:'');
+  yaz(alt,pad,y+(S?60:54),'600 '+(S?36:32)+'px','rgba(255,255,255,.85)');
+  var sy=y+(S?120:96), sira=siraliYuz();
+  if(!N.toplam){
+    kutu(pad-20,sy,W-2*pad+40,S?520:420,44);
+    yaz('Artvin bugün nasıl?',pad+20,sy+(S?150:130),'800 72px');
+    x.font='600 40px '+F; x.fillStyle='rgba(255,255,255,.85)'; satirYaz(x,'Henüz cevap yok. İlk cevabı sen ver, şehrin nabzını birlikte tutalım.',pad+20,sy+(S?240:215),W-2*pad-40,56);
+    yaz('🤩  😊  ☕  😒',pad+20,sy+(S?430:360),'400 84px');
+  } else {
+    yaz('ARTVİNLİLER BUGÜN',pad,sy+10,'800 30px','rgba(255,255,255,.7)');
+    sy+=36;
+    // 1. sıradaki ruh hali
+    var m1=sira[0], y1=R(N.yuz[m1]/N.toplam*100), nd=nedenler(m1,3), kh=(S?300:250)+nd.length*(S?66:56);
+    kutu(pad-20,sy,W-2*pad+40,kh,44,'rgba(0,0,0,.28)');
+    x.fillStyle=YUZ[m1].r; rr(x,pad-20,sy,14,kh,7); x.fill();
+    yaz(YUZ[m1].i,pad+20,sy+(S?150:128),'400 '+(S?118:100)+'px');
+    yaz(YUZ[m1].ad,pad+(S?175:150),sy+(S?118:100),'800 '+(S?86:74)+'px');
+    yaz('%'+y1+'  ·  '+N.yuz[m1]+' cevap  ·  1. sırada',pad+(S?178:152),sy+(S?172:148),'700 34px',YUZ[m1].r);
+    var ny=sy+(S?250:212);
+    if(nd.length){ yaz('Neden?',pad+20,ny,'800 30px','rgba(255,255,255,.65)'); ny+=(S?62:52);
+      nd.forEach(function(o,i){ x.font='700 '+(S?42:36)+'px '+F; x.fillStyle='#fff'; x.fillText((i+1)+'.  '+o.t.ik+'  '+sigdir(o.t.ad,W-2*pad-260),pad+20,ny); yaz(o.c+' kişi',W-pad-20,ny,'700 32px','rgba(255,255,255,.7)','right'); ny+=(S?66:56); }); }
+    else { yaz('Neden belirtilmedi',pad+20,ny,'600 32px','rgba(255,255,255,.55)'); }
+    sy+=kh+(S?28:22);
+    // diğerleri alt alta
+    sira.slice(1).forEach(function(m){
+      var yy=R(N.yuz[m]/N.toplam*100), n2=nedenler(m,3), rh=n2.length?(S?138:112):(S?96:84);
+      if(sy+rh>H-(S?400:120)) return;
+      kutu(pad-20,sy,W-2*pad+40,rh,32);
+      x.fillStyle=YUZ[m].r; rr(x,pad-20,sy,10,rh,5); x.fill();
+      yaz(YUZ[m].i+'  '+YUZ[m].ad,pad+16,sy+(S?60:52),'800 '+(S?46:40)+'px');
+      yaz('%'+yy,W-pad-16,sy+(S?60:52),'800 '+(S?46:40)+'px',YUZ[m].r,'right');
+      if(n2.length){ x.font='600 '+(S?30:27)+'px '+F; x.fillStyle='rgba(255,255,255,.72)'; x.fillText(sigdir(n2.map(function(o){ return o.t.ik+' '+o.t.ad; }).join('  ·  '),W-2*pad-40),pad+16,sy+(S?110:92)); }
+      sy+=rh+(S?18:14);
+    });
+    // nabız çizgisi (yalnız hikâyede)
+    if(S&&sy+30<=H-500){ var ey=H-500, eh=170, ex0=pad, ex1=W-pad, B=ey+eh*.72;
+      kutu(pad-20,ey-20,W-2*pad+40,eh+40,36,'rgba(0,0,0,.18)');
+      yaz("GÜN BOYU NABIZ",pad+10,ey+22,'800 26px','rgba(255,255,255,.6)');
+      var mx=Math.max.apply(null,N.saat.map(function(s){return s.n;}).concat([1])), hs=new Date().getHours(), xs=function(h){return ex0+(ex1-ex0)*h/24;};
+      x.lineWidth=5; x.lineJoin='round'; x.lineCap='round';
+      for(var h=0;h<24;h++){ var a=xs(h),z=xs(h+1),sd=N.saat[h]||{n:0},mm=(a+z)/2,w=z-a;
+        if(h>hs){ x.strokeStyle='rgba(255,255,255,.18)'; x.setLineDash([6,10]); x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); x.setLineDash([]); continue; }
+        if(!sd.n){ x.strokeStyle='rgba(255,255,255,.35)'; x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); continue; }
+        var A=(eh*.12)+(eh*.38)*Math.sqrt(sd.n/mx); x.strokeStyle=renk(sd.top/sd.n); x.beginPath(); x.moveTo(a,B);
+        [[-.32,0],[-.22,-6],[-.14,0],[-.06,12],[0,-A],[.08,20],[.16,0],[.3,-8],[.4,0],[.5,0]].forEach(function(p){ x.lineTo(mm+p[0]*w,B+p[1]); }); x.stroke(); } }
+  }
+  yaz((N.kisi?N.kisi.toLocaleString('tr-TR')+' Artvinli katıldı  ·  ':'')+'Sen de söyle 👇',pad,H-(S?210:118),'700 34px','rgba(255,255,255,.85)');
+  yaz('artvinrehber.com/bugun-artvin',pad,H-(S?150:64),'800 38px','rgba(255,206,107,.98)');
   return cv;
 }
 function rr(x,a,b,w,h,r){ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,r); x.arcTo(a+w,b+h,a,b+h,r); x.arcTo(a,b+h,a,b,r); x.arcTo(a,b,a+w,b,r); x.closePath(); }
