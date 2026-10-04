@@ -159,6 +159,17 @@ section.b{padding:24px 0 0}
 .yoran{margin-top:12px;padding:12px 14px;border-radius:14px;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);font-size:.9rem;line-height:1.5}
 .yoran.iyi{background:rgba(83,211,154,.1);border-color:rgba(83,211,154,.3)}
 .dagilim{display:grid;gap:6px;margin-top:12px}
+.kilit-alan{position:relative}
+.kilit-alan.kilitli .kilit-ic{filter:blur(7px);opacity:.55;pointer-events:none;user-select:none;min-height:150px}
+.kilit-perde{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:12px;border-radius:16px;color:var(--yazi)}
+.kilit-perde span{font-size:2rem;animation:goz 2.4s ease-in-out infinite}
+.kilit-perde b{font-size:1.02rem;font-weight:800}
+.kilit-perde small{font-size:.8rem;color:var(--gunes);font-weight:700;padding:6px 12px;margin-top:6px;border-radius:999px;background:rgba(255,206,107,.14);border:1px solid rgba(255,206,107,.4)}
+@keyframes goz{0%,100%{transform:translateX(0)}30%{transform:translateX(-4px)}60%{transform:translateX(4px)}}
+.seri{display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px 12px;border-radius:14px;background:linear-gradient(135deg,rgba(255,159,90,.16),rgba(255,206,107,.08));border:1px solid rgba(255,159,90,.35)}
+.seri i{font-style:normal;font-size:1.6rem}
+.seri b{display:block;font-size:.95rem;font-weight:800}
+.seri small{display:block;font-size:.76rem;color:var(--dim);margin-top:1px}
 .dagilim div{display:grid;grid-template-columns:28px 1fr 42px;align-items:center;gap:8px;font-size:.84rem}
 .dagilim i{display:block;height:10px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
 .dagilim i s{display:block;height:100%;border-radius:6px}
@@ -289,8 +300,11 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
       <svg id="ekg" viewBox="0 0 340 120" role="img" aria-label="Gün boyunca nabız çizgisi"></svg>
       <div class="ekg-saat"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
       <div class="ekg-bilgi" id="ekgBilgi">Bir saate dokun, o saatte Artvin'in nasıl olduğunu gör.</div>
-      <div class="gundem" id="gundem" hidden></div>
-      <div class="dagilim" id="dagilim"></div>
+      <div class="kilit-alan" id="kilitAlan">
+        <div class="kilit-ic"><div class="gundem" id="gundem" hidden></div>
+        <div class="dagilim" id="dagilim"></div></div>
+        <button type="button" class="kilit-perde" id="kilitPerde" hidden><span>👀</span><b>Artvinliler bugün neden böyle demiş?</b><small>Oyunu ver, sebepleri ve sıralamayı gör</small></button>
+      </div>
     </div>
     <p class="not">Nabız; keyif ortalamasından hesaplanır. Sorun bildirimleri düşürür, güzel şeyler yükseltir. Bir konu, en az 3 farklı kişi bildirince görünür; aynı kişinin tekrarları bir kez sayılır.</p>
   </section>
@@ -711,6 +725,7 @@ function nabizCiz(){
   var en=gundemListe(SORUN_ESIK,1)[0];
   N.yoranMetin=en?'Gündem: '+en.ik+' '+en.ad+' · '+N.etiket[en.id]+' kişi':null;
   $('dagilim').innerHTML=N.toplam?dagilimHtml():'';
+  kilitGuncelle();
 }
 var EKG={x0:8,x1:332,base:72};
 function ekgCiz(){
@@ -745,6 +760,14 @@ $('ekg').addEventListener('click',function(e){
 /* oy verme */
 var secM=null, secE=[], acikC=null, taraf='p', secIlce=ls('baSecildi')?K.ilce:'';
 function oyKey(){ return 'baOy_'+bugunKey()+'_'+dilim(); }
+function bugunOyVar(){ var g=bugunKey(); return ['s','o','a'].some(function(d){ return !!ls('baOy_'+g+'_'+d); }); }
+function gunEkle(){ var l=ls('baGunler')||[], g=bugunKey(); if(l.indexOf(g)<0) l.push(g); ls('baGunler',l.slice(-90)); }
+function seri(){ var l=ls('baGunler')||[], n=0, d=new Date(); if(l.indexOf(bugunKey())<0) d.setDate(d.getDate()-1);
+  for(;;){ var k=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate()); if(l.indexOf(k)<0) break; n++; d.setDate(d.getDate()-1); } return n; }
+var ROZET=[[30,'💚','Artvin\'in kalbi'],[14,'🏔️','Kaçkar kadar sağlam'],[7,'⭐','Haftanın sesi'],[3,'🔥','Nabız tutucu']];
+function seriHtml(){ var n=seri(); if(!n) return ''; var r=ROZET.filter(function(x){ return n>=x[0]; })[0], sonraki=ROZET.slice().reverse().filter(function(x){ return n<x[0]; })[0];
+  return '<div class="seri"><i>'+(r?r[1]:'🔥')+'</i><div><b>'+(n===1?'Bugün nabız tuttun!':n+' gündür Artvin\'in nabzını tutuyorsun')+(r?' · '+r[2]:'')+'</b><small>'+(sonraki?(sonraki[0]-n)+' gün daha gel, “'+sonraki[2]+'” rozetini al':'Sen bu işin ustasısın 🙌')+'</small></div></div>'; }
+function kilitGuncelle(){ var kilit=!bugunOyVar()&&N.toplam>0; $('kilitAlan').classList.toggle('kilitli',kilit); $('kilitPerde').hidden=!kilit; }
 function cekSayi(c){ var k={}; c.l.forEach(function(id){ var v=N.etiket[id]||0; if(v) k[id]=v; }); var t=0; for(var x in k) t+=k[x]; return t; }
 function ilceCek(){   // seçilen ilçeye özel çekmece (bu taraf için)
   if(!secIlce) return null; var l=ILCE_EK.filter(function(t){ return t.il.indexOf(secIlce)>-1&&t.taraf===taraf; }).map(function(t){ return t.id; });
@@ -789,6 +812,7 @@ function sonucCiz(){
     +'<div class="ust-satir">👥 Bugün '+(N.kisi||1).toLocaleString('tr-TR')+' Artvinli katkıda bulundu<span>'+(N.puan!=null?'Nabız <b style="color:'+renk(N.puan)+'">'+N.puan+'</b> · '+ritimAdi(N.puan):'Nabız hesaplanıyor')+'</span></div>'
     +'<div class="dagilim">'+dagilimHtml()+'</div>'
     +(gh?'<div class="baslik">BUGÜN EN ÇOK BİLDİRİLENLER</div><div class="gundem">'+gh+'</div>':'')
+    +seriHtml()
     +'<div class="sonraki">Yeni soru '+sonraki+' geliyor. Aşağıda gün boyu nabız çizgisini görebilirsin.</div>';
 }
 $('yuzler').addEventListener('click',function(e){ var b=e.target.closest('[data-m]'); if(!b) return; secM=+b.getAttribute('data-m'); [].forEach.call(this.children,function(x){ x.classList.toggle('on',x===b); });
@@ -825,10 +849,11 @@ function gonder(){
   }).then(function(r){
     if(r.ok) return true;
     return r.text().then(function(tx){ if(/ALREADY_EXISTS|FAILED_PRECONDITION/.test(tx)) return true; throw new Error(tx); });
-  }).then(function(){ ls(oyKey(),{m:secM,e:secE}); btn.disabled=false; btn.textContent='Gönder'; soruYaz(); window.scrollTo({top:$('nasilsin').offsetTop-10,behavior:'smooth'}); return cevaplariGetir(); })
+  }).then(function(){ ls(oyKey(),{m:secM,e:secE}); gunEkle(); kilitGuncelle(); btn.disabled=false; btn.textContent='Gönder'; soruYaz(); window.scrollTo({top:$('nasilsin').offsetTop-10,behavior:'smooth'}); return cevaplariGetir(); })
   .catch(function(){ btn.disabled=false; btn.textContent='Gönder'; $('oyHata').hidden=false; $('oyHata').textContent='Cevabın kaydedilemedi. İnternet bağlantını kontrol edip tekrar dene.'; });
 }
 $('gonder').addEventListener('click',gonder);
+$('kilitPerde').addEventListener('click',function(){ $('nasilsin').scrollIntoView({behavior:'smooth',block:'start'}); });
 
 /* ════════ BİRLEŞTİR: cümle, etiket, keyif, endeks ════════ */
 function hepsiniBirlestir(){

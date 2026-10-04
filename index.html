@@ -1236,7 +1236,33 @@ border-radius:20px;}
         <a href="/bugun-artvin.html?m=2#nasilsin"><i>😐</i>Orta şekerli</a>
         <a href="/bugun-artvin.html?m=1#nasilsin"><i>😒</i>Can sıkıcı</a>
       </div>
+      <a class="ba-ozet" id="baOzet" href="/bugun-artvin.html" hidden></a>
     </div>
+    <script>
+    /* Bugün Artvin kartı: canlı katılım satırı (yalnızca sayım okunur, 5 dk önbellek) */
+    (function(){
+      var el=document.getElementById('baOzet'); if(!el||!window.fetch) return;
+      function ls(k,v){ try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; } }
+      function p2(x){ return String(x).padStart(2,'0'); }
+      var d=new Date(), gun=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+      var Y={4:['🤩','Harika'],3:['😊','Keyifli'],2:['😐','Orta şekerli'],1:['😒','Can sıkıcı']};
+      var oyVar=['s','o','a'].some(function(k){ return !!ls('baOy_'+gun+'_'+k); });
+      function seri(){ var l=ls('baGunler')||[], n=0, t=new Date(); if(l.indexOf(gun)<0) t.setDate(t.getDate()-1);
+        for(;;){ var k=t.getFullYear()+'-'+p2(t.getMonth()+1)+'-'+p2(t.getDate()); if(l.indexOf(k)<0) break; n++; t.setDate(t.getDate()-1); } return n; }
+      function yaz(c){
+        var top=c[1]+c[2]+c[3]+c[4], en=[4,3,2,1].sort(function(a,b){ return c[b]-c[a]||b-a; })[0], sr=seri();
+        el.innerHTML=top?('<span class="ba-kalabalik"><i></i><i></i><i></i></span><span><b>Bugün '+top.toLocaleString('tr-TR')+' Artvinli</b> oy verdi · En çok: '+Y[en][0]+' '+Y[en][1]+' %'+Math.round(c[en]/top*100)+'</span>')
+          :'<span>✨ Bugün henüz oy yok, <b>ilk oyu sen ver</b></span>';
+        if(oyVar) el.innerHTML+='<em>✓ Oy verdin'+(sr>1?' · 🔥 '+sr+' gün':'')+'</em>';
+        el.hidden=false;
+      }
+      var c=ls('baOzet'); if(c&&c.g===gun&&Date.now()-c.t<5*60*1000){ yaz(c.n); return; }
+      var URL='https://firestore.googleapis.com/v1/projects/artvin-imece/databases/(default)/documents/nabiz/'+gun+':runAggregationQuery?key=AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI';
+      function say(m){ return fetch(URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({structuredAggregationQuery:{structuredQuery:{from:[{collectionId:'oy'}],where:{fieldFilter:{field:{fieldPath:'m'},op:'EQUAL',value:{integerValue:String(m)}}}},aggregations:[{alias:'n',count:{}}]}})})
+        .then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(a){ var v=a&&a[0]&&a[0].result&&a[0].result.aggregateFields&&a[0].result.aggregateFields.n; return v?+v.integerValue:0; }); }
+      setTimeout(function(){ Promise.all([say(1),say(2),say(3),say(4)]).then(function(r){ var n={1:r[0],2:r[1],3:r[2],4:r[3]}; ls('baOzet',{g:gun,t:Date.now(),n:n}); yaz(n); }).catch(function(){}); },600);
+    })();
+    </script>
     <style>
     .ba-kart{max-width:440px;margin:.7rem auto .4rem;padding:1rem .9rem .9rem;border-radius:20px;text-align:left;position:relative;overflow:hidden;
       background:linear-gradient(155deg,#1d4a33 0%,#12301f 55%,#0d2418 100%);border:1.5px solid rgba(255,206,107,.55);
@@ -1259,6 +1285,13 @@ border-radius:20px;}
     .ba-yuz a:hover{background:rgba(255,206,107,.16);border-color:rgba(255,206,107,.5)}
     .ba-yuz a:active{transform:scale(.93)}
     .ba-yuz i{font-style:normal;font-size:1.9rem;line-height:1}
+    .ba-ozet{display:flex;align-items:center;flex-wrap:wrap;gap:.35rem .55rem;margin-top:.75rem;padding:.55rem .7rem;border-radius:12px;background:rgba(0,0,0,.22);color:rgba(255,255,255,.85);font-size:.74rem;font-weight:600;line-height:1.35;text-decoration:none;position:relative}
+    .ba-ozet b{color:#fff;font-weight:800}
+    .ba-ozet em{font-style:normal;margin-left:auto;font-size:.68rem;font-weight:800;color:#53d39a;white-space:nowrap}
+    .ba-kalabalik{display:inline-flex;flex:none}
+    .ba-kalabalik i{width:16px;height:16px;border-radius:50%;border:2px solid #12301f;margin-left:-6px;background:linear-gradient(135deg,#ffd863,#f0a040)}
+    .ba-kalabalik i:first-child{margin-left:0;background:linear-gradient(135deg,#53d39a,#2e9d6c)}
+    .ba-kalabalik i:last-child{background:linear-gradient(135deg,#8fd0ff,#4f8fd0)}
     @media(prefers-reduced-motion:reduce){.ba-nokta,.ba-ok{animation:none}}
     </style>
 
