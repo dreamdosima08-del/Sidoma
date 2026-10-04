@@ -76,7 +76,7 @@ section.b{padding:24px 0 0}
 .nasil .soru{font-size:1.3rem;font-weight:800;line-height:1.25}
 .nasil .alt{font-size:.85rem;color:var(--dim);margin-top:3px}
 .yuzler{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.yuzler button{border-radius:18px;padding:12px 4px 10px;background:var(--kart2);border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.74rem;font-weight:800;color:var(--dim);transition:transform .12s}
+.yuzler button{border-radius:18px;padding:12px 2px 10px;line-height:1.15;text-align:center;background:var(--kart2);border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.74rem;font-weight:800;color:var(--dim);transition:transform .12s}
 .yuzler button i{font-style:normal;font-size:2.1rem;line-height:1}
 .yuzler button:active{transform:scale(.94)}
 .yuzler button.on{border-color:var(--gunes);background:rgba(255,206,107,.14);color:var(--yazi)}
@@ -90,6 +90,13 @@ section.b{padding:24px 0 0}
 .neden{margin-top:14px;padding-top:14px;border-top:1px solid var(--cizgi);animation:ac .25s ease-out}
 @keyframes ac{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 .neden-bas b{display:block;font-size:1.12rem;font-weight:800}
+.taraf{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;background:rgba(0,0,0,.25);margin-bottom:12px}
+.taraf button{min-height:42px;border-radius:11px;font-size:.86rem;font-weight:800;color:var(--dim);display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s,color .2s}
+.taraf button.on{background:var(--kart2);color:var(--yazi);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.taraf button[data-t="p"].on{background:rgba(83,211,154,.18);color:#c9f5df}
+.taraf button[data-t="n"].on{background:rgba(255,107,107,.16);color:#ffd2d2}
+.taraf em{font-style:normal;font-size:.7rem;min-width:18px;padding:1px 6px;border-radius:999px;background:var(--gunes);color:#2a1d00}
+.taraf em:empty{display:none}
 .neden-bas span{display:block;font-size:.8rem;color:var(--soluk);font-weight:700;margin:2px 0 10px}
 .cipler button{min-height:40px}
 .cipler button.on.notr{background:rgba(143,208,255,.16);border-color:var(--mavi)}
@@ -99,6 +106,7 @@ section.b{padding:24px 0 0}
 .cekler{display:grid;gap:8px}
 .cek{border-radius:16px;background:var(--kart2);border:1px solid var(--cizgi);overflow:hidden;transition:border-color .2s}
 .cek.acik{border-color:rgba(255,206,107,.45);background:rgba(255,206,107,.07)}
+.cek.ozel{border-color:rgba(143,208,255,.45);background:linear-gradient(135deg,rgba(143,208,255,.12),rgba(255,255,255,.04))}
 .cek.secili:not(.acik){border-color:rgba(83,211,154,.45)}
 .cek-bas{width:100%;display:grid;grid-template-columns:34px 1fr auto 18px;align-items:center;gap:10px;padding:12px 12px 12px 10px;text-align:left;min-height:58px}
 .cek-bas > span{min-width:0}
@@ -115,7 +123,7 @@ section.b{padding:24px 0 0}
 .diger input{width:100%;min-height:46px;border-radius:12px;border:1px solid var(--cizgi);background:rgba(0,0,0,.2);color:var(--yazi);font:inherit;font-size:.95rem;padding:10px 54px 10px 12px}
 .diger input:focus{outline:2px solid var(--gunes);outline-offset:1px}
 .diger small{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.7rem;color:var(--soluk)}
-.yer{margin-top:14px}
+.yer{margin:0 0 14px}
 .yer p{font-size:.85rem;font-weight:800;color:var(--dim);margin-bottom:8px}
 .yer p span{font-weight:600;color:var(--soluk)}
 .yer-serit{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 2px}
@@ -155,6 +163,8 @@ section.b{padding:24px 0 0}
 .dagilim i{display:block;height:10px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
 .dagilim i s{display:block;height:100%;border-radius:6px}
 .dagilim em{font-style:normal;text-align:right;color:var(--dim);font-weight:700}
+.dagilim p.dg-neden{margin:-2px 0 4px 36px;font-size:.74rem;color:var(--soluk);line-height:1.4}
+.dagilim p.dg-neden b{color:var(--dim)}
 .ilceler{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .ilceler span{font-size:.76rem;font-weight:700;padding:5px 9px;border-radius:999px;background:var(--kart2)}
 
@@ -251,16 +261,17 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
       <div class="alt" id="soruAlt">Artvin'in bugün nasıl olduğunu Artvinliler söyler. İsim yok, kayıt yok.</div>
       <div id="oyAlani">
         <div class="yuzler" id="yuzler">
-          <button data-m="4"><i>😄</i>Çok iyi</button>
-          <button data-m="3"><i>🙂</i>İyi</button>
-          <button data-m="2"><i>😐</i>İdare</button>
-          <button data-m="1"><i>😣</i>Zor</button>
+          <button data-m="4"><i>🤩</i>Harika</button>
+          <button data-m="3"><i>😊</i>Keyifli</button>
+          <button data-m="2"><i>☕</i>Orta şekerli</button>
+          <button data-m="1"><i>😒</i>Can sıkıcı</button>
         </div>
         <div class="neden" id="neden" hidden>
-          <div class="neden-bas"><b id="nedenBaslik">Neden?</b><span id="nedenSay">Gördüğünü bildir · En fazla 3 seçim</span></div>
+          <div class="taraf" id="taraf" role="tablist"><button type="button" data-t="p" role="tab">👍 Güzel olanlar<em></em></button><button type="button" data-t="n" role="tab">👎 Can sıkanlar<em></em></button></div>
+          <div class="neden-bas"><b id="nedenBaslik">Neden?</b><span id="nedenSay">En fazla 3 seçim</span></div>
+          <div class="yer"><p>📍 Nereden? <span>İsteğe bağlı · ilçene özel seçenekler açılır</span></p><div class="yer-serit" id="yerSecim"></div></div>
           <div id="cipler"></div>
           <div class="diger" id="digerKutu" hidden><input id="digerYazi" maxlength="100" placeholder="Kısaca yaz (en fazla 100 karakter)" autocomplete="off"><small id="digerSay">0/100</small></div>
-          <div class="yer"><p>📍 Nereden? <span>İsteğe bağlı</span></p><div class="yer-serit" id="yerSecim"></div></div>
           <button class="btn gonder" id="gonder">Gönder</button>
           <button class="atla" id="atla" type="button">Neden seçmeden gönder</button>
         </div>
@@ -316,7 +327,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
   <!-- PAYLAŞ -->
   <section class="b" id="paylasim">
     <h2>Bugünü paylaş</h2>
-    <p class="not">Instagram hikâyesi ya da gönderisi için hazır görsel: nabız çizgisi, keyif ve gökyüzü bir arada.</p>
+    <p class="not">Instagram hikâyesi ya da gönderisi için hazır görsel: Artvinlilerin bugünkü cevabı, nedenleriyle birlikte.</p>
     <div class="paylas"><button class="btn" id="storyBtn">📱 Hikâye</button><button class="btn ikinci" id="postBtn">🖼️ Gönderi</button></div>
     <div class="onizleme" id="onizleme"><img id="onizImg" alt="Bugün Artvin paylaşım görseli"></div>
   </section>
@@ -335,7 +346,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
   <section class="b nasil-calisir">
     <h2>Bu sayfa nasıl çalışır?</h2>
     <div class="kart">
-      <p><b>Nabız:</b> Artvinliler günde üç kez (sabah, öğleden sonra, akşam) dört yüzden birini seçer, istersen nedenini de söyler. 😄 100, 🙂 75, 😐 45, 😣 10 puan sayılır ve ortalaması alınır. Sorun bildirimleri (elektrik, su, yol, heyelan…) en fazla 35 puan düşürür; güzel şeyler (manzara, doğa, etkinlik…) en fazla 10 puan ekler.</p>
+      <p><b>Nabız:</b> Artvinliler günde üç kez (sabah, öğleden sonra, akşam) dört yüzden birini seçer, istersen nedenini de söyler. 🤩 Harika 100, 😊 Keyifli 75, ☕ Orta şekerli 45, 😒 Can sıkıcı 10 puan sayılır ve ortalaması alınır. Şehirle ilgili can sıkan sebepler (elektrik, su, yol, heyelan…) en fazla 15 puan düşürür; şehirdeki güzellikler (canlı çarşı, bulut denizi, etkinlik…) en fazla 5 puan ekler. "Benim günüm" sebepleri kişiseldir, şehrin gündemine ve puan düzeltmesine girmez.</p>
       <p><b>Güvenilirlik:</b> Her cihaz her zaman diliminde yalnızca bir cevap verebilir ve cevabı sonradan değiştirilemez. Bir konu, en az 3 farklı kişi bildirince öne çıkar; aynı kişinin gün içindeki tekrarları bir kez sayılır.</p>
       <p><b>Ritim:</b> 75 ve üzeri keyifli, 55–74 düzenli, 35–54 yorgun, altı çarpıntılı. Çizgide her saat bir atıştır; atışın boyu o saatteki cevap sayısını, rengi keyfi gösterir.</p>
       <p><b>Gökyüzü:</b> Hava verisi Open-Meteo'dan gelir. Bulut katmanı, modelin 8 farklı yükseklikteki bulut örtüsünden tahmin edilir. Katman yükseklikleri yaklaşıktır: Çoruh tabanı ~200 m, çarşı ~500 m, Kafkasör ~1.200 m, Atabarı ~1.800 m.</p>
@@ -364,49 +375,99 @@ var FB_KEY='AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI', FB_PROJE='artvin-imece';
 var FS='https://firestore.googleapis.com/v1/projects/'+FB_PROJE+'/databases/(default)/documents';
 var AGIRLIK={hava:0.35,konfor:0.25,yagis:0.20,nabiz:0.20};
 var NABIZ_ESIK=20, SORUN_ESIK=3, BULUT_ESIK=60;
-var YUZ={4:{i:'😄',ad:'Çok iyi',p:100,r:'#53d39a'},3:{i:'🙂',ad:'İyi',p:75,r:'#a6dc6a'},2:{i:'😐',ad:'İdare',p:45,r:'#f2c14e'},1:{i:'😣',ad:'Zor',p:10,r:'#ff6b6b'}};
-/* k: '+' güzel, '0' bilgi, '-' sorun · a: Artvin'e özgü (öne çıkar) */
+var YUZ={4:{i:'🤩',ad:'Harika',p:100,r:'#53d39a'},3:{i:'😊',ad:'Keyifli',p:75,r:'#a6dc6a'},2:{i:'☕',ad:'Orta şekerli',p:45,r:'#f2c14e'},1:{i:'😒',ad:'Can sıkıcı',p:10,r:'#ff6b6b'}};
+/* k: '+' şehirde güzel olan · '-' şehirde can sıkan · 'k+' / 'k-' kişisel (şehrin gündemine ve nabız cezasına girmez) */
 var ETIKET=[
-  {id:'manzara',g:'harika manzara',ik:'🏔️',ad:'Manzara harikaydı',k:'+',a:1},
-  {id:'doga',g:'doğanın güzelliği',ik:'🌲',ad:'Doğa çok güzeldi',k:'+',a:1},
-  {id:'hava',g:'güzel hava',ik:'☀️',ad:'Hava güzeldi',k:'+'},
-  {id:'sakin',g:'sakin şehir',ik:'🏙️',ad:'Şehir sakindi',k:'+'},
-  {id:'trafikrahat',g:'rahat trafik',ik:'🚗',ad:'Trafik rahattı',k:'+'},
-  {id:'insanlar',g:'güzel insanlar',ik:'❤️',ad:'İnsanlar güzeldi',k:'+'},
-  {id:'guzel',g:'güzel bir haber',ik:'🎉',ad:'Güzel bir şey oldu',k:'+'},
-  {id:'etkinlik',g:'etkinlik',ik:'🎶',ad:'Etkinlik / konser',k:'+'},
-  {id:'sehir',g:'keyifli şehir hayatı',ik:'☕',ad:'Şehir hayatı keyifliydi',k:'+'},
-  {id:'sis',g:'sis',ik:'🌫️',ad:'Sis bastı',k:'0',a:1},
-  {id:'calisma',g:'şehirdeki çalışmalar',ik:'🏗️',ad:'Şehirde çalışma var',k:'0',a:1},
-  {id:'yagis',g:'şiddetli yağış',ik:'🌧️',ad:'Şiddetli yağış',k:'0'},
-  {id:'kar',g:'kar ve buzlanma',ik:'❄️',ad:'Kar / buzlanma',k:'0'},
-  {id:'duyuru',g:'önemli bir gelişme',ik:'📢',ad:'Önemli bir gelişme',k:'0'},
-  {id:'okul',g:'okul ve eğitim',ik:'🏫',ad:'Okul / eğitim',k:'0'},
-  {id:'heyelan',g:'heyelan',ik:'🪨',ad:'Heyelan / kaya düşmesi',k:'-',a:1},
-  {id:'varyant',g:'varyant trafiği',ik:'🚦',ad:'Varyant / trafik yoğun',k:'-',a:1},
-  {id:'dolmus',g:'dolmuş aksaması',ik:'🚌',ad:'Dolmuş / terminal aksadı',k:'-',a:1},
-  {id:'taskin',g:'dere taşkını',ik:'🌊',ad:'Çoruh / dere taşkını',k:'-',a:1},
-  {id:'elektrik',g:'elektrik kesintisi',ik:'⚡',ad:'Elektrik kesintisi',k:'-'},
-  {id:'su',g:'su kesintisi',ik:'💧',ad:'Su kesintisi',k:'-'},
-  {id:'yol',g:'yol çalışması',ik:'🚧',ad:'Yol kapalı / çalışma',k:'-'},
+  /* 👍 güzel olanlar */
+  {id:'sehir',g:'canlı çarşı',ik:'☕',ad:'Çarşı canlıydı, keyifliydi',k:'+'},
+  {id:'dostlar',g:'dost sohbetleri',ik:'🤝',ad:'Dostlarla buluştuk, sohbet ettik',k:'+'},
+  {id:'etkinlik',g:'etkinlik',ik:'🎉',ad:'Etkinlik / konser / maç vardı',k:'+'},
+  {id:'insanlar',g:'güler yüzlü insanlar',ik:'😊',ad:'İnsanlar güler yüzlüydü',k:'+'},
+  {id:'trafikrahat',g:'rahat çarşı trafiği',ik:'🚗',ad:'Çarşı trafiği rahattı',k:'+'},
+  {id:'dolmusok',g:'zamanında dolmuşlar',ik:'🚌',ad:'Dolmuş zamanında geldi',k:'+'},
+  {id:'yolacik',g:'açık yollar',ik:'🛣️',ad:'Yollar açıktı, rahat gidip geldim',k:'+'},
+  {id:'hava',g:'güzel hava',ik:'☀️',ad:'Güneş açtı, hava güzeldi',k:'+'},
+  {id:'bulutdenizi',g:'bulut denizi',ik:'☁️',ad:'Bulut denizi gördüm',k:'+'},
+  {id:'manzara',g:'harika manzara',ik:'🏔️',ad:'Manzara harikaydı',k:'+'},
+  {id:'doga',g:'doğa',ik:'🌲',ad:'Doğaya / yaylaya çıktım',k:'+'},
+  {id:'resmiok',g:'kolay hallolan işler',ik:'✅',ad:'Resmi işim kolay halloldu',k:'+'},
+  {id:'hastaneok',g:'hızlı hastane işleri',ik:'🏥',ad:'Hastanede işim çabuk bitti',k:'+'},
+  {id:'alisverisok',g:'uygun alışveriş',ik:'🛒',ad:'Alışveriş uygundu',k:'+'},
+  {id:'isiyi',ik:'💼',ad:'İşim / okulum iyi geçti',k:'k+'},
+  {id:'aile',ik:'👨‍👩‍👧',ad:'Ailemle güzel vakit geçirdim',k:'k+'},
+  {id:'guzel',ik:'📣',ad:'Güzel bir haber aldım',k:'k+'},
+  {id:'kendime',ik:'🚶',ad:'Kendime vakit ayırdım, yürüdüm',k:'k+'},
+  {id:'huzur',ik:'🍃',ad:'Huzurluydum, dinlendim',k:'k+'},
+  {id:'sofra',ik:'🍲',ad:'Güzel bir sofraya oturdum',k:'k+'},
+  /* 👎 can sıkanlar */
+  {id:'varyant',g:'çarşı trafiği',ik:'🚦',ad:'Çarşı trafiği sıkışıktı',k:'-'},
+  {id:'dolmus',g:'dolmuş aksaması',ik:'🚌',ad:'Dolmuş gelmedi, geç kaldı',k:'-'},
+  {id:'yol',g:'kapalı yollar',ik:'🚧',ad:'Yol kapalıydı / çalışma vardı',k:'-'},
+  {id:'park',g:'park sorunu',ik:'🅿️',ad:'Park yeri bulamadım',k:'-'},
   {id:'kaza',g:'kaza',ik:'💥',ad:'Kaza / araç arızası',k:'-'},
-  {id:'internet',g:'internet sorunu',ik:'📶',ad:'İnternet / telefon sorunu',k:'-'},
-  {id:'saglik',g:'sağlık hizmeti',ik:'🏥',ad:'Sağlık hizmetinde sorun',k:'-'},
-  {id:'pahali',g:'pahalılık',ik:'💸',ad:'Fiyatlar / pahalılık',k:'-'},
-  {id:'park',g:'park sorunu',ik:'🅿️',ad:'Park sorunu',k:'-'},
+  {id:'elektrik',g:'elektrik kesintisi',ik:'⚡',ad:'Elektrik kesildi',k:'-'},
+  {id:'su',g:'su kesintisi',ik:'💧',ad:'Su kesildi',k:'-'},
+  {id:'internet',g:'internet sorunu',ik:'📶',ad:'İnternet / telefon çekmedi',k:'-'},
+  {id:'calisma',g:'şehirdeki kazılar',ik:'🏗️',ad:'Kazı / şehirde çalışma',k:'-'},
+  {id:'sis',g:'sis',ik:'🌫️',ad:'Sis bastı',k:'-'},
+  {id:'yagis',g:'yağmur',ik:'🌧️',ad:'Yağmur / sel',k:'-'},
+  {id:'kar',g:'kar ve buzlanma',ik:'❄️',ad:'Kar / buzlanma',k:'-'},
+  {id:'heyelan',g:'heyelan',ik:'🪨',ad:'Heyelan / taş düştü',k:'-'},
+  {id:'taskin',g:'dere taşkını',ik:'🌊',ad:'Dere taştı',k:'-'},
+  {id:'pahali',g:'pahalılık',ik:'💸',ad:'Her şey çok pahalı',k:'-'},
+  {id:'saglik',g:'hastane sıkıntısı',ik:'🏥',ad:'Hastane / randevu sıkıntısı',k:'-'},
+  {id:'resmi',g:'uzayan resmi işler',ik:'🏛️',ad:'Resmi işim uzadı',k:'-'},
   {id:'acil',g:'acil durum',ik:'🔥',ad:'Yangın / acil durum',k:'-'},
-  {id:'diger',g:'diğer',ik:'📝',ad:'Diğer',k:'0'}
+  {id:'isyogun',ik:'💼',ad:'İş / okul yoğundu',k:'k-'},
+  {id:'yorgun',ik:'😴',ad:'Yorgundum / rahatsızdım',k:'k-'},
+  {id:'stres',ik:'😣',ad:'Stresliydim',k:'k-'},
+  {id:'kisisel',ik:'🏠',ad:'Kişisel / ailevi bir mesele',k:'k-'},
+  {id:'yalniz',ik:'🌧️',ad:'Yalnız hissettim',k:'k-'},
+  {id:'sikkin',ik:'😶',ad:'Öylesine canım sıkkındı',k:'k-'},
+  {id:'diger',g:'diğer',ik:'📝',ad:'Başka bir şey',k:'0'}
 ];
-ETIKET.forEach(function(t){ t.sorun=t.k==='-'; t.iyi=t.k==='+'; });
-/* çekmeceler: seçenekler konularına göre gruplanır */
+/* ilçeye özel seçenekler: kişi "Nereden?" kısmında ilçesini seçince o ilçenin çekmecesi açılır */
+var ILCE_EK=[
+  {id:'sahil',il:['hopa','arhavi','kemalpasa'],ik:'🌊',ad:'Sahilde yürüdüm, deniz keyfi',g:'deniz keyfi',k:'+'},
+  {id:'balik',il:['hopa','arhavi','kemalpasa'],ik:'🐟',ad:'Taze balık yedim',g:'taze balık',k:'+'},
+  {id:'nem',il:['hopa','arhavi','kemalpasa'],ik:'💦',ad:'Nem bunalttı',g:'bunaltan nem',k:'-'},
+  {id:'dalga',il:['hopa','arhavi','kemalpasa'],ik:'🌬️',ad:'Deniz dalgalıydı / fırtına',g:'dalgalı deniz',k:'-'},
+  {id:'tir',il:['hopa','kemalpasa'],ik:'🚛',ad:'Tır kuyruğu / Sarp yoğunluğu',g:'tır kuyruğu',k:'-'},
+  {id:'ortacalar',il:['arhavi'],ik:'🏞️',ad:'Ortacalar / Mençuna tarafına çıktım',g:'Ortacalar vadisi',k:'+'},
+  {id:'karagolb',il:['borcka'],ik:'🏞️',ad:'Borçka Karagöl\'e çıktım',g:'Borçka Karagöl',k:'+'},
+  {id:'macahel',il:['borcka'],ik:'🌲',ad:'Macahel\'e gittim',g:'Macahel',k:'+'},
+  {id:'camiliyol',il:['borcka','macahel'],ik:'🚧',ad:'Camili yolu kapalıydı',g:'Camili yolu',k:'-'},
+  {id:'murgulyol',il:['murgul'],ik:'🚧',ad:'Borçka–Murgul yolu sıkıntılıydı',g:'Murgul yolu',k:'-'},
+  {id:'karagols',il:['savsat'],ik:'🏞️',ad:'Şavşat Karagöl\'e çıktım',g:'Şavşat Karagöl',k:'+'},
+  {id:'sahara',il:['savsat'],ik:'⛰️',ad:'Sahara yaylasına çıktım',g:'Sahara yaylası',k:'+'},
+  {id:'saharagecit',il:['savsat'],ik:'❄️',ad:'Sahara Geçidi kapalıydı',g:'Sahara Geçidi',k:'-'},
+  {id:'savsatyol',il:['savsat'],ik:'🚧',ad:'Artvin–Şavşat yolu yordu',g:'Şavşat yolu',k:'-'},
+  {id:'kanyon',il:['ardanuc'],ik:'🏞️',ad:'Cehennem Deresi Kanyonu\'na gittim',g:'Cehennem Deresi Kanyonu',k:'+'},
+  {id:'gevhernik',il:['ardanuc'],ik:'🏰',ad:'Gevhernik Kalesi\'ne çıktım',g:'Gevhernik Kalesi',k:'+'},
+  {id:'bulbulan',il:['ardanuc'],ik:'❄️',ad:'Bülbülan Geçidi kapalıydı',g:'Bülbülan Geçidi',k:'-'},
+  {id:'ardanucyol',il:['ardanuc'],ik:'🚧',ad:'Artvin–Ardanuç yolu sıkıntılıydı',g:'Ardanuç yolu',k:'-'},
+  {id:'kackar',il:['yusufeli'],ik:'🏔️',ad:'Kaçkar / Barhal tarafına çıktım',g:'Kaçkar',k:'+'},
+  {id:'barajgolu',il:['yusufeli'],ik:'🌊',ad:'Baraj gölü manzarası güzeldi',g:'baraj gölü manzarası',k:'+'},
+  {id:'yeniyerlesim',il:['yusufeli'],ik:'🏗️',ad:'Yeni yerleşimde eksikler var',g:'yeni yerleşimdeki eksikler',k:'-'},
+  {id:'yusufeliyol',il:['yusufeli'],ik:'🚧',ad:'Artvin–Yusufeli yolu sıkıntılıydı',g:'Yusufeli yolu',k:'-'},
+  {id:'kafkasor',il:['merkez'],ik:'🌲',ad:'Kafkasör\'e çıktım',g:'Kafkasör',k:'+'},
+  {id:'atabari',il:['merkez'],ik:'⛷️',ad:'Atabarı\'nda kar keyfi',g:'Atabarı',k:'+'}
+];
+ILCE_EK.forEach(function(t){ ETIKET.push(t); });
+ETIKET.forEach(function(t){ t.sorun=t.k==='-'; t.iyi=t.k==='+'; t.kisisel=t.k.charAt(0)==='k'; t.taraf=/\+/.test(t.k)?'p':/-/.test(t.k)?'n':''; });
+/* çekmeceler: güzel günde "ne güzeldi", kötü günde "ne canını sıktı" */
 var CEKMECE=[
-  {id:'doga',ik:'🌲',ad:'Doğa ve manzara',o:'Manzara, doğa, güzel hava',l:['manzara','doga','hava']},
-  {id:'sehir',ik:'☕',ad:'Şehir hayatı',o:'İnsanlar, etkinlik, sakinlik',l:['guzel','insanlar','sehir','sakin','etkinlik']},
-  {id:'ulasim',ik:'🚗',ad:'Yol ve ulaşım',o:'Varyant, dolmuş, yol, kaza',l:['trafikrahat','varyant','dolmus','yol','kaza','park']},
-  {id:'havaolay',ik:'🌫️',ad:'Hava ve doğa olayları',o:'Sis, yağış, kar, heyelan, taşkın',l:['sis','yagis','kar','heyelan','taskin']},
-  {id:'altyapi',ik:'⚡',ad:'Elektrik, su, internet',o:'Kesintiler ve şehirde çalışma',l:['elektrik','su','internet','calisma']},
-  {id:'gundem',ik:'📢',ad:'Gündem ve hizmetler',o:'Duyuru, sağlık, okul, fiyatlar',l:['duyuru','saglik','okul','pahali','acil']},
-  {id:'diger',ik:'📝',ad:'Başka bir şey',o:'Kendi cümlenle kısaca yaz',l:[]}
+  {id:'p_sehir',t:'p',ik:'🏙️',ad:'Şehir hayatı',o:'Çarşı, dostlar, etkinlik',l:['sehir','dostlar','etkinlik','insanlar']},
+  {id:'p_ulasim',t:'p',ik:'🚗',ad:'Yol ve ulaşım',o:'Çarşı trafiği, dolmuş, yollar',l:['trafikrahat','dolmusok','yolacik']},
+  {id:'p_hava',t:'p',ik:'☀️',ad:'Hava ve manzara',o:'Güneş, bulut denizi, yayla',l:['hava','bulutdenizi','manzara','doga']},
+  {id:'p_isler',t:'p',ik:'🧾',ad:'İşler yolunda',o:'Resmi işler, hastane, alışveriş',l:['resmiok','hastaneok','alisverisok']},
+  {id:'p_benim',t:'p',ik:'💛',ad:'Benim günüm',o:'İş, aile, huzur, güzel haber',l:['isiyi','aile','guzel','kendime','huzur','sofra']},
+  {id:'n_ulasim',t:'n',ik:'🚗',ad:'Yol ve ulaşım',o:'Çarşı trafiği, dolmuş, yol, park',l:['varyant','dolmus','yol','park','kaza']},
+  {id:'n_altyapi',t:'n',ik:'⚡',ad:'Elektrik, su, internet',o:'Kesintiler, kazı çalışması',l:['elektrik','su','internet','calisma']},
+  {id:'n_hava',t:'n',ik:'⛰️',ad:'Hava ve doğa',o:'Sis, yağmur, kar, heyelan',l:['sis','yagis','kar','heyelan','taskin']},
+  {id:'n_hizmet',t:'n',ik:'🧾',ad:'Hizmetler ve geçim',o:'Pahalılık, hastane, resmi işler',l:['pahali','saglik','resmi','acil']},
+  {id:'n_benim',t:'n',ik:'💭',ad:'Benim günüm',o:'Yoğunluk, yorgunluk, stres',l:['isyogun','yorgun','stres','kisisel','yalniz','sikkin']},
+  {id:'diger',t:'',ik:'📝',ad:'Başka bir şey',o:'Kendi cümlenle kısaca yaz',l:[]}
 ];
 var KATMAN=[{id:'coruh',ad:'Çoruh tabanı',h:200,ik:'🌊'},{id:'carsi',ad:'Çarşı',h:500,ik:'🏙️'},{id:'kafkasor',ad:'Kafkasör',h:1200,ik:'🌲'},{id:'atabari',ad:'Atabarı',h:1800,ik:'⛰️'}];
 var ILCE=[
@@ -601,33 +662,39 @@ function cevaplariGetir(){
 }
 function hesapla(liste){
   var saat=[]; for(var i=0;i<24;i++) saat.push({n:0,top:0,e:{}});
-  var kisi={}, ilce={}, yuz={1:0,2:0,3:0,4:0}, top=0, n=0, cihaz={};
+  var kisi={}, ilce={}, yuz={1:0,2:0,3:0,4:0}, top=0, n=0, cihaz={}, yk={1:{},2:{},3:{},4:{}};
   liste.forEach(function(x){
     if(!YUZ[x.m]) return; n++; top+=YUZ[x.m].p; yuz[x.m]++; cihaz[x.u]=1;
     var s=saat[Math.max(0,Math.min(23,x.h))]; s.n++; s.top+=YUZ[x.m].p;
     x.e.slice(0,3).forEach(function(t){ if(!etiketBul(t)||t==='diger') return;
       if(!kisi[t]) kisi[t]={}; kisi[t][x.u]=1;           // aynı cihaz aynı konuyu günde bir kez sayılır
+      if(!yk[x.m][t]) yk[x.m][t]={}; yk[x.m][t][x.u]=1;
       s.e[t]=(s.e[t]||0)+1;
       if(x.ilce){ if(!ilce[t]) ilce[t]={}; ilce[t][x.ilce]=(ilce[t][x.ilce]||0)+1; } });
   });
   var etiket={}; Object.keys(kisi).forEach(function(t){ etiket[t]=Object.keys(kisi[t]).length; });
+  N.yk={}; [1,2,3,4].forEach(function(m){ N.yk[m]=Object.keys(yk[m]).map(function(t){ return {t:etiketBul(t),c:Object.keys(yk[m][t]).length}; }).sort(function(a,b){ return b.c-a.c; }); });
   N.toplam=n; N.kisi=Object.keys(cihaz).length; N.saat=saat; N.etiket=etiket; N.ilce=ilce; N.yuz=yuz; N.hazir=true;
   if(n){ var ort=top/n, sorun=0, iyi=0, kk=Math.max(1,N.kisi);
     ETIKET.forEach(function(t){ var c=etiket[t.id]||0; if(c<SORUN_ESIK) return; if(t.sorun) sorun+=c; if(t.iyi) iyi+=c; });
-    N.ort=R(ort); N.ceza=Math.min(35,R(60*sorun/kk)); N.bonus=Math.min(10,R(25*iyi/kk));
+    N.ort=R(ort); N.ceza=Math.min(15,R(25*sorun/kk)); N.bonus=Math.min(5,R(12*iyi/kk));
     N.puan=Math.max(0,Math.min(100,N.ort-N.ceza+N.bonus));
   } else { N.ort=null; N.puan=null; }
   nabizCiz(); hepsiniBirlestir(); if(!$('sonuc').hidden) sonucCiz(); else if(!$('neden').hidden) ciplerCiz();
 }
 /* en çok bildirilen konular (olumlu + olumsuz birlikte) */
 function gundemListe(esik,adet){
-  return ETIKET.filter(function(t){ return (N.etiket[t.id]||0)>=esik; }).sort(function(a,b){ return N.etiket[b.id]-N.etiket[a.id]; }).slice(0,adet);
+  return ETIKET.filter(function(t){ return !t.kisisel&&t.id!=='diger'&&(N.etiket[t.id]||0)>=esik; }).sort(function(a,b){ return N.etiket[b.id]-N.etiket[a.id]; }).slice(0,adet);
 }
 function gundemHtml(esik){
-  return gundemListe(esik,3).map(function(t){ return '<div class="konu k-'+(t.k==='+'?'p':t.k==='-'?'n':'0')+'"><span>'+t.ik+'</span>'+esc(t.ad)+'<em>'+N.etiket[t.id]+' kişi</em></div>'; }).join('');
+  return gundemListe(esik,3).map(function(t){ return '<div class="konu k-'+(t.taraf||'0')+'"><span>'+t.ik+'</span>'+esc(t.ad)+'<em>'+N.etiket[t.id]+' kişi</em></div>'; }).join('');
 }
+function nedenler(m,k){ return ((N.yk||{})[m]||[]).slice(0,k); }
+function siraliYuz(){ return [4,3,2,1].filter(function(m){ return N.yuz[m]; }).sort(function(a,b){ return N.yuz[b]-N.yuz[a]||b-a; }); }
 function dagilimHtml(){
-  return [4,3,2,1].map(function(m){ var v=N.yuz[m]||0, y=N.toplam?R(v/N.toplam*100):0; return '<div><span>'+YUZ[m].i+'</span><i><s style="width:'+y+'%;background:'+YUZ[m].r+'"></s></i><em>%'+y+'</em></div>'; }).join('');
+  return [4,3,2,1].map(function(m){ var v=N.yuz[m]||0, y=N.toplam?R(v/N.toplam*100):0, nd=nedenler(m,3);
+    return '<div><span>'+YUZ[m].i+'</span><i><s style="width:'+y+'%;background:'+YUZ[m].r+'"></s></i><em>%'+y+'</em></div>'
+      +(nd.length?'<p class="dg-neden"><b>'+YUZ[m].ad+'</b> diyenler: '+nd.map(function(x){ return x.t.ik+' '+esc(x.t.ad); }).join(' · ')+'</p>':''); }).join('');
 }
 function ritimAdi(p){ return p>=75?'Keyifli ritim':p>=55?'Düzenli ritim':p>=35?'Yorgun ritim':'Çarpıntılı ritim'; }
 function nabizCiz(){
@@ -676,36 +743,34 @@ $('ekg').addEventListener('click',function(e){
 });
 
 /* oy verme */
-var secM=null, secE=[], acikC=null, secIlce=ls('baSecildi')?K.ilce:'';
+var secM=null, secE=[], acikC=null, taraf='p', secIlce=ls('baSecildi')?K.ilce:'';
 function oyKey(){ return 'baOy_'+bugunKey()+'_'+dilim(); }
-function siraliEtiket(){
-  var grup=secM>=3?{'+':0,'0':1,'-':2}:{'-':0,'0':1,'+':2};
-  return ETIKET.filter(function(t){ return t.id!=='diger'; }).map(function(t,i){ return {t:t,i:i}; }).sort(function(x,y){
-    var a=x.t,b=y.t, ga=grup[a.k], gb=grup[b.k];
-    var sa=(N.etiket[a.id]||0)>=2?0:a.a?1:2, sb=(N.etiket[b.id]||0)>=2?0:b.a?1:2;   // bugün bildirilenler ve Artvin'e özgüler öne
-    if(sa===0&&sb===0) return (N.etiket[b.id]||0)-(N.etiket[a.id]||0);
-    if(sa===0||sb===0) return sa-sb;
-    return ga-gb||sa-sb||x.i-y.i;
-  }).map(function(x){ return x.t; });
-}
 function cekSayi(c){ var k={}; c.l.forEach(function(id){ var v=N.etiket[id]||0; if(v) k[id]=v; }); var t=0; for(var x in k) t+=k[x]; return t; }
-function cekSirali(){
-  var pozitif=secM>=3, oncelik={doga:pozitif?0:3,sehir:pozitif?1:4,ulasim:pozitif?3:0,havaolay:2,altyapi:pozitif?4:1,gundem:5,diger:9};
-  return CEKMECE.slice().sort(function(a,b){ if(a.id==='diger'||b.id==='diger') return a.id==='diger'?1:-1; var sa=cekSayi(a),sb=cekSayi(b); if((sa>=2)!==(sb>=2)) return sa>=2?-1:1; return oncelik[a.id]-oncelik[b.id]; });
+function ilceCek(){   // seçilen ilçeye özel çekmece (bu taraf için)
+  if(!secIlce) return null; var l=ILCE_EK.filter(function(t){ return t.il.indexOf(secIlce)>-1&&t.taraf===taraf; }).map(function(t){ return t.id; });
+  if(!l.length) return null; var ad=ilceBul(secIlce).ad;
+  return {id:'ilce',t:taraf,ik:'📍',ad:ad+' için',o:'Sadece bu ilçeye özel '+l.length+' seçenek',l:l,ozel:1};
 }
-function cipHtml(t){ var on=secE.indexOf(t.id)>-1; return '<button type="button" data-e="'+t.id+'" class="'+(on?'on ':'')+(t.k==='+'?'iyi':t.k==='0'?'notr':'')+'" aria-pressed="'+on+'">'+t.ik+' '+esc(t.ad)+'</button>'; }
+function cekSirali(){   // bu tarafın çekmeceleri; ilçeye özel en başta, bugün çok seçilenler öne, "Başka bir şey" en sonda
+  var ic=ilceCek(), liste=CEKMECE.map(function(c,i){ return {c:c,i:i}; }).filter(function(x){ return x.c.t===taraf||x.c.id==='diger'; }).sort(function(x,y){
+    var a=x.c,b=y.c; if(a.id==='diger'||b.id==='diger') return a.id==='diger'?1:-1; var sa=cekSayi(a),sb=cekSayi(b); if((sa>=3)!==(sb>=3)) return sa>=3?-1:1; return x.i-y.i; }).map(function(x){ return x.c; });
+  return ic?[ic].concat(liste):liste;
+}
+function cipHtml(t){ var on=secE.indexOf(t.id)>-1; return '<button type="button" data-e="'+t.id+'" class="'+(on?'on ':'')+(t.taraf==='p'?'iyi':'')+'" aria-pressed="'+on+'">'+t.ik+' '+esc(t.ad)+'</button>'; }
 function ciplerCiz(){
-  var h='', hz=ETIKET.filter(function(t){ return t.id!=='diger'&&(N.etiket[t.id]||0)>=2; }).sort(function(a,b){ return N.etiket[b.id]-N.etiket[a.id]; }).slice(0,3);
+  [].forEach.call($('taraf').children,function(b){ var t=b.getAttribute('data-t'), n=secE.filter(function(id){ var x=etiketBul(id); return x&&x.taraf===t; }).length; b.classList.toggle('on',t===taraf); b.setAttribute('aria-selected',t===taraf); b.querySelector('em').textContent=n||''; });
+  $('nedenBaslik').textContent=taraf==='p'?'Ne güzeldi?':'Ne canını sıktı?';
+  var h='', hz=ETIKET.filter(function(t){ return t.taraf===taraf&&(N.etiket[t.id]||0)>=2; }).sort(function(a,b){ return N.etiket[b.id]-N.etiket[a.id]; }).slice(0,3);
   if(hz.length) h+='<div class="hizli"><p>🔥 Bugün çok seçilenler</p><div class="cipler">'+hz.map(cipHtml).join('')+'</div></div>';
   h+='<div class="cekler">'+cekSirali().map(function(c){
     var secili=c.id==='diger'?secE.indexOf('diger')>-1:c.l.filter(function(id){ return secE.indexOf(id)>-1; }).length, n=cekSayi(c), acik=acikC===c.id;
     var rozet=secili?'<em class="sec">✓ '+(c.id==='diger'?'yazıldı':secili)+'</em>':n>=2?'<em class="sicak">🔥 '+n+'</em>':'<span></span>';
-    return '<div class="cek'+(acik?' acik':'')+(secili?' secili':'')+'"><button type="button" class="cek-bas" data-c="'+c.id+'" aria-expanded="'+acik+'"><i>'+c.ik+'</i><span><b>'+c.ad+'</b><small>'+c.o+'</small></span>'+rozet+'<s>▾</s></button>'
+    return '<div class="cek'+(c.ozel?' ozel':'')+(acik?' acik':'')+(secili?' secili':'')+'"><button type="button" class="cek-bas" data-c="'+c.id+'" aria-expanded="'+acik+'"><i>'+c.ik+'</i><span><b>'+c.ad+'</b><small>'+c.o+'</small></span>'+rozet+'<s>▾</s></button>'
       +(acik&&c.l.length?'<div class="cek-ic"><div class="cipler">'+c.l.map(function(id){ return cipHtml(etiketBul(id)); }).join('')+'</div></div>':'')+'</div>';
   }).join('')+'</div>';
   $('cipler').innerHTML=h;
   $('digerKutu').hidden=!(acikC==='diger'||secE.indexOf('diger')>-1);
-  $('nedenSay').textContent=secE.length?secE.length+'/3 seçildi'+(secE.length===3?' · tamam, gönderebilirsin':''):'Bir konuya dokun, aç, seç · En fazla 3 seçim';
+  $('nedenSay').textContent=secE.length?secE.length+'/3 seçildi'+(secE.length===3?' · tamam, gönderebilirsin':''):(taraf==='p'?'Bir konuya dokun, aç, seç':'Bir konuya dokun, aç, seç')+' · En fazla 3 seçim';
 }
 function yerCiz(){
   var l=[{id:'',ad:'Belirtme'}].concat(ILCE);
@@ -727,15 +792,16 @@ function sonucCiz(){
     +'<div class="sonraki">Yeni soru '+sonraki+' geliyor. Aşağıda gün boyu nabız çizgisini görebilirsin.</div>';
 }
 $('yuzler').addEventListener('click',function(e){ var b=e.target.closest('[data-m]'); if(!b) return; secM=+b.getAttribute('data-m'); [].forEach.call(this.children,function(x){ x.classList.toggle('on',x===b); });
-  $('nedenBaslik').textContent=secM>=3?'Neden? Bugün güzel olan neydi?':'Neden? Bugün Artvin\'de ne oldu?';
-  var ilk=$('neden').hidden; $('neden').hidden=false; if(ilk&&acikC==null) acikC=cekSirali()[0].id; ciplerCiz(); yerCiz(); if(ilk) setTimeout(function(){ $('neden').scrollIntoView({behavior:'smooth',block:'nearest'}); },60); });
+  var yeniTaraf=secM>=3?'p':'n'; if(yeniTaraf!==taraf||acikC==null){ taraf=yeniTaraf; acikC=cekSirali()[0].id; }
+  var ilk=$('neden').hidden; $('neden').hidden=false; ciplerCiz(); yerCiz(); if(ilk) setTimeout(function(){ $('neden').scrollIntoView({behavior:'smooth',block:'nearest'}); },60); });
 $('cipler').addEventListener('click',function(e){ var c=e.target.closest('[data-c]'); if(c){ var id=c.getAttribute('data-c'); acikC=acikC===id?null:id; ciplerCiz(); if(acikC==='diger') $('digerYazi').focus(); return; }
   var b=e.target.closest('[data-e]'); if(!b) return; var id=b.getAttribute('data-e'), i=secE.indexOf(id);
   if(i>-1) secE.splice(i,1); else if(secE.length<3) secE.push(id); else { $('nedenSay').textContent='En fazla 3 seçebilirsin'; return; }
   ciplerCiz(); if(id==='diger'&&secE.indexOf('diger')>-1) $('digerYazi').focus(); });
 $('digerYazi').addEventListener('input',function(){ $('digerSay').textContent=this.value.length+'/100'; var i=secE.indexOf('diger'), dolu=this.value.trim().length>0;
   if(dolu&&i<0&&secE.length<3){ secE.push('diger'); ciplerCiz(); } else if(!dolu&&i>-1){ secE.splice(i,1); ciplerCiz(); } });
-$('yerSecim').addEventListener('click',function(e){ var b=e.target.closest('[data-y]'); if(!b) return; secIlce=b.getAttribute('data-y'); yerCiz(); });
+$('taraf').addEventListener('click',function(e){ var b=e.target.closest('[data-t]'); if(!b) return; var t=b.getAttribute('data-t'); if(t===taraf) return; taraf=t; acikC=cekSirali()[0].id; ciplerCiz(); });
+$('yerSecim').addEventListener('click',function(e){ var b=e.target.closest('[data-y]'); if(!b) return; secIlce=b.getAttribute('data-y'); yerCiz(); var ic=ilceCek(); if(ic) acikC='ilce'; ciplerCiz(); });
 $('atla').addEventListener('click',function(){ secE=[]; gonder(); });
 function kimlik(){
   var a=ls('baAuth');
@@ -806,41 +872,61 @@ function hepsiniBirlestir(){
 
 /* ════════ PAYLAŞIM KARTI ════════ */
 function kartCiz(tur){
-  var W=1080,H=tur==='story'?1920:1350,cv=document.createElement('canvas'); cv.width=W; cv.height=H; var x=cv.getContext('2d'), F="'Manrope',system-ui,sans-serif", pad=84;
-  var pal=G.pal||['#2f6f8f','#5aa0b8'], g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,pal[0]); g.addColorStop(.45,pal[1]); g.addColorStop(1,'#0f1f26'); x.fillStyle=g; x.fillRect(0,0,W,H);
-  var y=tur==='story'?210:130;
-  x.fillStyle='#fff'; x.font='800 120px '+F; x.fillText('Bugün Artvin',pad,y);
-  x.font='600 38px '+F; x.fillStyle='rgba(255,255,255,.82)'; x.fillText(tarihYaz(new Date()),pad,y+62);
-  // iki kutu
-  var ky=y+110, kh=tur==='story'?300:250, kw=(W-2*pad-24)/2;
-  [[pad,'☁️ GÖKYÜZÜ',(G.c?R(G.c.temperature_2m)+'°':'—'),G.w?G.w.t:''],[pad+kw+24,'❤️ NABIZ',(N.puan!=null?String(N.puan):'—'),N.toplam?ritimAdi(N.puan)+' · '+N.kisi+' Artvinli':'cevap bekleniyor']].forEach(function(k,i){
-    x.fillStyle='rgba(0,0,0,.22)'; rr(x,k[0],ky,kw,kh,40); x.fill();
-    x.fillStyle='rgba(255,255,255,.75)'; x.font='800 30px '+F; x.fillText(k[1],k[0]+36,ky+64);
-    x.fillStyle=i===1&&N.puan!=null?renk(N.puan):'#fff'; x.font='800 '+(tur==='story'?150:124)+'px '+F; x.fillText(k[2],k[0]+30,ky+kh-80);
-    x.fillStyle='rgba(255,255,255,.8)'; x.font='600 30px '+F; x.fillText(k[3],k[0]+36,ky+kh-30);
-  });
-  // EKG
-  var ey=ky+kh+(tur==='story'?90:60), eh=tur==='story'?300:200, ex0=pad, ex1=W-pad, B=ey+eh*.74;
-  x.fillStyle='rgba(0,0,0,.18)'; rr(x,pad-20,ey-30,W-2*pad+40,eh+60,40); x.fill();
-  x.fillStyle='rgba(255,255,255,.7)'; x.font='800 28px '+F; x.fillText("ARTVİN'İN BUGÜNKÜ NABZI",pad+10,ey+10);
-  var mx=Math.max.apply(null,N.saat.map(function(s){return s.n;}).concat([1])), hs=new Date().getHours(), xs=function(h){return ex0+(ex1-ex0)*h/24;};
-  x.lineWidth=5; x.lineJoin='round'; x.lineCap='round';
-  for(var h=0;h<24;h++){ var a=xs(h),z=xs(h+1),sd=N.saat[h]||{n:0},m=(a+z)/2,w=z-a;
-    if(h>hs){ x.strokeStyle='rgba(255,255,255,.18)'; x.setLineDash([6,10]); x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); x.setLineDash([]); continue; }
-    if(!sd.n){ x.strokeStyle='rgba(255,255,255,.35)'; x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); continue; }
-    var A=(eh*.14)+(eh*.38)*Math.sqrt(sd.n/mx); x.strokeStyle=renk(sd.top/sd.n); x.beginPath(); x.moveTo(a,B);
-    [[-.32,0],[-.22,-8],[-.14,0],[-.06,18],[0,-A],[.08,30],[.16,0],[.3,-12],[.4,0],[.5,0]].forEach(function(p){ x.lineTo(m+p[0]*w,B+p[1]); }); x.stroke(); }
-  // keyif + cümle
-  var ty=ey+eh+(tur==='story'?130:90);
-  if(G.keyif){ x.font='800 44px '+F; x.fillStyle='#fff'; x.fillText(G.keyif.i+' '+G.keyif.t,pad,ty); }
-  x.font='600 40px '+F; x.fillStyle='rgba(255,255,255,.9)'; satirYaz(x,G.cumle||'',pad,ty+70,W-2*pad,54);
-  if(tur==='story'){ var ly=ty+330;
-    if(N.toplam){ x.fillStyle='rgba(0,0,0,.2)'; rr(x,pad-20,ly-70,W-2*pad+40,N.yoranMetin?230:130,36); x.fill();
-      x.font='700 36px '+F; x.fillStyle='#fff'; x.fillText('Gökyüzü: '+(G.keyif?G.keyif.t:'—'),pad+10,ly);
-      x.fillStyle=renk(N.ort); x.fillText('Artvinliler: keyif '+N.ort+'/100',pad+10,ly+52);
-      if(N.yoranMetin){ x.fillStyle='#ffce6b'; x.font='700 34px '+F; x.fillText(N.yoranMetin,pad+10,ly+122); } }
-    else { x.font='700 38px '+F; x.fillStyle='#fff'; x.fillText('Sen nasılsın? Cevabını ver 👇',pad,ly); } }
-  x.font='800 34px '+F; x.fillStyle='rgba(255,206,107,.95)'; x.fillText('artvinrehber.com/bugun-artvin',pad,H-(tur==='story'?140:64));
+  var S=tur==='story', W=1080,H=S?1920:1350,cv=document.createElement('canvas'); cv.width=W; cv.height=H; var x=cv.getContext('2d'), F="'Manrope',system-ui,sans-serif", pad=80;
+  var pal=G.pal||['#2f6f8f','#5aa0b8'], g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,pal[0]); g.addColorStop(.38,pal[1]); g.addColorStop(1,'#0c1a20'); x.fillStyle=g; x.fillRect(0,0,W,H);
+  function kutu(a,b,w,h,r,renk){ x.fillStyle=renk||'rgba(0,0,0,.24)'; rr(x,a,b,w,h,r); x.fill(); }
+  function yaz(t,a,b,font,renk,hiza){ x.font=font+' '+F; x.fillStyle=renk||'#fff'; x.textAlign=hiza||'left'; x.fillText(t,a,b); x.textAlign='left'; }
+  function sigdir(t,mw){ if(x.measureText(t).width<=mw) return t; while(t.length>3&&x.measureText(t+'…').width>mw) t=t.slice(0,-1); return t+'…'; }
+  var y=S?190:118;
+  yaz('Bugün Artvin',pad,y,'800 '+(S?112:96)+'px');
+  var alt=tarihYaz(new Date())+(G.c?'  ·  '+(G.w?G.w.i+' ':'')+R(G.c.temperature_2m)+'°':'')+(N.puan!=null?'  ·  ❤️ Nabız '+N.puan:'');
+  yaz(alt,pad,y+(S?60:54),'600 '+(S?36:32)+'px','rgba(255,255,255,.85)');
+  var sy=y+(S?120:96), sira=siraliYuz();
+  if(!N.toplam){
+    kutu(pad-20,sy,W-2*pad+40,S?520:420,44);
+    yaz('Artvin bugün nasıl?',pad+20,sy+(S?150:130),'800 72px');
+    x.font='600 40px '+F; x.fillStyle='rgba(255,255,255,.85)'; satirYaz(x,'Henüz cevap yok. İlk cevabı sen ver, şehrin nabzını birlikte tutalım.',pad+20,sy+(S?240:215),W-2*pad-40,56);
+    yaz('🤩  😊  ☕  😒',pad+20,sy+(S?430:360),'400 84px');
+  } else {
+    yaz('ARTVİNLİLER BUGÜN',pad,sy+10,'800 30px','rgba(255,255,255,.7)');
+    sy+=36;
+    // 1. sıradaki ruh hali
+    var m1=sira[0], y1=R(N.yuz[m1]/N.toplam*100), nd=nedenler(m1,3), kh=(S?300:250)+nd.length*(S?66:56);
+    kutu(pad-20,sy,W-2*pad+40,kh,44,'rgba(0,0,0,.28)');
+    x.fillStyle=YUZ[m1].r; rr(x,pad-20,sy,14,kh,7); x.fill();
+    yaz(YUZ[m1].i,pad+20,sy+(S?150:128),'400 '+(S?118:100)+'px');
+    yaz(YUZ[m1].ad,pad+(S?175:150),sy+(S?118:100),'800 '+(S?86:74)+'px');
+    yaz('%'+y1+'  ·  '+N.yuz[m1]+' cevap  ·  1. sırada',pad+(S?178:152),sy+(S?172:148),'700 34px',YUZ[m1].r);
+    var ny=sy+(S?250:212);
+    if(nd.length){ yaz('Neden?',pad+20,ny,'800 30px','rgba(255,255,255,.65)'); ny+=(S?62:52);
+      nd.forEach(function(o,i){ x.font='700 '+(S?42:36)+'px '+F; x.fillStyle='#fff'; x.fillText(sigdir((i+1)+'.  '+o.t.ik+'  '+o.t.ad,W-2*pad-190),pad+20,ny); yaz(o.c+' kişi',W-pad-20,ny,'700 32px','rgba(255,255,255,.7)','right'); ny+=(S?66:56); }); }
+    else { yaz('Neden belirtilmedi',pad+20,ny,'600 32px','rgba(255,255,255,.55)'); }
+    sy+=kh+(S?28:22);
+    // diğerleri alt alta
+    sira.slice(1).forEach(function(m){
+      var yy=R(N.yuz[m]/N.toplam*100), n2=nedenler(m,3), rh=n2.length?(S?138:112):(S?96:84);
+      if(sy+rh>H-(S?400:120)) return;
+      kutu(pad-20,sy,W-2*pad+40,rh,32);
+      x.fillStyle=YUZ[m].r; rr(x,pad-20,sy,10,rh,5); x.fill();
+      yaz(YUZ[m].i+'  '+YUZ[m].ad,pad+16,sy+(S?60:52),'800 '+(S?46:40)+'px');
+      yaz('%'+yy,W-pad-16,sy+(S?60:52),'800 '+(S?46:40)+'px',YUZ[m].r,'right');
+      if(n2.length){ x.font='600 '+(S?30:27)+'px '+F; x.fillStyle='rgba(255,255,255,.72)'; x.fillText(sigdir(n2.map(function(o){ return o.t.ik+' '+o.t.ad; }).join('  ·  '),W-2*pad-40),pad+16,sy+(S?110:92)); }
+      sy+=rh+(S?18:14);
+    });
+    // nabız çizgisi (yalnız hikâyede)
+    if(S&&sy+30<=H-500){ var ey=H-500, eh=170, ex0=pad, ex1=W-pad, B=ey+eh*.72;
+      kutu(pad-20,ey-20,W-2*pad+40,eh+40,36,'rgba(0,0,0,.18)');
+      yaz("GÜN BOYU NABIZ",pad+10,ey+22,'800 26px','rgba(255,255,255,.6)');
+      var mx=Math.max.apply(null,N.saat.map(function(s){return s.n;}).concat([1])), hs=new Date().getHours(), xs=function(h){return ex0+(ex1-ex0)*h/24;};
+      x.lineWidth=5; x.lineJoin='round'; x.lineCap='round';
+      for(var h=0;h<24;h++){ var a=xs(h),z=xs(h+1),sd=N.saat[h]||{n:0},mm=(a+z)/2,w=z-a;
+        if(h>hs){ x.strokeStyle='rgba(255,255,255,.18)'; x.setLineDash([6,10]); x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); x.setLineDash([]); continue; }
+        if(!sd.n){ x.strokeStyle='rgba(255,255,255,.35)'; x.beginPath(); x.moveTo(a,B); x.lineTo(z,B); x.stroke(); continue; }
+        var A=(eh*.12)+(eh*.38)*Math.sqrt(sd.n/mx); x.strokeStyle=renk(sd.top/sd.n); x.beginPath(); x.moveTo(a,B);
+        [[-.32,0],[-.22,-6],[-.14,0],[-.06,12],[0,-A],[.08,20],[.16,0],[.3,-8],[.4,0],[.5,0]].forEach(function(p){ x.lineTo(mm+p[0]*w,B+p[1]); }); x.stroke(); } }
+  }
+  yaz((N.kisi?N.kisi.toLocaleString('tr-TR')+' Artvinli katıldı  ·  ':'')+'Sen de söyle 👇',pad,H-(S?210:118),'700 34px','rgba(255,255,255,.85)');
+  yaz('artvinrehber.com/bugun-artvin',pad,H-(S?150:64),'800 38px','rgba(255,206,107,.98)');
   return cv;
 }
 function rr(x,a,b,w,h,r){ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,r); x.arcTo(a+w,b+h,a,b+h,r); x.arcTo(a,b+h,a,b,r); x.arcTo(a,b,a+w,b,r); x.closePath(); }
