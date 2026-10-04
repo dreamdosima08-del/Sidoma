@@ -106,6 +106,7 @@ section.b{padding:24px 0 0}
 .cekler{display:grid;gap:8px}
 .cek{border-radius:16px;background:var(--kart2);border:1px solid var(--cizgi);overflow:hidden;transition:border-color .2s}
 .cek.acik{border-color:rgba(255,206,107,.45);background:rgba(255,206,107,.07)}
+.cek.ozel{border-color:rgba(143,208,255,.45);background:linear-gradient(135deg,rgba(143,208,255,.12),rgba(255,255,255,.04))}
 .cek.secili:not(.acik){border-color:rgba(83,211,154,.45)}
 .cek-bas{width:100%;display:grid;grid-template-columns:34px 1fr auto 18px;align-items:center;gap:10px;padding:12px 12px 12px 10px;text-align:left;min-height:58px}
 .cek-bas > span{min-width:0}
@@ -122,7 +123,7 @@ section.b{padding:24px 0 0}
 .diger input{width:100%;min-height:46px;border-radius:12px;border:1px solid var(--cizgi);background:rgba(0,0,0,.2);color:var(--yazi);font:inherit;font-size:.95rem;padding:10px 54px 10px 12px}
 .diger input:focus{outline:2px solid var(--gunes);outline-offset:1px}
 .diger small{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.7rem;color:var(--soluk)}
-.yer{margin-top:14px}
+.yer{margin:0 0 14px}
 .yer p{font-size:.85rem;font-weight:800;color:var(--dim);margin-bottom:8px}
 .yer p span{font-weight:600;color:var(--soluk)}
 .yer-serit{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 2px}
@@ -268,9 +269,9 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
         <div class="neden" id="neden" hidden>
           <div class="taraf" id="taraf" role="tablist"><button type="button" data-t="p" role="tab">👍 Güzel olanlar<em></em></button><button type="button" data-t="n" role="tab">👎 Can sıkanlar<em></em></button></div>
           <div class="neden-bas"><b id="nedenBaslik">Neden?</b><span id="nedenSay">En fazla 3 seçim</span></div>
+          <div class="yer"><p>📍 Nereden? <span>İsteğe bağlı · ilçene özel seçenekler açılır</span></p><div class="yer-serit" id="yerSecim"></div></div>
           <div id="cipler"></div>
           <div class="diger" id="digerKutu" hidden><input id="digerYazi" maxlength="100" placeholder="Kısaca yaz (en fazla 100 karakter)" autocomplete="off"><small id="digerSay">0/100</small></div>
-          <div class="yer"><p>📍 Nereden? <span>İsteğe bağlı</span></p><div class="yer-serit" id="yerSecim"></div></div>
           <button class="btn gonder" id="gonder">Gönder</button>
           <button class="atla" id="atla" type="button">Neden seçmeden gönder</button>
         </div>
@@ -425,6 +426,34 @@ var ETIKET=[
   {id:'sikkin',ik:'😶',ad:'Öylesine canım sıkkındı',k:'k-'},
   {id:'diger',g:'diğer',ik:'📝',ad:'Başka bir şey',k:'0'}
 ];
+/* ilçeye özel seçenekler: kişi "Nereden?" kısmında ilçesini seçince o ilçenin çekmecesi açılır */
+var ILCE_EK=[
+  {id:'sahil',il:['hopa','arhavi','kemalpasa'],ik:'🌊',ad:'Sahilde yürüdüm, deniz keyfi',g:'deniz keyfi',k:'+'},
+  {id:'balik',il:['hopa','arhavi','kemalpasa'],ik:'🐟',ad:'Taze balık yedim',g:'taze balık',k:'+'},
+  {id:'nem',il:['hopa','arhavi','kemalpasa'],ik:'💦',ad:'Nem bunalttı',g:'bunaltan nem',k:'-'},
+  {id:'dalga',il:['hopa','arhavi','kemalpasa'],ik:'🌬️',ad:'Deniz dalgalıydı / fırtına',g:'dalgalı deniz',k:'-'},
+  {id:'tir',il:['hopa','kemalpasa'],ik:'🚛',ad:'Tır kuyruğu / Sarp yoğunluğu',g:'tır kuyruğu',k:'-'},
+  {id:'ortacalar',il:['arhavi'],ik:'🏞️',ad:'Ortacalar / Mençuna tarafına çıktım',g:'Ortacalar vadisi',k:'+'},
+  {id:'karagolb',il:['borcka'],ik:'🏞️',ad:'Borçka Karagöl\'e çıktım',g:'Borçka Karagöl',k:'+'},
+  {id:'macahel',il:['borcka'],ik:'🌲',ad:'Macahel\'e gittim',g:'Macahel',k:'+'},
+  {id:'camiliyol',il:['borcka','macahel'],ik:'🚧',ad:'Camili yolu kapalıydı',g:'Camili yolu',k:'-'},
+  {id:'murgulyol',il:['murgul'],ik:'🚧',ad:'Borçka–Murgul yolu sıkıntılıydı',g:'Murgul yolu',k:'-'},
+  {id:'karagols',il:['savsat'],ik:'🏞️',ad:'Şavşat Karagöl\'e çıktım',g:'Şavşat Karagöl',k:'+'},
+  {id:'sahara',il:['savsat'],ik:'⛰️',ad:'Sahara yaylasına çıktım',g:'Sahara yaylası',k:'+'},
+  {id:'saharagecit',il:['savsat'],ik:'❄️',ad:'Sahara Geçidi kapalıydı',g:'Sahara Geçidi',k:'-'},
+  {id:'savsatyol',il:['savsat'],ik:'🚧',ad:'Artvin–Şavşat yolu yordu',g:'Şavşat yolu',k:'-'},
+  {id:'kanyon',il:['ardanuc'],ik:'🏞️',ad:'Cehennem Deresi Kanyonu\'na gittim',g:'Cehennem Deresi Kanyonu',k:'+'},
+  {id:'gevhernik',il:['ardanuc'],ik:'🏰',ad:'Gevhernik Kalesi\'ne çıktım',g:'Gevhernik Kalesi',k:'+'},
+  {id:'bulbulan',il:['ardanuc'],ik:'❄️',ad:'Bülbülan Geçidi kapalıydı',g:'Bülbülan Geçidi',k:'-'},
+  {id:'ardanucyol',il:['ardanuc'],ik:'🚧',ad:'Artvin–Ardanuç yolu sıkıntılıydı',g:'Ardanuç yolu',k:'-'},
+  {id:'kackar',il:['yusufeli'],ik:'🏔️',ad:'Kaçkar / Barhal tarafına çıktım',g:'Kaçkar',k:'+'},
+  {id:'barajgolu',il:['yusufeli'],ik:'🌊',ad:'Baraj gölü manzarası güzeldi',g:'baraj gölü manzarası',k:'+'},
+  {id:'yeniyerlesim',il:['yusufeli'],ik:'🏗️',ad:'Yeni yerleşimde eksikler var',g:'yeni yerleşimdeki eksikler',k:'-'},
+  {id:'yusufeliyol',il:['yusufeli'],ik:'🚧',ad:'Artvin–Yusufeli yolu sıkıntılıydı',g:'Yusufeli yolu',k:'-'},
+  {id:'kafkasor',il:['merkez'],ik:'🌲',ad:'Kafkasör\'e çıktım',g:'Kafkasör',k:'+'},
+  {id:'atabari',il:['merkez'],ik:'⛷️',ad:'Atabarı\'nda kar keyfi',g:'Atabarı',k:'+'}
+];
+ILCE_EK.forEach(function(t){ ETIKET.push(t); });
 ETIKET.forEach(function(t){ t.sorun=t.k==='-'; t.iyi=t.k==='+'; t.kisisel=t.k.charAt(0)==='k'; t.taraf=/\+/.test(t.k)?'p':/-/.test(t.k)?'n':''; });
 /* çekmeceler: güzel günde "ne güzeldi", kötü günde "ne canını sıktı" */
 var CEKMECE=[
@@ -717,9 +746,15 @@ $('ekg').addEventListener('click',function(e){
 var secM=null, secE=[], acikC=null, taraf='p', secIlce=ls('baSecildi')?K.ilce:'';
 function oyKey(){ return 'baOy_'+bugunKey()+'_'+dilim(); }
 function cekSayi(c){ var k={}; c.l.forEach(function(id){ var v=N.etiket[id]||0; if(v) k[id]=v; }); var t=0; for(var x in k) t+=k[x]; return t; }
-function cekSirali(){   // bu tarafın çekmeceleri; bugün çok seçilenler öne, "Başka bir şey" en sonda
-  return CEKMECE.map(function(c,i){ return {c:c,i:i}; }).filter(function(x){ return x.c.t===taraf||x.c.id==='diger'; }).sort(function(x,y){
+function ilceCek(){   // seçilen ilçeye özel çekmece (bu taraf için)
+  if(!secIlce) return null; var l=ILCE_EK.filter(function(t){ return t.il.indexOf(secIlce)>-1&&t.taraf===taraf; }).map(function(t){ return t.id; });
+  if(!l.length) return null; var ad=ilceBul(secIlce).ad;
+  return {id:'ilce',t:taraf,ik:'📍',ad:ad+' için',o:'Sadece bu ilçeye özel '+l.length+' seçenek',l:l,ozel:1};
+}
+function cekSirali(){   // bu tarafın çekmeceleri; ilçeye özel en başta, bugün çok seçilenler öne, "Başka bir şey" en sonda
+  var ic=ilceCek(), liste=CEKMECE.map(function(c,i){ return {c:c,i:i}; }).filter(function(x){ return x.c.t===taraf||x.c.id==='diger'; }).sort(function(x,y){
     var a=x.c,b=y.c; if(a.id==='diger'||b.id==='diger') return a.id==='diger'?1:-1; var sa=cekSayi(a),sb=cekSayi(b); if((sa>=3)!==(sb>=3)) return sa>=3?-1:1; return x.i-y.i; }).map(function(x){ return x.c; });
+  return ic?[ic].concat(liste):liste;
 }
 function cipHtml(t){ var on=secE.indexOf(t.id)>-1; return '<button type="button" data-e="'+t.id+'" class="'+(on?'on ':'')+(t.taraf==='p'?'iyi':'')+'" aria-pressed="'+on+'">'+t.ik+' '+esc(t.ad)+'</button>'; }
 function ciplerCiz(){
@@ -730,7 +765,7 @@ function ciplerCiz(){
   h+='<div class="cekler">'+cekSirali().map(function(c){
     var secili=c.id==='diger'?secE.indexOf('diger')>-1:c.l.filter(function(id){ return secE.indexOf(id)>-1; }).length, n=cekSayi(c), acik=acikC===c.id;
     var rozet=secili?'<em class="sec">✓ '+(c.id==='diger'?'yazıldı':secili)+'</em>':n>=2?'<em class="sicak">🔥 '+n+'</em>':'<span></span>';
-    return '<div class="cek'+(acik?' acik':'')+(secili?' secili':'')+'"><button type="button" class="cek-bas" data-c="'+c.id+'" aria-expanded="'+acik+'"><i>'+c.ik+'</i><span><b>'+c.ad+'</b><small>'+c.o+'</small></span>'+rozet+'<s>▾</s></button>'
+    return '<div class="cek'+(c.ozel?' ozel':'')+(acik?' acik':'')+(secili?' secili':'')+'"><button type="button" class="cek-bas" data-c="'+c.id+'" aria-expanded="'+acik+'"><i>'+c.ik+'</i><span><b>'+c.ad+'</b><small>'+c.o+'</small></span>'+rozet+'<s>▾</s></button>'
       +(acik&&c.l.length?'<div class="cek-ic"><div class="cipler">'+c.l.map(function(id){ return cipHtml(etiketBul(id)); }).join('')+'</div></div>':'')+'</div>';
   }).join('')+'</div>';
   $('cipler').innerHTML=h;
@@ -766,7 +801,7 @@ $('cipler').addEventListener('click',function(e){ var c=e.target.closest('[data-
 $('digerYazi').addEventListener('input',function(){ $('digerSay').textContent=this.value.length+'/100'; var i=secE.indexOf('diger'), dolu=this.value.trim().length>0;
   if(dolu&&i<0&&secE.length<3){ secE.push('diger'); ciplerCiz(); } else if(!dolu&&i>-1){ secE.splice(i,1); ciplerCiz(); } });
 $('taraf').addEventListener('click',function(e){ var b=e.target.closest('[data-t]'); if(!b) return; var t=b.getAttribute('data-t'); if(t===taraf) return; taraf=t; acikC=cekSirali()[0].id; ciplerCiz(); });
-$('yerSecim').addEventListener('click',function(e){ var b=e.target.closest('[data-y]'); if(!b) return; secIlce=b.getAttribute('data-y'); yerCiz(); });
+$('yerSecim').addEventListener('click',function(e){ var b=e.target.closest('[data-y]'); if(!b) return; secIlce=b.getAttribute('data-y'); yerCiz(); var ic=ilceCek(); if(ic) acikC='ilce'; ciplerCiz(); });
 $('atla').addEventListener('click',function(){ secE=[]; gonder(); });
 function kimlik(){
   var a=ls('baAuth');
