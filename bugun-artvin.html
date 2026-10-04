@@ -263,7 +263,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
         <div class="yuzler" id="yuzler">
           <button data-m="4"><i>🤩</i>Harika</button>
           <button data-m="3"><i>😊</i>Keyifli</button>
-          <button data-m="2"><i>☕</i>Orta şekerli</button>
+          <button data-m="2"><i>😐</i>Orta şekerli</button>
           <button data-m="1"><i>😒</i>Can sıkıcı</button>
         </div>
         <div class="neden" id="neden" hidden>
@@ -346,7 +346,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
   <section class="b nasil-calisir">
     <h2>Bu sayfa nasıl çalışır?</h2>
     <div class="kart">
-      <p><b>Nabız:</b> Artvinliler günde üç kez (sabah, öğleden sonra, akşam) dört yüzden birini seçer, istersen nedenini de söyler. 🤩 Harika 100, 😊 Keyifli 75, ☕ Orta şekerli 45, 😒 Can sıkıcı 10 puan sayılır ve ortalaması alınır. Şehirle ilgili can sıkan sebepler (elektrik, su, yol, heyelan…) en fazla 15 puan düşürür; şehirdeki güzellikler (canlı çarşı, bulut denizi, etkinlik…) en fazla 5 puan ekler. "Benim günüm" sebepleri kişiseldir, şehrin gündemine ve puan düzeltmesine girmez.</p>
+      <p><b>Nabız:</b> Artvinliler günde üç kez (sabah, öğleden sonra, akşam) dört yüzden birini seçer, istersen nedenini de söyler. 🤩 Harika 100, 😊 Keyifli 75, 😐 Orta şekerli 45, 😒 Can sıkıcı 10 puan sayılır ve ortalaması alınır. Şehirle ilgili can sıkan sebepler (elektrik, su, yol, heyelan…) en fazla 15 puan düşürür; şehirdeki güzellikler (canlı çarşı, bulut denizi, etkinlik…) en fazla 5 puan ekler. "Benim günüm" sebepleri kişiseldir, şehrin gündemine ve puan düzeltmesine girmez.</p>
       <p><b>Güvenilirlik:</b> Her cihaz her zaman diliminde yalnızca bir cevap verebilir ve cevabı sonradan değiştirilemez. Bir konu, en az 3 farklı kişi bildirince öne çıkar; aynı kişinin gün içindeki tekrarları bir kez sayılır.</p>
       <p><b>Ritim:</b> 75 ve üzeri keyifli, 55–74 düzenli, 35–54 yorgun, altı çarpıntılı. Çizgide her saat bir atıştır; atışın boyu o saatteki cevap sayısını, rengi keyfi gösterir.</p>
       <p><b>Gökyüzü:</b> Hava verisi Open-Meteo'dan gelir. Bulut katmanı, modelin 8 farklı yükseklikteki bulut örtüsünden tahmin edilir. Katman yükseklikleri yaklaşıktır: Çoruh tabanı ~200 m, çarşı ~500 m, Kafkasör ~1.200 m, Atabarı ~1.800 m.</p>
@@ -375,7 +375,7 @@ var FB_KEY='AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI', FB_PROJE='artvin-imece';
 var FS='https://firestore.googleapis.com/v1/projects/'+FB_PROJE+'/databases/(default)/documents';
 var AGIRLIK={hava:0.35,konfor:0.25,yagis:0.20,nabiz:0.20};
 var NABIZ_ESIK=20, SORUN_ESIK=3, BULUT_ESIK=60;
-var YUZ={4:{i:'🤩',ad:'Harika',p:100,r:'#53d39a'},3:{i:'😊',ad:'Keyifli',p:75,r:'#a6dc6a'},2:{i:'☕',ad:'Orta şekerli',p:45,r:'#f2c14e'},1:{i:'😒',ad:'Can sıkıcı',p:10,r:'#ff6b6b'}};
+var YUZ={4:{i:'🤩',ad:'Harika',p:100,r:'#53d39a'},3:{i:'😊',ad:'Keyifli',p:75,r:'#a6dc6a'},2:{i:'😐',ad:'Orta şekerli',p:45,r:'#f2c14e'},1:{i:'😒',ad:'Can sıkıcı',p:10,r:'#ff6b6b'}};
 /* k: '+' şehirde güzel olan · '-' şehirde can sıkan · 'k+' / 'k-' kişisel (şehrin gündemine ve nabız cezasına girmez) */
 var ETIKET=[
   /* 👍 güzel olanlar */
@@ -886,7 +886,7 @@ function kartCiz(tur){
     kutu(pad-20,sy,W-2*pad+40,S?520:420,44);
     yaz('Artvin bugün nasıl?',pad+20,sy+(S?150:130),'800 72px');
     x.font='600 40px '+F; x.fillStyle='rgba(255,255,255,.85)'; satirYaz(x,'Henüz cevap yok. İlk cevabı sen ver, şehrin nabzını birlikte tutalım.',pad+20,sy+(S?240:215),W-2*pad-40,56);
-    yaz('🤩  😊  ☕  😒',pad+20,sy+(S?430:360),'400 84px');
+    yaz('🤩  😊  😐  😒',pad+20,sy+(S?430:360),'400 84px');
   } else {
     yaz('ARTVİNLİLER BUGÜN',pad,sy+10,'800 30px','rgba(255,255,255,.7)');
     sy+=36;
