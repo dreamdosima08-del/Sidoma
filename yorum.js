@@ -5,6 +5,7 @@
 (function(){
 'use strict';
 if(window.__yrm) return; window.__yrm=1;
+(function(){ var d=document.createElement('script'); d.src='/nabiz-davet.js'; d.defer=true; document.head.appendChild(d); })();   // Bugün Artvin davet balonu
 var PROJE='artvin-imece';
 var CFG={apiKey:'AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI',authDomain:'artvin-imece.firebaseapp.com',projectId:PROJE,storageBucket:'artvin-imece.firebasestorage.app',messagingSenderId:'30297800879',appId:'1:30297800879:web:a36f3b4ad6ba54d8bed45a'};
 var REST='https://firestore.googleapis.com/v1/projects/'+PROJE+'/databases/(default)/documents:runQuery?key='+CFG.apiKey;
