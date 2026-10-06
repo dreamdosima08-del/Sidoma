@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Günlük Story · Artvin Rehberi</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0c1712">
+<meta name="theme-color" content="#0a1630">
 <style>
 @font-face{font-family:'Bricolage';src:url('/fonts/bricolage-latin-ext.woff2') format('woff2');font-weight:200 800;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Bricolage';src:url('/fonts/bricolage-latin.woff2') format('woff2');font-weight:200 800;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{--bg:#0c1712;--yuzey:#13221a;--cizgi:rgba(236,244,239,.13);--yazi:#ecf4ef;--dim:rgba(236,244,239,.6);--amber:#f0b84a;--buz:#bfe6ff}
+:root{--bg:#0a1630;--yuzey:#13213f;--cizgi:rgba(236,244,239,.13);--yazi:#ecf4ef;--dim:rgba(236,244,239,.6);--amber:#f0b84a;--buz:#bfe6ff}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sans-serif;min-height:100vh;padding:20px 16px 48px}
 .w{max-width:440px;margin:0 auto}
@@ -39,7 +39,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
 <body>
 <div class="w">
   <div class="bas">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M8 76 L37 30 L51 51 L66 20 L92 76" fill="none" stroke="#f0b84a" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/><path d="M59 35 L66 20 L73 35 L66 31 Z" fill="#ecf4ef"/><path d="M8 90 C26 80 42 98 60 88 S86 82 92 86" fill="none" stroke="#bfe6ff" stroke-width="6" stroke-linecap="round"/></svg>
+    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M14 88 L50 14 L86 88" fill="none" stroke="#f0b84a" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/><path d="M41 32 L50 14 L59 32 L50 27 Z" fill="#f4f8f5"/><path d="M26 64 C36 57 44 70 54 63 S70 58 76 62" fill="none" stroke="#bfe6ff" stroke-width="8" stroke-linecap="round"/></svg>
     <div><h1>Günlük Story</h1><p>Bilgiler kendiliğinden gelir, eczaneyi sen yazarsın.</p></div>
   </div>
 
@@ -57,6 +57,12 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
   </div>
 
   <div class="alan">
+    <label for="paylasim">Günün paylaşımı (en alttaki bağlantı)</label>
+    <input type="text" id="paylasim" maxlength="46" placeholder="Örn: Kafkasör'e kar yağdı mı? Canlı kar çizgisi">
+    <small>Bugün siteden paylaşacağın sayfanın kısa başlığı. Instagram'da bağlantı çıkartmasıyla o sayfanın adresini ekle. Boş kalırsa "Günün nabzına katıl" yazar.</small>
+  </div>
+
+  <div class="alan">
     <span>Story'de görünsün</span>
     <div class="secim">
       <label><input type="checkbox" data-b="hava" checked> Hava</label>
@@ -69,6 +75,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
   <div class="alan">
     <span>Arka plan</span>
     <div class="secim" id="fotoSec">
+      <button data-foto="/story-arka-merkez.jpg">Çoruh ve şehir</button>
       <button data-foto="/ilce-foto-merkez.jpg">Yeşil Artvin</button>
       <button data-foto="/kis-merkez-panorama.jpg">Karlı Artvin</button>
       <button id="kendiFoto">Kendi fotoğrafım</button>
@@ -95,9 +102,10 @@ var AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','E
 var GUN=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 var bugun=new Date(), dun=new Date(); dun.setDate(dun.getDate()-1);
 var BUGUN=gs(bugun);
-var V={hava:null,kar:null,t850:null,nabiz:null}, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
-var MERKEZ_RAKIM=550;
-var FOTO_ODAK={'ilce-foto-merkez.jpg':.74,'kis-merkez-panorama.jpg':.5}; // şehrin fotoğraftaki dikey yeri
+var V={hava:null,kar:null,t850:null,nabiz:null,dogus:null}, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
+var MERKEZ_RAKIM=500;
+var YERLER=[{ad:'Merkez',a:500,b:500},{ad:'Katrevan',a:800,b:800},{ad:'Kafkasör',a:1250,b:1400},{ad:'Mersivan',a:1800,b:1900}];
+var FOTO_ODAK={'story-arka-merkez.jpg':.6,'ilce-foto-merkez.jpg':.74,'kis-merkez-panorama.jpg':.5}; // şehrin fotoğraftaki dikey yeri
 
 /* ═════════ HAVA: üç modelin ortak görüşü ═════════
    ECMWF, ICON ve GFS ayrı ayrı alınır. Yağış ancak en az iki model
@@ -130,30 +138,32 @@ function havaHesap(d,fl){
   if(yagisli>=2){
     var ilk=ilkSaat.length?Math.round(ortanca(ilkSaat)):null;
     r.durum=tur==='kar'?'kar':'yagmur';
-    r.baslik=(tur==='kar'?'Karlı':'Yağmurlu')+' bir gün';
+    r.baslik=(tur==='kar'?'Kar':'Yağmur')+' ihtimali var';
     var d0=ilk!=null?dilim(ilk):'gün içinde';
-    r.metin=d0.charAt(0).toUpperCase()+d0.slice(1)+' '+tur+' bekleniyor'+(r.mm>=10?', yer yer kuvvetli':'')+'.';
+    r.metin=d0.charAt(0).toUpperCase()+d0.slice(1)+' '+tur+' ihtimali görünüyor'+(r.mm>=10?', zaman zaman kuvvetli olabilir':'')+'.';
   } else if(yagisli===1){
     r.durum='bulut'; r.baslik='Bulutlu bir gün';
-    r.metin='Hafif '+tur+' ihtimali düşük; modeller hemfikir değil.';
+    r.metin='Hafif '+tur+' ihtimali düşük görünüyor.';
   } else {
     var bulut=ortanca(mods.map(function(m){ var C=h['cloud_cover_'+m]||[]; return ortanca(gunduz.map(function(i){return C[i];})); }));
     if(bulut==null) bulut=50;
     r.durum=bulut<30?'gunes':bulut<70?'parcali':'bulut';
     r.baslik=bulut<30?'Güneşli bir gün':bulut<70?'Parçalı bulutlu':'Bulutlu, yağışsız';
-    r.metin='Gün boyu yağış beklenmiyor.';
+    r.metin='Gün boyu yağış görünmüyor.';
   }
-  if(r.mn<=2) r.metin+=' Sabah ayaz olabilir.';
-  else if(r.mx>=30) r.metin+=' Öğle saatleri sıcak.';
+  if(r.mn<=2) r.metin+=' Sabah ayaz olabilir, sıkı giyinmekte fayda var.';
+  else if(r.mn<=9) r.metin+=' Sabah ve akşam serin.';
+  else if(r.mx>=30) r.metin+=' Öğle saatleri sıcak geçebilir.';
   return r;
 }
 var BASE='https://api.open-meteo.com/v1/forecast?latitude=41.1828&longitude=41.8183&timezone=Europe%2FIstanbul&forecast_days=2';
-var flP=fetch(BASE+'&hourly=freezing_level_height,temperature_850hPa&current=temperature_2m').then(function(r){return r.json();}).then(function(d){
+var flP=fetch(BASE+'&hourly=freezing_level_height,temperature_850hPa&current=temperature_2m&daily=sunrise').then(function(r){return r.json();}).then(function(d){
   if(!d||!d.hourly||!d.current) return;
   var fl=d.hourly.freezing_level_height, t8=d.hourly.temperature_850hPa||[], i0=Math.max(0,d.hourly.time.indexOf(d.current.time.slice(0,13)+':00')), mf=Infinity, m8=Infinity;
   for(var i=i0;i<Math.min(fl.length,i0+24);i++){ if(fl[i]!=null&&fl[i]<mf) mf=fl[i]; if(t8[i]!=null&&t8[i]<m8) m8=t8[i]; }
   if(isFinite(mf)) V.kar=Math.max(0,Math.round((mf-300)/50)*50);
   if(isFinite(m8)) V.t850=Math.round(m8);
+  if(d.daily&&d.daily.sunrise&&d.daily.sunrise[1]) V.dogus=d.daily.sunrise[1].slice(11,16);
 }).catch(function(){});
 var modP=fetch(BASE+'&hourly=temperature_2m,precipitation,snowfall,cloud_cover&models='+MODELLER.join(',')).then(function(r){return r.json();}).catch(function(){return null;});
 var havaP=Promise.all([flP,modP]).then(function(a){ var d=a[1]; if(d&&d.hourly) V.hava=havaHesap(d,V.kar); });
@@ -174,11 +184,14 @@ function sar(t,mw){ var k=t.split(' '),s=[],a=''; k.forEach(function(w){ var d=a
 function cizgi(x1,y1,x2,y2,renk,k){ x.beginPath(); x.moveTo(x1,y1); x.lineTo(x2,y2); x.strokeStyle=renk; x.lineWidth=k||2; x.stroke(); }
 function kutu(X,Y,w,h,r){ x.beginPath(); if(x.roundRect) x.roundRect(X,Y,w,h,r); else x.rect(X,Y,w,h); }
 
-function logo(X,Y,s){ // dağ + Çoruh, 100 birimlik ızgara
-  x.save(); x.translate(X,Y); x.scale(s/100,s/100); x.lineCap='round'; x.lineJoin='round';
-  x.beginPath(); x.moveTo(8,76); x.lineTo(37,30); x.lineTo(51,51); x.lineTo(66,20); x.lineTo(92,76); x.strokeStyle=AMBER; x.lineWidth=8; x.stroke();
-  x.beginPath(); x.moveTo(59,35); x.lineTo(66,20); x.lineTo(73,35); x.lineTo(66,31); x.closePath(); x.fillStyle=BEYAZ; x.fill();
-  x.beginPath(); x.moveTo(8,90); x.bezierCurveTo(26,80,42,98,60,88); x.bezierCurveTo(72,82,86,82,92,86); x.strokeStyle=BUZ; x.lineWidth=6; x.stroke();
+function logo(X,Y,px){ // "Artvinrehber": A harfi dağ zirvesi, kesme çizgisi Çoruh
+  var cap=px*.72, aw=cap*.98, lw=px*.135;
+  x.save(); x.lineCap='round'; x.lineJoin='round';
+  x.beginPath(); x.moveTo(X+lw/2,Y); x.lineTo(X+aw/2,Y-cap); x.lineTo(X+aw-lw/2,Y); x.strokeStyle=AMBER; x.lineWidth=lw; x.stroke();
+  x.beginPath(); x.moveTo(X+aw/2-cap*.17,Y-cap*.66); x.lineTo(X+aw/2,Y-cap-lw*.2); x.lineTo(X+aw/2+cap*.17,Y-cap*.66); x.lineTo(X+aw/2,Y-cap*.76); x.closePath(); x.fillStyle=BEYAZ; x.fill();
+  var wy=Y-cap*.34; x.beginPath(); x.moveTo(X+aw*.16,wy); x.bezierCurveTo(X+aw*.34,wy-cap*.12,X+aw*.5,wy+cap*.12,X+aw*.66,wy); x.bezierCurveTo(X+aw*.76,wy-cap*.07,X+aw*.84,wy-cap*.05,X+aw*.9,wy-cap*.01); x.strokeStyle=BUZ; x.lineWidth=lw*.6; x.stroke();
+  f(700,px,-.5); x.textAlign='left'; x.fillStyle=BEYAZ; x.fillText('rtvin',X+aw+px*.04,Y);
+  var tw=x.measureText('rtvin').width; f(400,px,-.5); x.fillStyle='rgba(244,248,245,.72)'; x.fillText('rehber',X+aw+px*.04+tw,Y);
   x.restore();
 }
 function havaIkon(tur,X,Y,s){
@@ -186,7 +199,7 @@ function havaIkon(tur,X,Y,s){
   function gunes(cx,cy,r,yari){ x.beginPath(); x.arc(cx,cy,r,0,Math.PI*2); x.stroke(); for(var i=0;i<8;i++){ var a=i*Math.PI/4; if(yari&&a>0.2&&a<2.9) continue; cizgi(cx+Math.cos(a)*(r+10),cy+Math.sin(a)*(r+10),cx+Math.cos(a)*(r+18),cy+Math.sin(a)*(r+18),AMBER,6); } }
   function bulut(ox,oy,dolgu){ x.beginPath(); x.moveTo(ox+20,oy+66); x.arc(ox+28,oy+52,15,Math.PI*.55,Math.PI*1.45); x.arc(ox+52,oy+40,22,Math.PI*1.12,Math.PI*1.92); x.arc(ox+74,oy+54,13,Math.PI*1.45,Math.PI*.5); x.closePath(); if(dolgu){ x.fillStyle=dolgu; x.fill(); } x.stroke(); }
   if(tur==='gunes'){ x.strokeStyle=AMBER; gunes(50,50,20); }
-  else if(tur==='parcali'){ x.strokeStyle=AMBER; gunes(34,32,14,true); x.strokeStyle=BEYAZ; bulut(12,26,'rgba(9,18,13,1)'); }
+  else if(tur==='parcali'){ x.strokeStyle=AMBER; gunes(34,32,14,true); x.strokeStyle=BEYAZ; bulut(12,26,'rgba(12,26,56,1)'); }
   else { bulut(0,6);
     if(tur==='yagmur') [32,52,72].forEach(function(c){ cizgi(c,84,c-7,100,BUZ,6); });
     if(tur==='kar') [32,52,72].forEach(function(c){ x.beginPath(); x.arc(c,92,4.5,0,Math.PI*2); x.fillStyle=BUZ; x.fill(); }); }
@@ -199,20 +212,23 @@ function nabizIkon(X,Y){ x.save(); x.translate(X,Y); x.strokeStyle=AMBER; x.line
 function ciz(){
   x.save(); x.clearRect(0,0,W,H); x.textBaseline='alphabetic';
   // zemin: fotoğraf üst %80'e oturur, altı koyu zemine erir
+  x.fillStyle='#0a1630'; x.fillRect(0,0,W,H);
   if(FOTO){ var s=Math.max(W/FOTO.width,1180/FOTO.height), fw=FOTO.width*s, fh=FOTO.height*s, odak=FOTO_ODAK[FOTO.src.split('/').pop()]||.5;
-    var dy=Math.min(0,Math.max(1180-fh,540-odak*fh)); x.drawImage(FOTO,(W-fw)/2,dy,fw,fh); }
-  else { x.fillStyle='#22403a'; x.fillRect(0,0,W,H); }
-  x.globalCompositeOperation='multiply'; x.fillStyle='#8aa293'; x.fillRect(0,0,W,H); x.globalCompositeOperation='source-over';
+    var dy=Math.min(0,Math.max(1000-fh,470-odak*fh));
+    x.filter='contrast(1.08) saturate(1.12) brightness(.96)'; x.drawImage(FOTO,(W-fw)/2,dy,fw,fh); x.filter='none'; }
+  x.globalCompositeOperation='multiply'; x.fillStyle='#a3b0cc'; x.fillRect(0,0,W,1200); x.globalCompositeOperation='source-over';
   var g=x.createLinearGradient(0,0,0,H);
-  g.addColorStop(0,'rgba(7,15,11,.7)'); g.addColorStop(.15,'rgba(7,15,11,.08)'); g.addColorStop(.3,'rgba(7,15,11,.05)');
-  g.addColorStop(.42,'rgba(7,15,11,.62)'); g.addColorStop(.54,'rgba(7,15,11,.95)'); g.addColorStop(.6,'rgba(7,15,11,1)'); g.addColorStop(1,'rgba(7,15,11,1)');
+  g.addColorStop(0,'rgba(10,22,48,.72)'); g.addColorStop(.14,'rgba(10,22,48,.12)'); g.addColorStop(.3,'rgba(10,22,48,.04)');
+  g.addColorStop(.31,'rgba(10,22,48,.3)'); g.addColorStop(.4,'rgba(10,22,48,.72)'); g.addColorStop(.48,'rgba(10,22,48,.94)'); g.addColorStop(.535,'rgba(10,22,48,1)'); g.addColorStop(1,'rgba(10,22,48,1)');
   x.fillStyle=g; x.fillRect(0,0,W,H);
 
   // üst: logo + tarih
-  logo(M-8,148,84);
-  f(700,46,-.5); yaz('artvin',M+92,206); var aw=x.measureText('artvin').width; f(400,46,-.5); yaz('rehberi',M+92+aw+11,206,DIM);
-  f(700,40,-.3); yaz(bugun.getDate()+' '+AY[bugun.getMonth()],W-M,190,BEYAZ,'right');
-  f(400,30,0); yaz(GUN[bugun.getDay()],W-M,230,DIM,'right');
+  logo(M,212,64);
+  f(700,40,-.3); yaz(bugun.getDate()+' '+AY[bugun.getMonth()],W-M,192,BEYAZ,'right');
+  f(400,30,0); yaz(GUN[bugun.getDay()],W-M,232,DIM,'right');
+  if(V.dogus){ f(600,30,0); var dt='Gün doğumu '+V.dogus; var dw=x.measureText(dt).width; yaz(dt,W-M,280,BEYAZ,'right');
+    x.save(); x.translate(W-M-dw-56,252); x.strokeStyle=AMBER; x.lineWidth=4; x.lineCap='round';
+    x.beginPath(); x.arc(22,26,12,Math.PI,0); x.stroke(); cizgi(2,27,42,27,AMBER,4); cizgi(22,4,22,8,AMBER,4); cizgi(6,12,9,15,AMBER,4); cizgi(38,12,35,15,AMBER,4); x.restore(); }
 
   var y=860;
   f(600,28,5); yaz('BUGÜN ARTVİN',M,y-148,AMBER);
@@ -233,17 +249,22 @@ function ciz(){
     f(600,44,-.5); yaz('Hava tahmini şu an alınamadı',M,y+40,DIM); y+=90;
   }
 
-  // kar çizgisi cetveli
+  // kar çizgisi cetveli: ölçek en az 2.000 m, kar çizgisi daha yüksekse en üst o olur
   if(GOSTER.kar&&V.kar!=null){
-    var cx=W-M-4, ust=760, alt=1250, ry=function(m){ return alt-(Math.min(3000,m)/3000)*(alt-ust); };
+    var cx=W-M-4, ust=780, alt=1250, tavan=Math.max(2000,Math.min(V.kar,3000)), taban=300;
+    var ry=function(m){ return alt-((Math.max(taban,Math.min(tavan,m))-taban)/(tavan-taban))*(alt-ust); };
     var karY=ry(V.kar);
     cizgi(cx,ust,cx,alt,'rgba(244,248,245,.3)',3);
-    if(V.kar<3000){ x.fillStyle=BUZ; kutu(cx-6,ust,12,karY-ust,6); x.fill(); }
-    [[MERKEZ_RAKIM,'Merkez'],[1250,'Kafkasör'],[1850,'Macahel'],[2400,'Sahara']].forEach(function(t){
-      var ty=ry(t[0]), karli=t[0]>=V.kar;
-      cizgi(cx-18,ty,cx-8,ty,karli?BUZ:'rgba(244,248,245,.5)',3);
-      f(karli?600:400,26,0); yaz(t[1],cx-28,ty+9,karli?BUZ:SOLUK,'right');
+    if(V.kar<3000){ x.fillStyle=BUZ; kutu(cx-6,ust,12,Math.max(6,karY-ust),6); x.fill(); }
+    YERLER.forEach(function(t){
+      var y1=ry(t.b), y0=ry(t.a), karli=t.a>=V.kar, kism=!karli&&t.b>=V.kar, renk=karli||kism?BUZ:'rgba(244,248,245,.55)';
+      if(t.b>t.a){ x.fillStyle=renk; kutu(cx-22,y1,10,Math.max(4,y0-y1),5); x.fill(); } else cizgi(cx-22,y0,cx-10,y0,renk,4);
+      var ly=(y0+y1)/2;
+      f(karli||kism?700:600,27,0); yaz(t.ad,cx-36,ly+2,karli||kism?BUZ:BEYAZ,'right');
+      f(400,22,0); yaz(t.a===t.b?trs(t.a)+' m':trs(t.a)+'–'+trs(t.b)+' m',cx-36,ly+28,karli||kism?'rgba(191,230,255,.8)':SOLUK,'right');
     });
+    // kar çizgisi işareti
+    if(V.kar<3000&&V.kar>taban){ x.beginPath(); x.moveTo(cx+10,karY); x.lineTo(cx+22,karY-9); x.lineTo(cx+22,karY+9); x.closePath(); x.fillStyle=BUZ; x.fill(); }
     f(600,22,4); yaz('KAR ÇİZGİSİ',cx+6,ust-62,BUZ,'right');
     f(700,46,-1); yaz(V.kar>=3000?'3.000 m üstü':'~'+trs(V.kar)+' m',cx+6,ust-18,BEYAZ,'right');
   }
@@ -259,7 +280,7 @@ function ciz(){
   }
   satirlar.forEach(function(s,i){
     var sy=ay+i*116;
-    cizgi(M,sy,W-M,sy,'rgba(244,248,245,.14)',2);
+    cizgi(M,sy,W-M,sy,'rgba(244,248,245,.16)',2);
     if(s[0]==='ecz') eczIkon(M,sy+32); else nabizIkon(M,sy+38);
     f(400,28,0); yaz(s[1],M+86,sy+50,DIM);
     f(700,44,-.5); var t=s[2]; while(x.measureText(t).width>W-M*2-86&&t.length>4) t=t.slice(0,-2)+'…'; yaz(t,M+86,sy+98);
@@ -267,8 +288,10 @@ function ciz(){
   if(satirlar.length){ var son=ay+satirlar.length*116; cizgi(M,son,W-M,son,'rgba(244,248,245,.14)',2); }
 
   // bağlantı alanı: Instagram bağlantı çıkartması bunun üstüne
-  var by=Math.max(ay+satirlar.length*116+62,1500);
-  f(400,28,0); yaz('Günün nabzına katıl',W/2,by,DIM,'center');
+  var by=Math.max(ay+satirlar.length*116+(($('paylasim').value||'').trim()?104:62),1500);
+  var pb=($('paylasim').value||'').trim();
+  if(pb){ f(600,24,4); yaz('BUGÜN SİTEDE',W/2,by-44,AMBER,'center'); f(700,38,-.3); var pt=pb; while(x.measureText(pt).width>W-M*2&&pt.length>4) pt=pt.slice(0,-2)+'…'; yaz(pt,W/2,by,BEYAZ,'center'); }
+  else { f(400,28,0); yaz('Günün nabzına katıl',W/2,by,DIM,'center'); }
   f(700,38,0); var u='artvinrehber.com', uw=x.measureText(u).width+96;
   kutu((W-uw)/2,by+22,uw,82,41); x.strokeStyle=AMBER; x.lineWidth=3; x.stroke();
   yaz(u,W/2,by+76,BEYAZ,'center');
@@ -277,6 +300,8 @@ function ciz(){
 
 /* ═════════ arayüz ═════════ */
 var e0=ls('storyEczane'); if(e0){ try{ var o=JSON.parse(e0); if(o.g===BUGUN) $('eczane').value=o.a; }catch(e){} }
+var p0=ls('storyPaylasim'); if(p0){ try{ var q=JSON.parse(p0); if(q.g===BUGUN) $('paylasim').value=q.a; }catch(e){} }
+$('paylasim').addEventListener('input',function(){ ls('storyPaylasim',JSON.stringify({g:BUGUN,a:this.value})); ciz(); });
 $('eczane').addEventListener('input',function(){ ls('storyEczane',JSON.stringify({g:BUGUN,a:this.value})); ciz(); });
 [].forEach.call(document.querySelectorAll('[data-b]'),function(c){ c.addEventListener('change',function(){ GOSTER[c.getAttribute('data-b')]=c.checked; ciz(); }); });
 function fotoAktif(b){ [].forEach.call(document.querySelectorAll('#fotoSec button'),function(z){ z.classList.toggle('on',z===b); }); }
@@ -300,7 +325,7 @@ function aciklama(){
 var fontP=Promise.all(['400','600','700'].map(function(w){ return document.fonts?document.fonts.load(w+' 40px Bricolage','ğüşıöçİ°'):null; }));
 Promise.race([Promise.all([havaP,nabizP]),new Promise(function(ok){setTimeout(ok,8000);})]).then(function(){
   var a=bugun.getMonth(), kis=(a>=11||a<=2)||(V.kar!=null&&V.kar<=1000);
-  return Promise.all([foto(kis?'/kis-merkez-panorama.jpg':'/ilce-foto-merkez.jpg'),fontP]);
+  return Promise.all([foto(kis?'/kis-merkez-panorama.jpg':'/story-arka-merkez.jpg'),fontP]);
 }).then(function(r){ if(!fotoSecildi) FOTO=r[0]; ciz(); aciklama(); var y=$('yuk'); if(y) y.remove(); });
 })();
 </script>
