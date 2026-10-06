@@ -54,6 +54,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <label for="eczane">Bugünkü nöbetçi eczane · Artvin Merkez</label>
     <input type="text" id="eczane" maxlength="34" placeholder="Örn: Akın Eczanesi" autocomplete="off">
     <input type="text" id="cadde" maxlength="30" placeholder="Cadde · örn: Hastane Caddesi" autocomplete="off" style="margin-top:8px">
+    <small id="nobetNot" style="color:#bfe6ff"></small>
     <small>Nöbetçiyi <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener">buradan kontrol et</a>. Boş bırakırsan story'de eczane satırı çıkmaz.</small>
   </div>
 
@@ -288,6 +289,13 @@ function ciz(){
 
 /* ═════════ arayüz ═════════ */
 var e0=ls('storyEczane'); if(e0){ try{ var o=JSON.parse(e0); if(o.g===BUGUN){ $('eczane').value=o.a||''; $('cadde').value=o.c||''; } }catch(e){} }
+// nöbet listesi: o günün kaydı varsa ve kutular boşsa kendiliğinden doldur
+fetch('/nobet-eczane.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+  var k=d&&d.gunler&&d.gunler[BUGUN]; if(!k) return;
+  if(!$('eczane').value) $('eczane').value=k.ad||''; if(!$('cadde').value) $('cadde').value=k.cadde||'';
+  var n=document.getElementById('nobetNot'); if(n) n.textContent='✓ Bugünün nöbetçisi listeden otomatik geldi. Değiştirmen gerekirse üzerine yazabilirsin.';
+  ciz();
+}).catch(function(){});
 function eczKaydet(){ ls('storyEczane',JSON.stringify({g:BUGUN,a:$('eczane').value,c:$('cadde').value})); ciz(); }
 $('cadde').addEventListener('input',eczKaydet);
 $('eczane').addEventListener('input',eczKaydet);
