@@ -1,1 +1,160 @@
-{"aciklama":"Artvin Merkez nöbetçi eczane listesi. Anahtar: YYYY-AA-GG. Her ay eczacı odası listesinden güncellenir.","gunler":{}}
+{
+"aciklama": "Artvin Merkez nöbetçi eczane listesi. Anahtar: YYYY-AA-GG. Her ay eczacı odası listesinden güncellenir.",
+"gunler": {
+"2026-10-01": {
+"ad": "Meltem Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 33 08"
+},
+"2026-10-02": {
+"ad": "Ömer Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 60 66"
+},
+"2026-10-03": {
+"ad": "Demir Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 66 92"
+},
+"2026-10-04": {
+"ad": "Ozan Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 31 45"
+},
+"2026-10-05": {
+"ad": "Sağlık Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 63 34"
+},
+"2026-10-06": {
+"ad": "Livane Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 75 65"
+},
+"2026-10-07": {
+"ad": "Çamlıca Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 32 42"
+},
+"2026-10-08": {
+"ad": "Akın Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 49 40"
+},
+"2026-10-09": {
+"ad": "Aylin Keskin Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 10 15"
+},
+"2026-10-10": {
+"ad": "Ömür Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 77 88"
+},
+"2026-10-11": {
+"ad": "Yağmur Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 46 76"
+},
+"2026-10-12": {
+"ad": "Umut Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 93 70"
+},
+"2026-10-13": {
+"ad": "Nurdeniz Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 15 10"
+},
+"2026-10-14": {
+"ad": "Meltem Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 33 08"
+},
+"2026-10-15": {
+"ad": "Ömer Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 60 66"
+},
+"2026-10-16": {
+"ad": "Demir Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 66 92"
+},
+"2026-10-17": {
+"ad": "Ozan Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 31 45"
+},
+"2026-10-18": {
+"ad": "Sağlık Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 63 34"
+},
+"2026-10-19": {
+"ad": "Livane Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 75 65"
+},
+"2026-10-20": {
+"ad": "Çamlıca Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 32 42"
+},
+"2026-10-21": {
+"ad": "Akın Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 49 40"
+},
+"2026-10-22": {
+"ad": "Aylin Keskin Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 10 15"
+},
+"2026-10-23": {
+"ad": "Ömür Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 77 88"
+},
+"2026-10-24": {
+"ad": "Yağmur Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 46 76"
+},
+"2026-10-25": {
+"ad": "Umut Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 93 70"
+},
+"2026-10-26": {
+"ad": "Nurdeniz Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 15 10"
+},
+"2026-10-27": {
+"ad": "Meltem Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 33 08"
+},
+"2026-10-28": {
+"ad": "Ömer Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 60 66"
+},
+"2026-10-29": {
+"ad": "Akın Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 49 40"
+},
+"2026-10-30": {
+"ad": "Ozan Eczanesi",
+"saat": "18:00–08:00",
+"tel": "0466 212 31 45"
+},
+"2026-10-31": {
+"ad": "Sağlık Eczanesi",
+"saat": "08:00–08:00",
+"tel": "0466 212 63 34"
+}
+}
+}

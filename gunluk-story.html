@@ -53,7 +53,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
   <div class="alan">
     <label for="eczane">Bugünkü nöbetçi eczane · Artvin Merkez</label>
     <input type="text" id="eczane" maxlength="34" placeholder="Örn: Akın Eczanesi" autocomplete="off">
-    <input type="text" id="cadde" maxlength="30" placeholder="Cadde · örn: Hastane Caddesi" autocomplete="off" style="margin-top:8px">
+    <input type="text" id="cadde" maxlength="30" placeholder="Cadde (isteğe bağlı) · örn: Hastane Caddesi" autocomplete="off" style="margin-top:8px">
     <small id="nobetNot" style="color:#bfe6ff"></small>
     <small>Nöbetçiyi <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener">buradan kontrol et</a>. Boş bırakırsan story'de eczane satırı çıkmaz.</small>
   </div>
@@ -264,7 +264,8 @@ function ciz(){
   // alt satırlar
   var ay=Math.max(y+30,1290);
   var ec=($('eczane').value||'').trim(), satirlar=[];
-  var cd=($('cadde').value||'').trim(); if(GOSTER.eczane&&ec) satirlar.push(['ecz','Nöbetçi eczane · '+(cd||'merkez'),ec]);
+  var cd=($('cadde').value||'').trim(), nb=V.nobet&&V.nobet.ad===ec?V.nobet:null;
+  if(GOSTER.eczane&&ec) satirlar.push(['ecz',['Nöbetçi eczane',cd||(nb?nb.saat:'merkez')].concat(nb&&nb.tel?[nb.tel]:[]).join(' · '),ec]);
   if(GOSTER.nabiz){
     var n=V.nabiz, top=n?n[1]+n[2]+n[3]+n[4]:0, AD={4:'Harika',3:'Keyifli',2:'Orta şekerli',1:'Can sıkıcı'};
     if(top>=5){ var en=[4,3,2,1].sort(function(a,b){return n[b]-n[a]||b-a;})[0]; satirlar.push(['nbz','Dün Artvin\'in nabzı · '+trs(top)+' kişi',AD[en]+' · %'+Math.round(n[en]/top*100)]); }
@@ -291,7 +292,7 @@ function ciz(){
 var e0=ls('storyEczane'); if(e0){ try{ var o=JSON.parse(e0); if(o.g===BUGUN){ $('eczane').value=o.a||''; $('cadde').value=o.c||''; } }catch(e){} }
 // nöbet listesi: o günün kaydı varsa ve kutular boşsa kendiliğinden doldur
 fetch('/nobet-eczane.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
-  var k=d&&d.gunler&&d.gunler[BUGUN]; if(!k) return;
+  var k=d&&d.gunler&&d.gunler[BUGUN]; if(!k) return; V.nobet=k;
   if(!$('eczane').value) $('eczane').value=k.ad||''; if(!$('cadde').value) $('cadde').value=k.cadde||'';
   var n=document.getElementById('nobetNot'); if(n) n.textContent='✓ Bugünün nöbetçisi listeden otomatik geldi. Değiştirmen gerekirse üzerine yazabilirsin.';
   ciz();
