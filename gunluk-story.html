@@ -9,6 +9,8 @@
 <style>
 @font-face{font-family:'Bricolage';src:url('/fonts/bricolage-latin-ext.woff2') format('woff2');font-weight:200 800;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Bricolage';src:url('/fonts/bricolage-latin.woff2') format('woff2');font-weight:200 800;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument';font-style:italic;src:url('/fonts/instrument-italic-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument';font-style:italic;src:url('/fonts/instrument-italic-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
 :root{--bg:#0a1630;--yuzey:#13213f;--cizgi:rgba(236,244,239,.13);--yazi:#ecf4ef;--dim:rgba(236,244,239,.6);--amber:#f0b84a;--buz:#bfe6ff}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sans-serif;min-height:100vh;padding:20px 16px 48px}
@@ -333,9 +335,10 @@ function ciz(){
 
   // bağlantı alanı: Instagram bağlantı çıkartması bunun üstüne
   var by=1772;   // en alt: bağlantı çıkartması için
-  f(700,38,0); var u='artvinrehber.com', uw=x.measureText(u).width+96;
-  kutu((W-uw)/2,by+22,uw,82,41); x.strokeStyle=AMBER; x.lineWidth=3; x.stroke();
-  yaz(u,W/2,by+76,BEYAZ,'center');
+  f(700,46,1); var u='www.artvinrehber.com', uw=x.measureText(u).width; yaz(u,W/2,by+46,BEYAZ,'center');
+  // alt satır: italik, adresle aynı genişlikte
+  var alt='Artvin\'in dijital rehberi', fs=40; x.letterSpacing='0px'; x.font='italic 400 '+fs+'px Instrument, Georgia, serif';
+  fs=fs*uw/x.measureText(alt).width; x.font='italic 400 '+fs+'px Instrument, Georgia, serif'; x.fillStyle=AMBER; x.textAlign='center'; x.fillText(alt,W/2,by+46+fs*1.05);
   x.restore();
 }
 
@@ -371,7 +374,7 @@ function aciklama(){
   t+=' Kaynak: Open-Meteo.';
   $('veriAciklama').innerHTML=t;
 }
-var fontP=Promise.all(['400','600','700'].map(function(w){ return document.fonts?document.fonts.load(w+' 40px Bricolage','ğüşıöçİ°'):null; }));
+var fontP=Promise.all(['400','600','700'].map(function(w){ return document.fonts?document.fonts.load(w+' 40px Bricolage','ğüşıöçİ°'):null; }).concat([document.fonts?document.fonts.load('italic 400 40px Instrument','Artvin\'in dijital rehberi'):null]));
 Promise.race([Promise.all([havaP,nabizP]),new Promise(function(ok){setTimeout(ok,8000);})]).then(function(){
   var a=bugun.getMonth(), kis=(a>=11||a<=2)||(V.kar!=null&&V.kar<=1000);
   return Promise.all([foto(kis?'/kis-merkez-panorama.jpg':'/story-arka-merkez.jpg'),fontP]);
