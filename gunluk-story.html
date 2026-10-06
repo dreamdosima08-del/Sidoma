@@ -53,20 +53,15 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
   <div class="alan">
     <label for="eczane">Bugünkü nöbetçi eczane · Artvin Merkez</label>
     <input type="text" id="eczane" maxlength="34" placeholder="Örn: Akın Eczanesi" autocomplete="off">
+    <input type="text" id="cadde" maxlength="30" placeholder="Cadde · örn: Hastane Caddesi" autocomplete="off" style="margin-top:8px">
     <small>Nöbetçiyi <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener">buradan kontrol et</a>. Boş bırakırsan story'de eczane satırı çıkmaz.</small>
-  </div>
-
-  <div class="alan">
-    <label for="paylasim">Günün paylaşımı (en alttaki bağlantı)</label>
-    <input type="text" id="paylasim" maxlength="46" placeholder="Örn: Kafkasör'e kar yağdı mı? Canlı kar çizgisi">
-    <small>Bugün siteden paylaşacağın sayfanın kısa başlığı. Instagram'da bağlantı çıkartmasıyla o sayfanın adresini ekle. Boş kalırsa "Günün nabzına katıl" yazar.</small>
   </div>
 
   <div class="alan">
     <span>Story'de görünsün</span>
     <div class="secim">
       <label><input type="checkbox" data-b="hava" checked> Hava</label>
-      <label><input type="checkbox" data-b="kar" checked> Kar çizgisi</label>
+      <label><input type="checkbox" data-b="kar" checked> Kar seviyesi</label>
       <label><input type="checkbox" data-b="eczane" checked> Eczane</label>
       <label><input type="checkbox" data-b="nabiz" checked> Nabız</label>
     </div>
@@ -102,9 +97,9 @@ var AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','E
 var GUN=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 var bugun=new Date(), dun=new Date(); dun.setDate(dun.getDate()-1);
 var BUGUN=gs(bugun);
-var V={hava:null,kar:null,t850:null,nabiz:null,dogus:null}, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
-var MERKEZ_RAKIM=500;
-var YERLER=[{ad:'Merkez',a:500,b:500},{ad:'Katrevan',a:800,b:800},{ad:'Kafkasör',a:1250,b:1400},{ad:'Mersivan',a:1800,b:1900}];
+var V={hava:null,kar:null,t850:null,nabiz:null,dogus:null,yuzde:null,yIlk:null}, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
+var MERKEZ_RAKIM=550;
+var YERLER=[{ad:'Merkez',a:550,b:550},{ad:'Katrevan',a:800,b:800},{ad:'Kafkasör',a:1250,b:1400},{ad:'Mersivan',a:1800,b:1900}];
 var FOTO_ODAK={'story-arka-merkez.jpg':.6,'ilce-foto-merkez.jpg':.74,'kis-merkez-panorama.jpg':.5}; // şehrin fotoğraftaki dikey yeri
 
 /* ═════════ HAVA: üç modelin ortak görüşü ═════════
@@ -132,38 +127,33 @@ function havaHesap(d,fl){
   });
   if(!mx.length) return null;
   var r={mx:Math.round(ortanca(mx)), mn:Math.round(ortanca(mn)), modeller:mods.map(function(m){return MAD[m];}), yagisli:yagisli, n:mods.length, mm:ortanca(toplam)};
-  // merkezde (550 m) kar ancak kar çizgisi merkeze inerse ya da modeller kar gösterirse
+  // merkezde (550 m) kar ancak kar seviyesi merkeze inerse ya da modeller kar gösterirse
   var karMerkez=(fl!=null&&fl<=MERKEZ_RAKIM)||karSaat>=2*mods.length;
   var tur=karMerkez?'kar':'yağmur';
-  if(yagisli>=2){
-    var ilk=ilkSaat.length?Math.round(ortanca(ilkSaat)):null;
-    r.durum=tur==='kar'?'kar':'yagmur';
-    r.baslik=(tur==='kar'?'Kar':'Yağmur')+' ihtimali var';
-    var d0=ilk!=null?dilim(ilk):'gün içinde';
-    r.metin=d0.charAt(0).toUpperCase()+d0.slice(1)+' '+tur+' ihtimali görünüyor'+(r.mm>=10?', zaman zaman kuvvetli olabilir':'')+'.';
-  } else if(yagisli===1){
-    r.durum='bulut'; r.baslik='Bulutlu bir gün';
-    r.metin='Hafif '+tur+' ihtimali düşük görünüyor.';
-  } else {
-    var bulut=ortanca(mods.map(function(m){ var C=h['cloud_cover_'+m]||[]; return ortanca(gunduz.map(function(i){return C[i];})); }));
-    if(bulut==null) bulut=50;
-    r.durum=bulut<30?'gunes':bulut<70?'parcali':'bulut';
-    r.baslik=bulut<30?'Güneşli bir gün':bulut<70?'Parçalı bulutlu':'Bulutlu, yağışsız';
-    r.metin='Gün boyu yağış görünmüyor.';
-  }
+  var bulut=ortanca(mods.map(function(m){ var C=h['cloud_cover_'+m]||[]; return ortanca(gunduz.map(function(i){return C[i];})); })); if(bulut==null) bulut=50;
+  var p=V.yuzde, seviye;
+  if(p!=null) seviye=p>=60?3:p>=40?2:p>=20?1:0; else seviye=yagisli>=2?3:yagisli===1?1:0;
+  var ilk=V.yIlk!=null?V.yIlk:(ilkSaat.length?Math.round(ortanca(ilkSaat)):null), d0=ilk!=null?dilim(ilk):'gün içinde', D0=d0.charAt(0).toUpperCase()+d0.slice(1);
+  if(seviye===3){ r.durum=tur==='kar'?'kar':'yagmur'; r.baslik=(tur==='kar'?'Kar':'Yağmur')+' ihtimali yüksek'; r.metin=D0+' '+tur+' ihtimali yüksek görünüyor'+(r.mm>=10?', zaman zaman kuvvetli olabilir':'')+'.'; }
+  else if(seviye===2){ r.durum=tur==='kar'?'kar':'yagmur'; r.baslik=(tur==='kar'?'Kar':'Yağmur')+' ihtimali var'; r.metin=D0+' yer yer '+tur+' ihtimali var.'; }
+  else if(seviye===1){ r.durum=bulut<60?'parcali':'bulut'; r.baslik=bulut<60?'Parçalı bulutlu':'Bulutlu bir gün'; r.metin='Hafif '+tur+' ihtimali düşük görünüyor.'; }
+  else { r.durum=bulut<30?'gunes':bulut<70?'parcali':'bulut'; r.baslik=bulut<30?'Güneşli bir gün':bulut<70?'Parçalı bulutlu':'Bulutlu, yağışsız'; r.metin='Gün boyu yağış görünmüyor.'; }
   if(r.mn<=2) r.metin+=' Sabah ayaz olabilir, sıkı giyinmekte fayda var.';
   else if(r.mn<=9) r.metin+=' Sabah ve akşam serin.';
   else if(r.mx>=30) r.metin+=' Öğle saatleri sıcak geçebilir.';
   return r;
 }
 var BASE='https://api.open-meteo.com/v1/forecast?latitude=41.1828&longitude=41.8183&timezone=Europe%2FIstanbul&forecast_days=2';
-var flP=fetch(BASE+'&hourly=freezing_level_height,temperature_850hPa&current=temperature_2m&daily=sunrise').then(function(r){return r.json();}).then(function(d){
+var flP=fetch(BASE+'&hourly=freezing_level_height,temperature_850hPa,precipitation_probability&current=temperature_2m&daily=sunrise').then(function(r){return r.json();}).then(function(d){
   if(!d||!d.hourly||!d.current) return;
   var fl=d.hourly.freezing_level_height, t8=d.hourly.temperature_850hPa||[], i0=Math.max(0,d.hourly.time.indexOf(d.current.time.slice(0,13)+':00')), mf=Infinity, m8=Infinity;
   for(var i=i0;i<Math.min(fl.length,i0+24);i++){ if(fl[i]!=null&&fl[i]<mf) mf=fl[i]; if(t8[i]!=null&&t8[i]<m8) m8=t8[i]; }
   if(isFinite(mf)) V.kar=Math.max(0,Math.round((mf-300)/50)*50);
   if(isFinite(m8)) V.t850=Math.round(m8);
   if(d.daily&&d.daily.sunrise&&d.daily.sunrise[1]) V.dogus=d.daily.sunrise[1].slice(11,16);
+  var pp=d.hourly.precipitation_probability||[], pm=null, pIlk=null;
+  d.hourly.time.forEach(function(t,i){ var hh=+t.slice(11,13); if(t.slice(0,10)===BUGUN&&hh>=7&&hh<=22&&pp[i]!=null){ if(pm==null||pp[i]>pm) pm=pp[i]; if(pIlk==null&&pp[i]>=40) pIlk=hh; } });
+  if(pm!=null){ V.yuzde=Math.round(pm/5)*5; V.yIlk=pIlk; }
 }).catch(function(){});
 var modP=fetch(BASE+'&hourly=temperature_2m,precipitation,snowfall,cloud_cover&models='+MODELLER.join(',')).then(function(r){return r.json();}).catch(function(){return null;});
 var havaP=Promise.all([flP,modP]).then(function(a){ var d=a[1]; if(d&&d.hourly) V.hava=havaHesap(d,V.kar); });
@@ -223,11 +213,11 @@ function ciz(){
   x.fillStyle=g; x.fillRect(0,0,W,H);
 
   // üst: logo + tarih
-  logo(M,212,64);
-  f(700,40,-.3); yaz(bugun.getDate()+' '+AY[bugun.getMonth()],W-M,192,BEYAZ,'right');
-  f(400,30,0); yaz(GUN[bugun.getDay()],W-M,232,DIM,'right');
-  if(V.dogus){ f(600,30,0); var dt='Gün doğumu '+V.dogus; var dw=x.measureText(dt).width; yaz(dt,W-M,280,BEYAZ,'right');
-    x.save(); x.translate(W-M-dw-56,252); x.strokeStyle=AMBER; x.lineWidth=4; x.lineCap='round';
+  logo(64,176,64);
+  f(700,40,-.3); yaz(bugun.getDate()+' '+AY[bugun.getMonth()],W-64,176,BEYAZ,'right');
+  f(400,30,0); yaz(GUN[bugun.getDay()],W-64,216,DIM,'right');
+  if(V.dogus){ f(600,30,0); var dt='Gün doğumu '+V.dogus; var dw=x.measureText(dt).width; yaz(dt,W-64,264,BEYAZ,'right');
+    x.save(); x.translate(W-64-dw-56,236); x.strokeStyle=AMBER; x.lineWidth=4; x.lineCap='round';
     x.beginPath(); x.arc(22,26,12,Math.PI,0); x.stroke(); cizgi(2,27,42,27,AMBER,4); cizgi(22,4,22,8,AMBER,4); cizgi(6,12,9,15,AMBER,4); cizgi(38,12,35,15,AMBER,4); x.restore(); }
 
   var y=860;
@@ -240,7 +230,8 @@ function ciz(){
     havaIkon(h.durum,M-6,y-58,118);
     f(700,220,-8); yaz(h.mx+'°',M+132,y+140);
     var tw=x.measureText(h.mx+'°').width;
-    f(400,32,0); yaz('en yüksek',M+150+tw,y+62,DIM); f(600,36,0); yaz('en düşük '+h.mn+'°',M+150+tw,y+110,BEYAZ);
+    f(400,32,0); yaz('en yüksek',M+150+tw,y+50,DIM); f(600,36,0); yaz('en düşük '+h.mn+'°',M+150+tw,y+96,BEYAZ);
+    if(V.yuzde!=null){ f(600,36,0); yaz('Yağış %'+V.yuzde,M+150+tw,y+142,V.yuzde>=40?BUZ:BEYAZ); }
     y+=226;
     f(700,58,-1); yaz(h.baslik,M,y);
     f(400,38,0); var sat=sar(h.metin,W-M*2-260); sat.forEach(function(s,i){ yaz(s,M,y+58+i*50,DIM); });
@@ -249,7 +240,7 @@ function ciz(){
     f(600,44,-.5); yaz('Hava tahmini şu an alınamadı',M,y+40,DIM); y+=90;
   }
 
-  // kar çizgisi cetveli: ölçek en az 2.000 m, kar çizgisi daha yüksekse en üst o olur
+  // kar seviyesi cetveli: ölçek en az 2.000 m, kar seviyesi daha yüksekse en üst o olur
   if(GOSTER.kar&&V.kar!=null){
     var cx=W-M-4, ust=780, alt=1250, tavan=Math.max(2000,Math.min(V.kar,3000)), taban=300;
     var ry=function(m){ return alt-((Math.max(taban,Math.min(tavan,m))-taban)/(tavan-taban))*(alt-ust); };
@@ -263,16 +254,16 @@ function ciz(){
       f(karli||kism?700:600,27,0); yaz(t.ad,cx-36,ly+2,karli||kism?BUZ:BEYAZ,'right');
       f(400,22,0); yaz(t.a===t.b?trs(t.a)+' m':trs(t.a)+'–'+trs(t.b)+' m',cx-36,ly+28,karli||kism?'rgba(191,230,255,.8)':SOLUK,'right');
     });
-    // kar çizgisi işareti
+    // kar seviyesi işareti
     if(V.kar<3000&&V.kar>taban){ x.beginPath(); x.moveTo(cx+10,karY); x.lineTo(cx+22,karY-9); x.lineTo(cx+22,karY+9); x.closePath(); x.fillStyle=BUZ; x.fill(); }
-    f(600,22,4); yaz('KAR ÇİZGİSİ',cx+6,ust-62,BUZ,'right');
+    f(600,22,4); yaz('KAR SEVİYESİ',cx+6,ust-62,BUZ,'right');
     f(700,46,-1); yaz(V.kar>=3000?'3.000 m üstü':'~'+trs(V.kar)+' m',cx+6,ust-18,BEYAZ,'right');
   }
 
   // alt satırlar
   var ay=Math.max(y+30,1290);
   var ec=($('eczane').value||'').trim(), satirlar=[];
-  if(GOSTER.eczane&&ec) satirlar.push(['ecz','Nöbetçi eczane · merkez',ec]);
+  var cd=($('cadde').value||'').trim(); if(GOSTER.eczane&&ec) satirlar.push(['ecz','Nöbetçi eczane · '+(cd||'merkez'),ec]);
   if(GOSTER.nabiz){
     var n=V.nabiz, top=n?n[1]+n[2]+n[3]+n[4]:0, AD={4:'Harika',3:'Keyifli',2:'Orta şekerli',1:'Can sıkıcı'};
     if(top>=5){ var en=[4,3,2,1].sort(function(a,b){return n[b]-n[a]||b-a;})[0]; satirlar.push(['nbz','Dün Artvin\'in nabzı · '+trs(top)+' kişi',AD[en]+' · %'+Math.round(n[en]/top*100)]); }
@@ -288,10 +279,7 @@ function ciz(){
   if(satirlar.length){ var son=ay+satirlar.length*116; cizgi(M,son,W-M,son,'rgba(244,248,245,.14)',2); }
 
   // bağlantı alanı: Instagram bağlantı çıkartması bunun üstüne
-  var by=Math.max(ay+satirlar.length*116+(($('paylasim').value||'').trim()?104:62),1500);
-  var pb=($('paylasim').value||'').trim();
-  if(pb){ f(600,24,4); yaz('BUGÜN SİTEDE',W/2,by-44,AMBER,'center'); f(700,38,-.3); var pt=pb; while(x.measureText(pt).width>W-M*2&&pt.length>4) pt=pt.slice(0,-2)+'…'; yaz(pt,W/2,by,BEYAZ,'center'); }
-  else { f(400,28,0); yaz('Günün nabzına katıl',W/2,by,DIM,'center'); }
+  var by=Math.max(ay+satirlar.length*116+40,1560);
   f(700,38,0); var u='artvinrehber.com', uw=x.measureText(u).width+96;
   kutu((W-uw)/2,by+22,uw,82,41); x.strokeStyle=AMBER; x.lineWidth=3; x.stroke();
   yaz(u,W/2,by+76,BEYAZ,'center');
@@ -299,10 +287,10 @@ function ciz(){
 }
 
 /* ═════════ arayüz ═════════ */
-var e0=ls('storyEczane'); if(e0){ try{ var o=JSON.parse(e0); if(o.g===BUGUN) $('eczane').value=o.a; }catch(e){} }
-var p0=ls('storyPaylasim'); if(p0){ try{ var q=JSON.parse(p0); if(q.g===BUGUN) $('paylasim').value=q.a; }catch(e){} }
-$('paylasim').addEventListener('input',function(){ ls('storyPaylasim',JSON.stringify({g:BUGUN,a:this.value})); ciz(); });
-$('eczane').addEventListener('input',function(){ ls('storyEczane',JSON.stringify({g:BUGUN,a:this.value})); ciz(); });
+var e0=ls('storyEczane'); if(e0){ try{ var o=JSON.parse(e0); if(o.g===BUGUN){ $('eczane').value=o.a||''; $('cadde').value=o.c||''; } }catch(e){} }
+function eczKaydet(){ ls('storyEczane',JSON.stringify({g:BUGUN,a:$('eczane').value,c:$('cadde').value})); ciz(); }
+$('cadde').addEventListener('input',eczKaydet);
+$('eczane').addEventListener('input',eczKaydet);
 [].forEach.call(document.querySelectorAll('[data-b]'),function(c){ c.addEventListener('change',function(){ GOSTER[c.getAttribute('data-b')]=c.checked; ciz(); }); });
 function fotoAktif(b){ [].forEach.call(document.querySelectorAll('#fotoSec button'),function(z){ z.classList.toggle('on',z===b); }); }
 [].forEach.call(document.querySelectorAll('[data-foto]'),function(b){ b.addEventListener('click',function(){ fotoSecildi=true; fotoAktif(b); foto(b.getAttribute('data-foto')).then(function(im){ FOTO=im; ciz(); }); }); });
@@ -316,9 +304,9 @@ $('paylas').addEventListener('click',function(){ blob().then(function(b){ var fl
 
 function aciklama(){
   var h=V.hava, t='';
-  if(h) t='Tahmin <b>'+h.modeller.join(', ')+'</b> modellerinden ayrı ayrı alınır. Yağış ancak en az iki model aynı şeyi söylüyorsa "bekleniyor" yazılır; bugün '+h.n+' modelden <b>'+h.yagisli+'</b> tanesi gündüz (07–22) 1 mm üstü yağış gösteriyor. Sıcaklıklar modellerin ortancasıdır.';
+  if(h) t='<b>Yağış yüzdesi</b>: bugün 07–22 arasındaki en yüksek saatlik yağış ihtimali'+(V.yuzde!=null?' (<b>%'+V.yuzde+'</b>)':'')+'. Metin bu yüzdeye göre yazılır: %20 altı "yağış görünmüyor", %20–39 "ihtimali düşük", %40–59 "ihtimali var", %60 ve üstü "ihtimali yüksek". <b>Sıcaklıklar</b> '+h.modeller.join(', ')+' modellerinin ortancasıdır; bugün '+h.n+' modelden '+h.yagisli+' tanesi gündüz 1 mm üstü yağış gösteriyor.';
   else t='<b>Hava tahmini alınamadı.</b> Story\'de "alınamadı" yazar, yanlış bilgi gösterilmez. Birkaç dakika sonra sayfayı yenile.';
-  if(V.kar!=null) t+=' Kar çizgisi: önümüzdeki 24 saatteki en düşük donma seviyesinin 300 m altı'+(V.t850!=null?' (850 hPa en düşük '+V.t850+'°C)':'')+'.';
+  if(V.kar!=null) t+=' Kar seviyesi: önümüzdeki 24 saatteki en düşük donma seviyesinin 300 m altı'+(V.t850!=null?' (850 hPa en düşük '+V.t850+'°C)':'')+'.';
   t+=' Kaynak: Open-Meteo.';
   $('veriAciklama').innerHTML=t;
 }
