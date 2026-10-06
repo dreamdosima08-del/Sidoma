@@ -225,6 +225,17 @@ function havaIkon(tur,X,Y,s){
   x.restore();
 }
 function eczIkon(X,Y){ x.save(); x.translate(X,Y); x.strokeStyle=AMBER; x.lineWidth=5; x.lineCap='round'; kutu(0,0,52,52,15); x.stroke(); cizgi(26,15,26,37,AMBER,6); cizgi(15,26,37,26,AMBER,6); x.restore(); }
+function yuzIkon(X,Y,m){ // kazanan ruh hali: çizgi yüz
+  x.save(); x.translate(X,Y); x.strokeStyle=AMBER; x.fillStyle=AMBER; x.lineWidth=5; x.lineCap='round';
+  x.beginPath(); x.arc(27,27,25,0,Math.PI*2); x.stroke();
+  x.beginPath(); x.arc(19,22,3.4,0,Math.PI*2); x.arc(35,22,3.4,0,Math.PI*2); x.fill();
+  x.beginPath();
+  if(m===4){ x.arc(27,29,11,0.1*Math.PI,0.9*Math.PI); }
+  else if(m===3){ x.arc(27,30,9,0.2*Math.PI,0.8*Math.PI); }
+  else if(m===2){ x.moveTo(18,36); x.lineTo(36,36); }
+  else { x.arc(27,44,9,1.2*Math.PI,1.8*Math.PI); }
+  x.stroke(); x.restore();
+}
 function nabizIkon(X,Y){ x.save(); x.translate(X,Y); x.strokeStyle=AMBER; x.lineWidth=5; x.lineCap='round'; x.lineJoin='round';
   x.beginPath(); x.moveTo(0,26); x.lineTo(12,26); x.lineTo(19,8); x.lineTo(29,44); x.lineTo(37,18); x.lineTo(42,26); x.lineTo(54,26); x.stroke(); x.restore(); }
 
@@ -253,7 +264,7 @@ function ciz(){
   f(600,28,5); yaz('BUGÜN ARTVİN',M,y-148,AMBER);
   var bd='', b=V.bulut;
   if(b){ if(b.yok) bd='alçakta bulut yok'; else if(MERKEZ_RAKIM<b.taban) bd='bulutların altında'; else if(b.tavan==null||MERKEZ_RAKIM<=b.tavan) bd='bulutların içinde'; else bd='bulutların üstünde'; }
-  f(400,32,0); yaz('Merkez · '+MERKEZ_RAKIM+' m'+(bd?' · '+bd:''),M,y-106,DIM);
+  f(400,32,0); yaz('Merkez · '+MERKEZ_RAKIM+' m',M,y-106,DIM);
 
   // hava
   if(GOSTER.hava&&V.hava){
@@ -295,26 +306,33 @@ function ciz(){
   }
 
   // alt satırlar
-  var ay=Math.max(y+18,1400);
+  var ay=Math.max(y+40,1450);
   var ec=($('eczane').value||'').trim(), satirlar=[];
   var cd=($('cadde').value||'').trim(), nb=V.nobet&&V.nobet.ad===ec?V.nobet:null;
   if(GOSTER.eczane&&ec) satirlar.push(['ecz',['Nöbetçi eczane',cd||(nb?nb.saat:'merkez')].concat(nb&&nb.tel?[nb.tel]:[]).join(' · '),ec]);
   if(GOSTER.nabiz){
     var n=V.nabiz, top=n?n[1]+n[2]+n[3]+n[4]:0, AD={4:'Harika',3:'Keyifli',2:'Orta şekerli',1:'Can sıkıcı'};
-    if(top>=5){ var en=[4,3,2,1].sort(function(a,b){return n[b]-n[a]||b-a;})[0]; satirlar.push(['nbz','Dün Artvin\'in nabzı · '+trs(top)+' kişi',AD[en]+' · %'+Math.round(n[en]/top*100)]); }
+    if(top>=5){ var en=[4,3,2,1].sort(function(a,b){return n[b]-n[a]||b-a;})[0]; satirlar.push(['nbz','Dün Artvin\'in nabzı · '+trs(top)+' kişi',AD[en]+' · %'+Math.round(n[en]/top*100),en,n,top]); }
     else satirlar.push(['nbz','Artvin\'in nabzı','Bugün Artvin nasıl? Sen söyle']);
   }
   satirlar.forEach(function(s,i){
-    var sy=ay+i*106;
+    var sy=ay+i*114;
     cizgi(M,sy,W-M,sy,'rgba(244,248,245,.16)',2);
-    if(s[0]==='ecz') eczIkon(M,sy+27); else nabizIkon(M,sy+33);
+    if(s[0]==='ecz') eczIkon(M,sy+27); else if(s[3]) yuzIkon(M,sy+26,s[3]); else nabizIkon(M,sy+33);
+    if(s[0]==='nbz'&&s[4]){ // ruh hali dağılımı: Harika → Can sıkıcı
+      var bw=250, bx=W-M-bw, byy=sy+40, RK={4:'#3ddb8a',3:'#6cc6c4',2:'#f0b84a',1:'#e8786d'}, xx=bx;
+      x.save(); kutu(bx,byy,bw,18,9); x.clip();
+      [4,3,2,1].forEach(function(m){ var w=bw*s[4][m]/s[5]; x.fillStyle=RK[m]; x.fillRect(xx,byy,w,18); xx+=w; });
+      x.restore();
+      f(400,22,0); yaz('Harika',bx,byy+46,'rgba(244,248,245,.55)'); yaz('Can sıkıcı',bx+bw,byy+46,'rgba(244,248,245,.55)','right');
+    }
     f(400,28,0); yaz(s[1],M+86,sy+45,DIM);
     f(700,44,-.5); var t=s[2]; while(x.measureText(t).width>W-M*2-86&&t.length>4) t=t.slice(0,-2)+'…'; yaz(t,M+86,sy+92);
   });
-  if(satirlar.length){ var son=ay+satirlar.length*106; cizgi(M,son,W-M,son,'rgba(244,248,245,.14)',2); }
+  if(satirlar.length){ var son=ay+satirlar.length*114; cizgi(M,son,W-M,son,'rgba(244,248,245,.14)',2); }
 
   // bağlantı alanı: Instagram bağlantı çıkartması bunun üstüne
-  var by=Math.max(ay+satirlar.length*106+28,1660);
+  var by=1772;   // en alt: bağlantı çıkartması için
   f(700,38,0); var u='artvinrehber.com', uw=x.measureText(u).width+96;
   kutu((W-uw)/2,by+22,uw,82,41); x.strokeStyle=AMBER; x.lineWidth=3; x.stroke();
   yaz(u,W/2,by+76,BEYAZ,'center');
