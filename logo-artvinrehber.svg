@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" role="img" aria-label="artvin rehberi">
+  <path d="M8 76 L37 30 L51 51 L66 20 L92 76" fill="none" stroke="#f0b84a" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M59 35 L66 20 L73 35 L66 31 Z" fill="#f4f8f5"/>
+  <path d="M8 90 C26 80 42 98 60 88 S86 82 92 86" fill="none" stroke="#bfe6ff" stroke-width="6" stroke-linecap="round"/>
+  <text x="110" y="72" font-family="Bricolage Grotesque, sans-serif" font-size="52" letter-spacing="-0.5"><tspan font-weight="700" fill="#f4f8f5">artvin</tspan><tspan font-weight="400" fill="#f4f8f5" fill-opacity=".68" dx="10">rehberi</tspan></text>
+</svg>
