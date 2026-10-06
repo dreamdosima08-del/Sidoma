@@ -221,6 +221,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
 @keyframes vurgu{50%{box-shadow:0 0 0 2px var(--gold)}}
 .yol-foto{position:relative;margin:.7rem 0 1rem;border-radius:16px;overflow:hidden;background:#1a2a22}
 .yol-foto img{display:block;width:100%;height:clamp(160px,48vw,270px);object-fit:cover}
+.yol-foto .yf-kaynak{position:absolute;top:.45rem;right:.5rem;font-size:.6rem;font-weight:600;color:rgba(255,255,255,.85);background:rgba(0,0,0,.45);padding:.15rem .45rem;border-radius:6px}
 .yol-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem .8rem .5rem;font-size:.72rem;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
 .yk{flex:none;width:46px;height:46px;border-radius:12px;object-fit:cover;background:#1a2a22}
 </style>
@@ -239,7 +240,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
   <header class="hero">
     <span class="canli"><span class="nokta"></span>Canlı · Halkın Bildirimleri</span>
     <h1>Artvin <span>Yol Durumu</span></h1>
-    <figure class="yol-foto"><img src="/yol-foto/artvin-erzurum-640.webp" srcset="/yol-foto/artvin-erzurum-640.webp 640w, /yol-foto/artvin-erzurum.webp 1200w" sizes="(max-width:660px) 100vw, 640px" width="1200" height="675" alt="Artvin–Erzurum yolu" fetchpriority="high" decoding="async"><figcaption>📍 Artvin–Erzurum yolu</figcaption></figure>
+    <figure class="yol-foto"><img src="/yol-foto/artvin-erzurum-640.webp" srcset="/yol-foto/artvin-erzurum-640.webp 640w, /yol-foto/artvin-erzurum.webp 1200w" sizes="(max-width:660px) 100vw, 640px" width="1200" height="675" alt="Artvin–Erzurum yolu" fetchpriority="high" decoding="async"><figcaption>📍 Artvin–Erzurum yolu</figcaption><span class="yf-kaynak">Görüntü: Google</span></figure>
     <p>Yol açık mı, kapalı mı? Heyelan, kar ve kaza bildirimlerini yolu kullananlardan anlık gör. Sen de gördüğünü 10 saniyede bildir.</p>
     <div class="ozet">
       <div class="oz k"><b id="sKapali">0</b><span>Kapalı</span></div>
