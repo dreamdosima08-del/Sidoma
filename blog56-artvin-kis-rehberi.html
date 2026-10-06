@@ -373,17 +373,17 @@ k.addEventListener('input',function(){ $('rakKonum').classList.remove('on'); rak
 $('rakYer').addEventListener('click',function(e){var b=e.target.closest('button[data-v]');if(!b)return;k.value=b.getAttribute('data-v');$('rakKonum').classList.remove('on');rak();});
 rak();
 /* Bugün: donma seviyesi (Open-Meteo) */
-fetch('https://api.open-meteo.com/v1/forecast?latitude=41.1828&longitude=41.8183&current=temperature_2m&hourly=freezing_level_height,precipitation_probability&forecast_days=2&timezone=Europe%2FIstanbul')
+fetch('https://api.open-meteo.com/v1/forecast?latitude=41.1828&longitude=41.8183&current=temperature_2m&hourly=freezing_level_height,precipitation_probability,temperature_850hPa&forecast_days=2&timezone=Europe%2FIstanbul')
 .then(function(r){return r.json();}).then(function(d){
   if(!d||!d.current||!d.hourly||typeof d.elevation!=='number') return;
-  var saat=d.hourly.time, fl=d.hourly.freezing_level_height, pp=d.hourly.precipitation_probability, now=d.current.time.slice(0,13);
+  var saat=d.hourly.time, fl=d.hourly.freezing_level_height, pp=d.hourly.precipitation_probability, t8=d.hourly.temperature_850hPa||[], min8=Infinity, now=d.current.time.slice(0,13);
   var i0=Math.max(0,saat.findIndex(function(t){return t.slice(0,13)===now;})), son=Math.min(saat.length,i0+24), minFL=Infinity, maxP=0;
-  for(var i=i0;i<son;i++){ if(fl[i]!=null&&fl[i]<minFL) minFL=fl[i]; if(pp[i]!=null&&pp[i]>maxP) maxP=pp[i]; }
+  for(var i=i0;i<son;i++){ if(fl[i]!=null&&fl[i]<minFL) minFL=fl[i]; if(pp[i]!=null&&pp[i]>maxP) maxP=pp[i]; if(t8[i]!=null&&t8[i]<min8) min8=t8[i]; }
   if(!isFinite(minFL)) return;
   KAR=Math.max(0,yuvarla(minFL-300));
   HV={t:d.current.temperature_2m, e:d.elevation};
   var kb=$('rakBugun'); kb.style.display='block';
-  kb.innerHTML='❄️ <b>Önümüzdeki 24 saat</b>: kar çizgisi en düşük <b>~'+tr(KAR)+' m</b>'+(KAR<=550?' — şehir merkezine kadar iniyor':KAR<=1000?' — Şavşat merkezi kar seviyesinde':'')+'. Yağış ihtimali en fazla <b>%'+maxP+'</b>.<small>Kaydırıcıdaki ❄ işareti bugünkü kar çizgisini gösterir. Yağış yoksa kar da yağmaz.</small>';
+  kb.innerHTML='❄️ <b>Önümüzdeki 24 saat</b>: kar çizgisi en düşük <b>~'+tr(KAR)+' m</b>'+(KAR<=550?' — şehir merkezine kadar iniyor':KAR<=1000?' — Şavşat merkezi kar seviyesinde':'')+'. Yağış ihtimali en fazla <b>%'+maxP+'</b>.'+(isFinite(min8)?'<br>🌡️ 850 hPa (~1.500 m) en düşük: <b>'+(Math.round(min8)>0?'+':'')+Math.round(min8)+'°C</b>':'')+'<small>Kaydırıcıdaki ❄ işareti bugünkü kar çizgisini gösterir. Yağış yoksa kar da yağmaz.</small>';
   var ci=$('karCizgi'); ci.style.display='block'; ci.style.left='calc(15px + '+(Math.min(3000,KAR)/3000)+' * (100% - 30px))';
   rak();
 }).catch(function(){});
