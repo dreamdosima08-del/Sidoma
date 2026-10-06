@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Günlük Story Üretici · Artvin Rehberi</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b1a12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b1a12;--kart:#13261b;--cizgi:rgba(255,255,255,.12);--yazi:#eef6f0;--dim:rgba(238,246,240,.62);--yesil:#3ddb8a;--altin:#f2c252}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--yazi);font-family:'Manrope',system-ui,sans-serif;min-height:100vh;padding:16px 16px 40px}
+.w{max-width:460px;margin:0 auto}
+h1{font-size:1.25rem;font-weight:800;margin:4px 0 2px}
+.alt{font-size:.85rem;color:var(--dim);margin-bottom:14px;line-height:1.5}
+.onizleme{position:relative;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 14px 40px rgba(0,0,0,.5);aspect-ratio:9/16}
+.onizleme canvas{display:block;width:100%;height:100%}
+.yukleniyor{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;color:var(--dim);background:#0b1a12}
+.kutu{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;padding:14px;margin-top:14px}
+.kutu label{display:block;font-size:.8rem;font-weight:800;margin-bottom:6px}
+.kutu input[type=text]{width:100%;padding:11px 12px;border-radius:11px;border:1px solid var(--cizgi);background:#0b1a12;color:#fff;font:inherit;font-size:.95rem}
+.kutu small{display:block;font-size:.75rem;color:var(--dim);margin-top:6px;line-height:1.45}
+.kutu small a{color:var(--yesil)}
+.sec{display:flex;flex-wrap:wrap;gap:8px}
+.sec label{display:inline-flex;align-items:center;gap:6px;margin:0;font-weight:700;font-size:.82rem;padding:7px 11px;border-radius:999px;border:1px solid var(--cizgi);cursor:pointer}
+.sec input{accent-color:var(--yesil)}
+.btnlar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.btn{font:inherit;font-weight:800;font-size:.95rem;padding:14px;border-radius:14px;border:0;cursor:pointer;color:#06140c;background:var(--yesil)}
+.btn.iki{background:transparent;color:var(--yazi);border:1px solid var(--cizgi)}
+.foto-btn{font:inherit;font-weight:700;font-size:.85rem;padding:9px 12px;border-radius:11px;border:1px solid var(--cizgi);background:transparent;color:var(--yazi);cursor:pointer}
+.ipucu{font-size:.78rem;color:var(--dim);line-height:1.5;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Günlük Story</h1>
+  <p class="alt">Hava, kar çizgisi ve nabız kendiliğinden gelir. Nöbetçi eczaneyi yaz, sonra paylaş.</p>
+
+  <div class="onizleme"><canvas id="cv" width="1080" height="1920"></canvas><div class="yukleniyor" id="yuk">Bugünün bilgileri alınıyor…</div></div>
+
+  <div class="btnlar">
+    <button class="btn" id="paylas">📤 Instagram'a gönder</button>
+    <button class="btn iki" id="indir">⬇️ İndir</button>
+  </div>
+
+  <div class="kutu">
+    <label for="eczane">💊 Bugünkü nöbetçi eczane (Artvin Merkez)</label>
+    <input type="text" id="eczane" maxlength="40" placeholder="Örn: Akın Eczanesi" autocomplete="off">
+    <small>Bugün kimin nöbetçi olduğuna <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener">buradan bak</a>, adını yaz. Boş bırakırsan story'de eczane kutusu çıkmaz.</small>
+  </div>
+
+  <div class="kutu">
+    <label>Story'de neler olsun?</label>
+    <div class="sec">
+      <label><input type="checkbox" data-b="hava" checked> Hava bülteni</label>
+      <label><input type="checkbox" data-b="kar" checked> Kar çizgisi</label>
+      <label><input type="checkbox" data-b="eczane" checked> Eczane</label>
+      <label><input type="checkbox" data-b="nabiz" checked> Nabız</label>
+    </div>
+  </div>
+
+  <div class="kutu">
+    <label>Arka plan</label>
+    <div class="sec">
+      <button class="foto-btn" data-foto="/ilce-foto-merkez.jpg">🌲 Yaz</button>
+      <button class="foto-btn" data-foto="/kis-merkez-panorama.jpg">❄️ Kış</button>
+      <button class="foto-btn" id="kendiFoto">📷 Kendi fotoğrafım</button>
+      <input type="file" id="dosya" accept="image/*" hidden>
+    </div>
+    <small>Varsayılan: kar çizgisi düşükse ya da kış aylarındaysak kışlık fotoğraf, değilse yazlık.</small>
+  </div>
+
+  <p class="ipucu">Instagram'da story'yi açınca üst taraftaki çıkartmalardan <b>Bağlantı</b>'yı seçip <b>artvinrehber.com/bugun-artvin.html</b> ekle ve görseldeki "artvinrehber.com" yazısının üstüne koy.</p>
+</div>
+
+<script>
+(function(){
+'use strict';
+var W=1080,H=1920, cv=document.getElementById('cv'), x=cv.getContext('2d');
+function $(i){return document.getElementById(i);}
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+function p2(n){return String(n).padStart(2,'0');}
+function gunStr(d){return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());}
+var AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+var GUN=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+var bugun=new Date(), dun=new Date(); dun.setDate(dun.getDate()-1);
+var VERI={hava:null,kar:null,t850:null,nabiz:null}, FOTO=null, fotoSecildi=false;
+var GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
+
+/* ── hava kodları ── */
+function ikon(k,gece){ if(k===0) return gece?'🌙':'☀️'; if(k<=2) return '⛅'; if(k===3) return '☁️'; if(k===45||k===48) return '🌫️';
+  if(k>=71&&k<=77||k===85||k===86) return '❄️'; if(k>=95) return '⛈️'; if(k>=51) return '🌧️'; return '🌤️'; }
+function dilimAd(h){ return h<12?'Sabah saatlerinde':h<15?'Öğle saatlerinde':h<18?'Öğleden sonra':'Akşam saatlerinde'; }
+function bulten(d){
+  var g=d.daily, h=d.hourly, kod=g.weather_code[0], mx=Math.round(g.temperature_2m_max[0]), mn=Math.round(g.temperature_2m_min[0]),
+      pmax=g.precipitation_probability_max[0]||0, kar=(g.snowfall_sum&&g.snowfall_sum[0]>0)||(kod>=71&&kod<=77)||kod===85||kod===86,
+      ruz=g.wind_speed_10m_max?g.wind_speed_10m_max[0]:0, c=[];
+  var ilk=-1; for(var i=0;i<24;i++){ var hh=+h.time[i].slice(11,13); if(hh>=7&&hh<=22&&(h.precipitation_probability[i]||0)>=50){ ilk=hh; break; } }
+  if(pmax>=60&&ilk>=0) c.push(dilimAd(ilk)+(kar?' kar yağışı bekleniyor, yollarda dikkatli ol.':' yağmur bekleniyor, şemsiyeni unutma.'));
+  else if(pmax>=30) c.push(kar?'Yer yer kar ihtimali var.':'Yer yer yağmur ihtimali var (%'+pmax+').');
+  else if(kod===45||kod===48) c.push('Sabah sis var, yolda dikkatli ol.');
+  else if(kod<=1) c.push('Güneşli ve açık bir gün.');
+  else if(kod===2) c.push('Parçalı bulutlu, keyifli bir gün.');
+  else c.push('Bulutlu bir gün, yağış beklenmiyor.');
+  if(mn<=2) c.push('Sabah ayaz, sıkı giyin.'); else if(mx>=29) c.push('Gün ortası sıcak, gölgeyi seç.'); else if(ruz>=40) c.push('Rüzgâr zaman zaman kuvvetli.');
+  return {kod:kod,mx:mx,mn:mn,an:Math.round(d.current.temperature_2m),metin:c.join(' ')};
+}
+function karMetin(k){
+  if(k>=3000) return 'Artvin\'de kar beklenmiyor';
+  if(k<=550) return 'Şehir merkezine kadar inebilir';
+  if(k<=1000) return 'Şavşat merkezi kar seviyesinde';
+  if(k<=1250) return 'Kafkasör ve üstüne kar yağabilir';
+  if(k<=1850) return 'Yüksek köyler ve geçitlerde kar';
+  return 'Kar yalnızca zirvelerde';
+}
+
+/* ── veri ── */
+var havaP=fetch('https://api.open-meteo.com/v1/forecast?latitude=41.1828&longitude=41.8183&current=temperature_2m,weather_code,is_day&hourly=precipitation_probability,freezing_level_height,temperature_850hPa&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,snowfall_sum,wind_speed_10m_max&forecast_days=2&timezone=Europe%2FIstanbul')
+ .then(function(r){return r.json();}).then(function(d){
+   if(!d||!d.daily||!d.hourly||!d.current) return;
+   VERI.hava=bulten(d);
+   var fl=d.hourly.freezing_level_height, t8=d.hourly.temperature_850hPa||[], i0=Math.max(0,d.hourly.time.indexOf(d.current.time.slice(0,13)+':00')), mf=Infinity, m8=Infinity;
+   for(var i=i0;i<Math.min(fl.length,i0+24);i++){ if(fl[i]!=null&&fl[i]<mf) mf=fl[i]; if(t8[i]!=null&&t8[i]<m8) m8=t8[i]; }
+   if(isFinite(mf)) VERI.kar=Math.max(0,Math.round((mf-300)/50)*50);
+   if(isFinite(m8)) VERI.t850=Math.round(m8);
+ }).catch(function(){});
+
+var NURL='https://firestore.googleapis.com/v1/projects/artvin-imece/databases/(default)/documents/nabiz/'+gunStr(dun)+':runAggregationQuery?key=AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI';
+function say(m){ return fetch(NURL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({structuredAggregationQuery:{structuredQuery:{from:[{collectionId:'oy'}],where:{fieldFilter:{field:{fieldPath:'m'},op:'EQUAL',value:{integerValue:String(m)}}}},aggregations:[{alias:'n',count:{}}]}})})
+  .then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(a){ var v=a&&a[0]&&a[0].result&&a[0].result.aggregateFields&&a[0].result.aggregateFields.n; return v?+v.integerValue:0; }); }
+var nabizP=Promise.all([say(1),say(2),say(3),say(4)]).then(function(r){ VERI.nabiz={1:r[0],2:r[1],3:r[2],4:r[3]}; }).catch(function(){});
+
+function fotoYukle(src){ return new Promise(function(ok){ var im=new Image(); im.onload=function(){ok(im);}; im.onerror=function(){ok(null);}; im.src=src; }); }
+
+/* ── çizim yardımcıları ── */
+function yuvarlak(x0,y0,w,h,r){ x.beginPath(); x.moveTo(x0+r,y0); x.arcTo(x0+w,y0,x0+w,y0+h,r); x.arcTo(x0+w,y0+h,x0,y0+h,r); x.arcTo(x0,y0+h,x0,y0,r); x.arcTo(x0,y0,x0+w,y0,r); x.closePath(); }
+function sar(t,mw){ var k=t.split(' '), s=[], a=''; k.forEach(function(w){ var d=a?a+' '+w:w; if(x.measureText(d).width>mw&&a){ s.push(a); a=w; } else a=d; }); if(a) s.push(a); return s; }
+function font(w,px){ x.font=w+' '+px+'px Manrope, system-ui, sans-serif'; }
+function kart(y,h){ x.save(); yuvarlak(80,y,W-160,h,36); x.fillStyle='rgba(8,20,14,.55)'; x.shadowColor='rgba(0,0,0,.35)'; x.shadowBlur=30; x.fill(); x.shadowBlur=0; x.strokeStyle='rgba(255,255,255,.16)'; x.lineWidth=2; x.stroke(); x.restore(); }
+function etiket(t,y){ font(800,30); x.fillStyle='rgba(255,255,255,.62)'; x.letterSpacing='3px'; x.fillText(t,124,y); x.letterSpacing='0px'; }
+
+function ciz(){
+  x.clearRect(0,0,W,H); x.textBaseline='alphabetic';
+  // arka plan
+  if(FOTO){ var s=Math.max(W/FOTO.width,H/FOTO.height), fw=FOTO.width*s, fh=FOTO.height*s; x.drawImage(FOTO,(W-fw)/2,(H-fh)/2,fw,fh); }
+  else { x.fillStyle='#16303a'; x.fillRect(0,0,W,H); }
+  var g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,'rgba(4,12,8,.78)'); g.addColorStop(.28,'rgba(4,12,8,.3)'); g.addColorStop(.6,'rgba(4,12,8,.38)'); g.addColorStop(1,'rgba(4,12,8,.9)');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+
+  // logo
+  var y=250;
+  font(800,34); x.letterSpacing='9px'; x.fillStyle='#3ddb8a'; x.textAlign='center'; x.fillText('ARTVİN REHBERİ',W/2+4,y); x.letterSpacing='0px';
+  x.fillStyle='#3ddb8a'; x.fillRect(W/2-40,y+22,80,4);
+  // tarih
+  font(800,92); x.fillStyle='#fff'; x.fillText(bugun.getDate()+' '+AY[bugun.getMonth()],W/2,y+150);
+  font(700,44); x.fillStyle='rgba(255,255,255,.8)'; x.fillText(GUN[bugun.getDay()]+' · Günaydın Artvin',W/2,y+215);
+  x.textAlign='left';
+  y+=280;
+
+  // hava
+  if(GOSTER.hava&&VERI.hava){
+    var h=VERI.hava; font(600,34); var sat=sar(h.metin,W-260); var kh=230+sat.length*48;
+    kart(y,kh); etiket('BUGÜN HAVA',y+62);
+    font(400,120); x.fillText(ikon(h.kod,false),118,y+205);
+    font(800,128); x.fillStyle='#fff'; x.fillText(h.mx+'°',290,y+200);
+    font(700,38); x.fillStyle='rgba(255,255,255,.72)'; x.fillText('en düşük '+h.mn+'°',W-124-x.measureText('en düşük '+h.mn+'°').width,y+196);
+    font(600,36); x.fillStyle='#eef6f0'; sat.forEach(function(s,i){ x.fillText(s,124,y+262+i*48); });
+    y+=kh+28;
+  }
+  // kar çizgisi
+  if(GOSTER.kar&&VERI.kar!=null){
+    kart(y,205); etiket('KAR ÇİZGİSİ · 24 SAAT',y+62);
+    font(800,62); x.fillStyle='#9fe3ff'; var kt='❄️ '+(VERI.kar>=3000?'3.000 m üstü':'~'+VERI.kar.toLocaleString('tr-TR')+' m'); x.fillText(kt,124,y+132);
+    var kw=x.measureText(kt).width;
+    font(700,32); x.fillStyle='rgba(255,255,255,.78)';
+    var km=karMetin(VERI.kar); var sk=sar(km,W-124-124-kw-30); sk.forEach(function(s,i){ x.fillText(s,124+kw+30,y+(sk.length>1?104:124)+i*38); });
+    if(VERI.t850!=null){ font(600,26); x.fillStyle='rgba(255,255,255,.55)'; x.fillText('850 hPa (~1.500 m) en düşük '+(VERI.t850>0?'+':'')+VERI.t850+'°C',124,y+180); }
+    y+=205+28;
+  }
+  // eczane
+  var ec=($('eczane').value||'').trim();
+  if(GOSTER.eczane&&ec){
+    kart(y,170); etiket('NÖBETÇİ ECZANE · MERKEZ',y+62);
+    font(800,58); x.fillStyle='#fff'; var et='💊 '+ec; while(x.measureText(et).width>W-250){ et=et.slice(0,-2); } x.fillText(et,124,y+138);
+    y+=170+28;
+  }
+  // nabız
+  if(GOSTER.nabiz){
+    var n=VERI.nabiz, top=n?n[1]+n[2]+n[3]+n[4]:0, Y={4:['🤩','Harika'],3:['😊','Keyifli'],2:['😐','Orta şekerli'],1:['😒','Can sıkıcı']};
+    kart(y,190);
+    if(top>=5){
+      var en=[4,3,2,1].sort(function(a,b){return n[b]-n[a]||b-a;})[0];
+      etiket('DÜN ARTVİN\'İN NABZI',y+62);
+      font(800,58); x.fillStyle='#fff'; x.fillText(Y[en][0]+' '+Y[en][1]+' %'+Math.round(n[en]/top*100),124,y+136);
+      font(700,30); x.fillStyle='rgba(255,255,255,.7)'; x.fillText(top.toLocaleString('tr-TR')+' Artvinli oy verdi · Bugün sen de söyle 👇',124,y+176);
+    } else {
+      etiket('ARTVİN\'İN NABZI',y+62);
+      font(800,52); x.fillStyle='#fff'; x.fillText('Bugün Artvin nasıl? 🤩😊😐😒',124,y+134);
+      font(700,30); x.fillStyle='rgba(255,255,255,.7)'; x.fillText('Tek dokunuşla söyle, isim yok 👇',124,y+176);
+    }
+    y+=190+28;
+  }
+  // site bağlantısı (Instagram bağlantı çıkartması bunun üstüne)
+  var by=Math.max(y+20,1560);
+  font(800,40); var st='artvinrehber.com'; var sw=x.measureText(st).width+100;
+  x.save(); yuvarlak((W-sw)/2,by,sw,92,46); x.fillStyle='#f2c252'; x.fill(); x.restore();
+  x.fillStyle='#1a1200'; x.textAlign='center'; x.fillText(st,W/2,by+60); x.textAlign='left';
+}
+
+/* ── akış ── */
+var e0=ls('storyEczane'); if(e0){ try{ var o=JSON.parse(e0); if(o.g===gunStr(bugun)) $('eczane').value=o.a; }catch(e){} }
+$('eczane').addEventListener('input',function(){ ls('storyEczane',JSON.stringify({g:gunStr(bugun),a:this.value})); ciz(); });
+[].forEach.call(document.querySelectorAll('[data-b]'),function(c){ c.addEventListener('change',function(){ GOSTER[c.getAttribute('data-b')]=c.checked; ciz(); }); });
+[].forEach.call(document.querySelectorAll('[data-foto]'),function(b){ b.addEventListener('click',function(){ fotoSecildi=true; fotoYukle(b.getAttribute('data-foto')).then(function(im){ FOTO=im; ciz(); }); }); });
+$('kendiFoto').addEventListener('click',function(){ $('dosya').click(); });
+$('dosya').addEventListener('change',function(){ var f=this.files&&this.files[0]; if(!f) return; fotoSecildi=true; var u=URL.createObjectURL(f); fotoYukle(u).then(function(im){ FOTO=im; ciz(); }); });
+
+function blob(){ return new Promise(function(ok){ cv.toBlob(function(b){ ok(b); },'image/jpeg',.92); }); }
+var ad='artvin-story-'+gunStr(bugun)+'.jpg';
+$('indir').addEventListener('click',function(){ blob().then(function(b){ var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=ad; a.click(); }); });
+$('paylas').addEventListener('click',function(){ blob().then(function(b){ var f=new File([b],ad,{type:'image/jpeg'});
+  if(navigator.canShare&&navigator.canShare({files:[f]})) navigator.share({files:[f]}).catch(function(){});
+  else { var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=ad; a.click(); } }); });
+
+var zaman=new Promise(function(ok){ setTimeout(ok,6000); });
+Promise.race([Promise.all([havaP,nabizP]),zaman]).then(function(){
+  var ay=bugun.getMonth(), kis=(ay>=11||ay<=2)||(VERI.kar!=null&&VERI.kar<=1000);
+  return Promise.all([fotoYukle(kis?'/kis-merkez-panorama.jpg':'/ilce-foto-merkez.jpg'),document.fonts?document.fonts.ready:null]);
+}).then(function(r){ if(!fotoSecildi) FOTO=r[0]; ciz(); $('yuk').remove(); });
+})();
+</script>
+</body>
+</html>
