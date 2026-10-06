@@ -15,11 +15,11 @@
 <meta name="geo.region" content="TR-08">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5859270127915377" crossorigin="anonymous"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","name":"Artvin Nöbetçi Eczane Mayıs 2026","url":"https://artvinrehber.com/eczane-rehber.html","dateModified": "2026-05-12","datePublished":"2026-01-01"}
+{"@context":"https://schema.org","@type":"WebPage","name":"Artvin Nöbetçi Eczane 2026","url":"https://artvinrehber.com/eczane-rehber.html","dateModified": "2026-10-06","datePublished":"2026-01-01"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Artvin nöbetçi eczane bugün hangisi?","acceptedAnswer":{"@type":"Answer","text":"Artvin nöbetçi eczane Mayıs 2026 listesi sayfamızda mevcuttur. Bugünün nöbetçi eczanesi: Meltem Eczanesi"}},
+{"@type":"Question","name":"Artvin nöbetçi eczane bugün hangisi?","acceptedAnswer":{"@type":"Answer","text":"Artvin merkez nöbetçi eczane listesi her ay güncellenir ve sayfamızda mevcuttur. Bugünün nöbetçi eczanesi: Meltem Eczanesi"}},
 {"@type":"Question","name":"Artvin en yakın eczane nasıl bulunur?","acceptedAnswer":{"@type":"Answer","text":"Sayfamızdaki GPS butonuna tıklayarak konumunuza en yakın ilçenin eczanelerini bulabilirsiniz."}},
 {"@type":"Question","name":"Artvin'de kaç eczane var?","acceptedAnswer":{"@type":"Answer","text":"Artvin merkez ve ilçelerinde toplam 50 eczane bulunmaktadır."}},
 {"@type":"Question","name":"Hopa nöbetçi eczane hangisi?","acceptedAnswer":{"@type":"Answer","text":"Hopa nöbetçi eczane için sayfamızdaki Hopa bölümünü inceleyin."}},
@@ -318,8 +318,8 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;}
 </div>
 
 <div class="guncelleme">
-  <div><div class="g-h">✅ Mayıs 2026 — Nöbet Listesi Aktif</div><div class="g-alt">Her ay güncellenmektedir</div></div>
-  <div style="font-size:.62rem;color:rgba(255,255,255,.5);">2026-05-11</div>
+  <div><div class="g-h" id="nbAy">✅ Nöbet listesi her ay güncellenir</div><div class="g-alt">Artvin Merkez · eczacı odası listesinden</div></div>
+  <div style="font-size:.62rem;color:rgba(255,255,255,.5);" id="nbTarih"></div>
 </div>
 
 <a href="/bugun-artvin.html?k=eczane#katmanlar" style="display:flex;align-items:center;gap:12px;max-width:640px;margin:.8rem 1rem;padding:12px 14px;border-radius:16px;background:linear-gradient(135deg,#1f4a5a,#16303a);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;font-family:inherit;box-shadow:0 6px 18px rgba(0,0,0,.18)"><span style="font-size:1.7rem;line-height:1">☁️</span><span style="flex:1;min-width:0"><b style="display:block;font-size:.95rem;line-height:1.25">Bugün Artvin'de bulut denizi var mı?</b><small style="display:block;font-size:.76rem;opacity:.75;margin-top:2px">Bulut katmanı tahmini ve Artvinlilerin bugünkü nabzı</small></span><span style="font-size:1.4rem;opacity:.7">›</span></a>
@@ -328,16 +328,43 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;}
   <img src="https://i.ibb.co/LdyQ3Z8q/1778504142295.png" alt="Artvin nöbetçi eczane rehberi 2026" loading="lazy">
 </div>
 
-<!-- BUGÜN NÖBETÇİ -->
+<!-- BUGÜN NÖBETÇİ (nobet-eczane.json) -->
+<script>
+(function(){
+  function p2(n){return String(n).padStart(2,'0');}
+  function gs(d){return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());}
+  var AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  fetch('/nobet-eczane.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+    if(!d||!d.gunler) return;
+    var simdi=new Date(), nobetGunu=new Date(simdi), erken=simdi.getHours()<8;
+    if(erken) nobetGunu.setDate(nobetGunu.getDate()-1);   // sabah 08:00'e kadar dünkü nöbetçi görevde
+    var k=d.gunler[gs(nobetGunu)]; if(!k) return;
+    var yarin=new Date(nobetGunu); yarin.setDate(yarin.getDate()+1); var ky=d.gunler[gs(yarin)];
+    var $=function(i){return document.getElementById(i);};
+    $('nbAd').textContent=k.ad;
+    var bas=k.saat.split('–')[0];
+    $('nbSaat').textContent=(erken?'Şu an nöbette · sabah 08:00\'e kadar':'Bugün nöbetçi · '+k.saat)+' · '+k.tel;
+    if(ky) $('nbYarin').textContent='Yarın: '+ky.ad+' ('+ky.saat+')';
+    var tel=k.tel.replace(/\s/g,'');
+    $('nbButon').innerHTML='<a href="tel:'+tel+'" style="display:inline-flex;align-items:center;justify-content:center;background:#15803d;color:#fff;border-radius:8px;padding:.5rem 1rem;font-size:.8rem;font-weight:700;text-decoration:none;">📞 Ara</a>'+
+      '<a href="https://www.google.com/maps/search/'+encodeURIComponent(k.ad+' Artvin')+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#15803d;border:1.5px solid #15803d;border-radius:8px;padding:.45rem .9rem;font-size:.8rem;font-weight:700;text-decoration:none;margin-left:.35rem">🗺️ Yol tarifi</a>';
+    var ic=document.querySelector('.bugun-ic'); if(ic){ ic.style.flexDirection='column'; ic.style.alignItems='stretch'; ic.style.gap='.75rem'; }
+    $('nbButon').style.display='grid'; $('nbButon').style.gridTemplateColumns='1fr 1fr'; $('nbButon').style.gap='.5rem'; [].forEach.call($('nbButon').children,function(a){ a.style.marginLeft='0'; a.style.padding='.7rem'; });
+    $('nbAy').textContent='✅ '+AY[nobetGunu.getMonth()]+' '+nobetGunu.getFullYear()+' nöbet listesi işlendi';
+    $('nbTarih').textContent=gs(simdi);
+  }).catch(function(){});
+})();
+</script>
 <div class="bugun">
   <div class="bugun-kart">
     <div class="bugun-h">💊 Artvin Merkez — Güncel Nöbetçi Eczane</div>
     <div class="bugun-ic">
       <div>
-        <div class="bugun-ec">Artvin Merkez Nöbetçi</div>
-        <div class="bugun-saat">Güncel bilgi için tıklayın</div>
+        <div class="bugun-ec" id="nbAd">Artvin Merkez Nöbetçi</div>
+        <div class="bugun-saat" id="nbSaat">Güncel bilgi için tıklayın</div>
+        <div class="bugun-saat" id="nbYarin" style="margin-top:.25rem;opacity:.75"></div>
       </div>
-      <div class="bugun-butonlar">
+      <div class="bugun-butonlar" id="nbButon">
         <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;background:#15803d;color:#fff;border-radius:8px;padding:.5rem 1rem;font-size:.8rem;font-weight:700;text-decoration:none;">Nöbetçiyi Gör →</a>
       </div>
     </div>
@@ -421,7 +448,7 @@ html,body{overflow-x:hidden;width:100%;max-width:100%;}
 <div class="seo">
   <h2>Artvin Eczane Rehberi — Tüm Bilgiler</h2>
   <h3>Artvin Nöbetçi Eczane Bugün</h3>
-  <p>Artvin merkez nöbetçi eczane Mayıs 2026 listesi sayfamızda mevcuttur. Nöbetler hafta içi <strong>saat 18:00'de</strong> başlar ve ertesi sabah 08:00'e kadar sürer.</p>
+  <p>Artvin merkez nöbetçi eczane listesi sayfamızda her ay güncellenir; bugünün nöbetçisi en üstte gösterilir. Nöbetler hafta içi <strong>saat 18:00'de</strong> başlar ve ertesi sabah 08:00'e kadar sürer.</p>
   <h3>Artvin En Yakın Eczane</h3>
   <p>Sayfanın üstündeki <strong>"En Yakın Eczaneyi Bul"</strong> butonuna basın. GPS konumunuza göre en yakın ilçedeki eczaneler listelenir. Her eczane kartındaki 🗺️ butonuyla yol tarifi alabilirsiniz. Artvin'in tek GPS destekli eczane rehberi.</p>
   <h3>Artvin Merkez Eczaneleri</h3>
