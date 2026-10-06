@@ -101,6 +101,9 @@ section.b{padding:24px 0 0}
 .nasil{background:linear-gradient(160deg,rgba(255,206,107,.12),rgba(255,255,255,.04));border-color:rgba(255,206,107,.3)}
 .nasil .soru{font-size:1.3rem;font-weight:800;line-height:1.25}
 .nasil .alt{font-size:.85rem;color:var(--dim);margin-top:3px}
+.gizli{display:flex;gap:10px;align-items:flex-start;margin:12px 0 0;padding:10px 12px;border-radius:14px;background:rgba(83,211,154,.1);border:1px solid rgba(83,211,154,.32);font-size:.8rem;line-height:1.45;color:var(--dim)}
+.gizli i{font-style:normal;font-size:1.25rem;line-height:1}
+.gizli b{display:block;color:var(--yazi);font-size:.86rem;margin-bottom:1px}
 .yuzler{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
 .yuzler button{border-radius:18px;padding:12px 2px 10px;line-height:1.15;text-align:center;background:var(--kart2);border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.74rem;font-weight:800;color:var(--dim);transition:transform .12s}
 .yuzler button i{font-style:normal;font-size:2.1rem;line-height:1}
@@ -319,7 +322,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
   <section class="b" id="nasilsin">
     <div class="kart nasil">
       <div class="soru" id="soru">Nasılsın Artvin?</div>
-      <div class="alt" id="soruAlt">Artvin'in bugün nasıl olduğunu Artvinliler söyler. İsim yok, kayıt yok.</div>
+      <div class="alt" id="soruAlt">Artvin'in bugün nasıl olduğunu Artvinliler söyler.</div>
       <div id="oyAlani">
         <div class="yuzler" id="yuzler">
           <button data-m="4"><i>🤩</i>Harika</button>
@@ -327,6 +330,7 @@ footer{text-align:center;color:var(--soluk);font-size:.78rem;padding:34px 18px 3
           <button data-m="2"><i>😐</i>Orta şekerli</button>
           <button data-m="1"><i>😒</i>Can sıkıcı</button>
         </div>
+        <div class="gizli"><i>🔒</i><div><b>Oyun gizli, kimliğin bilinmez</b>Ad, telefon, hesap sorulmaz. Kimin ne oy verdiği görünmez; sitede yalnızca toplam sonuç yayınlanır.</div></div>
         <div class="neden" id="neden" hidden>
           <div class="taraf" id="taraf" role="tablist"><button type="button" data-t="p" role="tab">👍 Güzel olanlar<em></em></button><button type="button" data-t="n" role="tab">👎 Can sıkanlar<em></em></button></div>
           <div class="neden-bas"><b id="nedenBaslik">Neden?</b><span id="nedenSay">En fazla 3 seçim</span></div>
