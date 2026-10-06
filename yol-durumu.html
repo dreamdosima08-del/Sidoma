@@ -219,9 +219,13 @@ textarea:focus{outline:none;border-color:var(--gold)}
 .konum-btns button{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--off);font:700 .72rem 'DM Sans',sans-serif;padding:.55rem;border-radius:10px;cursor:pointer}
 .konum-ipucu{font-size:.66rem;color:var(--soluk);margin-top:.35rem}
 @keyframes vurgu{50%{box-shadow:0 0 0 2px var(--gold)}}
+.yol-foto{position:relative;margin:.7rem 0 1rem;border-radius:16px;overflow:hidden;background:#1a2a22}
+.yol-foto img{display:block;width:100%;height:clamp(160px,48vw,270px);object-fit:cover}
+.yol-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem .8rem .5rem;font-size:.72rem;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.yk{flex:none;width:46px;height:46px;border-radius:12px;object-fit:cover;background:#1a2a22}
 </style>
-<meta property="og:image" content="https://i.ibb.co/GQNpnSLs/goge-komsu-topraklar-artvinden-bulut-denizi-manzaralari-45384.jpg">
-<meta name="twitter:image" content="https://i.ibb.co/GQNpnSLs/goge-komsu-topraklar-artvinden-bulut-denizi-manzaralari-45384.jpg">
+<meta property="og:image" content="https://artvinrehber.com/yol-foto/artvin-erzurum.jpg">
+<meta name="twitter:image" content="https://artvinrehber.com/yol-foto/artvin-erzurum.jpg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
@@ -235,6 +239,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
   <header class="hero">
     <span class="canli"><span class="nokta"></span>Canlı · Halkın Bildirimleri</span>
     <h1>Artvin <span>Yol Durumu</span></h1>
+    <figure class="yol-foto"><img src="/yol-foto/artvin-erzurum-640.webp" srcset="/yol-foto/artvin-erzurum-640.webp 640w, /yol-foto/artvin-erzurum.webp 1200w" sizes="(max-width:660px) 100vw, 640px" width="1200" height="675" alt="Artvin–Erzurum yolu" fetchpriority="high" decoding="async"><figcaption>📍 Artvin–Erzurum yolu</figcaption></figure>
     <p>Yol açık mı, kapalı mı? Heyelan, kar ve kaza bildirimlerini yolu kullananlardan anlık gör. Sen de gördüğünü 10 saniyede bildir.</p>
     <div class="ozet">
       <div class="oz k"><b id="sKapali">0</b><span>Kapalı</span></div>
@@ -439,6 +444,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
       html += '<article class="yol'+(o.t?' takipte':'')+'" data-kod="'+d.kod+'" id="yol-'+y.id+'">'+
         '<div class="yol-ust" data-ac="'+y.id+'">'+
           '<button class="yildiz'+(o.t?' on':'')+'" data-takip="'+y.id+'" aria-label="Takip et">⭐</button>'+
+          '<img class="yk" src="/yol-foto/'+y.id+'-k.webp" width="46" height="46" alt="" loading="lazy" decoding="async">'+
           '<div class="yol-bilgi"><div class="yol-ad">'+esc(y.ad)+'</div><div class="yol-alt">'+esc(y.alt)+'</div></div>'+
           '<span class="durum '+d.kod+'">'+ETIKET[d.kod]+'</span></div>'+
         raporHtml + aks + gecmis + '</article>';
