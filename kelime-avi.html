@@ -364,6 +364,18 @@ body::before{
 .ab-red{background:rgba(255,82,82,.12);border:1px solid rgba(255,82,82,.3);color:var(--red);}
 .bos-m{font-size:.8rem;color:var(--dim);text-align:center;padding:1rem;}
 
+/* bilgi */
+.bilgi-satir{margin-top:.6rem;font-size:.74rem;line-height:1.5;color:var(--dim);background:rgba(255,255,255,.03);border:1px dashed var(--border);border-radius:9px;padding:.5rem .7rem;}
+.bilgi-satir.dolu{color:var(--off);border-style:solid;border-color:rgba(240,192,64,.25);background:rgba(240,192,64,.06);}
+.bilgi-satir b,.bm b{color:var(--gold);letter-spacing:.03em;}
+.bm{text-align:left;margin-top:.9rem;}
+.bm:empty{display:none;}
+.bm-bas{font-size:.6rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--v);margin-bottom:.35rem;}
+.bm p{font-size:.76rem;line-height:1.5;color:var(--off);margin-bottom:.35rem;font-weight:700;}
+.gun-kutu{font-size:1.3rem;letter-spacing:.08em;margin:.4rem 0 .5rem;word-break:break-all;}
+.gun-seri{font-size:.82rem;color:var(--gold);margin-bottom:.4rem;}
+.gun-seri b{font-size:1.1rem;}
+
 /* ═══════════════════════════════════════
    TOAST
 ═══════════════════════════════════════ */
@@ -373,7 +385,7 @@ body::before{
   font-size:.73rem;font-weight:900;letter-spacing:.04em;
   padding:.42rem 1rem;border-radius:6px;
   opacity:0;transition:opacity .3s,transform .3s;
-  pointer-events:none;z-index:999;white-space:nowrap;
+  pointer-events:none;z-index:999;max-width:calc(100vw - 2rem);text-align:center;
 }
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
 
@@ -403,7 +415,7 @@ body::before{
   "@context": "https://schema.org",
   "@type": "Game",
   "name": "Artvin Kelime Avı — Kelime Bulmaca",
-  "description": "Artvin kültüründen 30 seviye kelime bulmaca. Yiyecekler, doğa, köyler ve ilçelerden kelimeler.",
+  "description": "Artvin kültüründen 30 seviye kelime bulmaca ve günlük bulmaca. 160'ı aşkın kelime: ilçeler, köyler, gezilecek yerler ve yöresel lezzetler.",
   "url": "https://artvinrehber.com/kelime-avi.html",
   "genre": "Word Search Puzzle",
   "gamePlatform": "Web Browser",
@@ -436,11 +448,11 @@ body::before{
 <div style="max-width:480px;margin:.4rem auto 0;padding:0 1rem;">
   <div style="background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.1);border-radius:10px;padding:.85rem 1.1rem;font-family:'Nunito',sans-serif;font-size:.78rem;color:rgba(224,237,227,.5);line-height:1.7;">
     <strong style="color:rgba(224,237,227,.75)">Artvin Kelime Avı</strong> — Artvin'in lezzetlerini, doğasını, köylerini ve ilçelerini kelime bulmacayla keşfet.
-    30 seviye, 4 kategori, 80'den fazla Artvin kelimesi. İlerleme kaydedilir, her gün günlük bulmaca gelir.
+    30 seviye ve 160'ı aşkın Artvin kelimesi: ilçeler, köyler, gezilecek yerler ve yöresel lezzetler. İlerleme kaydedilir; her gün herkesin aynı tabloyu çözdüğü günlük bulmaca gelir.
     <span style="display:inline-flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap;">
-      <a href="/wordle.html" style="color:var(--vivid);text-decoration:none;">🔤 Kelime Oyunu</a>
-      <a href="/quiz.html" style="color:var(--vivid);text-decoration:none;">🏔️ Quiz</a>
-      <a href="/reflex.html" style="color:var(--vivid);text-decoration:none;">⚡ Reflex</a>
+      <a href="/wordle.html" style="color:var(--v);text-decoration:none;">🔤 Kelime Oyunu</a>
+      <a href="/quiz.html" style="color:var(--v);text-decoration:none;">🏔️ Quiz</a>
+      <a href="/reflex.html" style="color:var(--v);text-decoration:none;">⚡ Reflex</a>
     </span>
   </div>
 </div>
@@ -452,7 +464,7 @@ body::before{
   <div class="mh1">KELİME<br><em>AVI</em></div>
 
   <div class="msub">
-    Artvin'in lezzetlerini, doğasını, köylerini ve ilçelerini bulmacada keşfet.
+    Artvin'in lezzetlerini, doğasını, köylerini ve ilçelerini bulmacada keşfet. Bulduğun her kelimenin kısa bilgisi çıkar.
   </div>
 
   <div class="stat-satir">
@@ -475,7 +487,7 @@ body::before{
       ▶ OYNA — SEVİYE <span id="aktifSevN">1</span>
     </button>
     <button class="mbtn mbtn-gunluk" onclick="gunlukBaslat()">📅 Günlük Bulmaca</button>
-    <button class="mbtn mbtn-ekle" onclick="ekleAc()">+ KELİME EKLE</button>
+    <button class="mbtn mbtn-ekle" onclick="ekleAc()">+ KELİME ÖNER</button>
   </div>
 </div>
 
@@ -518,6 +530,7 @@ body::before{
   <div>
     <div class="kl-bas">BULUNACAK KELİMELER</div>
     <div class="kl" id="kList"></div>
+    <div class="bilgi-satir" id="bilgiSatir"></div>
   </div>
 
   <!-- Geri -->
@@ -535,11 +548,28 @@ body::before{
     <div class="palt" id="lvlAlt"></div>
     <span class="pskor" id="lvlSkor"></span>
     <span class="pskor-l">bu seviyeden kazandın</span>
+    <div class="bm" id="lvlBilgi"></div>
     <div class="pbr">
       <button class="pb pb-ok" id="sonBtn" onclick="sonrakiSev()">Sonraki Seviye →</button>
       <button class="pb pb-sec" onclick="paylas()">📤 Paylaş</button>
       <button class="pb pb-sec" onclick="menuAc()">🏠 Ana Menü</button>
     </div>
+  </div>
+</div>
+
+<!-- GÜNLÜK SONUÇ -->
+<div class="ovr" id="gunOvr">
+  <div class="panel">
+    <div style="font-size:2.4rem;margin-bottom:.3rem" id="gunIk">🏆</div>
+    <div class="ph1" id="gunBas">GÜNLÜK BULMACA</div>
+    <div class="gun-kutu" id="gunKutu"></div>
+    <div class="palt" id="gunAlt"></div>
+    <div class="gun-seri" id="gunSeri"></div>
+    <div class="pbr">
+      <button class="pb pb-ok" onclick="gunlukPaylas()">📤 Sonucu paylaş</button>
+      <button class="pb pb-sec" onclick="menuAc()">🏠 Ana Menü</button>
+    </div>
+    <div class="palt" id="gunYarin" style="margin:.8rem 0 0;font-size:.7rem"></div>
   </div>
 </div>
 
@@ -559,39 +589,31 @@ body::before{
 <!-- KELİME EKLE -->
 <div class="ovr" id="ekleOvr">
   <div class="panel modal-panel">
-    <div class="mbas">+ KELİME EKLE</div>
+    <div class="mbas">+ KELİME ÖNER</div>
+    <p style="font-size:.74rem;color:var(--dim);line-height:1.5;margin:-.4rem 0 .9rem;text-align:center">Artvin'e özgü bir kelime mi biliyorsun? WhatsApp'tan bize gönder, uygun bulursak herkesin oyununa ekleyelim.</p>
     <div class="fg">
-      <label class="fl">Kelime (max 9 harf, Türkçe karakter zorunlu)</label>
+      <label class="fl">Kelime (3–9 harf)</label>
       <input class="fi" id="kInp" type="text" maxlength="9" placeholder="Örn: KAYGANA" autocomplete="off" spellcheck="false">
       <div class="fh" id="kHata"></div>
     </div>
     <div class="fg">
       <label class="fl">Kategori</label>
       <select class="fsel" id="kKat">
-        <option value="YİYECEK">🍲 Yiyecek</option>
-        <option value="DOĞA">🌿 Doğa</option>
-        <option value="KÖY">🏘️ Köy/İlçe</option>
-        <option value="DİĞER">📌 Diğer</option>
+        <option value="Sofra">🍲 Yemek / lezzet</option>
+        <option value="Yer">🏞️ Yer / doğa</option>
+        <option value="Köy">🏘️ Köy / mahalle</option>
+        <option value="Şive">🗣️ Yerel söz</option>
+        <option value="Diğer">📌 Diğer</option>
       </select>
     </div>
     <div class="fg">
-      <label class="fl">Not (isteğe bağlı)</label>
+      <label class="fl">Kısa bilgi (isteğe bağlı)</label>
       <input class="fi" id="kNot" type="text" maxlength="60" placeholder="Bu kelime hakkında kısa bilgi...">
     </div>
-    <div class="fok" id="kOk">✅ Kelime onay için gönderildi!</div>
     <div class="fb-row">
-      <button class="pb pb-ok" onclick="kelimeGonder()">Gönder</button>
+      <button class="pb pb-ok" onclick="kelimeGonder()">💬 WhatsApp ile gönder</button>
       <button class="pb pb-sec" onclick="kapat('ekleOvr')">İptal</button>
     </div>
-  </div>
-</div>
-
-<!-- ADMİN -->
-<div class="ovr" id="admOvr">
-  <div class="panel adm-panel">
-    <div class="adm-bas">🔐 ADMİN · Bekleyen Kelimeler</div>
-    <div id="admListe"></div>
-    <button class="pb pb-sec" style="width:100%;margin-top:.5rem" onclick="kapat('admOvr')">Kapat</button>
   </div>
 </div>
 
@@ -603,17 +625,7 @@ body::before{
 /* ═══════════════════════════════════════════════════════════
    KELİME HAVUZU
 ═══════════════════════════════════════════════════════════ */
-const HAVUZ = {
-  YİYECEK:['HİNKAL','PUÇUKO','SİLOR','KAYGANA','KUYMAK','KATMER','PESTİL','KÖME','TURŞU',
-            'ERİŞTE','HELVA','KAVURMA','SARMA','YUFKA','ÇORBA','MISIR','GENDİME','LOBYO','HASUTA'],
-  DOĞA:   ['KARAGÖL','HATİLA','MENCUNA','MARAL','ARSİYAN','YEDİGÖL','MACAHEL','KAÇKAR','KARÇAL',
-            'PAPİLA','BÜLBÜLAN','VELİKÖY','KAFKASÖR','BORÇKA','DERİNER','MURATLI','CAMİLİ','ZEYTİNLİK',
-            'PAPART','ŞAVŞAT','HOPA','ARHAVİ','KEMALPAŞA'],
-  İLÇE:  ['ARTVİN','HOPA','ARHAVİ','BORÇKA','MURGUL','ARDANUÇ','ŞAVŞAT','YUSUFELİ','ORTAKÖY',
-            'MEYDANCIK','DEMİRKENT','YEŞİLKÖY','KÖPRÜBAŞI','CAMİLİ','ZEYTİNLİK'],
-  KÖY:   ['CAMİLİ','KARŞIKÖY','VELİKÖY','DEMİRCİLER','BALCI','KOCABEY','BOYALI','ZEYTİNLİK',
-            'KAYNARCA','BAŞKÖY','GÜLEŞ','TOSUNLU','AYDINKÖY','ÇAMLICA','GÖKTAŞ'],
-};
+const HAVUZ = [{"k":"ARTVİN","kat":"İLÇE","n":"Şehir kademe kademe yükselir: Çoruh tabanı ~200 m, çarşı ~500 m."},{"k":"HOPA","kat":"İLÇE","n":"Sarp dolmuşları bu ilçeden kalkar; Batum'a yaklaşık 37 km."},{"k":"BORÇKA","kat":"İLÇE","n":"Borçka Karagöl, ilçe merkezine yaklaşık 23 km uzaklıktadır."},{"k":"ŞAVŞAT","kat":"İLÇE","n":"Kar bakımından en şanslı ilçe merkezidir: hem yüksek hem nemli havaya kısmen açık."},{"k":"ARDANUÇ","kat":"İLÇE","n":"Artvin–Ardanuç yolu kışın kar yüzünden sıkıntı çıkarmaz."},{"k":"ARHAVİ","kat":"İLÇE","n":"Mençuna Şelalesi, Arhavi'ye bağlı Ortacalar köyü yakınlarındadır."},{"k":"MURGUL","kat":"İLÇE","n":"Bakır madeniyle tanınan bir ilçedir."},{"k":"YUSUFELİ","kat":"İLÇE","n":"Baraj nedeniyle eski ilçe merkezi su altında kaldı, yeni merkez daha yukarıya kuruldu."},{"k":"KEMALPAŞA","kat":"İLÇE","n":"Sarp Sınır Kapısı bu ilçenin Sarp köyündedir."},{"k":"ÇORUH","kat":"YER","n":"Gürcistan'a geçip Batum yakınlarında Karadeniz'e dökülür."},{"k":"KARAGÖL","kat":"YER","n":"Borçka Karagöl'e toplu taşıma yoktur; taksi ya da kiralık minibüsle gidilir."},{"k":"KAÇKAR","kat":"YER","n":"3.937 m zirvesiyle Artvin'in en yüksek noktasıdır."},{"k":"KARÇAL","kat":"YER","n":"3.428 m zirvesi ve günümüze ulaşmış buzullarıyla bilinir."},{"k":"HATİLA","kat":"YER","n":"1994'te milli park ilan edildi."},{"k":"MACAHEL","kat":"YER","n":"2005'te Türkiye'nin ilk UNESCO biyosfer rezervi oldu."},{"k":"MENÇUNA","kat":"YER","n":"Yaklaşık 90 metreden iki kademe hâlinde dökülür."},{"k":"KAFKASÖR","kat":"YER","n":"Kafkasör Festivali her yıl Temmuz'da yaylada düzenlenir."},{"k":"LİVANE","kat":"YER","n":"Osmanlı döneminde bölge Livane Sancağı olarak anılırdı."},{"k":"İŞHAN","kat":"YER","n":"İşhan köyündeki manastır kilisesi, Orta Çağ Gürcü mimarisinin önemli örneklerindendir."},{"k":"BARHAL","kat":"YER","n":"Barhal Kilisesi, Yusufeli'nin Altıparmak köyündedir."},{"k":"TBETİ","kat":"YER","n":"Tbeti Manastırı, Şavşat'ın Cevizli köyündedir."},{"k":"SARP","kat":"YER","n":"Sınır kapısı 7/24 açıktır; Batum'a yaklaşık 20 km."},{"k":"DERİNER","kat":"YER","n":"Çoruh üzerindeki en yüksek barajlardandır (~249 m)."},{"k":"SAHARA","kat":"YER","n":"Sahara Geçidi kışın sık kapanır, çığ riski vardır."},{"k":"ATABARI","kat":"YER","n":"Girişi ücretsizdir, ekipman kiralanır, yiyecek-içecek bulunur."},{"k":"PUÇUKO","kat":"SOFRA","n":"Yazın kurutulan taze fasulyeden kışın pişirilir."},{"k":"SİLOR","kat":"SOFRA","n":"İnce yufkalar kurutulur, sonra yumuşatılıp yoğurt ve tereyağıyla buluşur."},{"k":"KETE","kat":"SOFRA","n":"Şavşat ketesi coğrafi işaretlidir."},{"k":"CADI","kat":"SOFRA","n":"Mısır unuyla yapılan geleneksel ekmektir."},{"k":"MUHLAMA","kat":"SOFRA","n":"Dört malzemeyle yapılır: kolot peyniri, tereyağı, mısır unu ve sabır."},{"k":"HİNKAL","kat":"SOFRA","n":"Demirkent'te içine kavurma konup haşlanır, yanında turşuyla yenir."},{"k":"KOLOT","kat":"SOFRA","n":"Artvin muhlaması kolot peyniriyle yapılır."},{"k":"KESTANE","kat":"SOFRA","n":"Arhavi kestane balı menşe işaretlidir."},{"k":"CAMİLİ","kat":"KÖY","n":"Macahel'in Türkiye'deki kısmının resmî adı Camili Havzası'dır."},{"k":"MARAL","kat":"KÖY","n":"Macahel'in Türkiye'de kalan altı köyünden biridir."},{"k":"DEMİRKENT","kat":"KÖY","n":"Hinkalı içine kavurma konup haşlanarak yapılır."},{"k":"MERSİVAN","kat":"YER","n":"Artvin'in tek kayak merkezi Atabarı buradadır."},{"k":"CEVİZLİ","kat":"KÖY","n":"Tbeti Manastırı bu köydedir."},{"k":"SEYİTLER","kat":"YER","n":"Artvin Çoruh Üniversitesi'nin Seyitler yerleşkesi buradadır."},{"k":"ORTACALAR","kat":"KÖY","n":"Mençuna Şelalesi bu köyün yakınlarındadır."},{"k":"YAYLALAR","kat":"KÖY","n":"Kaçkar zirve tırmanışları bu köyden başlar."},{"k":"ATATEPE","kat":"YER","n":"Artvin Merkez'in gezilecek yerlerinden: Atatepe — Dünyanın En Büyük Atatürk Heykeli."},{"k":"DOLİSKANA","kat":"YER","n":"Artvin Merkez'in gezilecek yerlerinden: Doliskana Kilisesi."},{"k":"OPİZA","kat":"YER","n":"Artvin Merkez'in gezilecek yerlerinden: Opiza Manastırı."},{"k":"SARIBUDAK","kat":"YER","n":"Artvin Merkez'in gezilecek yerlerinden: Sarıbudak (Melo) Kalesi."},{"k":"FERHATLI","kat":"YER","n":"Ardanuç'un gezilecek yerlerinden: Ferhatlı (Kalmaklı) Kalesi."},{"k":"CURUSPİL","kat":"YER","n":"Ardanuç'un gezilecek yerlerinden: Curuspil Yaylası ve Kara Göl."},{"k":"CİRO","kat":"YER","n":"Yusufeli'nin gezilecek yerlerinden: Ciro Şelalesi."},{"k":"ESBEKİ","kat":"YER","n":"Yusufeli'nin gezilecek yerlerinden: Esbeki Kalesi ve Manastırı."},{"k":"OLGUNLAR","kat":"YER","n":"Yusufeli'nin gezilecek yerlerinden: Olgunlar — Dilberdüzü Kamp Alanı."},{"k":"GÜLOĞLU","kat":"YER","n":"Yusufeli'nin gezilecek yerlerinden: Güloğlu Yaylası."},{"k":"AROS","kat":"YER","n":"Yusufeli'nin gezilecek yerlerinden: Aros Yaylası."},{"k":"NAÇADİREV","kat":"YER","n":"Borçka'nın gezilecek yerlerinden: Naçadirev Gölü."},{"k":"BEYAZSU","kat":"YER","n":"Borçka'nın gezilecek yerlerinden: Beyazsu Yaylası."},{"k":"GORGİT","kat":"YER","n":"Borçka'nın gezilecek yerlerinden: Gorgit Yaylası."},{"k":"LEKOBAN","kat":"YER","n":"Borçka'nın gezilecek yerlerinden: Lekoban Yaylası."},{"k":"ARSİYAN","kat":"YER","n":"Şavşat'ın gezilecek yerlerinden: Arsiyan Yaylası."},{"k":"PAPART","kat":"YER","n":"Şavşat'ın gezilecek yerlerinden: Papart Doğal Sit Alanı."},{"k":"TAMARA","kat":"YER","n":"Şavşat'ın gezilecek yerlerinden: Tamara Odaları."},{"k":"BAZGİRET","kat":"YER","n":"Şavşat'ın gezilecek yerlerinden: Bazgiret (Maden) Köyü."},{"k":"ÇAĞÇAĞAN","kat":"YER","n":"Hopa'nın gezilecek yerlerinden: Çağçağan Şelalesi."},{"k":"KOPMUŞ","kat":"YER","n":"Hopa'nın gezilecek yerlerinden: Kopmuş Plajı ve Kamp Alanı."},{"k":"GEMİKAYA","kat":"YER","n":"Murgul'un gezilecek yerlerinden: Gemikaya (Rockship)."},{"k":"BÜLBÜLAN","kat":"YER","n":"Ardanuç yolundaki Bülbülan geçidi."},{"k":"KUYMAK","kat":"SOFRA","n":"Mısır unuyla yapılan bir yemek; mısır unu bölgede yıl boyu kullanılırdı."},{"k":"KÖPRÜBAŞI","kat":"YER","n":"Artvin merkezde bir semt; kampüs dolmuşu aktarması burada yapılır."},{"k":"AHLAT","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"BAKIRKÖY","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"DİKMENLİ","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"ERENLER","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"HAMAMLI","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"ORMANLI","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"SÜMBÜLLÜ","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"TAŞLICA","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"VEZİRKÖY","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"ZEYTİNLİK","kat":"KÖY","n":"Artvin Merkez'e bağlı bir köy."},{"k":"ORTAKÖY","kat":"KÖY","n":"Artvin Merkez ve Arhavi'de bu adı taşıyan köyler var."},{"k":"AKARSU","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"ANAÇLI","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"BAĞLICA","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"BEREKET","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"BULANIK","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"ÇIRALAR","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"GEÇİTLİ","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"HİSARLI","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"KAPIKÖY","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"OVACIK","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"PEYNİRLİ","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"SOĞANLI","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"TEPEDÜZÜ","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"TORBALI","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"USTALAR","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"TOSUNLU","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"AYDINKÖY","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"GÜLEŞ","kat":"KÖY","n":"Ardanuç'a bağlı bir köy."},{"k":"BOYALI","kat":"KÖY","n":"Ardanuç, Borçka ve Yusufeli'nde bu adı taşıyan köyler var."},{"k":"ARILI","kat":"KÖY","n":"Arhavi'ye bağlı bir köy."},{"k":"BALIKLI","kat":"KÖY","n":"Arhavi ve Şavşat'ta bu adı taşıyan köyler var."},{"k":"DERECİK","kat":"KÖY","n":"Arhavi'ye bağlı bir köy."},{"k":"GÜNEŞLİ","kat":"KÖY","n":"Arhavi, Borçka ve Hopa'da bu adı taşıyan köyler var."},{"k":"KAVAKKÖY","kat":"KÖY","n":"Arhavi'ye bağlı bir köy."},{"k":"SIRTOBA","kat":"KÖY","n":"Arhavi'ye bağlı bir köy."},{"k":"ULUKENT","kat":"KÖY","n":"Arhavi'ye bağlı bir köy."},{"k":"ÜÇIRMAK","kat":"KÖY","n":"Arhavi'ye bağlı bir köy."},{"k":"BAŞKÖY","kat":"KÖY","n":"Arhavi, Hopa ve Murgul'da bu adı taşıyan köyler var."},{"k":"ADAGÜL","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"ATANOĞLU","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"CİVAN","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"ÇAVUŞLU","kat":"KÖY","n":"Borçka ve Hopa'da bu adı taşıyan köyler var."},{"k":"DÜZKÖY","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"EFELER","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"FINDIKLI","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"İBRİKLİ","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"TARAKLI","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"ZEDOBAN","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"MURATLI","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"KAYNARCA","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"BALCI","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"KARŞIKÖY","kat":"KÖY","n":"Borçka'ya bağlı bir köy."},{"k":"BALIKKÖY","kat":"KÖY","n":"Hopa'ya bağlı bir köy."},{"k":"ESENKIYI","kat":"KÖY","n":"Hopa'ya bağlı bir köy."},{"k":"HENDEK","kat":"KÖY","n":"Hopa'ya bağlı bir köy."},{"k":"SUBAŞI","kat":"KÖY","n":"Hopa'ya bağlı bir köy."},{"k":"YOLDERE","kat":"KÖY","n":"Hopa'ya bağlı bir köy."},{"k":"YEŞİLKÖY","kat":"KÖY","n":"Borçka ve Hopa'da bu adı taşıyan köyler var."},{"k":"AKDERE","kat":"KÖY","n":"Kemalpaşa'ya bağlı bir köy."},{"k":"GÜMÜŞDERE","kat":"KÖY","n":"Kemalpaşa'ya bağlı bir köy."},{"k":"KAZİMİYE","kat":"KÖY","n":"Kemalpaşa'ya bağlı bir köy."},{"k":"LİMAN","kat":"KÖY","n":"Kemalpaşa'ya bağlı bir köy."},{"k":"OSMANİYE","kat":"KÖY","n":"Kemalpaşa'ya bağlı bir köy."},{"k":"ÜÇKARDEŞ","kat":"KÖY","n":"Kemalpaşa'ya bağlı bir köy."},{"k":"AKANTAŞ","kat":"KÖY","n":"Murgul'a bağlı bir köy."},{"k":"ARDIÇLI","kat":"KÖY","n":"Murgul'a bağlı bir köy."},{"k":"KABACA","kat":"KÖY","n":"Murgul'a bağlı bir köy."},{"k":"KÜRE","kat":"KÖY","n":"Murgul'a bağlı bir köy."},{"k":"PETEK","kat":"KÖY","n":"Murgul'a bağlı bir köy."},{"k":"SOĞUKSU","kat":"KÖY","n":"Murgul'a bağlı bir köy."},{"k":"AKDAMLA","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"ARPALI","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"ÇERMİK","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"DUTLU","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"ESKİKALE","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"ILICA","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"KİRAZLI","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"ŞENOCAK","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"YAVUZKÖY","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"ZİYARET","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"KOCABEY","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"MEYDANCIK","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"VELİKÖY","kat":"KÖY","n":"Şavşat'a bağlı bir köy."},{"k":"ÇAMLICA","kat":"KÖY","n":"Şavşat ve Yusufeli'nde bu adı taşıyan köyler var."},{"k":"BAHÇELİ","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"BALALAN","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"ÇEVRELİ","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"DARICA","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"KILIÇKAYA","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"MORKAYA","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"NARLIK","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"ÖĞDEM","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"SERİNSU","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"TEKKALE","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."},{"k":"YÜNCÜLER","kat":"KÖY","n":"Yusufeli'ne bağlı bir köy."}];
 
 const TR_ALF = 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ';
 const KEY    = 'artvinKAv3';
@@ -644,7 +656,7 @@ let satir=8, kolon=8;
 let GRID=[], yerlesimler=[];
 let secilenler=[], fareBasili=false;
 let sesAcik=true;
-let gunlukMod=false;
+let gunlukMod=false, buOyunGunluk=false, enCombo=0, sonBilgi='';
 let renkSay=0;
 
 /* ═══════════════════════════════════════════════════════════
@@ -656,7 +668,9 @@ function svState(o){try{const s=ykState();Object.assign(s,o);localStorage.setIte
 /* ═══════════════════════════════════════════════════════════
    YARDIMCI
 ═══════════════════════════════════════════════════════════ */
-const kar = a => [...a].sort(()=>Math.random()-.5);
+let RND=Math.random;
+function tohumluRnd(t){let a=0;for(const ch of t)a=(Math.imul(a^ch.charCodeAt(0),2654435761)>>>0);return function(){a|=0;a=a+0x6D2B79F5|0;let x=Math.imul(a^a>>>15,1|a);x=x+Math.imul(x^x>>>7,61|x)^x;return((x^x>>>14)>>>0)/4294967296;};}
+const kar = a => {a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(RND()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 function kapat(id){document.getElementById(id).classList.remove('on');}
 function toast(t,ms=2000){
   const el=document.getElementById('toastEl');
@@ -668,7 +682,10 @@ function ekranGec(id){
   document.getElementById(id).classList.add('ak');
 }
 function bugün(){const d=new Date();return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;}
-function rndTR(){return TR_ALF[Math.floor(Math.random()*TR_ALF.length)];}
+function dun(){const d=new Date();d.setDate(d.getDate()-1);return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;}
+const AYLAR=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+function bugunYazi(){const d=new Date();return d.getDate()+' '+AYLAR[d.getMonth()];}
+function rndTR(){return TR_ALF[Math.floor(RND()*TR_ALF.length)];}
 
 /* ═══════════════════════════════════════════════════════════
    MENÜ
@@ -690,8 +707,9 @@ function menuGuncelle(){
   // Günlük
   const gc=document.getElementById('gChip');
   gc.style.display='block';
+  const seri=seriHesap(s);
   document.getElementById('gDurum').textContent =
-    s.gunTarih===bugün() ? '✅ Tamamlandı' : 'Oynamadın!';
+    (s.gunTarih===bugün() ? ((s.gunSonuc&&s.gunSonuc.tamam)?'✅ Tamamlandı':'⏰ Oynandı') : 'Oynamadın!')+(seri>0?` · 🔥 ${seri} gün`:'');
 
   // Level grid
   const lg=document.getElementById('lgrid');
@@ -713,30 +731,59 @@ function menuGuncelle(){
 ═══════════════════════════════════════════════════════════ */
 function gunlukBaslat(){
   const s=ykState();
-  if(s.gunTarih===bugün()){toast('📅 Bugünkü bulmacayı tamamladın! Yarın gel.');return;}
+  if(s.gunTarih===bugün()){gunlukSonucGoster();return;}
   gunlukMod=true;
-  ipKalan=IP_HAK+1;
-  toast('📅 Günlük Bulmaca! +1 bonus ipucu 🎁');
-  const n=5+Math.floor(Math.random()*10);
-  aktifSev=n;
-  baslat(n);
+  toast('📅 Günlük Bulmaca! Bugün herkes aynı tabloyu çözüyor · +1 ipucu 🎁',2600);
+  baslat(aktifSev);
+}
+
+function seriHesap(s){ return (s.gunSon===bugün()||s.gunSon===dun())?(s.gunSeri||0):0; }
+
+function gunlukKaydet(tamam){
+  const s=ykState();
+  const seri=tamam?((s.gunSon===dun()?(s.gunSeri||0):0)+1):0;
+  svState({gunTarih:bugün(), gunSonuc:{b:bulunanlar.length,t:gKelimeler.length,sn:SURE_SN-kalan,tamam}, gunSeri:seri, gunSon:tamam?bugün():s.gunSon, gunEnSeri:Math.max(s.gunEnSeri||0,seri)});
+}
+
+function gunlukPaylasMetni(){
+  const s=ykState(), g=s.gunSonuc||{b:0,t:0,sn:0,tamam:false};
+  const dk=Math.floor(g.sn/60)+':'+String(g.sn%60).padStart(2,'0');
+  const kutu='🟩'.repeat(g.b)+'⬜'.repeat(Math.max(0,g.t-g.b));
+  return `🔍 Artvin Kelime Avı · ${bugunYazi()}\n${kutu}\n${g.tamam?'✅':'⏰'} ${g.b}/${g.t} kelime · ⏱ ${dk}`+(seriHesap(s)>1?`\n🔥 ${seriHesap(s)} gün üst üste`:'')+`\nSen kaçta bulursun? artvinrehber.com/kelime-avi.html`;
+}
+
+function gunlukSonucGoster(){
+  const s=ykState(), g=s.gunSonuc||{b:0,t:0,sn:0,tamam:false};
+  const dk=Math.floor(g.sn/60)+':'+String(g.sn%60).padStart(2,'0');
+  document.getElementById('gunIk').textContent=g.tamam?'🏆':'⏰';
+  document.getElementById('gunBas').textContent=g.tamam?'GÜNLÜK BULMACA TAMAM!':'BUGÜNKÜ BULMACA BİTTİ';
+  document.getElementById('gunKutu').textContent='🟩'.repeat(g.b)+'⬜'.repeat(Math.max(0,g.t-g.b));
+  document.getElementById('gunAlt').textContent=`${g.b}/${g.t} kelime · ⏱ ${dk}`;
+  const seri=seriHesap(s);
+  document.getElementById('gunSeri').innerHTML=seri>0?`🔥 <b>${seri}</b> gün üst üste`+(s.gunEnSeri>seri?` · en iyi: ${s.gunEnSeri}`:''):'Seri başlatmak için günlük bulmacayı süre bitmeden tamamla.';
+  document.getElementById('gunYarin').textContent='Yeni bulmaca gece yarısı geliyor.';
+  document.getElementById('gunOvr').classList.add('on');
+}
+
+function gunlukPaylas(){
+  const m=gunlukPaylasMetni();
+  if(navigator.share){navigator.share({text:m}).catch(()=>{});}
+  else{navigator.clipboard.writeText(m).then(()=>toast('📋 Sonuç kopyalandı!'));}
 }
 
 /* ═══════════════════════════════════════════════════════════
    KELİME SEÇ
 ═══════════════════════════════════════════════════════════ */
 function kelimeHavuzuSec(adet,maxUz){
-  // Onaylanan kullanıcı kelimeleri
-  const s=ykState();
-  const ekstra=(s.onayKelimeler||[]).map(k=>({k:k.kelime,kat:k.kat}));
-  let hepsi=[...ekstra];
-  kar(Object.keys(HAVUZ)).forEach(kat=>{
-    kar(HAVUZ[kat]).forEach(k=>{ if(k.length>=3&&k.length<=maxUz) hepsi.push({k,kat}); });
-  });
-  // Deduplikasyon
-  const goruldu=new Set();
-  hepsi=hepsi.filter(x=>{if(goruldu.has(x.k))return false;goruldu.add(x.k);return true;});
-  return kar(hepsi).slice(0,adet);
+  // Kategorileri dengeli karıştır: köyler havuzu domine etmesin
+  const kats={};
+  HAVUZ.forEach(x=>{ if(x.k.length>=3&&x.k.length<=maxUz){ (kats[x.kat]=kats[x.kat]||[]).push(x); } });
+  const kuyruk=kar(Object.keys(kats)).map(k=>kar(kats[k]));
+  const sec=[];
+  while(sec.length<adet && kuyruk.some(q=>q.length)){
+    kuyruk.forEach(q=>{ if(q.length&&sec.length<adet) sec.push(q.pop()); });
+  }
+  return kar(sec);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -798,8 +845,9 @@ function baslat(n){
   document.querySelectorAll('.ovr').forEach(o=>o.classList.remove('on'));
   ekranGec('oEkran');
 
-  aktifSev=n;
-  const kf=sevKonfig(n);
+  buOyunGunluk=gunlukMod;
+  if(buOyunGunluk){ RND=tohumluRnd('artvin-kelime-avi-'+bugün()); } else { RND=Math.random; aktifSev=n; }
+  const kf=buOyunGunluk?{g:10,k:8}:sevKonfig(n);
   satir=kf.g; kolon=kf.g;
   renkSay=0;
 
@@ -814,18 +862,18 @@ function baslat(n){
 
   GRID=sonuc.grid;
   gKelimeler=sonuc.yerlesmisler.slice(0,kf.k).map(y=>({
-    kelime:y.k, hcr:y.hcr, bulundu:false, renk:0, kat:y.kat
+    kelime:y.k, hcr:y.hcr, bulundu:false, renk:0, kat:y.kat, not:y.n||''
   }));
   bulunanlar=[];
 
-  skor=0; combo=0; ardSeri=0;
+  skor=0; combo=0; ardSeri=0; enCombo=0; sonBilgi='';
   kalan=SURE_SN;
   ipKalan=gunlukMod?IP_HAK+1:IP_HAK;
   secilenler=[]; fareBasili=false;
   oyunAktif=true;
 
-  document.getElementById('lChip').textContent=gunlukMod?'📅 GÜNLÜK':`SEVİYE ${n}`;
-  gunlukMod=false;
+  document.getElementById('lChip').textContent=buOyunGunluk?'📅 GÜNLÜK':`SEVİYE ${n}`;
+  gunlukMod=false; RND=Math.random;
 
   gridRender();
   kListRender();
@@ -975,6 +1023,8 @@ function kelimeBulundu(h){
 
   ardSeri++;
   combo=ardSeri>=3?Math.min(Math.floor(ardSeri/3)+1,5):1;
+  enCombo=Math.max(enCombo,combo);
+  if(h.not){ sonBilgi=`<b>${h.kelime}</b> · ${h.not}`; }
   const bonus=Math.floor(kalan/15)*combo;
   skor+=10*combo+bonus;
 
@@ -998,6 +1048,8 @@ function kelimeBulundu(h){
    KELİME LİSTESİ
 ═══════════════════════════════════════════════════════════ */
 function kListRender(){
+  const bs=document.getElementById('bilgiSatir');
+  if(bs){ bs.innerHTML=sonBilgi?'💡 '+sonBilgi:'Bir kelime bul, o yer ya da lezzet hakkında kısa bilgi burada çıksın.'; bs.classList.toggle('dolu',!!sonBilgi); }
   const el=document.getElementById('kList');
   el.innerHTML='';
   gKelimeler.forEach(h=>{
@@ -1040,6 +1092,7 @@ function durdur(){oyunAktif=false;clearInterval(sureTimer);}
 
 function sureBitti(){
   durdur();
+  if(buOyunGunluk){ gunlukKaydet(false); buOyunGunluk=false; gunlukSonucGoster(); return; }
   document.getElementById('sureBitAlt').textContent=
     `${bulunanlar.length}/${gKelimeler.length} kelime buldun.`;
   document.getElementById('sureBittiOvr').classList.add('on');
@@ -1050,6 +1103,7 @@ function sureBitti(){
 ═══════════════════════════════════════════════════════════ */
 function lvlTamam(){
   durdur();
+  if(buOyunGunluk){ gunlukKaydet(true); buOyunGunluk=false; konfeti(); gunlukSonucGoster(); return; }
   const sureBon=kalan*3;
   const top=skor+sureBon;
   const yld=kalan>120?3:kalan>60?2:1;
@@ -1061,7 +1115,6 @@ function lvlTamam(){
     topYld:(s.topYld||0)+Math.max(0,yld-eskiYld),
     sonSev:Math.max(s.sonSev||1,Math.min(aktifSev+1,TOPLAM_SEV)),
     ['s'+aktifSev]:Math.max(eskiYld,yld),
-    gunTarih:gunlukMod?bugün():s.gunTarih,
   });
 
   const ySat=document.getElementById('yldSat');
@@ -1076,8 +1129,10 @@ function lvlTamam(){
   document.getElementById('lvlBas').textContent=
     aktifSev>=TOPLAM_SEV?'TÜM SEVİYELER TAMAM!':'SEVİYE TAMAMLANDI!';
   document.getElementById('lvlAlt').textContent=
-    `Süre bonusu: +${sureBon} | Combo: en fazla ×${combo}`;
+    `Süre bonusu: +${sureBon}`+(enCombo>1?` · En yüksek kombo: ×${enCombo}`:'');
   document.getElementById('lvlSkor').textContent=top.toLocaleString('tr');
+  const bl=kar(gKelimeler.filter(x=>x.not)).slice(0,2);
+  document.getElementById('lvlBilgi').innerHTML=bl.length?'<div class="bm-bas">Biliyor muydun?</div>'+bl.map(x=>`<p><b>${x.kelime}</b> · ${x.not}</p>`).join(''):'';
 
   const sb=document.getElementById('sonBtn');
   if(aktifSev>=TOPLAM_SEV){sb.textContent='🏆 Bitti!';sb.onclick=menuAc;}
@@ -1115,83 +1170,28 @@ function ipucuKullan(){
 /* ═══════════════════════════════════════════════════════════
    KELİME EKLEME
 ═══════════════════════════════════════════════════════════ */
-const YASAK=['OROSPU','AMCIK','SIKIŞ','KAHPE'];
-const TR_RE=/[çğışöü]/i;
-
 function ekleAc(){
   document.getElementById('kInp').value='';
   document.getElementById('kHata').textContent='';
   document.getElementById('kNot').value='';
-  document.getElementById('kOk').style.display='none';
   document.getElementById('ekleOvr').classList.add('on');
 }
 
 function kelimeGonder(){
-  const g=document.getElementById('kInp').value.trim().toUpperCase();
+  const g=document.getElementById('kInp').value.trim().toLocaleUpperCase('tr');
   const kat=document.getElementById('kKat').value;
   const not=document.getElementById('kNot').value.trim();
   const hEl2=document.getElementById('kHata');
   hEl2.textContent='';
-
   if(!g){hEl2.textContent='❌ Kelime boş olamaz.';return;}
-  if(/\s/.test(g)){hEl2.textContent='❌ Tek sözcük olmalı — boşluk yok.';return;}
-  if(/\d/.test(g)){hEl2.textContent='❌ Rakam içeremez.';return;}
-  if(g.length>9){hEl2.textContent='❌ En fazla 9 harf.';return;}
-  if(g.length<3){hEl2.textContent='❌ En az 3 harf.';return;}
-  if(!TR_RE.test(g)){hEl2.textContent='❌ En az bir Türkçe karakter gerekli (ç,ğ,ı,ş,ö,ü).';return;}
-  if(YASAK.some(y=>g.includes(y))){hEl2.textContent='❌ Uygunsuz kelime.';return;}
-
-  const s=ykState();
-  const bkl=s.bekleyen||[];
-  if(bkl.find(k=>k.kelime===g)){hEl2.textContent='⚠️ Bu kelime zaten beklemede.';return;}
-  bkl.push({kelime:g,kat,not,tarih:new Date().toISOString()});
-  svState({bekleyen:bkl});
-
-  document.getElementById('kOk').style.display='block';
-  document.getElementById('kInp').value='';
-  setTimeout(()=>kapat('ekleOvr'),1900);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ADMİN
-═══════════════════════════════════════════════════════════ */
-function admAc(){
-  const s=ykState();
-  const bkl=s.bekleyen||[];
-  const el=document.getElementById('admListe');
-  if(!bkl.length){el.innerHTML='<div class="bos-m">Bekleyen kelime yok. 🎉</div>';}
-  else{
-    el.innerHTML=bkl.map((k,i)=>`
-      <div class="bk-item">
-        <div>
-          <div class="bk-k">${k.kelime}</div>
-          <div class="bk-kat">${k.kat}${k.not?' · '+k.not:''}</div>
-        </div>
-        <button class="ab ab-ok" onclick="admOnayla(${i})">✅</button>
-        <button class="ab ab-red" onclick="admRed(${i})">❌</button>
-      </div>`).join('');
-  }
-  document.getElementById('admOvr').classList.add('on');
-}
-
-function admOnayla(i){
-  const s=ykState();
-  const bkl=[...(s.bekleyen||[])];
-  const k=bkl.splice(i,1)[0];
-  const onay=s.onayKelimeler||[];
-  onay.push(k);
-  svState({bekleyen:bkl,onayKelimeler:onay});
-  toast(`✅ "${k.kelime}" oyuna eklendi!`);
-  admAc();
-}
-
-function admRed(i){
-  const s=ykState();
-  const bkl=[...(s.bekleyen||[])];
-  const k=bkl.splice(i,1)[0];
-  svState({bekleyen:bkl});
-  toast(`❌ "${k.kelime}" reddedildi.`);
-  admAc();
+  if(/\s/.test(g)){hEl2.textContent='❌ Tek sözcük olmalı, boşluk olmasın.';return;}
+  if(!/^[A-ZÇĞIİÖŞÜ]+$/.test(g)){hEl2.textContent='❌ Sadece harf kullan.';return;}
+  if(g.length<3||g.length>9){hEl2.textContent='❌ 3 ile 9 harf arasında olmalı.';return;}
+  if(HAVUZ.some(x=>x.k===g)){hEl2.textContent='👍 Bu kelime zaten oyunda var!';return;}
+  const m=`Kelime Avı için kelime önerim: ${g} (${kat})`+(not?`\nBilgi: ${not}`:'');
+  window.open('https://wa.me/905434290908?text='+encodeURIComponent(m),'_blank','noopener');
+  kapat('ekleOvr');
+  toast('📨 WhatsApp açıldı, mesajı göndermen yeterli!',2600);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1264,17 +1264,17 @@ function paylas(){
 /* ═══════════════════════════════════════════════════════════
    KLAVYE
 ═══════════════════════════════════════════════════════════ */
-const adm=[];
 document.addEventListener('keydown',e=>{
-  adm.push(e.key.toUpperCase());
-  if(adm.length>5)adm.shift();
-  if(adm.join('')==='ADMIN')admAc();
   if(e.key==='Escape')document.querySelectorAll('.ovr.on').forEach(o=>o.classList.remove('on'));
 });
 
 /* ═══════════════════════════════════════════════════════════
    BAŞLAT
 ═══════════════════════════════════════════════════════════ */
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){ if(oyunAktif){ clearInterval(sureTimer); sureTimer=null; } }
+  else if(oyunAktif && !sureTimer){ sureTimer=setInterval(sureTik,1000); }
+});
 menuAc();
 </script>
 </body>
