@@ -530,13 +530,13 @@ window.GOK = (function(){
   function r(n){ return Math.round(n); }
 
   // WMO hava kodları → Türkçe + ikon
-  function kod(c, gunduz){
+  function kod(c, gunduz, tur){
     var g = gunduz!==0;
     if (c===0) return {t:'Açık', i:g?'☀️':'🌙', h:g?'gunes':'gece'};
     if (c===1) return {t:'Az bulutlu', i:g?'🌤️':'🌙', h:g?'gunes':'gece'};
     if (c===2) return {t:'Parçalı bulutlu', i:g?'⛅':'☁️', h:g?'bulut':'gece'};
     if (c===3) return {t:'Kapalı', i:'☁️', h:'bulut'};
-    if (c===45||c===48) return {t:'Sisli', i:'🌫️', h:'sis'};
+    if (c===45||c===48) return ((tur||(secili&&secili.tur))==='ilce') ? {t:'Alçak bulut', i:'☁️', h:'bulut'} : {t:'Sisli', i:'🌫️', h:'sis'};   // ilçe merkezlerinde model sisi = yamaçtaki alçak bulut
     if (c>=51&&c<=55) return {t:'Çisenti', i:'🌦️', h:'yagmur'};
     if (c===56||c===57) return {t:'Donan çisenti', i:'🌧️', h:'yagmur'};
     if (c===61) return {t:'Hafif yağmur', i:'🌦️', h:'yagmur'};
@@ -682,7 +682,7 @@ window.GOK = (function(){
     var k=c.weather_code, g=c.is_day, bulutO=(c.cloud_cover||0)/100, gok;
     var yag = {51:.2,53:.28,55:.35,56:.35,57:.45,61:.4,63:.7,65:1,66:.5,67:.8,80:.5,81:.8,82:1,95:.9,96:1,99:1}[k] || 0;
     var kar = {71:.35,73:.65,75:1,77:.3,85:.55,86:.9}[k] || 0;
-    if (k>=95) gok='firtina'; else if (kar) gok='kar'; else if (yag) gok='yagmur'; else if (k===45||k===48) gok='sis';
+    if (k>=95) gok='firtina'; else if (kar) gok='kar'; else if (yag) gok='yagmur'; else if ((k===45||k===48) && !(secili&&secili.tur==='ilce')) gok='sis';
     else if (!g) gok='gece'; else if (k===3 || bulutO>.7) gok='bulut'; else gok='gunes';
     document.body.dataset.gok = gok;
     var tema = {gunes:'#3a86e0', bulut:'#5d7189', yagmur:'#2c3d52', kar:'#7b8ea1', gece:'#0f1838', firtina:'#1f2434', sis:'#88939b'}[gok];
@@ -712,7 +712,7 @@ window.GOK = (function(){
     k.push(['🧥','Ne giymeli',ky, his<=8||his>=30?'orta':'iyi','Hissedilen '+Math.round(his)+'°'+(ek.length?' · '+ek.join(', '):'')+'.']);
     // Yol ve sürüş
     if (kar || (minT<=1 && maxP>=40)) k.push(['🚗','Yol & sürüş','Buzlanma riski','kotu','Kar/buz olabilir, zincir bulundur. <a href="/yol-durumu.html">Yol durumu →</a>']);
-    else if (gorMin<1000) k.push(['🚗','Yol & sürüş','Sis var','orta','Görüş '+(gorMin/1000).toFixed(1)+' km’ye düşüyor, farları aç. <a href="/yol-durumu.html">Yol durumu →</a>']);
+    else if (gorMin<1000 && !(secili&&secili.tur==='ilce')) k.push(['🚗','Yol & sürüş','Sis var','orta','Görüş '+(gorMin/1000).toFixed(1)+' km’ye düşüyor, farları aç. <a href="/yol-durumu.html">Yol durumu →</a>']);
     else if (topMm>=12) k.push(['🚗','Yol & sürüş','Sağanak, dikkat','orta','Heyelan riskli yollarda dikkatli ol. <a href="/yol-durumu.html">Yol durumu →</a>']);
     else k.push(['🚗','Yol & sürüş','Sürüşe uygun','iyi','Hava kaynaklı bir sorun görünmüyor. <a href="/yol-durumu.html">Yol durumu →</a>']);
     // Çamaşır
@@ -840,7 +840,7 @@ window.GOK = (function(){
       '<div class="dk"><div class="dk-b">☀️ UV indeksi</div><div class="dk-d">'+r(uv)+'<small>'+uvYazi(uv)+'</small></div><div class="uv-cubuk"><span class="uv-nokta" style="left:'+Math.min(100,uv/11*100)+'%"></span></div><div class="dk-a">Bugün en yüksek '+r(dy.uv_index_max[0]||0)+'</div></div>' +
       kart('💧','Nem','%'+r(c.relative_humidity_2m),'','Çiy noktası '+(cy!=null?r(cy)+'°':'—')) +
       kart('🌡️','Hissedilen',r(c.apparent_temperature)+'°','',Math.abs(c.apparent_temperature-c.temperature_2m)>=2?(c.apparent_temperature<c.temperature_2m?'Rüzgar ve nemle daha soğuk':'Nemle daha sıcak'):'Gerçek sıcaklığa yakın') +
-      kart('👁️','Görüş', gor!=null?(gor>=10000?'10+':(gor/1000).toFixed(1)):'—','km', gor!=null&&gor<1000?'Sis var, dikkatli sür':'') +
+      kart('👁️','Görüş', gor!=null?(gor>=10000?'10+':(gor/1000).toFixed(1)):'—','km', gor!=null&&gor<1000&&!(secili&&secili.tur==='ilce')?'Sis var, dikkatli sür':'') +
       kart('🧭','Basınç', r(c.pressure_msl),'hPa', c.pressure_msl<1005?'Alçak basınç, değişken hava':(c.pressure_msl>1022?'Yüksek basınç, durgun hava':'Normal')) +
       kart('🌅','Gün doğumu / batımı', saatStr(dy.sunrise[0]),'', 'Batış '+saatStr(dy.sunset[0])+' · '+String(Math.round(gun*10)/10).replace('.',',')+' saat gün ışığı');
   }
@@ -856,7 +856,7 @@ window.GOK = (function(){
       var arr = Array.isArray(j)?j:[j];
       arr.forEach(function(o,i){
         var el = document.querySelector('.ik[data-id="'+il[i].id+'"]'); if(!el||!o.current) return;
-        var kk = kod(o.current.weather_code, o.current.is_day);
+        var kk = kod(o.current.weather_code, o.current.is_day, il[i].tur);
         el.querySelector('.ik-ikon').textContent = kk.i;
         el.querySelector('.ik-d').textContent = r(o.current.temperature_2m)+'°';
         el.querySelector('.ik-y').textContent = '☔ %'+(o.daily.precipitation_probability_max[0]||0);
