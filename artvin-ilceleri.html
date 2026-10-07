@@ -55,16 +55,20 @@ h1,h2,h3,.bas{font-family:'Bricolage',system-ui,sans-serif;letter-spacing:-.01em
 .baslik h1{font-size:clamp(40px,11vw,64px);line-height:.95;font-weight:800;color:var(--murekkep)}
 .baslik p{margin-top:8px;font-size:16px;color:var(--sol);max-width:30ch}
 .ipucu{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);z-index:3;font-size:12.5px;font-weight:700;color:var(--murekkep);background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:6px 12px;border-radius:999px;white-space:nowrap;transition:opacity .4s}
+.tum{position:absolute;right:14px;top:62px;z-index:3;font:inherit;font-size:13px;font-weight:700;color:var(--murekkep);background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:0;padding:8px 13px;border-radius:999px;box-shadow:0 4px 14px rgba(19,40,58,.15);cursor:pointer;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s,transform .25s}
+.tum.gor{opacity:1;transform:none;pointer-events:auto}
+.hero::after{content:'';position:absolute;inset:0 0 auto 0;height:58%;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(225,236,239,.92) 0%,rgba(225,236,239,.7) 45%,rgba(225,236,239,0) 100%)}
+.baslik p{transition:opacity .3s}.hero.secili .baslik p{opacity:0}
 .pinler{position:absolute;inset:0;z-index:2;pointer-events:none}
 .pin{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;display:flex;flex-direction:column;align-items:center;border:0;background:none;font:inherit;padding:0}
-.pin b{display:block;font-family:'Bricolage';font-size:13.5px;font-weight:700;color:#fff;background:var(--murekkep);padding:4px 10px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(19,40,58,.25);transition:background .2s,transform .2s}
-.pin i{display:block;width:2px;height:16px;background:var(--murekkep)}
+.pin b{display:block;font-family:'Bricolage';font-size:13px;font-weight:700;color:var(--murekkep);background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:4px 10px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(19,40,58,.25);transition:background .2s,transform .2s}
+.pin i{display:block;width:1.5px;height:14px;background:rgba(19,40,58,.55)}
 .pin em{display:block;width:9px;height:9px;border-radius:50%;background:var(--gunes);border:2px solid #fff;margin-top:-2px;box-shadow:0 0 0 3px rgba(226,162,59,.3)}
-.pin.on b{background:var(--gunes);color:#2a1a00;transform:scale(1.08)}
+.pin.on b{background:var(--murekkep);color:#fff;transform:scale(1.08)}
 .serit{position:absolute;left:0;right:0;bottom:18px;z-index:3;display:flex;gap:8px;overflow-x:auto;padding:4px 18px;scrollbar-width:none}
 .serit::-webkit-scrollbar{display:none}
-.serit button{flex:none;font:inherit;font-weight:700;font-size:14px;color:var(--murekkep);background:rgba(255,255,255,.85);border:1px solid var(--cizgi);padding:9px 14px;border-radius:999px;cursor:pointer}
-.serit button.on{background:var(--murekkep);color:#fff}
+.serit a,.serit button{text-decoration:none;flex:none;font:inherit;font-weight:700;font-size:14px;color:var(--murekkep);background:rgba(255,255,255,.85);border:1px solid var(--cizgi);padding:9px 14px;border-radius:999px;cursor:pointer}
+.serit a.on,.serit button.on{background:var(--murekkep);color:#fff}
 .kart3d{position:absolute;left:12px;right:12px;bottom:76px;z-index:4;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-radius:20px;padding:16px 16px 14px;box-shadow:0 18px 40px rgba(19,40,58,.22);transform:translateY(130%);transition:transform .35s cubic-bezier(.2,.8,.25,1);max-width:520px;margin:0 auto}
 .kart3d:not(.ac){pointer-events:none;visibility:hidden;transition:transform .35s,visibility 0s .35s}
 .kart3d.ac{transform:none}
@@ -106,6 +110,18 @@ section>h2{font-size:clamp(25px,6.5vw,32px);line-height:1.15;font-weight:800}
 .ik small{display:block;font-size:13px;color:var(--sol);line-height:1.45;margin-top:3px}
 .ik .alt{font-size:12.5px;font-weight:700;color:var(--murekkep);margin-top:8px}
 
+/* yollar çekmecesi */
+.cek-yol{background:var(--kart);border-radius:20px;box-shadow:0 2px 12px rgba(19,40,58,.07);padding:4px 16px}
+.cek-yol summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px 0}
+.cek-yol summary::-webkit-details-marker{display:none}
+.cek-yol summary span{flex:1}
+.cek-yol summary h2{font-size:20px;line-height:1.2;font-weight:800}
+.cek-yol summary small{display:block;font-size:14px;color:var(--sol);margin-top:2px}
+.cek-yol summary i{flex:none;width:34px;height:34px;border-radius:50%;background:var(--sis);position:relative}
+.cek-yol summary i::after{content:'';position:absolute;left:12px;top:10px;width:8px;height:8px;border-right:2px solid var(--murekkep);border-bottom:2px solid var(--murekkep);transform:rotate(45deg);transition:transform .2s}
+.cek-yol[open] summary i::after{transform:translate(0,4px) rotate(-135deg)}
+.cek-yol .yollar{box-shadow:none;padding:0;border-top:1px solid var(--cizgi);border-radius:0}
+.cek-yol .not{padding-bottom:12px}
 /* yollar şeridi */
 .yollar{background:var(--kart);border-radius:20px;padding:6px 16px;box-shadow:0 2px 12px rgba(19,40,58,.07)}
 .ys{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--cizgi);text-decoration:none}
@@ -164,10 +180,15 @@ footer{text-align:center;font-size:12.5px;color:var(--sol);padding:26px 18px 40p
 .p-ok.sol{left:0}.p-ok.sag{right:0}
 .p-ok:focus-visible{outline:2px solid #fff;outline-offset:-6px}
 .s-bilgi{max-width:760px;margin:0 auto;padding:18px 18px 0}
-.s-ol{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.09);border-radius:16px;overflow:hidden}
+.s-ol{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.09);border-radius:16px;overflow:hidden}
 .s-ol div{background:#132530;padding:11px 10px 10px}
 .s-ol b{display:block;font-family:'Bricolage',system-ui,sans-serif;font-size:19px;font-weight:700;color:#fff;line-height:1.15;white-space:nowrap}
-.s-ol span{font-size:12px;color:#8ea4b1}
+.s-ol span{font-size:12.5px;color:#8ea4b1;line-height:1.35;display:block;margin-top:2px}
+.s-cek summary{list-style:none;cursor:pointer;font-weight:700;font-size:14.5px;color:#f0c06a;padding:9px 0 4px 22px;position:relative}
+.s-cek summary::-webkit-details-marker{display:none}
+.s-cek summary::before{content:'+';position:absolute;left:1px;top:6px;font-size:18px;line-height:1.2}
+.s-cek[open] summary::before{content:'−'}
+.s-cek[open] summary{color:#9db1bd}
 .s-iki{display:grid;gap:18px;margin-top:20px}
 .s-iki h4{font-family:'Bricolage',system-ui,sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px}
 .s-gor{list-style:none}
@@ -178,12 +199,12 @@ footer{text-align:center;font-size:12.5px;color:var(--sol);padding:26px 18px 40p
 .s-tat{display:flex;flex-wrap:wrap;gap:8px}
 .s-tat span{font-size:15px;font-weight:500;color:#f6dca9;border:1px solid rgba(240,192,106,.45);padding:7px 12px;border-radius:12px}
 .s-yok{font-size:14px;color:#8ea4b1}
-.s-btn{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
+.s-btn{display:grid;grid-template-columns:1.7fr 1fr;gap:8px;margin:0 0 14px}
 .s-btn a,.s-btn button{font:inherit;font-weight:700;font-size:15px;text-align:center;text-decoration:none;padding:13px 10px;border-radius:14px;cursor:pointer}
 .s-btn button{background:none;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
 .s-btn a{background:#e2a23b;color:#231500;border:1.5px solid #e2a23b}
 .s-gezi{display:inline-block;margin-top:10px;font-size:13.5px;color:#9db1bd}
-@media(min-width:720px){.perde{aspect-ratio:16/8.5;border-radius:4px}.s-iki{grid-template-columns:1.4fr 1fr}}
+@media(min-width:720px){.s-ol{grid-template-columns:repeat(4,1fr)}.perde{aspect-ratio:16/8.5;border-radius:4px}.s-iki{grid-template-columns:1.4fr 1fr}}
 @media(prefers-reduced-motion:reduce){.perde img.on{animation:none}.perde img{transition:none}}
 
 /* ── SANA HANGİ İLÇE GÖRE ── */
@@ -222,6 +243,7 @@ footer{text-align:center;font-size:12.5px;color:var(--sol);padding:26px 18px 40p
   <div class="pinler" id="pinler"></div>
   <div class="ust"><a class="logo" href="/"><i>A</i>rtvin<span>rehber</span></a><a href="/">Ana sayfa</a></div>
   <div class="baslik"><h1>Artvin<br>İlçeleri</h1><p>Denizden 3.937 metreye, dokuz ilçe. Haritayı çevir, bir ilçeye dokun.</p></div>
+  <button type="button" class="tum" id="tum" aria-label="Haritayı ilk haline getir">⟲ Tüm Artvin</button>
   <div class="ipucu" id="ipucu">☝️ Sürükle, çevir · iki parmakla yaklaş</div>
   <div class="kart3d" id="kart3d" role="dialog" aria-live="polite"><button class="kapat" id="kapat" aria-label="Kapat">×</button><div id="kartIc"></div></div>
   <div class="serit" id="serit"></div>
@@ -263,10 +285,11 @@ footer{text-align:center;font-size:12.5px;color:var(--sol);padding:26px 18px 40p
   </section>
 
   <section id="yollar">
-    <h2>İlçe yolları şu an</h2>
-    <p class="lead">Yolu kullananların bildirimlerinden. Dokun, ayrıntısını gör.</p>
-    <div class="yollar" id="yolListe"></div>
-    <div class="not">🟢 Bildirim yok ya da açıldı · 🟠 Dikkat · 🔴 Kapalı. Resmi değildir.</div>
+    <details class="cek-yol">
+      <summary><span><h2>İlçe yolları şu an</h2><small id="yolOzet">Yol bildirimleri yükleniyor…</small></span><i aria-hidden="true"></i></summary>
+      <div class="yollar" id="yolListe"></div>
+      <div class="not">🟢 Bildirim yok ya da açıldı · 🟠 Dikkat · 🔴 Kapalı. Yolu kullananların bildirimleridir, resmi değildir. <a href="/yol-durumu.html">Tüm yol durumu</a></div>
+    </details>
   </section>
 
   <section><h2>Artvin İlçe Nüfusları 2025</h2><div class="panel" style="padding:.4rem .7rem;overflow-x:auto"><table class="tablo" id="tablo"><thead><tr><th data-k="ad">İlçe</th><th data-k="nufus" class="aktif">Nüfus ▾</th><th data-k="koy">Köy</th><th data-k="mahalle">Mah.</th><th data-k="sicak">Şu an</th></tr></thead><tbody><tr data-ad="Merkez" data-nufus="35710" data-koy="36" data-mahalle="7" data-sicak="-99"><td><a href="/ilce-merkez.html">🏙️ Merkez</a><div class="cubuk" style="width:100%"></div></td><td>35.710</td><td>36</td><td>7</td><td class="sk" data-id="merkez">—</td></tr><tr data-ad="Hopa" data-nufus="27844" data-koy="16" data-mahalle="9" data-sicak="-99"><td><a href="/ilce-hopa.html">🌊 Hopa</a><div class="cubuk" style="width:78%"></div></td><td>27.844</td><td>16</td><td>9</td><td class="sk" data-id="hopa">—</td></tr><tr data-ad="Arhavi" data-nufus="22025" data-koy="30" data-mahalle="7" data-sicak="-99"><td><a href="/ilce-arhavi.html">🌿 Arhavi</a><div class="cubuk" style="width:62%"></div></td><td>22.025</td><td>30</td><td>7</td><td class="sk" data-id="arhavi">—</td></tr><tr data-ad="Borçka" data-nufus="21628" data-koy="41" data-mahalle="5" data-sicak="-99"><td><a href="/ilce-borcka.html">🌲 Borçka</a><div class="cubuk" style="width:61%"></div></td><td>21.628</td><td>41</td><td>5</td><td class="sk" data-id="borcka">—</td></tr><tr data-ad="Yusufeli" data-nufus="17564" data-koy="63" data-mahalle="5" data-sicak="-99"><td><a href="/ilce-yusufeli.html">💧 Yusufeli</a><div class="cubuk" style="width:49%"></div></td><td>17.564</td><td>63</td><td>5</td><td class="sk" data-id="yusufeli">—</td></tr><tr data-ad="Şavşat" data-nufus="16151" data-koy="65" data-mahalle="3" data-sicak="-99"><td><a href="/ilce-savsat.html">❄️ Şavşat</a><div class="cubuk" style="width:45%"></div></td><td>16.151</td><td>65</td><td>3</td><td class="sk" data-id="savsat">—</td></tr><tr data-ad="Ardanuç" data-nufus="10889" data-koy="49" data-mahalle="1" data-sicak="-99"><td><a href="/ilce-ardanuc.html">🏰 Ardanuç</a><div class="cubuk" style="width:30%"></div></td><td>10.889</td><td>49</td><td>1</td><td class="sk" data-id="ardanuc">—</td></tr><tr data-ad="Kemalpaşa" data-nufus="9263" data-koy="12" data-mahalle="3" data-sicak="-99"><td><a href="/ilce-kemalpasa.html">🛂 Kemalpaşa</a><div class="cubuk" style="width:26%"></div></td><td>9.263</td><td>12</td><td>3</td><td class="sk" data-id="kemalpasa">—</td></tr><tr data-ad="Murgul" data-nufus="6457" data-koy="11" data-mahalle="2" data-sicak="-99"><td><a href="/ilce-murgul.html">⛏️ Murgul</a><div class="cubuk" style="width:18%"></div></td><td>6.457</td><td>11</td><td>2</td><td class="sk" data-id="murgul">—</td></tr></tbody></table></div><div class="kaynak">Başlığa dokunarak sırala. Nüfus: TÜİK Adrese Dayalı Nüfus Kayıt Sistemi, 31 Aralık 2025.</div></section>
@@ -282,15 +305,15 @@ footer{text-align:center;font-size:12.5px;color:var(--sol);padding:26px 18px 40p
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script>
 window.ILCE=[
- {id:'hopa',ad:'Hopa',lat:41.4119,lon:41.4239,n:27844,k:16,m:9,b:'sahil',d:"Karadeniz kıyısında, limanı ve ticaretiyle bilinen bir sahil ilçesi.",y:['hopa-sarp','hopa-arhavi','borcka-hopa'],r:5,km:55,dol:280,g:["Çağçağan Şelalesi", "Hopa Yaşam Müzesi", "Kopmuş Plajı ve kamp alanı"],t:["Hopa laz böreği", "Hamsili ekmek"],gz:"hopa"},
- {id:'arhavi',ad:'Arhavi',lat:41.3528,lon:41.2978,n:22025,k:30,m:7,b:'sahil',d:"Rize sınırındaki sahil ilçesi; Mençuna Şelalesi ve Ortacalar vadisi burada.",y:['hopa-arhavi'],r:5,km:65,dol:300,g:["Tarihi Arılı", "Kamilet Vadisi ve Mençuna Şelalesi", "Ortacalar Çifteköprü", "Dikyamaç Köyü Yaşam Müzesi", "Zindane Kayalıkları", "Sırt Yaylası"],t:["Arhavi kestane balı", "Terminosi"],gz:"arhavi"},
- {id:'kemalpasa',ad:'Kemalpaşa',lat:41.4829,lon:41.519,n:9263,k:12,m:3,b:'sahil',d:"Türkiye'nin Karadeniz kıyısındaki en doğu ilçesi; Sarp Sınır Kapısı burada.",y:['hopa-sarp'],r:5,km:null,dol:null,g:["Sarp Sınır Kapısı", "Hopa–Sarp sahil yolu"],t:[],gz:"kemalpaşa"},
+ {id:'hopa',ad:'Hopa',lat:41.4119,lon:41.4239,n:27844,k:16,m:9,b:'sahil',d:"Karadeniz kıyısında, limanı ve ticaretiyle bilinen bir sahil ilçesi.",y:['hopa-sarp','hopa-arhavi','borcka-hopa'],r:5,km:55,dol:400,g:["Çağçağan Şelalesi", "Hopa Yaşam Müzesi", "Kopmuş Plajı ve kamp alanı"],t:["Hopa laz böreği", "Hamsili ekmek"],gz:"hopa"},
+ {id:'arhavi',ad:'Arhavi',lat:41.3528,lon:41.2978,n:22025,k:30,m:7,b:'sahil',d:"Rize sınırındaki sahil ilçesi; Mençuna Şelalesi ve Ortacalar vadisi burada.",y:['hopa-arhavi'],r:5,km:65,dol:450,g:["Tarihi Arılı", "Kamilet Vadisi ve Mençuna Şelalesi", "Ortacalar Çifteköprü", "Dikyamaç Köyü Yaşam Müzesi", "Zindane Kayalıkları", "Sırt Yaylası"],t:["Arhavi kestane balı", "Terminosi"],gz:"arhavi"},
+ {id:'kemalpasa',ad:'Kemalpaşa',lat:41.4829,lon:41.519,n:9263,k:12,m:3,b:'sahil',d:"Türkiye'nin Karadeniz kıyısındaki en doğu ilçesi; Sarp Sınır Kapısı burada.",y:['hopa-sarp'],r:5,km:72,dol:450,g:["Sarp Sınır Kapısı", "Hopa–Sarp sahil yolu"],t:[],gz:"kemalpaşa"},
  {id:'merkez',ad:'Artvin Merkez',lat:41.1828,lon:41.8183,n:35710,k:36,m:7,b:'coruh',d:"Çoruh vadisinin dik yamaçlarına kurulmuş dağ şehri; Kafkasör ve Hatila burada.",y:['artvin-kafkasor'],r:550,km:null,dol:null,g:["Kafkasör Yaylası", "Hatila Vadisi Cam Seyir Terası", "Atatepe — Türkiye'nin en büyük Atatürk heykeli", "Yankı Tepesi", "Mersivan Tepesi", "Deriner Barajı Seyir Terası", "Kaledibi Marina", "Artvin Kalesi"],t:["Hatila balı"],gz:"merkez"},
- {id:'borcka',ad:'Borçka',lat:41.3667,lon:41.6833,n:21628,k:41,m:5,b:'coruh',d:"Merkezle sahil arasında kavşak ilçe; Borçka Karagöl ve Macahel buraya bağlı.",y:['artvin-borcka','borcka-hopa','borcka-camili'],r:100,km:32,dol:170,g:["Borçka Karagöl", "Macahel (Camili) Biyosfer Rezervi", "Maral Şelalesi", "Karçal Yıldız Gölü"],t:["Borçka demir elması"],gz:"borçka"},
- {id:'murgul',ad:'Murgul',lat:41.2811,lon:41.5578,n:6457,k:11,m:2,b:'coruh',d:"Bakır madeniyle tanınan, ilin en az nüfuslu ilçesi.",y:['borcka-murgul'],r:350,km:58,dol:230,g:["Delikli Kaya Şelalesi", "Damar Kara Göl", "Matkapın Şelalesi"],t:[],gz:"murgul"},
- {id:'savsat',ad:'Şavşat',lat:41.2444,lon:42.3667,n:16151,k:65,m:3,b:'ic',d:"İlin en çok köyü olan ilçesi; Şavşat Karagöl ve Sahara burada.",y:['artvin-savsat','savsat-ardahan'],r:1000,km:65,dol:280,g:["Karagöl–Sahara Milli Parkı", "Balıklı Göl", "Arsiyan Yaylası"],t:["Şavşat ketesi"],gz:"şavşat"},
- {id:'ardanuc',ad:'Ardanuç',lat:41.127,lon:42.061,n:10889,k:49,m:1,b:'ic',d:"Karasal iklimin başladığı tarihi ilçe; Gevhernik Kalesi ve Cehennem Deresi Kanyonu.",y:['artvin-ardanuc'],r:500,km:35,dol:230,g:["Cehennem Deresi Kanyonu", "Gevhernik (Ardanuç) Kalesi", "Ferhatlı", "Usot Gölü (Tosunlu köyü)"],t:["Çağ döner"],gz:"ardanuç"},
- {id:'yusufeli',ad:'Yusufeli',lat:40.8167,lon:41.5333,n:17564,k:63,m:5,b:'ic',d:"İlin yüzölçümü en büyük ilçesi; Kaçkar'ın doğu eteğinde, baraj gölü kıyısında.",y:['artvin-yusufeli'],r:750,km:70,dol:300,g:["İşhan Kilisesi", "Barhal Kilisesi", "Kaçkar Dağları ve Çoruh'ta rafting"],t:["Çağ döner"],gz:"yusufeli"}
+ {id:'borcka',ad:'Borçka',lat:41.3667,lon:41.6833,n:21628,k:41,m:5,b:'coruh',d:"Merkezle sahil arasında kavşak ilçe; Borçka Karagöl ve Macahel buraya bağlı.",y:['artvin-borcka','borcka-hopa','borcka-camili'],r:100,km:32,dol:250,g:["Borçka Karagöl", "Macahel (Camili) Biyosfer Rezervi", "Maral Şelalesi", "Karçal Yıldız Gölü"],t:["Borçka demir elması"],gz:"borçka"},
+ {id:'murgul',ad:'Murgul',lat:41.2811,lon:41.5578,n:6457,k:11,m:2,b:'coruh',d:"Bakır madeniyle tanınan, ilin en az nüfuslu ilçesi.",y:['borcka-murgul'],r:350,km:58,dol:330,g:["Delikli Kaya Şelalesi", "Damar Kara Göl", "Matkapın Şelalesi"],t:[],gz:"murgul"},
+ {id:'savsat',ad:'Şavşat',lat:41.2444,lon:42.3667,n:16151,k:65,m:3,b:'ic',d:"İlin en çok köyü olan ilçesi; Şavşat Karagöl ve Sahara burada.",y:['artvin-savsat','savsat-ardahan'],r:1000,km:65,dol:400,g:["Karagöl–Sahara Milli Parkı", "Balıklı Göl", "Arsiyan Yaylası"],t:["Şavşat ketesi"],gz:"şavşat"},
+ {id:'ardanuc',ad:'Ardanuç',lat:41.127,lon:42.061,n:10889,k:49,m:1,b:'ic',d:"Karasal iklimin başladığı tarihi ilçe; Gevhernik Kalesi ve Cehennem Deresi Kanyonu.",y:['artvin-ardanuc'],r:500,km:35,dol:350,g:["Cehennem Deresi Kanyonu", "Gevhernik (Ardanuç) Kalesi", "Ferhatlı", "Usot Gölü (Tosunlu köyü)"],t:["Çağ döner"],gz:"ardanuç"},
+ {id:'yusufeli',ad:'Yusufeli',lat:40.8167,lon:41.5333,n:17564,k:63,m:5,b:'ic',d:"İlin yüzölçümü en büyük ilçesi; Kaçkar'ın doğu eteğinde, baraj gölü kıyısında.",y:['artvin-yusufeli'],r:750,km:70,dol:400,g:["İşhan Kilisesi", "Barhal Kilisesi", "Kaçkar Dağları ve Çoruh'ta rafting"],t:["Çağ döner"],gz:"yusufeli"}
 ];
 window.SINIR=[[41.5133, 41.5896], [41.4836, 41.655], [41.4977, 41.7088], [41.4751, 41.7157], [41.4642, 41.7812], [41.4346, 41.8231], [41.5246, 41.9552], [41.4945, 42.0481], [41.5118, 42.0872], [41.5145, 42.1839], [41.4936, 42.2039], [41.4952, 42.2818], [41.471, 42.334], [41.4666, 42.4077], [41.4397, 42.4728], [41.3008, 42.5319], [41.2264, 42.5832], [41.1856, 42.5574], [41.156, 42.4896], [41.0853, 42.3984], [40.9829, 42.3308], [40.9653, 42.2731], [40.9638, 42.0993], [40.9307, 42.0127], [40.8564, 41.9732], [40.6405, 41.9037], [40.6182, 41.8244], [40.6605, 41.7142], [40.6617, 41.6482], [40.5631, 41.4287], [40.5793, 41.3626], [40.6502, 41.3396], [40.7447, 41.397], [40.7722, 41.3856], [40.7802, 41.1991], [40.8085, 41.1223], [41.0313, 41.337], [41.0651, 41.4073], [41.0935, 41.424], [41.1172, 41.4093], [41.12, 41.3688], [41.1552, 41.3068], [41.2085, 41.2556], [41.2556, 41.2479], [41.3029, 41.2115], [41.3449, 41.2724], [41.3865, 41.4107], [41.4615, 41.474], [41.4826, 41.5218], [41.5263, 41.5482], [41.5133, 41.5896]];
 </script>
@@ -299,6 +322,9 @@ window.SINIR=[[41.5133, 41.5896], [41.4836, 41.655], [41.4977, 41.7088], [41.475
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {Line2} from 'three/addons/lines/Line2.js';
+import {LineMaterial} from 'three/addons/lines/LineMaterial.js';
+import {LineGeometry} from 'three/addons/lines/LineGeometry.js';
 const $=id=>document.getElementById(id);
 const IL=window.ILCE, SINIR=window.SINIR;
 const meta=await fetch('/veri/artvin-dem.json').then(r=>r.json());
@@ -314,14 +340,14 @@ function icinde(lat,lon){ let c=false; for(let i=0,j=SINIR.length-1;i<SINIR.leng
 const ADIM=2, NX=Math.floor(meta.w/ADIM), NY=Math.floor(meta.h/ADIM);
 const geo=new THREE.PlaneGeometry(GEN,DER,NX-1,NY-1); geo.rotateX(-Math.PI/2);
 const pos=geo.attributes.position, renk=new Float32Array(pos.count*3);
-const R=[[-1,'#9fcbe0'],[0,'#a9d3e3'],[1,'#d5e6c8'],[300,'#c2dca9'],[800,'#a5c88c'],[1300,'#9dba86'],[1800,'#bdb88e'],[2300,'#d1c4a4'],[2800,'#e2d8cb'],[3300,'#f6f6f3']].map(([h,c])=>[h,new THREE.Color(c)]);
-const sis=new THREE.Color('#e4ebee'), tmp=new THREE.Color();
+const R=[[-1,'#7fb8cf'],[0,'#8cc3d6'],[1,'#d7e7c3'],[250,'#b8d69b'],[700,'#92bf7a'],[1200,'#7aa767'],[1700,'#9c9f6f'],[2200,'#b9a98a'],[2700,'#d9cfc2'],[3200,'#fbfaf7']].map(([h,c])=>[h,new THREE.Color(c)]);
+const sis=new THREE.Color('#e6ecef'), tmp=new THREE.Color();
 function hRenk(h){ if(h<=0) return R[1][1]; for(let i=2;i<R.length;i++){ if(h<R[i][0]){ const a=R[i-1],b=R[i]; return tmp.copy(a[1]).lerp(b[1],(h-a[0])/(b[0]-a[0])); } } return R[R.length-1][1]; }
 for(let j=0;j<NY;j++) for(let i=0;i<NX;i++){
   const v=j*NX+i, h=Math.max(0,yuk(i*ADIM,j*ADIM));
   pos.setY(v,h/1000*ABARTI);
   const lat=meta.lat1-(j/(NY-1))*(meta.lat1-meta.lat0), lon=meta.lon0+(i/(NX-1))*(meta.lon1-meta.lon0);
-  const c=hRenk(h).clone(); if(h>0&&!icinde(lat,lon)) c.lerp(sis,.62);
+  const c=hRenk(h).clone(); if(h>0&&!icinde(lat,lon)) c.lerp(sis,.74);
   renk[v*3]=c.r; renk[v*3+1]=c.g; renk[v*3+2]=c.b;
 }
 geo.setAttribute('color',new THREE.BufferAttribute(renk,3)); geo.computeVertexNormals();
@@ -329,39 +355,49 @@ const sahne=new THREE.Scene(); sahne.fog=new THREE.Fog(0xe4eeef,230,420);
 const kamera=new THREE.PerspectiveCamera(38,1,1,1000);
 const cizici=new THREE.WebGLRenderer({canvas:$('sahne'),antialias:true,alpha:true}); cizici.setPixelRatio(Math.min(2,devicePixelRatio));
 sahne.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.95,metalness:0})));
-sahne.add(new THREE.HemisphereLight(0xffffff,0x8aa0a8,1.25));
-const gunes=new THREE.DirectionalLight(0xfff3df,1.6); gunes.position.set(-60,90,40); sahne.add(gunes);
+sahne.add(new THREE.HemisphereLight(0xffffff,0x7d939c,1.0));
+const gunes=new THREE.DirectionalLight(0xfff1dc,2.1); gunes.position.set(-90,70,15); sahne.add(gunes);
 // il sınırı
 function yer(lat,lon){ const i=Math.round((lon-meta.lon0)/(meta.lon1-meta.lon0)*(meta.w-1)), j=Math.round((meta.lat1-lat)/(meta.lat1-meta.lat0)*(meta.h-1)); const h=(i>=0&&j>=0&&i<meta.w&&j<meta.h)?Math.max(0,yuk(i,j)):0; return new THREE.Vector3(sx(lon),h/1000*ABARTI,sz(lat)); }
 const sinirNok=[]; for(let k=0;k<SINIR.length-1;k++){ const [a1,o1]=SINIR[k],[a2,o2]=SINIR[k+1]; for(let t=0;t<1;t+=.1) sinirNok.push(yer(a1+(a2-a1)*t,o1+(o2-o1)*t).add(new THREE.Vector3(0,.25,0))); }
-sahne.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(sinirNok),new THREE.LineBasicMaterial({color:0xe2a23b})));
+const sg=new LineGeometry(); sg.setPositions(sinirNok.flatMap(p=>[p.x,p.y,p.z]));
+const smat=new LineMaterial({color:0xe2a23b,linewidth:2.6}); const sinirCizgi=new Line2(sg,smat); sahne.add(sinirCizgi);
 // kontrol
 const kontrol=new OrbitControls(kamera,cizici.domElement);
-kontrol.enableDamping=true; kontrol.enablePan=false; kontrol.minDistance=35; kontrol.maxDistance=300; kontrol.maxPolarAngle=1.25; kontrol.minPolarAngle=.35;
-kontrol.autoRotate=true; kontrol.autoRotateSpeed=.35;
-const dar=innerWidth/innerHeight<.8; kamera.position.set(0,dar?205:150,dar?150:130); kontrol.target.set(0,0,dar?-14:0);
+kontrol.enableDamping=true; kontrol.dampingFactor=.16; kontrol.rotateSpeed=.8; kontrol.enablePan=false; kontrol.minDistance=35; kontrol.maxDistance=300; kontrol.maxPolarAngle=1.25; kontrol.minPolarAngle=.35;
+kontrol.autoRotate=true; kontrol.autoRotateSpeed=.3;
+const dar=innerWidth/innerHeight<.8; kamera.position.set(0,dar?205:150,dar?150:130); kontrol.target.set(0,0,dar?-30:-6);
+const BAS={k:kamera.position.clone(),h:kontrol.target.clone()};
 // pinler
 const pinler=IL.map(il=>{ const p=yer(il.lat,il.lon).add(new THREE.Vector3(0,1.2,0)); const b=document.createElement('button'); b.className='pin'; b.type='button'; b.innerHTML='<b>'+il.ad.replace('Artvin ','')+'</b><i></i><em></em>'; b.onclick=()=>sec(il.id); $('pinler').appendChild(b); return {il,p,b}; });
 // kamera uçuşu
 let ucus=null;
 function sec(id){
   const o=pinler.find(x=>x.il.id===id); if(!o) return;
-  kontrol.autoRotate=false; $('ipucu').style.opacity=0;
+  dokundu();
   pinler.forEach(x=>x.b.classList.toggle('on',x===o)); [...$('serit').children].forEach(b=>b.classList.toggle('on',b.dataset.id===id));
   const yon=kamera.position.clone().sub(kontrol.target).normalize();
-  ucus={t0:performance.now(),s:700,h0:kontrol.target.clone(),h1:o.p.clone(),k0:kamera.position.clone(),k1:o.p.clone().add(yon.multiplyScalar(62))};
-  window.kartAc&&window.kartAc(o.il);
+  ucus={t0:performance.now(),s:700,h0:kontrol.target.clone(),h1:o.p.clone().add(new THREE.Vector3(0,0,dar?9:6)),k0:kamera.position.clone(),k1:o.p.clone().add(new THREE.Vector3(0,0,dar?9:6)).add(yon.multiplyScalar(dar?120:95))};
+  window.kartAc&&window.kartAc(o.il); $('hero').classList.add('secili');
 }
 window.sec3d=sec;
-function boyut(){ const r=$('hero').getBoundingClientRect(); cizici.setSize(r.width,r.height,false); kamera.aspect=r.width/r.height; kamera.updateProjectionMatrix(); }
+function boyut(){ const r=$('hero').getBoundingClientRect(); cizici.setSize(r.width,r.height,false); smat.resolution.set(r.width,r.height); kamera.aspect=r.width/r.height; kamera.updateProjectionMatrix(); }
 addEventListener('resize',boyut); boyut();
-cizici.domElement.addEventListener('pointerdown',()=>{ kontrol.autoRotate=false; $('ipucu').style.opacity=0; },{once:true});
+let sonDokunus=0, uzakta=false;
+function dokundu(){ sonDokunus=performance.now(); kontrol.autoRotate=false; $('ipucu').style.opacity=0; $('tum').classList.add('gor'); uzakta=true; }
+cizici.domElement.addEventListener('pointerdown',dokundu); cizici.domElement.addEventListener('wheel',dokundu,{passive:true});
+function eveDon(){ pinler.forEach(x=>x.b.classList.remove('on')); [...$('serit').children].forEach(b=>b.classList.remove('on'));
+  $('kart3d').classList.remove('ac'); $('tum').classList.remove('gor'); uzakta=false; $('hero').classList.remove('secili');
+  ucus={t0:performance.now(),s:900,h0:kontrol.target.clone(),h1:BAS.h.clone(),k0:kamera.position.clone(),k1:BAS.k.clone(),son:()=>{kontrol.autoRotate=true;}}; }
+$('tum').onclick=eveDon;
+// 12 sn dokunulmazsa ve kart kapalıysa kendiliğinden toparlansın
+setInterval(()=>{ if(uzakta&&!ucus&&!$('kart3d').classList.contains('ac')&&performance.now()-sonDokunus>12000) eveDon(); },1000);
 const v=new THREE.Vector3();
 let heroAcik=true; new IntersectionObserver(en=>{heroAcik=en[0].isIntersecting;},{threshold:0}).observe($('hero'));
 function dongu(t){
   requestAnimationFrame(dongu);
   if(!heroAcik&&!ucus) return;
-  if(ucus){ const k=Math.min(1,(t-ucus.t0)/ucus.s), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; kontrol.target.lerpVectors(ucus.h0,ucus.h1,e); kamera.position.lerpVectors(ucus.k0,ucus.k1,e); if(k>=1) ucus=null; }
+  if(ucus){ const k=Math.min(1,(t-ucus.t0)/ucus.s), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; kontrol.target.lerpVectors(ucus.h0,ucus.h1,e); kamera.position.lerpVectors(ucus.k0,ucus.k1,e); if(k>=1){ const f=ucus.son; ucus=null; f&&f(); } }
   kontrol.update(); cizici.render(sahne,kamera);
   const W=cizici.domElement.clientWidth,H=cizici.domElement.clientHeight;
   pinler.forEach(o=>{ v.copy(o.p).project(kamera); const g=v.z<1&&Math.abs(v.x)<1.1&&Math.abs(v.y)<1.1; o.b.style.display=g?'':'none'; if(g){ o.b.style.left=((v.x+1)/2*W)+'px'; o.b.style.top=((1-v.y)/2*H)+'px'; o.b.style.zIndex=Math.round((1-v.z)*1000); } });
@@ -385,13 +421,12 @@ function kartlarCiz(){
 }
 window.kartAc=function(il){
   var h=HAVA[il.id], yd=yolDurum(il), YD={acik:'🟢 Açık',dikkat:'🟠 Dikkat',kapali:'🔴 Kapalı',bos:'🟢 Bildirim yok'};
-  $('kartIc').innerHTML='<h3>'+il.ad+'</h3><p>'+il.d+'</p><div class="k-bilgi"><div><b>'+nf(il.n)+'</b><span>nüfus</span></div><div><b>'+il.k+'</b><span>köy</span></div>'+(h?'<div><b>'+h+'</b><span>şu an</span></div>':'')+'<div><b>~'+nf(il.r)+' m</b><span>rakım</span></div><div><b style="font-size:16px">'+YD[yd]+'</b><span>yol</span></div></div><div class="k-gor">'+il.g.slice(0,3).map(function(x){return x.split(' — ')[0];}).join(' · ')+'</div><div class="k-btn"><button type="button" class="k-vit" data-vit="'+il.id+'">Fotoğrafla gez</button><a class="k-git" href="/ilce-'+il.id+'.html">Rehberi aç</a></div>';
+  $('kartIc').innerHTML='<h3>'+il.ad+'</h3><p>'+il.d+'</p><div class="k-bilgi"><div><b>'+nf(il.n)+'</b><span>nüfus</span></div><div><b>'+il.k+'</b><span>köy</span></div>'+(h?'<div><b>'+h+'</b><span>şu an</span></div>':'')+'<div><b>~'+nf(il.r)+' m</b><span>rakım</span></div><div><b style="font-size:16px">'+YD[yd]+'</b><span>yol</span></div></div><div class="k-gor">'+il.g.slice(0,3).map(function(x){return x.split(' — ')[0];}).join(' · ')+'</div><div class="k-btn"><button type="button" class="k-vit" data-vit="'+il.id+'">Fotoğrafla gez</button><a class="k-git" href="/ilce-'+il.id+'.html">Ayrıntılı rehber</a></div>';
   $('kart3d').classList.add('ac');
 };
 $('kapat').onclick=function(){ $('kart3d').classList.remove('ac'); };
 $('kartIc').addEventListener('click',function(e){ var b=e.target.closest('[data-vit]'); if(b&&window.vitrin) window.vitrin(b.dataset.vit,true); });
-$('serit').innerHTML=IL.map(function(il){ return '<button type="button" data-id="'+il.id+'">'+il.ad.replace('Artvin ','')+'</button>'; }).join('');
-$('serit').addEventListener('click',function(e){ var b=e.target.closest('[data-id]'); if(!b) return; if(window.sec3d) window.sec3d(b.dataset.id); else window.kartAc(IL.find(function(x){return x.id===b.dataset.id;})); });
+$('serit').innerHTML=IL.map(function(il){ return '<a href="/ilce-'+il.id+'.html" data-id="'+il.id+'">'+il.ad.replace('Artvin ','')+'</a>'; }).join('');
 kartlarCiz();
 // hava
 fetch('https://api.open-meteo.com/v1/forecast?latitude='+IL.map(function(x){return x.lat;}).join(',')+'&longitude='+IL.map(function(x){return x.lon;}).join(',')+'&current=temperature_2m&timezone=Europe%2FIstanbul').then(function(r){return r.json();}).then(function(a){
@@ -403,7 +438,9 @@ function yolListe(){ var Y=window.YOL; if(!Y) return;
     var html=Y.YOLLAR.map(function(y){ var d=Y.durumHesapla(r,y.id); YOL[y.id]=d.kod==='kapali'?'kapali':d.kod==='dikkat'?'dikkat':'acik';
       return '<a class="ys" href="/yol-'+y.id+'.html"><i class="'+YOL[y.id]+'"></i><span>'+Y.esc(y.ad)+'</span><em>'+(d.kod==='kapali'?'Kapalı':d.kod==='dikkat'?'Dikkat':d.kod==='acik'?'Açıldı':'Bildirim yok')+'</em></a>'; }).join('');
     $('yolListe').innerHTML=html; kartlarCiz();
-  }).catch(function(){ $('yolListe').innerHTML='<div class="ys"><span>Yol bilgisi şu an alınamadı.</span></div>'; });
+    var kp=0,dk=0; Y.YOLLAR.forEach(function(y){ if(YOL[y.id]==='kapali') kp++; else if(YOL[y.id]==='dikkat') dk++; });
+    $('yolOzet').textContent=Y.YOLLAR.length+' yol · '+(kp||dk?[kp?('🔴 '+kp+' kapalı'):'',dk?('🟠 '+dk+' dikkat'):''].filter(Boolean).join(' · '):'🟢 kapalı yol bildirimi yok');
+  }).catch(function(){ $('yolListe').innerHTML='<div class="ys"><span>Yol bilgisi şu an alınamadı.</span></div>'; $('yolOzet').textContent='Yol bilgisi şu an alınamadı.'; });
 }
 var s=document.createElement('script'); s.src='/yol-ortak.js'; s.onload=yolListe; document.head.appendChild(s);
 // tablo sıralama (eski sayfadaki gibi)
@@ -426,14 +463,17 @@ function yukle(k){ var im=imgs[(k+SIRA.length)%SIRA.length]; if(!im.src) im.src=
 $('sCip').innerHTML=SIRA.map(function(il,k){ return '<button type="button" role="tab" data-k="'+k+'">'+il.ad.replace('Artvin ','')+'</button>'; }).join('');
 $('pCubuk').innerHTML=SIRA.map(function(){return '<i><b></b></i>';}).join('');
 function bilgi(il){
+  var kisa=il.ad.replace('Artvin ','');
   var ol='<div><b>~'+nf(il.r)+' m</b><span>rakım</span></div>'
-    +(il.id==='merkez'?'<div><b>İl merkezi</b><span>konum</span></div>':il.km?'<div><b>'+il.km+' km</b><span>merkeze</span></div>':'<div><b>Hopa</b><span>üzerinden</span></div>')
-    +(il.dol?'<div><b>'+il.dol+' ₺</b><span>dolmuş</span></div>':il.id==='merkez'?'<div><b>'+il.k+'</b><span>köy</span></div>':'<div><b>Aktarma</b><span>dolmuş</span></div>')
+    +(il.id==='merkez'?'<div><b>İl merkezi</b><span>konum</span></div>':'<div><b>'+il.km+' km</b><span>Artvin merkeze uzaklık</span></div>')
+    +(il.dol?'<div><b>'+il.dol+' ₺</b><span>Artvin\'den dolmuş ücreti'+(il.id==='kemalpasa'?' · Hopa aktarmalı':'')+'</span></div>':'<div><b>'+il.k+'</b><span>köy</span></div>')
     +'<div><b>'+nf(il.n)+'</b><span>nüfus</span></div>';
-  var gor=il.g.map(function(x){ var p=x.split(' — '); return '<li>'+e(p[0])+(p[1]?' <em>· '+e(p[1])+'</em>':'')+'</li>'; }).join('');
+  function li(x){ var p=x.split(' — '); return '<li>'+e(p[0])+(p[1]?' <em>· '+e(p[1])+'</em>':'')+'</li>'; }
+  var gor='<ul class="s-gor">'+il.g.slice(0,3).map(li).join('')+'</ul>'
+    +(il.g.length>3?'<details class="s-cek"><summary>'+(il.g.length-3)+' yer daha</summary><ul class="s-gor">'+il.g.slice(3).map(li).join('')+'</ul></details>':'');
   var tat=il.t.length?'<div class="s-tat">'+il.t.map(function(x){return '<span>'+e(x)+'</span>';}).join('')+'</div>':'<div class="s-yok">Bu ilçenin sofrası için önerin varsa bize yaz.</div>';
-  return '<div class="s-ol">'+ol+'</div><div class="s-iki"><div><h4>Görülecek yerler</h4><ul class="s-gor">'+gor+'</ul><a class="s-gezi" href="/gezi.html#'+il.gz+'">Gezi rehberinde '+il.ad.replace('Artvin ','')+' →</a></div><div><h4>Sofrada</h4>'+tat+'</div></div>'
-    +'<div class="s-btn"><button type="button" data-harita="'+il.id+'">Haritada gör</button><a href="/ilce-'+il.id+'.html">'+il.ad.replace('Artvin ','')+' rehberi</a></div>';
+  return '<div class="s-btn"><a href="/ilce-'+il.id+'.html">'+kisa+' ayrıntılı rehberi</a><button type="button" data-harita="'+il.id+'">Haritada gör</button></div>'
+    +'<div class="s-ol">'+ol+'</div><div class="s-iki"><div><h4>Görülecek yerler</h4>'+gor+'<a class="s-gezi" href="/gezi.html#'+il.gz+'">Gezi rehberinde '+kisa+' →</a></div><div><h4>Sofrada</h4>'+tat+'</div></div>';
 }
 function goster(k,kullanici){
   i=(k+SIRA.length)%SIRA.length; var il=SIRA[i];
