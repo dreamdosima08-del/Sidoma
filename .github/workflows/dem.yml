@@ -1,0 +1,20 @@
+name: Artvin yükseklik verisi
+on:
+  push:
+    paths: ['araclar/dem_indir.py','.github/workflows/dem.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  dem:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python3 araclar/dem_indir.py
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add veri/artvin-dem.png veri/artvin-dem.json
+          git commit -m "Artvin yükseklik verisi (3D ilçe haritası)" || echo "değişiklik yok"
+          git pull --rebase origin main && git push
