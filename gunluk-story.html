@@ -298,10 +298,12 @@ function ciz(){
     if(V.bulut&&!V.bulut.yok){ var bt=ry(V.bulut.tavan==null?tavan:V.bulut.tavan), bb=ry(V.bulut.taban);
       x.fillStyle='rgba(244,248,245,.2)'; kutu(cx-17,bt-4,34,Math.max(14,bb-bt+8),17); x.fill(); }
     if(V.kar<3000){ x.fillStyle=BUZ; kutu(cx-6,ust,12,Math.max(6,karY-ust),6); x.fill(); }
-    YERLER.forEach(function(t){
+    // etiketler üst üste binmesin: alttan yukarı en az 64 px aralık
+    var LY=[], onceki=1e9; YERLER.forEach(function(t,i){ var v=(ry(t.a)+ry(t.b))/2; v=Math.min(v,onceki-64); LY[i]=v; onceki=v; });
+    YERLER.forEach(function(t,i){
       var y1=ry(t.b), y0=ry(t.a), karli=t.a>=V.kar, kism=!karli&&t.b>=V.kar, renk=karli||kism?BUZ:'rgba(244,248,245,.55)';
       if(t.b>t.a){ x.fillStyle=renk; kutu(cx-22,y1,10,Math.max(4,y0-y1),5); x.fill(); } else cizgi(cx-22,y0,cx-10,y0,renk,4);
-      var ly=(y0+y1)/2;
+      var ly=LY[i];
       f(karli||kism?700:600,27,0); yaz(t.ad,cx-36,ly+2,karli||kism?BUZ:BEYAZ,'right');
       f(400,22,0); yaz(t.a===t.b?trs(t.a)+' m':trs(t.a)+'–'+trs(t.b)+' m',cx-36,ly+28,karli||kism?'rgba(191,230,255,.8)':SOLUK,'right');
     });
