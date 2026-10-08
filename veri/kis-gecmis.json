@@ -1,0 +1,451 @@
+{
+ "kaynak": "Open-Meteo geçmiş hava arşivi (ECMWF ERA5 / ERA5-Land yeniden analiz)",
+ "yontem": "Saatlik yağış ve noktanın rakımına göre düzeltilmiş sıcaklık; sıcaklık 1 °C ve altındaysa yağış kar sayıldı. Günde en az 1 mm kar suyu (~1 cm taze kar) düşen gün \"karlı gün\".",
+ "olusturma": "2026-10-08",
+ "kislar": [
+  "2016-2017",
+  "2017-2018",
+  "2018-2019",
+  "2019-2020",
+  "2020-2021",
+  "2021-2022",
+  "2022-2023",
+  "2023-2024",
+  "2024-2025",
+  "2025-2026"
+ ],
+ "noktalar": {
+  "merkez": {
+   "ad": "Artvin Merkez",
+   "rakim": 550,
+   "lat": 41.1828,
+   "lon": 41.8183,
+   "model_rakimi": 550.0,
+   "ozet": {
+    "ort_ilk_kar": "12-20",
+    "en_erken_ilk_kar": "2017-11-23",
+    "en_gec_ilk_kar": "2020-01-23",
+    "ort_son_kar": "02-28",
+    "ort_karli_gun": 14.2,
+    "ort_toplam_kar_cm": 87,
+    "karsiz_kis": 0
+   },
+   "kislar": [
+    {
+     "kis": "2016-2017",
+     "ilk_kar": "2016-12-02",
+     "son_kar": "2017-02-17",
+     "karli_gun": 32,
+     "toplam_kar_cm": 196,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 88
+    },
+    {
+     "kis": "2017-2018",
+     "ilk_kar": "2017-11-23",
+     "son_kar": "2018-03-01",
+     "karli_gun": 9,
+     "toplam_kar_cm": 54,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 15
+    },
+    {
+     "kis": "2018-2019",
+     "ilk_kar": "2018-12-14",
+     "son_kar": "2019-01-18",
+     "karli_gun": 6,
+     "toplam_kar_cm": 24,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 26
+    },
+    {
+     "kis": "2019-2020",
+     "ilk_kar": "2020-01-23",
+     "son_kar": "2020-03-18",
+     "karli_gun": 11,
+     "toplam_kar_cm": 67,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 24
+    },
+    {
+     "kis": "2020-2021",
+     "ilk_kar": "2020-12-24",
+     "son_kar": "2021-03-19",
+     "karli_gun": 12,
+     "toplam_kar_cm": 50,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 22
+    },
+    {
+     "kis": "2021-2022",
+     "ilk_kar": "2021-12-21",
+     "son_kar": "2022-03-24",
+     "karli_gun": 26,
+     "toplam_kar_cm": 178,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 63
+    },
+    {
+     "kis": "2022-2023",
+     "ilk_kar": "2023-01-08",
+     "son_kar": "2023-02-17",
+     "karli_gun": 8,
+     "toplam_kar_cm": 58,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 29
+    },
+    {
+     "kis": "2023-2024",
+     "ilk_kar": "2023-12-24",
+     "son_kar": "2024-01-14",
+     "karli_gun": 4,
+     "toplam_kar_cm": 30,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 22
+    },
+    {
+     "kis": "2024-2025",
+     "ilk_kar": "2024-12-13",
+     "son_kar": "2025-04-12",
+     "karli_gun": 20,
+     "toplam_kar_cm": 153,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 99
+    },
+    {
+     "kis": "2025-2026",
+     "ilk_kar": "2025-12-16",
+     "son_kar": "2026-02-27",
+     "karli_gun": 14,
+     "toplam_kar_cm": 64,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 57
+    }
+   ]
+  },
+  "kafkasor": {
+   "ad": "Kafkasör",
+   "rakim": 1250,
+   "lat": 41.195,
+   "lon": 41.735,
+   "model_rakimi": 1250.0,
+   "ozet": {
+    "ort_ilk_kar": "11-13",
+    "en_erken_ilk_kar": "2024-10-21",
+    "en_gec_ilk_kar": "2022-12-05",
+    "ort_son_kar": "04-13",
+    "ort_karli_gun": 49.8,
+    "ort_toplam_kar_cm": 442,
+    "karsiz_kis": 0
+   },
+   "kislar": [
+    {
+     "kis": "2016-2017",
+     "ilk_kar": "2016-10-31",
+     "son_kar": "2017-04-25",
+     "karli_gun": 66,
+     "toplam_kar_cm": 607,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 136
+    },
+    {
+     "kis": "2017-2018",
+     "ilk_kar": "2017-11-01",
+     "son_kar": "2018-04-03",
+     "karli_gun": 44,
+     "toplam_kar_cm": 356,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 96
+    },
+    {
+     "kis": "2018-2019",
+     "ilk_kar": "2018-11-14",
+     "son_kar": "2019-04-22",
+     "karli_gun": 58,
+     "toplam_kar_cm": 406,
+     "en_karli_ay": "Mart",
+     "ayazli_gun": 112
+    },
+    {
+     "kis": "2019-2020",
+     "ilk_kar": "2019-11-02",
+     "son_kar": "2020-04-23",
+     "karli_gun": 39,
+     "toplam_kar_cm": 337,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 98
+    },
+    {
+     "kis": "2020-2021",
+     "ilk_kar": "2020-11-22",
+     "son_kar": "2021-04-10",
+     "karli_gun": 49,
+     "toplam_kar_cm": 322,
+     "en_karli_ay": "Mart",
+     "ayazli_gun": 104
+    },
+    {
+     "kis": "2021-2022",
+     "ilk_kar": "2021-11-10",
+     "son_kar": "2022-04-13",
+     "karli_gun": 60,
+     "toplam_kar_cm": 519,
+     "en_karli_ay": "Mart",
+     "ayazli_gun": 125
+    },
+    {
+     "kis": "2022-2023",
+     "ilk_kar": "2022-12-05",
+     "son_kar": "2023-03-31",
+     "karli_gun": 33,
+     "toplam_kar_cm": 326,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 94
+    },
+    {
+     "kis": "2023-2024",
+     "ilk_kar": "2023-11-20",
+     "son_kar": "2024-03-27",
+     "karli_gun": 40,
+     "toplam_kar_cm": 453,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 98
+    },
+    {
+     "kis": "2024-2025",
+     "ilk_kar": "2024-10-21",
+     "son_kar": "2025-04-15",
+     "karli_gun": 56,
+     "toplam_kar_cm": 610,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 131
+    },
+    {
+     "kis": "2025-2026",
+     "ilk_kar": "2025-12-02",
+     "son_kar": "2026-04-24",
+     "karli_gun": 53,
+     "toplam_kar_cm": 487,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 99
+    }
+   ]
+  },
+  "savsat": {
+   "ad": "Şavşat",
+   "rakim": 1000,
+   "lat": 41.2444,
+   "lon": 42.3667,
+   "model_rakimi": 1000.0,
+   "ozet": {
+    "ort_ilk_kar": "12-04",
+    "en_erken_ilk_kar": "2016-11-02",
+    "en_gec_ilk_kar": "2020-01-02",
+    "ort_son_kar": "03-31",
+    "ort_karli_gun": 28.2,
+    "ort_toplam_kar_cm": 192,
+    "karsiz_kis": 0
+   },
+   "kislar": [
+    {
+     "kis": "2016-2017",
+     "ilk_kar": "2016-11-02",
+     "son_kar": "2017-04-10",
+     "karli_gun": 42,
+     "toplam_kar_cm": 250,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 129
+    },
+    {
+     "kis": "2017-2018",
+     "ilk_kar": "2017-11-22",
+     "son_kar": "2018-03-02",
+     "karli_gun": 17,
+     "toplam_kar_cm": 158,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 88
+    },
+    {
+     "kis": "2018-2019",
+     "ilk_kar": "2018-12-13",
+     "son_kar": "2019-03-30",
+     "karli_gun": 23,
+     "toplam_kar_cm": 132,
+     "en_karli_ay": "Mart",
+     "ayazli_gun": 97
+    },
+    {
+     "kis": "2019-2020",
+     "ilk_kar": "2020-01-02",
+     "son_kar": "2020-03-18",
+     "karli_gun": 21,
+     "toplam_kar_cm": 128,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 98
+    },
+    {
+     "kis": "2020-2021",
+     "ilk_kar": "2020-11-23",
+     "son_kar": "2021-03-28",
+     "karli_gun": 28,
+     "toplam_kar_cm": 126,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 103
+    },
+    {
+     "kis": "2021-2022",
+     "ilk_kar": "2021-12-21",
+     "son_kar": "2022-04-13",
+     "karli_gun": 40,
+     "toplam_kar_cm": 282,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 123
+    },
+    {
+     "kis": "2022-2023",
+     "ilk_kar": "2022-12-28",
+     "son_kar": "2023-04-01",
+     "karli_gun": 20,
+     "toplam_kar_cm": 158,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 88
+    },
+    {
+     "kis": "2023-2024",
+     "ilk_kar": "2023-11-21",
+     "son_kar": "2024-03-27",
+     "karli_gun": 20,
+     "toplam_kar_cm": 149,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 98
+    },
+    {
+     "kis": "2024-2025",
+     "ilk_kar": "2024-11-05",
+     "son_kar": "2025-04-12",
+     "karli_gun": 38,
+     "toplam_kar_cm": 336,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 136
+    },
+    {
+     "kis": "2025-2026",
+     "ilk_kar": "2025-12-26",
+     "son_kar": "2026-04-14",
+     "karli_gun": 33,
+     "toplam_kar_cm": 197,
+     "en_karli_ay": "Ocak",
+     "ayazli_gun": 90
+    }
+   ]
+  },
+  "sahara": {
+   "ad": "Sahara Geçidi",
+   "rakim": 2400,
+   "lat": 41.2,
+   "lon": 42.55,
+   "model_rakimi": 2400.0,
+   "ozet": {
+    "ort_ilk_kar": "10-15",
+    "en_erken_ilk_kar": "2017-10-02",
+    "en_gec_ilk_kar": "2020-11-06",
+    "ort_son_kar": "05-19",
+    "ort_karli_gun": 82.3,
+    "ort_toplam_kar_cm": 501,
+    "karsiz_kis": 0
+   },
+   "kislar": [
+    {
+     "kis": "2016-2017",
+     "ilk_kar": "2016-10-15",
+     "son_kar": "2017-05-28",
+     "karli_gun": 80,
+     "toplam_kar_cm": 390,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 219
+    },
+    {
+     "kis": "2017-2018",
+     "ilk_kar": "2017-10-02",
+     "son_kar": "2018-05-10",
+     "karli_gun": 81,
+     "toplam_kar_cm": 560,
+     "en_karli_ay": "Ekim",
+     "ayazli_gun": 204
+    },
+    {
+     "kis": "2018-2019",
+     "ilk_kar": "2018-10-05",
+     "son_kar": "2019-05-13",
+     "karli_gun": 83,
+     "toplam_kar_cm": 436,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 203
+    },
+    {
+     "kis": "2019-2020",
+     "ilk_kar": "2019-11-01",
+     "son_kar": "2020-05-25",
+     "karli_gun": 69,
+     "toplam_kar_cm": 410,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 204
+    },
+    {
+     "kis": "2020-2021",
+     "ilk_kar": "2020-11-06",
+     "son_kar": "2021-05-10",
+     "karli_gun": 71,
+     "toplam_kar_cm": 389,
+     "en_karli_ay": "Mart",
+     "ayazli_gun": 184
+    },
+    {
+     "kis": "2021-2022",
+     "ilk_kar": "2021-10-05",
+     "son_kar": "2022-05-24",
+     "karli_gun": 88,
+     "toplam_kar_cm": 478,
+     "en_karli_ay": "Mart",
+     "ayazli_gun": 221
+    },
+    {
+     "kis": "2022-2023",
+     "ilk_kar": "2022-10-13",
+     "son_kar": "2023-05-15",
+     "karli_gun": 86,
+     "toplam_kar_cm": 513,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 211
+    },
+    {
+     "kis": "2023-2024",
+     "ilk_kar": "2023-10-09",
+     "son_kar": "2024-05-17",
+     "karli_gun": 86,
+     "toplam_kar_cm": 689,
+     "en_karli_ay": "Şubat",
+     "ayazli_gun": 209
+    },
+    {
+     "kis": "2024-2025",
+     "ilk_kar": "2024-10-17",
+     "son_kar": "2025-05-15",
+     "karli_gun": 76,
+     "toplam_kar_cm": 526,
+     "en_karli_ay": "Aralık",
+     "ayazli_gun": 209
+    },
+    {
+     "kis": "2025-2026",
+     "ilk_kar": "2025-10-13",
+     "son_kar": "2026-05-30",
+     "karli_gun": 103,
+     "toplam_kar_cm": 620,
+     "en_karli_ay": "Nisan",
+     "ayazli_gun": 219
+    }
+   ]
+  }
+ }
+}
