@@ -1078,6 +1078,15 @@ border-radius:20px;}
   .k3d-bekle{opacity:1;transform:none}
 }
 </style>
+<style id="hero-baslik-css">
+/* Ana başlık: "Artvin'in Dijital Rehberi" */
+.hero-baslik{margin:-.2rem 0 0;line-height:1;display:flex;flex-direction:column;align-items:center}
+.hero-baslik .hb-ust{display:flex;align-items:center;gap:.7rem;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(1.05rem,4.6vw,1.6rem);letter-spacing:.42em;padding-left:.42em;text-transform:uppercase;color:#f8e9c0;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.hero-baslik .hb-ust:before,.hero-baslik .hb-ust:after{content:"";width:clamp(26px,9vw,64px);height:1px;background:linear-gradient(90deg,rgba(242,194,82,0),rgba(242,194,82,.85))}
+.hero-baslik .hb-ust:after{transform:scaleX(-1)}
+.hero-baslik .hero-city.hb-ana{font-size:clamp(2.9rem,13.5vw,5.6rem);letter-spacing:.05em;padding-left:0;line-height:.9;margin-top:.2rem;color:#f2c252;text-transform:uppercase;white-space:nowrap}
+</style>
+
 <style id="raf-css">
 /* ═══ Ana sayfa: Her gün + konu rafları ═══ */
 .gun-bas,.raf-bas{display:flex;align-items:center;gap:.55rem;text-align:left}
@@ -1219,8 +1228,7 @@ border-radius:20px;}
   
 <div class="hero-content">
     
-    <h1 class="hero-city">Artvin</h1>
-    <div class="hero-sub">Artvin'in Dijital Rehberi</div>
+    <h1 class="hero-baslik"><span class="hb-ust">Artvin'in</span><span class="hero-city hb-ana">Dijital Rehberi</span></h1>
 
     
     <!-- BUGÜN ARTVİN -->
