@@ -1,0 +1,1619 @@
+{
+"kaynak": "Wikidata ve OpenStreetMap (Nominatim)",
+"ozet": {
+"wikidata": 308,
+"osm": 9,
+"yok": 6
+},
+"koyler": {
+"Merkez": {
+"Ağıllar": [
+41.07972,
+41.91389,
+"wikidata"
+],
+"Ahlat": [
+41.20375,
+41.87236,
+"osm"
+],
+"Alabalık": [
+41.293,
+42.0725,
+"wikidata"
+],
+"Aşağımaden": [
+40.9775,
+41.83111,
+"wikidata"
+],
+"Bağcılar": [
+41.225,
+42.0366,
+"wikidata"
+],
+"Bakırköy": [
+41.2418,
+41.8077,
+"wikidata"
+],
+"Ballıüzüm": [
+41.08917,
+41.79722,
+"wikidata"
+],
+"Beşağıl": [
+41.2687,
+41.8115,
+"wikidata"
+],
+"Çimenli": [
+41.19306,
+41.97167,
+"wikidata"
+],
+"Derinköy": [
+41.08639,
+41.88278,
+"wikidata"
+],
+"Dikmenli": [
+41.04667,
+41.83417,
+"wikidata"
+],
+"Dokuzoğul": [
+41.04333,
+41.76583,
+"wikidata"
+],
+"Erenler": [
+41.27667,
+41.78861,
+"wikidata"
+],
+"Fıstıklı": [
+41.205,
+41.79417,
+"wikidata"
+],
+"Hamamlı": [
+41.16556,
+41.95278,
+"wikidata"
+],
+"Hızarlı": [
+41.04833,
+41.87028,
+"wikidata"
+],
+"Kalburlu": [
+41.13333,
+41.88333,
+"wikidata"
+],
+"Köseler": [
+41.12361,
+41.91333,
+"wikidata"
+],
+"Okumuşlar": [
+41.1,
+41.91667,
+"wikidata"
+],
+"Ormanlı": [
+41.25833,
+41.75694,
+"wikidata"
+],
+"Ortaköy": [
+41.25298,
+41.99203,
+"osm"
+],
+"Oruçlu": [
+41.10194,
+41.81833,
+"wikidata"
+],
+"Pırnallı": [
+41.25,
+42.06667,
+"wikidata"
+],
+"Sakalar": [
+41.20333,
+41.99861,
+"wikidata"
+],
+"Salkımlı": [
+41.19778,
+41.87833,
+"wikidata"
+],
+"Sarıbudak": [
+41.07667,
+41.765,
+"wikidata"
+],
+"Seyitler": [
+41.19639,
+41.83694,
+"wikidata"
+],
+"Sümbüllü": [
+41.23,
+41.80806,
+"wikidata"
+],
+"Şehitlik": [
+41.17528,
+41.84,
+"wikidata"
+],
+"Taşlıca": [
+41.17444,
+41.71556,
+"wikidata"
+],
+"Tütüncüler": [
+41.28194,
+41.73806,
+"wikidata"
+],
+"Varlık": [
+41.22139,
+41.86861,
+"wikidata"
+],
+"Vezirköy": [
+41.21861,
+41.8575,
+"wikidata"
+],
+"Yanıklı": [
+41.30667,
+42.12056,
+"wikidata"
+],
+"Yukarımaden": [
+40.98639,
+41.86528,
+"wikidata"
+],
+"Zeytinlik": [
+41.1175,
+41.85278,
+"wikidata"
+]
+},
+"Ardanuç": {
+"Akarsu": [
+41.10966,
+42.12861,
+"wikidata"
+],
+"Anaçlı": [
+41.2,
+42.08333,
+"wikidata"
+],
+"Aşağıirmaklar": null,
+"Aşıklar": [
+41.09972,
+42.12833,
+"wikidata"
+],
+"Avcılar": [
+41.1273,
+41.9749,
+"wikidata"
+],
+"Aydınköy": [
+41.0427,
+42.0964,
+"wikidata"
+],
+"Bağlıca": [
+41.235,
+42.13806,
+"wikidata"
+],
+"Ballı": [
+41.0148,
+42.1801,
+"wikidata"
+],
+"Beratlı": [
+41.14667,
+42.13333,
+"wikidata"
+],
+"Bereket": [
+41.0742,
+41.9792,
+"wikidata"
+],
+"Boyalı": [
+41.1185,
+42.1121,
+"wikidata"
+],
+"Bulanık": [
+41.06111,
+42.17639,
+"wikidata"
+],
+"Cevizlik": [
+41.19583,
+42.13139,
+"wikidata"
+],
+"Çakıllar": [
+41.21722,
+42.15889,
+"wikidata"
+],
+"Çıralar": [
+41.075,
+42.06,
+"wikidata"
+],
+"Ekşinar": [
+41.10611,
+42.05361,
+"wikidata"
+],
+"Ferhatlı": [
+41.14028,
+42.01306,
+"wikidata"
+],
+"Geçitli": [
+41.04028,
+42.2425,
+"wikidata"
+],
+"Gökçe": [
+41.19361,
+42.03444,
+"wikidata"
+],
+"Güleş": [
+41.04028,
+42.2125,
+"wikidata"
+],
+"Gümüşhane": [
+41.1218,
+41.9498,
+"wikidata"
+],
+"Hamurlu": [
+41.13778,
+42.13667,
+"wikidata"
+],
+"Harmanlı": [
+41.1099,
+42.085,
+"wikidata"
+],
+"Hisarlı": [
+41.21389,
+42.17639,
+"wikidata"
+],
+"İncilli": [
+41.1925,
+42.10556,
+"wikidata"
+],
+"Kapıköy": [
+41.1781,
+42.2301,
+"wikidata"
+],
+"Karlı": [
+41.08889,
+42.12194,
+"wikidata"
+],
+"Kaşıkçı": [
+41.11806,
+42.15111,
+"wikidata"
+],
+"Kızılcık": [
+41.12639,
+42.10222,
+"wikidata"
+],
+"Konaklı": [
+41.11306,
+42.15722,
+"wikidata"
+],
+"Kutlu": [
+41.19528,
+42.21528,
+"wikidata"
+],
+"Meşeköy": [
+41.0312,
+41.977,
+"wikidata"
+],
+"Müezzinler": [
+41.09389,
+42.14278,
+"wikidata"
+],
+"Naldöken": [
+41.14472,
+42.0625,
+"wikidata"
+],
+"Ovacık": [
+41.05302,
+41.99588,
+"wikidata"
+],
+"Örtülü": [
+41.06333,
+42.01806,
+"wikidata"
+],
+"Peynirli": [
+41.029,
+42.049,
+"wikidata"
+],
+"Sakarya": [
+41.09333,
+42.01667,
+"wikidata"
+],
+"Soğanlı": [
+41.1675,
+42.01389,
+"wikidata"
+],
+"Tepedüzü": [
+41.0859,
+42.0746,
+"wikidata"
+],
+"Torbalı": [
+41.07583,
+42.03917,
+"wikidata"
+],
+"Tosunlu": [
+41.04896,
+42.16187,
+"wikidata"
+],
+"Tütünlü": [
+41.15175,
+42.09467,
+"wikidata"
+],
+"Ustalar": [
+41.16528,
+42.14333,
+"wikidata"
+],
+"Yaylacık": [
+41.15861,
+42.20778,
+"wikidata"
+],
+"Yolağzı": [
+41.16417,
+42.18694,
+"wikidata"
+],
+"Yolüstü": [
+41.15806,
+42.06194,
+"wikidata"
+],
+"Yukarıirmaklar": null,
+"Zekeriyaköy": [
+40.9843,
+42.1532,
+"wikidata"
+]
+},
+"Arhavi": {
+"Arılı": [
+41.27194,
+41.36611,
+"wikidata"
+],
+"Aşağışahinler": [
+41.32319,
+41.35872,
+"wikidata"
+],
+"Balıklı": [
+41.34167,
+41.42222,
+"wikidata"
+],
+"Başköy": [
+41.27528,
+41.39444,
+"wikidata"
+],
+"Boyuncuk": [
+41.29962,
+41.4681,
+"wikidata"
+],
+"Derecik": [
+41.31694,
+41.38,
+"wikidata"
+],
+"Dereüstü": [
+41.3059,
+41.3265,
+"wikidata"
+],
+"Dikyamaç": [
+41.2891,
+41.3709,
+"wikidata"
+],
+"Dülgerli": [
+41.2784,
+41.4319,
+"wikidata"
+],
+"Güneşli": [
+41.29933,
+41.34193,
+"wikidata"
+],
+"Güngören": [
+41.3382,
+41.2762,
+"wikidata"
+],
+"Gürgençik": null,
+"Kavakköy": [
+41.3145,
+41.3044,
+"wikidata"
+],
+"Kemerköprü": [
+41.31154,
+41.32726,
+"wikidata"
+],
+"Kestanealan": [
+41.3167,
+41.3667,
+"wikidata"
+],
+"Kireçlik": [
+41.3028,
+41.3178,
+"wikidata"
+],
+"Konaklı": [
+41.31694,
+41.32583,
+"wikidata"
+],
+"Küçükköy": [
+41.2723,
+41.3821,
+"wikidata"
+],
+"Ortaköy": [
+41.27921,
+41.38024,
+"osm"
+],
+"Sırtoba": [
+41.30506,
+41.38967,
+"wikidata"
+],
+"Soğucak": [
+41.2847,
+41.4491,
+"wikidata"
+],
+"Şenköy": [
+41.31833,
+41.34389,
+"wikidata"
+],
+"Tepeyurt": [
+41.32694,
+41.34917,
+"wikidata"
+],
+"Ulaş": [
+41.29003,
+41.27661,
+"wikidata"
+],
+"Ulukent": [
+41.32278,
+41.39222,
+"wikidata"
+],
+"Üçırmak": [
+41.3012,
+41.408,
+"wikidata"
+],
+"Üçler": [
+41.30492,
+41.37195,
+"wikidata"
+],
+"Yıldızlı": [
+41.27722,
+41.40417,
+"wikidata"
+],
+"Yolgeçen": [
+41.2986,
+41.2899,
+"wikidata"
+],
+"Yukarışahinler": null
+},
+"Borçka": {
+"Adagül": [
+41.3114,
+41.75138,
+"wikidata"
+],
+"Akpınar": [
+41.3273,
+41.6544,
+"wikidata"
+],
+"Alaca": [
+41.34944,
+41.74389,
+"wikidata"
+],
+"Ambarlı": [
+41.3234,
+41.7025,
+"wikidata"
+],
+"Aralık": [
+41.3996,
+41.7397,
+"wikidata"
+],
+"Arkaköy": [
+41.36583,
+41.6975,
+"wikidata"
+],
+"Ataköy": [
+41.34139,
+41.74778,
+"wikidata"
+],
+"Atanoğlu": [
+41.39667,
+41.76083,
+"wikidata"
+],
+"Avcılar": [
+41.3064,
+41.7176,
+"wikidata"
+],
+"Balcı": [
+41.3023,
+41.8126,
+"wikidata"
+],
+"Boğazköy": [
+41.4625,
+41.63333,
+"wikidata"
+],
+"Boyalı": [
+41.46306,
+41.64639,
+"wikidata"
+],
+"Camili": [
+41.47833,
+41.89833,
+"wikidata"
+],
+"Civan": [
+41.3313,
+41.6585,
+"wikidata"
+],
+"Çavuşlu": [
+41.4492,
+41.695,
+"wikidata"
+],
+"Çaylıköy": null,
+"Çifteköprü": [
+41.3878,
+41.5668,
+"wikidata"
+],
+"Demirciler": [
+41.37194,
+41.63389,
+"wikidata"
+],
+"Düzenli": [
+41.4626,
+41.8946,
+"wikidata"
+],
+"Düzköy": [
+41.3769,
+41.61,
+"wikidata"
+],
+"Efeler": [
+41.43889,
+41.92472,
+"wikidata"
+],
+"Fındıklı": [
+41.39389,
+41.60889,
+"wikidata"
+],
+"Güneşli": [
+41.4604,
+41.6864,
+"wikidata"
+],
+"Güreşen": [
+41.45,
+41.63333,
+"wikidata"
+],
+"Güzelyurt": [
+41.43972,
+41.66167,
+"wikidata"
+],
+"İbrikli": [
+41.33417,
+41.72389,
+"wikidata"
+],
+"Kale": [
+41.38375,
+41.62617,
+"wikidata"
+],
+"Karşıköy": [
+41.44889,
+41.71694,
+"wikidata"
+],
+"Kayadibi": [
+41.4725,
+41.6856,
+"wikidata"
+],
+"Kayalar": [
+41.46333,
+41.9275,
+"wikidata"
+],
+"Kaynarca": [
+41.3381,
+41.7916,
+"wikidata"
+],
+"Maralköy": [
+41.48139,
+41.93,
+"wikidata"
+],
+"Muratlı": [
+41.4796,
+41.7096,
+"wikidata"
+],
+"Örücüler": [
+41.40778,
+41.67889,
+"wikidata"
+],
+"Şerefiye": [
+41.46516,
+41.6576,
+"wikidata"
+],
+"Taraklı": [
+41.3349,
+41.6829,
+"wikidata"
+],
+"Tektaş": [
+41.4425,
+41.73806,
+"wikidata"
+],
+"Uğurköy": [
+41.48097,
+41.9797,
+"wikidata"
+],
+"Yeşilköy": [
+41.417,
+41.6466,
+"wikidata"
+],
+"Zedoban": [
+41.43778,
+41.71111,
+"wikidata"
+],
+"Zorlu": [
+41.2937,
+41.7098,
+"wikidata"
+]
+},
+"Hopa": {
+"Balıkköy": [
+41.367,
+41.4601,
+"wikidata"
+],
+"Başköy": [
+41.416,
+41.4625,
+"wikidata"
+],
+"Başoba": [
+41.41667,
+41.48333,
+"wikidata"
+],
+"Çamlı": [
+41.3704,
+41.379,
+"wikidata"
+],
+"Çavuşlu": [
+41.3886,
+41.4971,
+"wikidata"
+],
+"Çimenli": [
+41.3759,
+41.4796,
+"wikidata"
+],
+"Esenkıyı": [
+41.4397,
+41.4634,
+"wikidata"
+],
+"Eşmekaya": [
+41.3822,
+41.4723,
+"wikidata"
+],
+"Güneşli": [
+41.3657,
+41.4728,
+"wikidata"
+],
+"Güvercinli": [
+41.339,
+41.3782,
+"wikidata"
+],
+"Hendek": [
+41.366,
+41.4487,
+"wikidata"
+],
+"Koyuncular": [
+41.4027,
+41.5047,
+"wikidata"
+],
+"Pınarlı": [
+41.3561,
+41.4253,
+"wikidata"
+],
+"Subaşı": [
+41.37667,
+41.51083,
+"wikidata"
+],
+"Yeşilköy": [
+41.36444,
+41.40806,
+"wikidata"
+],
+"Yoldere": [
+41.38991,
+41.46957,
+"wikidata"
+]
+},
+"Kemalpaşa": {
+"Akdere": [
+41.45861,
+41.51528,
+"wikidata"
+],
+"Çamurlu": [
+41.48889,
+41.56361,
+"wikidata"
+],
+"Dereiçi": [
+41.46611,
+41.51167,
+"wikidata"
+],
+"Gümüşdere": [
+41.45667,
+41.50528,
+"wikidata"
+],
+"Karaosmaniye": [
+41.465,
+41.51889,
+"wikidata"
+],
+"Kayaköy": [
+41.50111,
+41.56889,
+"wikidata"
+],
+"Kazimiye": [
+41.51056,
+41.56583,
+"wikidata"
+],
+"Köprücü": [
+41.46945,
+41.56171,
+"wikidata"
+],
+"Liman": [
+41.46694,
+41.4925,
+"wikidata"
+],
+"Osmaniye": [
+41.47278,
+41.52917,
+"wikidata"
+],
+"Sarp": [
+41.51778,
+41.54861,
+"wikidata"
+],
+"Üçkardeş": [
+41.50111,
+41.53611,
+"wikidata"
+]
+},
+"Murgul": {
+"Akantaş": [
+41.29857,
+41.62594,
+"wikidata"
+],
+"Ardıçlı": [
+41.28111,
+41.58583,
+"wikidata"
+],
+"Başköy": [
+41.2965,
+41.5282,
+"wikidata"
+],
+"Çimenli": [
+41.29071,
+41.59495,
+"wikidata"
+],
+"Erenköy": [
+41.30583,
+41.61083,
+"wikidata"
+],
+"Kabaca": [
+41.226,
+41.5453,
+"wikidata"
+],
+"Korucular": [
+41.3034,
+41.645,
+"wikidata"
+],
+"Küre": [
+41.29389,
+41.56639,
+"wikidata"
+],
+"Osmanlı": [
+41.29369,
+41.60702,
+"osm"
+],
+"Petek": [
+41.26,
+41.54472,
+"wikidata"
+],
+"Soğuksu": [
+41.283,
+41.549,
+"wikidata"
+]
+},
+"Şavşat": {
+"Akdamla": [
+41.41056,
+42.38028,
+"wikidata"
+],
+"Arpalı": [
+41.2305,
+42.3057,
+"wikidata"
+],
+"Aşağıkoyunlu": [
+41.295,
+42.49167,
+"wikidata"
+],
+"Atalar": [
+41.34222,
+42.35972,
+"wikidata"
+],
+"Balıklı": [
+41.41917,
+42.26139,
+"wikidata"
+],
+"Cevizli": [
+41.30611,
+42.38778,
+"wikidata"
+],
+"Ciritdüzü": [
+41.28028,
+42.39083,
+"wikidata"
+],
+"Çağlıpınar": [
+41.41694,
+42.34278,
+"wikidata"
+],
+"Çağlıyan": [
+41.38028,
+42.1825,
+"wikidata"
+],
+"Çamlıca": [
+41.1848,
+42.3425,
+"wikidata"
+],
+"Çavdarlı": [
+41.19139,
+42.25472,
+"wikidata"
+],
+"Çayağzı": [
+41.27389,
+42.23361,
+"wikidata"
+],
+"Çermik": [
+41.39564,
+42.37762,
+"wikidata"
+],
+"Çiftlik": [
+41.23201,
+42.25572,
+"osm"
+],
+"Çoraklı": [
+41.36583,
+42.35778,
+"wikidata"
+],
+"Çukur": [
+41.32879,
+42.19453,
+"osm"
+],
+"Dalkırmaz": [
+41.25278,
+42.26917,
+"wikidata"
+],
+"Demirci": [
+41.39667,
+42.20028,
+"wikidata"
+],
+"Demirkapı": [
+41.42472,
+42.43,
+"wikidata"
+],
+"Dereiçi": [
+41.32667,
+42.23667,
+"wikidata"
+],
+"Dutlu": [
+41.36417,
+42.27778,
+"wikidata"
+],
+"Düzenli": [
+41.21639,
+42.36806,
+"wikidata"
+],
+"Elmalı": [
+41.25722,
+42.33833,
+"wikidata"
+],
+"Erikli": [
+41.415,
+42.30361,
+"wikidata"
+],
+"Eskikale": [
+41.26861,
+42.1725,
+"wikidata"
+],
+"Hanlı": [
+41.17722,
+42.31,
+"wikidata"
+],
+"Ilıca": [
+41.42309,
+42.41382,
+"osm"
+],
+"Karaağaç": [
+41.18278,
+42.29667,
+"wikidata"
+],
+"Karaköy": [
+41.2437,
+42.4746,
+"wikidata"
+],
+"Kayabaşı": [
+41.32556,
+42.30528,
+"wikidata"
+],
+"Kayadibi": [
+41.31333,
+42.36889,
+"wikidata"
+],
+"Kirazlı": [
+41.2636,
+42.4902,
+"wikidata"
+],
+"Kireçli": [
+41.20417,
+42.33611,
+"wikidata"
+],
+"Kocabey": [
+41.2557,
+42.424,
+"wikidata"
+],
+"Köprülü": [
+41.2661,
+42.4481,
+"wikidata"
+],
+"Köprüyaka": [
+41.25833,
+42.31222,
+"wikidata"
+],
+"Kurudere": [
+41.27361,
+42.3375,
+"wikidata"
+],
+"Küplüce": [
+41.2967,
+42.2586,
+"wikidata"
+],
+"Maden": [
+41.38152,
+42.14061,
+"osm"
+],
+"Meşeli": [
+41.3131,
+42.467,
+"wikidata"
+],
+"Meydancık": [
+41.41167,
+42.24722,
+"wikidata"
+],
+"Mısırlı": [
+41.4525,
+42.20389,
+"wikidata"
+],
+"Oba": [
+41.38072,
+42.23661,
+"osm"
+],
+"Otluca": [
+41.20972,
+42.2575,
+"wikidata"
+],
+"Pınarlı": [
+41.35444,
+42.46389,
+"wikidata"
+],
+"Savaş": [
+41.2275,
+42.23361,
+"wikidata"
+],
+"Saylıca": [
+41.335,
+42.33944,
+"wikidata"
+],
+"Sebzeli": [
+41.35,
+42.28333,
+"wikidata"
+],
+"Susuz": [
+41.24389,
+42.31472,
+"wikidata"
+],
+"Şalcı": [
+41.35056,
+42.3425,
+"wikidata"
+],
+"Şenköy": [
+41.37306,
+42.37667,
+"wikidata"
+],
+"Şenocak": [
+41.3275,
+42.28194,
+"wikidata"
+],
+"Taşköprü": [
+41.43423,
+42.2266,
+"wikidata"
+],
+"Tepebaşı": [
+41.36556,
+42.20417,
+"wikidata"
+],
+"Tepeköy": [
+41.30222,
+42.31611,
+"wikidata"
+],
+"Üzümlü": [
+41.2675,
+42.22278,
+"wikidata"
+],
+"Veliköy": [
+41.30972,
+42.43083,
+"wikidata"
+],
+"Yağlı": [
+41.40028,
+42.16556,
+"wikidata"
+],
+"Yamaçlı": [
+41.22472,
+42.28389,
+"wikidata"
+],
+"Yaşar": null,
+"Yavuzköy": [
+41.2297,
+42.392,
+"wikidata"
+],
+"Yeşilce": [
+41.4026,
+42.3195,
+"wikidata"
+],
+"Yoncalı": [
+41.35778,
+42.44333,
+"wikidata"
+],
+"Yukarıkoyunlu": [
+41.29389,
+42.51083,
+"wikidata"
+],
+"Ziyaret": [
+41.205,
+42.28583,
+"wikidata"
+]
+},
+"Yusufeli": {
+"Alanbaşı": [
+40.6893,
+41.4111,
+"wikidata"
+],
+"Altıparmak": [
+40.968,
+41.393,
+"wikidata"
+],
+"Arpacık": [
+40.7529,
+41.7416,
+"wikidata"
+],
+"Avcılar": [
+40.6366,
+41.3958,
+"wikidata"
+],
+"Bademkaya": [
+41.016,
+41.6943,
+"wikidata"
+],
+"Bahçeli": [
+40.8442,
+41.5038,
+"wikidata"
+],
+"Bakırtepe": [
+40.6583,
+41.4583,
+"wikidata"
+],
+"Balalan": [
+41.03694,
+41.54111,
+"wikidata"
+],
+"Balcılı": [
+41.0298,
+41.4409,
+"wikidata"
+],
+"Bıçakçılar": [
+41.03333,
+41.43333,
+"wikidata"
+],
+"Bostancı": [
+40.96,
+41.53944,
+"wikidata"
+],
+"Boyalı": [
+40.9882,
+41.5658,
+"wikidata"
+],
+"Cevizlik": [
+41.0239,
+41.7094,
+"wikidata"
+],
+"Çağlıyan": [
+40.95083,
+41.76111,
+"wikidata"
+],
+"Çamlıca": [
+40.9857,
+41.6482,
+"wikidata"
+],
+"Çeltikdüzü": [
+40.75,
+41.5,
+"wikidata"
+],
+"Çevreli": [
+40.7649,
+41.4642,
+"wikidata"
+],
+"Çıralı": [
+40.9,
+41.58,
+"wikidata"
+],
+"Dağeteği": [
+40.7047,
+41.7763,
+"wikidata"
+],
+"Darıca": [
+40.7373,
+41.7974,
+"wikidata"
+],
+"Demirdöven": [
+40.9206,
+41.35,
+"wikidata"
+],
+"Demirkent": [
+40.88556,
+41.73833,
+"wikidata"
+],
+"Demirköy": [
+40.9983,
+41.6757,
+"wikidata"
+],
+"Dereiçi": [
+40.871,
+41.5127,
+"wikidata"
+],
+"Dokumacılar": [
+40.7503,
+41.3643,
+"wikidata"
+],
+"Erenköy": [
+40.9007,
+41.8429,
+"wikidata"
+],
+"Esendal": [
+40.93333,
+41.58333,
+"wikidata"
+],
+"Esenyaka": [
+40.91333,
+41.71889,
+"wikidata"
+],
+"Gümüşözü": [
+40.68333,
+41.76667,
+"wikidata"
+],
+"Günyayla": [
+40.9171,
+41.8731,
+"wikidata"
+],
+"Havuzlu": [
+40.8912,
+41.7061,
+"wikidata"
+],
+"Irmakyanı": [
+40.81667,
+41.6,
+"wikidata"
+],
+"İnanlı": [
+40.8846,
+41.714,
+"wikidata"
+],
+"İşhan": [
+40.7864,
+41.7487,
+"wikidata"
+],
+"Kılıçkaya": [
+40.71361,
+41.48,
+"wikidata"
+],
+"Kınalıçam": [
+40.7537,
+41.674,
+"wikidata"
+],
+"Kirazalan": [
+40.90972,
+41.84417,
+"wikidata"
+],
+"Kömürlü": [
+40.8951,
+41.6605,
+"wikidata"
+],
+"Köprügören": [
+40.68861,
+41.36,
+"wikidata"
+],
+"Küplüce": [
+40.92111,
+41.48889,
+"wikidata"
+],
+"Meşecik": [
+40.78306,
+41.52389,
+"wikidata"
+],
+"Morkaya": [
+40.73333,
+41.6,
+"wikidata"
+],
+"Mutlugün": [
+40.87361,
+41.56806,
+"wikidata"
+],
+"Narlık": [
+40.9926,
+41.7262,
+"wikidata"
+],
+"Ormandibi": [
+40.7224,
+41.5656,
+"wikidata"
+],
+"Öğdem": [
+40.91667,
+41.63333,
+"wikidata"
+],
+"Özgüven": [
+41.02583,
+41.39583,
+"wikidata"
+],
+"Pamukçular": [
+40.78778,
+41.83417,
+"wikidata"
+],
+"Sebzeciler": [
+40.84,
+41.6725,
+"wikidata"
+],
+"Serinsu": [
+41.0237,
+41.5725,
+"wikidata"
+],
+"Sütlüce": [
+40.60222,
+41.34583,
+"wikidata"
+],
+"Tarakçılar": [
+40.9213,
+41.7332,
+"wikidata"
+],
+"Taşkıran": [
+40.94179,
+41.45989,
+"wikidata"
+],
+"Tekkale": [
+40.7833,
+41.5,
+"wikidata"
+],
+"Yağcılar": [
+40.9437,
+41.745,
+"wikidata"
+],
+"Yamaçüstü": [
+40.60389,
+41.39028,
+"wikidata"
+],
+"Yarbaşı": [
+40.9677,
+41.7386,
+"wikidata"
+],
+"Yaylalar": [
+40.869,
+41.2722,
+"wikidata"
+],
+"Yeniköy": [
+40.79361,
+41.6725,
+"wikidata"
+],
+"Yokuşlu": [
+40.64972,
+41.33194,
+"wikidata"
+],
+"Yüksekoba": [
+41.0667,
+41.45,
+"wikidata"
+],
+"Yüncüler": [
+40.7664,
+41.3599,
+"wikidata"
+],
+"Zeytincik": [
+40.967,
+41.7582,
+"wikidata"
+]
+}
+}
+}
