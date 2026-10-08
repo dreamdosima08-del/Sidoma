@@ -1,0 +1,19 @@
+name: Köy konumları
+on:
+  push:
+    paths: ['araclar/koy_konum.py','.github/workflows/koy-konum.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  konum:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 araclar/koy_konum.py
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add veri/koy-konum.json
+          git commit -m "Köy konumları güncellendi" || echo "değişiklik yok"
+          git pull --rebase origin main && git push
