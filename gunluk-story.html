@@ -144,7 +144,7 @@ function havaHesap(d,fl){
   var ilk=V.yIlk!=null?V.yIlk:(ilkSaat.length?Math.round(ortanca(ilkSaat)):null), d0=ilk!=null?dilim(ilk):'gün içinde', D0=d0.charAt(0).toUpperCase()+d0.slice(1);
   if(seviye===3){ r.durum=tur==='kar'?'kar':'yagmur'; r.baslik=(tur==='kar'?'Kar':'Yağmur')+' ihtimali yüksek'; r.metin=D0+' '+tur+' ihtimali yüksek görünüyor'+(r.mm>=10?', zaman zaman kuvvetli olabilir':'')+'.'; }
   else if(seviye===2){ r.durum=tur==='kar'?'kar':'yagmur'; r.baslik=(tur==='kar'?'Kar':'Yağmur')+' ihtimali var'; r.metin=D0+' yer yer '+tur+' ihtimali var.'; }
-  else if(seviye===1){ r.durum=bulut<60?'parcali':'bulut'; r.baslik=bulut<60?'Parçalı bulutlu':'Bulutlu bir gün'; r.metin='Genel olarak kuru bir gün. Kısa süreli hafif '+tur+' ihtimali az.'; }
+  else if(seviye===1){ r.durum=bulut<60?'parcali':'bulut'; r.baslik=bulut<60?'Parçalı bulutlu':'Bulutlu bir gün'; r.metin='Gün genelde kuru geçecek'+(p!=null?', '+tur+' ihtimali %'+p:'')+'.'; }
   else { r.durum=bulut<30?'gunes':bulut<70?'parcali':'bulut'; r.baslik=bulut<30?'Güneşli bir gün':bulut<70?'Parçalı bulutlu':'Bulutlu, yağışsız'; r.metin='Gün boyu yağış görünmüyor.'; }
   if(r.mn<=2) r.metin+=' Sabah ayaz olabilir, sıkı giyinmekte fayda var.';
   else if(r.mn<=9) r.metin+=' Sabah ve akşam serin.';
