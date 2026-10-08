@@ -11,16 +11,22 @@
   "scope": "/",
   "icons": [
     {
-      "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [],
@@ -36,7 +42,7 @@
       "url": "/taksi.html",
       "icons": [
         {
-          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "src": "/favicon-96.png",
           "sizes": "96x96"
         }
       ]
@@ -47,7 +53,7 @@
       "url": "/eczane-rehber.html",
       "icons": [
         {
-          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "src": "/favicon-96.png",
           "sizes": "96x96"
         }
       ]
@@ -58,7 +64,7 @@
       "url": "/namaz.html",
       "icons": [
         {
-          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "src": "/favicon-96.png",
           "sizes": "96x96"
         }
       ]
@@ -69,7 +75,7 @@
       "url": "/hava.html",
       "icons": [
         {
-          "src": "https://i.ibb.co/rqKFzMn/file-000000007060720a9a0a7fb2183220df.png",
+          "src": "/favicon-96.png",
           "sizes": "96x96"
         }
       ]
