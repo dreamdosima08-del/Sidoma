@@ -215,7 +215,8 @@ firebase.initializeApp({
   appId:'1:356152793085:web:38a6ae1ad911880cb2ab94'
 });
 var db = firebase.firestore();
-var LINK_RE = /^https:\/\/chat\.whatsapp\.com\/[A-Za-z0-9_-]{10,40}(\?[^\s]{0,60})?$/;
+// Linki toparla: başında https olmasa da, araya yazı karışsa da, "invite/" olsa da davet kodunu bulup temiz link üretir
+function linkDuzelt(l){ var m=String(l||'').replace(/\s+/g,' ').match(/chat\.whatsapp\.com\/(?:invite\/)?([A-Za-z0-9]{10,60})/i); return m?'https://chat.whatsapp.com/'+m[1]:''; }
 function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 // Bolum listesi - fakulte bazli
@@ -262,7 +263,8 @@ function render() {
       if (arama && bolum.toLowerCase().indexOf(arama) < 0 && fak.ad.toLowerCase().indexOf(arama) < 0) return;
 
       var grup = GRUPLAR[bolum];
-      var varmi = grup && grup.link && LINK_RE.test(grup.link);
+      var temizLink = grup ? linkDuzelt(grup.link) : '';
+      var varmi = !!temizLink;
 
       bolumHtml += '<div class="bolum-kart">';
       bolumHtml += '<div class="bolum-ust">';
@@ -271,14 +273,14 @@ function render() {
       bolumHtml += '</div>';
       bolumHtml += '<div class="bolum-alt">';
       if (varmi) {
-        bolumHtml += '<a class="bbtn btn-katil" href="' + esc(grup.link) + '" target="_blank" rel="noopener">📲 Gruba Katil</a>';
+        bolumHtml += '<a class="bbtn btn-katil" href="' + esc(temizLink) + '" target="_blank" rel="noopener">📲 Gruba Katil</a>';
         bolumHtml += '<button class="bbtn btn-kur" onclick="modalAc(\'' + bolum.replace(/'/g,"") + '\')">🔄 Guncelle</button>';
       } else {
         bolumHtml += '<button class="bbtn btn-kur" onclick="modalAc(\'' + bolum.replace(/'/g,"") + '\')" style="flex:1">📲 Grup Linki Ekle</button>';
       }
       bolumHtml += '</div>';
       if (varmi && grup.nick) {
-        bolumHtml += '<div class="grup-sayi">Ekleyen: ' + grup.nick + '</div>';
+        bolumHtml += '<div class="grup-sayi">Ekleyen: ' + esc(grup.nick) + '</div>';
       }
       bolumHtml += '</div>';
     });
@@ -312,11 +314,11 @@ function modalKapat() {
 }
 
 function linkGonder() {
-  var link = document.getElementById('linkInput').value.trim();
+  var link = linkDuzelt(document.getElementById('linkInput').value);
   var nick = (document.getElementById('nickInput').value.trim() || 'Anonim').slice(0,30);
 
   // Link kontrolu - sadece chat.whatsapp.com
-  if (!LINK_RE.test(link)) {
+  if (!link) {
     alert('Lutfen gecerli bir WhatsApp grup davet linki girin (https://chat.whatsapp.com/... seklinde).');
     return;
   }
