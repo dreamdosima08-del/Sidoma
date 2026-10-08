@@ -3,7 +3,7 @@
 import json, os, html as H
 
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-URL = 'https://artvinrehber.com/havalimani-sarp-batum.html'
+URL = 'https://www.artvinrehber.com/havalimani-sarp-batum.html'
 TARIH = '2026-10-02'
 
 def L(tr, en, ka, tag='span'):
@@ -57,8 +57,8 @@ LD = [
  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":t[0],"acceptedAnswer":{"@type":"Answer","text":t[1]}} for t,_,_ in SSS]+
    [{"@type":"Question","name":e[0],"acceptedAnswer":{"@type":"Answer","text":e[1]}} for _,e,_ in SSS[:3]]},
  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-   {"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://artvinrehber.com/"},
-   {"@type":"ListItem","position":2,"name":"Sarp Sınır Kapısı","item":"https://artvinrehber.com/sarp-sinir-kapisi.html"},
+   {"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://www.artvinrehber.com/"},
+   {"@type":"ListItem","position":2,"name":"Sarp Sınır Kapısı","item":"https://www.artvinrehber.com/sarp-sinir-kapisi.html"},
    {"@type":"ListItem","position":3,"name":"Havalimanından Sarp ve Batum'a","item":URL}]},
  {"@context":"https://schema.org","@type":"WebPage","name":"Rize-Artvin Havalimanı'ndan Sarp ve Batum'a Nasıl Gidilir?","url":URL,
   "inLanguage":["tr","en","ka"],"datePublished":TARIH,"dateModified":TARIH,
@@ -175,7 +175,7 @@ def sayfa():
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rize-Artvin Havalimanı'ndan Sarp ve Batum'a — Adım Adım Rota">
 <meta property="og:description" content="Havaş + dolmuş mu, taksi mi? Ücretler, süreler ve sınır notları. Türkçe · English · ქართული">
-<meta property="og:image" content="https://artvinrehber.com/otogar-foto-3.jpg">
+<meta property="og:image" content="https://www.artvinrehber.com/otogar-foto-3.jpg">
 <meta property="og:url" content="%(url)s">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:locale:alternate" content="en_US">

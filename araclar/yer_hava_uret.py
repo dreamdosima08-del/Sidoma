@@ -82,15 +82,15 @@ EK_CSS = '''
 
 def uret(c):
     t = KAYNAK
-    url = 'https://artvinrehber.com/' + c['dosya']
+    url = 'https://www.artvinrehber.com/' + c['dosya']
     # head
     t = re.sub(r'<title>.*?</title>', '<title>%s</title>' % e(c['title']), t, 1)
     t = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="%s">' % e(c['desc']), t, 1)
     t = re.sub(r'<meta name="keywords" content="[^"]*">', '<meta name="keywords" content="%s">' % e(c['kw']), t, 1)
-    t = t.replace('<link rel="canonical" href="https://artvinrehber.com/hava.html">', '<link rel="canonical" href="%s">' % url)
+    t = t.replace('<link rel="canonical" href="https://www.artvinrehber.com/hava.html">', '<link rel="canonical" href="%s">' % url)
     t = re.sub(r'<meta property="og:title" content="[^"]*">', '<meta property="og:title" content="%s">' % e(c['title']), t, 1)
     t = re.sub(r'<meta property="og:description" content="[^"]*">', '<meta property="og:description" content="%s">' % e(c['desc']), t, 1)
-    t = t.replace('<meta property="og:url" content="https://artvinrehber.com/hava.html">', '<meta property="og:url" content="%s">' % url)
+    t = t.replace('<meta property="og:url" content="https://www.artvinrehber.com/hava.html">', '<meta property="og:url" content="%s">' % url)
     la, lo = c['geo']
     t = re.sub(r'<meta name="geo.position" content="[^"]*">', '<meta name="geo.position" content="%s;%s">' % (la, lo), t, 1)
     t = re.sub(r'<meta name="ICBM" content="[^"]*">', '<meta name="ICBM" content="%s, %s">' % (la, lo), t, 1)
@@ -102,8 +102,8 @@ def uret(c):
       {"@context":"https://schema.org","@type":"WebPage","name":c['ad']+" Hava Durumu","url":url,"inLanguage":"tr","dateModified":TARIH,"datePublished":TARIH,
        "about":{"@type":"Place","name":c['ad'],"address":{"@type":"PostalAddress","addressRegion":"Artvin","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":la,"longitude":lo}}},
       {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://artvinrehber.com/"},
-        {"@type":"ListItem","position":2,"name":"Artvin Hava Durumu","item":"https://artvinrehber.com/hava.html"},
+        {"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://www.artvinrehber.com/"},
+        {"@type":"ListItem","position":2,"name":"Artvin Hava Durumu","item":"https://www.artvinrehber.com/hava.html"},
         {"@type":"ListItem","position":3,"name":c['ad']+" Hava Durumu","item":url}]}]
     lds = ''.join('<script type="application/ld+json">%s</script>\n' % json.dumps(x, ensure_ascii=False) for x in ld)
     t = t.replace('</head>', lds + '</head>', 1)

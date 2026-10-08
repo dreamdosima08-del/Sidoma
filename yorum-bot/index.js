@@ -38,7 +38,7 @@ export default {
     const son = event.scheduledTime;
     const liste = await yeniYorumlar(son - 60000, son);
     for (const y of liste) {
-      const sayfa = y.sayfa ? `https://artvinrehber.com/${y.sayfa}.html#yorumlar` : '';
+      const sayfa = y.sayfa ? `https://www.artvinrehber.com/${y.sayfa}.html#yorumlar` : '';
       await telegram(env, `💬 Yeni yorum\n👤 ${y.ad}\n📄 ${y.sayfa}\n\n${y.metin}\n\n${sayfa}`);
     }
   },

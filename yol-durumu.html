@@ -7,11 +7,11 @@
 <meta name="description" content="Artvin yol durumu canlı: Artvin-Şavşat, Artvin-Hopa, Yusufeli-Erzurum, Sahara Geçidi ve sahil yolu açık mı kapalı mı? Heyelan, kar ve kaza bildirimlerini halktan anlık gör, sen de bildir.">
 <meta name="keywords" content="artvin yol durumu, artvin yol açık mı, artvin şavşat yolu kapalı mı, artvin heyelan yol kapandı, sahara geçidi yol durumu, artvin ardahan yolu açık mı, artvin hopa yolu, yusufeli erzurum yolu, artvin kar yol durumu, karadeniz sahil yolu heyelan, artvin yol kapalı">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<link rel="canonical" href="https://artvinrehber.com/yol-durumu.html">
+<link rel="canonical" href="https://www.artvinrehber.com/yol-durumu.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Artvin Yol Durumu — Canlı Halk Bildirimleri">
 <meta property="og:description" content="Artvin'in yolları şu an açık mı? Heyelan, kar ve kaza bildirimlerini canlı gör, sen de bildir.">
-<meta property="og:url" content="https://artvinrehber.com/yol-durumu.html">
+<meta property="og:url" content="https://www.artvinrehber.com/yol-durumu.html">
 <meta property="og:locale" content="tr_TR">
 <meta name="geo.region" content="TR-08">
 <meta name="geo.placename" content="Artvin, Türkiye">
@@ -32,7 +32,7 @@
 {"@type":"Question","name":"Buradaki bilgiler resmi mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Bildirimler yolu kullanan vatandaşlardan gelir ve diğer kullanıcıların onaylarıyla güçlenir. Onay almayan bildirimler birkaç saat içinde otomatik olarak kaybolur. Yola çıkmadan önce resmi kaynakları da kontrol etmenizi öneririz."}},
 {"@type":"Question","name":"Yol durumunu nasıl bildiririm?","acceptedAnswer":{"@type":"Answer","text":"Sayfadaki 'Yol Durumu Bildir' butonuna basıp yolu, durumu (kapalı, dikkatli geçilir, açıldı) ve sebebi seçmeniz yeterli. Üyelik gerekmez. Başkalarının bildirimlerini 'Hâlâ böyle' veya 'Açıldı' butonlarıyla onaylayabilirsiniz."}}
 ]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://artvinrehber.com/yol-durumu.html","name":"Artvin Yol Durumu","dateModified": "2026-09-25","datePublished":"2026-09-23"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","url":"https://www.artvinrehber.com/yol-durumu.html","name":"Artvin Yol Durumu","dateModified": "2026-09-25","datePublished":"2026-09-23"}</script>
 
 <style>
 :root{
@@ -225,8 +225,8 @@ textarea:focus{outline:none;border-color:var(--gold)}
 .yol-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.4rem .8rem .5rem;font-size:.72rem;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
 .yk{flex:none;width:46px;height:46px;border-radius:12px;object-fit:cover;background:#1a2a22}
 </style>
-<meta property="og:image" content="https://artvinrehber.com/yol-foto/artvin-erzurum.jpg">
-<meta name="twitter:image" content="https://artvinrehber.com/yol-foto/artvin-erzurum.jpg">
+<meta property="og:image" content="https://www.artvinrehber.com/yol-foto/artvin-erzurum.jpg">
+<meta name="twitter:image" content="https://www.artvinrehber.com/yol-foto/artvin-erzurum.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -615,7 +615,7 @@ textarea:focus{outline:none;border-color:var(--gold)}
   function paylas(yolId){
     var y=Y.yolBul(yolId), d=durum(yolId);
     var metin = y.ad+' yolu: '+ETIKET[d.kod].toUpperCase()+(d.rapor&&d.rapor.sebep&&d.rapor.durum!=='acildi'?' ('+(SEBEP[d.rapor.sebep]||'')+')':'')+' — Artvin canlı yol durumu:';
-    var url='https://artvinrehber.com/yol-'+yolId+'.html';
+    var url='https://www.artvinrehber.com/yol-'+yolId+'.html';
     if (navigator.share) navigator.share({title:'Artvin Yol Durumu', text:metin, url:url}).catch(function(){});
     else window.open('https://wa.me/?text='+encodeURIComponent(metin+' '+url), '_blank');
   }

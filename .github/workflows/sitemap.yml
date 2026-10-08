@@ -38,9 +38,9 @@ jobs:
               FREQ="monthly"
             fi
             if [[ "$f" == "index.html" ]]; then
-              URL="https://artvinrehber.com/"
+              URL="https://www.artvinrehber.com/"
             else
-              URL="https://artvinrehber.com/${f}"
+              URL="https://www.artvinrehber.com/${f}"
             fi
             echo "  <url>" >> sitemap.xml
             echo "    <loc>${URL}</loc>" >> sitemap.xml
