@@ -1,0 +1,21 @@
+name: Geçmiş kışlar verisi
+on:
+  push:
+    paths: ['araclar/kis_gecmis.py','.github/workflows/kis-gecmis.yml']
+  schedule:
+    - cron: '17 4 10 6 *'   # her yıl 10 Haziran: biten kışı ekle
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  kis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 araclar/kis_gecmis.py
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add veri/kis-gecmis.json veri/mgm-artvin-istatistik.html 2>/dev/null || git add veri/kis-gecmis.json
+          git commit -m "Geçmiş kışlar verisi güncellendi" || echo "değişiklik yok"
+          git pull --rebase origin main && git push
