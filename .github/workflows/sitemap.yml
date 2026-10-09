@@ -7,6 +7,7 @@ on:
     paths:
       - '**.html'
       - 'koy/**'
+      - 'en/**'
 
 permissions:
   contents: write
@@ -24,7 +25,7 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
           TARIH=$(date +%Y-%m-%d)
-          for f in $(ls *.html koy/*.html 2>/dev/null | sort); do
+          for f in $(ls *.html koy/*.html en/*.html 2>/dev/null | sort); do
             if [[ "$f" == "404.html" || "$f" == "offline.html" ]]; then
               continue
             fi
