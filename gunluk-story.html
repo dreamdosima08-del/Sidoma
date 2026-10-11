@@ -65,7 +65,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <button class="btn iki" id="indir">İndir</button>
     <button class="btn video" id="video">🎬 Videolu story hazırla</button>
     <button class="btn iki" id="videoIndir" hidden>Videoyu indir</button>
-    <button class="btn kart" id="kart">🪟 Şeffaf bilgi kartı (videonun üstüne)</button>
+    <button class="btn kart" id="kart">🪟 Şeffaf yazılar (videonun üstüne)</button>
   </div>
   <p class="vnot">Kendi videonu Instagram'da paylaşırken: videoyu story'ye koy → üstteki <b>çıkartma</b> simgesi → <b>Fotoğraf</b> → indirdiğin kartı seç. Kartı istediğin yere taşı, büyüt-küçült.</p>
   <p class="vnot" id="vteknik" style="font-size:.72rem;opacity:.75" hidden></p>
@@ -565,13 +565,16 @@ async function videoBaslat(){
 
 /* ═════════ ŞEFFAF BİLGİ KARTI: Instagram'da videonun üstüne çıkartma ═════════ */
 function kartYap(){
-  var ANA=x, FG=document.createElement('canvas'); FG.width=W; FG.height=H;
-  x=FG.getContext('2d'); ARKA=false; ciz(); x=ANA; ARKA=true;
+  var ANA=x, FG=document.createElement('canvas'); FG.width=W; FG.height=H; var d0=DIM, s0=SOLUK;
+  DIM='rgba(244,248,245,.94)'; SOLUK='rgba(244,248,245,.86)';   // videonun üstünde soluk gri okunmaz
+  x=FG.getContext('2d'); ARKA=false; ciz(); x=ANA; ARKA=true; DIM=d0; SOLUK=s0;
   var y0=760, ust=175, KH=H-y0+ust, K=document.createElement('canvas'); K.width=W; K.height=KH;
   var c=K.getContext('2d');
-  c.fillStyle='rgba(10,22,48,.84)'; c.beginPath(); if(c.roundRect) c.roundRect(24,0,W-48,KH-16,56); else c.rect(24,0,W-48,KH-16); c.fill();
-  c.drawImage(FG,0,0,W,300,0,-92,W,300);      // logo + tarih satırı (üst kısmı kırpılır)
-  c.drawImage(FG,0,y0,W,H-y0,0,ust,W,H-y0);     // hava, kar, eczane, nabız, adres
+  // arka plan yok: sadece yazılar; her türlü videoda okunsun diye yumuşak gölge (iki kat)
+  function yazilar(){ c.drawImage(FG,0,0,W,300,0,-92,W,300); c.drawImage(FG,0,y0,W,H-y0,0,ust,W,H-y0); }
+  c.shadowColor='rgba(0,0,0,.85)'; c.shadowBlur=18; c.shadowOffsetY=3; yazilar();
+  c.shadowColor='rgba(0,0,0,.55)'; c.shadowBlur=4; c.shadowOffsetY=1; yazilar();
+  c.shadowColor='transparent'; yazilar();
   return new Promise(function(ok){ K.toBlob(ok,'image/png'); });
 }
 $('kart').addEventListener('click',function(){ kartYap().then(function(b){
