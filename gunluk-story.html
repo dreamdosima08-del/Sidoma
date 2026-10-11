@@ -29,6 +29,8 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
 .btn.video.hazir{background:var(--amber);color:#1d1404}
 .btn[disabled]{opacity:.7;cursor:wait}
 #videoIndir{grid-column:1/-1}
+.ses{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:.9rem}
+#vBilgi{display:block;margin-top:6px;color:var(--dim);font-size:.8rem;line-height:1.45}
 .vnot{font-size:.8rem;color:var(--dim);margin-top:8px;line-height:1.45}
 .alan{margin-top:18px;padding-top:16px;border-top:1px solid var(--cizgi)}
 .alan>label,.alan>span{display:block;font-size:.85rem;font-weight:700;margin-bottom:8px}
@@ -63,7 +65,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <button class="btn video" id="video">🎬 Videolu story hazırla</button>
     <button class="btn iki" id="videoIndir" hidden>Videoyu indir</button>
   </div>
-  <p class="vnot" id="vnot">Fotoğraf yavaşça yakınlaşır, bilgiler sırayla belirir. 9 saniyelik video; hazırlanırken ekranı kapatma.</p>
+  <p class="vnot" id="vnot">Fotoğraf seçiliyse yavaşça yakınlaşır; kendi videonu seçtiysen o oynar. Bilgiler sırayla belirir. Hazırlanırken ekranı kapatma.</p>
 
   <div class="alan">
     <label for="eczane">Bugünkü nöbetçi eczane · Artvin Merkez</label>
@@ -90,8 +92,12 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
       <button data-foto="/ilce-foto-merkez.jpg">Yeşil Artvin</button>
       <button data-foto="/kis-merkez-panorama.jpg">Karlı Artvin</button>
       <button id="kendiFoto">Kendi fotoğrafım</button>
+      <button id="kendiVideo">🎬 Kendi videom</button>
       <input type="file" id="dosya" accept="image/*" hidden>
+      <input type="file" id="vdosya" accept="video/*" hidden>
     </div>
+    <label class="ses" id="sesSec" hidden><input type="checkbox" id="ses" checked> Videonun sesi de story'de olsun</label>
+    <small id="vBilgi" hidden></small>
   </div>
 
   <div class="alan">
@@ -116,6 +122,7 @@ var BUGUN=gs(bugun);
 var V={hava:null,kar:null,t850:null,nabiz:null,dogus:null,yuzde:null,yIlk:null,bulut:null}, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
 var MERKEZ_RAKIM=550;
 var YERLER=[{ad:'Merkez',a:550,b:550},{ad:'Katrevan',a:800,b:800},{ad:'Kafkasör',a:1250,b:1400},{ad:'Mersivan',a:1800,b:1900}];
+var VID=null, vOnizle=0, sesKaynak=null, sesCtx=null;
 var FOTO_ODAK={'story-arka-merkez.jpg':.6,'ilce-foto-merkez.jpg':.74,'kis-merkez-panorama.jpg':.5}; // şehrin fotoğraftaki dikey yeri
 
 /* ═════════ HAVA: üç modelin ortak görüşü ═════════
@@ -258,9 +265,10 @@ var ARKA=true, ZOOM=1, LAY={ay:1450,n:0};
 function arka(z){ // zemin: fotoğraf üst %80'e oturur, altı koyu zemine erir (z: video için yakınlaşma)
   x.save();
   x.fillStyle='#0a1630'; x.fillRect(0,0,W,H);
-  if(FOTO){ var s=Math.max(W/FOTO.width,1180/FOTO.height), fw=FOTO.width*s, fh=FOTO.height*s, odak=FOTO_ODAK[FOTO.src.split('/').pop()]||.5;
+  var K=VID||FOTO, kw=VID?VID.videoWidth:(FOTO&&FOTO.width), kh=VID?VID.videoHeight:(FOTO&&FOTO.height);
+  if(K&&kw&&kh){ var s=Math.max(W/kw,1180/kh), fw=kw*s, fh=kh*s, odak=VID?.5:(FOTO_ODAK[FOTO.src.split('/').pop()]||.5);
     var dy=Math.min(0,Math.max(1110-fh,560-odak*fh)), zw=fw*z, zh=fh*z;
-    x.filter='contrast(1.08) saturate(1.12) brightness(.96)'; x.drawImage(FOTO,(W-zw)/2,dy-(zh-fh)*odak,zw,zh); x.filter='none'; }
+    if(!VID) x.filter='contrast(1.08) saturate(1.12) brightness(.96)'; x.drawImage(K,(W-zw)/2,dy-(zh-fh)*odak,zw,zh); x.filter='none'; }
   x.globalCompositeOperation='multiply'; x.fillStyle='#a3b0cc'; x.fillRect(0,0,W,1300); x.globalCompositeOperation='source-over';
   var g=x.createLinearGradient(0,0,0,H);
   g.addColorStop(0,'rgba(10,22,48,.72)'); g.addColorStop(.14,'rgba(10,22,48,.12)'); g.addColorStop(.3,'rgba(10,22,48,.04)');
@@ -376,7 +384,8 @@ function eczKaydet(){ ls('storyEczane',JSON.stringify({g:BUGUN,a:$('eczane').val
 $('cadde').addEventListener('input',eczKaydet);
 $('eczane').addEventListener('input',eczKaydet);
 [].forEach.call(document.querySelectorAll('[data-b]'),function(c){ c.addEventListener('change',function(){ GOSTER[c.getAttribute('data-b')]=c.checked; ciz(); }); });
-function fotoAktif(b){ [].forEach.call(document.querySelectorAll('#fotoSec button'),function(z){ z.classList.toggle('on',z===b); }); }
+function videodanCik(){ if(!VID) return; try{VID.pause();}catch(e){} VID=null; cancelAnimationFrame(vOnizle); $('sesSec').hidden=true; $('vBilgi').hidden=true; $('video').textContent='🎬 Videolu story hazırla'; }
+function fotoAktif(b){ if(b!==$('kendiVideo')) videodanCik(); [].forEach.call(document.querySelectorAll('#fotoSec button'),function(z){ z.classList.toggle('on',z===b); }); }
 [].forEach.call(document.querySelectorAll('[data-foto]'),function(b){ b.addEventListener('click',function(){ fotoSecildi=true; fotoAktif(b); foto(b.getAttribute('data-foto')).then(function(im){ FOTO=im; ciz(); }); }); });
 $('kendiFoto').addEventListener('click',function(){ $('dosya').click(); });
 $('dosya').addEventListener('change',function(){ var fl=this.files&&this.files[0]; if(!fl) return; fotoSecildi=true; fotoAktif($('kendiFoto')); foto(URL.createObjectURL(fl)).then(function(im){ FOTO=im; ciz(); }); });
@@ -389,7 +398,7 @@ $('paylas').addEventListener('click',function(){ blob().then(function(b){ var fl
 /* ═════════ VİDEO STORY ═════════
    Arka plan (fotoğraf) her karede yeniden çizilir ve yavaşça yakınlaşır.
    Yazılar bir kez ayrı bir katmana çizilir, bantlar hâlinde sırayla belirir. */
-var T=9, vBlob=null, vAd='';
+var T=9, vBlob=null, vAd='', KAYIT=false;
 function yumus(v){ v=Math.max(0,Math.min(1,v)); return v<.5?2*v*v:1-Math.pow(-2*v+2,2)/2; }
 function bantlar(){
   var b=[{x:0,y:0,w:W,h:330,s:.35,d:.8},{x:0,y:740,w:760,h:690,s:1.0,d:.9},{x:760,y:740,w:W-760,h:690,s:1.6,d:.9}];
@@ -398,7 +407,8 @@ function bantlar(){
   return b;
 }
 function videoBaslat(){
-  var tipler=['video/mp4;codecs=avc1.42E01E','video/mp4;codecs=avc1','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'], tip=null;
+  var sesli=!!(VID&&$('ses').checked), ses=null;
+  var tipler=(sesli?['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4;codecs=avc1,mp4a.40.2']:[]).concat(['video/mp4;codecs=avc1.42E01E','video/mp4;codecs=avc1','video/mp4']).concat(sesli?['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus']:[]).concat(['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm']), tip=null;
   if(window.MediaRecorder&&cv.captureStream) for(var i=0;i<tipler.length;i++){ if(MediaRecorder.isTypeSupported(tipler[i])){ tip=tipler[i]; break; } }
   if(!tip){ $('vnot').textContent='Bu tarayıcı video kaydedemiyor. Telefonda Chrome ya da Safari ile dene.'; return; }
   var btn=$('video'); btn.disabled=true; btn.classList.remove('hazir'); $('videoIndir').hidden=true; vBlob=null;
@@ -406,28 +416,37 @@ function videoBaslat(){
   var ANA=x, FG=document.createElement('canvas'); FG.width=W; FG.height=H;
   x=FG.getContext('2d'); ARKA=false; ciz(); x=ANA; ARKA=true;
   var B=bantlar(), parca=[], st=cv.captureStream(30), rec;
+  if(VID){ T=Math.min(VMAX,VID.duration||9); KAYIT=true; cancelAnimationFrame(vOnizle); VID.loop=false; VID.pause(); try{VID.currentTime=0;}catch(e){}
+    if(sesli){ try{ sesCtx=sesCtx||new (window.AudioContext||window.webkitAudioContext)(); if(sesCtx.resume) sesCtx.resume();
+      if(!sesKaynak){ sesKaynak=sesCtx.createMediaElementSource(VID); }
+      var hedef=sesCtx.createMediaStreamDestination(); sesKaynak.disconnect(); sesKaynak.connect(hedef); VID.muted=false;
+      st=new MediaStream(st.getVideoTracks().concat(hedef.stream.getAudioTracks())); }catch(e){ sesli=false; VID.muted=true; } }
+  } else T=9;
   try{ rec=new MediaRecorder(st,{mimeType:tip,videoBitsPerSecond:8000000}); }catch(e){ rec=new MediaRecorder(st); tip=rec.mimeType||tip; }
   rec.ondataavailable=function(e){ if(e.data&&e.data.size) parca.push(e.data); };
   rec.onstop=function(){
     var mp4=tip.indexOf('mp4')>-1; vAd='artvin-story-'+BUGUN+(mp4?'.mp4':'.webm');
     vBlob=new Blob(parca,{type:mp4?'video/mp4':'video/webm'});
-    ZOOM=1; ciz();
+    ZOOM=1; KAYIT=false;
+    if(VID){ VID.muted=true; VID.loop=true; VID.play().catch(function(){}); onizle(); } else ciz();
     btn.disabled=false; btn.classList.add('hazir'); btn.textContent='🎬 Videoyu Instagram\'a gönder'; $('videoIndir').hidden=false;
     var h264=/avc|h264/i.test(tip)||(mp4&&/iPhone|iPad|Macintosh/.test(navigator.userAgent));
     $('vnot').textContent=h264?'Video hazır. Gönder\'e dokun, açılan menüden Instagram\'ı seç.':'Video hazır, ama bu tarayıcı videoyu Instagram\'ın her zaman açamadığı bir biçimde kaydetti. Instagram açmazsa Chrome\'u güncelle ya da fotoğraflı story\'yi kullan.';
   };
   function kare(t){
-    ZOOM=1+.09*yumus(t/T);
+    ZOOM=VID?1:1+.09*yumus(t/T);
     x.save(); x.clearRect(0,0,W,H); arka(ZOOM); x.restore();
     B.forEach(function(b){ var a=yumus((t-b.s)/b.d); if(a<=0) return; x.save(); x.globalAlpha=a; x.drawImage(FG,b.x,b.y,b.w,b.h,b.x,b.y+(1-a)*34,b.w,b.h); x.restore(); });
     if(t<.5){ x.fillStyle='rgba(5,10,24,'+(1-t/.5)+')'; x.fillRect(0,0,W,H); }
   }
-  kare(0); rec.start(250);
+  kare(0);
   var t0=null;
-  function adim(now){ if(t0===null) t0=now; var t=(now-t0)/1000; kare(Math.min(t,T));
+  function basla(){ rec.start(250); requestAnimationFrame(adim); }
+  function adim(now){ if(t0===null) t0=now; var t=VID?VID.currentTime:(now-t0)/1000; kare(Math.min(t,T));
+    if(VID&&VID.ended) t=T;
     btn.textContent='Video hazırlanıyor… %'+Math.min(100,Math.round(t/T*100));
-    if(t<T) requestAnimationFrame(adim); else setTimeout(function(){ rec.stop(); },150); }
-  requestAnimationFrame(adim);
+    if(t<T) requestAnimationFrame(adim); else { if(VID) VID.pause(); setTimeout(function(){ rec.stop(); },150); } }
+  if(VID) VID.play().then(basla,function(){ VID.muted=true; VID.play().then(basla,basla); }); else basla();
 }
 function videoIndir(){ if(!vBlob) return; var a=document.createElement('a'); a.href=URL.createObjectURL(vBlob); a.download=vAd; a.click(); }
 $('video').addEventListener('click',function(){
@@ -441,6 +460,24 @@ function videoSifirla(){ if(!vBlob) return; vBlob=null; var b=$('video'); b.clas
 ['eczane','cadde'].forEach(function(i){ $(i).addEventListener('input',videoSifirla); });
 [].forEach.call(document.querySelectorAll('[data-b],#dosya'),function(c){ c.addEventListener('change',videoSifirla); });
 [].forEach.call(document.querySelectorAll('[data-foto]'),function(c){ c.addEventListener('click',videoSifirla); });
+
+/* ═════════ KENDİ VİDEOM: video arka plan, bilgiler üstünde ═════════ */
+var VMAX=30;
+function onizle(){ if(!VID||KAYIT) return; ciz(); vOnizle=requestAnimationFrame(function(){ setTimeout(onizle,40); }); }
+$('kendiVideo').addEventListener('click',function(){ $('vdosya').click(); });
+$('vdosya').addEventListener('change',function(){
+  var fl=this.files&&this.files[0]; if(!fl) return;
+  var v=document.createElement('video'); v.muted=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline',''); v.preload='auto'; v.src=URL.createObjectURL(fl);
+  v.addEventListener('loadeddata',function(){
+    videodanCik(); fotoSecildi=true; fotoAktif($('kendiVideo')); VID=v; sesKaynak=null; videoSifirla();
+    v.play().catch(function(){}); onizle();
+    $('sesSec').hidden=false; var d=v.duration||0; $('vBilgi').hidden=false;
+    $('vBilgi').textContent='Video '+Math.round(d)+' sn'+(d>VMAX?'; story\'ye ilk '+VMAX+' saniyesi girer':'')+'. Video üst kısımda oynar, bilgiler altta durur.';
+    $('video').textContent='🎬 Videolu story hazırla';
+  },{once:true});
+  v.addEventListener('error',function(){ $('vnot').textContent='Bu video açılamadı. Telefonun kamerasıyla çekilmiş bir MP4/MOV dene.'; },{once:true});
+  this.value='';
+});
 
 function aciklama(){
   var h=V.hava, t='';
