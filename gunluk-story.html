@@ -25,6 +25,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
 .btnlar{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;margin-top:14px}
 .btn{font:inherit;font-weight:700;font-size:1rem;padding:15px;border-radius:14px;border:0;cursor:pointer;background:var(--amber);color:#1d1404}
 .btn.iki{background:transparent;color:var(--yazi);border:1px solid var(--cizgi)}
+.btn.kart{grid-column:1/-1;background:transparent;color:var(--yazi);border:1px dashed var(--amber)}
 .btn.video{grid-column:1/-1;background:#bfe6ff;color:#0a1630}
 .btn.video.hazir{background:var(--amber);color:#1d1404}
 .btn[disabled]{opacity:.7;cursor:wait}
@@ -64,7 +65,9 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <button class="btn iki" id="indir">İndir</button>
     <button class="btn video" id="video">🎬 Videolu story hazırla</button>
     <button class="btn iki" id="videoIndir" hidden>Videoyu indir</button>
+    <button class="btn kart" id="kart">🪟 Şeffaf bilgi kartı (videonun üstüne)</button>
   </div>
+  <p class="vnot">Kendi videonu Instagram'da paylaşırken: videoyu story'ye koy → üstteki <b>çıkartma</b> simgesi → <b>Fotoğraf</b> → indirdiğin kartı seç. Kartı istediğin yere taşı, büyüt-küçült.</p>
   <p class="vnot" id="vteknik" style="font-size:.72rem;opacity:.75" hidden></p>
   <p class="vnot" id="vnot">Fotoğraf seçiliyse yavaşça yakınlaşır; kendi videonu seçtiysen o oynar. Bilgiler sırayla belirir. Hazırlanırken ekranı kapatma.</p>
 
@@ -559,6 +562,21 @@ async function videoBaslat(){
   if(c){ try{ await wcKaydet(c); return; }catch(e){ console.warn('WebCodecs olmadı, eski yönteme geçiliyor',e); KAYIT=false; if(VID){ VID.loop=true; VID.muted=true; } } }
   mrKaydet();
 }
+
+/* ═════════ ŞEFFAF BİLGİ KARTI: Instagram'da videonun üstüne çıkartma ═════════ */
+function kartYap(){
+  var ANA=x, FG=document.createElement('canvas'); FG.width=W; FG.height=H;
+  x=FG.getContext('2d'); ARKA=false; ciz(); x=ANA; ARKA=true;
+  var y0=760, ust=175, KH=H-y0+ust, K=document.createElement('canvas'); K.width=W; K.height=KH;
+  var c=K.getContext('2d');
+  c.fillStyle='rgba(10,22,48,.84)'; c.beginPath(); if(c.roundRect) c.roundRect(24,0,W-48,KH-16,56); else c.rect(24,0,W-48,KH-16); c.fill();
+  c.drawImage(FG,0,0,W,300,0,-92,W,300);      // logo + tarih satırı (üst kısmı kırpılır)
+  c.drawImage(FG,0,y0,W,H-y0,0,ust,W,H-y0);     // hava, kar, eczane, nabız, adres
+  return new Promise(function(ok){ K.toBlob(ok,'image/png'); });
+}
+$('kart').addEventListener('click',function(){ kartYap().then(function(b){
+  var ad='artvin-kart-'+BUGUN+'.png', a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=ad; a.click();
+  $('vnot').textContent='Kart indirildi. Instagram\'da videonu story\'ye koy, çıkartma → Fotoğraf ile kartı ekle.'; }); });
 
 /* ═════════ KENDİ VİDEOM: video arka plan, bilgiler üstünde ═════════ */
 var VMAX=30;
