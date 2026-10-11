@@ -122,7 +122,7 @@ var BUGUN=gs(bugun);
 var V={hava:null,kar:null,t850:null,nabiz:null,dogus:null,yuzde:null,yIlk:null,bulut:null}, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
 var MERKEZ_RAKIM=550;
 var YERLER=[{ad:'Merkez',a:550,b:550},{ad:'Katrevan',a:800,b:800},{ad:'Kafkasör',a:1250,b:1400},{ad:'Mersivan',a:1800,b:1900}];
-var VID=null, vOnizle=0, sesKaynak=null, sesCtx=null;
+var VID=null, VFILE=null, vOnizle=0, sesKaynak=null, sesCtx=null;
 var FOTO_ODAK={'story-arka-merkez.jpg':.6,'ilce-foto-merkez.jpg':.74,'kis-merkez-panorama.jpg':.5}; // şehrin fotoğraftaki dikey yeri
 
 /* ═════════ HAVA: üç modelin ortak görüşü ═════════
@@ -384,7 +384,7 @@ function eczKaydet(){ ls('storyEczane',JSON.stringify({g:BUGUN,a:$('eczane').val
 $('cadde').addEventListener('input',eczKaydet);
 $('eczane').addEventListener('input',eczKaydet);
 [].forEach.call(document.querySelectorAll('[data-b]'),function(c){ c.addEventListener('change',function(){ GOSTER[c.getAttribute('data-b')]=c.checked; ciz(); }); });
-function videodanCik(){ if(!VID) return; try{VID.pause();}catch(e){} VID=null; cancelAnimationFrame(vOnizle); $('sesSec').hidden=true; $('vBilgi').hidden=true; $('video').textContent='🎬 Videolu story hazırla'; }
+function videodanCik(){ if(!VID) return; VFILE=null; try{VID.pause();}catch(e){} VID=null; cancelAnimationFrame(vOnizle); $('sesSec').hidden=true; $('vBilgi').hidden=true; $('video').textContent='🎬 Videolu story hazırla'; }
 function fotoAktif(b){ if(b!==$('kendiVideo')) videodanCik(); [].forEach.call(document.querySelectorAll('#fotoSec button'),function(z){ z.classList.toggle('on',z===b); }); }
 [].forEach.call(document.querySelectorAll('[data-foto]'),function(b){ b.addEventListener('click',function(){ fotoSecildi=true; fotoAktif(b); foto(b.getAttribute('data-foto')).then(function(im){ FOTO=im; ciz(); }); }); });
 $('kendiFoto').addEventListener('click',function(){ $('dosya').click(); });
@@ -406,7 +406,7 @@ function bantlar(){
   b.push({x:0,y:1760,w:W,h:H-1760,s:2.5+LAY.n*.45,d:.8});
   return b;
 }
-function videoBaslat(){
+function mrKaydet(){
   var sesli=!!(VID&&$('ses').checked), ses=null;
   var tipler=(sesli?['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4;codecs=avc1,mp4a.40.2']:[]).concat(['video/mp4;codecs=avc1.42E01E','video/mp4;codecs=avc1','video/mp4']).concat(sesli?['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus']:[]).concat(['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm']), tip=null;
   if(window.MediaRecorder&&cv.captureStream) for(var i=0;i<tipler.length;i++){ if(MediaRecorder.isTypeSupported(tipler[i])){ tip=tipler[i]; break; } }
@@ -461,6 +461,103 @@ function videoSifirla(){ if(!vBlob) return; vBlob=null; var b=$('video'); b.clas
 [].forEach.call(document.querySelectorAll('[data-b],#dosya'),function(c){ c.addEventListener('change',videoSifirla); });
 [].forEach.call(document.querySelectorAll('[data-foto]'),function(c){ c.addEventListener('click',videoSifirla); });
 
+/* ═════════ H.264 MP4 (WebCodecs) — Instagram'ın sorunsuz açtığı biçim ═════════
+   Telefonun donanım kodlayıcısıyla H.264 video + AAC ses üretir, mp4-muxer ile MP4'e koyar.
+   Desteklenmezse eski MediaRecorder yöntemi (mrKaydet) devreye girer. */
+var TEST=(location.search.match(/[?&]test=(\w+)/)||[])[1];
+function bekle(ms){ return new Promise(function(r){ setTimeout(r,ms||0); }); }
+function muxerYukle(){ if(window.Mp4Muxer) return Promise.resolve(); return new Promise(function(ok,no){ var sc=document.createElement('script'); sc.src='/js/mp4-muxer.js'; sc.onload=ok; sc.onerror=no; document.head.appendChild(sc); }); }
+async function wcCodec(){
+  if(!window.VideoEncoder||!window.VideoFrame) return null;
+  var L=TEST==='vp9'?['vp09.00.40.08']:['avc1.640028','avc1.4d0028','avc1.42e028','avc1.640033'];
+  for(var i=0;i<L.length;i++){ try{ var r=await VideoEncoder.isConfigSupported({codec:L[i],width:W,height:H,bitrate:8000000,framerate:30}); if(r&&r.supported) return L[i]; }catch(e){} }
+  return null;
+}
+function hazirBitti(h264,not){
+  var btn=$('video'); ZOOM=1; KAYIT=false;
+  if(VID){ VID.muted=true; VID.loop=true; VID.play().catch(function(){}); onizle(); } else ciz();
+  btn.disabled=false; btn.classList.add('hazir'); btn.textContent='🎬 Videoyu Instagram\'a gönder'; $('videoIndir').hidden=false;
+  $('vnot').textContent=(h264?'Video hazır (MP4, H.264). Gönder\'e dokun, açılan menüden Instagram\'ı seç.':'Video hazır, ama bu telefon Instagram\'ın her zaman açamadığı bir biçimde kaydetti. Instagram açmazsa Chrome\'u güncelle ya da fotoğraflı story\'yi kullan.')+(not?' '+not:'');
+}
+async function wcKaydet(codec){
+  var btn=$('video'); btn.disabled=true; btn.classList.remove('hazir'); $('videoIndir').hidden=true; vBlob=null;
+  await muxerYukle();
+  var ANA=x, FG=document.createElement('canvas'); FG.width=W; FG.height=H;
+  x=FG.getContext('2d'); ARKA=false; ciz(); x=ANA; ARKA=true;
+  var B=bantlar(), sesNot='';
+  T=VID?Math.min(VMAX,VID.duration||9):9;
+  function kare(t){
+    ZOOM=VID?1:1+.09*yumus(t/T);
+    x.save(); x.clearRect(0,0,W,H); arka(ZOOM); x.restore();
+    B.forEach(function(b){ var a=yumus((t-b.s)/b.d); if(a<=0) return; x.save(); x.globalAlpha=a; x.drawImage(FG,b.x,b.y,b.w,b.h,b.x,b.y+(1-a)*34,b.w,b.h); x.restore(); });
+    if(t<.5){ x.fillStyle='rgba(5,10,24,'+(1-t/.5)+')'; x.fillRect(0,0,W,H); }
+  }
+  // ses: videonun kendi sesini çöz, AAC'ye kodla
+  var ab=null, acfg=null, sesli=!!(VID&&VFILE&&$('ses').checked);
+  if(sesli){
+    if(!window.AudioEncoder) sesNot='Bu telefon sesi ekleyemedi; video sessiz.';
+    else try{ btn.textContent='Ses hazırlanıyor…';
+      var ctx=new (window.AudioContext||window.webkitAudioContext)();
+      ab=await ctx.decodeAudioData(await VFILE.arrayBuffer()); try{ctx.close();}catch(e){}
+      acfg={codec:TEST==='vp9'?'opus':'mp4a.40.2',sampleRate:ab.sampleRate,numberOfChannels:Math.min(2,ab.numberOfChannels),bitrate:128000};
+      if(TEST==='vp9'&&acfg.sampleRate!==48000) acfg.sampleRate=48000, ab=null;
+      var ar=ab?await AudioEncoder.isConfigSupported(acfg):null; if(!ar||!ar.supported){ ab=null; sesNot='Bu telefon sesi MP4\'e koyamadı; video sessiz.'; }
+    }catch(e){ ab=null; sesNot='Videonun sesi okunamadı; video sessiz.'; }
+  }
+  var vp9=codec.indexOf('vp09')===0;
+  var muxer=new Mp4Muxer.Muxer({target:new Mp4Muxer.ArrayBufferTarget(), fastStart:'in-memory', firstTimestampBehavior:'offset',
+    video:{codec:vp9?'vp9':'avc',width:W,height:H,frameRate:30},
+    audio:ab?{codec:TEST==='vp9'?'opus':'aac',numberOfChannels:acfg.numberOfChannels,sampleRate:acfg.sampleRate}:undefined});
+  var hata=null, venc=new VideoEncoder({output:function(c,m){ muxer.addVideoChunk(c,m); },error:function(e){ hata=e; }});
+  venc.configure({codec:codec,width:W,height:H,bitrate:8000000,framerate:30,avc:vp9?undefined:{format:'avc'}});
+  var son=-1, sonKey=-1e9;
+  function kodla(t){ var ts=Math.round(t*1e6); if(ts<=son) return; son=ts;
+    var key=ts-sonKey>=2e6; if(key) sonKey=ts;
+    var fr=new VideoFrame(cv,{timestamp:ts,duration:33333}); venc.encode(fr,{keyFrame:key}); fr.close(); }
+  if(!VID){
+    var N=Math.round(T*30);
+    for(var i=0;i<N;i++){ kare(i/30); kodla(i/30);
+      if(i%6===0){ btn.textContent='Video hazırlanıyor… %'+Math.round(i/N*100); await bekle(0); }
+      while(venc.encodeQueueSize>6) await bekle(5);
+      if(hata) throw hata; }
+  } else {
+    KAYIT=true; cancelAnimationFrame(vOnizle); VID.loop=false; VID.muted=true; VID.pause();
+    if(VID.currentTime>0){ var sk=new Promise(function(r){ VID.addEventListener('seeked',r,{once:true}); }); VID.currentTime=0; await Promise.race([sk,bekle(1500)]); }
+    await VID.play();
+    await new Promise(function(bitti){
+      function ad(){ var t=VID.currentTime;
+        if(hata||VID.ended||t>=T){ bitti(); return; }
+        kare(t); if(venc.encodeQueueSize<8) kodla(t);
+        btn.textContent='Video hazırlanıyor… %'+Math.min(100,Math.round(t/T*100));
+        requestAnimationFrame(ad); }
+      requestAnimationFrame(ad); });
+    VID.pause(); if(hata) throw hata;
+  }
+  btn.textContent='Video kaydediliyor…';
+  await venc.flush(); venc.close();
+  if(ab){
+    var aenc=new AudioEncoder({output:function(c,m){ muxer.addAudioChunk(c,m); },error:function(e){ hata=e; }});
+    aenc.configure(acfg);
+    var sr=ab.sampleRate, ch=acfg.numberOfChannels, top=Math.min(ab.length,Math.floor(T*sr)), P=4096;
+    for(var o=0;o<top;o+=P){ var n=Math.min(P,top-o), buf=new Float32Array(n*ch);
+      for(var c=0;c<ch;c++) buf.set(ab.getChannelData(c).subarray(o,o+n),c*n);
+      var ad=new AudioData({format:'f32-planar',sampleRate:sr,numberOfFrames:n,numberOfChannels:ch,timestamp:Math.round(o/sr*1e6),data:buf});
+      aenc.encode(ad); ad.close(); if(o%(P*20)===0) await bekle(0); }
+    await aenc.flush(); aenc.close(); if(hata) throw hata;
+  }
+  muxer.finalize();
+  vBlob=new Blob([muxer.target.buffer],{type:'video/mp4'}); vAd='artvin-story-'+BUGUN+'.mp4';
+  hazirBitti(!vp9,sesNot);
+}
+async function videoBaslat(){
+  var c=null; try{ c=await wcCodec(); }catch(e){}
+  if(c&&VID&&$('ses').checked&&!TEST){ var aac=false;
+    try{ aac=!!(window.AudioEncoder&&(await AudioEncoder.isConfigSupported({codec:'mp4a.40.2',sampleRate:48000,numberOfChannels:2,bitrate:128000})).supported); }catch(e){}
+    if(!aac&&window.MediaRecorder&&(MediaRecorder.isTypeSupported('video/mp4;codecs=avc1.42E01E,mp4a.40.2')||MediaRecorder.isTypeSupported('video/mp4;codecs=avc1,mp4a.40.2'))) c=null; }
+  if(c){ try{ await wcKaydet(c); return; }catch(e){ console.warn('WebCodecs olmadı, eski yönteme geçiliyor',e); KAYIT=false; if(VID){ VID.loop=true; VID.muted=true; } } }
+  mrKaydet();
+}
+
 /* ═════════ KENDİ VİDEOM: video arka plan, bilgiler üstünde ═════════ */
 var VMAX=30;
 function onizle(){ if(!VID||KAYIT) return; ciz(); vOnizle=requestAnimationFrame(function(){ setTimeout(onizle,40); }); }
@@ -469,7 +566,7 @@ $('vdosya').addEventListener('change',function(){
   var fl=this.files&&this.files[0]; if(!fl) return;
   var v=document.createElement('video'); v.muted=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline',''); v.preload='auto'; v.src=URL.createObjectURL(fl);
   v.addEventListener('loadeddata',function(){
-    videodanCik(); fotoSecildi=true; fotoAktif($('kendiVideo')); VID=v; sesKaynak=null; videoSifirla();
+    videodanCik(); fotoSecildi=true; fotoAktif($('kendiVideo')); VID=v; VFILE=fl; sesKaynak=null; videoSifirla();
     v.play().catch(function(){}); onizle();
     $('sesSec').hidden=false; var d=v.duration||0; $('vBilgi').hidden=false;
     $('vBilgi').textContent='Video '+Math.round(d)+' sn'+(d>VMAX?'; story\'ye ilk '+VMAX+' saniyesi girer':'')+'. Video üst kısımda oynar, bilgiler altta durur.';
