@@ -25,6 +25,11 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
 .btnlar{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;margin-top:14px}
 .btn{font:inherit;font-weight:700;font-size:1rem;padding:15px;border-radius:14px;border:0;cursor:pointer;background:var(--amber);color:#1d1404}
 .btn.iki{background:transparent;color:var(--yazi);border:1px solid var(--cizgi)}
+.btn.video{grid-column:1/-1;background:#bfe6ff;color:#0a1630}
+.btn.video.hazir{background:var(--amber);color:#1d1404}
+.btn[disabled]{opacity:.7;cursor:wait}
+#videoIndir{grid-column:1/-1}
+.vnot{font-size:.8rem;color:var(--dim);margin-top:8px;line-height:1.45}
 .alan{margin-top:18px;padding-top:16px;border-top:1px solid var(--cizgi)}
 .alan>label,.alan>span{display:block;font-size:.85rem;font-weight:700;margin-bottom:8px}
 .alan input[type=text]{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--cizgi);background:var(--yuzey);color:#fff;font:inherit;font-size:1rem}
@@ -55,7 +60,10 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
   <div class="btnlar">
     <button class="btn" id="paylas">Instagram'a gönder</button>
     <button class="btn iki" id="indir">İndir</button>
+    <button class="btn video" id="video">🎬 Videolu story hazırla</button>
+    <button class="btn iki" id="videoIndir" hidden>Videoyu indir</button>
   </div>
+  <p class="vnot" id="vnot">Fotoğraf yavaşça yakınlaşır, bilgiler sırayla belirir. 9 saniyelik video; hazırlanırken ekranı kapatma.</p>
 
   <div class="alan">
     <label for="eczane">Bugünkü nöbetçi eczane · Artvin Merkez</label>
@@ -246,18 +254,23 @@ function yuzIkon(X,Y,m){ // kazanan ruh hali: çizgi yüz
 function nabizIkon(X,Y){ x.save(); x.translate(X,Y); x.strokeStyle=AMBER; x.lineWidth=5; x.lineCap='round'; x.lineJoin='round';
   x.beginPath(); x.moveTo(0,26); x.lineTo(12,26); x.lineTo(19,8); x.lineTo(29,44); x.lineTo(37,18); x.lineTo(42,26); x.lineTo(54,26); x.stroke(); x.restore(); }
 
-function ciz(){
-  x.save(); x.clearRect(0,0,W,H); x.textBaseline='alphabetic';
-  // zemin: fotoğraf üst %80'e oturur, altı koyu zemine erir
+var ARKA=true, ZOOM=1, LAY={ay:1450,n:0};
+function arka(z){ // zemin: fotoğraf üst %80'e oturur, altı koyu zemine erir (z: video için yakınlaşma)
+  x.save();
   x.fillStyle='#0a1630'; x.fillRect(0,0,W,H);
   if(FOTO){ var s=Math.max(W/FOTO.width,1180/FOTO.height), fw=FOTO.width*s, fh=FOTO.height*s, odak=FOTO_ODAK[FOTO.src.split('/').pop()]||.5;
-    var dy=Math.min(0,Math.max(1110-fh,560-odak*fh));
-    x.filter='contrast(1.08) saturate(1.12) brightness(.96)'; x.drawImage(FOTO,(W-fw)/2,dy,fw,fh); x.filter='none'; }
+    var dy=Math.min(0,Math.max(1110-fh,560-odak*fh)), zw=fw*z, zh=fh*z;
+    x.filter='contrast(1.08) saturate(1.12) brightness(.96)'; x.drawImage(FOTO,(W-zw)/2,dy-(zh-fh)*odak,zw,zh); x.filter='none'; }
   x.globalCompositeOperation='multiply'; x.fillStyle='#a3b0cc'; x.fillRect(0,0,W,1300); x.globalCompositeOperation='source-over';
   var g=x.createLinearGradient(0,0,0,H);
   g.addColorStop(0,'rgba(10,22,48,.72)'); g.addColorStop(.14,'rgba(10,22,48,.12)'); g.addColorStop(.3,'rgba(10,22,48,.04)');
   g.addColorStop(.36,'rgba(10,22,48,.28)'); g.addColorStop(.45,'rgba(10,22,48,.72)'); g.addColorStop(.53,'rgba(10,22,48,.94)'); g.addColorStop(.585,'rgba(10,22,48,1)'); g.addColorStop(1,'rgba(10,22,48,1)');
   x.fillStyle=g; x.fillRect(0,0,W,H);
+  x.restore();
+}
+function ciz(){
+  x.save(); x.clearRect(0,0,W,H); x.textBaseline='alphabetic';
+  if(ARKA) arka(ZOOM);
 
   // üst: logo + tarih
   logo(64,176,64);
@@ -324,6 +337,7 @@ function ciz(){
     if(top>=5){ var en=[4,3,2,1].sort(function(a,b){return n[b]-n[a]||b-a;})[0]; satirlar.push(['nbz','Dün Artvin\'in nabzı · '+trs(top)+' kişi',AD[en]+' · %'+Math.round(n[en]/top*100),en,n,top]); }
     else satirlar.push(['nbz','Artvin\'in nabzı','Bugün Artvin nasıl? Sen söyle']);
   }
+  LAY.ay=ay; LAY.n=satirlar.length;
   satirlar.forEach(function(s,i){
     var sy=ay+i*114;
     cizgi(M,sy,W-M,sy,'rgba(244,248,245,.16)',2);
@@ -371,6 +385,62 @@ var ad='artvin-story-'+BUGUN+'.jpg';
 function indir(b){ var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=ad; a.click(); }
 $('indir').addEventListener('click',function(){ blob().then(indir); });
 $('paylas').addEventListener('click',function(){ blob().then(function(b){ var fl=new File([b],ad,{type:'image/jpeg'}); if(navigator.canShare&&navigator.canShare({files:[fl]})) navigator.share({files:[fl]}).catch(function(){}); else indir(b); }); });
+
+/* ═════════ VİDEO STORY ═════════
+   Arka plan (fotoğraf) her karede yeniden çizilir ve yavaşça yakınlaşır.
+   Yazılar bir kez ayrı bir katmana çizilir, bantlar hâlinde sırayla belirir. */
+var T=9, vBlob=null, vAd='';
+function yumus(v){ v=Math.max(0,Math.min(1,v)); return v<.5?2*v*v:1-Math.pow(-2*v+2,2)/2; }
+function bantlar(){
+  var b=[{x:0,y:0,w:W,h:330,s:.35,d:.8},{x:0,y:740,w:760,h:690,s:1.0,d:.9},{x:760,y:740,w:W-760,h:690,s:1.6,d:.9}];
+  for(var i=0;i<LAY.n;i++) b.push({x:0,y:LAY.ay-6+i*114,w:W,h:118,s:2.3+i*.45,d:.7});
+  b.push({x:0,y:1760,w:W,h:H-1760,s:2.5+LAY.n*.45,d:.8});
+  return b;
+}
+function videoBaslat(){
+  var tipler=['video/mp4;codecs=avc1.42E01E','video/mp4;codecs=avc1','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'], tip=null;
+  if(window.MediaRecorder&&cv.captureStream) for(var i=0;i<tipler.length;i++){ if(MediaRecorder.isTypeSupported(tipler[i])){ tip=tipler[i]; break; } }
+  if(!tip){ $('vnot').textContent='Bu tarayıcı video kaydedemiyor. Telefonda Chrome ya da Safari ile dene.'; return; }
+  var btn=$('video'); btn.disabled=true; btn.classList.remove('hazir'); $('videoIndir').hidden=true; vBlob=null;
+  // yazı katmanı
+  var ANA=x, FG=document.createElement('canvas'); FG.width=W; FG.height=H;
+  x=FG.getContext('2d'); ARKA=false; ciz(); x=ANA; ARKA=true;
+  var B=bantlar(), parca=[], st=cv.captureStream(30), rec;
+  try{ rec=new MediaRecorder(st,{mimeType:tip,videoBitsPerSecond:8000000}); }catch(e){ rec=new MediaRecorder(st); tip=rec.mimeType||tip; }
+  rec.ondataavailable=function(e){ if(e.data&&e.data.size) parca.push(e.data); };
+  rec.onstop=function(){
+    var mp4=tip.indexOf('mp4')>-1; vAd='artvin-story-'+BUGUN+(mp4?'.mp4':'.webm');
+    vBlob=new Blob(parca,{type:mp4?'video/mp4':'video/webm'});
+    ZOOM=1; ciz();
+    btn.disabled=false; btn.classList.add('hazir'); btn.textContent='🎬 Videoyu Instagram\'a gönder'; $('videoIndir').hidden=false;
+    var h264=/avc|h264/i.test(tip)||(mp4&&/iPhone|iPad|Macintosh/.test(navigator.userAgent));
+    $('vnot').textContent=h264?'Video hazır. Gönder\'e dokun, açılan menüden Instagram\'ı seç.':'Video hazır, ama bu tarayıcı videoyu Instagram\'ın her zaman açamadığı bir biçimde kaydetti. Instagram açmazsa Chrome\'u güncelle ya da fotoğraflı story\'yi kullan.';
+  };
+  function kare(t){
+    ZOOM=1+.09*yumus(t/T);
+    x.save(); x.clearRect(0,0,W,H); arka(ZOOM); x.restore();
+    B.forEach(function(b){ var a=yumus((t-b.s)/b.d); if(a<=0) return; x.save(); x.globalAlpha=a; x.drawImage(FG,b.x,b.y,b.w,b.h,b.x,b.y+(1-a)*34,b.w,b.h); x.restore(); });
+    if(t<.5){ x.fillStyle='rgba(5,10,24,'+(1-t/.5)+')'; x.fillRect(0,0,W,H); }
+  }
+  kare(0); rec.start(250);
+  var t0=null;
+  function adim(now){ if(t0===null) t0=now; var t=(now-t0)/1000; kare(Math.min(t,T));
+    btn.textContent='Video hazırlanıyor… %'+Math.min(100,Math.round(t/T*100));
+    if(t<T) requestAnimationFrame(adim); else setTimeout(function(){ rec.stop(); },150); }
+  requestAnimationFrame(adim);
+}
+function videoIndir(){ if(!vBlob) return; var a=document.createElement('a'); a.href=URL.createObjectURL(vBlob); a.download=vAd; a.click(); }
+$('video').addEventListener('click',function(){
+  if(!vBlob){ videoBaslat(); return; }
+  var fl=new File([vBlob],vAd,{type:vBlob.type});
+  if(navigator.canShare&&navigator.canShare({files:[fl]})) navigator.share({files:[fl]}).catch(function(){}); else videoIndir();
+});
+$('videoIndir').addEventListener('click',videoIndir);
+// story içeriği değişirse eski video geçersiz olur
+function videoSifirla(){ if(!vBlob) return; vBlob=null; var b=$('video'); b.classList.remove('hazir'); b.textContent='🎬 Videolu story hazırla'; $('videoIndir').hidden=true; $('vnot').textContent='İçerik değişti; videoyu yeniden hazırla.'; }
+['eczane','cadde'].forEach(function(i){ $(i).addEventListener('input',videoSifirla); });
+[].forEach.call(document.querySelectorAll('[data-b],#dosya'),function(c){ c.addEventListener('change',videoSifirla); });
+[].forEach.call(document.querySelectorAll('[data-foto]'),function(c){ c.addEventListener('click',videoSifirla); });
 
 function aciklama(){
   var h=V.hava, t='';
