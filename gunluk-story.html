@@ -65,6 +65,7 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <button class="btn video" id="video">🎬 Videolu story hazırla</button>
     <button class="btn iki" id="videoIndir" hidden>Videoyu indir</button>
   </div>
+  <p class="vnot" id="vteknik" style="font-size:.72rem;opacity:.75" hidden></p>
   <p class="vnot" id="vnot">Fotoğraf seçiliyse yavaşça yakınlaşır; kendi videonu seçtiysen o oynar. Bilgiler sırayla belirir. Hazırlanırken ekranı kapatma.</p>
 
   <div class="alan">
@@ -426,7 +427,7 @@ function mrKaydet(){
   rec.ondataavailable=function(e){ if(e.data&&e.data.size) parca.push(e.data); };
   rec.onstop=function(){
     var mp4=tip.indexOf('mp4')>-1; vAd='artvin-story-'+BUGUN+(mp4?'.mp4':'.webm');
-    vBlob=new Blob(parca,{type:mp4?'video/mp4':'video/webm'});
+    vBlob=new Blob(parca,{type:mp4?'video/mp4':'video/webm'}); setTimeout(function(){ teknik('MR '+tip); },0);
     ZOOM=1; KAYIT=false;
     if(VID){ VID.muted=true; VID.loop=true; VID.play().catch(function(){}); onizle(); } else ciz();
     btn.disabled=false; btn.classList.add('hazir'); btn.textContent='🎬 Videoyu Instagram\'a gönder'; $('videoIndir').hidden=false;
@@ -473,6 +474,7 @@ async function wcCodec(){
   for(var i=0;i<L.length;i++){ try{ var r=await VideoEncoder.isConfigSupported({codec:L[i],width:W,height:H,bitrate:8000000,framerate:30}); if(r&&r.supported) return L[i]; }catch(e){} }
   return null;
 }
+function teknik(t){ var e=$('vteknik'); e.hidden=false; e.textContent='Teknik: '+t+' · '+(vBlob?(vBlob.size/1048576).toFixed(1)+' MB':'')+' · '+(navigator.userAgent.match(/Android [\d.]+|iPhone OS [\d_]+/)||[''])[0]+' · Chrome '+((navigator.userAgent.match(/Chrome\/(\d+)/)||[])[1]||'-'); }
 function hazirBitti(h264,not){
   var btn=$('video'); ZOOM=1; KAYIT=false;
   if(VID){ VID.muted=true; VID.loop=true; VID.play().catch(function(){}); onizle(); } else ciz();
@@ -547,7 +549,7 @@ async function wcKaydet(codec){
   }
   muxer.finalize();
   vBlob=new Blob([muxer.target.buffer],{type:'video/mp4'}); vAd='artvin-story-'+BUGUN+'.mp4';
-  hazirBitti(!vp9,sesNot);
+  hazirBitti(!vp9,sesNot); teknik('WC '+codec+(ab?' + '+acfg.codec:' sessiz'));
 }
 async function videoBaslat(){
   var c=null; try{ c=await wcCodec(); }catch(e){}
