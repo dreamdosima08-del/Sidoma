@@ -25,7 +25,8 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
 .btnlar{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;margin-top:14px}
 .btn{font:inherit;font-weight:700;font-size:1rem;padding:15px;border-radius:14px;border:0;cursor:pointer;background:var(--amber);color:#1d1404}
 .btn.iki{background:transparent;color:var(--yazi);border:1px solid var(--cizgi)}
-.btn.kart{grid-column:1/-1;background:transparent;color:var(--yazi);border:1px dashed var(--amber)}
+.btn.kart{background:transparent;color:var(--yazi);border:1px dashed var(--amber)}
+.btn.kart.siyah{background:#f4f8f5;color:#111;border-color:#f4f8f5}
 .btn.video{grid-column:1/-1;background:#bfe6ff;color:#0a1630}
 .btn.video.hazir{background:var(--amber);color:#1d1404}
 .btn[disabled]{opacity:.7;cursor:wait}
@@ -65,7 +66,8 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <button class="btn iki" id="indir">İndir</button>
     <button class="btn video" id="video">🎬 Videolu story hazırla</button>
     <button class="btn iki" id="videoIndir" hidden>Videoyu indir</button>
-    <button class="btn kart" id="kart">🪟 Şeffaf yazılar (videonun üstüne)</button>
+    <button class="btn kart" id="kart" data-r="beyaz">🪟 Beyaz yazılar</button>
+    <button class="btn kart siyah" id="kartSiyah" data-r="siyah">🪟 Siyah yazılar</button>
   </div>
   <p class="vnot">Kendi videonu Instagram'da paylaşırken: videoyu story'ye koy → üstteki <b>çıkartma</b> simgesi → <b>Fotoğraf</b> → indirdiğin kartı seç. Kartı istediğin yere taşı, büyüt-küçült.</p>
   <p class="vnot" id="vteknik" style="font-size:.72rem;opacity:.75" hidden></p>
@@ -655,22 +657,27 @@ async function videoBaslat(){
 }
 
 /* ═════════ ŞEFFAF BİLGİ KARTI: Instagram'da videonun üstüne çıkartma ═════════ */
-function kartYap(){
+function kartYap(renk){
   var ANA=x, FG=document.createElement('canvas'); FG.width=W; FG.height=H; var d0=DIM, s0=SOLUK;
   DIM='rgba(244,248,245,.94)'; SOLUK='rgba(244,248,245,.86)';   // videonun üstünde soluk gri okunmaz
   x=FG.getContext('2d'); ARKA=false; ciz(); x=ANA; ARKA=true; DIM=d0; SOLUK=s0;
   var y0=760, ust=175, KH=H-y0+ust, K=document.createElement('canvas'); K.width=W; K.height=KH;
   var c=K.getContext('2d');
-  // arka plan yok: sadece yazılar; her türlü videoda okunsun diye yumuşak gölge (iki kat)
-  function yazilar(){ c.drawImage(FG,0,0,W,300,0,-92,W,300); c.drawImage(FG,0,y0,W,H-y0,0,ust,W,H-y0); }
-  c.shadowColor='rgba(0,0,0,.85)'; c.shadowBlur=18; c.shadowOffsetY=3; yazilar();
-  c.shadowColor='rgba(0,0,0,.55)'; c.shadowBlur=4; c.shadowOffsetY=1; yazilar();
-  c.shadowColor='transparent'; yazilar();
+  // arka plan yok: sadece yazılar. Önce yazı katmanı ayrı hazırlanır; siyah seçilirse tek renk siyaha boyanır.
+  var Y=document.createElement('canvas'); Y.width=W; Y.height=KH; var yc=Y.getContext('2d');
+  yc.drawImage(FG,0,0,W,300,0,-92,W,300); yc.drawImage(FG,0,y0,W,H-y0,0,ust,W,H-y0);
+  var siyah=renk==='siyah';
+  if(siyah){ yc.globalCompositeOperation='source-in'; yc.fillStyle='#111111'; yc.fillRect(0,0,W,KH); }
+  // her türlü videoda okunsun: beyaz yazıya koyu gölge, siyah yazıya açık parıltı (iki kat)
+  var g1=siyah?'rgba(255,255,255,.9)':'rgba(0,0,0,.85)', g2=siyah?'rgba(255,255,255,.6)':'rgba(0,0,0,.55)';
+  c.shadowColor=g1; c.shadowBlur=18; c.shadowOffsetY=siyah?0:3; c.drawImage(Y,0,0);
+  c.shadowColor=g2; c.shadowBlur=4; c.shadowOffsetY=siyah?0:1; c.drawImage(Y,0,0);
+  c.shadowColor='transparent'; c.drawImage(Y,0,0);
   return new Promise(function(ok){ K.toBlob(ok,'image/png'); });
 }
-$('kart').addEventListener('click',function(){ kartYap().then(function(b){
-  var ad='artvin-kart-'+BUGUN+'.png', a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=ad; a.click();
-  $('vnot').textContent='Kart indirildi. Instagram\'da videonu story\'ye koy, çıkartma → Fotoğraf ile kartı ekle.'; }); });
+['kart','kartSiyah'].forEach(function(id){ $(id).addEventListener('click',function(){ var r=this.getAttribute('data-r'); kartYap(r).then(function(b){
+  var ad='artvin-yazilar-'+r+'-'+BUGUN+'.png', a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=ad; a.click();
+  $('vnot').textContent=(r==='siyah'?'Siyah':'Beyaz')+' yazılar indirildi. Instagram\'da videonu story\'ye koy, çıkartma → Fotoğraf ile ekle.'; }); }); });
 
 /* ═════════ KENDİ VİDEOM: video arka plan, bilgiler üstünde ═════════ */
 var VMAX=30;
