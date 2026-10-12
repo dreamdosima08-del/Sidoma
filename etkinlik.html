@@ -244,11 +244,13 @@ var favoriler = JSON.parse(localStorage.getItem('etkinlikFavoriler')||'[]');
 var KAT_RENK = {konser:'kat-konser',festival:'kat-festival',doga:'kat-doga',egitim:'kat-egitim',spor:'kat-spor',kultur:'kat-kultur',diger:'kat-diger'};
 var KAT_EMOJI = {konser:'🎵',festival:'🎪',doga:'🏔️',egitim:'📚',spor:'⚽',kultur:'🏛️',diger:'📌'};
 
+// Kullanıcı verisini HTML'e basmadan önce kaçışla (XSS koruması)
+function guvenliVeri(d){var h={},k,v;for(k in d){v=d[k];h[k]=v;if(typeof v==='string')d[k]=v.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}d._ham=h;return d;}
 // Firebase dinle
 db.collection(COL).orderBy('tarih','asc').onSnapshot(function(snap){
   tumEtkinlikler = [];
   snap.forEach(function(doc){
-    var d = doc.data(); d.id = doc.id;
+    var d = guvenliVeri(doc.data()); d.id = doc.id;
     tumEtkinlikler.push(d);
   });
   istatistikGuncelle();
@@ -350,8 +352,10 @@ function modalAc(id){
     ? '<img class="modal-img" src="'+e.gorsel+'" alt="'+e.baslik+'">'
     : '<div class="modal-img-placeholder">'+katEmoji+'</div>';
 
-  var takvimUrl = 'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:'+tarih.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z%0ASUMMARY:'+encodeURIComponent(e.baslik)+'%0ALOCATION:'+encodeURIComponent(e.konum||'Artvin')+'%0AEND:VEVENT%0AEND:VCALENDAR';
-  var paylasMesaj = e.baslik+' — '+tarihStr+(e.konum?' ('+e.konum+')':'') + '\n\nartvinrehber.com/etkinlik.html';
+  var takvimUrl = 'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:'+tarih.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z%0ASUMMARY:'+encodeURIComponent((e._ham||e).baslik)+'%0ALOCATION:'+encodeURIComponent((e._ham||e).konum||'Artvin')+'%0AEND:VEVENT%0AEND:VCALENDAR';
+  var h = e._ham||e;
+  var paylasMesaj = h.baslik+' — '+tarihStr+(h.konum?' ('+h.konum+')':'') + '\n\nartvinrehber.com/etkinlik.html';
+  var paylasAttr = paylasMesaj.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});
 
   document.getElementById('modalIcerik').innerHTML =
     img
@@ -370,7 +374,7 @@ function modalAc(id){
     + '<div class="modal-butonlar">'
     + '<button class="m-btn m-btn-yesil" onclick="favoriToggle(event,\''+e.id+'\')" id="modalFavBtn">'+(favMi?'❤️ Favoride':'🤍 Favoriye Ekle')+'</button>'
     + '<a class="m-btn m-btn-outline" href="'+takvimUrl+'" download="artvin-etkinlik.ics">📅 Takvime Ekle</a>'
-    + '<button class="m-btn m-btn-wp" onclick="window.open(\'https://api.whatsapp.com/send?text=\'+encodeURIComponent(\''+paylasMesaj.replace(/'/g,"\\'").replace(/\n/g,'\\n')+'\'),\'_blank\')">📱 Paylaş</button>'
+    + '<button class="m-btn m-btn-wp" data-m="'+paylasAttr+'" onclick="window.open(\'https://api.whatsapp.com/send?text=\'+encodeURIComponent(this.dataset.m),\'_blank\')">📱 Paylaş</button>'
     + '</div></div>';
 
   document.getElementById('modalOverlay').classList.add('aktif');
@@ -413,17 +417,6 @@ document.getElementById('aramaInput').addEventListener('input', function(){
   listele();
 });
 
-// Demo etkinlik yoksa ekle
-setTimeout(function(){
-  if(tumEtkinlikler.length===0){
-    var demo = [
-      {baslik:'Kafkasör Festivali',aciklama:'Artvin\'in geleneksel boğa güreşi ve halk oyunları festivali. Her yıl binlerce ziyaretçiyi ağırlayan eşsiz bir etkinlik.',tarih:'2026-07-15T10:00:00',saat:'10:00',konum:'Kafkasör Yaylası, Artvin',kategori:'festival',ucretsiz:true,trend:true,gorsel:'',ucret:'Ücretsiz'},
-      {baslik:'Artvin Doğa Yürüyüşü',aciklama:'Rehber eşliğinde Karanlıkdere Kanyonu doğa yürüyüşü.',tarih:'2026-05-20T08:00:00',saat:'08:00',konum:'Karanlıkdere Kanyonu, Artvin',kategori:'doga',ucretsiz:false,trend:false,gorsel:'',ucret:'150₺'},
-      {baslik:'Artvin Gençlik Konseri',aciklama:'Yerel müzisyenler ve genç sanatçıların sahne alacağı açık hava konseri.',tarih:'2026-06-01T19:00:00',saat:'19:00',konum:'Artvin Kültür Merkezi',kategori:'konser',ucretsiz:true,trend:true,gorsel:'',ucret:'Ücretsiz'}
-    ];
-    demo.forEach(function(d){ d.zaman = firebase.firestore.FieldValue.serverTimestamp(); db.collection(COL).add(d); });
-  }
-}, 3000);
 </script>
 </body>
 </html>

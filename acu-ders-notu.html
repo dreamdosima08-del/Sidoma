@@ -363,6 +363,8 @@ function modalAc(bolum){
 }
 function modalKapat(){document.getElementById('overlay').classList.remove('ac');document.body.style.overflow='';}
 
+// Kullanıcı verisini HTML'e basmadan önce kaçışla (XSS koruması)
+function guvenliVeri(d){var h={},k,v;for(k in d){v=d[k];h[k]=v;if(typeof v==='string')d[k]=v.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}d._ham=h;return d;}
 // NOTLARI YÜKLE
 function notlariYukle(){
   var liste = document.getElementById('liste');
@@ -370,7 +372,7 @@ function notlariYukle(){
   db.collection('ders_notlari').where('durum','==','aktif').get()
     .then(function(snap){
       tumNotlar = [];
-      snap.forEach(function(doc){tumNotlar.push({id:doc.id, d:doc.data()});});
+      snap.forEach(function(doc){var d=guvenliVeri(doc.data());if(!/^https?:\/\//i.test(d._ham.link||''))d.link='#';tumNotlar.push({id:doc.id, d:d});});
       document.getElementById('sToplam').textContent = tumNotlar.length;
       renderNotlar();
     }).catch(function(err){

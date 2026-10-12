@@ -317,12 +317,14 @@ var tumIlanlar = [];
 
 document.getElementById('ilanTarih').value = new Date().toISOString().split('T')[0];
 
+// Kullanıcı verisini HTML'e basmadan önce kaçışla (XSS koruması)
+function guvenliVeri(d){var h={},k,v;for(k in d){v=d[k];h[k]=v;if(typeof v==='string')d[k]=v.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}d._ham=h;return d;}
 // Gerçek zamanlı dinle
 const q = query(collection(db, COL), orderBy("zaman", "desc"));
 onSnapshot(q, function(snapshot) {
   tumIlanlar = [];
   snapshot.forEach(function(doc) {
-    tumIlanlar.push({id: doc.id, ...doc.data()});
+    tumIlanlar.push(guvenliVeri({id: doc.id, ...doc.data()}));
   });
   document.getElementById('ilanSayi').textContent = tumIlanlar.length;
   listeGoster();
@@ -408,7 +410,7 @@ function listeGoster() {
       ? '<span class="ilan-tip kayip">🔴 KAYIP</span>'
       : '<span class="ilan-tip buluntu">🟢 BULUNTU</span>';
     var temizTel = i.tel.replace(/[^0-9]/g,'').replace(/^0/,'');
-    var wpLink = 'https://api.whatsapp.com/send?phone=90' + temizTel + '&text=' + encodeURIComponent('"' + i.baslik + '" ilanınızı artvinrehber.com\'da gördüm.');
+    var wpLink = 'https://api.whatsapp.com/send?phone=90' + temizTel + '&text=' + encodeURIComponent('"' + i._ham.baslik + '" ilanınızı artvinrehber.com\'da gördüm.');
     return '<div class="ilan ' + i.tip + '">'
       + '<div class="ilan-ust">' + tipEtiket + '<span class="ilan-tarih">' + (i.eklemeTarihi||'') + '</span></div>'
       + '<div class="ilan-baslik">' + i.baslik + '</div>'
