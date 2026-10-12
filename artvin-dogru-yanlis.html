@@ -2,7 +2,9 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>/* iPhone: yazı kutusuna dokununca otomatik büyümesin (iOS iki parmakla zoom'a yine izin verir) */if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)){document.querySelector('meta[name=viewport]').content+=',maximum-scale=1'}</script>
+<style>html{touch-action:manipulation}</style>
 <title>Artvin Doğru mu Yanlış mı? — Artvin Bilgi Yarışması 2026</title>
 <meta name="description" content="Artvin hakkında ne kadar bilgi sahibisin? Doğru mu Yanlış mı oyunuyla test et! 20 soru, anlık sıralama ve Artvin kültürü 2026.">
 <meta name="geo.region" content="TR-08">
@@ -187,8 +189,6 @@ button{cursor:pointer;border:none;font-family:inherit;}
 }
 </script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -375,6 +375,8 @@ button{cursor:pointer;border:none;font-family:inherit;}
   </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
 
 // ===== SES EFEKTLERI (telifsiz, Web Audio) =====

@@ -2,7 +2,8 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>/* iPhone: yazı kutusuna dokununca otomatik büyümesin (iOS iki parmakla zoom'a yine izin verir) */if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)){document.querySelector('meta[name=viewport]').content+=',maximum-scale=1'}</script>
 <title>AÇÜ Ders Notu Arşivi 2026 — Artvin Çoruh Üniversitesi</title>
 <meta name="description" content="Artvin Çoruh Üniversitesi ders notu arşivi 2026. Bölüme göre filtrele, vize ve final notlarına ulaş. AÇÜ öğrencileri için ücretsiz not paylaşım platformu.">
 <meta name="keywords" content="açü ders notu, artvin çoruh üniversitesi ders notu, açü vize soruları, açü final notu, artvin çoruh üniversitesi not arşivi, açü bilgisayar mühendisliği ders notu, açü orman mühendisliği, açü not paylaşım, artvin üniversitesi ödev, açü 2026 ders materyali">
@@ -25,8 +26,6 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AÇÜ ders notlarına nasıl ulaşılır?","acceptedAnswer":{"@type":"Answer","text":"AÇÜ ders notu arşivinde bölümünüzü seçerek ilgili ders notlarına, vize ve final sorularına ulaşabilirsiniz."}},{"@type":"Question","name":"AÇÜ not arşivine nasıl not yüklenir?","acceptedAnswer":{"@type":"Answer","text":"Google Drive'a notunuzu yükleyin, herkesle paylaşın ve linki bu platforma ekleyin. Onaydan sonra arşivde görünür."}},{"@type":"Question","name":"AÇÜ hangi bölümlerin notları var?","acceptedAnswer":{"@type":"Answer","text":"Bilgisayar Mühendisliği, Orman Mühendisliği, Eğitim Fakültesi, Hemşirelik, Mimarlık ve daha pek çok bölümün ders notları paylaşılmaktadır."}}]}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--bg:#0f0e17;--bg2:#16152a;--bg3:#1e1d35;--border:rgba(255,255,255,.08);--text:#eeeef5;--dim:rgba(238,238,245,.5);--soluk:rgba(238,238,245,.25);--mor:#7c3aed;--morc:#c4b5fd;--mora:rgba(124,58,237,.14);--morb:rgba(124,58,237,.28)}
@@ -302,6 +301,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'I
   <p style="margin-top:.5rem;font-size:.6rem">© 2026 artvinrehber.com</p>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
 // FIREBASE
 firebase.initializeApp({

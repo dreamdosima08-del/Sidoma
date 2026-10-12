@@ -2,7 +2,9 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>/* iPhone: yazı kutusuna dokununca otomatik büyümesin (iOS iki parmakla zoom'a yine izin verir) */if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)){document.querySelector('meta[name=viewport]').content+=',maximum-scale=1'}</script>
+<style>html{touch-action:manipulation}</style>
 <title>Artvin Reflex Challenge | artvinrehber.com</title>
 <meta name="description" content="Artvin kelimelerini tanıyabilir misiniz? 3 mod, combo sistemi ve günlük sıralama tablosu.">
 <meta name="keywords" content="artvin reflex oyunu, artvin hız testi, artvin oyun">
@@ -138,7 +140,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 
 <div class="screen aktif" id="giris">
   <div class="rozet">🏔️ Artvin Reflex Challenge</div>
-  <div class="bas-h1">ARTVİN<br><span>REFLEKSİN</span><br>VAR MI?</div>
+  <h1 class="bas-h1">ARTVİN<br><span>REFLEKSİN</span><br>VAR MI?</h1>
   <div class="bas-sub">Ekranda beliren kelime Artvin ile ilgiliyse <strong style="color:var(--vivid)">DOKUN</strong>, değilse <strong style="color:var(--dim)">BIRAK</strong>.</div>
   <div class="kural-grid">
     <div class="kk"><div class="kk-ikon">👆</div><div class="kk-bas">DOKUN</div><div class="kk-alt">Artvin ile ilgiliyse</div></div>

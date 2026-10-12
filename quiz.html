@@ -2,7 +2,9 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>/* iPhone: yazı kutusuna dokununca otomatik büyümesin (iOS iki parmakla zoom'a yine izin verir) */if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)){document.querySelector('meta[name=viewport]').content+=',maximum-scale=1'}</script>
+<style>html{touch-action:manipulation}</style>
 <title>Ne Kadar Artvinlisin? — Artvin Kültür Testi | artvinrehber.com</title>
 <meta name="description" content="Artvin kültürünü, yemeklerini, şivesini, doğasını ve tarihini ne kadar biliyorsun? 21 soruluk eğlenceli Artvin quizi. Hemen test et!">
 <meta name="keywords" content="artvin quiz, ne kadar artvinlisin, artvin bilgi yarışması, artvin kültür">
@@ -71,6 +73,7 @@ body{
   letter-spacing:.1em;color:#fff;line-height:1.1;
 }
 .quiz-baslik span{color:var(--gold)}
+h1.quiz-baslik{font-weight:400}
 .quiz-alt{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:400px}
 .quiz-info{
   display:flex;gap:1.5rem;
@@ -350,7 +353,7 @@ body{
   <!-- BAŞLANGIÇ -->
   <div class="ekran-baslangic" id="ekranBaslangic">
     <div class="quiz-emoji">🏔️</div>
-    <div class="quiz-baslik">Ne Kadar<br><span>Artvinlisin?</span></div>
+    <h1 class="quiz-baslik">Ne Kadar<br><span>Artvinlisin?</span></h1>
     <div class="quiz-alt">Artvin'in kültürünü, yemeklerini, şivesini ve yaşam tarzını ne kadar biliyorsun? Hemen test et!</div>
     <div class="quiz-info">
       <div class="qi"><span class="qi-no">21</span><span class="qi-lbl">Soru</span></div>
