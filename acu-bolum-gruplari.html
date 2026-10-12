@@ -43,7 +43,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "AÇÜ bölüm WhatsApp grubuna nasıl katılırım?", "acceptedAnswer": {"@type": "Answer", "text": "Bölümünü listeden bul, grup linki eklenmişse 'Gruba Katıl' butonuna tıkla. Henüz grup yoksa kendin kurup linkini ekleyebilirsin."}},
+    {"@type": "Question", "name": "AÇÜ bölüm WhatsApp grubuna nasıl katılırım?", "acceptedAnswer": {"@type": "Answer", "text": "Bölümünü listeden bul, grup linki eklenmişse 'Gruba Katıl' butonuna tıkla. Henüz grup yoksa kendin kurup linkini ekleyebilirsin. Link çalışmıyorsa 'Çalışmıyor' düğmesiyle bildirebilirsin."}},
     {"@type": "Question", "name": "Bölümümün grubu yoksa ne yapmalıyım?", "acceptedAnswer": {"@type": "Answer", "text": "WhatsApp'ta yeni bir grup oluştur, davet linkini kopyala ve ilgili bölümün 'Grup Linki Ekle' alanına yapıştır. Böylece bölümünün ilk grubunu sen kurmuş olursun."}},
     {"@type": "Question", "name": "AÇÜ'de hangi bölümler var?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin Çoruh Üniversitesi'nde mühendislik, orman, eğitim, fen-edebiyat, sağlık bilimleri, işletme, turizm ve daha birçok fakülte bölümü bulunmaktadır."}}
   ]
@@ -156,13 +156,13 @@ footer{border-top:1px solid var(--border);padding:1.5rem 1rem;text-align:center;
     <div class="modal-bolum" id="modalBolum"></div>
     <label class="modal-label">WhatsApp grup davet linki</label>
     <input type="text" class="modal-input" id="linkInput" placeholder="https://chat.whatsapp.com/...">
-    <label class="modal-label">Rumuz (opsiyonel)</label>
+    <label class="modal-label">Rumuz (isteğe bağlı)</label>
     <input type="text" class="modal-input" id="nickInput" placeholder="Adın veya rumuzun" maxlength="20">
     <div class="modal-btnlar">
       <button class="modal-btn mb-iptal" onclick="modalKapat()">İptal</button>
       <button class="modal-btn mb-gonder" onclick="linkGonder()">Ekle</button>
     </div>
-    <div class="modal-not">Yalnızca chat.whatsapp.com bağlantıları kabul edilir. Telefon numarası veya kişisel bilgi paylaşmayın.</div>
+    <div class="modal-not">Yalnızca chat.whatsapp.com bağlantıları kabul edilir. Bir bölümde çalışan bir link varsa değiştirilemez. Telefon numarası veya kişisel bilgi paylaşmayın.</div>
   </div>
 </div>
 
@@ -173,7 +173,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 1rem;text-align:center;
   <p style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:.85rem">Artvin Çoruh Üniversitesi'ne yeni kayıt olan öğrencilerin en çok ihtiyaç duyduğu şeylerden biri, kendi bölümlerindeki sınıf arkadaşlarıyla iletişime geçmektir. Özellikle tercih sonuçlarının açıklandığı dönemde "Bilgisayar Mühendisliği grubu kuruldu mu?", "Hemşirelik WhatsApp grubu var mı?" gibi sorular sıkça sorulur. Bu sayfa, AÇÜ'deki tüm fakülte ve bölümler için WhatsApp gruplarının tek çatı altında toplandığı bir dayanışma platformudur.</p>
 
   <h2 style="font-size:1.05rem;font-weight:800;color:#f0c040;margin:1.5rem 0 .6rem">Bölüm Grubuna Nasıl Katılırım?</h2>
-  <p style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:.85rem">Yukarıdaki listeden bölümünü bul. Eğer bölümün için daha önce bir grup eklenmişse, "Gruba Katıl" butonuna tıklayarak doğrudan WhatsApp grubuna yönlendirilirsin. Henüz grup oluşturulmamışsa, kendi grubunu kurup davet linkini ekleyerek bölümünün ilk grubunu başlatabilirsin. Böylece senden sonra gelen arkadaşların da kolayca katılır.</p>
+  <p style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:.85rem">Yukarıdaki listeden bölümünü bul. Eğer bölümün için daha önce bir grup eklenmişse, "Gruba Katıl" butonuna tıklayarak doğrudan WhatsApp grubuna yönlendirilirsin. Link çalışmıyorsa "Çalışmıyor" düğmesine basman yeterli; üç kişi bildirdiğinde link kaldırılır ve yeni link eklenebilir. Henüz grup oluşturulmamışsa, kendi grubunu kurup davet linkini ekleyerek bölümünün ilk grubunu başlatabilirsin. Böylece senden sonra gelen arkadaşların da kolayca katılır.</p>
 
   <h2 style="font-size:1.05rem;font-weight:800;color:#f0c040;margin:1.5rem 0 .6rem">Neden Bölüm Grupları Önemli?</h2>
   <p style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.7">Üniversite hayatına başlarken ders programları, kitap listeleri, sınav tarihleri ve kampüs duyuruları gibi pek çok bilgi sınıf grupları üzerinden hızla paylaşılır. Aynı bölümdeki arkadaşlarınla erkenden tanışmak, hem akademik hem sosyal açıdan büyük avantaj sağlar. Artvin Çoruh Üniversitesi öğrencileri olarak bu platform sayesinde daha kayıt yaptırmadan kendi topluluğuna katılabilirsin.</p>
@@ -233,6 +233,12 @@ var FAKULTELER = [
   {ad:'Hopa IIBF', bolumler:['Iktisat','Kamu Yonetimi','Uluslararasi Iliskiler']},
   {ad:'Meslek Yuksekokullari', bolumler:['Artvin MYO','Arhavi MYO','Borcka Acarlar MYO','Hopa MYO','Saglik Hizmetleri MYO','Savsat MYO','Yusufeli MYO']}
 ];
+var DISP = {"Muhendislik Fakultesi": "Mühendislik Fakültesi", "Orman Fakultesi": "Orman Fakültesi", "Egitim Fakultesi": "Eğitim Fakültesi", "Fen-Edebiyat Fakultesi": "Fen-Edebiyat Fakültesi", "Isletme Fakultesi": "İşletme Fakültesi", "Saglik Bilimleri Fakultesi": "Sağlık Bilimleri Fakültesi", "Turizm Fakultesi": "Turizm Fakültesi", "Ilahiyat Fakultesi (Hopa)": "İlahiyat Fakültesi (Hopa)", "Spor Bilimleri Fakultesi": "Spor Bilimleri Fakültesi", "Sanat ve Tasarim Fakultesi (Arhavi)": "Sanat ve Tasarım Fakültesi (Arhavi)", "Hopa IIBF": "Hopa İİBF", "Meslek Yuksekokullari": "Meslek Yüksekokulları", "Bilgisayar Muhendisligi": "Bilgisayar Mühendisliği", "Insaat Muhendisligi": "İnşaat Mühendisliği", "Elektrik-Elektronik Muhendisligi": "Elektrik-Elektronik Mühendisliği", "Orman Muhendisligi": "Orman Mühendisliği", "Peyzaj Mimarligi": "Peyzaj Mimarlığı", "Okul Oncesi Ogretmenligi": "Okul Öncesi Öğretmenliği", "Sinif Ogretmenligi": "Sınıf Öğretmenliği", "Turkce Ogretmenligi": "Türkçe Öğretmenliği", "Matematik Ogretmenligi": "Matematik Öğretmenliği", "Ingilizce Ogretmenligi": "İngilizce Öğretmenliği", "Sosyal Bilgiler Ogretmenligi": "Sosyal Bilgiler Öğretmenliği", "Fen Bilimleri Ogretmenligi": "Fen Bilimleri Öğretmenliği", "Turk Dili ve Edebiyati": "Türk Dili ve Edebiyatı", "Isletme": "İşletme", "Uluslararasi Ticaret ve Lojistik": "Uluslararası Ticaret ve Lojistik", "Hemsirelik": "Hemşirelik", "Fizyoterapi ve Rehabilitasyon": "Fizyoterapi ve Rehabilitasyon", "Beslenme ve Diyetetik": "Beslenme ve Diyetetik", "Turizm Isletmeciligi": "Turizm İşletmeciliği", "Ilahiyat": "İlahiyat", "Spor Yoneticiligi": "Spor Yöneticiliği", "Antrenorluk Egitimi": "Antrenörlük Eğitimi", "Gorsel Iletisim Tasarimi": "Görsel İletişim Tasarımı", "Mimarlik": "Mimarlık", "Iktisat": "İktisat", "Kamu Yonetimi": "Kamu Yönetimi", "Uluslararasi Iliskiler": "Uluslararası İlişkiler", "Artvin MYO": "Artvin MYO", "Arhavi MYO": "Arhavi MYO", "Borcka Acarlar MYO": "Borçka Acarlar MYO", "Hopa MYO": "Hopa MYO", "Saglik Hizmetleri MYO": "Sağlık Hizmetleri MYO", "Savsat MYO": "Şavşat MYO", "Yusufeli MYO": "Yusufeli MYO", "Matematik": "Matematik", "Kimya": "Kimya", "Biyoloji": "Biyoloji", "Fizik": "Fizik", "Tarih": "Tarih"};
+function gAd(i){return DISP[i]||i;}
+function katla(s){return String(s||'').replace(/İ/g,'i').replace(/I/g,'ı').toLowerCase().replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u');}
+var RAPOR_ESIK = 3;
+function bildirildi(b){try{return localStorage.getItem('grupRapor_'+b)===String((GRUPLAR[b]||{}).link||'')}catch(e){return false}}
+
 
 var GRUPLAR = {}; // bolum -> {link, nick, zaman}
 var aktifBolum = '';
@@ -253,44 +259,49 @@ function gruplariYukle() {
 
 function render() {
   var html = '';
-  var arama = (document.getElementById('araInput').value || '').toLowerCase().trim();
+  var arama = katla(document.getElementById('araInput').value).trim();
 
   FAKULTELER.forEach(function(fak) {
     var bolumHtml = '';
     fak.bolumler.forEach(function(bolum) {
-      // Arama filtresi
-      if (arama && bolum.toLowerCase().indexOf(arama) < 0 && fak.ad.toLowerCase().indexOf(arama) < 0) return;
+      if (arama && katla(gAd(bolum)).indexOf(arama) < 0 && katla(gAd(fak.ad)).indexOf(arama) < 0) return;
 
       var grup = GRUPLAR[bolum];
       var temizLink = grup ? linkDuzelt(grup.link) : '';
-      var varmi = !!temizLink;
+      var rapor = grup ? (Number(grup.rapor) || 0) : 0;
+      var bozuk = !!temizLink && rapor >= RAPOR_ESIK;
+      var varmi = !!temizLink && !bozuk;
+      var durumMetin = varmi ? '✅ Grup var' : (bozuk ? '⚠️ Link çalışmıyor' : 'Grup yok');
+      var durumSinif = varmi ? 'durum-var' : 'durum-yok';
 
       bolumHtml += '<div class="bolum-kart">';
       bolumHtml += '<div class="bolum-ust">';
-      bolumHtml += '<div class="bolum-ad">' + bolum + '</div>';
-      bolumHtml += '<div class="bolum-durum ' + (varmi ? 'durum-var' : 'durum-yok') + '">' + (varmi ? '✅ Grup var' : 'Grup yok') + '</div>';
+      bolumHtml += '<div class="bolum-ad">' + esc(gAd(bolum)) + '</div>';
+      bolumHtml += '<div class="bolum-durum ' + durumSinif + '">' + durumMetin + '</div>';
       bolumHtml += '</div>';
       bolumHtml += '<div class="bolum-alt">';
       if (varmi) {
-        bolumHtml += '<a class="bbtn btn-katil" href="' + esc(temizLink) + '" target="_blank" rel="noopener">📲 Gruba Katil</a>';
-        bolumHtml += '<button class="bbtn btn-kur" onclick="modalAc(\'' + bolum.replace(/'/g,"") + '\')">🔄 Guncelle</button>';
+        bolumHtml += '<a class="bbtn btn-katil" href="' + esc(temizLink) + '" target="_blank" rel="noopener nofollow">📲 Gruba Katıl</a>';
+        bolumHtml += bildirildi(bolum)
+          ? '<button class="bbtn btn-kur" type="button" disabled style="opacity:.55">Bildirdin, teşekkürler</button>'
+          : '<button class="bbtn btn-kur" type="button" data-rapor="' + esc(bolum) + '">🚫 Çalışmıyor</button>';
       } else {
-        bolumHtml += '<button class="bbtn btn-kur" onclick="modalAc(\'' + bolum.replace(/'/g,"") + '\')" style="flex:1">📲 Grup Linki Ekle</button>';
+        bolumHtml += '<button class="bbtn btn-kur" type="button" data-ekle="' + esc(bolum) + '" style="flex:1">📲 ' + (bozuk ? 'Yeni Grup Linki Ekle' : 'Grup Linki Ekle') + '</button>';
       }
       bolumHtml += '</div>';
       if (varmi && grup.nick) {
-        bolumHtml += '<div class="grup-sayi">Ekleyen: ' + esc(grup.nick) + '</div>';
+        bolumHtml += '<div class="grup-sayi">Ekleyen: ' + esc(grup.nick) + (rapor ? ' · ' + rapor + ' kişi "çalışmıyor" dedi' : '') + '</div>';
       }
       bolumHtml += '</div>';
     });
 
     if (bolumHtml) {
-      html += '<div class="fakulte-baslik">' + fak.ad + '</div>' + bolumHtml;
+      html += '<div class="fakulte-baslik">' + esc(gAd(fak.ad)) + '</div>' + bolumHtml;
     }
   });
 
   if (!html) {
-    html = '<div class="bos">Aramaniza uygun bolum bulunamadi.</div>';
+    html = '<div class="bos">Aramanıza uygun bölüm bulunamadı.</div>';
   }
 
   document.getElementById('liste').innerHTML = html;
@@ -302,7 +313,7 @@ function filtrele() {
 
 function modalAc(bolum) {
   aktifBolum = bolum;
-  document.getElementById('modalBolum').textContent = bolum;
+  document.getElementById('modalBolum').textContent = gAd(bolum);
   document.getElementById('linkInput').value = '';
   document.getElementById('nickInput').value = '';
   document.getElementById('modal').classList.add('aktif');
@@ -316,28 +327,47 @@ function linkGonder() {
   var link = linkDuzelt(document.getElementById('linkInput').value);
   var nick = (document.getElementById('nickInput').value.trim() || 'Anonim').slice(0,30);
 
-  // Link kontrolu - sadece chat.whatsapp.com
   if (!link) {
-    alert('Lutfen gecerli bir WhatsApp grup davet linki girin (https://chat.whatsapp.com/... seklinde).');
+    alert('Lütfen geçerli bir WhatsApp grup davet linki girin (https://chat.whatsapp.com/... biçiminde).');
     return;
   }
 
-  var veri = {
-    link: link,
-    nick: nick,
-    zaman: Date.now()
-  };
+  var bolum = aktifBolum;
+  var veri = { link: link, nick: nick, zaman: Date.now(), rapor: 0 };
 
-  db.collection('bolumGruplari').doc(aktifBolum).set(veri).then(function() {
-    GRUPLAR[aktifBolum] = veri;
+  db.collection('bolumGruplari').doc(bolum).set(veri).then(function() {
+    GRUPLAR[bolum] = veri;
     modalKapat();
     render();
-    alert('Grup linki eklendi! Tesekkurler.');
+    alert('Grup linki eklendi! Teşekkürler.');
   }).catch(function(e) {
-    alert('Eklenemedi. Bu bolum icin baska biri grup eklemis olabilir, sayfayi yenileyip tekrar bak.');
+    alert('Eklenemedi. Bu bölüm için çalışan bir grup linki zaten var. Sayfayı yenileyip tekrar bak.');
+    console.log(e);
+    gruplariYukle();
+  });
+}
+
+function calismiyor(bolum) {
+  var g = GRUPLAR[bolum];
+  if (!g || bildirildi(bolum)) return;
+  if (!confirm('Bu grup linki çalışmıyor mu (süresi dolmuş, grup dolu ya da silinmiş)?')) return;
+  db.collection('bolumGruplari').doc(bolum).update({ rapor: firebase.firestore.FieldValue.increment(1) }).then(function() {
+    try { localStorage.setItem('grupRapor_' + bolum, String(g.link || '')); } catch (e) {}
+    g.rapor = (Number(g.rapor) || 0) + 1;
+    render();
+    alert('Bildirdiğin için teşekkürler. ' + RAPOR_ESIK + ' kişi bildirirse link kaldırılır ve yeni link eklenebilir.');
+  }).catch(function(e) {
+    alert('Bildirim gönderilemedi, biraz sonra tekrar dene.');
     console.log(e);
   });
 }
+
+document.addEventListener('click', function(ev) {
+  var r = ev.target.closest('[data-rapor]');
+  if (r) { calismiyor(r.getAttribute('data-rapor')); return; }
+  var e2 = ev.target.closest('[data-ekle]');
+  if (e2) { modalAc(e2.getAttribute('data-ekle')); }
+});
 
 // Baslat
 gruplariYukle();

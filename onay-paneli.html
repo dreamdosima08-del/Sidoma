@@ -46,9 +46,11 @@ h2{font-size:15px;color:var(--s);margin:18px 0 8px;text-transform:none}
     <div class="sekme" role="tablist">
       <button type="button" role="tab" aria-selected="true" data-s="vefat">Vefat<i id="nV">0</i></button>
       <button type="button" role="tab" aria-selected="false" data-s="sozluk">Sözlük<i id="nS">0</i></button>
+      <button type="button" role="tab" aria-selected="false" data-s="grup">Gruplar<i id="nG">0</i></button>
     </div>
     <div id="sVefat"></div>
     <div id="sSozluk" style="display:none"></div>
+    <div id="sGrup" style="display:none"></div>
   </div>
 </main>
 
@@ -75,10 +77,10 @@ $('bGoogle').onclick=function(){auth.signInWithPopup(new firebase.auth.GoogleAut
 $('bCik').onclick=function(){auth.signOut()};
 [].forEach.call(document.querySelectorAll('.sekme button'),function(b){b.onclick=function(){
   [].forEach.call(document.querySelectorAll('.sekme button'),function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
-  $('sVefat').style.display=b.dataset.s==='vefat'?'block':'none';$('sSozluk').style.display=b.dataset.s==='sozluk'?'block':'none';
+  $('sVefat').style.display=b.dataset.s==='vefat'?'block':'none';$('sSozluk').style.display=b.dataset.s==='sozluk'?'block':'none';$('sGrup').style.display=b.dataset.s==='grup'?'block':'none';
 }});
 
-function yukle(){vefat();sozluk()}
+function yukle(){vefat();sozluk();grup()}
 function hata(el,e){el.innerHTML='<div class="bos">Yüklenemedi: '+esc(e.code||e.message)+'<br>Firestore kurallarını eklediğinden emin ol.</div>'}
 
 function vefat(){
@@ -107,14 +109,27 @@ function sozluk(){
   }).catch(function(e){hata(el,e)});
 }
 
+function grup(){
+  var el=$('sGrup');el.innerHTML='<div class="bos">Yükleniyor…</div>';
+  db.collection('bolumGruplari').get().then(function(r){
+    var l=[];r.forEach(function(x){l.push([x.id,x.data()])});
+    l.sort(function(a,b){return (Number(b[1].rapor)||0)-(Number(a[1].rapor)||0)});
+    var bz=l.filter(function(d){return (Number(d[1].rapor)||0)>0}).length;
+    $('nG').textContent=bz;
+    el.innerHTML='<h2>AÇÜ bölüm grupları ('+l.length+') — bildirimi olanlar üstte</h2>'+(l.length?l.map(function(d){var g=d[1],n=Number(g.rapor)||0;
+      return '<div class="kart" data-id="'+esc(d[0])+'"><b class="ad">'+esc(d[0])+'</b>'+sat('Link',g.link)+sat('Ekleyen',g.nick)+sat('"Çalışmıyor" bildirimi',n)+'<div class="bt"><a class="btn g" style="display:flex;align-items:center;justify-content:center;text-decoration:none" href="'+esc(g.link)+'" target="_blank" rel="noopener">Linki aç</a><button class="btn r" data-is="gSil">Sil</button></div></div>'}).join(''):'<div class="bos">Henüz grup eklenmemiş.</div>');
+  }).catch(function(e){hata(el,e)});
+}
+
 document.addEventListener('click',function(e){
   var b=e.target.closest('[data-is]');if(!b)return;
   var id=b.closest('.kart').dataset.id,is=b.dataset.is,p;
-  if((is==='vSil'||is==='sSil')&&!confirm('Silinsin mi? Bu geri alınamaz.'))return;
+  if((is==='vSil'||is==='sSil'||is==='gSil')&&!confirm('Silinsin mi? Bu geri alınamaz.'))return;
   b.disabled=true;
   if(is==='vOnay')p=db.collection('vefat_duyuru').doc(id).update({durum:'onayli'}).then(vefat);
   else if(is==='vSil')p=db.collection('vefat_duyuru').doc(id).delete().then(function(){return db.collection('vefat_iletisim').doc(id).delete().catch(function(){})}).then(vefat);
   else if(is==='sOnay')p=db.collection('sozluk_oneri').doc(id).update({durum:'onayli'}).then(sozluk);
+  else if(is==='gSil')p=db.collection('bolumGruplari').doc(id).delete().then(grup);
   else if(is==='sSil')p=db.collection('sozluk_oneri').doc(id).delete().then(sozluk);
   p.catch(function(er){alert('İşlem yapılamadı: '+(er.code||er.message));b.disabled=false});
 });
