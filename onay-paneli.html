@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Onay Paneli — Artvin Rehberi</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1c2124">
+<style>
+:root{--zemin:#f4f2ee;--kagit:#fff;--m:#1c2124;--s:#5f676b;--c:#e3dfd7;--y:#2f6b4f;--k:#9a3b2c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--zemin);color:var(--m);line-height:1.5;font-size:16px}
+header{background:var(--m);color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+header b{font-size:16px}
+header small{opacity:.75;font-size:13px}
+.ic{max-width:720px;margin:0 auto;padding:16px}
+.btn{min-height:44px;padding:0 16px;border-radius:12px;border:0;background:var(--y);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.btn.g{background:var(--kagit);color:var(--m);border:1px solid var(--c)}
+.btn.r{background:var(--k)}
+.btn:disabled{opacity:.5}
+#giris{background:var(--kagit);border:1px solid var(--c);border-radius:16px;padding:22px;text-align:center}
+#giris p{color:var(--s);margin-bottom:14px}
+.sekme{display:flex;gap:8px;margin-bottom:14px}
+.sekme button{flex:1;min-height:44px;border-radius:12px;border:1px solid var(--c);background:var(--kagit);font:inherit;font-weight:700;cursor:pointer}
+.sekme button[aria-selected="true"]{background:var(--m);color:#fff;border-color:var(--m)}
+.sekme i{font-style:normal;display:inline-block;min-width:22px;padding:0 6px;margin-left:6px;border-radius:999px;background:var(--k);color:#fff;font-size:12px}
+h2{font-size:15px;color:var(--s);margin:18px 0 8px;text-transform:none}
+.kart{background:var(--kagit);border:1px solid var(--c);border-radius:14px;padding:14px;margin-bottom:10px}
+.kart b.ad{display:block;font-size:18px}
+.kart .sat{font-size:14px;color:#3d4447;margin-top:4px}
+.kart .sat span{color:var(--s)}
+.kart .ilet{margin-top:8px;padding:8px 10px;background:var(--zemin);border-radius:10px;font-size:14px}
+.kart .ilet a{color:var(--y);font-weight:700}
+.kart .bt{display:flex;gap:8px;margin-top:12px}
+.kart .bt .btn{flex:1}
+.bos{color:var(--s);padding:14px;text-align:center;background:var(--kagit);border:1px dashed var(--c);border-radius:14px}
+#durum{font-size:14px;color:var(--s);margin:0 0 12px}
+</style>
+</head>
+<body>
+<header><div><b>Onay Paneli</b><br><small>Vefat duyuruları ve sözlük önerileri</small></div><button class="btn g" id="bCik" type="button" style="display:none">Çıkış</button></header>
+<main class="ic">
+  <p id="durum">Yükleniyor…</p>
+  <div id="giris" style="display:none"><p>Bu panel yalnızca site yöneticisi içindir.</p><button class="btn" id="bGoogle" type="button">Google ile giriş yap</button></div>
+  <div id="panel" style="display:none">
+    <div class="sekme" role="tablist">
+      <button type="button" role="tab" aria-selected="true" data-s="vefat">Vefat<i id="nV">0</i></button>
+      <button type="button" role="tab" aria-selected="false" data-s="sozluk">Sözlük<i id="nS">0</i></button>
+    </div>
+    <div id="sVefat"></div>
+    <div id="sSozluk" style="display:none"></div>
+  </div>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+'use strict';
+var $=function(i){return document.getElementById(i)};
+var YONETICI='dreamdosima08@gmail.com'; // yalnızca arayüz için; asıl yetki Firestore kurallarında
+firebase.initializeApp({apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",authDomain:"artvin-imece.firebaseapp.com",projectId:"artvin-imece",storageBucket:"artvin-imece.firebasestorage.app",messagingSenderId:"30297800879",appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"});
+var auth=firebase.auth(),db=firebase.firestore();
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function sat(e,v){return v?'<div class="sat"><span>'+e+':</span> '+esc(v)+'</div>':''}
+
+auth.onAuthStateChanged(function(u){
+  if(!u){$('durum').textContent='Giriş yapılmadı.';$('giris').style.display='block';$('panel').style.display='none';$('bCik').style.display='none';return}
+  $('bCik').style.display='inline-block';
+  if(u.email!==YONETICI){$('durum').textContent='Bu hesapla ('+u.email+') panele erişilemez.';$('giris').style.display='none';return}
+  $('durum').textContent='Giriş: '+u.email;$('giris').style.display='none';$('panel').style.display='block';yukle();
+});
+$('bGoogle').onclick=function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){$('durum').textContent='Giriş hatası: '+(e.code||e.message)})};
+$('bCik').onclick=function(){auth.signOut()};
+[].forEach.call(document.querySelectorAll('.sekme button'),function(b){b.onclick=function(){
+  [].forEach.call(document.querySelectorAll('.sekme button'),function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+  $('sVefat').style.display=b.dataset.s==='vefat'?'block':'none';$('sSozluk').style.display=b.dataset.s==='sozluk'?'block':'none';
+}});
+
+function yukle(){vefat();sozluk()}
+function hata(el,e){el.innerHTML='<div class="bos">Yüklenemedi: '+esc(e.code||e.message)+'<br>Firestore kurallarını eklediğinden emin ol.</div>'}
+
+function vefat(){
+  var el=$('sVefat');el.innerHTML='<div class="bos">Yükleniyor…</div>';
+  Promise.all([db.collection('vefat_duyuru').where('durum','==','bekliyor').get(),db.collection('vefat_duyuru').where('durum','==','onayli').get()]).then(function(r){
+    var bek=[],yay=[];r[0].forEach(function(x){bek.push([x.id,x.data()])});r[1].forEach(function(x){yay.push([x.id,x.data()])});
+    $('nV').textContent=bek.length;
+    var h='<h2>Onay bekleyen ('+bek.length+')</h2>'+(bek.length?bek.map(function(d){return vKart(d[0],d[1],true)}).join(''):'<div class="bos">Bekleyen duyuru yok.</div>');
+    yay.sort(function(a,b){return a[1].vefatTarihi<b[1].vefatTarihi?1:-1});
+    h+='<h2>Yayında ('+yay.length+')</h2>'+(yay.length?yay.map(function(d){return vKart(d[0],d[1],false)}).join(''):'<div class="bos">Yayında duyuru yok.</div>');
+    el.innerHTML=h;
+    bek.forEach(function(d){db.collection('vefat_iletisim').doc(d[0]).get().then(function(s){var t=$('il-'+d[0]);if(!t)return;if(!s.exists){t.textContent='İletişim bilgisi yok.';return}var v=s.data();var tel=String(v.tel||'').replace(/[^\d+]/g,'');t.innerHTML='Veren: <b>'+esc(v.veren)+'</b> ('+esc(v.yakinlik)+') · <a href="tel:'+esc(tel)+'">'+esc(v.tel)+'</a>'}).catch(function(){})});
+  }).catch(function(e){hata(el,e)});
+}
+function vKart(id,d,bekliyor){
+  return '<div class="kart" data-id="'+esc(id)+'"><b class="ad">'+esc(d.ad)+'</b>'+sat('Vefat',d.vefatTarihi)+sat('Yaş',d.yas)+sat('İlçe / köy',[d.ilce,d.memleket].filter(Boolean).join(', '))+sat('Cenaze namazı',[d.namazYer,d.namazSaat].filter(Boolean).join(', '))+sat('Defin',d.defin)+sat('Taziye',d.taziye)+sat('Not',d.not)+
+    (bekliyor?'<div class="ilet" id="il-'+esc(id)+'">İletişim yükleniyor…</div><div class="bt"><button class="btn" data-is="vOnay">Onayla</button><button class="btn r" data-is="vSil">Sil</button></div>':'<div class="bt"><button class="btn g" data-is="vSil">Yayından kaldır</button></div>')+'</div>';
+}
+function sozluk(){
+  var el=$('sSozluk');el.innerHTML='<div class="bos">Yükleniyor…</div>';
+  Promise.all([db.collection('sozluk_oneri').where('durum','==','bekliyor').get(),db.collection('sozluk_oneri').where('durum','==','onayli').get()]).then(function(r){
+    var bek=[],yay=[];r[0].forEach(function(x){bek.push([x.id,x.data()])});r[1].forEach(function(x){yay.push([x.id,x.data()])});
+    $('nS').textContent=bek.length;
+    function k(id,d,b){return '<div class="kart" data-id="'+esc(id)+'"><b class="ad">'+esc(d.kelime)+'</b><div class="sat">'+esc(d.anlam)+'</div>'+sat('Yer',d.yer)+sat('Öneren',d.ad)+(b?'<div class="bt"><button class="btn" data-is="sOnay">Onayla</button><button class="btn r" data-is="sSil">Sil</button></div>':'<div class="bt"><button class="btn g" data-is="sSil">Yayından kaldır</button></div>')+'</div>'}
+    el.innerHTML='<h2>Onay bekleyen ('+bek.length+')</h2>'+(bek.length?bek.map(function(d){return k(d[0],d[1],true)}).join(''):'<div class="bos">Bekleyen öneri yok.</div>')+'<h2>Yayında ('+yay.length+')</h2>'+(yay.length?yay.map(function(d){return k(d[0],d[1],false)}).join(''):'<div class="bos">Yayında okur katkısı yok.</div>');
+  }).catch(function(e){hata(el,e)});
+}
+
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-is]');if(!b)return;
+  var id=b.closest('.kart').dataset.id,is=b.dataset.is,p;
+  if((is==='vSil'||is==='sSil')&&!confirm('Silinsin mi? Bu geri alınamaz.'))return;
+  b.disabled=true;
+  if(is==='vOnay')p=db.collection('vefat_duyuru').doc(id).update({durum:'onayli'}).then(vefat);
+  else if(is==='vSil')p=db.collection('vefat_duyuru').doc(id).delete().then(function(){return db.collection('vefat_iletisim').doc(id).delete().catch(function(){})}).then(vefat);
+  else if(is==='sOnay')p=db.collection('sozluk_oneri').doc(id).update({durum:'onayli'}).then(sozluk);
+  else if(is==='sSil')p=db.collection('sozluk_oneri').doc(id).delete().then(sozluk);
+  p.catch(function(er){alert('İşlem yapılamadı: '+(er.code||er.message));b.disabled=false});
+});
+})();
+</script>
+</body>
+</html>
