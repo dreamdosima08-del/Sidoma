@@ -121,6 +121,18 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <small id="vBilgi" hidden></small>
   </div>
 
+  <div class="alan" id="hkAlan">
+    <span>Sitedeki hikâye halkasına ekle</span>
+    <small>Hazırladığın story kartı, ana sayfanın üstündeki hikâye çemberlerinde <b>"Bugün"</b> olarak 24 saat görünür. Gün içinde birden fazla kart ekleyebilirsin.</small>
+    <button class="btn iki" id="hkGiris" type="button" style="margin-top:10px;width:100%">Google ile giriş yap (yönetici)</button>
+    <div id="hkYonet" hidden>
+      <button class="btn" id="hkYayin" type="button" style="margin-top:10px;width:100%">📌 Bu kartı sitede yayınla</button>
+      <small id="hkDurum" aria-live="polite"></small>
+      <div id="hkListe" style="margin-top:12px"></div>
+      <button class="btn iki" id="hkCik" type="button" style="margin-top:12px;width:100%">Çıkış yap</button>
+    </div>
+  </div>
+
   <div class="alan">
     <span>Hava verisi nereden geliyor?</span>
     <div class="veri" id="veriAciklama">Yükleniyor…</div>
@@ -736,6 +748,53 @@ Promise.race([Promise.all([havaP,nabizP]),new Promise(function(ok){setTimeout(ok
   var a=bugun.getMonth(), kis=(a>=11||a<=2)||(V.kar!=null&&V.kar<=1000);
   return Promise.all([foto(kis?'/kis-merkez-panorama.jpg':'/story-arka-merkez.jpg'),fontP]);
 }).then(function(r){ if(!fotoSecildi) FOTO=r[0]; ciz(); aciklama(); var y=$('yuk'); if(y) y.remove(); });
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+'use strict';
+var YON='dreamdosima08@gmail.com'; // yalnızca arayüz için; asıl yetki Firestore kurallarında
+function $(i){return document.getElementById(i);}
+function dur(m,h){ var e=$('hkDurum'); e.textContent=m; e.style.color=h?'#ffb4a8':''; }
+if(typeof firebase==='undefined'){ $('hkAlan').hidden=true; return; }
+firebase.initializeApp({apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",authDomain:"artvin-imece.firebaseapp.com",projectId:"artvin-imece",storageBucket:"artvin-imece.firebasestorage.app",messagingSenderId:"30297800879",appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"});
+var auth=firebase.auth(), db=firebase.firestore();
+function saat(z){ var d=new Date(z); return d.getDate()+'.'+(d.getMonth()+1)+' · '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
+function liste(){
+  db.collection('gunluk_hikaye').orderBy('zaman','desc').limit(12).get().then(function(r){
+    var h='', simdi=Date.now(), eski=[];
+    r.forEach(function(d){ var v=d.data(), canli=simdi-v.zaman<86400000;
+      if(simdi-v.zaman>172800000){ eski.push(d.ref); return; }
+      h+='<div style="display:flex;align-items:center;gap:10px;margin-top:8px"><img alt="" src="'+v.foto+'" style="width:42px;height:74px;object-fit:cover;border-radius:8px;border:1px solid var(--cizgi)"><div style="flex:1;font-size:.82rem;line-height:1.4">'+saat(v.zaman)+'<br><span style="color:var(--dim)">'+(canli?'Sitede görünüyor':'Süresi doldu')+'</span></div><button class="btn iki" type="button" data-sil="'+d.id+'" style="padding:8px 12px">Kaldır</button></div>';
+    });
+    $('hkListe').innerHTML=h||'<small>Şu an sitede kart yok.</small>';
+    eski.forEach(function(rf){ rf.delete().catch(function(){}); });
+  }).catch(function(e){ dur('Liste alınamadı: '+(e.code||e.message),1); });
+}
+$('hkListe').addEventListener('click',function(e){ var b=e.target.closest('[data-sil]'); if(!b||!confirm('Bu kart siteden kaldırılsın mı?')) return; b.disabled=true; db.collection('gunluk_hikaye').doc(b.getAttribute('data-sil')).delete().then(liste).catch(function(er){ dur('Kaldırılamadı: '+(er.code||er.message),1); b.disabled=false; }); });
+auth.onAuthStateChanged(function(u){
+  var yon=!!u&&u.email===YON;
+  $('hkGiris').hidden=!!u; $('hkYonet').hidden=!yon;
+  if(u&&!yon){ dur('Bu hesapla ('+u.email+') ekleme yapılamaz. Çıkış yapıp doğru hesapla gir.',1); $('hkYonet').hidden=false; $('hkYayin').hidden=true; $('hkListe').innerHTML=''; }
+  else if(yon){ $('hkYayin').hidden=false; dur(''); liste(); }
+});
+$('hkGiris').onclick=function(){ auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){
+  dur('Giriş yapılamadı: '+(e.code||e.message)+(e.code==='auth/unauthorized-domain'?' — Firebase > Authentication > Settings > Authorized domains kısmına artvinrehber.com ve www.artvinrehber.com eklenmeli.':''),1); }); };
+$('hkCik').onclick=function(){ auth.signOut(); };
+$('hkYayin').onclick=function(){
+  var b=$('hkYayin'); b.disabled=true; dur('Hazırlanıyor…');
+  var d;
+  try{
+    var o=document.createElement('canvas'); o.width=720; o.height=1280; o.getContext('2d').drawImage($('cv'),0,0,720,1280);
+    d=o.toDataURL('image/jpeg',.82); if(d.length>880000) d=o.toDataURL('image/jpeg',.65);
+  }catch(e){ dur('Kart görüntüsü alınamadı.',1); b.disabled=false; return; }
+  if(d.length>880000){ dur('Kart çok büyük çıktı, daha sade bir arka plan dene.',1); b.disabled=false; return; }
+  db.collection('gunluk_hikaye').add({foto:d,zaman:Date.now()}).then(function(){ dur('✓ Yayınlandı. Ana sayfada "Bugün" çemberi 24 saat görünür.'); liste(); })
+   .catch(function(e){ dur('Yayınlanamadı: '+(e.code||e.message),1); }).then(function(){ b.disabled=false; });
+};
 })();
 </script>
 </body>

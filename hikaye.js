@@ -64,6 +64,7 @@ var css=''+
 '.hk-gun{display:flex;flex-direction:column;gap:10px;width:100%;max-width:330px}'+
 '.hk-gun div{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;column-gap:12px;align-items:center;background:rgba(255,255,255,.14);border-radius:14px;padding:12px 16px;text-align:left}'+
 '.hk-gun div span:first-child{font-size:1.05rem;font-weight:700}.hk-gun div em{font-style:normal;font-size:1.9rem;grid-row:1/3;grid-column:2;text-align:right}.hk-gun div span:nth-child(3){font-size:.9rem;opacity:.85}.hk-gun div b{font-size:1.05rem;font-weight:700;grid-column:1}'+
+'.hk-kt.tam .hk-bg{background-color:#000;background-size:contain}.hk-kt.tam .hk-bg:after{display:none}.hk-kt.tam .hk-ust .m,.hk-kt.tam .hk-ust b,.hk-kt.tam .hk-ust small{display:none}'+
 '@media(prefers-reduced-motion:reduce){.hk-bar i s{transition:none!important}}';
 var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
 
@@ -120,6 +121,24 @@ function ikinciElYukle(){
   });
 }
 
+/* ───── Canlı: günlük story kartları (Günlük Story sayfasından yayınlanır, 24 saat görünür) ───── */
+function gunlukYukle(){
+  var REST='https://firestore.googleapis.com/v1/projects/artvin-imece/databases/(default)/documents',KEY='AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI';
+  var q={structuredQuery:{from:[{collectionId:'gunluk_hikaye'}],orderBy:[{field:{fieldPath:'zaman'},direction:'DESCENDING'}],limit:8}};
+  return fetch(REST+':runQuery?key='+KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(q)})
+   .then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(a){
+    var simdi=Date.now(),k=[];
+    a.forEach(function(x){if(!x.document)return;var f=x.document.fields||{};
+      var z=f.zaman&&(f.zaman.integerValue!=null?+f.zaman.integerValue:f.zaman.doubleValue),foto=f.foto&&f.foto.stringValue;
+      if(!z||simdi-z>86400000||simdi<z-3600000)return;
+      if(typeof foto!=='string'||!/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(foto))return;
+      k.push({z:z,foto:foto,tam:true});});
+    if(!k.length)return null;
+    k.sort(function(p,q2){return p.z-q2.z;});
+    return {id:'gunluk-'+k[k.length-1].z,ad:'Bugün',ikon:'📅',kapak:k[k.length-1].foto,kareler:k};
+  });
+}
+
 /* ───── Halka satırı ───── */
 var LISTE=[],sira=document.createElement('div');sira.className='hk-sira';sira.setAttribute('role','list');KOK.appendChild(sira);
 function ciz(){
@@ -150,7 +169,7 @@ function kare(){
   var govde=x.hava?'<div class="hk-hava">'+x.hava+'</div>':(x.emoji?'<div class="hk-hava"><div class="bi">'+x.emoji+'</div></div>':'');
   var alt='<div class="hk-ic">'+(x.ust&&!x.hava?'<span class="u">'+esc(x.ust)+'</span>':'')+(x.baslik?'<h3>'+esc(x.baslik)+'</h3>':'')+(x.metin?'<p>'+esc(x.metin)+'</p>':'')+(x.link?'<a class="hk-go" href="'+esc(x.link)+'">'+esc(x.dugme||'Sayfaya git')+' ›</a>':'')+'</div>';
   var m=h.kapak?'<span class="m" style="background-image:url(\''+h.kapak.replace(/'/g,'%27')+'\')"></span>':'<span class="m">'+h.ikon+'</span>';
-  ov.innerHTML='<div class="hk-kt"><div class="hk-bg" style="'+bg+'"></div>'+govde+'<div class="hk-bar">'+bars+'</div><div class="hk-ust">'+m+'<b>'+esc(h.ad)+'</b><small>'+esc(x.hava?x.ust:'')+'</small><button class="hk-x" aria-label="Kapat">×</button></div><div class="hk-sol"></div><div class="hk-sag"></div>'+alt+'</div>';
+  ov.innerHTML='<div class="hk-kt'+(x.tam?' tam':'')+'"><div class="hk-bg" style="'+bg+'"></div>'+govde+'<div class="hk-bar">'+bars+'</div><div class="hk-ust">'+m+'<b>'+esc(h.ad)+'</b><small>'+esc(x.hava?x.ust:'')+'</small><button class="hk-x" aria-label="Kapat">×</button></div><div class="hk-sol"></div><div class="hk-sag"></div>'+alt+'</div>';
   ov.querySelector('.hk-x').onclick=kapat;
   var sol=ov.querySelector('.hk-sol'),sag=ov.querySelector('.hk-sag'),kt=ov.querySelector('.hk-kt');
   sol.onclick=geri;sag.onclick=ileri;
@@ -174,5 +193,6 @@ function geri(){if(ki>0){ki--;kare();}else if(hi>0){hi--;ki=LISTE[hi].kareler.le
 var yerHava={id:'hava-yukleniyor',ad:'Hava',ikon:'🌤️',renk:'#0ea5e9,#0f766e',kareler:[{renk:'#0ea5e9,#0f766e',ust:'Artvin',hava:'<div class="bi">🌤️</div><div class="bt">Hava durumu yükleniyor…</div>',link:'/hava.html',dugme:'Hava durumu'}]};
 LISTE=[yerHava].concat(SABIT);ciz();
 havaYukle().then(function(h){LISTE[0]=h;if(!ov)ciz();}).catch(function(){});
+gunlukYukle().then(function(g){if(!g)return;LISTE.splice(1,0,g);if(!ov)ciz();}).catch(function(){});
 
 })();
