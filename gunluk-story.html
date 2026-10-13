@@ -765,12 +765,14 @@ var auth=firebase.auth(), db=firebase.firestore();
 function saat(z){ var d=new Date(z); return d.getDate()+'.'+(d.getMonth()+1)+' · '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
 function liste(){
   db.collection('gunluk_hikaye').orderBy('zaman','desc').limit(12).get().then(function(r){
-    var h='', simdi=Date.now(), eski=[];
+    var h='', simdi=Date.now(), eski=[], tum=[];
     r.forEach(function(d){ var v=d.data(), canli=simdi-v.zaman<86400000;
       if(simdi-v.zaman>172800000){ eski.push(d.ref); return; }
-      h+='<div style="display:flex;align-items:center;gap:10px;margin-top:8px"><img alt="" src="'+v.foto+'" style="width:42px;height:74px;object-fit:cover;border-radius:8px;border:1px solid var(--cizgi)"><div style="flex:1;font-size:.82rem;line-height:1.4">'+saat(v.zaman)+'<br><span style="color:var(--dim)">'+(canli?'Sitede görünüyor':'Süresi doldu')+'</span></div><button class="btn iki" type="button" data-sil="'+d.id+'" style="padding:8px 12px">Kaldır</button></div>';
+      h+='<div style="display:flex;align-items:center;gap:10px;margin-top:8px"><img alt="" src="'+v.foto+'" style="width:42px;height:74px;object-fit:cover;border-radius:8px;border:1px solid var(--cizgi)"><div style="flex:1;font-size:.82rem;line-height:1.4">'+saat(v.zaman)+'<br><span style="color:var(--dim)">'+(canli?'Sitede görünüyor':'Süresi doldu')+' · 👁 <span data-say="gh-'+v.zaman+'">…</span> kişi gördü</span></div><button class="btn iki" type="button" data-sil="'+d.id+'" style="padding:8px 12px">Kaldır</button></div>';
     });
-    $('hkListe').innerHTML=h||'<small>Şu an sitede kart yok.</small>';
+    var yg=new Date(), gk=yg.getFullYear()+'-'+String(yg.getMonth()+1).padStart(2,'0')+'-'+String(yg.getDate()).padStart(2,'0');
+    $('hkListe').innerHTML=(h||'<small>Şu an sitede kart yok.</small>')+'<div style="margin-top:12px;font-size:.82rem">🌤️ Bugün hava çemberini açan: <b data-say="hava-'+gk+'">…</b> kişi</div>';
+    [].forEach.call($('hkListe').querySelectorAll('[data-say]'),function(s){ db.collection('hikaye_sayac').doc(s.getAttribute('data-say')).get().then(function(x){ s.textContent=x.exists?(x.data().gor||0):0; }).catch(function(){ s.textContent='?'; }); });
     eski.forEach(function(rf){ rf.delete().catch(function(){}); });
   }).catch(function(e){ dur('Liste alınamadı: '+(e.code||e.message),1); });
 }

@@ -139,6 +139,17 @@ function gunlukYukle(){
   });
 }
 
+/* ───── Görüntülenme sayacı (cihaz başına bir kez) ───── */
+function yerelGun(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function say(sid){
+  if(!sid)return;
+  try{var s=JSON.parse(localStorage.getItem('hkSay')||'{}');if(s[sid])return;s[sid]=1;
+    var k=Object.keys(s);if(k.length>60)delete s[k[0]];localStorage.setItem('hkSay',JSON.stringify(s));}catch(e){}
+  var B='projects/artvin-imece/databases/(default)';
+  try{fetch('https://firestore.googleapis.com/v1/'+B+'/documents:commit?key=AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
+    body:JSON.stringify({writes:[{transform:{document:B+'/documents/hikaye_sayac/'+sid,fieldTransforms:[{fieldPath:'gor',increment:{integerValue:'1'}}]}}]})}).catch(function(){});}catch(e){}
+}
+
 /* ───── Halka satırı ───── */
 var LISTE=[],sira=document.createElement('div');sira.className='hk-sira';sira.setAttribute('role','list');KOK.appendChild(sira);
 function ciz(){
@@ -164,6 +175,7 @@ function kapat(){clearTimeout(zam);if(ov){ov.remove();ov=null;}document.removeEv
 function tus(e){if(e.key==='Escape')kapat();else if(e.key==='ArrowRight')ileri();else if(e.key==='ArrowLeft')geri();}
 function kare(){
   clearTimeout(zam);var h=LISTE[hi],x=h.kareler[ki];gorIsaretle(h.id);
+  if(x.z)say('gh-'+x.z);else if(h.id.indexOf('hava-')===0&&h.id!=='hava-yukleniyor'&&ki===0)say('hava-'+yerelGun());
   var bars=h.kareler.map(function(_,i){return '<i><s style="width:'+(i<ki?100:0)+'%"></s></i>';}).join('');
   var bg=x.foto?'background-image:url(\''+x.foto.replace(/'/g,'%27')+'\')':'background:linear-gradient(160deg,'+(x.renk||h.renk||'#0f766e,#064e3b')+')';
   var govde=x.hava?'<div class="hk-hava">'+x.hava+'</div>':(x.emoji?'<div class="hk-hava"><div class="bi">'+x.emoji+'</div></div>':'');
