@@ -55,6 +55,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.artvinrehber.com/artvin-futbol.html</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.artvinrehber.com/artvin-goc-2025.html</loc>
     <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
@@ -1757,10 +1763,5 @@
     <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.artvinrehber.com/artvin-futbol.html</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>daily</changefreq>
   </url>
 </urlset>
