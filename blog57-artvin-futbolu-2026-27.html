@@ -30,118 +30,105 @@
 {"@type":"Question","name":"Artvin Süper Amatör Ligi ne zaman başlıyor?","acceptedAnswer":{"@type":"Answer","text":"2026-27 Artvin Süper Amatör Ligi'nin 28-29 Kasım 2026'da başlaması planlanıyor. Ligde Arhavi 08 SK, Ardanuçspor, Kemalpaşaspor, Spor Eğitim Kulübü (Hopa), Şavşat GSK ve Yusufelispor yer alıyor."}}]}]}</script>
 <style>
 :root{
-  --zemin:#F3F5F1; --kart:#FFFFFF; --murekkep:#14211B; --soluk:#5B6B63; --cizgi:#D7E0DA;
+  --zemin:#F3F5F1; --kart:#FFFFFF; --murekkep:#14211B; --soluk:#5B6B63; --cizgi:#DCE4DE;
   --amber:#E2A72E; --saha:#0E3B2C;
-  --borcka:#1D7A4C; --borcka-a:#E3F2E9; --hopa:#5B2A86; --hopa-a:#EEE6F6;
+  --borcka:#1D7A4C; --borcka-a:#E6F3EB; --hopa:#5B2A86; --hopa-a:#F0E8F7;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --zemin:#0D1512; --kart:#15211C; --murekkep:#E4ECE8; --soluk:#95A79E; --cizgi:#25372E;
+  --zemin:#0D1512; --kart:#15211C; --murekkep:#E4ECE8; --soluk:#95A79E; --cizgi:#26382F;
   --borcka:#4CC085; --borcka-a:#16301F; --hopa:#B48BE0; --hopa-a:#2A1E38; --saha:#0A2B20;
 }}
-:root[data-theme="dark"]{--zemin:#0D1512;--kart:#15211C;--murekkep:#E4ECE8;--soluk:#95A79E;--cizgi:#25372E;--borcka:#4CC085;--borcka-a:#16301F;--hopa:#B48BE0;--hopa-a:#2A1E38;--saha:#0A2B20}
+:root[data-theme="dark"]{--zemin:#0D1512;--kart:#15211C;--murekkep:#E4ECE8;--soluk:#95A79E;--cizgi:#26382F;--borcka:#4CC085;--borcka-a:#16301F;--hopa:#B48BE0;--hopa-a:#2A1E38;--saha:#0A2B20}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{margin:0;background:var(--zemin);color:var(--murekkep);font:500 17px/1.65 'Nunito',system-ui,sans-serif}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
-.kap{max-width:820px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:'Barlow Condensed',system-ui,sans-serif;line-height:1.02;letter-spacing:.005em;margin:0}
-h1{font-size:clamp(2.5rem,8.5vw,4.3rem);font-weight:700}
-h2{font-size:clamp(1.8rem,5.5vw,2.5rem);font-weight:700;margin-bottom:10px}
-h3{font-size:1.45rem;font-weight:700}
-p{margin:0 0 14px}
-.bolum{margin:52px 0}
+.kap{max-width:760px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:'Barlow Condensed',system-ui,sans-serif;line-height:1.02;margin:0;font-weight:700}
+h1{font-size:clamp(2.4rem,8vw,3.8rem)}
+h2{font-size:clamp(1.9rem,6vw,2.5rem);margin-bottom:6px}
+h3{font-size:1.35rem}
+p{margin:0 0 12px}
 .ac{color:var(--soluk)}
+.bolum{margin:48px 0}
+.kapak{background:var(--saha);color:#fff;padding:0 0 56px}
 .ust{display:flex;justify-content:space-between;padding:14px 0;font-weight:800;font-size:.9rem}
-.ust a{text-decoration:none}
-.ust a.geri{color:var(--soluk)}
-/* Kapak: lig piramidi */
-.kapak{background:var(--saha);color:#fff;padding:0 0 34px}
-.kapak .ust a{color:#fff;opacity:.85}
-.kapak h1{margin:16px 0 10px}
-.kapak p.alt{opacity:.82;max-width:52ch;font-size:1.06rem}
-.piramit{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;align-items:center;gap:6px}
-.piramit li{width:100%;display:flex;justify-content:center}
-.piramit a{display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:10px 14px;font-weight:800;transition:background .15s}
-.piramit a:hover{background:rgba(255,255,255,.16)}
-.piramit a b{font:700 1.6rem/1 'Barlow Condensed',sans-serif;color:var(--amber)}
-.piramit a small{display:block;font-weight:600;opacity:.7;font-size:.78rem}
-.piramit li:nth-child(1) a{width:46%}.piramit li:nth-child(2) a{width:62%}.piramit li:nth-child(3) a{width:78%}.piramit li:nth-child(4) a{width:100%}
-@media (max-width:560px){.piramit li:nth-child(1) a{width:70%}.piramit li:nth-child(2) a{width:80%}.piramit li:nth-child(3) a{width:90%}}
+.ust a{text-decoration:none;opacity:.85}
+.kapak h1{margin:18px 0 10px}
+.kapak p{opacity:.82;max-width:48ch;margin:0}
 /* Derbi */
-.derbi{margin:-22px 0 0;position:relative;background:var(--kart);border-radius:20px;border:1px solid var(--cizgi);padding:18px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(14,59,44,.12)}
-.derbi .t{font:700 1.5rem/1 'Barlow Condensed',sans-serif;text-align:center}
+.derbi{margin:-34px 0 0;background:var(--kart);border-radius:20px;border:1px solid var(--cizgi);padding:16px 18px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;box-shadow:0 10px 28px rgba(14,59,44,.13)}
+.derbi .t{font:700 1.45rem/1 'Barlow Condensed',sans-serif;text-align:center}
 .derbi .t.h{color:var(--hopa)}.derbi .t.b{color:var(--borcka)}
-.derbi .t small{display:block;font:700 .78rem 'Nunito',sans-serif;color:var(--soluk);margin-top:4px}
+.derbi .t small{display:block;font:700 .74rem 'Nunito',sans-serif;color:var(--soluk);margin-top:4px}
 .derbi .orta{text-align:center}
-.derbi .gun{font:700 2.6rem/1 'Barlow Condensed',sans-serif;color:var(--amber)}
-.derbi .orta small{display:block;font-size:.78rem;color:var(--soluk);font-weight:700}
-.derbi .alt{grid-column:1/-1;text-align:center;font-size:.92rem;color:var(--soluk);border-top:1px dashed var(--cizgi);padding-top:10px;margin-top:4px}
-/* Takım seçici */
-.secici{display:flex;gap:8px;margin:0 0 14px}
-.secici button{flex:1;appearance:none;border:2px solid var(--cizgi);background:var(--kart);color:var(--murekkep);font:800 1rem 'Nunito',sans-serif;padding:12px;border-radius:14px;cursor:pointer}
-.secici button[data-k="borcka"][aria-pressed="true"]{border-color:var(--borcka);background:var(--borcka-a);color:var(--borcka)}
-.secici button[data-k="hopa"][aria-pressed="true"]{border-color:var(--hopa);background:var(--hopa-a);color:var(--hopa)}
-.kimlik{background:var(--kart);border:1px solid var(--cizgi);border-radius:18px;padding:18px;border-top:6px solid var(--renk)}
-.kimlik dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 16px;margin:12px 0 16px}
-.kimlik dt{font-size:.78rem;color:var(--soluk);font-weight:800}
-.kimlik dd{margin:0;font-weight:800}
-.serit{display:inline-flex;height:14px;width:42px;border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:6px;border:1px solid var(--cizgi)}
-.serit i{flex:1}
-.zaman{list-style:none;margin:0;padding:0 0 0 18px;border-left:3px solid var(--renk)}
-.zaman li{position:relative;margin:0 0 14px;padding-left:4px}
-.zaman li::before{content:"";position:absolute;left:-27px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--kart);border:3px solid var(--renk)}
-.zaman li.vurgu::before{background:var(--amber);border-color:var(--amber)}
-.zaman b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.15rem}
-.zaman span{color:var(--soluk);font-size:.95rem}
-/* Fikstür */
-.fikstur{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;overflow:hidden;margin-top:14px}
-.fk{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:10px 14px;border-top:1px solid var(--cizgi);font-size:.95rem}
-.fk:first-child{border-top:0}
-.fk .h{font-size:.8rem;color:var(--soluk);font-weight:800;line-height:1.2}
-.fk .r{font-weight:700}
-.fk .yer{font-size:.75rem;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--zemin);color:var(--soluk)}
-.fk.derbi-satir{background:linear-gradient(90deg,var(--hopa-a),var(--borcka-a))}
-.fk.derbi-satir .r{font-weight:800}
-.not{font-size:.88rem;color:var(--soluk);background:var(--kart);border:1px dashed var(--cizgi);border-radius:12px;padding:10px 12px;margin-top:12px}
-/* Rakipler */
-.rakipler{display:flex;flex-wrap:wrap;gap:8px}
-.rakip{background:var(--kart);border:1px solid var(--cizgi);border-radius:12px;padding:8px 12px;font-weight:800;font-size:.95rem}
-.rakip small{display:block;color:var(--soluk);font-weight:700;font-size:.75rem}
-.rakip.artvin{border-color:var(--amber);box-shadow:inset 0 0 0 1px var(--amber)}
-/* Matris */
-.matris-kap{overflow-x:auto;background:var(--kart);border:1px solid var(--cizgi);border-radius:16px}
-table.matris{border-collapse:collapse;width:100%;font-size:.88rem}
-@media (max-width:520px){.matris th,.matris td{padding:9px 4px}.matris .var{width:22px;height:22px;line-height:22px}}
-.matris th,.matris td{padding:10px 8px;border-top:1px solid var(--cizgi);text-align:center}
-.matris thead th{border-top:0;font-size:.78rem;color:var(--soluk);font-weight:800}
-.matris td:first-child,.matris th:first-child{text-align:left;font-weight:800;position:sticky;left:0;background:var(--kart)}
-.matris td small{display:block;color:var(--soluk);font-weight:700;font-size:.74rem}
-.matris .var{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:8px;background:var(--amber);color:#14211B;font-weight:800}
-.matris tr:hover td{background:var(--zemin)}
-/* Lig kartları */
-.ligkart{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;padding:16px;margin:0 0 12px}
-.ligkart .etiket{font-size:.8rem;font-weight:800;color:var(--amber)}
-.takim-liste{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
-.takim-liste span{background:var(--zemin);border-radius:999px;padding:5px 11px;font-weight:700;font-size:.9rem}
-.sekme{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap}
-.sekme button{appearance:none;border:1.5px solid var(--cizgi);background:var(--kart);color:var(--murekkep);font:800 .9rem 'Nunito',sans-serif;padding:8px 13px;border-radius:999px;cursor:pointer}
-.sekme button[aria-pressed="true"]{background:var(--murekkep);color:var(--zemin);border-color:var(--murekkep)}
-.cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--saha);color:#fff;border-radius:20px;padding:20px}
-.cta b{font:700 1.6rem/1.05 'Barlow Condensed',sans-serif}
-.cta a{background:var(--amber);color:#14211B;text-decoration:none;font-weight:800;padding:12px 16px;border-radius:12px}
-.paylas{display:inline-block;margin-top:12px;font-weight:800;color:var(--borcka)}
-details{background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;margin:0 0 8px}
-summary{cursor:pointer;padding:14px 16px;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:10px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:'+';color:var(--amber);font-size:1.3rem;line-height:1}
-details[open] summary::after{content:'–'}
-details p{padding:0 16px 14px;color:var(--soluk)}
-.kaynaklar{font-size:.85rem;color:var(--soluk)}
-.kaynaklar li{margin:0 0 4px}
+.derbi .gun{font:700 2.5rem/1 'Barlow Condensed',sans-serif;color:var(--amber)}
+.derbi .orta small{display:block;font-size:.74rem;color:var(--soluk);font-weight:700}
+.derbi .alt{grid-column:1/-1;text-align:center;font-size:.88rem;color:var(--soluk);border-top:1px dashed var(--cizgi);padding-top:9px;margin-top:2px}
+/* Lig başlığı */
+.lig-bas{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.rozet{font:800 .75rem 'Nunito',sans-serif;padding:4px 10px;border-radius:999px;background:var(--amber);color:#14211B}
+/* Takım kartları */
+.ikili{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+@media (max-width:600px){.ikili{grid-template-columns:1fr}}
+.tk{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;padding:16px;border-top:5px solid var(--r)}
+.tk h3{color:var(--r)}
+.tk .durum{font-weight:800;font-size:.92rem;margin:4px 0 10px}
+.tk ul{list-style:none;margin:0 0 10px;padding:0;font-size:.92rem}
+.tk li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--cizgi)}
+.tk li span{color:var(--soluk)}
+.tk li b{text-align:right}
+.tk details{border-top:1px solid var(--cizgi);padding-top:8px}
+.tk summary{cursor:pointer;font-weight:800;font-size:.92rem;color:var(--r);list-style:none}
+.tk summary::-webkit-details-marker{display:none}
+.tk summary::before{content:'＋ '}
+.tk details[open] summary::before{content:'－ '}
+.tk ol{margin:8px 0 0;padding-left:18px;font-size:.9rem;color:var(--soluk)}
+.tk ol li{display:list-item;border:0;padding:3px 0}
+.tk ol b{color:var(--murekkep)}
+/* Rakip listesi */
+.rakip-tablo{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;overflow:hidden}
+.rs{display:grid;grid-template-columns:1fr 92px 92px;gap:8px;align-items:center;padding:10px 14px;border-top:1px solid var(--cizgi)}
+.rs:first-child{border-top:0}
+.rs.bas{background:var(--zemin);font-size:.74rem;font-weight:800;color:var(--soluk);padding:9px 14px}
+.rs.bas .h{color:var(--hopa)}.rs.bas .b{color:var(--borcka)}
+.rs .ad b{display:block;font-size:.97rem;line-height:1.25}
+.rs .ad small{color:var(--soluk);font-size:.78rem;font-weight:700}
+.rs .m{font-size:.8rem;font-weight:800;text-align:center;border-radius:10px;padding:5px 4px;line-height:1.2}
+.rs .m small{display:block;font-weight:700;font-size:.7rem;opacity:.75}
+.rs .m.h{background:var(--hopa-a);color:var(--hopa)}
+.rs .m.b{background:var(--borcka-a);color:var(--borcka)}
+.rs .m.yok{background:transparent;color:var(--cizgi)}
+.rs.derbi-satir{background:linear-gradient(90deg,var(--hopa-a),var(--borcka-a))}
+.not{font-size:.85rem;color:var(--soluk);margin-top:10px}
+/* Süper amatör */
+.sa{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;overflow:hidden;margin-top:14px}
+.sa-bas{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 14px;background:var(--saha);color:#fff;font-weight:800;font-size:.9rem}
+.sa-bas span:last-child{color:var(--amber)}
+.sa ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.sa li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-top:1px solid var(--cizgi);counter-increment:s}
+.sa li:first-child{border-top:0}
+.sa li b::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--amber);margin-right:10px;vertical-align:middle}
+.sa li span{color:var(--soluk);font-size:.88rem;font-weight:700}
+.bilgi-kutu{background:var(--kart);border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:10px 14px;margin-top:12px;font-size:.93rem}
+/* Kısa kısa */
+.kisa{display:grid;gap:10px}
+.kisa details{background:var(--kart);border:1px solid var(--cizgi);border-radius:14px}
+.kisa summary{cursor:pointer;padding:13px 16px;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.kisa summary::-webkit-details-marker{display:none}
+.kisa summary::after{content:'+';color:var(--amber);font-size:1.3rem;line-height:1}
+.kisa details[open] summary::after{content:'–'}
+.kisa .ic{padding:0 16px 14px;font-size:.93rem}
+.kisa .ic p{margin:0 0 8px}
+.kisa .ic b.alt{display:block;font-size:.8rem;color:var(--soluk);margin-top:6px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--saha);color:#fff;border-radius:18px;padding:18px}
+.cta b{font:700 1.45rem/1.05 'Barlow Condensed',sans-serif}
+.cta a{background:var(--amber);color:#14211B;text-decoration:none;font-weight:800;padding:11px 15px;border-radius:12px}
+.paylas{display:inline-block;margin-top:10px;font-weight:800;color:var(--borcka)}
+.kaynaklar{font-size:.82rem;color:var(--soluk);padding-left:18px}
+.kaynaklar li{margin:0 0 3px}
 footer{padding:30px 0 50px;color:var(--soluk);font-size:.85rem;text-align:center}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.piramit a{transition:none}}
-@media (max-width:520px){body{font-size:16px}.derbi .t{font-size:1.25rem}.fk{grid-template-columns:58px 1fr auto}}
+@media (max-width:420px){body{font-size:16px}.rs{grid-template-columns:1fr 78px 78px;padding:10px 10px}.derbi .t{font-size:1.2rem}}
 </style>
 </head>
 <body>
@@ -149,118 +136,121 @@ footer{padding:30px 0 50px;color:var(--soluk);font-size:.85rem;text-align:center
   <div class="kap">
     <div class="ust"><a href="/">Artvin Rehberi</a><a href="/artvin-blog.html">← Blog</a></div>
     <h1>Artvin Futbolu 2026-27</h1>
-    <p class="alt">Hangi takım hangi ligde, ilk derbi ne zaman, geçen sezon ne oldu? Artvin futbolunun bu sezonki haritası tek sayfada. Bir basamağa dokun, o bölüme git.</p>
-    <ol class="piramit" aria-label="Artvin takımlarının ligleri">
-      <li><a href="#pgl"><span>Profesyonelliğe Geçiş Ligi<small>Amatörün en üst basamağı</small></span><b>2</b></a></li>
-      <li><a href="#super-amator"><span>Artvin Süper Amatör Lig<small>28-29 Kasım'da başlıyor</small></span><b>6</b></a></li>
-      <li><a href="#altyapi"><span>Altyapı: U15 ve U13<small>3 grup</small></span><b>14</b></a></li>
-      <li><a href="#masterler"><span>Masterler ve veteranlar<small>A Grubu</small></span><b>3</b></a></li>
-    </ol>
+    <p>Artvin bu sezon PGL'de (eski BAL) iki takımla, il liginde altı takımla sahada. Kim hangi ligde, rakipler kim, maçlar ne zaman: hepsi burada.</p>
   </div>
 </header>
 
 <main class="kap">
-  <div class="derbi" aria-label="İlk Artvin derbisi">
+  <div class="derbi" aria-label="Sezonun ilk Artvin derbisi">
     <div class="t h">Hopaspor<small>Ev sahibi</small></div>
     <div class="orta"><div class="gun" id="derbiGun">–</div><small id="derbiYazi">gün kaldı</small></div>
     <div class="t b">Borçkaspor<small>Deplasman</small></div>
     <div class="alt"><b>15 Kasım 2026</b> · PGL 5. hafta · Sezonun ilk Artvin derbisi</div>
   </div>
 
+  <!-- PGL -->
   <section class="bolum" id="pgl">
-    <h2>PGL'de iki Artvin takımı</h2>
-    <p>Bölgesel Amatör Lig'in adı bu sezon <b>Profesyonelliğe Geçiş Ligi (PGL)</b> oldu. Artvin bu ligde iki takımla, aynı grupta oynuyor. Biri yukarıdan düştü, diğeri aşağıdan çıktı: <b>Hopaspor</b> 3. Lig'den indi, <b>Borçkaspor</b> amatörden kulüp tarihinde ilk kez yükseldi.</p>
-    <div class="secici" role="group" aria-label="Takım seç">
-      <button type="button" data-k="borcka" aria-pressed="true">💚🖤 Borçkaspor</button>
-      <button type="button" data-k="hopa" aria-pressed="false">💜🤍 Hopaspor</button>
+    <div class="lig-bas"><h2>Profesyonelliğe Geçiş Ligi</h2><span class="rozet">2 Artvin takımı</span></div>
+    <p class="ac">Bölgesel Amatör Lig'in (BAL) bu sezonki adı. Amatör futbolun en üst basamağı; buradan 3. Lig'e çıkılıyor. Hopaspor ve Borçkaspor aynı grupta.</p>
+
+    <div class="ikili">
+      <article class="tk" style="--r:var(--hopa)">
+        <h3>Artvin Hopaspor</h3>
+        <div class="durum">3. Lig'den düştü, geri dönüş peşinde</div>
+        <ul>
+          <li><span>Kuruluş</span><b>1961</b></li>
+          <li><span>Renkler</span><b>Mor-beyaz</b></li>
+          <li><span>Stat</span><b>Hopa İlçe Stadı*</b></li>
+          <li><span>İlk maç</span><b>Arsin (iç saha)</b></li>
+        </ul>
+        <details><summary>Hikâyesi</summary><ol>
+          <li><b>1996-2002:</b> Altı sezon 2. Lig'de oynadı.</li>
+          <li><b>Mayıs 2022:</b> 3. Lig play-off finalinde Arnavutköy'e 90+3'te yenilen golle 1-0 kaybetti, 2. Lig'in kapısından döndü.</li>
+          <li><b>13 Nisan 2025:</b> Bursaspor'a 2-1 yenildi; Bursaspor bu maçla şampiyon oldu.</li>
+          <li><b>12 Nisan 2026:</b> Çayeli deplasmanında 3-2 yenilip 29 puanda kaldı, 3. Lig'den düştü.</li>
+        </ol></details>
+      </article>
+      <article class="tk" style="--r:var(--borcka)">
+        <h3>Artvin Borçkaspor</h3>
+        <div class="durum">Tarihinde ilk kez bu ligde</div>
+        <ul>
+          <li><span>Kuruluş</span><b>1979</b></li>
+          <li><span>Renkler</span><b>Yeşil-siyah</b></li>
+          <li><span>Stat</span><b>Borçka İlçe Stadı (2.500)</b></li>
+          <li><span>İlk maç</span><b>18 Ekim, Çayelispor (iç saha)</b></li>
+        </ul>
+        <details><summary>Hikâyesi</summary><ol>
+          <li><b>2025-26:</b> Artvin şampiyonu oldu; finalde İskebe Stadı'nda Kemalpaşaspor'u 1-0 yendi (Halil Kaya, 82').</li>
+          <li><b>17 Mayıs 2026:</b> Artvin Şehir Stadı'nda Murgulspor'u 1-0 yenip BAL'a yükseldi (Kadirhan Papaker, 44').</li>
+          <li><b>Temmuz 2026:</b> Yeni yönetim (başkan İdris Gün), yeni isim: Artvin Borçkaspor.</li>
+          <li><b>Bu sezon:</b> Tarihinde ilk kez Ziraat Türkiye Kupası'nda da oynuyor.</li>
+        </ol></details>
+      </article>
     </div>
-    <div id="takimKart"></div>
+    <p class="not">* Hopaspor, Hopa İlçe Stadı'ndaki yenileme nedeniyle 2024'ten beri iç saha maçlarını Arhavi İlçe Stadı'nda oynadı.</p>
+
+    <h3 style="margin:26px 0 4px">Gruptaki rakipler ve ilk yarı maçları</h3>
+    <p class="ac" style="font-size:.92rem">"İç" iç saha, "Dış" deplasman. İkinci yarıda aynı maçlar yer değiştirerek oynanır.</p>
+    <div class="rakip-tablo" role="table" aria-label="Rakipler ve maç zamanları">
+      <div class="rs bas" role="row"><span role="columnheader">Rakip</span><span class="h" role="columnheader" style="text-align:center">Hopaspor</span><span class="b" role="columnheader" style="text-align:center">Borçkaspor</span></div>
+      <div id="rakipler"></div>
+    </div>
+    <p class="not">Hopaspor'un maçları kulübün yayımladığı fikstürden (hafta sırası), Borçkaspor'unkiler mackolik'te yayımlanan tarihlerden. Hopaspor listesinde "Arsin Belediyespor", Borçkaspor listesinde "Arsin Gurur SK" geçiyor; Maçka yalnız Hopaspor'un, Beşikdüzü yalnız Borçkaspor'un ilk yarı listesinde. TFF resmî grubu yayımlayınca güncelleyeceğiz.</p>
   </section>
 
-  <section class="bolum">
-    <h2>Gruptaki rakipler</h2>
-    <p class="ac">Hopaspor ve Borçkaspor'un yayımladığı fikstürlerdeki takımlar. Grup, Doğu Karadeniz ile Kuzeydoğu Anadolu'yu kapsıyor.</p>
-    <div class="rakipler">
-      <div class="rakip artvin">Artvin Hopaspor<small>Artvin</small></div>
-      <div class="rakip artvin">Artvin Borçkaspor<small>Artvin</small></div>
-      <div class="rakip">Çayelispor<small>Rize</small></div>
-      <div class="rakip">Fındıklı 1974 Spor<small>Rize</small></div>
-      <div class="rakip">Arsin<small>Trabzon</small></div>
-      <div class="rakip">Sürmenespor<small>Trabzon</small></div>
-      <div class="rakip">Maçka Belediyespor<small>Trabzon</small></div>
-      <div class="rakip">Beşikdüzü 1834<small>Trabzon</small></div>
-      <div class="rakip">Erzurum Büyükşehir Bld.<small>Erzurum</small></div>
-      <div class="rakip">Serhat Ardahanspor<small>Ardahan</small></div>
-      <div class="rakip">Kars 36 Spor<small>Kars</small></div>
-      <div class="rakip">Doğubayazıt FSK<small>Ağrı</small></div>
-    </div>
-    <p class="not">Hopaspor'un listesinde "Arsin Belediyespor" ve Maçka, Borçkaspor'un listesinde "Arsin Gurur SK" ve Beşikdüzü 1834 geçiyor. TFF grubun resmî listesini yayımladığında bu kısmı kesinleştireceğiz.</p>
-  </section>
-
+  <!-- SÜPER AMATÖR -->
   <section class="bolum" id="super-amator">
-    <h2>Artvin Süper Amatör Lig</h2>
-    <div class="ligkart">
-      <div class="etiket">2026-27 · Başlangıç 28-29 Kasım 2026 (planlanan)</div>
-      <p style="margin:6px 0 0">İlin en üst amatör ligi. Geçen sezon bu ligin şampiyonu Borçkaspor'du; şampiyonluk maçında İskebe Stadı'nda Kemalpaşaspor'u 1-0 yenmişti. Bu sezon 6 takım mücadele edecek:</p>
-      <div class="takim-liste"><span>Arhavi 08 SK</span><span>Ardanuçspor</span><span>Kemalpaşaspor</span><span>Spor Eğitim Kulübü (Hopa)</span><span>Şavşat GSK</span><span>Yusufelispor</span></div>
+    <div class="lig-bas"><h2>Artvin Süper Amatör Lig</h2><span class="rozet">6 takım</span></div>
+    <p class="ac">İlin en üst amatör ligi. Şampiyon olan takım, Borçkaspor'un geçen sezon yaptığı gibi BAL'a, yani bugünkü PGL'ye çıkmak için mücadele eder.</p>
+    <div class="sa">
+      <div class="sa-bas"><span>2026-27 sezonu</span><span>Başlangıç: 28-29 Kasım 2026</span></div>
+      <ol>
+        <li><b>Arhavi 08 SK</b><span>Arhavi</span></li>
+        <li><b>Ardanuçspor</b><span>Ardanuç</span></li>
+        <li><b>Kemalpaşaspor</b><span>Kemalpaşa</span></li>
+        <li><b>Spor Eğitim Kulübü</b><span>Hopa</span></li>
+        <li><b>Şavşat GSK</b><span>Şavşat</span></li>
+        <li><b>Yusufelispor</b><span>Yusufeli</span></li>
+      </ol>
+    </div>
+    <div class="bilgi-kutu"><b>Geçen sezonun finali:</b> Borçkaspor, İskebe Stadı'nda Kemalpaşaspor'u 82. dakikada Halil Kaya'nın golüyle 1-0 yenip şampiyon olmuştu. Kemalpaşaspor bu sezon yine ligde.</div>
+  </section>
+
+  <!-- KISA KISA -->
+  <section class="bolum">
+    <h2>Kısa kısa</h2>
+    <div class="kisa">
+      <details><summary>⚽ Altyapı: U15 ve U13 ligleri</summary><div class="ic">
+        <b class="alt">U15</b><p>Arhavi 08 SK, Ardanuçspor, Kemalpaşaspor, Borçkaspor, Artvin Hopaspor, Yusufelispor</p>
+        <b class="alt">U13 A Grubu</b><p>Arhavi 08 SK, Yusufelispor, Ardanuçspor, Şavşat GSK, Artvin 1921 SK</p>
+        <b class="alt">U13 B Grubu</b><p>Kemalpaşaspor, Artvin Hopaspor, Borçkaspor</p>
+        <p class="ac" style="font-size:.85rem">Başlangıç tarihleri kulüplere ayrıca bildirilecek.</p>
+      </div></details>
+      <details><summary>🧓 Masterler ve veteranlar</summary><div class="ic">
+        <p>A Grubu'nda 1. haftada Borçka Beglivan Masterler ve Ardanuç Masterler kazandı, Artvin Veteranlar bay geçti. 2. hafta 17-18 Ekim'de.</p>
+      </div></details>
+      <details><summary>🏆 Borçkaspor Ziraat Türkiye Kupası'nda</summary><div class="ic">
+        <p>Kulüp tarihinde ilk kez Ziraat Türkiye Kupası'na katılıyor ve 1. turdan başlıyor.</p>
+      </div></details>
+      <details><summary>🏟️ Murgul bu sezon neden yok?</summary><div class="ic">
+        <p>Murgulspor, 17 Mayıs'taki BAL play-off finalinde Borçkaspor'a 1-0 yenildi. Bu sezon liglerde yer almıyor.</p>
+      </div></details>
     </div>
   </section>
 
-  <section class="bolum" id="altyapi">
-    <h2>Altyapı: geleceğin oyuncuları</h2>
-    <p class="ac">U15 ve U13 liglerinin başlangıç tarihleri kulüplere ayrıca bildirilecek.</p>
-    <div class="sekme" role="group" aria-label="Altyapı ligi">
-      <button type="button" data-l="u15" aria-pressed="true">U15</button>
-      <button type="button" data-l="u13a" aria-pressed="false">U13 A Grubu</button>
-      <button type="button" data-l="u13b" aria-pressed="false">U13 B Grubu</button>
-    </div>
-    <div class="ligkart" id="altyapiKart"></div>
+  <section class="bolum">
+    <div class="cta"><b>Maç sonuçları ve bu haftanın maçları</b><a href="/artvin-futbol.html">Artvin Futbol sayfası</a></div>
+    <a class="paylas" href="https://wa.me/?text=Artvin%20futbolu%202026-27%3A%20hangi%20tak%C4%B1m%20hangi%20ligde%3F%20https%3A%2F%2Fwww.artvinrehber.com%2Fblog57-artvin-futbolu-2026-27.html" target="_blank" rel="noopener">WhatsApp'ta paylaş</a>
   </section>
 
   <section class="bolum">
-    <h2>Senin ilçenin takımı hangi liglerde?</h2>
-    <p class="ac">Bir kulübün A takımı ve altyapısının bu sezon oynadığı ligler.</p>
-    <div class="matris-kap"><table class="matris">
-      <thead><tr><th>Kulüp</th><th>PGL</th><th>S. Amatör</th><th>U15</th><th>U13</th></tr></thead>
-      <tbody id="matris"></tbody>
-    </table></div>
-  </section>
-
-  <section class="bolum" id="masterler">
-    <h2>Masterler ve veteranlar</h2>
-    <div class="ligkart">
-      <div class="etiket">2026-27 · A Grubu</div>
-      <p style="margin:6px 0 0">Futbolu bırakmayanların ligi de başladı. 1. haftada <b>Borçka Beglivan Masterler</b> ve <b>Ardanuç Masterler</b> galibiyetle başladı, <b>Artvin Veteranlar</b> bay geçti. 2. hafta maçları 17-18 Ekim'de oynanacak.</p>
-    </div>
-  </section>
-
-  <section class="bolum">
-    <div class="cta">
-      <b>Maç sonuçları ve bu haftanın maçları</b>
-      <a href="/artvin-futbol.html">Artvin Futbol sayfasını aç</a>
-    </div>
-    <a class="paylas" id="paylas" href="https://wa.me/?text=Artvin%20futbolu%202026-27%3A%20hangi%20tak%C4%B1m%20hangi%20ligde%3F%20https%3A%2F%2Fwww.artvinrehber.com%2Fblog57-artvin-futbolu-2026-27.html" target="_blank" rel="noopener">WhatsApp'ta paylaş</a>
-  </section>
-
-  <section class="bolum">
-    <h2>Sık sorulanlar</h2>
-    <details><summary>Artvin'in hangi takımları PGL'de oynuyor?</summary><p>2026-27 sezonunda Artvin Hopaspor ve Artvin Borçkaspor. İki takım aynı grupta; ilk derbi 15 Kasım 2026'da Hopaspor'un iç sahasında.</p></details>
-    <details><summary>Hopaspor bu sezon hangi ligde?</summary><p>Hopaspor 2025-26'da TFF 3. Lig'den düştü; bu sezon Profesyonelliğe Geçiş Ligi'nde oynuyor.</p></details>
-    <details><summary>Borçkaspor hangi ligde?</summary><p>17 Mayıs 2026'da Murgulspor'u 1-0 yenip kulüp tarihinde ilk kez BAL'a (bugünkü adıyla PGL) yükseldi. Bu sezon ilk kez Ziraat Türkiye Kupası'na da katılıyor.</p></details>
-    <details><summary>Artvin Süper Amatör Ligi ne zaman başlıyor?</summary><p>28-29 Kasım 2026'da başlaması planlanıyor. Ligde 6 takım var: Arhavi 08 SK, Ardanuçspor, Kemalpaşaspor, Spor Eğitim Kulübü (Hopa), Şavşat GSK ve Yusufelispor.</p></details>
-  </section>
-
-  <section class="bolum">
-    <h2 style="font-size:1.5rem">Kaynaklar</h2>
+    <h3 style="margin-bottom:8px">Kaynaklar</h3>
     <ul class="kaynaklar">
-      <li>Artvin Borçkaspor Kulübü resmî sitesi ve duyuruları (borckaspor.com.tr)</li>
-      <li>Artvin Hopaspor Kulübü resmî Instagram hesabı, 2026-27 PGL fikstürü</li>
-      <li>Arhavi 08 SK duyurusu: 2026-27 Süper Amatör, U15 ve U13 grupları</li>
-      <li>08 Artvin Haber (Turgut Topal): Artvin amatör lig şampiyonluk maçı</li>
-      <li>Mackolik: Borçkaspor PGL fikstürü</li>
-      <li><a href="https://medyascope.tv/2022/05/25/arnavutkoy-belediyepor-artvin-hopasporu-son-dakikada-yikarak-tff-2-lige-yukseldi/" rel="noopener">Medyascope (2022)</a>, <a href="https://www.takvim.com.tr/spor/2025/04/13/bursaspor-sampiyon-olarak-2-lige-yukseldi-geri-gelerek-kazandilar" rel="noopener">Takvim (2025)</a>, <a href="https://www.olay53.com/haber/cayelispor-galibiyetle-veda-etti-hopaspor-kume-dustu-mac-sonu-olaylar-cikti-1520892.htm" rel="noopener">Olay53 (2026)</a>, <a href="https://www.sabah.com.tr/spor/futbol/2026/05/25/profesyonel-futbol-liglerinde-dusenler-ve-cikanlar-belli-oldu" rel="noopener">Sabah (2026)</a>, <a href="https://en.wikipedia.org/wiki/Artvin_Hopaspor" rel="noopener">Wikipedia</a></li>
+      <li>Artvin Borçkaspor Kulübü resmî sitesi ve duyuruları; Artvin Hopaspor Kulübü 2026-27 PGL fikstürü (Instagram)</li>
+      <li>Arhavi 08 SK duyurusu (Süper Amatör, U15, U13); 08 Artvin Haber (Turgut Topal); Mackolik</li>
+      <li><a href="https://medyascope.tv/2022/05/25/arnavutkoy-belediyepor-artvin-hopasporu-son-dakikada-yikarak-tff-2-lige-yukseldi/" rel="noopener">Medyascope</a>, <a href="https://www.takvim.com.tr/spor/2025/04/13/bursaspor-sampiyon-olarak-2-lige-yukseldi-geri-gelerek-kazandilar" rel="noopener">Takvim</a>, <a href="https://www.olay53.com/haber/cayelispor-galibiyetle-veda-etti-hopaspor-kume-dustu-mac-sonu-olaylar-cikti-1520892.htm" rel="noopener">Olay53</a>, <a href="https://www.sabah.com.tr/spor/futbol/2026/05/25/profesyonel-futbol-liglerinde-dusenler-ve-cikanlar-belli-oldu" rel="noopener">Sabah</a>, <a href="https://en.wikipedia.org/wiki/Artvin_Hopaspor" rel="noopener">Wikipedia</a></li>
     </ul>
-    <p class="not">Eksik ya da hatalı bir bilgi görürsen bize yaz; kulüplerin duyurularıyla güncellemeye devam ediyoruz.</p>
+    <p class="not">Eksik ya da hatalı bir bilgi görürsen bize yaz, düzeltelim.</p>
   </section>
 </main>
 <footer>artvinrehber.com · 13 Ekim 2026</footer>
@@ -268,58 +258,24 @@ footer{padding:30px 0 50px;color:var(--soluk);font-size:.85rem;text-align:center
 <script>
 (function(){
 function $(i){return document.getElementById(i)}
-// Derbi geri sayımı (Türkiye tarihine göre)
-var bugun=new Date(Date.now()+3*3600e3);bugun=Date.UTC(bugun.getUTCFullYear(),bugun.getUTCMonth(),bugun.getUTCDate());
-var kalan=Math.round((Date.UTC(2026,10,15)-bugun)/864e5);
-if(kalan>0){$('derbiGun').textContent=kalan;}else if(kalan===0){$('derbiGun').textContent='BUGÜN';$('derbiYazi').textContent='derbi günü';}else{$('derbiGun').textContent='⚽';$('derbiYazi').textContent='derbi oynandı';}
-
-var T={
- borcka:{ad:'Artvin Borçkaspor',renk:'var(--borcka)',renkler:['#1D7A4C','#111'],kurulus:'1979',renkAd:'Yeşil-siyah',stat:'Borçka İlçe Stadı (2.500 kişilik)',lig:'PGL · ilk sezonu',
-  ozet:'Kulüp tarihinde ilk kez bu seviyede. Temmuz\'da yönetim değişti (başkan İdris Gün), kulübün adı "Artvin Borçkaspor Kulübü" oldu. Takımı yükselten teknik direktör Mustafa Güven ile yollar ayrıldı. Ve bir ilk daha: Borçkaspor tarihinde ilk kez Ziraat Türkiye Kupası\'nda, 1. turdan başlıyor.',
-  zaman:[['2025-26','Artvin şampiyonu','Şampiyonluk maçında İskebe Stadı\'nda Kemalpaşaspor\'u 1-0 yendi. Gol 82. dakikada Halil Kaya\'dan.'],
-   ['17 Mayıs 2026','Tarihinde ilk kez BAL\'da','Artvin Şehir Stadı\'ndaki play-off finalinde Murgulspor\'u 1-0 yendi. Gol 44. dakikada Kadirhan Papaker\'den.',1],
-   ['Temmuz 2026','Yeni dönem','Yeni yönetim göreve başladı, kulübün adı Artvin Borçkaspor oldu.'],
-   ['2026-27','PGL ve Ziraat Türkiye Kupası','İlk PGL sezonu; ilk kupa macerası 1. turdan.']],
-  fiks:[['18 Eki','Çayelispor','İç saha'],['25 Eki','Maç görünmüyor',''],['1 Kas','Serhat Ardahanspor','Deplasman'],['8 Kas','Sürmenespor','İç saha'],['15 Kas','Artvin Hopaspor','Deplasman',1],['22 Kas','Doğubayazıt FSK','İç saha'],['29 Kas','Beşikdüzü 1834','Deplasman'],['6 Ara','Kars 36 Spor','İç saha'],['13 Ara','Arsin Gurur SK','Deplasman'],['20 Ara','Fındıklı 1974 Spor','İç saha'],['27 Ara','Erzurum Büyükşehir Bld.','Deplasman']],
-  fiksNot:'İlk yarının ilk 10 maçı, mackolik\'te yayımlanan tarihlerle. 25 Ekim\'de maç görünmüyor; bu hafta bay olabilir.'},
- hopa:{ad:'Artvin Hopaspor',renk:'var(--hopa)',renkler:['#5B2A86','#fff'],kurulus:'1961',renkAd:'Mor-beyaz',stat:'Hopa İlçe Stadı (yenileme nedeniyle 2024\'ten beri iç saha maçlarını Arhavi\'de oynadı)',lig:'PGL · 3. Lig\'den düştü',
-  ozet:'Profesyonel liglerin tecrübeli ismi: 2. Lig\'de altı sezon oynadı, 2022\'de 2. Lig\'e bir adım kala kaldı. Geçen sezon 3. Lig\'den düşen Hopaspor, bu sezon geri dönüş için PGL\'de.',
-  zaman:[['1961','Kuruluş','Mor-beyaz renklerle Hopa\'da kuruldu.'],
-   ['1996-2002','2. Lig yılları','Kulüp altı sezon TFF 2. Lig\'de oynadı.'],
-   ['Mayıs 2022','Bir adım kala','3. Lig play-off finalinde Kayseri\'de Arnavutköy Belediyespor\'a 90+3. dakikada yenilen golle 1-0 kaybetti; 2. Lig kapısından döndü.',1],
-   ['13 Nisan 2025','Bursaspor maçı','İç saha maçı Balıkesir\'de oynandı. Hopaspor Alperen\'in golüyle öne geçti, Bursaspor 2-1 kazanıp şampiyon oldu.'],
-   ['12 Nisan 2026','Küme düşüş','Çayeli deplasmanında 3-2 yenildi (goller Metincan Cici ve Gökberk Efe), 29 puanda kalıp 3. Lig\'den düştü.'],
-   ['2026-27','PGL','Geri dönüş sezonu. İlk hafta rakip Arsin.']],
-  fiks:[[1,'Arsin Belediyespor','İç saha'],[2,'Fındıklı 1974 Spor','Deplasman'],[3,'Erzurum Büyükşehir Bld.','İç saha'],[4,'Çayelispor','Deplasman'],[5,'Artvin Borçkaspor','İç saha',1],[6,'Serhat Ardahanspor','Deplasman'],[7,'Sürmenespor','İç saha'],[8,'Doğubayazıt FSK','Deplasman'],[9,'Maçka Belediyespor','İç saha'],[10,'Kars 36 Spor','Deplasman'],[11,'Arsin Belediyespor','Deplasman'],[12,'Fındıklı 1974 Spor','İç saha'],[13,'Erzurum Büyükşehir Bld.','Deplasman'],[14,'Çayelispor','İç saha'],[15,'Artvin Borçkaspor','Deplasman',1],[16,'Serhat Ardahanspor','İç saha'],[17,'Sürmenespor','Deplasman'],[18,'Doğubayazıt FSK','İç saha'],[19,'Maçka Belediyespor','Deplasman'],[20,'Kars 36 Spor','İç saha']],
-  fiksNot:'Kulübün yayımladığı 20 haftalık fikstür sırası. Tarihler kulüp ya da TFF tarafından açıklandıkça eklenecek. Derbi 5. haftada, 15 Kasım\'da.'}
-};
-function takimCiz(k){var t=T[k];
-  var h='<div class="kimlik" style="--renk:'+t.renk+'"><h3>'+t.ad+'</h3><dl>'
-   +'<div><dt>Kuruluş</dt><dd>'+t.kurulus+'</dd></div>'
-   +'<div><dt>Renkler</dt><dd><span class="serit"><i style="background:'+t.renkler[0]+'"></i><i style="background:'+t.renkler[1]+'"></i></span>'+t.renkAd+'</dd></div>'
-   +'<div><dt>Stat</dt><dd>'+t.stat+'</dd></div>'
-   +'<div><dt>Bu sezon</dt><dd>'+t.lig+'</dd></div></dl>'
-   +'<p>'+t.ozet+'</p><ol class="zaman" style="--renk:'+t.renk+'">'
-   +t.zaman.map(function(z){return '<li class="'+(z[3]?'vurgu':'')+'"><b>'+z[0]+' · '+z[1]+'</b><span>'+z[2]+'</span></li>'}).join('')+'</ol>'
-   +'<h3 style="margin-top:18px">Fikstür</h3><div class="fikstur">'
-   +t.fiks.map(function(f){return '<div class="fk'+(f[3]?' derbi-satir':'')+'"><div class="h">'+(typeof f[0]==='number'?f[0]+'. hafta':f[0])+'</div><div class="r">'+(f[3]?'⚔️ ':'')+f[1]+'</div>'+(f[2]?'<span class="yer">'+f[2]+'</span>':'<span></span>')+'</div>'}).join('')
-   +'</div><p class="not">'+t.fiksNot+'</p></div>';
-  $('takimKart').innerHTML=h;
-  [].forEach.call(document.querySelectorAll('.secici button'),function(b){b.setAttribute('aria-pressed',b.dataset.k===k)});
-}
-document.querySelector('.secici').addEventListener('click',function(e){var b=e.target.closest('button');if(b)takimCiz(b.dataset.k)});
-takimCiz('borcka');
-
-var L={u15:['U15 Ligi','Arhavi 08 SK','Ardanuçspor','Kemalpaşaspor','Borçkaspor','Artvin Hopaspor','Yusufelispor'],
- u13a:['U13 Ligi A Grubu','Arhavi 08 SK','Yusufelispor','Ardanuçspor','Şavşat GSK','Artvin 1921 SK'],
- u13b:['U13 Ligi B Grubu','Kemalpaşaspor','Artvin Hopaspor','Borçkaspor']};
-function altyapi(k){var l=L[k];$('altyapiKart').innerHTML='<div class="etiket">'+l[0]+' · 2026-27</div><div class="takim-liste">'+l.slice(1).map(function(x){return '<span>'+x+'</span>'}).join('')+'</div>';
-  [].forEach.call(document.querySelectorAll('[data-l]'),function(b){b.setAttribute('aria-pressed',b.dataset.l===k)})}
-document.querySelector('.sekme').addEventListener('click',function(e){var b=e.target.closest('[data-l]');if(b)altyapi(b.dataset.l)});
-altyapi('u15');
-
-var M=[['Artvin Borçkaspor','Borçka',1,0,1,1],['Artvin Hopaspor','Hopa',1,0,1,1],['Arhavi 08 SK','Arhavi',0,1,1,1],['Ardanuçspor','Ardanuç',0,1,1,1],['Kemalpaşaspor','Kemalpaşa',0,1,1,1],['Yusufelispor','Yusufeli',0,1,1,1],['Şavşat GSK','Şavşat',0,1,0,1],['Spor Eğitim Kulübü','Hopa',0,1,0,0],['Artvin 1921 SK','Merkez',0,0,0,1]];
-$('matris').innerHTML=M.map(function(r){return '<tr><td>'+r[0]+'<small>'+r[1]+'</small></td>'+r.slice(2).map(function(v){return '<td>'+(v?'<span class="var" aria-label="var">✓</span>':'<span aria-label="yok" style="color:var(--cizgi)">—</span>')+'</td>'}).join('')+'</tr>'}).join('');
+var b=new Date(Date.now()+3*3600e3),k=Math.round((Date.UTC(2026,10,15)-Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()))/864e5);
+if(k>0)$('derbiGun').textContent=k;else if(k===0){$('derbiGun').textContent='BUGÜN';$('derbiYazi').textContent='derbi günü'}else{$('derbiGun').textContent='⚽';$('derbiYazi').textContent='derbi oynandı'}
+// [rakip, şehir, Hopaspor (hafta, yer), Borçkaspor (tarih, yer)]
+var R=[
+ ['Artvin derbisi','Hopaspor – Borçkaspor',['5. hafta','İç'],['15 Kas','Dış'],1],
+ ['Çayelispor','Rize',['4. hafta','Dış'],['18 Eki','İç']],
+ ['Fındıklı 1974 Spor','Rize',['2. hafta','Dış'],['20 Ara','İç']],
+ ['Arsin','Trabzon',['1. hafta','İç'],['13 Ara','Dış']],
+ ['Sürmenespor','Trabzon',['7. hafta','İç'],['8 Kas','İç']],
+ ['Maçka Belediyespor','Trabzon',['9. hafta','İç'],null],
+ ['Beşikdüzü 1834','Trabzon',null,['29 Kas','Dış']],
+ ['Erzurum Büyükşehir Bld.','Erzurum',['3. hafta','İç'],['27 Ara','Dış']],
+ ['Serhat Ardahanspor','Ardahan',['6. hafta','Dış'],['1 Kas','Dış']],
+ ['Kars 36 Spor','Kars',['10. hafta','Dış'],['6 Ara','İç']],
+ ['Doğubayazıt FSK','Ağrı',['8. hafta','Dış'],['22 Kas','İç']]
+];
+function m(x,c){return x?'<span class="m '+c+'" role="cell">'+x[0]+'<small>'+x[1]+'</small></span>':'<span class="m yok" role="cell">—</span>'}
+$('rakipler').innerHTML=R.map(function(r){return '<div class="rs'+(r[4]?' derbi-satir':'')+'" role="row"><span class="ad" role="cell"><b>'+(r[4]?'⚔️ ':'')+r[0]+'</b><small>'+r[1]+'</small></span>'+m(r[2],'h')+m(r[3],'b')+'</div>'}).join('');
 })();
 </script>
 <script src="/nabiz-davet.js" defer></script>
