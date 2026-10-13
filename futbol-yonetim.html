@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Futbol Yönetimi</title>
+<style>
+:root{--z:#F1F5F2;--k:#fff;--m:#13261F;--s:#5C6E65;--c:#D3DDD7;--y:#0E5C43;--a:#C9861A;--h:#B3412E}
+@media (prefers-color-scheme:dark){:root{--z:#0D1713;--k:#15231D;--m:#E3ECE7;--s:#93A69C;--c:#27392F;--y:#3FAE84}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--z);color:var(--m);font:500 16px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif}
+.kap{max-width:720px;margin:0 auto;padding:12px 14px 60px}
+h1{font-size:1.35rem;margin:6px 0 2px}
+.alt{color:var(--s);font-size:.88rem;margin:0 0 12px}
+.sekme{display:flex;gap:6px;overflow-x:auto;margin:0 0 12px;scrollbar-width:none}
+.sekme button{flex:none;border:1.5px solid var(--c);background:var(--k);color:var(--m);font:700 .9rem system-ui;padding:9px 13px;border-radius:999px;cursor:pointer}
+.sekme button[aria-pressed="true"]{background:var(--y);border-color:var(--y);color:#fff}
+.kart{background:var(--k);border:1px solid var(--c);border-radius:14px;padding:12px;margin:0 0 10px}
+.kart h3{margin:0 0 8px;font-size:1rem}
+label{display:block;font-size:.8rem;font-weight:700;color:var(--s);margin:8px 0 3px}
+input,select,textarea{width:100%;font:600 1rem system-ui;padding:10px 11px;border:1.5px solid var(--c);border-radius:10px;background:var(--z);color:var(--m)}
+textarea{min-height:130px;font-size:.92rem}
+.iki{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dug{border:0;background:var(--y);color:#fff;font:800 .95rem system-ui;padding:11px 16px;border-radius:10px;cursor:pointer;min-height:44px}
+.dug.ince{background:transparent;color:var(--m);border:1.5px solid var(--c)}
+.dug.sil{background:transparent;color:var(--h);border:1.5px solid var(--c)}
+.dug:disabled{opacity:.5}
+.skor-satir{display:grid;grid-template-columns:1fr 54px 14px 54px 1fr;gap:6px;align-items:center}
+.skor-satir input{text-align:center;font-size:1.3rem;padding:8px 4px}
+.skor-satir .tk{font-weight:800;font-size:.9rem;line-height:1.2}
+.skor-satir .tk.sag{text-align:right}
+.bilgi{font-size:.8rem;color:var(--s);margin:0 0 8px}
+.satir{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-top:1px solid var(--c)}
+.satir:first-child{border-top:0}
+.satir small{color:var(--s);display:block}
+.mesaj{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--m);color:var(--z);padding:10px 16px;border-radius:10px;font-weight:700;display:none;z-index:9;max-width:92vw}
+.gizli{display:none}
+.hata{color:var(--h);font-weight:700}
+</style>
+</head>
+<body>
+<div class="kap">
+  <h1>⚽ Futbol Yönetimi</h1>
+  <p class="alt">Artvin Futbol sayfasının maçları ve sonuçları. <a href="/artvin-futbol.html" target="_blank" rel="noopener">Sayfayı aç</a></p>
+
+  <div id="giris" class="kart">
+    <p class="bilgi" id="girisDurum">Devam etmek için yönetici Google hesabınla giriş yap.</p>
+    <button class="dug" id="girisBtn" type="button">Google ile giriş yap</button>
+  </div>
+
+  <div id="panel" class="gizli">
+    <div class="sekme" role="group" aria-label="Bölümler">
+      <button type="button" data-s="sonuc" aria-pressed="true">Sonuç gir</button>
+      <button type="button" data-s="ekle" aria-pressed="false">Maç ekle</button>
+      <button type="button" data-s="tum" aria-pressed="false">Tüm maçlar</button>
+      <button type="button" data-s="takim" aria-pressed="false">Takımlar ve ligler</button>
+    </div>
+
+    <section data-b="sonuc">
+      <p class="bilgi">Tarihi gelmiş ama skoru girilmemiş maçlar. Skoru yazıp Kaydet'e bas.</p>
+      <div id="bekleyen"></div>
+    </section>
+
+    <section data-b="ekle" class="gizli">
+      <div class="kart">
+        <h3 id="formBaslik">Yeni maç</h3>
+        <input type="hidden" id="mId">
+        <label for="mLig">Lig</label><select id="mLig"></select>
+        <div class="iki">
+          <div><label for="mEv">Ev sahibi</label><input id="mEv" list="takimListe" autocomplete="off"></div>
+          <div><label for="mDep">Deplasman</label><input id="mDep" list="takimListe" autocomplete="off"></div>
+        </div>
+        <div class="iki">
+          <div><label for="mTarih">Tarih</label><input id="mTarih" type="date"></div>
+          <div><label for="mSaat">Saat</label><input id="mSaat" type="time"></div>
+        </div>
+        <div class="iki">
+          <div><label for="mHafta">Hafta (isteğe bağlı)</label><input id="mHafta" type="number" min="1" max="60" inputmode="numeric"></div>
+          <div><label for="mYer">Stat (isteğe bağlı)</label><input id="mYer" maxlength="80"></div>
+        </div>
+        <div class="iki">
+          <div><label for="mEvGol">Ev gol</label><input id="mEvGol" type="number" min="0" max="40" inputmode="numeric"></div>
+          <div><label for="mDepGol">Deplasman gol</label><input id="mDepGol" type="number" min="0" max="40" inputmode="numeric"></div>
+        </div>
+        <p class="bilgi" style="margin-top:8px">Maç oynanmadıysa goller boş kalsın.</p>
+        <button class="dug" id="mKaydet" type="button">Maçı kaydet</button>
+        <button class="dug ince" id="mTemizle" type="button">Formu temizle</button>
+      </div>
+      <div class="kart">
+        <h3>Toplu fikstür ekle</h3>
+        <p class="bilgi">Her satıra bir maç: <b>18.10.2026 13:00 Murgul Belediyespor - Rize Atletik</b>. Saat yazmayabilirsin. Seçili lige eklenir.</p>
+        <label for="tLig">Lig</label><select id="tLig"></select>
+        <label for="tMetin">Maçlar</label><textarea id="tMetin" placeholder="18.10.2026 13:00 Murgul Belediyespor - Rize Atletik&#10;25.10.2026 Borçka Spor - Arsin Belediyespor"></textarea>
+        <button class="dug" id="tEkle" type="button" style="margin-top:8px">Hepsini ekle</button>
+        <p class="bilgi" id="tSonuc"></p>
+      </div>
+    </section>
+
+    <section data-b="tum" class="gizli">
+      <div class="kart" id="tumListe"></div>
+    </section>
+
+    <section data-b="takim" class="gizli">
+      <div class="kart">
+        <h3>Artvin takımları</h3>
+        <p class="bilgi">Buradaki takımlar sayfada "Takımlar" bölümünde görünür ve maçlarda sarıyla vurgulanır. Rakip takımları buraya eklemene gerek yok.</p>
+        <div id="takimListeHtml"></div>
+        <label for="kAd">Takım adı</label><input id="kAd" maxlength="60">
+        <div class="iki">
+          <div><label for="kIlce">İlçe</label><input id="kIlce" maxlength="20"></div>
+          <div><label for="kLig">Lig</label><select id="kLig"></select></div>
+        </div>
+        <button class="dug" id="kEkle" type="button" style="margin-top:8px">Takımı ekle</button>
+      </div>
+      <div class="kart">
+        <h3>Ligler</h3>
+        <p class="bilgi">"Bütün maçlarını giriyorum" işaretli liglerde puan durumu otomatik hesaplanır. Sadece Artvin takımlarının maçlarını girdiğin liglerde (ör. PGL) bu kutuyu işaretleme, yoksa tablo yanlış çıkar.</p>
+        <div id="ligListeHtml"></div>
+        <label for="lAd">Lig adı</label><input id="lAd" maxlength="80" placeholder="Artvin Süper Amatör Lig">
+        <div class="iki">
+          <div><label for="lSezon">Sezon</label><input id="lSezon" maxlength="12" value="2026-27"></div>
+          <div><label style="margin-top:30px"><input id="lTam" type="checkbox" style="width:auto"> Bütün maçlarını giriyorum</label></div>
+        </div>
+        <button class="dug" id="lEkle" type="button" style="margin-top:8px">Ligi ekle</button>
+      </div>
+    </section>
+  </div>
+</div>
+<datalist id="takimListe"></datalist>
+<div class="mesaj" id="mesaj" role="status"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function mesaj(t,hata){var m=$('mesaj');m.textContent=t;m.style.background=hata?'#B3412E':'';m.style.display='block';clearTimeout(m._t);m._t=setTimeout(function(){m.style.display='none'},2600)}
+if(typeof firebase==='undefined'){$('girisDurum').textContent='Firebase yüklenemedi. İnternet bağlantını kontrol et.';return}
+firebase.initializeApp({apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",authDomain:"artvin-imece.firebaseapp.com",projectId:"artvin-imece",storageBucket:"artvin-imece.firebasestorage.app",messagingSenderId:"30297800879",appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"});
+var auth=firebase.auth(),db=firebase.firestore(),YON='dreamdosima08@gmail.com';
+var D={ligler:[],takimlar:[],maclar:[]};
+
+$('girisBtn').onclick=function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){
+  $('girisDurum').innerHTML='<span class="hata">Giriş yapılamadı: '+esc(e.code||e.message)+'</span>'+(e.code==='auth/unauthorized-domain'?' — Firebase › Authentication › Settings › Authorized domains kısmına artvinrehber.com ve www.artvinrehber.com eklenmeli.':'')})};
+auth.onAuthStateChanged(function(u){
+  if(!u){$('giris').classList.remove('gizli');$('panel').classList.add('gizli');return}
+  if(u.email!==YON){$('girisDurum').innerHTML='<span class="hata">'+esc(u.email)+' bu panel için yetkili değil.</span>';auth.signOut();return}
+  $('giris').classList.add('gizli');$('panel').classList.remove('gizli');yukle();
+});
+
+[].forEach.call(document.querySelectorAll('.sekme button'),function(b){b.onclick=function(){
+  [].forEach.call(document.querySelectorAll('.sekme button'),function(x){x.setAttribute('aria-pressed',x===b)});
+  [].forEach.call(document.querySelectorAll('[data-b]'),function(s){s.classList.toggle('gizli',s.dataset.b!==b.dataset.s)});
+}});
+function sekmeAc(s){document.querySelector('.sekme [data-s="'+s+'"]').click()}
+
+function bugun(){return new Date(Date.now()+3*3600e3).toISOString().slice(0,10)}
+function tr(t){var p=t.split('-');return p[2]+'.'+p[1]+'.'+p[0]}
+function oynandi(m){return typeof m.evGol==='number'&&typeof m.depGol==='number'}
+function ligAd(id){var l=D.ligler.filter(function(x){return x.id===id})[0];return l?l.ad:'—'}
+
+function yukle(){
+  return Promise.all(['futbol_lig','futbol_takim','futbol_mac'].map(function(k){return db.collection(k).get()})).then(function(r){
+    D.ligler=r[0].docs.map(function(d){var o=d.data();o.id=d.id;return o}).sort(function(a,b){return (a.sira||0)-(b.sira||0)});
+    D.takimlar=r[1].docs.map(function(d){var o=d.data();o.id=d.id;return o}).sort(function(a,b){return (a.sira||0)-(b.sira||0)});
+    D.maclar=r[2].docs.map(function(d){var o=d.data();o.id=d.id;return o}).sort(function(a,b){return (a.tarih+(a.saat||'')).localeCompare(b.tarih+(b.saat||''))});
+    if(!D.ligler.length&&!D.takimlar.length) return baslangic();
+    ciz();
+  }).catch(function(e){mesaj('Veriler okunamadı: '+(e.code||e.message),true)});
+}
+function baslangic(){
+  var b=db.batch();
+  b.set(db.collection('futbol_lig').doc('pgl'),{ad:'Profesyonelliğe Geçiş Ligi',sezon:'2026-27',sira:1,tamLig:false});
+  b.set(db.collection('futbol_lig').doc('super-amator'),{ad:'Artvin Süper Amatör Lig',sezon:'2026-27',sira:2,tamLig:true});
+  b.set(db.collection('futbol_takim').doc('murgul-bld'),{ad:'Murgul Belediyespor',ilce:'Murgul',lig:'pgl',sira:1});
+  b.set(db.collection('futbol_takim').doc('borcka-spor'),{ad:'Borçka Spor',ilce:'Borçka',lig:'pgl',sira:2});
+  return b.commit().then(function(){mesaj('Başlangıç ligleri ve takımları eklendi');return yukle()});
+}
+
+function ligSecenek(){return D.ligler.map(function(l){return '<option value="'+esc(l.id)+'">'+esc(l.ad)+(l.sezon?' ('+esc(l.sezon)+')':'')+'</option>'}).join('')}
+function ciz(){
+  $('mLig').innerHTML=$('tLig').innerHTML=ligSecenek();
+  $('kLig').innerHTML='<option value="">—</option>'+ligSecenek();
+  var adlar={};D.takimlar.forEach(function(t){adlar[t.ad]=1});D.maclar.forEach(function(m){adlar[m.ev]=1;adlar[m.dep]=1});
+  $('takimListe').innerHTML=Object.keys(adlar).sort(function(a,b){return a.localeCompare(b,'tr')}).map(function(a){return '<option value="'+esc(a)+'">'}).join('');
+  // bekleyen sonuçlar
+  var bk=D.maclar.filter(function(m){return m.tarih<=bugun()&&!oynandi(m)});
+  $('bekleyen').innerHTML=bk.length?bk.map(function(m){return '<div class="kart" data-id="'+esc(m.id)+'"><p class="bilgi">'+tr(m.tarih)+(m.saat?' '+esc(m.saat):'')+' · '+esc(ligAd(m.lig))+'</p>'
+    +'<div class="skor-satir"><div class="tk">'+esc(m.ev)+'</div><input type="number" min="0" max="40" inputmode="numeric" aria-label="'+esc(m.ev)+' gol" data-g="ev"><span>–</span><input type="number" min="0" max="40" inputmode="numeric" aria-label="'+esc(m.dep)+' gol" data-g="dep"><div class="tk sag">'+esc(m.dep)+'</div></div>'
+    +'<div style="display:flex;gap:6px;margin-top:8px"><button class="dug" type="button" data-kaydet>Kaydet</button><button class="dug ince" type="button" data-duzenle="'+esc(m.id)+'">Düzenle</button></div></div>'}).join('')
+    :'<div class="kart"><p class="bilgi" style="margin:0">Skoru bekleyen maç yok. 👍</p></div>';
+  // tüm maçlar
+  $('tumListe').innerHTML=D.maclar.length?D.maclar.map(function(m){return '<div class="satir"><div><b>'+esc(m.ev)+' '+(oynandi(m)?m.evGol+'-'+m.depGol:'–')+' '+esc(m.dep)+'</b><small>'+tr(m.tarih)+(m.saat?' '+esc(m.saat):'')+' · '+esc(ligAd(m.lig))+'</small></div><div style="display:flex;gap:6px"><button class="dug ince" type="button" data-duzenle="'+esc(m.id)+'">Düzenle</button><button class="dug sil" type="button" data-sil="futbol_mac/'+esc(m.id)+'">Sil</button></div></div>'}).join('')
+    :'<p class="bilgi" style="margin:0">Henüz maç yok. "Maç ekle" bölümünden ekleyebilirsin.</p>';
+  $('takimListeHtml').innerHTML=D.takimlar.map(function(t){return '<div class="satir"><div><b>'+esc(t.ad)+'</b><small>'+esc([t.ilce,ligAd(t.lig)].filter(Boolean).join(' · '))+'</small></div><button class="dug sil" type="button" data-sil="futbol_takim/'+esc(t.id)+'">Sil</button></div>'}).join('');
+  $('ligListeHtml').innerHTML=D.ligler.map(function(l){return '<div class="satir"><div><b>'+esc(l.ad)+'</b><small>'+esc(l.sezon||'')+(l.tamLig?' · puan durumu hesaplanıyor':'')+'</small></div><button class="dug sil" type="button" data-sil="futbol_lig/'+esc(l.id)+'">Sil</button></div>'}).join('');
+}
+
+document.addEventListener('click',function(e){
+  var k=e.target.closest('[data-kaydet]');
+  if(k){var kart=k.closest('[data-id]'),ev=kart.querySelector('[data-g="ev"]').value,dep=kart.querySelector('[data-g="dep"]').value;
+    if(ev===''||dep===''){mesaj('İki skoru da yaz',true);return}
+    k.disabled=true;db.collection('futbol_mac').doc(kart.dataset.id).update({evGol:parseInt(ev,10),depGol:parseInt(dep,10)}).then(function(){mesaj('Skor kaydedildi');return yukle()}).catch(function(er){k.disabled=false;mesaj('Kaydedilemedi: '+(er.code||er.message),true)});return}
+  var d=e.target.closest('[data-duzenle]');
+  if(d){var m=D.maclar.filter(function(x){return x.id===d.dataset.duzenle})[0];if(!m)return;
+    $('mId').value=m.id;$('mLig').value=m.lig;$('mEv').value=m.ev;$('mDep').value=m.dep;$('mTarih').value=m.tarih;$('mSaat').value=m.saat||'';$('mHafta').value=m.hafta||'';$('mYer').value=m.yer||'';
+    $('mEvGol').value=oynandi(m)?m.evGol:'';$('mDepGol').value=oynandi(m)?m.depGol:'';$('formBaslik').textContent='Maçı düzenle';sekmeAc('ekle');window.scrollTo(0,0);return}
+  var s=e.target.closest('[data-sil]');
+  if(s){if(!confirm('Silinsin mi?'))return;var p=s.dataset.sil.split('/');db.collection(p[0]).doc(p[1]).delete().then(function(){mesaj('Silindi');return yukle()}).catch(function(er){mesaj('Silinemedi: '+(er.code||er.message),true)})}
+});
+
+function temizle(){['mId','mEv','mDep','mTarih','mSaat','mHafta','mYer','mEvGol','mDepGol'].forEach(function(i){$(i).value=''});$('formBaslik').textContent='Yeni maç'}
+$('mTemizle').onclick=temizle;
+$('mKaydet').onclick=function(){
+  var v={lig:$('mLig').value,ev:$('mEv').value.trim(),dep:$('mDep').value.trim(),tarih:$('mTarih').value,saat:$('mSaat').value||''};
+  if(!v.lig||v.ev.length<2||v.dep.length<2||!v.tarih){mesaj('Lig, iki takım ve tarih gerekli',true);return}
+  var h=$('mHafta').value,y=$('mYer').value.trim(),eg=$('mEvGol').value,dg=$('mDepGol').value;
+  if(h)v.hafta=parseInt(h,10); if(y)v.yer=y;
+  if((eg==='')!==(dg==='')){mesaj('Skor girdiysen iki golü de yaz',true);return}
+  v.evGol=eg===''?null:parseInt(eg,10);v.depGol=dg===''?null:parseInt(dg,10);
+  var id=$('mId').value,ref=id?db.collection('futbol_mac').doc(id):db.collection('futbol_mac').doc();
+  $('mKaydet').disabled=true;
+  ref.set(v).then(function(){mesaj('Maç kaydedildi');temizle();return yukle()}).catch(function(e){mesaj('Kaydedilemedi: '+(e.code||e.message),true)}).then(function(){$('mKaydet').disabled=false});
+};
+
+$('tEkle').onclick=function(){
+  var lig=$('tLig').value,satirlar=$('tMetin').value.split('\n').map(function(x){return x.trim()}).filter(Boolean),iyi=[],kotu=[];
+  satirlar.forEach(function(s){
+    var m=s.match(/^(\d{1,2})[.\/](\d{1,2})[.\/](\d{4})\s+(?:(\d{1,2})[:.](\d{2})\s+)?(.+?)\s+[-–]\s+(.+)$/)||s.match(/^(\d{4})-(\d{2})-(\d{2})\s+(?:(\d{1,2})[:.](\d{2})\s+)?(.+?)\s+[-–]\s+(.+)$/);
+    if(!m){kotu.push(s);return}
+    var tarih=m[3].length===4?m[3]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[1]).slice(-2):m[1]+'-'+m[2]+'-'+m[3];
+    var saat=m[4]?('0'+m[4]).slice(-2)+':'+m[5]:'';
+    if(m[6].length<2||m[7].length<2){kotu.push(s);return}
+    iyi.push({lig:lig,ev:m[6].slice(0,60),dep:m[7].slice(0,60),tarih:tarih,saat:saat,evGol:null,depGol:null});
+  });
+  if(!iyi.length){$('tSonuc').textContent='Okunabilen satır yok. Biçimi kontrol et.';return}
+  var b=db.batch();iyi.forEach(function(v){b.set(db.collection('futbol_mac').doc(),v)});
+  $('tEkle').disabled=true;
+  b.commit().then(function(){$('tSonuc').textContent=iyi.length+' maç eklendi.'+(kotu.length?' Okunamayan satırlar: '+kotu.join(' | '):'');$('tMetin').value=kotu.join('\n');return yukle()})
+   .catch(function(e){$('tSonuc').textContent='Eklenemedi: '+(e.code||e.message)}).then(function(){$('tEkle').disabled=false});
+};
+
+function slug(s){return s.toLocaleLowerCase('tr').replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||('t'+Date.now())}
+$('kEkle').onclick=function(){var ad=$('kAd').value.trim();if(ad.length<2){mesaj('Takım adını yaz',true);return}
+  db.collection('futbol_takim').doc(slug(ad)).set({ad:ad,ilce:$('kIlce').value.trim(),lig:$('kLig').value,sira:D.takimlar.length+1}).then(function(){$('kAd').value='';$('kIlce').value='';mesaj('Takım eklendi');return yukle()}).catch(function(e){mesaj('Eklenemedi: '+(e.code||e.message),true)})};
+$('lEkle').onclick=function(){var ad=$('lAd').value.trim();if(ad.length<2){mesaj('Lig adını yaz',true);return}
+  db.collection('futbol_lig').doc(slug(ad)).set({ad:ad,sezon:$('lSezon').value.trim(),sira:D.ligler.length+1,tamLig:$('lTam').checked}).then(function(){$('lAd').value='';$('lTam').checked=false;mesaj('Lig eklendi');return yukle()}).catch(function(e){mesaj('Eklenemedi: '+(e.code||e.message),true)})};
+})();
+</script>
+</body>
+</html>
