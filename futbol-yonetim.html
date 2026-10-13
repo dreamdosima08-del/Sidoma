@@ -172,14 +172,12 @@ function yukle(){
   }).catch(function(e){mesaj('Veriler okunamadı: '+(e.code||e.message),true)});
 }
 function baslangic(){
-  var b=db.batch();
-  b.set(db.collection('futbol_lig').doc('pgl'),{ad:'Profesyonelliğe Geçiş Ligi',sezon:'2026-27',sira:1,tamLig:false});
-  b.set(db.collection('futbol_lig').doc('super-amator'),{ad:'Artvin Süper Amatör Lig',sezon:'2026-27',sira:2,tamLig:true});
-  b.set(db.collection('futbol_takim').doc('murgul-bld'),{ad:'Murgul Belediyespor',ilce:'Murgul',lig:'pgl',sira:1});
-  b.set(db.collection('futbol_takim').doc('borcka-spor'),{ad:'Borçka Spor',ilce:'Borçka',lig:'pgl',sira:2});
+  var b=db.batch(),L=[['pgl','Profesyonelliğe Geçiş Ligi',false],['super-amator','Artvin Süper Amatör Lig',true],['u15','Artvin U15 Ligi',true],['u13-a','Artvin U13 Ligi A Grubu',true],['u13-b','Artvin U13 Ligi B Grubu',true],['masterler-a','Masterler A Grubu',false],['ztk','Ziraat Türkiye Kupası',false]];
+  L.forEach(function(l,i){b.set(db.collection('futbol_lig').doc(l[0]),{ad:l[1],sezon:'2026-27',sira:i+1,tamLig:l[2]})});
+  var T=[['artvin-borckaspor','Artvin Borçkaspor','Borçka','pgl'],['arhavi-08-sk','Arhavi 08 SK','Arhavi','super-amator'],['ardanucspor','Ardanuçspor','Ardanuç','super-amator'],['kemalpasaspor','Kemalpaşaspor','Kemalpaşa','super-amator'],['spor-egitim-kulubu','Spor Eğitim Kulübü','Hopa','super-amator'],['savsat-gsk','Şavşat GSK','Şavşat','super-amator'],['yusufelispor','Yusufelispor','Yusufeli','super-amator']];
+  T.forEach(function(t,i){b.set(db.collection('futbol_takim').doc(t[0]),{ad:t[1],ilce:t[2],lig:t[3],sira:i+1})});
   return b.commit().then(function(){mesaj('Başlangıç ligleri ve takımları eklendi');return yukle()});
 }
-
 function ligSecenek(){return D.ligler.map(function(l){return '<option value="'+esc(l.id)+'">'+esc(l.ad)+(l.sezon?' ('+esc(l.sezon)+')':'')+'</option>'}).join('')}
 function ciz(){
   $('mLig').innerHTML=$('tLig').innerHTML=ligSecenek();
