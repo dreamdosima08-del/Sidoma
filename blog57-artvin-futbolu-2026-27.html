@@ -65,6 +65,19 @@ p{margin:0 0 12px}
 .derbi .gun{font:700 2.5rem/1 'Barlow Condensed',sans-serif;color:var(--amber)}
 .derbi .orta small{display:block;font-size:.74rem;color:var(--soluk);font-weight:700}
 .derbi .alt{grid-column:1/-1;text-align:center;font-size:.88rem;color:var(--soluk);border-top:1px dashed var(--cizgi);padding-top:9px;margin-top:2px}
+/* Canlı skorlar */
+.skorlar{background:var(--saha);color:#fff;border-radius:18px;padding:6px 0 4px;margin-top:22px}
+.skorlar-bas{display:flex;justify-content:space-between;align-items:center;padding:10px 16px 6px;font-weight:800;font-size:.85rem}
+.skorlar-bas a{color:var(--amber);text-decoration:none}
+.sk-ara{padding:6px 16px 2px;font-size:.72rem;font-weight:800;opacity:.6}
+.sk{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:9px 16px;border-top:1px solid rgba(255,255,255,.1)}
+.sk .t{font-weight:800;font-size:.9rem;line-height:1.2}
+.sk .t.sag{text-align:right}
+.sk .t.a{color:var(--amber)}
+.sk .s{font:700 1.45rem/1 'Barlow Condensed',sans-serif;min-width:62px;text-align:center}
+.sk .s.bek{font-size:.95rem;opacity:.8}
+.sk .alt{grid-column:1/-1;text-align:center;font-size:.72rem;opacity:.6;margin-top:-3px}
+.sk-bos{padding:12px 16px 14px;opacity:.8;font-size:.92rem}
 /* Lig başlığı */
 .lig-bas{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .rozet{font:800 .75rem 'Nunito',sans-serif;padding:4px 10px;border-radius:999px;background:var(--amber);color:#14211B}
@@ -147,6 +160,12 @@ footer{padding:30px 0 50px;color:var(--soluk);font-size:.85rem;text-align:center
     <div class="t b">Borçkaspor<small>Deplasman</small></div>
     <div class="alt"><b>15 Kasım 2026</b> · PGL 5. hafta · Sezonun ilk Artvin derbisi</div>
   </div>
+
+
+  <section class="skorlar" aria-live="polite" aria-label="Artvin takımlarının skorları">
+    <div class="skorlar-bas"><span>⚽ Skorlar ve sıradaki maçlar</span><a href="/artvin-futbol.html">Tümü ›</a></div>
+    <div id="skorlar"><div class="sk-bos">Maçlar yükleniyor…</div></div>
+  </section>
 
   <!-- PGL -->
   <section class="bolum" id="pgl">
@@ -276,6 +295,32 @@ var R=[
 ];
 function m(x,c){return x?'<span class="m '+c+'" role="cell">'+x[0]+'<small>'+x[1]+'</small></span>':'<span class="m yok" role="cell">—</span>'}
 $('rakipler').innerHTML=R.map(function(r){return '<div class="rs'+(r[4]?' derbi-satir':'')+'" role="row"><span class="ad" role="cell"><b>'+(r[4]?'⚔️ ':'')+r[0]+'</b><small>'+r[1]+'</small></span>'+m(r[2],'h')+m(r[3],'b')+'</div>'}).join('');
+})();
+
+// Skorlar: futbol panelinde girilen maçlar (Artvin Futbol sayfasıyla aynı veri)
+(function(){
+  var REST='https://firestore.googleapis.com/v1/projects/artvin-imece/databases/(default)/documents/',KEY='AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI';
+  function dec(v){if(!v)return null;if('stringValue'in v)return v.stringValue;if('integerValue'in v)return +v.integerValue;if('doubleValue'in v)return v.doubleValue;if('booleanValue'in v)return v.booleanValue;return null}
+  function al(k){return fetch(REST+k+'?pageSize=300&key='+KEY).then(function(r){return r.json()}).then(function(j){return (j.documents||[]).map(function(d){var o={id:d.name.split('/').pop()},f=d.fields||{};for(var n in f)o[n]=dec(f[n]);return o})})}
+  function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var AY=['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+  function tr(t){var p=t.split('-');return (+p[2])+' '+AY[+p[1]-1]}
+  function oyn(m){return typeof m.evGol==='number'&&typeof m.depGol==='number'}
+  var bugun=new Date(Date.now()+3*3600e3).toISOString().slice(0,10);
+  Promise.all([al('futbol_mac'),al('futbol_takim'),al('futbol_lig')]).then(function(r){
+    var art={},lig={};r[1].forEach(function(t){art[t.ad]=1});r[2].forEach(function(l){lig[l.id]=l.ad});
+    var M=r[0].filter(function(m){return m.tarih&&m.ev&&m.dep&&(art[m.ev]||art[m.dep])});
+    var son=M.filter(oyn).sort(function(a,b){return b.tarih.localeCompare(a.tarih)}).slice(0,3);
+    var sira=M.filter(function(m){return !oyn(m)&&m.tarih>=bugun}).sort(function(a,b){return (a.tarih+(a.saat||'')).localeCompare(b.tarih+(b.saat||''))}).slice(0,3);
+    function satir(m){return '<div class="sk"><div class="t'+(art[m.ev]?' a':'')+'">'+esc(m.ev)+'</div>'+(oyn(m)?'<div class="s">'+m.evGol+' – '+m.depGol+'</div>':'<div class="s bek">'+(m.saat?esc(m.saat):tr(m.tarih))+'</div>')+'<div class="t sag'+(art[m.dep]?' a':'')+'">'+esc(m.dep)+'</div><div class="alt">'+tr(m.tarih)+(lig[m.lig]?' · '+esc(lig[m.lig]):'')+'</div></div>'}
+    var h='';
+    if(son.length)h+='<div class="sk-ara">SON SKORLAR</div>'+son.map(satir).join('');
+    if(sira.length)h+='<div class="sk-ara">SIRADAKİ MAÇLAR</div>'+sira.map(satir).join('');
+    document.getElementById('skorlar').innerHTML=h||'<div class="sk-bos">Skorlar maçlar oynandıkça burada görünecek.</div>';
+    // derbi oynandıysa kartta skoru göster
+    var d=M.filter(function(m){return oyn(m)&&art[m.ev]&&art[m.dep]&&/hopa/i.test(m.ev+m.dep)&&/borçka/i.test(m.ev+m.dep)}).sort(function(a,b){return a.tarih.localeCompare(b.tarih)})[0];
+    if(d){var g=document.getElementById('derbiGun');g.textContent=(/hopa/i.test(d.ev)?d.evGol+'-'+d.depGol:d.depGol+'-'+d.evGol);document.getElementById('derbiYazi').textContent='maç sonucu';}
+  }).catch(function(){document.getElementById('skorlar').innerHTML='<div class="sk-bos">Skorlar şu an yüklenemedi.</div>'});
 })();
 </script>
 <script src="/nabiz-davet.js" defer></script>
