@@ -39,6 +39,14 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
 .alan input[type=text]{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--cizgi);background:var(--yuzey);color:#fff;font:inherit;font-size:1rem}
 .alan small{display:block;font-size:.78rem;color:var(--dim);margin-top:7px;line-height:1.5}
 .alan small a{color:var(--buz)}
+.alan input[type=number],.alan select,.alan textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--cizgi);background:var(--yuzey);color:#fff;font:inherit;font-size:1rem}
+.alan textarea{resize:vertical;min-height:70px}
+.ikili{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.ikili label{font-size:.78rem;color:var(--dim);font-weight:600}
+.ikili input{margin-top:4px}
+#elHava{display:none;margin-top:12px}
+#elHava.acik{display:block}
+#elHava>*+*{margin-top:8px}
 .secim{display:flex;flex-wrap:wrap;gap:8px}
 .secim label,.secim button{display:inline-flex;align-items:center;gap:7px;font:inherit;font-weight:600;font-size:.85rem;padding:8px 13px;border-radius:999px;border:1px solid var(--cizgi);background:transparent;color:var(--yazi);cursor:pointer}
 .secim input{accent-color:var(--amber)}
@@ -79,6 +87,27 @@ body{background:var(--bg);color:var(--yazi);font-family:'Bricolage',system-ui,sa
     <input type="text" id="cadde" maxlength="30" placeholder="Cadde (isteğe bağlı) · örn: Hastane Caddesi" autocomplete="off" style="margin-top:8px">
     <small id="nobetNot" style="color:#bfe6ff"></small>
     <small>Nöbetçiyi <a href="https://www.eczaneler.gen.tr/nobetci-artvin-merkez" target="_blank" rel="noopener">buradan kontrol et</a>. Boş bırakırsan story'de eczane satırı çıkmaz.</small>
+  </div>
+
+  <div class="alan">
+    <div class="secim"><label><input type="checkbox" id="elAc"> Havayı ben yazacağım</label></div>
+    <small>Kapalıyken hava otomatik gelir. Açınca yazdıkların story'de görünür; en yüksek ve en düşük sıcaklığı yazınca devreye girer. Bilgiler yalnızca bugün için saklanır.</small>
+    <div id="elHava">
+      <select id="elDurum" aria-label="Hava durumu">
+        <option value="gunes">☀️ Güneşli</option>
+        <option value="parcali">⛅ Parçalı bulutlu</option>
+        <option value="bulut">☁️ Bulutlu</option>
+        <option value="yagmur">🌧️ Yağmurlu</option>
+        <option value="kar">❄️ Karlı</option>
+      </select>
+      <div class="ikili">
+        <label>En yüksek (°C)<input type="number" id="elMx" inputmode="numeric" min="-40" max="50" step="1" placeholder="örn: 14"></label>
+        <label>En düşük (°C)<input type="number" id="elMn" inputmode="numeric" min="-40" max="50" step="1" placeholder="örn: 6"></label>
+      </div>
+      <label style="font-size:.78rem;color:var(--dim);font-weight:600;display:block">Yağış ihtimali % (isteğe bağlı)<input type="number" id="elYz" inputmode="numeric" min="0" max="100" step="5" placeholder="boş bırakırsan yazılmaz" style="margin-top:4px"></label>
+      <input type="text" id="elBaslik" maxlength="34" placeholder="Başlık (boşsa durumdan yazılır) · örn: Akşama yağmur geliyor" autocomplete="off">
+      <textarea id="elMetin" maxlength="140" placeholder="Açıklama (isteğe bağlı) · örn: Sabah serin, öğleden sonra rüzgâr artacak."></textarea>
+    </div>
   </div>
 
   <div class="alan">
@@ -125,7 +154,7 @@ var AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','E
 var GUN=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 var bugun=new Date(), dun=new Date(); dun.setDate(dun.getDate()-1);
 var BUGUN=gs(bugun);
-var V={hava:null,kar:null,t850:null,nabiz:null,dogus:null,yuzde:null,yIlk:null,bulut:null}, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
+var V={hava:null,kar:null,t850:null,nabiz:null,dogus:null,yuzde:null,yIlk:null,bulut:null}, HM=null, FOTO=null, fotoSecildi=false, GOSTER={hava:true,kar:true,eczane:true,nabiz:true};
 var MERKEZ_RAKIM=550;
 var YERLER=[{ad:'Merkez',a:550,b:550},{ad:'Katrevan',a:800,b:800},{ad:'Kafkasör',a:1250,b:1400},{ad:'Mersivan',a:1800,b:1900}];
 var VF=null, VROT=0, VID=null, VFILE=null, vOnizle=0, sesKaynak=null, sesCtx=null;
@@ -305,13 +334,14 @@ function ciz(){
   f(400,32,0); yaz('Merkez · '+MERKEZ_RAKIM+' m',M,y-106,DIM);
 
   // hava
-  if(GOSTER.hava&&V.hava){
-    var h=V.hava;
+  var hv=HM||V.hava, yz=HM?HM.yuzde:V.yuzde;
+  if(GOSTER.hava&&hv){
+    var h=hv;
     havaIkon(h.durum,M-6,y-58,118);
     f(700,220,-8); yaz(h.mx+'°',M+132,y+140);
     var tw=x.measureText(h.mx+'°').width;
     f(400,32,0); yaz('en yüksek',M+150+tw,y+50,DIM); f(600,36,0); yaz('en düşük '+h.mn+'°',M+150+tw,y+96,BEYAZ);
-    if(V.yuzde!=null){ f(600,36,0); yaz('Yağış %'+V.yuzde,M+150+tw,y+142,V.yuzde>=40?BUZ:BEYAZ); }
+    if(yz!=null){ f(600,36,0); yaz('Yağış %'+yz,M+150+tw,y+142,yz>=40?BUZ:BEYAZ); }
     y+=226;
     f(700,58,-1); yaz(h.baslik,M,y);
     f(400,38,0); var sat=sar(h.metin,W-M*2-260); sat.forEach(function(s,i){ yaz(s,M,y+58+i*50,DIM); });
@@ -390,6 +420,23 @@ fetch('/nobet-eczane.json',{cache:'no-store'}).then(function(r){return r.ok?r.js
   var n=document.getElementById('nobetNot'); if(n) n.textContent='✓ Bugünün nöbetçisi listeden otomatik geldi. Değiştirmen gerekirse üzerine yazabilirsin.';
   ciz();
 }).catch(function(){});
+/* ── elle hava ── */
+var ELB={gunes:'Güneşli bir gün',parcali:'Parçalı bulutlu',bulut:'Bulutlu bir gün',yagmur:'Yağmurlu bir gün',kar:'Karlı bir gün'};
+function sayi(id,a,b){ var s=$(id).value.trim(); if(s==='') return null; var n=Math.round(Number(s.replace(',','.'))); return isFinite(n)&&n>=a&&n<=b?n:null; }
+function elHesap(){
+  $('elHava').className=$('elAc').checked?'acik':'';
+  var mx=sayi('elMx',-40,50), mn=sayi('elMn',-40,50);
+  if(!$('elAc').checked||mx==null||mn==null){ HM=null; return; }
+  if(mn>mx){ var k=mx; mx=mn; mn=k; }
+  var d=$('elDurum').value, b=$('elBaslik').value.trim(), m=$('elMetin').value.trim();
+  HM={durum:d,mx:mx,mn:mn,baslik:b||ELB[d],metin:m,yuzde:sayi('elYz',0,100)};
+}
+function elKaydet(){
+  ls('storyElHava',JSON.stringify({g:BUGUN,ac:$('elAc').checked,d:$('elDurum').value,mx:$('elMx').value,mn:$('elMn').value,yz:$('elYz').value,b:$('elBaslik').value,m:$('elMetin').value}));
+  elHesap(); aciklama(); ciz();
+}
+var h0=ls('storyElHava'); if(h0){ try{ var q=JSON.parse(h0); if(q.g===BUGUN){ $('elAc').checked=!!q.ac; $('elDurum').value=q.d||'gunes'; $('elMx').value=q.mx||''; $('elMn').value=q.mn||''; $('elYz').value=q.yz||''; $('elBaslik').value=q.b||''; $('elMetin').value=q.m||''; elHesap(); } }catch(e){} }
+['elAc','elDurum','elMx','elMn','elYz','elBaslik','elMetin'].forEach(function(i){ $(i).addEventListener('input',elKaydet); $(i).addEventListener('change',elKaydet); });
 function eczKaydet(){ ls('storyEczane',JSON.stringify({g:BUGUN,a:$('eczane').value,c:$('cadde').value})); ciz(); }
 $('cadde').addEventListener('input',eczKaydet);
 $('eczane').addEventListener('input',eczKaydet);
@@ -699,6 +746,7 @@ $('vdosya').addEventListener('change',function(){
 
 function aciklama(){
   var h=V.hava, t='';
+  if(HM){ $('veriAciklama').innerHTML='<b>Hava bilgisi senin yazdığın gibi gösteriliyor.</b> Otomatik tahmin kapalı. Kar seviyesi cetveli yine otomatiktir; istemezsen yukarıdan "Kar seviyesi"ni kapat.'; return; }
   if(h) t='<b>Yağış yüzdesi</b>'+(V.yuzde!=null?' <b>%'+V.yuzde+'</b>':'')+': '+(V.yKaynak==='topluluk'?'ECMWF, ICON ve GFS topluluk tahminlerindeki '+V.ySenaryo+' senaryodan kaçının bugün 07–22 arası en az 0,5 mm yağış verdiği.':'bugün 07–22 arasındaki en yüksek saatlik yağış ihtimali.')+' Sıcaklıklar çarşının yüksekliğine (550 m) göre düzeltilir. Metin bu yüzdeye göre yazılır: %20 altı "yağış görünmüyor", %20–39 "ihtimali düşük", %40–59 "ihtimali var", %60 ve üstü "ihtimali yüksek". <b>Sıcaklıklar</b> '+h.modeller.join(', ')+' modellerinin ortancasıdır; bugün '+h.n+' modelden '+h.yagisli+' tanesi gündüz 1 mm üstü yağış gösteriyor.';
   else t='<b>Hava tahmini alınamadı.</b> Story\'de "alınamadı" yazar, yanlış bilgi gösterilmez. Birkaç dakika sonra sayfayı yenile.';
   if(V.kar!=null) t+=' Kar seviyesi: önümüzdeki 24 saatteki en düşük donma seviyesinin 300 m altı'+(V.t850!=null?' (850 hPa en düşük '+V.t850+'°C)':'')+'.';
