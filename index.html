@@ -1417,6 +1417,26 @@ async function konumAl() {
 }
 </script>
 
+    <!-- FUTBOL: derbi bandı -->
+    <a class="futbol-bant" href="/blog57-artvin-futbolu-2026-27.html" aria-label="Artvin Futbolu 2026-27 yazısını aç">
+      <span class="fb-top" aria-hidden="true">⚽</span>
+      <span class="fb-metin"><b>Artvin Futbolu 2026-27</b><small id="fbDerbi">Hopaspor – Borçkaspor derbisi 15 Kasım'da</small></span>
+      <span class="fb-ok" aria-hidden="true">›</span>
+    </a>
+    <style>
+    .futbol-bant{display:flex;align-items:center;gap:.7rem;max-width:440px;margin:.6rem auto .2rem;padding:.6rem .9rem;border-radius:18px;text-decoration:none;color:#fff;text-align:left;
+      background:linear-gradient(90deg,rgba(91,42,134,.55),rgba(29,122,76,.55));border:1px solid rgba(240,192,64,.45);box-shadow:0 4px 0 rgba(0,0,0,.45),0 9px 18px rgba(0,0,0,.3)}
+    .futbol-bant .fb-top{font-size:1.5rem;line-height:1}
+    .futbol-bant .fb-metin{flex:1;display:flex;flex-direction:column;line-height:1.2}
+    .futbol-bant b{font-size:.86rem;letter-spacing:.02em;text-transform:uppercase}
+    .futbol-bant small{font-size:.74rem;color:#f0c040;font-weight:700;margin-top:.15rem}
+    .futbol-bant .fb-ok{font-size:1.4rem;color:#f0c040}
+    @media (max-width:420px){.futbol-bant{max-width:360px}}
+    </style>
+    <script>
+    (function(){var b=new Date(Date.now()+3*3600e3),g=Math.round((Date.UTC(2026,10,15)-Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()))/864e5),e=document.getElementById('fbDerbi');if(!e)return;
+      if(g>1)e.textContent='Hopaspor – Borçkaspor derbisine '+g+' gün';else if(g===1)e.textContent='Derbi yarın: Hopaspor – Borçkaspor';else if(g===0)e.textContent='Bugün derbi günü: Hopaspor – Borçkaspor';else e.textContent='Kim hangi ligde, maçlar ve sonuçlar';})();
+    </script>
     <div class="gun-bas" style="--rk:#f0c040"><span class="raf-ik">⚡</span><h3>Her gün lazım olanlar</h3></div>
     <nav class="hero-pills" role="navigation" aria-label="Hızlı erişim">
       <a class="hp yol-canli" id="yolCanli" href="/yol-durumu.html" aria-label="Artvin canlı yol durumu">
