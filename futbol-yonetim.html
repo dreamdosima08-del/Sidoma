@@ -174,8 +174,11 @@ function yukle(){
 function baslangic(){
   var b=db.batch(),L=[['pgl','Profesyonelliğe Geçiş Ligi',false],['super-amator','Artvin Süper Amatör Lig',true],['u15','Artvin U15 Ligi',true],['u13-a','Artvin U13 Ligi A Grubu',true],['u13-b','Artvin U13 Ligi B Grubu',true],['masterler-a','Masterler A Grubu',false],['ztk','Ziraat Türkiye Kupası',false]];
   L.forEach(function(l,i){b.set(db.collection('futbol_lig').doc(l[0]),{ad:l[1],sezon:'2026-27',sira:i+1,tamLig:l[2]})});
-  var T=[['artvin-borckaspor','Artvin Borçkaspor','Borçka','pgl'],['arhavi-08-sk','Arhavi 08 SK','Arhavi','super-amator'],['ardanucspor','Ardanuçspor','Ardanuç','super-amator'],['kemalpasaspor','Kemalpaşaspor','Kemalpaşa','super-amator'],['spor-egitim-kulubu','Spor Eğitim Kulübü','Hopa','super-amator'],['savsat-gsk','Şavşat GSK','Şavşat','super-amator'],['yusufelispor','Yusufelispor','Yusufeli','super-amator']];
+  var T=[['artvin-borckaspor','Artvin Borçkaspor','Borçka','pgl'],['artvin-hopaspor','Artvin Hopaspor','Hopa','pgl'],['arhavi-08-sk','Arhavi 08 SK','Arhavi','super-amator'],['ardanucspor','Ardanuçspor','Ardanuç','super-amator'],['kemalpasaspor','Kemalpaşaspor','Kemalpaşa','super-amator'],['spor-egitim-kulubu','Spor Eğitim Kulübü','Hopa','super-amator'],['savsat-gsk','Şavşat GSK','Şavşat','super-amator'],['yusufelispor','Yusufelispor','Yusufeli','super-amator']];
   T.forEach(function(t,i){b.set(db.collection('futbol_takim').doc(t[0]),{ad:t[1],ilce:t[2],lig:t[3],sira:i+1})});
+  // Borçkaspor PGL fikstürü (ilk 10 maç, mackolik'te yayımlanan tarihlerle)
+  [['2026-10-18','Artvin Borçkaspor','Çayelispor'],['2026-11-01','Serhat Ardahanspor','Artvin Borçkaspor'],['2026-11-08','Artvin Borçkaspor','Sürmenespor'],['2026-11-15','Artvin Hopaspor','Artvin Borçkaspor'],['2026-11-22','Artvin Borçkaspor','Doğubayazıt FSK'],['2026-11-29','Beşikdüzü 1834','Artvin Borçkaspor'],['2026-12-06','Artvin Borçkaspor','Kars 36 Spor'],['2026-12-13','Arsin Gurur SK','Artvin Borçkaspor'],['2026-12-20','Artvin Borçkaspor','Fındıklı 1974 Spor'],['2026-12-27','Erzurum Büyükşehir Belediyespor','Artvin Borçkaspor']]
+    .forEach(function(m){b.set(db.collection('futbol_mac').doc(),{lig:'pgl',ev:m[1],dep:m[2],tarih:m[0],saat:'',evGol:null,depGol:null})});
   return b.commit().then(function(){mesaj('Başlangıç ligleri ve takımları eklendi');return yukle()});
 }
 function ligSecenek(){return D.ligler.map(function(l){return '<option value="'+esc(l.id)+'">'+esc(l.ad)+(l.sezon?' ('+esc(l.sezon)+')':'')+'</option>'}).join('')}
