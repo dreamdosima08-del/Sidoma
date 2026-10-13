@@ -1137,6 +1137,9 @@ border-radius:20px;}
 .hp.yol-canli{grid-column:1/-1;justify-content:space-between;gap:.5rem;background:linear-gradient(90deg,rgba(61,219,138,.14),rgba(255,255,255,.06));border-color:rgba(61,219,138,.45)}
 .hp.yol-canli.sorun{background:linear-gradient(90deg,rgba(242,85,85,.22),rgba(255,255,255,.06));border-color:rgba(242,85,85,.6)}
 .hp.yol-canli.dikkat{background:linear-gradient(90deg,rgba(245,165,36,.2),rgba(255,255,255,.06));border-color:rgba(245,165,36,.55)}
+/* Her gün lazım olanlar: futbol bandıyla aynı ambiyans (mor→yeşil geçiş, altın çerçeve) */
+.hero-pills .hp:not(.yol-canli){background:linear-gradient(90deg,rgba(91,42,134,.5),rgba(29,122,76,.5));border-color:rgba(240,192,64,.42)}
+.hero-pills .hp:not(.yol-canli):hover{background:var(--gold);color:#1a0e00;border-color:var(--gold)}
 .yc-nokta{width:9px;height:9px;border-radius:50%;background:#3ddb8a;flex-shrink:0;box-shadow:0 0 0 0 rgba(61,219,138,.6);animation:ycNabiz 1.8s infinite}
 .yol-canli.sorun .yc-nokta{background:#f25555}.yol-canli.dikkat .yc-nokta{background:#f5a524}
 .yc-durum{font-size:.62rem;font-weight:800;letter-spacing:.04em;padding:.2rem .5rem;border-radius:100px;background:rgba(0,0,0,.25);white-space:nowrap}
