@@ -6,7 +6,7 @@
 var KOK=document.getElementById('hikayeler'); if(!KOK) return;
 
 /* ───── İçerik ───── */
-var DURAK='https://i.ibb.co/tMg1kRyj/file-00000000d578720a9f914ec28f759bcf.png';
+var DURAK='/img/file-00000000d578720a9f914ec28f759bcf-tmg1kryj.webp';
 var SABIT=[
  {id:'guncel-2026-10-01',ad:'Güncel',ikon:'📰',kapak:'/kis-merkez-panorama.jpg',kareler:[
    {foto:'/kis-merkez-panorama.jpg',ust:'Yeni rehber',baslik:'Artvin Kış Rehberi yayında',metin:'Kar ne zaman yağar, hangi yollar kapanır? Rakım kaydırıcısı ve yol kartlarıyla.',link:'/blog56-artvin-kis-rehberi.html',dugme:'Rehberi aç'},
