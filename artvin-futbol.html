@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Artvin Futbol: Maç Sonuçları, Fikstür ve Puan Durumu 2026-27</title>
-<meta name="description" content="Artvin takımlarının maç sonuçları, bu haftanın maçları, fikstür ve puan durumu tek sayfada. Artvin Borçkaspor, Süper Amatör Lig ve altyapı takımları.">
+<meta name="description" content="Artvin Hopaspor ve Artvin Borçkaspor'un bu haftaki maçları, sonuçları, PGL (eski BAL) puan durumu ve fikstürü tek sayfada. Süper Amatör Lig ve altyapı maçları da burada.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.artvinrehber.com/artvin-futbol.html">
 <meta property="og:type" content="website">
@@ -88,6 +88,48 @@ table.puan{width:100%;border-collapse:collapse;background:var(--kart);border-rad
 .kaynak{font-size:.82rem;color:var(--soluk);background:var(--kart);border:1px dashed var(--cizgi);border-radius:12px;padding:10px 12px;margin-top:12px}
 footer{padding:30px 0 50px;color:var(--soluk);font-size:.85rem;text-align:center}
 @media (max-width:520px){.skor{min-width:64px;font-size:1.6rem}.takim{font-size:.9rem}.mac{grid-template-columns:54px 1fr auto}}
+
+/* Bu hafta: iki takım kartı */
+.biz{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+@media(max-width:640px){.biz{grid-template-columns:1fr}}
+.bk{background:rgba(0,0,0,.3);border:1px solid var(--cizgi-saha);border-radius:18px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px}
+.bk-ust{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bk-ad{font:700 1.75rem/1 'Barlow Condensed',sans-serif;letter-spacing:.01em;color:var(--skor)}
+.bk-sira{font-size:.8rem;font-weight:800;background:rgba(255,255,255,.12);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.bk-etiket{font-size:.76rem;font-weight:800;opacity:.75}
+.bk-mac{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+.bk-mac .tt{font-weight:800;font-size:.95rem;line-height:1.2}
+.bk-mac .tt.sag{text-align:right}
+.bk-mac .tt.biz-t{color:var(--skor)}
+.bk-skor{font:700 2.3rem/1 'Barlow Condensed',sans-serif;min-width:84px;text-align:center;font-variant-numeric:tabular-nums;border-radius:10px;padding:4px 6px}
+.bk-skor.G{background:rgba(46,158,102,.4)}.bk-skor.M{background:rgba(196,85,62,.45)}.bk-skor.B{background:rgba(141,154,147,.35)}
+.bk-skor.bekle{font-size:1.2rem;line-height:1.1;background:rgba(255,255,255,.08)}
+.bk-alt{font-size:.8rem;opacity:.8;text-align:center;line-height:1.5}
+.bk-yer{display:inline-block;font-size:.72rem;font-weight:800;padding:1px 7px;border-radius:6px;background:rgba(255,255,255,.14);margin-left:6px}
+.bk-sonra{border-top:1px solid var(--cizgi-saha);padding-top:9px;font-size:.84rem;display:flex;justify-content:space-between;gap:8px;opacity:.9}
+.bk-sonra b{font-weight:800}
+.bk .form i{width:18px;height:18px;font-size:.66rem;line-height:18px}
+.derbi{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;background:linear-gradient(90deg,#5B2A86,#1D5E3E);border-radius:14px;padding:11px 16px;font-weight:800;font-size:.92rem;text-decoration:none;color:#fff}
+.derbi b{font:700 1.6rem/1 'Barlow Condensed',sans-serif;color:var(--skor)}
+.diger-hafta{position:relative;margin-top:12px}
+.diger-hafta summary{cursor:pointer;font-size:.85rem;font-weight:800;opacity:.85;padding:6px 0}
+/* Sekmeler ve hafta grupları */
+.sekme{display:flex;gap:6px;background:var(--kart);border:1px solid var(--cizgi);border-radius:999px;padding:4px;margin:0 0 14px}
+.sekme button{all:unset;box-sizing:border-box;flex:1;text-align:center;cursor:pointer;font-weight:800;font-size:.9rem;padding:9px 6px;border-radius:999px;color:var(--soluk)}
+.sekme button[aria-pressed="true"]{background:var(--saha);color:#fff}
+.sekme button:focus-visible{outline:3px solid var(--skor)}
+.hafta-bas{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:var(--tebesir);font-size:.78rem;font-weight:800;color:var(--soluk);border-top:1px solid var(--cizgi)}
+.hafta-bas:first-child{border-top:0}
+.hafta-bas.simdi{background:var(--skor);color:#3A2A00}
+.mac.derbi-mac{background:linear-gradient(90deg,rgba(91,42,134,.12),transparent)}
+.mac .yer-r{display:inline-block;font-size:.68rem;font-weight:800;padding:0 6px;border-radius:5px;background:var(--tebesir);color:var(--soluk);margin-left:6px;vertical-align:1px}
+.mac .kesin{display:block;font-size:.72rem;color:var(--soluk);font-style:italic}
+/* Puan tablosu */
+.puan tr.artvin{background:rgba(242,178,51,.16)}
+.puan td .yeni{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--skor);margin-left:5px;vertical-align:2px}
+.puan th.ad,.puan td.ad{text-align:left!important}
+.puan-not{font-size:.86rem;color:var(--soluk);margin:10px 2px 0;line-height:1.55}
+.puan-not b{color:var(--murekkep)}
 </style>
 </head>
 <body>
@@ -95,30 +137,40 @@ footer{padding:30px 0 50px;color:var(--soluk);font-size:.85rem;text-align:center
   <div class="kap">
     <div class="ust"><a href="/">Artvin Rehberi</a><a href="/">← Ana sayfa</a></div>
     <h1>Artvin Futbolu</h1>
-    <p class="alt">Artvin takımlarının bu haftaki maçları, son sonuçları ve puan durumu.</p>
-    <div class="tabela" aria-live="polite">
-      <div class="tabela-bas"><span id="tabelaBaslik">Bu hafta</span><span id="tabelaTarih"></span></div>
-      <div id="tabela"><div class="bos">Maçlar yükleniyor…</div></div>
-    </div>
+    <p class="alt">Hopaspor ve Borçkaspor'un bu haftaki maçları, PGL puan durumu ve fikstür. <span id="bugunYazi"></span></p>
+    <div class="biz" id="biz" aria-live="polite"><div class="bk"><div class="bos">Maçlar yükleniyor…</div></div></div>
+    <div id="derbi"></div>
+    <div id="digerHafta"></div>
   </div>
 </header>
 
 <main class="kap">
-  <section class="bolum">
-    <h2>Takımlar</h2>
-    <p class="ac">Bir takıma dokun, tüm maçlarını gör. Kutucuklar son 5 maçı gösterir: G galibiyet, B beraberlik, M mağlubiyet.</p>
+  <section class="bolum" id="puanBolum">
+    <h2 id="puanBaslik">Puan durumu</h2>
+    <div id="puanPgl"></div>
+  </section>
+
+  <section class="bolum" id="fiksturBolum">
+    <h2>Fikstür ve sonuçlar</h2>
+    <div class="sekme" role="group" aria-label="Takım seç" id="fSekme"></div>
+    <div class="liste" id="fikstur"></div>
+  </section>
+
+  <section class="bolum" id="digerBolum">
+    <h2>Diğer Artvin takımları</h2>
+    <p class="ac">Süper Amatör Lig ve altyapı. Bir takıma dokun, maçlarını gör. Kutucuklar son 5 maçı gösterir: G galibiyet, B beraberlik, M mağlubiyet.</p>
     <div class="takimlar" id="takimlar"></div>
   </section>
 
   <section class="bolum" id="macBolum">
-    <h2 id="macBaslik">Tüm maçlar</h2>
+    <h2 id="macBaslik">Diğer maçlar</h2>
     <div class="liste" id="maclar"></div>
   </section>
 
   <div id="puanlar"></div>
 
   <p class="kaynak" style="border-style:solid">📖 Hangi takım hangi ligde, derbi ne zaman, geçen sezon ne oldu? <a href="/blog57-artvin-futbolu-2026-27.html" style="font-weight:800;color:var(--saha2)">Artvin Futbolu 2026-27 yazısını oku</a></p>
-  <p class="kaynak">Sonuçlar maç bittikten sonra artvinrehber.com tarafından girilir. Eksik ya da hatalı bir sonuç görürsen bize yaz, düzeltelim.</p>
+  <p class="kaynak">Sonuçlar maç bittikten sonra artvinrehber.com tarafından girilir. PGL puan durumu resmî tablodan alınır; resmî tablo gecikirse Hopaspor ve Borçkaspor'un yeni sonuçları tabloya bizim tarafımızdan işlenir ve bu açıkça belirtilir. Eksik ya da hatalı bir bilgi görürsen bize yaz, düzeltelim.</p>
 </main>
 <footer>artvinrehber.com · Artvin Futbol</footer>
 
@@ -135,41 +187,131 @@ function bugunStr(){var d=new Date(Date.now()+3*3600e3);return d.toISOString().s
 function tarihYaz(t){var p=t.split('-'),d=new Date(Date.UTC(+p[0],+p[1]-1,+p[2]));return {gun:+p[2]+' '+AY[+p[1]-1],hafta:GUN[d.getUTCDay()]}}
 function gunFark(a,b){return Math.round((Date.parse(a)-Date.parse(b))/864e5)}
 function oynandi(m){return typeof m.evGol==='number'&&typeof m.depGol==='number'}
-var V={takimlar:[],ligler:{},maclar:[],secili:''};
-function artvinMi(ad){return V.takimlar.some(function(t){return t.ad===ad})}
-function sonuc(m,takim){if(!oynandi(m))return '';var b=m.ev===takim?m.evGol:m.depGol,r=m.ev===takim?m.depGol:m.evGol;return b>r?'G':b<r?'M':'B'}
+function srt(a,b){return (a.tarih+(a.saat||'')).localeCompare(b.tarih+(b.saat||''))}
+// Takım adlarını "Artvin", "spor", "belediye" gibi eklerden bağımsız karşılaştır
+function anahtar(s){return String(s||'').toLocaleLowerCase('tr').replace(/artvin|belediye(spor)?|spor kulübü|kulübü|\bsk\b|\bfk\b|spor|gsk|a\.ş\.?/g,'').replace(/[^a-zçğıöşü0-9]/g,'')}
+var V={takimlar:[],ligler:{},maclar:[],puan:[],odak:'',biz:[],secF:'',secili:''};
+function artvinMi(ad){var k=anahtar(ad);return V.takimlar.some(function(t){return anahtar(t.ad)===k})}
+function ayni(a,b){return anahtar(a)===anahtar(b)}
+function oynuyor(m,t){return ayni(m.ev,t)||ayni(m.dep,t)}
+function sonuc(m,takim){if(!oynandi(m))return '';var ev=ayni(m.ev,takim),b=ev?m.evGol:m.depGol,r=ev?m.depGol:m.evGol;return b>r?'G':b<r?'M':'B'}
+function kisa(ad){var t=V.takimlar.filter(function(x){return ayni(x.ad,ad)})[0];return (t?t.ad:ad).replace(/^Artvin\s+/,'')}
 
-function tabela(){
-  var bugun=bugunStr();
-  var yakin=V.maclar.filter(function(m){var f=gunFark(m.tarih,bugun);return f>=-4&&f<=7}).sort(function(a,b){return (a.tarih+(a.saat||'')).localeCompare(b.tarih+(b.saat||''))});
-  var baslik='Bu hafta';
-  if(!yakin.length){
-    var son=V.maclar.filter(oynandi).sort(function(a,b){return b.tarih.localeCompare(a.tarih)}).slice(0,4);
-    var gelecek=V.maclar.filter(function(m){return m.tarih>=bugun&&!oynandi(m)}).sort(function(a,b){return a.tarih.localeCompare(b.tarih)}).slice(0,3);
-    yakin=son.reverse().concat(gelecek); baslik=yakin.length?'Son ve sıradaki maçlar':'Bu hafta';
+/* ── PGL puan tablosu: resmî tablo + sonrasında girilen bizim maçlarımız ── */
+function satirlariOku(metin){
+  return String(metin||'').split('\n').map(function(l){var p=l.split('|');if(p.length<9)return null;
+    var n=p.slice(2,9).map(function(x){return parseInt(x,10)||0});
+    return {ad:p[1].trim(),o:n[0],g:n[1],b:n[2],m:n[3],a:n[4],y:n[5],p:n[6]}}).filter(Boolean);
+}
+function pglTablo(lig){
+  var snap=V.puan.filter(function(x){return x.lig===lig}).sort(function(a,b){return (b.hafta-a.hafta)||String(b.tarih).localeCompare(a.tarih)})[0];
+  var bizimMaclar=V.maclar.filter(function(m){return m.lig===lig&&oynandi(m)&&(artvinMi(m.ev)||artvinMi(m.dep))});
+  if(!snap){
+    // Resmî tablo yok: sadece bizim takımların kendi istatistikleri (yanıltıcı bir sıralama göstermeyiz)
+    var rows=V.biz.map(function(t){var r={ad:t.ad,o:0,g:0,b:0,m:0,a:0,y:0,p:0,biz:true};
+      bizimMaclar.filter(function(m){return oynuyor(m,t.ad)}).forEach(function(m){var ev=ayni(m.ev,t.ad),a=ev?m.evGol:m.depGol,y=ev?m.depGol:m.evGol;r.o++;r.a+=a;r.y+=y;if(a>y){r.g++;r.p+=3}else if(a===y){r.b++;r.p++}else r.m++});return r});
+    return {snap:null,rows:rows,ek:bizimMaclar.length};
   }
-  $('tabelaBaslik').textContent=baslik;
-  var b=tarihYaz(bugun); $('tabelaTarih').textContent='Bugün '+b.gun+' '+b.hafta;
-  if(!yakin.length){$('tabela').innerHTML='<div class="bos">Sezonun maçları girildiğinde burada görünecek.</div>';return}
-  $('tabela').innerHTML=yakin.map(function(m){var t=tarihYaz(m.tarih),lig=V.ligler[m.lig];
-    return '<div class="satir"><div class="takim'+(artvinMi(m.ev)?' artvin':'')+'">'+esc(m.ev)+'</div>'
-      +(oynandi(m)?'<div class="skor">'+m.evGol+' – '+m.depGol+'</div>':'<div class="skor bekle">'+esc(m.saat||'–')+'</div>')
-      +'<div class="takim sag'+(artvinMi(m.dep)?' artvin':'')+'">'+esc(m.dep)+'</div>'
-      +'<div class="satir-alt">'+t.gun+' '+t.hafta+(lig?' · '+esc(lig.ad):'')+(m.yer?' · '+esc(m.yer):'')+'</div></div>'}).join('');
+  var T={},sira=[];
+  satirlariOku(snap.satirlar).forEach(function(r){r.biz=artvinMi(r.ad);T[anahtar(r.ad)]=r;sira.push(r)});
+  var sonra=bizimMaclar.filter(function(m){return m.hafta?m.hafta>snap.hafta:m.tarih>snap.tarih});
+  sonra.forEach(function(m){[[m.ev,m.evGol,m.depGol],[m.dep,m.depGol,m.evGol]].forEach(function(x){
+    var k=anahtar(x[0]),r=T[k];if(!r){r=T[k]={ad:x[0],o:0,g:0,b:0,m:0,a:0,y:0,p:0,biz:artvinMi(x[0])};sira.push(r)}
+    r.o++;r.a+=x[1];r.y+=x[2];if(x[1]>x[2]){r.g++;r.p+=3}else if(x[1]===x[2]){r.b++;r.p++}else r.m++;r.yeni=true})});
+  sira.sort(function(a,b){return b.p-a.p||(b.a-b.y)-(a.a-a.y)||b.a-a.a||a.ad.localeCompare(b.ad,'tr')});
+  var sonHafta=sonra.reduce(function(h,m){return Math.max(h,m.hafta||0)},0);
+  return {snap:snap,rows:sira,ek:sonra.length,sonHafta:sonHafta};
+}
+function siraBul(tab,ad){if(!tab||!tab.snap)return null;for(var i=0;i<tab.rows.length;i++)if(ayni(tab.rows[i].ad,ad))return {sira:i+1,p:tab.rows[i].p,top:tab.rows.length};return null}
+
+function puanCiz(){
+  var lig=V.ligler[V.odak];if(!lig){$('puanBolum').hidden=true;return}
+  var tab=pglTablo(V.odak);V.tab=tab;
+  $('puanBaslik').textContent=lig.ad+' puan durumu';
+  var bas='<div class="tablo-kap"><table class="puan"><thead><tr>'+(tab.snap?'<th>#</th>':'')+'<th class="ad">Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>AV</th><th>P</th></tr></thead><tbody>';
+  var govde=tab.rows.map(function(r,i){var av=r.a-r.y;return '<tr class="'+(r.biz?'artvin':'')+'">'+(tab.snap?'<td>'+(i+1)+'</td>':'')+'<td class="ad">'+esc(r.ad)+(r.yeni?'<span class="yeni" title="Resmî tablodan sonra eklenen maç"></span>':'')+'</td><td>'+r.o+'</td><td>'+r.g+'</td><td>'+r.b+'</td><td>'+r.m+'</td><td>'+(av>0?'+':'')+av+'</td><td class="p">'+r.p+'</td></tr>'}).join('');
+  var not;
+  if(tab.snap){
+    var t=tarihYaz(tab.snap.tarih);
+    not='<b>Resmî tablo: '+tab.snap.hafta+'. hafta</b> ('+t.gun+(tab.snap.kaynak?', '+esc(tab.snap.kaynak):'')+').';
+    if(tab.ek)not+=' Sonrasında oynanan <b>'+tab.ek+' Hopaspor/Borçkaspor maçı</b> tabloya bizim tarafımızdan eklendi (sarı nokta). Gruptaki diğer maçlar resmî tablo güncellenince işlenecek; bu yüzden diğer takımların sırası geçici olabilir.';
+  }else{
+    not='Grubun resmî puan tablosu henüz girilmedi. Yanıltıcı bir sıralama göstermemek için burada şimdilik yalnızca Artvin takımlarının '+(tab.ek?'oynadığı '+tab.ek+' maçtan çıkan':'')+' kendi istatistikleri var.';
+  }
+  $('puanPgl').innerHTML=(tab.rows.length?bas+govde+'</tbody></table></div>':'')+'<p class="puan-not">'+not+'</p>';
 }
 
+/* ── Açılış: bu hafta bizim takımlar ── */
+function macSatiri(m,takim){
+  var ev=ayni(m.ev,takim),r=sonuc(m,takim),t=tarihYaz(m.tarih);
+  var skor=oynandi(m)?'<div class="bk-skor '+r+'">'+m.evGol+' – '+m.depGol+'</div>':'<div class="bk-skor bekle">'+(m.tarih<bugunStr()?'Sonuç<br>bekleniyor':esc(m.saat||t.gun))+'</div>';
+  return '<div class="bk-mac"><div class="tt'+(artvinMi(m.ev)?' biz-t':'')+'">'+esc(kisa(m.ev))+'</div>'+skor+'<div class="tt sag'+(artvinMi(m.dep)?' biz-t':'')+'">'+esc(kisa(m.dep))+'</div></div>'
+    +'<div class="bk-alt">'+t.gun+' '+t.hafta+(m.saat&&oynandi(m)?' '+esc(m.saat):'')+(m.hafta?' · '+m.hafta+'. hafta':'')+(m.yer?' · '+esc(m.yer):'')+'<span class="bk-yer">'+(ev?'İç saha':'Deplasman')+'</span>'+(m.not&&!oynandi(m)?'<br><i>Tarih kesinleşmedi</i>':'')+'</div>';
+}
+function bizCiz(){
+  var bugun=bugunStr();
+  if(!V.biz.length){$('biz').innerHTML='<div class="bk"><div class="bos">Takımlar yakında eklenecek.</div></div>';return}
+  $('biz').innerHTML=V.biz.map(function(t){
+    var tm=V.maclar.filter(function(m){return oynuyor(m,t.ad)}).sort(srt);
+    var son=tm.filter(oynandi).slice(-1)[0],bekleyen=tm.filter(function(m){return !oynandi(m)}),sonraki=bekleyen.filter(function(m){return m.tarih>=bugun})[0],gecmisBekleyen=bekleyen.filter(function(m){return m.tarih<bugun}).slice(-1)[0];
+    var ana,ikinci,etiket;
+    if(gecmisBekleyen&&(!son||gecmisBekleyen.tarih>son.tarih)){ana=gecmisBekleyen;etiket='Son maç';ikinci=sonraki}
+    else if(son&&gunFark(bugun,son.tarih)<=2){ana=son;etiket='Bu haftanın sonucu';ikinci=sonraki}
+    else if(sonraki){ana=sonraki;var f=gunFark(sonraki.tarih,bugun);etiket=f===0?'Bugün':f===1?'Yarın':f<=7?'Bu hafta':'Sıradaki maç';ikinci=null;if(son)ikinci=son}
+    else if(son){ana=son;etiket='Son maç'}
+    var s=siraBul(V.tab,t.ad);
+    var form=tm.filter(oynandi).slice(-5).map(function(m){var r=sonuc(m,t.ad);return '<i class="'+r+'">'+r+'</i>'}).join('');
+    var alt='';
+    if(ikinci){var it=tarihYaz(ikinci.tarih),rakip=ayni(ikinci.ev,t.ad)?ikinci.dep:ikinci.ev;
+      alt='<div class="bk-sonra"><span>'+(oynandi(ikinci)?'Önceki':'Sıradaki')+': <b>'+esc(kisa(rakip))+'</b> '+(ayni(ikinci.ev,t.ad)?'(İç)':'(Dış)')+'</span><span>'+(oynandi(ikinci)?'<b>'+ikinci.evGol+'-'+ikinci.depGol+'</b> '+sonuc(ikinci,t.ad):it.gun+' '+it.hafta)+'</span></div>'}
+    return '<article class="bk"><div class="bk-ust"><span class="bk-ad">'+esc(kisa(t.ad))+'</span>'
+      +(s?'<span class="bk-sira">'+s.sira+'. sıra · '+s.p+' puan</span>':'')+'</div>'
+      +'<div class="bk-ust"><span class="bk-etiket">'+esc(etiket||'')+'</span><span class="form" aria-label="Son maçlar">'+form+'</span></div>'
+      +(ana?macSatiri(ana,t.ad):'<div class="bos">Maç girilmedi.</div>')+alt+'</article>'}).join('');
+  // Derbi bandı (iki Artvin takımı karşılaşıyorsa, 45 gün içinde)
+  var d=V.maclar.filter(function(m){return !oynandi(m)&&artvinMi(m.ev)&&artvinMi(m.dep)&&m.tarih>=bugun&&gunFark(m.tarih,bugun)<=45}).sort(srt)[0];
+  if(d){var k=gunFark(d.tarih,bugun),dt=tarihYaz(d.tarih);
+    $('derbi').innerHTML='<a class="derbi" href="/blog57-artvin-futbolu-2026-27.html"><span>⚔️ Artvin derbisi: '+esc(kisa(d.ev))+' – '+esc(kisa(d.dep))+'<br><small style="opacity:.8;font-weight:700">'+dt.gun+' '+dt.hafta+(d.hafta?' · '+d.hafta+'. hafta':'')+'</small></span><span><b>'+(k===0?'BUGÜN':k)+'</b>'+(k?' gün':'')+'</span></a>'}
+  else $('derbi').innerHTML='';
+  // Diğer liglerin bu haftaki maçları (katlanır)
+  var dh=V.maclar.filter(function(m){return m.lig!==V.odak&&Math.abs(gunFark(m.tarih,bugun))<=4}).sort(srt);
+  $('digerHafta').innerHTML=dh.length?'<details class="diger-hafta"><summary>Diğer Artvin maçları bu hafta ('+dh.length+')</summary><div class="tabela">'+dh.map(function(m){var t=tarihYaz(m.tarih),lig=V.ligler[m.lig];
+    return '<div class="satir"><div class="takim'+(artvinMi(m.ev)?' artvin':'')+'">'+esc(m.ev)+'</div>'+(oynandi(m)?'<div class="skor">'+m.evGol+' – '+m.depGol+'</div>':'<div class="skor bekle">'+esc(m.saat||'–')+'</div>')+'<div class="takim sag'+(artvinMi(m.dep)?' artvin':'')+'">'+esc(m.dep)+'</div><div class="satir-alt">'+t.gun+' '+t.hafta+(lig?' · '+esc(lig.ad):'')+'</div></div>'}).join('')+'</div></details>':'';
+}
+
+/* ── Fikstür: takım sekmeleri, hafta grupları ── */
+function fiksturCiz(){
+  var bugun=bugunStr();
+  var sek=V.biz.map(function(t){return [t.ad,kisa(t.ad)]}).concat([['','İkisi de']]);
+  $('fSekme').innerHTML=sek.map(function(x){return '<button type="button" data-f="'+esc(x[0])+'" aria-pressed="'+(V.secF===x[0])+'">'+esc(x[1])+'</button>'}).join('');
+  var l=V.maclar.filter(function(m){return m.lig===V.odak&&(V.secF?oynuyor(m,V.secF):(artvinMi(m.ev)||artvinMi(m.dep)))}).sort(srt);
+  if(!l.length){$('fikstur').innerHTML='<div class="bos" style="color:var(--soluk)">Henüz maç girilmedi.</div>';return}
+  var simdiki=l.filter(function(m){return !oynandi(m)&&m.tarih>=bugun})[0],gruplar=[],son=null;
+  l.forEach(function(m){var g=m.hafta?'h'+m.hafta:'t'+m.tarih;if(!son||son.g!==g){son={g:g,hafta:m.hafta,tarih:m.tarih,maclar:[]};gruplar.push(son)}son.maclar.push(m)});
+  $('fikstur').innerHTML=gruplar.map(function(g){var t=tarihYaz(g.tarih),simdi=simdiki&&g.maclar.indexOf(simdiki)>-1;
+    return '<div class="hafta-bas'+(simdi?' simdi':'')+'"><span>'+(g.hafta?g.hafta+'. hafta':t.gun)+(simdi?' · sıradaki':'')+'</span><span>'+t.gun+' '+t.hafta+'</span></div>'
+      +g.maclar.map(function(m){var odak=V.secF||(artvinMi(m.ev)?m.ev:m.dep),r=sonuc(m,odak),mt=tarihYaz(m.tarih),derbi=artvinMi(m.ev)&&artvinMi(m.dep);
+        return '<div class="mac'+(derbi?' derbi-mac':'')+'"><div class="t"><b>'+mt.gun+'</b>'+mt.hafta+(m.saat?' '+esc(m.saat):'')+'</div>'
+          +'<div class="k">'+(derbi?'⚔️ ':'')+'<span class="'+(artvinMi(m.ev)?'a':'')+'">'+esc(kisa(m.ev))+'</span> – <span class="'+(artvinMi(m.dep)?'a':'')+'">'+esc(kisa(m.dep))+'</span>'
+          +(derbi?'':'<span class="yer-r">'+(ayni(m.ev,odak)?'İç':'Dış')+'</span>')+(m.yer?'<span class="lig">'+esc(m.yer)+'</span>':'')+(m.not&&!oynandi(m)?'<span class="kesin">Tarih kesinleşmedi</span>':'')+'</div>'
+          +(oynandi(m)?'<div class="s '+(derbi?'':r)+'">'+m.evGol+'-'+m.depGol+'</div>':'<div class="s bekle">'+(m.tarih<bugun?'Sonuç bekleniyor':'Oynanacak')+'</div>')+'</div>'}).join('')}).join('');
+}
+$('fSekme').addEventListener('click',function(e){var b=e.target.closest('[data-f]');if(!b)return;V.secF=b.dataset.f;fiksturCiz()});
+
+/* ── Diğer ligler (Süper Amatör, altyapı) ── */
 function takimlar(){
-  $('takimlar').innerHTML=V.takimlar.map(function(t){
-    var son=V.maclar.filter(function(m){return (m.ev===t.ad||m.dep===t.ad)&&oynandi(m)}).sort(function(a,b){return b.tarih.localeCompare(a.tarih)}).slice(0,5).reverse();
+  var dt=V.takimlar.filter(function(t){return t.lig!==V.odak});
+  $('digerBolum').hidden=!dt.length;
+  $('takimlar').innerHTML=dt.map(function(t){
+    var son=V.maclar.filter(function(m){return oynuyor(m,t.ad)&&oynandi(m)}).sort(srt).slice(-5);
     var lig=V.ligler[t.lig];
     return '<button class="tk" type="button" data-t="'+esc(t.ad)+'" aria-pressed="'+(V.secili===t.ad)+'"><b>'+esc(t.ad)+'</b><small>'+esc([t.ilce,lig&&lig.ad].filter(Boolean).join(' · '))+'</small>'
-      +'<span class="form" aria-label="Son maçlar">'+(son.length?son.map(function(m){var r=sonuc(m,t.ad);return '<i class="'+r+'">'+r+'</i>'}).join(''):'<small>Henüz maç yok</small>')+'</span></button>'}).join('')
-    ||'<p class="ac">Takımlar yakında eklenecek.</p>';
+      +'<span class="form" aria-label="Son maçlar">'+(son.length?son.map(function(m){var r=sonuc(m,t.ad);return '<i class="'+r+'">'+r+'</i>'}).join(''):'<small>Henüz maç yok</small>')+'</span></button>'}).join('');
 }
-
 function maclar(){
-  var l=V.maclar.filter(function(m){return !V.secili||m.ev===V.secili||m.dep===V.secili}).sort(function(a,b){return (a.tarih+(a.saat||'')).localeCompare(b.tarih+(b.saat||''))});
-  $('macBaslik').textContent=V.secili?V.secili+' maçları':'Tüm maçlar';
+  var l=V.maclar.filter(function(m){return m.lig!==V.odak&&(!V.secili||oynuyor(m,V.secili))}).sort(srt);
+  $('macBolum').hidden=!V.maclar.some(function(m){return m.lig!==V.odak});
+  $('macBaslik').textContent=V.secili?V.secili+' maçları':'Diğer maçlar';
   $('maclar').innerHTML=l.length?l.map(function(m){var t=tarihYaz(m.tarih),lig=V.ligler[m.lig];
     var odak=V.secili||(artvinMi(m.ev)?m.ev:artvinMi(m.dep)?m.dep:''),r=odak?sonuc(m,odak):'';
     return '<div class="mac"><div class="t"><b>'+t.gun+'</b>'+t.hafta+(m.saat?' '+esc(m.saat):'')+'</div>'
@@ -177,10 +319,9 @@ function maclar(){
       +(oynandi(m)?'<div class="s '+r+'">'+m.evGol+'-'+m.depGol+'</div>':'<div class="s bekle">'+(m.tarih<bugunStr()?'Sonuç bekleniyor':'Oynanacak')+'</div>')+'</div>'}).join('')
     :'<div class="bos" style="color:var(--soluk)">Henüz maç girilmedi.</div>';
 }
-
 function puanlar(){
   var h='';
-  Object.keys(V.ligler).map(function(k){return V.ligler[k]}).filter(function(l){return l.tamLig}).sort(function(a,b){return (a.sira||0)-(b.sira||0)}).forEach(function(l){
+  Object.keys(V.ligler).map(function(k){return V.ligler[k]}).filter(function(l){return l.tamLig&&l.id!==V.odak}).sort(function(a,b){return (a.sira||0)-(b.sira||0)}).forEach(function(l){
     var T={};V.maclar.filter(function(m){return m.lig===l.id&&oynandi(m)}).forEach(function(m){
       [[m.ev,m.evGol,m.depGol],[m.dep,m.depGol,m.evGol]].forEach(function(x){var t=T[x[0]]=T[x[0]]||{ad:x[0],o:0,g:0,b:0,m:0,a:0,y:0};t.o++;t.a+=x[1];t.y+=x[2];if(x[1]>x[2])t.g++;else if(x[1]<x[2])t.m++;else t.b++})});
     var s=Object.keys(T).map(function(k){var t=T[k];t.p=t.g*3+t.b;t.av=t.a-t.y;return t}).sort(function(a,b){return b.p-a.p||b.av-a.av||b.a-a.a||a.ad.localeCompare(b.ad,'tr')});
@@ -190,15 +331,19 @@ function puanlar(){
   });
   $('puanlar').innerHTML=h;
 }
-
 $('takimlar').addEventListener('click',function(e){var b=e.target.closest('[data-t]');if(!b)return;V.secili=V.secili===b.dataset.t?'':b.dataset.t;takimlar();maclar();if(V.secili)$('macBolum').scrollIntoView({behavior:'smooth',block:'start'})});
 
-Promise.all([liste('futbol_takim'),liste('futbol_lig'),liste('futbol_mac')]).then(function(r){
+var b=tarihYaz(bugunStr());$('bugunYazi').textContent='Bugün '+b.gun+' '+b.hafta+'.';
+Promise.all([liste('futbol_takim'),liste('futbol_lig'),liste('futbol_mac'),liste('futbol_puan').catch(function(){return []})]).then(function(r){
   V.takimlar=r[0].sort(function(a,b){return (a.sira||0)-(b.sira||0)||a.ad.localeCompare(b.ad,'tr')});
   r[1].forEach(function(l){V.ligler[l.id]=l});
   V.maclar=r[2].filter(function(m){return m.tarih&&m.ev&&m.dep});
-  tabela();takimlar();maclar();puanlar();
-}).catch(function(){$('tabela').innerHTML='<div class="bos">Maçlar şu an yüklenemedi. Sayfayı yenileyip tekrar dene.</div>'});
+  V.puan=r[3]||[];
+  // Odak lig: PGL (yoksa sırası en önde olan lig)
+  V.odak=V.ligler.pgl?'pgl':(r[1].sort(function(a,b){return (a.sira||0)-(b.sira||0)})[0]||{}).id||'';
+  V.biz=V.takimlar.filter(function(t){return t.lig===V.odak});
+  puanCiz();bizCiz();fiksturCiz();takimlar();maclar();puanlar();
+}).catch(function(){$('biz').innerHTML='<div class="bk"><div class="bos">Maçlar şu an yüklenemedi. Sayfayı yenileyip tekrar dene.</div></div>'});
 })();
 </script>
 <script src="/nabiz-davet.js" defer></script>

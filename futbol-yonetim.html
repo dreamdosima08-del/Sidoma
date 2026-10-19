@@ -53,6 +53,7 @@ textarea{min-height:130px;font-size:.92rem}
     <div class="sekme" role="group" aria-label="Bölümler">
       <button type="button" data-s="sonuc" aria-pressed="true">Sonuç gir</button>
       <button type="button" data-s="ekle" aria-pressed="false">Maç ekle</button>
+      <button type="button" data-s="puan" aria-pressed="false">Puan tablosu</button>
       <button type="button" data-s="tum" aria-pressed="false">Tüm maçlar</button>
       <button type="button" data-s="takim" aria-pressed="false">Takımlar ve ligler</button>
     </div>
@@ -95,6 +96,22 @@ textarea{min-height:130px;font-size:.92rem}
         <button class="dug" id="tEkle" type="button" style="margin-top:8px">Hepsini ekle</button>
         <p class="bilgi" id="tSonuc"></p>
       </div>
+    </section>
+
+    <section data-b="puan" class="gizli">
+      <div class="kart">
+        <h3>Resmî puan tablosu</h3>
+        <p class="bilgi">TFF ya da Maçkolik'teki puan tablosunu olduğu gibi kopyalayıp aşağıya yapıştır. Sıra, takım adı ve sayılar (O G B M A Y AV P) yeterli. "Önizle"ye bas, doğru okunduysa kaydet. Bu haftadan sonra girdiğin Hopaspor ve Borçkaspor sonuçları sayfada tabloya kendiliğinden eklenir.</p>
+        <label for="pLig">Lig</label><select id="pLig"></select>
+        <div class="iki">
+          <div><label for="pHafta">Tablo kaçıncı hafta sonu?</label><input id="pHafta" type="number" min="0" max="60" inputmode="numeric"></div>
+          <div><label for="pKaynak">Kaynak</label><input id="pKaynak" maxlength="60" placeholder="TFF"></div>
+        </div>
+        <label for="pMetin">Tablo</label><textarea id="pMetin" style="min-height:180px" placeholder="1 Çayelispor 5 4 1 0 12 3 9 13&#10;2 Artvin Hopaspor 5 3 1 1 9 5 4 10&#10;..."></textarea>
+        <div style="display:flex;gap:6px;margin-top:8px"><button class="dug ince" id="pOnizle" type="button">Önizle</button><button class="dug" id="pKaydet" type="button" disabled>Tabloyu kaydet</button></div>
+        <div id="pOnizleme"></div>
+      </div>
+      <div class="kart"><h3>Kayıtlı tablolar</h3><div id="pListe"></div></div>
     </section>
 
     <section data-b="tum" class="gizli">
@@ -141,7 +158,7 @@ function mesaj(t,hata){var m=$('mesaj');m.textContent=t;m.style.background=hata?
 if(typeof firebase==='undefined'){$('girisDurum').textContent='Firebase yüklenemedi. İnternet bağlantını kontrol et.';return}
 firebase.initializeApp({apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",authDomain:"artvin-imece.firebaseapp.com",projectId:"artvin-imece",storageBucket:"artvin-imece.firebasestorage.app",messagingSenderId:"30297800879",appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"});
 var auth=firebase.auth(),db=firebase.firestore(),YON='dreamdosima08@gmail.com';
-var D={ligler:[],takimlar:[],maclar:[]};
+var D={ligler:[],takimlar:[],maclar:[],puan:[]};
 
 $('girisBtn').onclick=function(){auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){
   $('girisDurum').innerHTML='<span class="hata">Giriş yapılamadı: '+esc(e.code||e.message)+'</span>'+(e.code==='auth/unauthorized-domain'?' — Firebase › Authentication › Settings › Authorized domains kısmına artvinrehber.com ve www.artvinrehber.com eklenmeli.':'')})};
@@ -163,7 +180,8 @@ function oynandi(m){return typeof m.evGol==='number'&&typeof m.depGol==='number'
 function ligAd(id){var l=D.ligler.filter(function(x){return x.id===id})[0];return l?l.ad:'—'}
 
 function yukle(){
-  return Promise.all(['futbol_lig','futbol_takim','futbol_mac'].map(function(k){return db.collection(k).get()})).then(function(r){
+  return Promise.all(['futbol_lig','futbol_takim','futbol_mac'].map(function(k){return db.collection(k).get()}).concat([db.collection('futbol_puan').get().catch(function(){return {docs:[]}})])).then(function(r){
+    D.puan=r[3].docs.map(function(d){var o=d.data();o.id=d.id;return o}).sort(function(a,b){return (b.hafta||0)-(a.hafta||0)});
     D.ligler=r[0].docs.map(function(d){var o=d.data();o.id=d.id;return o}).sort(function(a,b){return (a.sira||0)-(b.sira||0)});
     D.takimlar=r[1].docs.map(function(d){var o=d.data();o.id=d.id;return o}).sort(function(a,b){return (a.sira||0)-(b.sira||0)});
     D.maclar=r[2].docs.map(function(d){var o=d.data();o.id=d.id;return o}).sort(function(a,b){return (a.tarih+(a.saat||'')).localeCompare(b.tarih+(b.saat||''))});
@@ -183,7 +201,8 @@ function baslangic(){
 }
 function ligSecenek(){return D.ligler.map(function(l){return '<option value="'+esc(l.id)+'">'+esc(l.ad)+(l.sezon?' ('+esc(l.sezon)+')':'')+'</option>'}).join('')}
 function ciz(){
-  $('mLig').innerHTML=$('tLig').innerHTML=ligSecenek();
+  $('mLig').innerHTML=$('tLig').innerHTML=$('pLig').innerHTML=ligSecenek();
+  puanListe();
   $('kLig').innerHTML='<option value="">—</option>'+ligSecenek();
   var adlar={};D.takimlar.forEach(function(t){adlar[t.ad]=1});D.maclar.forEach(function(m){adlar[m.ev]=1;adlar[m.dep]=1});
   $('takimListe').innerHTML=Object.keys(adlar).sort(function(a,b){return a.localeCompare(b,'tr')}).map(function(a){return '<option value="'+esc(a)+'">'}).join('');
@@ -243,6 +262,61 @@ $('tEkle').onclick=function(){
   b.commit().then(function(){$('tSonuc').textContent=iyi.length+' maç eklendi.'+(kotu.length?' Okunamayan satırlar: '+kotu.join(' | '):'');$('tMetin').value=kotu.join('\n');return yukle()})
    .catch(function(e){$('tSonuc').textContent='Eklenemedi: '+(e.code||e.message)}).then(function(){$('tEkle').disabled=false});
 };
+
+
+/* ── Resmî puan tablosu ── */
+function anahtar(s){return String(s||'').toLocaleLowerCase('tr').replace(/artvin|belediye(spor)?|spor kulübü|kulübü|\bsk\b|\bfk\b|spor|gsk|a\.ş\.?/g,'').replace(/[^a-zçğıöşü0-9]/g,'')}
+var BASLIK=/^(#|sıra|takım|takim|kulüp|o|om|g|b|m|a|y|av|p|puan|averaj|oynanan|galibiyet|beraberlik|mağlubiyet|atılan|yenilen|form)$/i;
+function sayiMi(t){return /^[+\-−]?\d+$/.test(t)}
+function sayi(t){return parseInt(String(t).replace('−','-'),10)}
+function tabloOku(metin){
+  var tok=metin.replace(/ /g,' ').split(/\s+/).filter(function(t){return t&&!BASLIK.test(t)}),satir=[],ad=[],say=[],i;
+  function bitir(){
+    if(!ad.length||say.length<7){return}
+    var sec=null;
+    [8,7].forEach(function(k){if(sec||say.length<k)return;var n=say.slice(0,k).map(sayi),o=n[0],g=n[1],b=n[2],m=n[3],a=n[4],y=n[5],p;
+      if(o!==g+b+m)return;
+      if(k===8){if(n[6]===a-y)p=n[7];else if(n[7]===a-y)p=n[6];else return}else p=n[6];
+      if(Math.abs(p-(3*g+b))>12)return;
+      sec={ad:ad.join(' '),o:o,g:g,b:b,m:m,a:a,y:y,p:p,fazla:say.slice(k)}});
+    if(sec)satir.push(sec);
+  }
+  for(i=0;i<tok.length;i++){var t=tok[i];
+    if(sayiMi(t)){if(ad.length)say.push(t)}
+    else{if(say.length){if(say.length<7){ad=ad.concat(say);say=[]}else{bitir();ad=[];say=[]}}ad.push(t.replace(/[|]/g,''))}
+  }
+  bitir();
+  // Satır başındaki sıra numarası bir önceki satırın sayılarına karışmış olabilir; ad'ın başındaki "1." gibi parçaları temizle
+  satir.forEach(function(r){r.ad=r.ad.replace(/^\d+[.)]\s*/,'').trim()});
+  return satir;
+}
+var P_OKUNAN=[];
+$('pOnizle').onclick=function(){
+  P_OKUNAN=tabloOku($('pMetin').value);
+  var bilinen={};D.maclar.forEach(function(m){bilinen[anahtar(m.ev)]=1;bilinen[anahtar(m.dep)]=1});
+  var bizim=D.takimlar.filter(function(t){return t.lig===$('pLig').value});
+  var eksik=bizim.filter(function(t){return !P_OKUNAN.some(function(r){return anahtar(r.ad)===anahtar(t.ad)})});
+  if(!P_OKUNAN.length){$('pOnizleme').innerHTML='<p class="hata">Tablo okunamadı. Takım adı ve en az 7 sayı (O G B M A Y P) olan satırlar gerekli.</p>';$('pKaydet').disabled=true;return}
+  $('pOnizleme').innerHTML='<p class="bilgi" style="margin-top:10px">'+P_OKUNAN.length+' takım okundu. Kontrol et:</p><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:.85rem"><tr><th>#</th><th style="text-align:left">Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>A</th><th>Y</th><th>P</th></tr>'
+    +P_OKUNAN.map(function(r,i){var es=bilinen[anahtar(r.ad)];return '<tr style="border-top:1px solid #ddd"><td>'+(i+1)+'</td><td style="text-align:left">'+esc(r.ad)+(es?'':' <small title="Fikstürdeki adlarla eşleşmedi" style="color:#B3412E">⚠ fikstürde yok</small>')+'</td><td>'+r.o+'</td><td>'+r.g+'</td><td>'+r.b+'</td><td>'+r.m+'</td><td>'+r.a+'</td><td>'+r.y+'</td><td><b>'+r.p+'</b></td></tr>'}).join('')+'</table></div>'
+    +(eksik.length?'<p class="hata">Dikkat: '+eksik.map(function(t){return esc(t.ad)}).join(', ')+' tabloda bulunamadı. Adı farklı yazılmış olabilir; tablodaki adı bizimkiyle aynı yap.</p>':'')
+    +'<p class="bilgi">"⚠ fikstürde yok" işaretli takımların adı, girdiğin maçlardakinden farklı yazılmış olabilir. Bizim maçlarımızdaki rakiplerse adlarını eşitlemek iyi olur; değilse sorun değil.</p>';
+  $('pKaydet').disabled=false;
+};
+$('pKaydet').onclick=function(){
+  var h=parseInt($('pHafta').value,10);if(isNaN(h)){mesaj('Tablonun kaçıncı hafta sonu olduğunu yaz',true);return}
+  if(!P_OKUNAN.length){mesaj('Önce önizle',true);return}
+  var lig=$('pLig').value,metin=P_OKUNAN.map(function(r,i){return [i+1,r.ad.slice(0,60),r.o,r.g,r.b,r.m,r.a,r.y,r.p].join('|')}).join('\n');
+  $('pKaydet').disabled=true;
+  db.collection('futbol_puan').doc(lig+'_'+h).set({lig:lig,hafta:h,tarih:bugun(),satirlar:metin,kaynak:$('pKaynak').value.trim()}).then(function(){mesaj('Puan tablosu kaydedildi');$('pMetin').value='';$('pOnizleme').innerHTML='';P_OKUNAN=[];return yukle()})
+    .catch(function(e){$('pKaydet').disabled=false;mesaj('Kaydedilemedi: '+(e.code||e.message),true)});
+};
+function puanListe(){
+  var oyn=D.maclar.filter(function(m){return m.lig===$('pLig').value&&oynandi(m)&&m.hafta}).reduce(function(x,m){return Math.max(x,m.hafta)},0);
+  if(!$('pHafta').value&&oyn)$('pHafta').value=oyn;
+  $('pListe').innerHTML=D.puan.length?D.puan.map(function(p){return '<div class="satir"><div><b>'+esc(ligAd(p.lig))+' · '+p.hafta+'. hafta</b><small>'+tr(p.tarih)+(p.kaynak?' · '+esc(p.kaynak):'')+' · '+String(p.satirlar||'').split('\n').length+' takım</small></div><button class="dug sil" type="button" data-sil="futbol_puan/'+esc(p.id)+'">Sil</button></div>'}).join('')
+    :'<p class="bilgi" style="margin:0">Henüz tablo yok. Sayfa şimdilik sadece Hopaspor ve Borçkaspor\'un kendi istatistiklerini gösteriyor.</p>';
+}
 
 function slug(s){return s.toLocaleLowerCase('tr').replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||('t'+Date.now())}
 $('kEkle').onclick=function(){var ad=$('kAd').value.trim();if(ad.length<2){mesaj('Takım adını yaz',true);return}
