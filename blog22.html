@@ -367,46 +367,10 @@ footer a{color:var(--vivid);text-decoration:none}
 </footer>
 
 <script>
-function baglantiKopyala(){
-  navigator.clipboard.writeText('https://www.artvinrehber.com/blog22.html').then(function(){
-    var el=document.getElementById('kopyalandiMesaj');
-    el.style.display='block';
-    setTimeout(function(){el.style.display='none'},2500);
-  });
-}
-
-function yorumYukle(){
-  var yorumlar=JSON.parse(localStorage.getItem('yorumlar_blog22')||'[]');
-  var liste=document.getElementById('yorumListe');
-  var bos=document.getElementById('yorumBos');
-  if(yorumlar.length>0){
-    bos.style.display='none';
-    yorumlar.forEach(function(y){
-      var div=document.createElement('div');
-      div.className='yorum-item';
-      div.innerHTML='<div class="yorum-item-ust"><span class="yorum-item-ad">'+y.ad+'</span><span class="yorum-item-tarih">'+y.tarih+'</span></div><div class="yorum-item-metin">'+y.metin+'</div>';
-      liste.appendChild(div);
-    });
-  }
-}
-
-function yorumGonder(){
-  var ad=document.getElementById('yorumAd').value.trim();
-  var metin=document.getElementById('yorumMetin').value.trim();
-  if(!ad||!metin){alert('Lütfen ad ve yorum alanlarını doldurun.');return;}
-  var tarih=new Date().toLocaleDateString('tr-TR');
-  var yorumlar=JSON.parse(localStorage.getItem('yorumlar_blog22')||'[]');
-  yorumlar.push({ad:ad,metin:metin,tarih:tarih});
-  localStorage.setItem('yorumlar_blog22',JSON.stringify(yorumlar));
-  fetch('https://formspree.io/f/xwkgonlj',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({_subject:'Artvin Rehberi — Yeni Yorum: blog22',ad:ad,yorum:metin,sayfa:'blog22 - Çoruh Enerji Zinciri',tarih:tarih})
-  }).catch(function(){});
-  document.getElementById('yorumAd').value='';
-  document.getElementById('yorumMetin').value='';
-  document.getElementById('yorumBos').style.display='none';
-  var liste=document.getElementById('yorumListe');
-  var div=document.createElement('div');
-  div.className='yorum-item';
-  div.innerHTML='<div class="yorum-item-ust"><span class="yorum-ite
+function baglantiKopyala(){navigator.clipboard.writeText(location.origin+location.pathname).then(function(){var el=document.getElementById('kopyalandiMesaj');if(el){el.style.display='block';setTimeout(function(){el.style.display='none'},2500)}})}
+(function(){var o=document.getElementById('yorumListe');if(o&&o.parentNode)o.parentNode.style.display='none'})(); // eski yorum kutusu yerine yorum.js
+</script>
+<script src="/yorum.js" defer></script>
+<script src="/kopya-kaynak.js" defer></script>
+</body>
+</html>

@@ -333,84 +333,10 @@ footer a{color:var(--vivid);text-decoration:none}
 </footer>
 
 <script>
-// SLIDER
-const sldrIdx = {};
-document.addEventListener('DOMContentLoaded', function(){
-  ['s1','s2','s3'].forEach(function(id){
-    var track = document.getElementById(id+'t');
-    if(!track) return;
-    var imgs = track.querySelectorAll('img');
-    var dots = document.getElementById(id+'d');
-    var cur = 0;
-    var total = imgs.length;
-    function git(n){
-      cur = (n + total) % total;
-      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
-      if(dots) dots.querySelectorAll('.slider-dot').forEach(function(d,i){
-        d.classList.toggle('aktif', i===cur);
-      });
-    }
-    var prev = document.getElementById(id+'prev');
-    var next = document.getElementById(id+'next');
-    if(prev) prev.addEventListener('click', function(){ git(cur-1); });
-    if(next) next.addEventListener('click', function(){ git(cur+1); });
-    if(dots) dots.querySelectorAll('.slider-dot').forEach(function(d,i){
-      d.addEventListener('click', function(){ git(i); });
-    });
-  });
-});
-
-// PAYLAŞIM
-function baglantiKopyala(){
-  navigator.clipboard.writeText('https://www.artvinrehber.com/blog21.html').then(function(){
-    var el=document.getElementById('kopyalandiMesaj');
-    el.style.display='block';
-    setTimeout(function(){el.style.display='none'},2500);
-  });
-}
-
-// YORUM
-function yorumYukle(){
-  var yorumlar = JSON.parse(localStorage.getItem('yorumlar_blog21')||'[]');
-  var liste = document.getElementById('yorumListe');
-  var bos = document.getElementById('yorumBos');
-  if(yorumlar.length > 0){
-    bos.style.display='none';
-    yorumlar.forEach(function(y){
-      var div = document.createElement('div');
-      div.className='yorum-item';
-      div.innerHTML='<div class="yorum-item-ust"><span class="yorum-item-ad">'+y.ad+'</span><span class="yorum-item-tarih">'+y.tarih+'</span></div><div class="yorum-item-metin">'+y.metin+'</div>';
-      liste.appendChild(div);
-    });
-  }
-}
-
-function yorumGonder(){
-  var ad = document.getElementById('yorumAd').value.trim();
-  var metin = document.getElementById('yorumMetin').value.trim();
-  if(!ad||!metin){ alert('Lütfen ad ve yorum alanlarını doldurun.'); return; }
-  var tarih = new Date().toLocaleDateString('tr-TR');
-  var yorumlar = JSON.parse(localStorage.getItem('yorumlar_blog21')||'[]');
-  yorumlar.push({ad:ad, metin:metin, tarih:tarih});
-  localStorage.setItem('yorumlar_blog21', JSON.stringify(yorumlar));
-
-  // Email bildirimi - Formspree ile
-  fetch('https://formspree.io/f/xwkgonlj', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      _subject: 'Artvin Rehberi — Yeni Yorum: blog21',
-      ad: ad,
-      yorum: metin,
-      sayfa: 'blog21.html - Çoruh Nehri',
-      tarih: tarih
-    })
-  }).catch(function(){});
-
-  document.getElementById('yorumAd').value='';
-  document.getElementById('yorumMetin').value='';
-  document.getElementById('yorumBos').style.display='none';
-  var liste = document.getElementById('yorumListe');
-  var div = document.createElement('div');
-  div.className='yorum-item';
-  div.innerHTML='<div class="yorum-item-ust"><span class="yorum-item
+function baglantiKopyala(){navigator.clipboard.writeText(location.origin+location.pathname).then(function(){var el=document.getElementById('kopyalandiMesaj');if(el){el.style.display='block';setTimeout(function(){el.style.display='none'},2500)}})}
+(function(){var o=document.getElementById('yorumListe');if(o&&o.parentNode)o.parentNode.style.display='none'})(); // eski yorum kutusu yerine yorum.js
+</script>
+<script src="/yorum.js" defer></script>
+<script src="/kopya-kaynak.js" defer></script>
+</body>
+</html>

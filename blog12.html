@@ -178,5 +178,10 @@ footer a{color:var(--vivid);text-decoration:none}
 </footer>
 
 <script>
-function baglantiKopyala(){
-  na
+function baglantiKopyala(){navigator.clipboard.writeText(location.origin+location.pathname).then(function(){var el=document.getElementById('kopyalandiMesaj');if(el){el.style.display='block';setTimeout(function(){el.style.display='none'},2500)}})}
+(function(){var o=document.getElementById('yorumListe');if(o&&o.parentNode)o.parentNode.style.display='none'})(); // eski yorum kutusu yerine yorum.js
+</script>
+<script src="/yorum.js" defer></script>
+<script src="/kopya-kaynak.js" defer></script>
+</body>
+</html>

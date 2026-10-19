@@ -281,41 +281,10 @@ footer a{color:var(--vivid);text-decoration:none}
 </footer>
 
 <script>
-function baglantiKopyala(){
-  navigator.clipboard.writeText('https://www.artvinrehber.com/blog20.html').then(function(){
-    var el=document.getElementById('kopyalandiMesaj');
-    el.style.display='block';
-    setTimeout(function(){el.style.display='none'},2500);
-  });
-}
-
-// Yorumlar localStorage'da saklansın
-function yorumyukle(){
-  var yorumlar = JSON.parse(localStorage.getItem('yorumlar_blog20')||'[]');
-  var liste = document.getElementById('yorumListe');
-  var bos = document.getElementById('yorumBos');
-  if(yorumlar.length > 0){
-    bos.style.display = 'none';
-    yorumlar.forEach(function(y){
-      var div = document.createElement('div');
-      div.className = 'yorum-item';
-      div.innerHTML = '<div class="yorum-item-ust"><span class="yorum-item-ad">'+y.ad+'</span><span class="yorum-item-tarih">'+y.tarih+'</span></div><div class="yorum-item-metin">'+y.metin+'</div>';
-      liste.appendChild(div);
-    });
-  }
-}
-
-function yorumGonder(){
-  var ad = document.getElementById('yorumAd').value.trim();
-  var metin = document.getElementById('yorumMetin').value.trim();
-  if(!ad || !metin){ alert('Ad ve yorum alanlarını doldurun.'); return; }
-  var tarih = new Date().toLocaleDateString('tr-TR');
-  var yorumlar = JSON.parse(localStorage.getItem('yorumlar_blog20')||'[]');
-  yorumlar.push({ad:ad, metin:metin, tarih:tarih});
-  localStorage.setItem('yorumlar_blog20', JSON.stringify(yorumlar));
-  document.getElementById('yorumAd').value='';
-  document.getElementById('yorumMetin').value='';
-  document.getElementById('yorumBos').style.display='none';
-  var liste = document.getElementById('yorumListe');
-  var div = document.createElement('div');
-  div.className = 'yorum-item
+function baglantiKopyala(){navigator.clipboard.writeText(location.origin+location.pathname).then(function(){var el=document.getElementById('kopyalandiMesaj');if(el){el.style.display='block';setTimeout(function(){el.style.display='none'},2500)}})}
+(function(){var o=document.getElementById('yorumListe');if(o&&o.parentNode)o.parentNode.style.display='none'})(); // eski yorum kutusu yerine yorum.js
+</script>
+<script src="/yorum.js" defer></script>
+<script src="/kopya-kaynak.js" defer></script>
+</body>
+</html>
