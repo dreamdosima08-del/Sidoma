@@ -374,6 +374,7 @@ if((q||s||n)==='ka'){var gb=document.querySelector('.uy [data-u="ge"]'); if(gb) 
 })();
 </script>
 <script src="/yorum.js" defer></script>
+<script src="/kopya-kaynak.js" defer></script>
 </body>
 </html>''' % dict(
         url=URL, lds=lds,
