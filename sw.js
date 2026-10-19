@@ -7,7 +7,7 @@ try {
   firebase.messaging(); // bildirimi gösterme ve tıklayınca sayfayı açma işini SDK yapar
 } catch (e) { /* bildirim altyapısı yüklenemezse site normal çalışmaya devam eder */ }
 
-const CACHE_NAME = 'artvinrehber-v34';
+const CACHE_NAME = 'artvinrehber-v35';
 const URLS = [
   '/',
   '/index.html',

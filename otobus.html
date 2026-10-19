@@ -108,6 +108,10 @@ h1,h2,h3{font-family:'Bricolage Grotesque','Inter',sans-serif;line-height:1.12;l
 .fgrid{display:grid;gap:.8rem;grid-template-columns:1fr}
 @media(min-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
 .fk{background:linear-gradient(180deg,var(--yz2),var(--yz));border:1px solid var(--line);border-radius:var(--r);padding:1rem 1rem 1.05rem;display:flex;flex-direction:column;gap:.8rem}
+.fk.foto{position:relative;isolation:isolate;padding-top:10.5rem;overflow:hidden}
+.fk.foto::before{content:"";position:absolute;left:0;right:0;top:0;height:13rem;z-index:-1;background:linear-gradient(180deg,rgba(13,31,21,.05) 0%,rgba(13,31,21,.35) 55%,var(--yz2) 100%),var(--foto) center var(--fy,55%)/cover no-repeat}
+.fk.foto h3{text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.fk.foto .rota span{background:rgba(0,0,0,.35);color:#dfe9e2}
 .fk.gizli{display:none}
 .fk-ust{display:flex;align-items:center;gap:.8rem}
 .av{width:44px;height:44px;flex:0 0 44px;border-radius:14px;background:linear-gradient(135deg,var(--yesil),#1b8f5a);color:#062012;font:800 .95rem 'Bricolage Grotesque',sans-serif;display:flex;align-items:center;justify-content:center}
@@ -200,17 +204,17 @@ footer a{color:var(--dim)}
 <div class="w" id="firmalar">
 <div class="grup"><h2>Uzun hat firmaları</h2><p>Artvin'den İstanbul, Ankara ve Karadeniz kıyısındaki büyük şehirlere doğrudan kalkan firmalar.</p></div>
 <div class="fgrid">
-<article class="fk" data-hatlar="istanbul ankara samsun trabzon eskisehir bursa">
+<article class="fk foto" style="--foto:url(/img/otobus/luks-artvin.webp)" data-hatlar="istanbul ankara samsun trabzon eskisehir bursa">
   <div class="fk-ust"><div class="av" aria-hidden="true">LA</div><div><h3>Lüks Artvin Seyahat</h3><span class="rozet uzak">Uzun hat</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Trabzon</span><span>Samsun</span><span>Ankara</span><span>Eskişehir</span><span>İstanbul</span><span>Bursa</span></div>
   <div class="aks"><a class="b tel" href="tel:05418439104" aria-label="Lüks Artvin Seyahat ara">📞 0541 843 91 04</a><a class="b tel" href="tel:04662122170" aria-label="Lüks Artvin Seyahat ara">📞 0466 212 21 70</a><a class="b site" href="https://www.luksartvin.com.tr/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://www.luksartvin.com.tr/" target="_blank" rel="noopener">🎫 Bilet</a></div>
 </article>
-<article class="fk" data-hatlar="istanbul ankara samsun trabzon eskisehir bursa">
+<article class="fk foto" style="--foto:url(/img/otobus/kamil-koc.webp)" data-hatlar="istanbul ankara samsun trabzon eskisehir bursa">
   <div class="fk-ust"><div class="av" aria-hidden="true">KK</div><div><h3>Kamil Koç</h3><span class="rozet uzak">Uzun hat</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Trabzon</span><span>Samsun</span><span>Ankara</span><span>Bursa</span><span>Eskişehir</span><span>İstanbul</span></div>
   <div class="aks"><a class="b tel" href="tel:04662121530" aria-label="Kamil Koç ara">📞 0466 212 15 30</a><a class="b site" href="https://www.kamilkoc.com.tr/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://www.kamilkoc.com.tr/" target="_blank" rel="noopener">🎫 Bilet</a></div>
 </article>
-<article class="fk" data-hatlar="trabzon samsun tokat adana mersin">
+<article class="fk foto" style="--foto:url(/img/otobus/tokat-yildizi.webp)" data-hatlar="trabzon samsun tokat adana mersin">
   <div class="fk-ust"><div class="av" aria-hidden="true">TY</div><div><h3>Tokat Yıldızı</h3><span class="rozet uzak">Uzun hat</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Trabzon</span><span>Samsun</span><span>Tokat</span><span>Niğde</span><span>Adana</span><span>Mersin</span></div>
   <div class="aks"><a class="b tel" href="tel:05369888973" aria-label="Tokat Yıldızı ara">📞 0536 988 89 73</a><a class="b site" href="https://tokatyildizi.com.tr/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://tokatyildizi.com.tr/" target="_blank" rel="noopener">🎫 Bilet</a></div>
@@ -218,7 +222,7 @@ footer a{color:var(--dim)}
 </div>
 <div class="grup"><h2>Yakın hat firmaları</h2><p>Artvin merkezli, komşu il ve ilçelere düzenli çalışan firmalar.</p></div>
 <div class="fgrid">
-<article class="fk" data-hatlar="trabzon erzurum">
+<article class="fk foto" style="--foto:url(/img/otobus/yesil-artvin-ekspres.webp);--fy:85%" data-hatlar="trabzon erzurum">
   <div class="fk-ust"><div class="av" aria-hidden="true">YA</div><div><h3>Yeşil Artvin Ekspres</h3><span class="rozet ">Yakın hat</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Rize</span><span>Trabzon</span><span>Erzurum</span></div>
   <div class="aks"><a class="b tel" href="tel:04662121838" aria-label="Yeşil Artvin Ekspres ara">📞 0466 212 18 38</a><a class="b tel" href="tel:04662126161" aria-label="Yeşil Artvin Ekspres ara">📞 0466 212 61 61</a><a class="b site" href="https://www.yesilartvinekspres.com.tr/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://www.yesilartvinekspres.com.tr/" target="_blank" rel="noopener">🎫 Bilet</a></div>
@@ -226,27 +230,27 @@ footer a{color:var(--dim)}
 </div>
 <div class="grup"><h2>Artvin'e uğrayan firmalar</h2><p>Başka illerden gelip Artvin terminaline uğrayan, güney ve doğu hatlarına bağlayan firmalar.</p></div>
 <div class="fgrid">
-<article class="fk" data-hatlar="erzurum bingol">
+<article class="fk foto" style="--foto:url(/img/otobus/cesur-bingol.webp)" data-hatlar="erzurum bingol">
   <div class="fk-ust"><div class="av" aria-hidden="true">CB</div><div><h3>Cesur Bingöl</h3><span class="rozet ">Uğrayan</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Erzurum</span><span>Bingöl</span><span>Diyarbakır</span><span>Gaziantep</span><span>Mersin</span><span>Adana</span></div>
   <div class="aks"><a class="b tel" href="tel:04662124500" aria-label="Cesur Bingöl ara">📞 0466 212 45 00</a><a class="b site" href="https://www.cesurbingol.com/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://www.cesurbingol.com/" target="_blank" rel="noopener">🎫 Bilet</a></div>
 </article>
-<article class="fk" data-hatlar="erzurum bingol">
+<article class="fk foto" style="--foto:url(/img/otobus/yeni-bingol.webp)" data-hatlar="erzurum bingol">
   <div class="fk-ust"><div class="av" aria-hidden="true">YB</div><div><h3>Yeni Bingöl</h3><span class="rozet ">Uğrayan</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Erzurum</span><span>Bingöl</span><span>Diyarbakır</span><span>Gaziantep</span><span>Mersin</span><span>Adana</span></div>
   <div class="aks"><a class="b tel" href="tel:05498182151" aria-label="Yeni Bingöl ara">📞 0549 818 21 51</a><a class="b site" href="https://yenibingol.com/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://yenibingol.com/" target="_blank" rel="noopener">🎫 Bilet</a></div>
 </article>
-<article class="fk" data-hatlar="erzurum bingol">
+<article class="fk foto" style="--foto:url(/img/otobus/ozlem-diyarbakir.webp)" data-hatlar="erzurum bingol">
   <div class="fk-ust"><div class="av" aria-hidden="true">ÖD</div><div><h3>Özlem Diyarbakır</h3><span class="rozet ">Uğrayan</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Diyarbakır</span></div>
   <div class="aks"><a class="b site" href="https://www.ozlemdiyarbakir.com.tr/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://www.ozlemdiyarbakir.com.tr/" target="_blank" rel="noopener">🎫 Bilet</a></div>
 </article>
-<article class="fk" data-hatlar="samsun">
+<article class="fk foto" style="--foto:url(/img/otobus/ozlem-ardahan.webp)" data-hatlar="samsun">
   <div class="fk-ust"><div class="av" aria-hidden="true">ÖA</div><div><h3>Özlem Ardahan</h3><span class="rozet ">Uğrayan</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Samsun</span><span>Ardahan</span></div>
   <div class="aks"><a class="b tel" href="tel:04783113796" aria-label="Özlem Ardahan ara">📞 0478 311 37 96</a><a class="b site" href="https://www.ozlemardahan.com.tr/mobil/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://www.ozlemardahan.com.tr/mobil/" target="_blank" rel="noopener">🎫 Bilet</a></div>
 </article>
-<article class="fk" data-hatlar="samsun erzurum">
+<article class="fk foto" style="--foto:url(/img/otobus/karadeniz-golden.webp)" data-hatlar="samsun erzurum">
   <div class="fk-ust"><div class="av" aria-hidden="true">KG</div><div><h3>Karadeniz Golden</h3><span class="rozet ">Uğrayan</span></div></div>
   <div class="rota" aria-label="Güzergâhlar"><span>Samsun</span><span>Ağrı</span><span>Iğdır</span></div>
   <div class="aks"><a class="b tel" href="tel:04662126633" aria-label="Karadeniz Golden ara">📞 0466 212 66 33</a><a class="b tel" href="tel:05550554908" aria-label="Karadeniz Golden ara">📞 0555 055 49 08</a><a class="b site" href="https://www.goldenturizm.com.tr/" target="_blank" rel="noopener">🌐 Site</a><a class="b bilet" href="https://www.goldenturizm.com.tr/" target="_blank" rel="noopener">🎫 Bilet</a></div>
