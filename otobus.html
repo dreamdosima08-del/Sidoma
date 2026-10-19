@@ -165,6 +165,7 @@ footer a{color:var(--dim)}
 #igFloat{position:fixed;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));left:1rem;z-index:495;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(220,39,67,.4)}
 #igFloat svg{width:25px;height:25px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+.hero{padding:1rem 0 .8rem!important}.hero h1{font-size:clamp(1.55rem,5.4vw,2.5rem)!important;margin:.35rem 0 .45rem!important}.lead{font-size:.88rem!important;line-height:1.5}.kar{margin-top:.9rem!important}.cips{display:grid!important;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.8rem!important}.cp{display:flex;flex-direction:column;gap:.15rem;border-radius:14px;padding:.6rem .7rem;text-decoration:none;color:#fff;min-width:0}.cp i{font-style:normal;font-size:1.15rem}.cp b{font-size:.8rem;font-weight:800;line-height:1.2}.cp small{font-size:.68rem;opacity:.85}.c1{background:linear-gradient(135deg,#B7791F,#7A4E0E)}.c2{background:linear-gradient(135deg,#1F6FB7,#16467A)}.c3{background:linear-gradient(135deg,#C9A20A,#7C6305);color:#fff}.cp:focus-visible{outline:3px solid #fff;outline-offset:2px}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -181,7 +182,7 @@ footer a{color:var(--dim)}
   <span class="kicker"><i></i> Ulaşım rehberi · Eylül 2026 güncel</span>
   <h1>Artvin <em>otobüs</em> firmaları ve otogar rehberi</h1>
   <p class="lead"><b>Artvin Şehirlerarası Otobüs Terminali</b>, şehir merkezinde Erzurum Caddesi üzerindedir. İstanbul, Ankara, Trabzon, Erzurum ve Diyarbakır dahil Artvin'den ve Artvin üzerinden giden 9 firmanın hatlarını, telefonlarını ve bilet bağlantılarını aşağıda bulabilirsin.</p>
-  <div class="cips"><span><b>9</b> firma</span><span>📍 Erzurum Caddesi</span><span>🚐 Merkeze Mavi-Beyaz dolmuş</span><span>🕒 Dolmuşlar 23:30'a kadar</span></div>
+  <div class="cips"><a class="cp c1" href="#firmalar"><i>🚌</i><b>9 firma</b><small>Telefon ve bilet</small></a><a class="cp c2" href="/sehirici-dolmus.html"><i>🚐</i><b>Çarşıya Mavi-Beyaz dolmuş</b><small>23:30'a kadar</small></a><a class="cp c3" href="/taksi.html"><i>🚕</i><b>Ticari taksi</b><small>2026 ücretleri</small></a></div>
 
   <div class="kar" role="region" aria-roledescription="carousel" aria-label="Artvin otogarı fotoğrafları">
     <div class="kar-b"><div><h2>Terminali tanıyın</h2><p>Otogarı gitmeden görün</p></div><div class="ok"><button type="button" id="onceki" aria-label="Önceki">‹</button><button type="button" id="sonraki" aria-label="Sonraki">›</button></div></div>
