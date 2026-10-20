@@ -169,7 +169,7 @@ function bip(fr,dur,tip='sine',vol=.15){if(!AC)return;const o=AC.createOscillato
 const cam=new THREE.PerspectiveCamera(62,innerWidth/innerHeight,1,30000);
 const S={durum:'menu',s:60,hiz:10,lane:0,laneX:0,y:0,vy:0,puan:0,can:3,dokunulmaz:0,t:0,rekor:+(localStorage.getItem('kosuRekor')||0)};
 function uyari(t){const u=$('hUyari');u.textContent=t;u.style.opacity=1;clearTimeout(u._t);u._t=setTimeout(()=>u.style.opacity=0,900)}
-function baslat(){sesBaslat();Object.assign(S,{durum:'oyun',s:60,hiz:10,lane:0,laneX:0,y:0,vy:0,puan:0,can:3,dokunulmaz:0});nesneleriKur();$('baslangic').classList.add('gizli');$('bitis').classList.add('gizli');$('hCan').textContent='❤️❤️❤️';$('hYer').style.opacity=1;setTimeout(()=>$('hYer').style.opacity=0,3500)}
+function baslat(){sesBaslat();Object.assign(S,{durum:'oyun',s:60,hiz:16,lane:0,laneX:0,y:0,vy:0,puan:0,can:3,dokunulmaz:0});nesneleriKur();$('baslangic').classList.add('gizli');$('bitis').classList.add('gizli');$('hCan').textContent='❤️❤️❤️';$('hYer').style.opacity=1;setTimeout(()=>$('hYer').style.opacity=0,3500)}
 function bitir(tamam){S.durum='bitti';const m=Math.round(S.s-60);if(S.puan>S.rekor){S.rekor=S.puan;try{localStorage.setItem('kosuRekor',S.puan)}catch(e){}}
  $('bBaslik').textContent=tamam?'Vadiyi bitirdin! 🎉':'Mola!';$('bPuan').textContent='🌰 '+S.puan;
  $('bMetin').innerHTML='Ardanuç Çayı vadisinde <b>'+(m/1000).toLocaleString('tr',{maximumFractionDigits:2})+' km</b> koştun.<br>En iyi skorun: '+S.rekor;$('bitis').classList.remove('gizli');bip(220,.4,'triangle',.2)}
@@ -177,7 +177,7 @@ $('basla').onclick=baslat;$('tekrar').onclick=baslat;
 $('paylas').onclick=()=>{const t='Artvin Koşusu\'nda Ardanuç vadisinde '+((S.s-60)/1000).toLocaleString('tr',{maximumFractionDigits:2})+' km koştum, '+S.puan+' kozalak topladım 🌰 Sen geçebilir misin? '+location.href;
  if(navigator.share)navigator.share({text:t}).catch(()=>{});else open('https://api.whatsapp.com/send?text='+encodeURIComponent(t),'_blank')};
 function serit(d){if(S.durum!=='oyun')return;S.lane=Math.max(-1,Math.min(1,S.lane+d))}
-function zipla(){if(S.durum==='oyun'&&S.y<=0.01){S.vy=9.5;bip(520,.12,'square',.05)}}
+function zipla(){if(S.durum==='oyun'&&S.y<=0.01){S.vy=11;bip(520,.12,'square',.05)}}
 addEventListener('keydown',e=>{if(e.key==='ArrowLeft')serit(-1);else if(e.key==='ArrowRight')serit(1);else if(e.key==='ArrowUp'||e.key===' ')zipla();else if(e.key==='Enter'&&S.durum!=='oyun')baslat()});
 let tx0=0,ty0=0;addEventListener('touchstart',e=>{tx0=e.touches[0].clientX;ty0=e.touches[0].clientY},{passive:true});
 addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx0,dy=e.changedTouches[0].clientY-ty0;if(Math.max(Math.abs(dx),Math.abs(dy))<25){if(S.durum==='oyun')zipla();return}if(Math.abs(dx)>Math.abs(dy))serit(dx>0?1:-1);else if(dy<0)zipla()},{passive:true});
@@ -185,7 +185,7 @@ addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);cam.aspe
 // DÖNGÜ
 const camHedef=new THREE.Vector3(),camBak=new THREE.Vector3(),rp=new THREE.Vector3(),ileri=new THREE.Vector3();let son=performance.now(),mmSay=0;
 function kare(now){requestAnimationFrame(kare);const dt=Math.min(.05,(now-son)/1000);son=now;S.t+=dt;
- if(S.durum==='oyun'){S.hiz=Math.min(19,10+(S.s-60)/350);S.s+=S.hiz*dt;if(S.s>=LEN-40){bitir(true)}
+ if(S.durum==='oyun'){S.hiz=Math.min(27,16+(S.s-60)/220);cam.fov=62+(S.hiz-16)*.9;cam.updateProjectionMatrix();S.s+=S.hiz*dt;if(S.s>=LEN-40){bitir(true)}
   S.laneX+=(S.lane-S.laneX)*Math.min(1,dt*12);S.vy-=26*dt;S.y=Math.max(0,S.y+S.vy*dt);if(S.y===0)S.vy=Math.max(S.vy,0);
   if(S.dokunulmaz>0)S.dokunulmaz-=dt;
   for(const n of nesneler){if(n.al)continue;const ds=n.s-S.s;if(ds<-3)continue;if(ds>2.2)break;
