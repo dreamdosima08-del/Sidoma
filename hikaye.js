@@ -8,24 +8,18 @@ var KOK=document.getElementById('hikayeler'); if(!KOK) return;
 /* ───── İçerik ───── */
 var DURAK='/img/file-00000000d578720a9f914ec28f759bcf-tmg1kryj.webp';
 var SABIT=[
- {id:'guncel-2026-10-01',ad:'Güncel',ikon:'📰',kapak:'/kis-merkez-panorama.jpg',kareler:[
-   {foto:'/kis-merkez-panorama.jpg',ust:'Yeni rehber',baslik:'Artvin Kış Rehberi yayında',metin:'Kar ne zaman yağar, hangi yollar kapanır? Rakım kaydırıcısı ve yol kartlarıyla.',link:'/blog56-artvin-kis-rehberi.html',dugme:'Rehberi aç'},
-   {foto:'/otogar-foto-3.jpg',ust:'Ulaşım haberi',baslik:'İlçeler arası dolmuş ücretleri güncellendi',metin:'22 Eylül 2026 tarifesi: eski ve yeni ücretler bir arada.',link:'/blog55-dolmus-ucretleri-guncellendi.html',dugme:'Haberi oku'}
+ {id:'havas-2026-10',ad:'Havaş',ikon:'✈️',kapak:'/img/mg-20260430-172113-0jxv0d38.webp',kareler:[
+   {foto:'/img/mg-20260430-172113-0jxv0d38.webp',ust:'Rize-Artvin Havalimanı',baslik:'Havaş saatleri her gün güncel',metin:'Artvin, Borçka, Hopa ve Arhavi kalkışları, canlı geri sayımla.',link:'/havas.html',dugme:'Saatleri gör'},
+   {foto:'/img/mg-20260430-172113-0jxv0d38.webp',ust:'2026 ücretleri',baslik:'Artvin 600 ₺ · Borçka 490 ₺',metin:'Hopa 320 ₺ · Arhavi 300 ₺.',link:'/havas.html',dugme:'Tüm duraklar'}
  ]},
  {id:'ilce-dolmus-2026-09-22',ad:'İlçe Dolmuş',ikon:'🚐',kapak:'/otogar-foto-3.jpg',kareler:[
    {foto:'/otogar-foto-3.jpg',ust:'22 Eylül 2026 tarifesi',baslik:'Borçka 250 ₺ · Murgul 330 ₺ · Ardanuç 350 ₺',metin:'Artvin merkezden ilçelere tek yön ücretler.',link:'/dolmus.html',dugme:'Tüm tarife'},
    {foto:'/otogar-foto-3.jpg',ust:'22 Eylül 2026 tarifesi',baslik:'Hopa · Şavşat · Yusufeli 400 ₺',metin:'Arhavi ve Kemalpaşa 450 ₺.',link:'/dolmus.html',dugme:'Tüm tarife'},
    {foto:'/otogar-foto-3.jpg',ust:'Nereden binilir?',baslik:'İki ayrı kalkış noktası var',metin:'Hopa, Arhavi, Şavşat, Yusufeli: terminal yanındaki durak. Borçka, Ardanuç, Murgul: Artrium AVM alt virajı.',link:'/dolmus.html',dugme:'Duraklar ve telefonlar'}
  ]},
- {id:'sehirici-2026-08',ad:'Şehir İçi',ikon:'🚌',kapak:DURAK,kareler:[
-   {foto:DURAK,ust:'Ağustos 2026 tarifesi',baslik:'Tam 40 ₺ · Öğrenci 30 ₺',metin:'İndi-bindi 30 ₺.',link:'/sehirici-dolmus.html',dugme:'Ücret ve saatler'},
-   {foto:DURAK,ust:'Günde 243 sefer',baslik:'Ortalama 4 dakikada bir dolmuş',metin:'Terminal → Üst Geçit → Sigorta → Gökorman → AVM → Öğretmenevi. Sonra Orköy, İskebe, Balcıoğlu, M.E. Lojmanları.',link:'/sehirici-dolmus.html',dugme:'Sıradaki dolmuşu gör'}
- ]},
- {id:'oyun-2026',ad:'Oyunlar',ikon:'🎮',renk:'#8a3ffc,#e6337a',kareler:[
-   {emoji:'🔤',renk:'#16a34a,#064e3b',ust:'Popüler',baslik:'Artvin Wordle',metin:'Her gün yeni bir Artvin kelimesi. 6 denemede bulabilir misin?',link:'/wordle.html',dugme:'Oyna'},
-   {emoji:'🧭',renk:'#f59e0b,#9a3412',ust:'Popüler',baslik:'Sen hangi Artvin ilçesisin?',metin:'Hopa mı, Şavşat mı, Yusufeli mi? Kişiliğine göre öğren.',link:'/artvin-ilce-testi.html',dugme:'Testi çöz'},
-   {emoji:'🧠',renk:'#2563eb,#1e1b4b',ust:'Bilgi yarışması',baslik:'Artvin’i ne kadar tanıyorsun?',metin:'Sorularla kendini test et.',link:'/quiz.html',dugme:'Başla'},
-   {emoji:'⚡',renk:'#e6337a,#4c1d95',ust:'Yeni',baslik:'Refleks oyunu',metin:'Hızlı mısın? Rekorunu kır.',link:'/reflex.html',dugme:'Oyna'}
+ {id:'taksi-2026-10',ad:'Taksi',ikon:'🚕',kapak:'/img/file-000000005b647246898f3bcb374297c7-cpscbvgk.webp',kareler:[
+   {foto:'/img/file-000000005b647246898f3bcb374297c7-cpscbvgk.webp',ust:'2026 taksi ücretleri',baslik:'Açılış 75 ₺ · km başı 60 ₺',metin:'Hopa 3.300 ₺ · Rize-Artvin Havalimanı 6.600 ₺.',link:'/taksi.html',dugme:'Ücret hesapla'},
+   {foto:'/img/file-000000005b647246898f3bcb374297c7-cpscbvgk.webp',ust:'Taksi çağır',baslik:'0537 264 76 08',metin:'Artvin merkezden her yere.',link:'tel:05372647608',dugme:'Hemen ara'}
  ]}
 ];
 
@@ -205,6 +199,6 @@ function geri(){if(ki>0){ki--;kare();}else if(hi>0){hi--;ki=LISTE[hi].kareler.le
 var yerHava={id:'hava-yukleniyor',ad:'Hava',ikon:'🌤️',renk:'#0ea5e9,#0f766e',kareler:[{renk:'#0ea5e9,#0f766e',ust:'Artvin',hava:'<div class="bi">🌤️</div><div class="bt">Hava durumu yükleniyor…</div>',link:'/hava.html',dugme:'Hava durumu'}]};
 LISTE=[yerHava].concat(SABIT);ciz();
 havaYukle().then(function(h){LISTE[0]=h;if(!ov)ciz();}).catch(function(){});
-gunlukYukle().then(function(g){if(!g)return;LISTE.splice(1,0,g);if(!ov)ciz();}).catch(function(){});
+
 
 })();
