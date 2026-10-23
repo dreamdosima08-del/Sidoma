@@ -1,0 +1,21 @@
+name: Eczane günlük başlık
+on:
+  schedule:
+    - cron: '7 21 * * *'   # her gece 00:07 (Türkiye)
+  push:
+    paths: ['nobet-eczane.json','araclar/eczane_gunluk.py','.github/workflows/eczane-gunluk.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  eczane:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 araclar/eczane_gunluk.py
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add eczane-rehber.html
+          git commit -m "Eczane: bugünün nöbetçisi başlığa işlendi" || exit 0
+          git pull --rebase origin main && git push

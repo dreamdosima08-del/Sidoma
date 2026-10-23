@@ -16,7 +16,7 @@
       'sehirici-dolmus': 'Dolmuş durağa gelmeden haberin olsun',
       taksi: 'Taksi ücretleri cebinde olsun',
       'yol-durumu': 'Yol kapanınca ilk sen öğren',
-      eczane: 'Nöbetçi eczane cebinde olsun',
+      'eczane-rehber': 'Nöbetçi eczane cebinde olsun',
       hava: 'Artvin havası cebinde olsun',
       otobus: 'Otobüs ve ulaşım cebinde olsun'
     }[sayfa] || 'Artvin Rehber cebinde olsun';
