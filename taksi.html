@@ -840,7 +840,7 @@ border-radius:20px;}
     {
       "@type": "Question",
       "name": "Rize-Artvin Havalimanı'ndan Artvin'e taksi kaç TL?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Rize-Artvin Havalimanı'ndan Artvin merkeze yaklaşık 80 km mesafe vardır. 2026 tarifesiyle açılış ücreti dahil yaklaşık 4.875 TL civarında bir ücret oluşmaktadır. Kesin fiyat için taksi firmasıyla iletişime geçin."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Rize-Artvin Havalimanı ile Artvin otogarı arası yaklaşık 112 km'dir. 2026 tarifesiyle taksi ücreti araç başı 6.400 TL'dir; 6 yolcuya kadar aynı fiyattır. Rezervasyon için 0537 264 76 08 numarasından WhatsApp veya telefonla ulaşabilirsiniz."}
     },
     {
       "@type": "Question",
@@ -864,7 +864,7 @@ border-radius:20px;}
       "acceptedAnswer": {"@type": "Answer", "text": "Sarp Sınır Kapısı'ndan Rize-Artvin Havalimanı'na taksi ücreti 2026 yılında 4.500 TL'dir. Mesafe 76 km'dir. Artvin tarifesiyle hesaplanır."}
     }
   ,
-    {"@type":"Question","name":"Trabzon Havalimanı'ndan Artvin'e taksi kaç TL?","acceptedAnswer":{"@type":"Answer","text":"Trabzon Havalimanı Artvin'e yaklaşık 255 km uzaklıktadır ve en uzun havalimanı transferidir. Güncel fiyat için önceden sabit ücret anlaşması önerilir."}},
+    {"@type":"Question","name":"Trabzon Havalimanı'ndan Artvin'e taksi kaç TL?","acceptedAnswer":{"@type":"Answer","text":"Trabzon Havalimanı Artvin'e yaklaşık 217 km uzaklıktadır. 2026 tarifesiyle taksi ücreti araç başı 13.100 TL'dir. Önceden rezervasyon önerilir."}},
     {"@type":"Question","name":"Artvin otogardan taksi nasıl bulunur?","acceptedAnswer":{"@type":"Answer","text":"Artvin otogar taksi durağından merkeze, ilçelere veya havalimanına transfer yaptırabilirsiniz. Önceden telefon veya WhatsApp ile fiyat teyidi alabilirsiniz."}}]
 }
 </script>
@@ -927,6 +927,93 @@ border-radius:20px;}
     <p class="slbl">Artvin Taksi & Otogar Taksi Fiyatları</p>
     <h2 class="stitle">Taksimetre <span class="ybadge">2026</span></h2>
     <p class="sdesc">2026 yılı Artvin merkez taksi ücretleri ve Artvin otogar çıkışlı taksi tarife listesi.</p>
+<!-- UZUN YOL TAKSİ: güzergâh seç, fiyat gör, WhatsApp'tan rezervasyon -->
+<style>
+#uzunYol{margin:1.4rem 0 1.8rem;background:linear-gradient(160deg,rgba(61,219,138,.10),rgba(240,192,64,.06));border:1px solid rgba(240,192,64,.28);border-radius:18px;padding:1.15rem 1.1rem 1.2rem}
+#uzunYol h2{font-family:'Bebas Neue',sans-serif;font-size:1.65rem;letter-spacing:.03em;color:#fff;line-height:1.05;margin:0 0 .3rem}
+#uzunYol .alt{font-size:.82rem;color:rgba(255,255,255,.62);line-height:1.5;margin:0 0 .95rem}
+.uy-hat{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.9rem}
+.uy-hat button{font:600 .8rem/1 inherit;font-family:inherit;color:#e8ede9;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:.6rem .85rem;cursor:pointer}
+.uy-hat button[aria-pressed=true]{background:#f0c040;color:#1d1400;border-color:#f0c040}
+.uy-hat button:focus-visible,.uy-btn:focus-visible,#uzunYol select:focus-visible,#uzunYol input:focus-visible{outline:2px solid #3ddb8a;outline-offset:2px}
+.uy-sonuc{display:flex;align-items:flex-end;justify-content:space-between;gap:.8rem;background:rgba(0,0,0,.25);border-radius:14px;padding:.9rem 1rem;margin-bottom:.9rem}
+.uy-sonuc .g{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.45}
+.uy-sonuc .g b{display:block;color:#fff;font-size:.98rem;margin-bottom:.15rem}
+.uy-fiyat{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:.9;color:#f0c040;white-space:nowrap}
+.uy-form{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.8rem}
+.uy-form label{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.55);display:flex;flex-direction:column;gap:.25rem}
+#uzunYol input,#uzunYol select{font:500 .9rem inherit;font-family:inherit;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:.6rem .65rem;width:100%;color-scheme:dark}
+.uy-dug{display:grid;grid-template-columns:1.6fr 1fr;gap:.5rem}
+.uy-btn{text-align:center;display:flex;align-items:center;justify-content:center;gap:.4rem;font-weight:800;font-size:.92rem;text-decoration:none;border-radius:12px;padding:.85rem .6rem}
+.uy-wa{background:#25d366;color:#04210f}.uy-ara{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.uy-guven{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.4rem .8rem;font-size:.76rem;color:rgba(255,255,255,.75)}
+.uy-guven li{display:flex;gap:.4rem;align-items:flex-start;line-height:1.35}
+.uy-not{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:.75rem;line-height:1.5}
+@media(max-width:380px){.uy-form,.uy-guven{grid-template-columns:1fr}}
+</style>
+<section id="uzunYol" aria-labelledby="uzunYolBaslik">
+  <h2 id="uzunYolBaslik">Uzun yol ve havalimanı taksisi</h2>
+  <p class="alt">Güzergâhı seç, sabit fiyatı gör, tarih ve saati yazıp WhatsApp'tan yerini ayırt.</p>
+  <div class="uy-hat" role="group" aria-label="Güzergâh">
+    <button type="button" data-ad="Artvin Otogar → Rize-Artvin Havalimanı" data-km="112" data-f="6.400">Rize-Artvin Havalimanı</button>
+    <button type="button" data-ad="Artvin Otogar → Sarp Sınır Kapısı" data-km="74" data-f="4.500">Sarp Sınır Kapısı</button>
+    <button type="button" data-ad="Artvin Otogar → Trabzon Havalimanı" data-km="217" data-f="13.100">Trabzon Havalimanı</button>
+    <button type="button" data-ad="Artvin Otogar → Trabzon" data-km="220" data-f="13.200">Trabzon</button>
+    <button type="button" data-ad="Artvin Otogar → Erzurum Havalimanı" data-km="192" data-f="11.600">Erzurum Havalimanı</button>
+    <button type="button" data-ad="Artvin Otogar → Erzurum" data-km="187" data-f="11.295">Erzurum</button>
+    <button type="button" data-ad="Artvin Otogar → Kars Havalimanı" data-km="204" data-f="12.320">Kars Havalimanı</button>
+    <button type="button" data-ad="Artvin Otogar → Rize" data-km="145" data-f="8.775">Rize</button>
+    <button type="button" data-ad="Artvin Otogar → Borçka Karagöl" data-km="57" data-f="3.795">Borçka Karagöl</button>
+    <button type="button" data-ad="Artvin Otogar → Şavşat Karagöl" data-km="82" data-f="4.995">Şavşat Karagöl</button>
+  </div>
+  <div class="uy-sonuc" aria-live="polite">
+    <div class="g"><b id="uyAd">Artvin Otogar → Rize-Artvin Havalimanı</b><span id="uyKm">112 km · tek yön · araç başı</span></div>
+    <div class="uy-fiyat" id="uyFiyat">6.400 ₺</div>
+  </div>
+  <div class="uy-form">
+    <label>Tarih<input type="date" id="uyTarih"></label>
+    <label>Saat<input type="time" id="uySaat"></label>
+    <label>Yolcu<select id="uyKisi"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+    <label>Bavul<select id="uyBavul"><option>0</option><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></label>
+  </div>
+  <div class="uy-dug">
+    <a class="uy-btn uy-wa" id="uyWa" href="https://wa.me/905372647608" target="_blank" rel="noopener">WhatsApp'tan rezervasyon</a>
+    <a class="uy-btn uy-ara" href="tel:+905372647608">Ara</a>
+  </div>
+  <ul class="uy-guven">
+    <li>🕐 7/24 hizmet, gece de yola çıkılır</li>
+    <li>🌙 Gece farkı yok</li>
+    <li>✈️ Uçak rötarında beklenir</li>
+    <li>🧳 6 yolcuya kadar, geniş bagaj</li>
+    <li>🧾 Fatura ve fiş verilir</li>
+    <li>📅 Önceden rezervasyon alınır</li>
+  </ul>
+  <p class="uy-not">Fiyatlar 2026 tarifesidir, tek yön ve araç başınadır; yolcu sayısı fiyatı değiştirmez. Bekleme ücretlidir; gidiş-dönüş ve bekleme için tutarı rezervasyonda sor.</p>
+</section>
+<script>
+(function(){
+  var kok=document.getElementById('uzunYol'); if(!kok) return;
+  var sec=kok.querySelectorAll('.uy-hat button'), $=function(i){return document.getElementById(i);}, akt=sec[0];
+  function guncelle(){
+    var t=$('uyTarih').value, s=$('uySaat').value, tarih='';
+    if(t){var p=t.split('-'); tarih=p[2]+'.'+p[1]+'.'+p[0];}
+    var m='Merhaba, artvinrehber.com üzerinden yazıyorum. Uzun yol taksi rezervasyonu istiyorum.\n'+
+      'Güzergâh: '+akt.dataset.ad+'\n'+'Tarih: '+(tarih||'...')+'\n'+'Saat: '+(s||'...')+'\n'+
+      'Yolcu: '+$('uyKisi').value+' · Bavul: '+$('uyBavul').value+'\n'+'Sayfadaki fiyat: '+akt.dataset.f+' ₺';
+    $('uyWa').href='https://wa.me/905372647608?text='+encodeURIComponent(m);
+  }
+  function sc(b){
+    sec.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');}); akt=b;
+    $('uyAd').textContent=b.dataset.ad; $('uyKm').textContent=b.dataset.km+' km · tek yön · araç başı';
+    $('uyFiyat').textContent=b.dataset.f+' ₺'; guncelle();
+  }
+  sec.forEach(function(b){b.addEventListener('click',function(){sc(b);});});
+  ['uyTarih','uySaat','uyKisi','uyBavul'].forEach(function(i){$(i).addEventListener('change',guncelle);});
+  try{var d=new Date();d.setDate(d.getDate()+1);$('uyTarih').min=new Date().toISOString().slice(0,10);}catch(e){}
+  var q=(location.hash||'').replace('#','');
+  sc(sec[0]);
+})();
+</script>
   <!-- FİYAT LİSTESİ -->
     <div style="margin-top:1.5rem">
 
@@ -963,7 +1050,7 @@ border-radius:20px;}
 
       <div style="font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--vivid);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem">✈️ Havalimanı Transferi<div style="flex:1;height:1px;background:rgba(255,255,255,.07)"></div></div>
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;margin-bottom:1rem"><table style="width:100%;border-collapse:collapse;font-size:.82rem"><thead><tr style="background:rgba(61,219,138,.07);border-bottom:1px solid rgba(255,255,255,.08)"><th style="padding:.55rem .85rem;text-align:left;font-size:.58rem;font-weight:700;color:rgba(255,255,255,.35)">Havalimanı</th><th style="padding:.55rem .85rem;text-align:center;font-size:.58rem;font-weight:700;color:rgba(255,255,255,.35)">Mesafe</th><th style="padding:.55rem .85rem;text-align:right;font-size:.58rem;font-weight:700;color:rgba(255,255,255,.35)">Transfer</th></tr></thead><tbody>
-      <tr style="border-bottom:1px solid rgba(255,255,255,.05)"><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Rize-Artvin Havalimanı ✈️</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">112 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--gold)">6.800 ₺</td></tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)"><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Rize-Artvin Havalimanı ✈️</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">112 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--gold)">6.400 ₺</td></tr>
       <tr style="border-bottom:1px solid rgba(255,255,255,.05)"><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Erzurum Havalimanı ✈️</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">192 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--gold)">11.600 ₺</td></tr>
       <tr style="border-bottom:1px solid rgba(255,255,255,.05)"><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Kars Havalimanı ✈️</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">204 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--gold)">12.320 ₺</td></tr>
       <tr><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Trabzon Havalimanı ✈️</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">217 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--gold)">13.100 ₺</td></tr>
@@ -975,7 +1062,7 @@ border-radius:20px;}
       <tr style="border-bottom:1px solid rgba(255,255,255,.05)"><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Otogar → Ardahan</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">113 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--turuncu)">6.785 ₺</td></tr>
       <tr style="border-bottom:1px solid rgba(255,255,255,.05)"><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Otogar → Erzurum</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">187 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--turuncu)">11.295 ₺</td></tr>
       <tr style="border-bottom:1px solid rgba(255,255,255,.05)"><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Otogar → Kars</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">200 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--turuncu)">12.075 ₺</td></tr>
-      <tr><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Otogar → Trabzon</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">220 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--turuncu)">13.515 ₺</td></tr>
+      <tr><td style="padding:.55rem .85rem;color:rgba(255,255,255,.7)">Otogar → Trabzon</td><td style="padding:.55rem .85rem;text-align:center;color:var(--dim);font-size:.75rem">220 km</td><td style="padding:.55rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:1rem;color:var(--turuncu)">13.200 ₺</td></tr>
       </tbody></table></div>
 
       <div style="background:rgba(240,192,64,.07);border:1px solid rgba(240,192,64,.15);border-radius:10px;padding:.9rem 1rem;font-size:.76rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:1rem">
@@ -1055,7 +1142,7 @@ border-radius:20px;}
 
   <div style="margin-bottom:1.25rem;">
     <h3 style="font-size:.9rem;font-weight:700;color:#1a2e1f;margin-bottom:.35rem;">Rize-Artvin Havalimanı Taksi Transferi</h3>
-    <p style="font-size:.82rem;color:#6b7f72;line-height:1.85;">Rize-Artvin Havalimanı'ndan Artvin merkeze mesafe Rize-Artvin (112 km), Erzurum (192 km), Kars (204 km) ve Trabzon (255 km) havalimanlarından transfer mevcuttur. Havaş servisi kullanmak istemeyenler veya grup halinde gelenler için taksi transferi daha ekonomik olabilir. Transfer için yukarıdaki WhatsApp veya telefon butonu ile rezervasyon yapabilirsiniz.</p>
+    <p style="font-size:.82rem;color:#6b7f72;line-height:1.85;">Rize-Artvin Havalimanı'ndan Artvin merkeze mesafe Rize-Artvin (112 km), Erzurum (192 km), Kars (204 km) ve Trabzon (217 km) havalimanlarından transfer mevcuttur. Havaş servisi kullanmak istemeyenler veya grup halinde gelenler için taksi transferi daha ekonomik olabilir. Transfer için yukarıdaki WhatsApp veya telefon butonu ile rezervasyon yapabilirsiniz.</p>
 
     <h3 style="font-size:.9rem;font-weight:700;color:#1a2e1f;margin:.75rem 0 .35rem;">Rize Havalimanı → Sarp Sınır Kapısı Taksi Ücreti</h3>
     <div style="background:#f0f7f2;border:1.5px solid #b8d8c4;border-radius:12px;padding:.85rem 1rem;margin-bottom:.5rem;">
@@ -1503,7 +1590,7 @@ havaYukle();
 <p style="color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:1rem;font-size:.9rem">Artvin taksileri yalnızca şehir içi değil, <strong>uzun yol ve şehirlerarası havalimanı transferi</strong> hizmeti de verir. En çok talep gören güzergahlar:</p>
 <ul style="color:rgba(255,255,255,.85);line-height:1.9;margin:0 0 1rem 1.4rem;font-size:.88rem">
   <li><strong>Rize-Artvin Havalimanı → Artvin:</strong> ~112 km, sahil (Hopa-Borçka) hattı üzerinden transfer.</li>
-  <li><strong>Trabzon Havalimanı → Artvin:</strong> ~255 km, en uzun havalimanı transferi; sabit fiyat için önceden anlaşın.</li>
+  <li><strong>Trabzon Havalimanı → Artvin:</strong> ~217 km, en uzun havalimanı transferi; sabit fiyat için önceden anlaşın.</li>
   <li><strong>Erzurum Havalimanı → Artvin:</strong> ~192 km, Yusufeli hattı, Tortum Gölü güzergahı.</li>
   <li><strong>Kars Havalimanı → Artvin:</strong> ~204 km, Ardahan-Şavşat hattı üzerinden.</li>
   <li><strong>Artvin → Hopa / Sarp Sınır Kapısı:</strong> sık talep edilen sahil transferi.</li>
