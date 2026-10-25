@@ -1,0 +1,21 @@
+name: Havaş saatleri sayfaya işle
+on:
+  schedule:
+    - cron: '20 3,9,15 * * *'   # günde 3 kez (Türkiye 06:20, 12:20, 18:20)
+  push:
+    paths: ['araclar/havas_statik.py','.github/workflows/havas-statik.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  havas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 araclar/havas_statik.py
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add havas.html veri/havas-degisiklik.json 2>/dev/null || git add havas.html
+          git commit -m "Havaş: saatler havas.net verisiyle kontrol edildi/güncellendi" || exit 0
+          git pull --rebase origin main && git push
