@@ -6,7 +6,8 @@ SAYFA, KAYIT = 'havas.html', 'veri/havas-degisiklik.json'
 URL = 'https://havas-saat.dreamdosima08.workers.dev/'
 AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık']
 AD = {'artvin':'Artvin Otogar','borcka':'Borçka','hopa':'Hopa','arhavi':'Arhavi','rize':'Rize Merkez','cayeli':'Çayeli',
-      'ardesen':'Ardeşen','findikli':'Fındıklı','pazar':'Pazar','tip':'Tıp Fakültesi','gundogdu':'Gündoğdu'}
+      'ardesen':'Ardeşen','findikli':'Fındıklı','pazar':'Pazar','tip':'Tıp Fakültesi','gundogdu':'Gündoğdu',
+      'of':'Of','kendirli':'Kalkandere','saraykoy':'Sarayköy','derepazari':'Derepazarı'}
 ANA = ['artvin','borcka','hopa','arhavi']
 bugun = (datetime.datetime.utcnow() + datetime.timedelta(hours=3)).date()
 tarih_yazi = f'{bugun.day} {AY[bugun.month-1]} {bugun.year}'
@@ -30,6 +31,8 @@ def metin_degistir(eski, yeni):
     if len(eski) >= 2:
         a = ', '.join(eski[:-1]) + ' ve ' + eski[-1]; b = ', '.join(yeni[:-1]) + ' ve ' + yeni[-1]
         s = s.replace(a, b)
+    for f in (', '.join(yeni), ', '.join(yeni[:-1]) + ' ve ' + yeni[-1]):
+        s = re.sub(r'günde \d+( sefer[^.:(]{0,40}[:(]\s*)' + re.escape(f), lambda mm: f'günde {len(yeni)}' + mm.group(1) + f, s)
 # 1) Ana 4 durak: SEFERLER + saat kartları + fiyat rozeti
 m = re.search(r'var SEFERLER = \{(.*?)\n\};', s, re.S)
 for k in ANA:
@@ -77,7 +80,12 @@ if deg:
 # 4) "Saatler değişti" kutusu (14 gün görünür)
 kutu = ''
 if kayit.get('tarih') and (bugun - datetime.date.fromisoformat(kayit['tarih'])).days <= 14:
-    satir = ''.join(f'<li><b>{c["durak"]}:</b> <s style="opacity:.55">{" · ".join(c["eski"])}</s> → <b style="color:#f0c040">{" · ".join(c["yeni"])}</b></li>' for c in kayit['degisiklik'])
+    ARTVIN = {'Artvin Otogar', 'Borçka', 'Hopa', 'Arhavi'}
+    ad = lambda x: AD.get(x, x)
+    ana = [c for c in kayit['degisiklik'] if ad(c['durak']) in ARTVIN]
+    diger = [ad(c['durak']) for c in kayit['degisiklik'] if ad(c['durak']) not in ARTVIN]
+    satir = ''.join(f'<li><b>{ad(c["durak"])}:</b> <s style="opacity:.55">{" · ".join(c["eski"])}</s> → <b style="color:#f0c040">{" · ".join(c["yeni"])}</b></li>' for c in ana)
+    if diger: satir += f'<li style="opacity:.8">Rize tarafındaki {len(diger)} durağın saatleri de değişti ({", ".join(diger)}); güncel hâlleri aşağıdaki tabloda.</li>'
     kutu = ('<div style="margin:.9rem max(1rem,calc(50% - 320px)) 0;padding:.85rem 1rem;border-radius:14px;background:rgba(240,192,64,.1);'
             'border:1px solid rgba(240,192,64,.45);color:#fff;font-size:.82rem;line-height:1.55;text-align:left">'
             f'<div style="font-weight:800;color:#f0c040;margin-bottom:.35rem">🔔 Havaş saatleri {kayit["yazi"]} tarihinde değişti</div>'
