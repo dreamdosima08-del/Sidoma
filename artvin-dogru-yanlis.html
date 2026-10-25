@@ -6,7 +6,7 @@
 <script>/* iPhone: yazı kutusuna dokununca otomatik büyümesin (iOS iki parmakla zoom'a yine izin verir) */if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)){document.querySelector('meta[name=viewport]').content+=',maximum-scale=1'}</script>
 <style>html{touch-action:manipulation}</style>
 <title>Artvin Doğru mu Yanlış mı? — Artvin Bilgi Yarışması 2026</title>
-<meta name="description" content="Artvin hakkında ne kadar bilgi sahibisin? Doğru mu Yanlış mı oyunuyla test et! 20 soru, anlık sıralama ve Artvin kültürü 2026.">
+<meta name="description" content="Artvin hakkında ne kadar bilgi sahibisin? Doğru mu Yanlış mı oyunuyla test et! 168 soru, 5 konu: coğrafya, tarih, doğa, ekonomi ve Artvin şivesi. Anlık sıralama.">
 <meta name="geo.region" content="TR-08">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Outfit:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
@@ -184,7 +184,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
   "mainEntity": [
     {"@type":"Question","name":"Artvin doğru yanlış oyunu nasıl oynanır?","acceptedAnswer":{"@type":"Answer","text":"Artvin hakkında sorulan ifadeler doğru veya yanlış olarak işaretlenir. 20 soruda en yüksek puanı alan sıralamada üst sıralara yükselir."}},
     {"@type":"Question","name":"Artvin quiz soruları nereden geliyor?","acceptedAnswer":{"@type":"Answer","text":"Sorular Artvin'in tarihi, coğrafyası, kültürü ve güncel bilgilerinden derlenmektedir."}},
-    {"@type":"Question","name":"Artvin bilgi yarışmasında kaç soru var?","acceptedAnswer":{"@type":"Answer","text":"Oyunda 20 adet doğru/yanlış sorusu bulunmaktadır. Her doğru cevap puan kazandırır."}}
+    {"@type":"Question","name":"Artvin bilgi yarışmasında kaç soru var?","acceptedAnswer":{"@type":"Answer","text":"Oyunda 168 doğru/yanlış sorusu bulunur; 100 tanesi Artvin şivesi kategorisindedir. Her doğru cevap puan kazandırır."}}
   ]
 }
 </script>
@@ -197,7 +197,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-<div style="background:linear-gradient(135deg,#166534,#15803d);display:flex;align-items:center;padding:.5rem 1rem;gap:.5rem;"><span style="font-size:.7rem;font-weight:700;color:#fff;">✅ Haziran 2026 Güncellendi</span><span style="font-size:.6rem;color:rgba(255,255,255,.6);">· Son güncelleme: 22.06.2026</span></div>
+<div style="background:linear-gradient(135deg,#166534,#15803d);display:flex;align-items:center;padding:.5rem 1rem;gap:.5rem;"><span style="font-size:.7rem;font-weight:700;color:#fff;">✅ Ekim 2026 Güncellendi</span><span style="font-size:.6rem;color:rgba(255,255,255,.6);">· Son güncelleme: 26.10.2026</span></div>
 
 <div class="fl fld" id="fd"></div>
 <div class="fl fly" id="fy"></div>
@@ -224,7 +224,7 @@ button{cursor:pointer;border:none;font-family:inherit;}
 <h3 style="display:none">Artvin Kültürü Quiz</h3>
 
 <h2 style="display:none">Artvin Doğru Yanlış Oyunu</h2>
-    <p class="sub">Gerçek Artvinli misin?<br><strong style="color:#fff">60 Soru, 4 Konu</strong><br>Her turda 10 soru · Konu konu ilerle</p>
+    <p class="sub">Gerçek Artvinli misin?<br><strong style="color:#fff">168 Soru, 5 Konu</strong><br>Her turda 10 soru · Konu konu ilerle</p>
     <button class="abtn" onclick="git(1)">OYUNA BAŞLA<span class="okc">→</span></button>
     <div class="sts">
       <div class="st"><span class="n">60</span><span class="l">Soru</span></div>
@@ -290,6 +290,11 @@ button{cursor:pointer;border:none;font-family:inherit;}
           <span style="font-size:1.8rem;">📊</span>
           <span style="flex:1;"><span style="display:block;font-weight:800;font-size:.95rem;">Ekonomi ve Nüfus</span><span style="font-size:.7rem;color:rgba(255,255,255,.5);">Tarım, madencilik, nüfus, göç</span></span>
           <span style="color:#a855f7;font-weight:800;">→</span>
+        </button>
+        <button class="katBtn" onclick="oyun(5)" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(236,72,153,.15),rgba(236,72,153,.05));border:1px solid rgba(236,72,153,.3);border-radius:14px;padding:1rem;color:#fff;cursor:pointer;text-align:left;">
+          <span style="font-size:1.8rem;">🗣️</span>
+          <span style="flex:1;"><span style="display:block;font-weight:800;font-size:.95rem;">Artvin Şivesi</span><span style="font-size:.7rem;color:rgba(255,255,255,.5);">Bibi, tatman, teheze… Hangi kelime ne demek?</span></span>
+          <span style="color:#ec4899;font-weight:800;">→</span>
         </button>
         <button class="katBtn" onclick="oyun(0)" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(240,192,64,.18),rgba(240,192,64,.05));border:1px solid rgba(240,192,64,.4);border-radius:14px;padding:1rem;color:#fff;cursor:pointer;text-align:left;">
           <span style="font-size:1.8rem;">🎲</span>
@@ -441,9 +446,8 @@ var Q=[
 {s:"Artvin Ermenistan ile sinir komsusudur.",c:false,a:"Artvin doguda Gurcistan ile sinir komsusudur. Ermenistan ile siniri yoktur.",k:1},
 {s:"Artvin'in en buyuk ilcesi merkezden sonra nufus bakimindan Hopa'dir.",c:true,a:"Artvin merkez ilceden sonra en yuksek nufusa sahip ilce Hopa'dir.",k:4},
 {s:"Artvin sadece cay ve findik tarimina uygundur.",c:false,a:"Artvin'de elma, armut, kivi, ceviz, zeytin, fasulye, misir gibi cok cesitli urunler yetisir.",k:4},
-{s:"2025 yilinda Artvin nufusu 169 binden 167.500'e dusmistir.",c:true,a:"TUIK 2025 verilerine gore Artvin nufusu 167.500'e gerilemistir.",k:4},
 {s:"Artvin, Gurcistan ile sinir komsusudur.",c:true,a:"Artvin'in kuzeydogusunda Gurcistan ile kara siniri bulunur.",k:1},
-{s:"Artvin'in gumruk kapisi Sarp koyundedir.",c:true,a:"Hopa'ya bagli Sarp koyu, Turkiye-Gurcistan sinirindaki en yogun kara gumruk kapilarindan biridir.",k:1},
+{s:"Artvin'in Gürcistan'a açılan gümrük kapısı Sarp köyündedir.",c:true,a:"Sarp Sınır Kapısı, Kemalpaşa ilçesine bağlı Sarp köyündedir; Türkiye-Gürcistan arasındaki en yoğun kara kapılarından biridir.",k:1},
 {s:"Karagol, Artvin'de bir tane vardir.",c:false,a:"Artvin'de birden fazla Karagol bulunur. En bilinenleri Borcka ve Savshat Karagol'dur.",k:3},
 {s:"Artvin'in trafik plakasi 08'dir.",c:true,a:"Turkiye'de illerin plaka kodlari alfabetik siraya gore verilmistir; Artvin 08'dir.",k:1},
 {s:"Deriner Baraji Artvin Merkezdedir.",c:true,a:"Deriner Baraji, Artvin merkez ilce sinirlari icinde, Coruh Nehri uzerinde yer alir.",k:4},
@@ -452,52 +456,161 @@ var Q=[
 {s:"Kemalpaşa ilçesi Arhavi'den ayrılarak kurulmuştur.",c:false,a:"Kemalpaşa, 1990 yılında Hopa'dan ayrılarak ilçe olmuştur.",k:4},
 {s:"Artvin ili 9 ilceden olusur.",c:true,a:"Artvin'in 9 ilcesi: Merkez, Ardanuc, Arhavi, Borcka, Hopa, Murgul, Savshat, Yusufeli, Kemalpaşa.",k:1},
 {s:"Artvin'in yuzolcumu yaklasik 7.436 km karedir.",c:true,a:"Artvin ilinin yuzolcumu resmi kayitlarda 7.436 km kare olarak gecmektedir.",k:1},
-{s:"Coruh Nehri dunyanin en hizli akan ikinci nehridir.",c:true,a:"Coruh, dunyanin en hizli akan nehirleri arasinda ikinci sirada gosterilir.",k:1},
+{s:"Çoruh Nehri, dünyanın en hızlı akan nehirlerinden biri olarak anılır.",c:true,a:"Çoruh, hızlı akışı ve sert akıntılarıyla rafting dünyasında tanınan bir nehirdir.",k:1},
 {s:"Artvin'de kirsal ve kiyi kesimler ayni iklime sahiptir.",c:false,a:"Kiyida nemli Karadeniz iklimi hakimken, ic kesimlerde yazlar sicak ve kurak, kislar soguk gecer.",k:1},
 {s:"Sahara Karagol Milli Parki Borcka'dadir.",c:false,a:"Karagol-Sahara Milli Parki, Savshat ilce sinirlari icinde yer alir.",k:3},
-{s:"Artvin'in butun ilceleri denize kiyidir.",c:false,a:"Sadece Arhavi, Hopa, Kemalpaşa ve Borcka denize kiyilidir.",k:1},
-{s:"Bulbulan Yaylasi Kars il sinirina yakin konumdadir.",c:true,a:"Bulbulan Yaylasi, Savshat ilcesinde olup Kars il sinirina yakin konumdadir.",k:1},
+{s:"Artvin'in bütün ilçeleri denize kıyıdır.",c:false,a:"Denize kıyısı olan ilçeler yalnızca Arhavi, Hopa ve Kemalpaşa'dır.",k:1},
+{s:"Artvin, Kars ile sınır komşusudur.",c:false,a:"Artvin'in komşuları Rize, Erzurum, Ardahan ve Gürcistan'dır. Kars ile sınırı yoktur.",k:1},
 {s:"Artvin'in eski adi Livane'dir.",c:true,a:"Artvin sehrinin Osmanli donemindeki adi Livane (Liva-i Livane) olarak bilinir.",k:2},
 {s:"Artvin nufus yogunlugu Turkiye ortalamasinin cok uzerindedir.",c:false,a:"Artvin, daglik yapisi nedeniyle nufus yogunlugu Turkiye ortalamasinin altindadir.",k:4},
-{s:"Borcka Karagol, Savshat Karagol'den daha yuksek konumdadir.",c:false,a:"Savshat Karagol (2.150 m), Borcka Karagol'e (1.200 m) gore cok daha yuksek rakimlidir.",k:3},
-{s:"Coruh Havzasi Turkiye HES uretiminin yaklasik yuzde 20'sini saglar.",c:true,a:"Deriner, Borcka, Muratli, Artvin, Yusufeli barajlari toplam HES uretiminin yuzde 20'sini saglar.",k:4},
+{s:"Borçka Karagöl, Şavşat Karagöl'den daha yüksektedir.",c:false,a:"Şavşat Karagöl, Borçka Karagöl'den daha yüksek rakımdadır.",k:3},
 {s:"Artvin Osmanli doneminde hicbir zaman Rus isgali gormemistir.",c:false,a:"93 Harbi (1877-1878) sonrasinda Artvin ve cevresi yaklasik 40 yil Rus isgalinde kalmistir.",k:2},
 {s:"Hatila Vadisi Milli Parki Borcka sinirlari icerisindedir.",c:false,a:"Hatila Vadisi Milli Parki, Artvin Merkez ilce sinirlari icinde, Hatila Deresi boyuncadir.",k:3},
 {s:"Artvin'de son yillarda kivi uretimi artmistir.",c:true,a:"Ozellikle Arhavi ve Hopa'da kivi bahceleri yayginlasmis, uretim artmistir.",k:4},
 {s:"Kackar Daglari'nin tamami Artvin sinirlari icindedir.",c:false,a:"Kackar Daglari'nin buyuk bolumu Rize sinirlari icerisindedir.",k:1},
 {s:"Isxan Kilisesi Gurcu yapimIdir.",c:true,a:"Isxan Kilisesi (Yusufeli), Orta Cag Gurcu kralligi doneminde insa edilmistir.",k:2},
-{s:"Camili bolgesi Turkiye'nin tek UNESCO Biyosfer Rezervi'dir.",c:true,a:"Macahel, 2005 yilinda UNESCO tarafindan Biyosfer Rezervi ilan edilmistir.",k:2},
+{s:"Camili (Macahel), Türkiye'nin ilk UNESCO Biyosfer Rezervi'dir.",c:true,a:"Macahel, 2005 yılında UNESCO tarafından Türkiye'nin ilk Biyosfer Rezervi ilan edildi.",k:2},
 {s:"Deriner Baraji yuksekligi 249 metredir.",c:true,a:"Deriner Baraji temelden itibaren 249 metre govde yuksekligine sahiptir.",k:3},
-{s:"Artvin'de Bronz Cagi'na ait bakir baltalar bulunmustur.",c:true,a:"Bolgedeki yuzey arastirmalarinda Erken ve Orta Bronz Cagi'na tarihlenen bakir eserler tespit edilmistir.",k:2},
 {s:"Karcal Dagi Artvin'in en yuksek dagidir.",c:false,a:"Artvin'in en yuksek dagi Kackar (3.937 m)'dir. Karcal (3.428 m) ikinci siradadir.",k:1},
-{s:"Artvin 1877-78 Savasi sonrasi kisa sure Rusya'ya birakilmistir.",c:true,a:"93 Harbi sonrasinda Artvin Rus isgaline girmis, bu sure yaklasik 40 yil surmustur.",k:2},
-{s:"Ardanuc Cehennem Deresi Kanyonu dunyanin sayili kanyonlari arasinda anilir.",c:true,a:"Derinligi ve dik yamaclariyla dunyanin en etkileyici kanyonlari arasinda gosterilir.",k:3},
-{s:"Turkiye'de Artvin kutugune bagli 450 bin kisi yasamaktadir.",c:true,a:"Gurbetci ve disarida yasayan Artvinlilerle birlikte kutuk nufusu 450 bine ulaşır.",k:4},
+{s:"Artvin, 93 Harbi'nden sonra 40 yılı aşkın süre Rus yönetiminde kaldı.",c:true,a:"1878'de Rus yönetimine geçen Artvin, 1921'de yeniden Türkiye'ye katıldı.",k:2},
+{s:"Cehennem Deresi Kanyonu Ardanuç'tadır.",c:true,a:"Cehennem Deresi Kanyonu, Ardanuç'ta dik yamaçları ve derinliğiyle bilinir.",k:3},
 {s:"Artvin yagisinin buyuk cogunlugunu sonbahar ve kis aylarin inda alir.",c:true,a:"Artvin'de en fazla yagis sonbahar ve kis aylarinda duşer.",k:1},
 {s:"Karagol-Sahara Milli Parki ladin ormanlariyla unludur.",c:true,a:"Milli park, saf ve karisik Dogu Ladini ormanlari ile bilinir.",k:3},
-{s:"Yusufeli havzasinda pirinc yetistiriciligi yapilmaktadir.",c:true,a:"Yusufeli'nin Coruh vadisi boyunca sulak alanlarda pirinc uretimi vardir.",k:4},
-{s:"Tbeti Kilisesi Yusufeli ilcesindedir.",c:false,a:"Tbeti Kilisesi, Savshat ilcesine bagli Cevizlik koyundedir.",k:2},
+{s:"Tbeti Kilisesi Yusufeli ilçesindedir.",c:false,a:"Tbeti Kilisesi, Şavşat ilçesine bağlı Cevizli köyündedir.",k:2},
 {s:"Murgul'da bakir madeni merkezinin ismi Kure'dir.",c:false,a:"Murgul'daki bakir madeni merkezi Murgul beldesidir. Kure ise Kastamonu'da bir ilcedir.",k:4},
 {s:"Artvin tarih boyunca sadece Turk ve Gurcu uygarliklarina ev sahipligi yapmistir.",c:false,a:"Artvin'de Hurriler, Urartular, Roma, Bizans, Selcuklu, Osmanli ve Rus gibi bircok uygarlik iz birakmistir.",k:2},
-{s:"Yusufeli barajlari sayesinde ilce nufusu artis gostermistir.",c:false,a:"Baraj insaati nedeniyle ilce merkezi tasinmis, bircok koy sular altinda kalmis, nufus azalmistir.",k:4},
-{s:"Artvin cevresinde Cilali Tas Devri'nden Demir Cagi'na kesintisiz arkeolojik katmanlar tespit edilmistir.",c:true,a:"Savshat Meydancik ve diger alanlarda yuzey arastirmalarinda Neolitik'ten Demir Cagi'na bulgular bulunmustur.",k:2},
 {s:"Artvin'in 1048 Pasinler Savasi sonrasi Selcuklu egemenligine girdigi kabul edilir.",c:true,a:"Pasinler Savasi 1048 yilinda yapilmistir. Artvin cevresi de kisa surede Selcuklu hakimiyetine girmistir.",k:2},
-{s:"Butko zeytini Yusufeli Demirkent koyune ozgudur.",c:true,a:"Butko zeytini, Demirkent koyunde yetisen, cografi isaretli ve uluslararasi odullu bir zeytin turudur.",k:2},
-{s:"1933'te Artvin ve Rize birlestirilerek Coruh Vilayeti yapilmistir.",c:true,a:"1933'te Artvin ve Rize birlestirilerek Coruh Vilayeti kurulmustur. Bu uygulama 1936'da sona ermistir.",k:2},
-{s:"Artvin ormanlarinda geyik ve karaca populasyonu yoktur.",c:false,a:"Artvin ormanlarinda kizil geyik ve karaca populasyonu bulunmaktadir.",k:3},
-{s:"Artvin'de Anadolu parsi yasamaktadir.",c:true,a:"Anadolu parsi Artvin Savshat ve Borcka ormanlarinda gorulmus, fotokapanla kayitlari alinmistir.",k:3},
-{s:"Artvin nufusunda sayisal zirve yillari 1975-1985 arasindadir.",c:true,a:"Artvin nufusu 1975'te 229.000, 1985'te 230.000 ile zirve yapmis, sonrasinda goc nedeniyle dusmustur.",k:4},
-{s:"Artvin Hopa'da Laz nufus yogunlugu diger ilcelere gore fazladir.",c:false,a:"Arhavi ve Kemalpaşa, Laz nufus yogunlugunun daha yuksek oldugu ilcelerdir.",k:4},
-{s:"Artvin'in en eski yerlesim izleri Savshat ve Yusufeli civarindadir (MO 4000).",c:true,a:"Savshat Meydancik ve Yusufeli Kilickaya cevresinde MO 4000-3000'e tarihlenen yerlesim izleri bulunmustur.",k:2},
+{s:"Butko, Artvin'e özgü bir zeytin çeşididir.",c:true,a:"Butko zeytini Artvin'in yerel zeytin çeşididir.",k:2},
+{s:"1933'te Artvin ve Rize birleştirilerek Çoruh Vilayeti kuruldu.",c:true,a:"Rize 1936'da yeniden ayrı il oldu; il 1956'ya kadar Çoruh adıyla anıldı, sonra Artvin adını aldı.",k:2},
+{s:"Artvin ormanlarında boz ayı yaşar.",c:true,a:"Boz ayı, Artvin ormanlarının bilinen yaban hayvanlarındandır.",k:3},
 {s:"Atabari Kayak Merkezi Mersivan Yaylasi'nda Artvin merkeze baglidir.",c:true,a:"Atabari Kayak Merkezi, Artvin merkeze bagli Mersivan Yaylasi'nda yer alir.",k:3},
-{s:"Rize-Artvin Havalimani Rize Findikli ile Artvin Arhavi arasindadir.",c:false,a:"Rize-Artvin Havalimani, Rize Pazar ile Artvin Hopa arasinda, Yesilkoy mevkiinde yer alir.",k:1},
-{s:"Artvin orman orani yuzde 57 ile Turkiye ilk 10 icerisindedir.",c:true,a:"Artvin orman varligi orani yaklasik yuzde 57 ile Turkiye'de genellikle 3. veya 4. siradadir.",k:3},
+{s:"Rize-Artvin Havalimanı, Fındıklı ile Arhavi arasındadır.",c:false,a:"Rize-Artvin Havalimanı, Rize'nin Pazar ilçesinde, deniz dolgusu üzerine kurulmuştur.",k:1},
 {s:"Artvin Hopa-Arhavi-Kemalpaşa sahil hatti yillik 2000 mm'ye yakin yagis alir.",c:true,a:"Bu sahil seridi yillik 1800-2200 mm arasinda yagis alir.",k:1},
-{s:"Artvin'in toplam koy sayisi 300'den azdir.",c:false,a:"Artvin'de 2024 itibariyla 320 civarinda koy bulunmaktadir.",k:4},
-{s:"Artvin en cok gocu Istanbul'a vermistir.",c:false,a:"Artvin'den en cok goc alan sehir Bursa'dir. Bursa'daki Artvin nufusu Istanbul'dakinin uzerindedir.",k:4}
+{s:"Artvin, Ardahan ile sınır komşusudur.",c:true,a:"Artvin'in komşuları Rize, Erzurum, Ardahan ve Gürcistan'dır.",k:1},
+{s:"Artvin, Trabzon ile sınır komşusudur.",c:false,a:"Artvin ile Trabzon arasında Rize vardır; ikisi komşu değildir.",k:1},
+{s:"Artvin merkez denize kıyıdır.",c:false,a:"Artvin merkez, Çoruh Vadisi'nde, denizden içeride kurulmuştur.",k:1},
+{s:"Artvin merkez yaklaşık 550 metre rakımdadır.",c:true,a:"Artvin şehir merkezi yaklaşık 550 metre yüksekliktedir.",k:1},
+{s:"Kafkasör Yaylası yaklaşık 1.250 metre yüksekliktedir.",c:true,a:"Kafkasör, Artvin merkeze yakın, yaklaşık 1.250 metredeki yayladır.",k:3},
+{s:"Murgul, Yusufeli'den daha yüksek rakımdadır.",c:false,a:"Murgul yaklaşık 420 m, Yusufeli yaklaşık 720 m rakımdadır.",k:1},
+{s:"Çoruh Nehri Bayburt'tan doğar.",c:true,a:"Çoruh Nehri Bayburt'taki Mescit Dağları'ndan doğar.",k:1},
+{s:"Çoruh Nehri Hopa'da denize dökülür.",c:false,a:"Çoruh, Gürcistan'a geçer ve Batum yakınlarında Karadeniz'e dökülür.",k:1},
+{s:"Borçka, Gürcistan ile sınırı olan ilçelerdendir.",c:true,a:"Borçka'ya bağlı Camili (Macahel) bölgesi Gürcistan sınırındadır.",k:1},
+{s:"Yusufeli Barajı Türkiye'nin en yüksek barajıdır.",c:true,a:"Yusufeli Barajı 275 metrelik gövde yüksekliğiyle Türkiye'nin en yüksek barajıdır.",k:4},
+{s:"Deriner Barajı Türkiye'nin en yüksek ikinci barajıdır.",c:true,a:"249 metrelik Deriner Barajı, Yusufeli Barajı'ndan sonra Türkiye'nin en yüksek ikinci barajıdır.",k:4},
+{s:"Yusufeli ilçe merkezi baraj nedeniyle yeni bir yere taşındı.",c:true,a:"Yusufeli Barajı'nın suları eski ilçe merkezini kapladığı için ilçe yeni yerleşim alanına taşındı.",k:4},
+{s:"Artvin Çoruh Üniversitesi 2007 yılında kuruldu.",c:true,a:"Artvin Çoruh Üniversitesi 2007'de kurulmuştur.",k:2},
+{s:"Rize-Artvin Havalimanı deniz dolgusu üzerine kurulmuştur.",c:true,a:"Havalimanı denizin doldurulmasıyla elde edilen alana yapılmış ve 2022'de açılmıştır.",k:4},
+{s:"Artvin'in kurtuluş günü 7 Mart'tır.",c:true,a:"Artvin, 7 Mart 1921'de yeniden Türkiye'ye katıldı; her yıl 7 Mart'ta kutlanır.",k:2},
+{s:"Kafkasör'de boğa güreşleri yapılır.",c:true,a:"Boğa güreşleri, Kafkasör Kültür ve Sanat Festivali'nin en bilinen etkinliğidir.",k:2},
+{s:"Artvin Kalesi'nin içi ziyarete açıktır.",c:false,a:"Artvin Kalesi şehrin simgelerinden biridir ama içi ziyarete kapalıdır.",k:2},
+{s:"İşhan Kilisesi Yusufeli'dedir.",c:true,a:"İşhan Kilisesi, Yusufeli ilçesine bağlı İşhan köyündedir.",k:2},
+{s:"Macahel, Kafkas arısıyla bilinir.",c:true,a:"Camili (Macahel) bölgesi saf Kafkas arısının korunduğu bir bölgedir.",k:3},
+{s:"Hatila Vadisi Milli Parkı Artvin merkeze yakındır.",c:true,a:"Hatila Vadisi Milli Parkı Artvin merkez ilçe sınırlarındadır.",k:3},
+{s:"Borçka Karagöl ve Şavşat Karagöl aynı göldür.",c:false,a:"İkisi ayrı göldür: biri Borçka'da, diğeri Şavşat'taki Karagöl-Sahara Milli Parkı'ndadır.",k:3},
+{s:"Kemalpaşa, Artvin'in en yeni ilçelerinden biridir.",c:true,a:"Kemalpaşa 1990'da Hopa'dan ayrılarak ilçe olmuştur.",k:4},
+{s:"Artvin şivesinde \"Kudurmah\", oynamak demektir.",c:true,a:"\"Kudurmah\" gerçekten oynamak demektir.",k:5},
+{s:"Artvin şivesinde \"Çiçip / Cicip\", dövmek demektir.",c:false,a:"\"Çiçip / Cicip\" parlak, yuvarlak çam sakızı demektir. Dövmek anlamına gelen kelime \"Zibartmah\".",k:5},
+{s:"Artvin şivesinde \"Kinkoh\", burunda oluşan kalın pislik demektir.",c:true,a:"\"Kinkoh\" gerçekten burunda oluşan kalın pislik demektir.",k:5},
+{s:"Artvin şivesinde \"Haro\", çok, bol demektir.",c:false,a:"\"Haro\" ambar içinde tahıl konan bölme demektir. Çok, bol anlamına gelen kelime \"Puthi gibi\".",k:5},
+{s:"Artvin şivesinde \"Alag alag\", yerli yerine demektir.",c:true,a:"\"Alag alag\" gerçekten yerli yerine demektir.",k:5},
+{s:"Artvin şivesinde \"Gağink etmah\", ekmek demektir.",c:false,a:"\"Gağink etmah\" yolmak, parçalamak demektir. Ekmek anlamına gelen kelime \"Pepe\".",k:5},
+{s:"Artvin şivesinde \"Kesma\", kalın kesilmiş bir pestil çeşidi demektir.",c:true,a:"\"Kesma\" gerçekten kalın kesilmiş bir pestil çeşidi demektir.",k:5},
+{s:"Artvin şivesinde \"Tot\", sidik kokulu, pis kokulu demektir.",c:false,a:"\"Tot\" pati, tombul el; birçok anlamda kullanılır demektir. Sidik kokulu, pis kokulu anlamına gelen kelime \"Şorahli\".",k:5},
+{s:"Artvin şivesinde \"Kuntlamah\", hayvanların zıplayıp oynaması demektir.",c:true,a:"\"Kuntlamah\" gerçekten hayvanların zıplayıp oynaması demektir.",k:5},
+{s:"Artvin şivesinde \"Tonpa atmak\", et yemeği demektir.",c:false,a:"\"Tonpa atmak\" takla atmak demektir. Et yemeği anlamına gelen kelime \"Lenger\".",k:5},
+{s:"Artvin şivesinde \"Vala\", gelinlerin başına örtülen örtü demektir.",c:true,a:"\"Vala\" gerçekten gelinlerin başına örtülen örtü demektir.",k:5},
+{s:"Artvin şivesinde \"Bokvi\", kaçmak demektir.",c:false,a:"\"Bokvi\" bademin taze hali demektir. Kaçmak anlamına gelen kelime \"Ziriplanmak\".",k:5},
+{s:"Artvin şivesinde \"Gacar olmah\", bir yere sokulup rahatsız etmek demektir.",c:true,a:"\"Gacar olmah\" gerçekten bir yere sokulup rahatsız etmek demektir.",k:5},
+{s:"Artvin şivesinde \"Zenne\", su arkı demektir.",c:false,a:"\"Zenne\" kadın demektir. Su arkı anlamına gelen kelime \"Suvah\".",k:5},
+{s:"Artvin şivesinde \"Kirç\", boyun demektir.",c:true,a:"\"Kirç\" gerçekten boyun demektir.",k:5},
+{s:"Artvin şivesinde \"Akuçka\", küflenmiş demektir.",c:false,a:"\"Akuçka\" pencere veya resim çerçevesi demektir. Küflenmiş anlamına gelen kelime \"Poski\".",k:5},
+{s:"Artvin şivesinde \"Tekavut\", emekli demektir.",c:true,a:"\"Tekavut\" gerçekten emekli demektir.",k:5},
+{s:"Artvin şivesinde \"Soç\", ayakları çapraz basarak aksak yürüyen demektir.",c:false,a:"\"Soç\" bir çam türü demektir. Ayakları çapraz basarak aksak yürüyen anlamına gelen kelime \"Caci\".",k:5},
+{s:"Artvin şivesinde \"Moryol\", akrep demektir.",c:true,a:"\"Moryol\" gerçekten akrep demektir.",k:5},
+{s:"Artvin şivesinde \"Godor\", buğdayın kavrulup un olmuş hali demektir.",c:false,a:"\"Godor\" büyük sepet demektir. Buğdayın kavrulup un olmuş hali anlamına gelen kelime \"Moşuşul\".",k:5},
+{s:"Artvin şivesinde \"Çarhana\", küçük kazan demektir.",c:true,a:"\"Çarhana\" gerçekten küçük kazan demektir.",k:5},
+{s:"Artvin şivesinde \"Çiançur\", bahçeyi hayvanlardan korumak için yapılan çit demektir.",c:false,a:"\"Çiançur\" bir tür erik demektir. Bahçeyi hayvanlardan korumak için yapılan çit anlamına gelen kelime \"Çeper\".",k:5},
+{s:"Artvin şivesinde \"Peşkir\", havlu demektir.",c:true,a:"\"Peşkir\" gerçekten havlu demektir.",k:5},
+{s:"Artvin şivesinde \"Çapenkul\", toz toprak demektir.",c:false,a:"\"Çapenkul\" ağzına kadar dolu demektir. Toz toprak anlamına gelen kelime \"Zibil\".",k:5},
+{s:"Artvin şivesinde \"Nakat\", düz tarlada yapılan bölmeler demektir.",c:true,a:"\"Nakat\" gerçekten düz tarlada yapılan bölmeler demektir.",k:5},
+{s:"Artvin şivesinde \"Babilo\", şaşı bakmak demektir.",c:false,a:"\"Babilo\" salatalık çardağı demektir. Şaşı bakmak anlamına gelen kelime \"Peleş\".",k:5},
+{s:"Artvin şivesinde \"Şaşvi\", kara kuş demektir.",c:true,a:"\"Şaşvi\" gerçekten kara kuş demektir.",k:5},
+{s:"Artvin şivesinde \"Buzgel\", çivi demektir.",c:false,a:"\"Buzgel\" kestanenin dikenli dış kabuğu demektir. Çivi anlamına gelen kelime \"Muh\".",k:5},
+{s:"Artvin şivesinde \"Ağeruk\", bir tür erik demektir.",c:true,a:"\"Ağeruk\" gerçekten bir tür erik demektir.",k:5},
+{s:"Artvin şivesinde \"Kanper\", tepmek, tepilmek demektir.",c:false,a:"\"Kanper\" hainlik demektir. Tepmek, tepilmek anlamına gelen kelime \"Gabanç olmak\".",k:5},
+{s:"Artvin şivesinde \"Paçka\", on kutu kibritten oluşan paket demektir.",c:true,a:"\"Paçka\" gerçekten on kutu kibritten oluşan paket demektir.",k:5},
+{s:"Artvin şivesinde \"Şaşort\", üçkâğıtçı demektir.",c:false,a:"\"Şaşort\" yaylada kalan kadına verilen ad demektir. Üçkâğıtçı anlamına gelen kelime \"Dubaracı\".",k:5},
+{s:"Artvin şivesinde \"Papah\", başa giyilen külah demektir.",c:true,a:"\"Papah\" gerçekten başa giyilen külah demektir.",k:5},
+{s:"Artvin şivesinde \"Sitil\", islanıp ağırlaşmak, sırılsıklam olmak demektir.",c:false,a:"\"Sitil\" bakırdan yapılmış, kulplu kap demektir. Islanıp ağırlaşmak, sırılsıklam olmak anlamına gelen kelime \"Sodom\".",k:5},
+{s:"Artvin şivesinde \"Daraba\", ahşap evin yan kısmı demektir.",c:true,a:"\"Daraba\" gerçekten ahşap evin yan kısmı demektir.",k:5},
+{s:"Artvin şivesinde \"Sabudar\", ekmek pişirme aracı demektir.",c:false,a:"\"Sabudar\" tohumluk salatalık demektir. Ekmek pişirme aracı anlamına gelen kelime \"Pilek\".",k:5},
+{s:"Artvin şivesinde \"Kikina\", bir tür haşere, böcek demektir.",c:true,a:"\"Kikina\" gerçekten bir tür haşere, böcek demektir.",k:5},
+{s:"Artvin şivesinde \"Koruh\", yanaştırmak demektir.",c:false,a:"\"Koruh\" yetişmemiş, olmamış meyve demektir. Yanaştırmak anlamına gelen kelime \"Yiş\".",k:5},
+{s:"Artvin şivesinde \"Zibartmah\", dövmek demektir.",c:true,a:"\"Zibartmah\" gerçekten dövmek demektir.",k:5},
+{s:"Artvin şivesinde \"Pepel\", üstünde yemek pişirilen üç ayaklı demir demektir.",c:false,a:"\"Pepel\" kelebek demektir. Üstünde yemek pişirilen üç ayaklı demir anlamına gelen kelime \"Sacayah\".",k:5},
+{s:"Artvin şivesinde \"Puthi gibi\", çok, bol demektir.",c:true,a:"\"Puthi gibi\" gerçekten çok, bol demektir.",k:5},
+{s:"Artvin şivesinde \"Mudara\", kalın kesilmiş, soyulmuş ağaç demektir.",c:false,a:"\"Mudara\" cansız, sağlam olmayan demektir. Kalın kesilmiş, soyulmuş ağaç anlamına gelen kelime \"Saberav\".",k:5},
+{s:"Artvin şivesinde \"Pepe\", ekmek demektir.",c:true,a:"\"Pepe\" gerçekten ekmek demektir.",k:5},
+{s:"Artvin şivesinde \"Kikil\", ateşten çıkan is demektir.",c:false,a:"\"Kikil\" yeni biten her türlü sebze demektir. Ateşten çıkan is anlamına gelen kelime \"Kurum\".",k:5},
+{s:"Artvin şivesinde \"Şorahli\", sidik kokulu, pis kokulu demektir.",c:true,a:"\"Şorahli\" gerçekten sidik kokulu, pis kokulu demektir.",k:5},
+{s:"Artvin şivesinde \"Kef\", emeklemek demektir.",c:false,a:"\"Kef\" ayran köpüğü demektir. Emeklemek anlamına gelen kelime \"Çoç etmah\".",k:5},
+{s:"Artvin şivesinde \"Lenger\", et yemeği demektir.",c:true,a:"\"Lenger\" gerçekten et yemeği demektir.",k:5},
+{s:"Artvin şivesinde \"Cacği\", kötürüm olmak, hareket edememek demektir.",c:false,a:"\"Cacği\" küçük ağaç toplulukları, çalılık demektir. Kötürüm olmak, hareket edememek anlamına gelen kelime \"Kutlanmah\".",k:5},
+{s:"Artvin şivesinde \"Ziriplanmak\", kaçmak demektir.",c:true,a:"\"Ziriplanmak\" gerçekten kaçmak demektir.",k:5},
+{s:"Artvin şivesinde \"Makak\", yağda pişen yuvarlak lokma demektir.",c:false,a:"\"Makak\" kurbağa demektir. Yağda pişen yuvarlak lokma anlamına gelen kelime \"Çirihta\".",k:5},
+{s:"Artvin şivesinde \"Suvah\", su arkı demektir.",c:true,a:"\"Suvah\" gerçekten su arkı demektir.",k:5},
+{s:"Artvin şivesinde \"Kitik-kita\", üstüne oturarak kayılan bir araç demektir.",c:false,a:"\"Kitik-kita\" keçi yavrusu, oğlak demektir. Üstüne oturarak kayılan bir araç anlamına gelen kelime \"Hizak\".",k:5},
+{s:"Artvin şivesinde \"Poski\", küflenmiş demektir.",c:true,a:"\"Poski\" gerçekten küflenmiş demektir.",k:5},
+{s:"Artvin şivesinde \"Bartluğ\", şımarmak, kibirlenmek demektir.",c:false,a:"\"Bartluğ\" dikenlik, çalılık yer demektir. Şımarmak, kibirlenmek anlamına gelen kelime \"Kavlanmah\".",k:5},
+{s:"Artvin şivesinde \"Caci\", ayakları çapraz basarak aksak yürüyen demektir.",c:true,a:"\"Caci\" gerçekten ayakları çapraz basarak aksak yürüyen demektir.",k:5},
+{s:"Artvin şivesinde \"Çakuç\", dağınık demektir.",c:false,a:"\"Çakuç\" çekiç demektir. Dağınık anlamına gelen kelime \"Lelevur\".",k:5},
+{s:"Artvin şivesinde \"Moşuşul\", buğdayın kavrulup un olmuş hali demektir.",c:true,a:"\"Moşuşul\" gerçekten buğdayın kavrulup un olmuş hali demektir.",k:5},
+{s:"Artvin şivesinde \"Potmal\", derince büyük kap, tas demektir.",c:false,a:"\"Potmal\" cüzdan demektir. Derince büyük kap, tas anlamına gelen kelime \"Badya\".",k:5},
+{s:"Artvin şivesinde \"Çeper\", bahçeyi hayvanlardan korumak için yapılan çit demektir.",c:true,a:"\"Çeper\" gerçekten bahçeyi hayvanlardan korumak için yapılan çit demektir.",k:5},
+{s:"Artvin şivesinde \"Loko\", bayat ekmeğin yağlı suyla haşlanmış hali demektir.",c:false,a:"\"Loko\" çok ağır demektir. Bayat ekmeğin yağlı suyla haşlanmış hali anlamına gelen kelime \"Pushal\".",k:5},
+{s:"Artvin şivesinde \"Zibil\", toz toprak demektir.",c:true,a:"\"Zibil\" gerçekten toz toprak demektir.",k:5},
+{s:"Artvin şivesinde \"Kantel\", mısır tanesinin suda pişmiş hali demektir.",c:false,a:"\"Kantel\" ağzı buruşturan hurma demektir. Mısır tanesinin suda pişmiş hali anlamına gelen kelime \"Çeçvi\".",k:5},
+{s:"Artvin şivesinde \"Peleş\", şaşı bakmak demektir.",c:true,a:"\"Peleş\" gerçekten şaşı bakmak demektir.",k:5},
+{s:"Artvin şivesinde \"Adlamağ\", oynamak demektir.",c:false,a:"\"Adlamağ\" yürümek demektir. Oynamak anlamına gelen kelime \"Kudurmah\".",k:5},
+{s:"Artvin şivesinde \"Muh\", çivi demektir.",c:true,a:"\"Muh\" gerçekten çivi demektir.",k:5},
+{s:"Artvin şivesinde \"İşhan\", burunda oluşan kalın pislik demektir.",c:false,a:"\"İşhan\" bir tür erik demektir. Burunda oluşan kalın pislik anlamına gelen kelime \"Kinkoh\".",k:5},
+{s:"Artvin şivesinde \"Gabanç olmak\", tepmek, tepilmek demektir.",c:true,a:"\"Gabanç olmak\" gerçekten tepmek, tepilmek demektir.",k:5},
+{s:"Artvin şivesinde \"Kolapa\", yerli yerine demektir.",c:false,a:"\"Kolapa\" küleğin küçüğü demektir. Yerli yerine anlamına gelen kelime \"Alag alag\".",k:5},
+{s:"Artvin şivesinde \"Dubaracı\", üçkâğıtçı demektir.",c:true,a:"\"Dubaracı\" gerçekten üçkâğıtçı demektir.",k:5},
+{s:"Artvin şivesinde \"Godo\", kalın kesilmiş bir pestil çeşidi demektir.",c:false,a:"\"Godo\" bir tür oturak demektir. Kalın kesilmiş bir pestil çeşidi anlamına gelen kelime \"Kesma\".",k:5},
+{s:"Artvin şivesinde \"Sodom\", islanıp ağırlaşmak, sırılsıklam olmak demektir.",c:true,a:"\"Sodom\" gerçekten islanıp ağırlaşmak, sırılsıklam olmak demektir.",k:5},
+{s:"Artvin şivesinde \"Kargana\", hayvanların zıplayıp oynaması demektir.",c:false,a:"\"Kargana\" omlet demektir. Hayvanların zıplayıp oynaması anlamına gelen kelime \"Kuntlamah\".",k:5},
+{s:"Artvin şivesinde \"Pilek\", ekmek pişirme aracı demektir.",c:true,a:"\"Pilek\" gerçekten ekmek pişirme aracı demektir.",k:5},
+{s:"Artvin şivesinde \"Cığız\", gelinlerin başına örtülen örtü demektir.",c:false,a:"\"Cığız\" mızıkçı demektir. Gelinlerin başına örtülen örtü anlamına gelen kelime \"Vala\".",k:5},
+{s:"Artvin şivesinde \"Yiş\", yanaştırmak demektir.",c:true,a:"\"Yiş\" gerçekten yanaştırmak demektir.",k:5},
+{s:"Artvin şivesinde \"Muzir\", bir yere sokulup rahatsız etmek demektir.",c:false,a:"\"Muzir\" çok yaramaz demektir. Bir yere sokulup rahatsız etmek anlamına gelen kelime \"Gacar olmah\".",k:5},
+{s:"Artvin şivesinde \"Sacayah\", üstünde yemek pişirilen üç ayaklı demir demektir.",c:true,a:"\"Sacayah\" gerçekten üstünde yemek pişirilen üç ayaklı demir demektir.",k:5},
+{s:"Artvin şivesinde \"Teheze\", boyun demektir.",c:false,a:"\"Teheze\" bozuk demektir. Boyun anlamına gelen kelime \"Kirç\".",k:5},
+{s:"Artvin şivesinde \"Saberav\", kalın kesilmiş, soyulmuş ağaç demektir.",c:true,a:"\"Saberav\" gerçekten kalın kesilmiş, soyulmuş ağaç demektir.",k:5},
+{s:"Artvin şivesinde \"Kohe\", emekli demektir.",c:false,a:"\"Kohe\" çam sakızının ağızda bayatlamış hali demektir. Emekli anlamına gelen kelime \"Tekavut\".",k:5},
+{s:"Artvin şivesinde \"Kurum\", ateşten çıkan is demektir.",c:true,a:"\"Kurum\" gerçekten ateşten çıkan is demektir.",k:5},
+{s:"Artvin şivesinde \"Haçonun koko\", akrep demektir.",c:false,a:"\"Haçonun koko\" kaşar peyniri demektir. Akrep anlamına gelen kelime \"Moryol\".",k:5},
+{s:"Artvin şivesinde \"Çoç etmah\", emeklemek demektir.",c:true,a:"\"Çoç etmah\" gerçekten emeklemek demektir.",k:5},
+{s:"Artvin şivesinde \"İribi iribi\", küçük kazan demektir.",c:false,a:"\"İribi iribi\" yan yan gitmek demektir. Küçük kazan anlamına gelen kelime \"Çarhana\".",k:5},
+{s:"Artvin şivesinde \"Kutlanmah\", kötürüm olmak, hareket edememek demektir.",c:true,a:"\"Kutlanmah\" gerçekten kötürüm olmak, hareket edememek demektir.",k:5},
+{s:"Artvin şivesinde \"Çaçmel\", havlu demektir.",c:false,a:"\"Çaçmel\" kısa boylu demektir. Havlu anlamına gelen kelime \"Peşkir\".",k:5},
+{s:"Artvin şivesinde \"Çirihta\", yağda pişen yuvarlak lokma demektir.",c:true,a:"\"Çirihta\" gerçekten yağda pişen yuvarlak lokma demektir.",k:5},
+{s:"Artvin şivesinde \"Çumah\", düz tarlada yapılan bölmeler demektir.",c:false,a:"\"Çumah\" ekşi demektir. Düz tarlada yapılan bölmeler anlamına gelen kelime \"Nakat\".",k:5},
+{s:"Artvin şivesinde \"Hizak\", üstüne oturarak kayılan bir araç demektir.",c:true,a:"\"Hizak\" gerçekten üstüne oturarak kayılan bir araç demektir.",k:5},
+{s:"Artvin şivesinde \"Harşo\", kara kuş demektir.",c:false,a:"\"Harşo\" patates yemeği demektir. Kara kuş anlamına gelen kelime \"Şaşvi\".",k:5},
+{s:"Artvin şivesinde \"Kavlanmah\", şımarmak, kibirlenmek demektir.",c:true,a:"\"Kavlanmah\" gerçekten şımarmak, kibirlenmek demektir.",k:5},
+{s:"Artvin şivesinde \"Guda\", bir tür erik demektir.",c:false,a:"\"Guda\" keçi derisinden yapılan kap demektir. Bir tür erik anlamına gelen kelime \"Ağeruk\".",k:5},
+{s:"Artvin şivesinde \"Lelevur\", dağınık demektir.",c:true,a:"\"Lelevur\" gerçekten dağınık demektir.",k:5},
+{s:"Artvin şivesinde \"Kota\", on kutu kibritten oluşan paket demektir.",c:false,a:"\"Kota\" bir tür kilit, sürgü demektir. On kutu kibritten oluşan paket anlamına gelen kelime \"Paçka\".",k:5},
+{s:"Artvin şivesinde \"Badya\", derince büyük kap, tas demektir.",c:true,a:"\"Badya\" gerçekten derince büyük kap, tas demektir.",k:5},
+{s:"Artvin şivesinde \"Kukumat\", başa giyilen külah demektir.",c:false,a:"\"Kukumat\" zifiri karanlık demektir. Başa giyilen külah anlamına gelen kelime \"Papah\".",k:5},
+{s:"Artvin şivesinde \"Pushal\", bayat ekmeğin yağlı suyla haşlanmış hali demektir.",c:true,a:"\"Pushal\" gerçekten bayat ekmeğin yağlı suyla haşlanmış hali demektir.",k:5},
+{s:"Artvin şivesinde \"Pisel\", ahşap evin yan kısmı demektir.",c:false,a:"\"Pisel\" i̇nsan sidiği demektir. Ahşap evin yan kısmı anlamına gelen kelime \"Daraba\".",k:5},
+{s:"Artvin şivesinde \"Çeçvi\", mısır tanesinin suda pişmiş hali demektir.",c:true,a:"\"Çeçvi\" gerçekten mısır tanesinin suda pişmiş hali demektir.",k:5},
+{s:"Artvin şivesinde \"Tirikmel\", bir tür haşere, böcek demektir.",c:false,a:"\"Tirikmel\" böbrek demektir. Bir tür haşere, böcek anlamına gelen kelime \"Kikina\".",k:5}
 ];
 var SV=[{m:0,a:"Ogrenci",r:"🎒"},{m:151,a:"Ogretmen",r:"📚"},{m:351,a:"Akademisyen",r:"🎓"},{m:701,a:"Artvin Uzmani",r:"🧠"},{m:1201,a:"Artvin Efsanesi",r:"👑"}];
-var ZC=["z0","z1","z2","z3","z0"],ZA=["🎲 Karisik","🗺️ Cografya","🏛️ Tarih ve Kultur","🌿 Doga ve Cevre","📊 Ekonomi ve Nufus"];
+var ZC=["z0","z1","z2","z3","z0","z2"],ZA=["🎲 Karisik","🗺️ Cografya","🏛️ Tarih ve Kultur","🌿 Doga ve Cevre","📊 Ekonomi ve Nufus","🗣️ Artvin Şivesi"];
 var kul="",emj="🏔️",srlar=[],ix=0,sk=0,dg=0,yn=0,sr=0,enSr=0,tmInt=null,tmK=15,bkl=false;
 
 function git(n){
@@ -531,14 +644,16 @@ function katEkrani(){
 function svAl(s){var v=SV[0];for(var i=0;i<SV.length;i++){if(s>=SV[i].m)v=SV[i];}return v;}
 function svGun(){var v=svAl(sk);document.getElementById("svC").textContent=v.r+" "+v.a;}
 var aktifKat=0;
-var KAT_AD=["Tum Konular","Cografya","Tarih ve Kultur","Doga ve Cevre","Ekonomi ve Nufus"];
+var KAT_AD=["Tum Konular","Cografya","Tarih ve Kultur","Doga ve Cevre","Ekonomi ve Nufus","Artvin Şivesi"];
 function oyun(kat){
   sesBaslat();
   sesGuncelle();
   aktifKat=kat;
-  var havuz=kat===0?Q.slice():Q.filter(function(x){return x.k===kat;});
-  havuz.sort(function(){return Math.random()-.5;});
-  srlar=havuz.slice(0,10);
+  var karis=function(l){return l.sort(function(){return Math.random()-.5;});};
+  if(kat===0){ // karışık: 8 genel + 2 şive sorusu
+    srlar=karis(Q.filter(function(x){return x.k!==5;})).slice(0,8).concat(karis(Q.filter(function(x){return x.k===5;})).slice(0,2));
+    karis(srlar);
+  } else srlar=karis(Q.filter(function(x){return x.k===kat;})).slice(0,10);
   ix=0;sk=0;dg=0;yn=0;sr=0;enSr=0;
   git(2);soru();
 }
