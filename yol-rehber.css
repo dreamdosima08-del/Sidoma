@@ -7,11 +7,11 @@
 .kritik{list-style:none;display:grid;gap:.45rem;margin:0;padding:0}
 .kritik li{display:flex;gap:.6rem;background:var(--kart);border:1px solid var(--border);border-left:4px solid var(--sari);border-radius:12px;padding:.65rem .8rem;font-size:.84rem;line-height:1.6;color:var(--dim)}
 .kritik li b{color:#fff}
-.gecmis{border-left:2px solid var(--border);margin-left:.4rem;padding-left:1rem;display:grid;gap:.75rem}
-.gecmis div{position:relative;font-size:.84rem;line-height:1.6;color:var(--dim)}
-.gecmis div::before{content:"";position:absolute;left:-1.37rem;top:.35rem;width:10px;height:10px;border-radius:50%;background:var(--kirmizi)}
-.gecmis b{display:block;color:#fff;font-size:.8rem}
-.gecmis a,.panel a,.kritik a,.kis-grid a{color:var(--gold);font-weight:700;text-decoration:none}
+.kapanma{border-left:2px solid var(--border);margin-left:.4rem;padding-left:1rem;display:grid;gap:.75rem}
+.kapanma div{position:relative;font-size:.84rem;line-height:1.6;color:var(--dim)}
+.kapanma div::before{content:"";position:absolute;left:-1.37rem;top:.35rem;width:10px;height:10px;border-radius:50%;background:var(--kirmizi)}
+.kapanma b{display:block;color:#fff;font-size:.8rem}
+.kapanma a,.panel a,.kritik a,.kis-grid a{color:var(--gold);font-weight:700;text-decoration:none}
 .sss details{background:var(--kart);border:1px solid var(--border);border-radius:12px;margin-bottom:.4rem;padding:.7rem .85rem}
 .sss summary{cursor:pointer;font-weight:700;font-size:.88rem;color:#fff}
 .sss p{font-size:.84rem;color:var(--dim);line-height:1.75;margin-top:.5rem}

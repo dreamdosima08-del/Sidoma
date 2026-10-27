@@ -1295,5 +1295,13 @@ window.addEventListener('scroll', function() {
 <script src="/yorum.js" defer></script>
 <script src="/kopya-kaynak.js" defer></script>
 <script src="/uygulama-serit.js" defer></script>
+<script src="/kart-uret.js" defer></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.KartUret){KartUret.ekle({hedef:'.durak-wrap',konum:'before',yazi:'📸 Havaş saatleri kartı üret',veri:function(){
+ if(typeof SEFERLER==='undefined') return null; var ad={artvin:'Artvin Otogar',borcka:'Borçka',hopa:'Hopa',arhavi:'Arhavi'};
+ var S=Object.keys(ad).map(function(k){return [ad[k],SEFERLER[k].map(function(x){return x.saat}).join(' · '),'#fff','blok'];});
+ var fb=[].slice.call(document.querySelectorAll('.durak-wrap .fiyat-badge')).map(function(e){return e.textContent.replace('💰','').trim()});
+ if(fb.length===4) S=S.map(function(s,i){return [s[0]+' · '+fb[i],s[1],'#fff','blok']});
+ return {kat:'✈️ Havaş Saatleri',baslik:'Rize-Artvin Havalimanı servis saatleri',buyuk:'Havalimanına gidiş',alt:'Saatler Havaş verisinden otomatik alınır, günde 3 kez kontrol edilir.',satirlar:S,
+  not:'Yola çıkmadan teyit için Havaş: 0850 222 0 487',renk:'#5bb3ff',dosya:'havas-saatleri',saat:false};}});}});</script>
 </body>
 </html>

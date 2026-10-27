@@ -918,5 +918,11 @@ $('onerForm').addEventListener('submit',function(e){
 </script>
 <script src="/yorum.js" defer></script>
 <script src="/kopya-kaynak.js" defer></script>
+<script src="/kart-uret.js" defer></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.KartUret){KartUret.ekle({hedef:'.sayac',yazi:'📸 Günün kelimesi kartı',veri:function(){
+ var M=[].slice.call(document.querySelectorAll('.m dt')); if(!M.length) return null;
+ var g=Math.floor((Date.now()+3*36e5)/864e5), dt=M[(g*7)%M.length], dd=dt.nextElementSibling;
+ return {kat:'🗣️ Artvin Sözlük',baslik:'Günün kelimesi',buyuk:dt.textContent.trim(),alt:dd?dd.textContent.trim():'',satirlar:[['Sen biliyor muydun?','Yorumlara yaz 👇']],
+  not:'396 kelimelik Artvin Sözlük: artvinrehber.com/artvin-sozluk',renk:'#f0c040',dosya:'gunun-kelimesi',saat:false};}});}});</script>
 </body>
 </html>

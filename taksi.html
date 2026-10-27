@@ -1613,5 +1613,10 @@ havaYukle();
 <script src="/yorum.js" defer></script>
 <script src="/kopya-kaynak.js" defer></script>
 <script src="/uygulama-serit.js" defer></script>
+<script src="/kart-uret.js" defer></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.KartUret){KartUret.ekle({hedef:'#uzunYol .uy-dug',yazi:'📸 Taksi ücretleri kartı',veri:function(){
+ var S=[].slice.call(document.querySelectorAll('#uzunYol .uy-hat button')).map(function(b){return [b.textContent,b.dataset.f+' ₺']}); if(!S.length) return null;
+ return {kat:'🚕 Artvin Taksi',baslik:'Uzun yol ve havalimanı taksi ücretleri 2026',alt:'Artvin otogarından · araç başı · 6 yolcuya kadar · gece farkı yok',satirlar:S,
+  not:'Rezervasyon: 0537 264 76 08 (WhatsApp)',renk:'#f0c040',dosya:'artvin-taksi-ucretleri',saat:false};}});}});</script>
 </body>
 </html>

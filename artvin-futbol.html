@@ -348,5 +348,12 @@ Promise.all([liste('futbol_takim'),liste('futbol_lig'),liste('futbol_mac'),liste
 </script>
 <script src="/nabiz-davet.js" defer></script>
 <script src="/kopya-kaynak.js" defer></script>
+<script src="/kart-uret.js" defer></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.KartUret){KartUret.ekle({hedef:'#biz',yazi:'📸 Maç kartı üret',veri:function(){
+ var B=[].slice.call(document.querySelectorAll('#biz .bk')).filter(function(b){return b.querySelector('.bk-mac')}); if(!B.length) return null;
+ var S=[]; B.forEach(function(b){var m=b.querySelector('.bk-mac'),t=m.querySelectorAll('.tt'),sk=m.querySelector('.bk-skor').innerText.replace(/\s+/g,' ');
+   S.push([(b.querySelector('.bk-etiket')||{}).textContent||b.querySelector('.bk-ad').textContent, t[0].textContent+' '+sk+' '+t[1].textContent]);
+   var s=b.querySelector('.bk-sira'); if(s) S.push(['  '+b.querySelector('.bk-ad').textContent,s.textContent]);});
+ return {kat:'⚽ Artvin Futbolu',baslik:'Artvin takımları bu hafta',satirlar:S,not:'Fikstür ve puan durumu: artvinrehber.com/artvin-futbol',renk:'#22c55e',dosya:'artvin-futbol'};}});}});</script>
 </body>
 </html>

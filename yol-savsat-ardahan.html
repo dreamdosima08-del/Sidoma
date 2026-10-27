@@ -129,7 +129,7 @@ footer a{color:var(--vivid);text-decoration:none;font-weight:700}
 
   <section class="sec">
     <h2>Geçmiş Kapanmalar ve Olaylar</h2>
-    <div class="gecmis">
+    <div class="kapanma">
       <div><b>26 Şubat 2026</b>Yoğun kar ve tipi nedeniyle Ardahan–Şavşat yolu ulaşıma kapatıldı; Sahara Geçidi mevkisinde karla mücadele ekiplerinin üzerine çığ düştü. <a href="https://www.posta.com.tr/gundem/ardahan-savsat-yolu-kapatildi-ekipler-cig-altinda-kaldi-2968685" target="_blank" rel="noopener">Haber</a></div>
       <div><b>6 Şubat 2024</b>Sahara Geçidi güzergâhındaki yoğun kar nedeniyle Artvin–Ardahan kara yolu ulaşıma kapandı. <a href="https://www.ntv.com.tr/turkiye/artvinde-kuvvetli-kar-yagisi-artvin-ardahan-karayolu-kapandi,OTBarfkB0kqzRPUVX8Rqig" target="_blank" rel="noopener">Haber</a></div>
       <div><b>25 Haziran 2023</b>Haziran ayında geçide kar yağdı; hazırlıksız yakalanan sürücüler zor anlar yaşadı. <a href="https://www.turkgun.com/gundem/sahara-gecidine-haziranda-kar-yagdi/212816" target="_blank" rel="noopener">Haber</a></div>
@@ -181,5 +181,14 @@ footer a{color:var(--vivid);text-decoration:none;font-weight:700}
 </script>
 <script src="/kopya-kaynak.js" defer></script>
 <script src="/yol-buz.js" defer></script>
+<script src="/kart-uret.js" defer></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.KartUret){KartUret.ekle({hedef:'#buzlanma',yazi:'📸 Yol durumu kartı üret',veri:function(){
+ var N=[].slice.call(document.querySelectorAll('#buzlanma .bz-n')); if(!N.length) return null;
+ var b=document.querySelector('#buzlanma .bz-baslik').textContent, r=/YÜKSEK/.test(b)?['YÜKSEK','#f25555']:/don/.test(b)?['ORTA','#f5a524']:['DÜŞÜK','#3ddb8a'];
+ var S=N.map(function(n){var rk=n.querySelector('.bz-ac b');var nad=n.querySelector('.bz-ad').childNodes[0].textContent;return [nad.length<18?nad+' ('+n.querySelector('.bz-ad small').textContent+')':nad,n.querySelector('.bz-t').textContent+' · '+rk.textContent,rk.style.color];});
+ var dk=(document.getElementById('dkDurum')||{}).textContent||'';
+ if(dk&&!/Yükleniyor|Yüklenemedi/.test(dk)) S.unshift(['Halk bildirimi',dk.trim()]);
+ return {kat:'🧊 Yol ve Buzlanma',baslik:document.querySelector('h1').textContent.replace(/\s+/g,' ').trim(),buyuk:'Buzlanma riski '+r[0],alt:b,satirlar:S,
+  not:'Hava verisine göre otomatik hesaplanır. Resmi yol durumu: e-Devlet Trafiğe Kapalı Yol Sorgulama.',renk:r[1],dosya:'yol-durumu'};}});}});</script>
 </body>
 </html>

@@ -1132,5 +1132,12 @@ setInterval(function(){ if(!document.hidden) yukle(); },15*60*1000);
 })();
 </script>
 <script src="/kopya-kaynak.js" defer></script>
+<script src="/kart-uret.js" defer></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.KartUret){KartUret.ekle({hedef:'#cumle',yazi:'📸 Bugün Artvin kartı üret',veri:function(){
+ var c=document.getElementById('cumle').textContent.trim(), d=document.getElementById('derece').textContent.trim(); if(!c||!d||/alınamadı/.test(c)) return null;
+ var e=document.getElementById('etiket'), S=[['Gökyüzü',document.getElementById('gokAlt').textContent.trim()]];
+ var n=document.getElementById('nabizSayi').textContent.trim(), ra=document.getElementById('ritimAd').textContent.trim(); if(n&&n!=='—') S.push(['Artvin\'in nabzı',n+' · '+ra]);
+ if(e&&!e.hidden&&e.textContent.trim()) S.unshift(['Bugün',e.textContent.trim()]);
+ return {kat:'☁️ Bugün Artvin',baslik:c,buyuk:d,satirlar:S,not:'Sen de bugünün nabzına katıl: artvinrehber.com/bugun-artvin',renk:'#7dd3fc',dosya:'bugun-artvin'};}});}});</script>
 </body>
 </html>
