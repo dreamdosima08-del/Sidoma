@@ -1,0 +1,18 @@
+/* Yol sayfaları: kış kartı, kritik noktalar, kapanma geçmişi */
+.kis-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
+.kis-grid div{background:var(--kart);border:1px solid var(--border);border-radius:12px;padding:.7rem .8rem}
+.kis-grid b{display:block;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:.2rem}
+.kis-grid span{font-size:.86rem;font-weight:700;color:#fff;line-height:1.4}
+.kis-grid span small{display:block;font-weight:500;font-size:.74rem;color:var(--dim)}
+.kritik{list-style:none;display:grid;gap:.45rem;margin:0;padding:0}
+.kritik li{display:flex;gap:.6rem;background:var(--kart);border:1px solid var(--border);border-left:4px solid var(--sari);border-radius:12px;padding:.65rem .8rem;font-size:.84rem;line-height:1.6;color:var(--dim)}
+.kritik li b{color:#fff}
+.gecmis{border-left:2px solid var(--border);margin-left:.4rem;padding-left:1rem;display:grid;gap:.75rem}
+.gecmis div{position:relative;font-size:.84rem;line-height:1.6;color:var(--dim)}
+.gecmis div::before{content:"";position:absolute;left:-1.37rem;top:.35rem;width:10px;height:10px;border-radius:50%;background:var(--kirmizi)}
+.gecmis b{display:block;color:#fff;font-size:.8rem}
+.gecmis a,.panel a,.kritik a,.kis-grid a{color:var(--gold);font-weight:700;text-decoration:none}
+.sss details{background:var(--kart);border:1px solid var(--border);border-radius:12px;margin-bottom:.4rem;padding:.7rem .85rem}
+.sss summary{cursor:pointer;font-weight:700;font-size:.88rem;color:#fff}
+.sss p{font-size:.84rem;color:var(--dim);line-height:1.75;margin-top:.5rem}
+@media(max-width:380px){.kis-grid{grid-template-columns:1fr}}
