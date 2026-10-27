@@ -31,7 +31,16 @@
     function icerikCiz(y, ciz) {
       var x2 = ciz ? x : { fillText: function () {}, measureText: x.measureText.bind(x), set font(v) { x.font = v; }, get font() { return x.font; }, set fillStyle(v) {}, set strokeStyle(v) {}, set lineWidth(v) {}, set textAlign(v) {}, fill: function () {}, stroke: function () {}, fillRect: function () {}, beginPath: function () {}, moveTo: function () {}, arcTo: function () {}, closePath: function () {} };
       var X = x2;
-      if (v.baslik) { X.fillStyle = '#fff'; X.font = '800 ' + (bicim === 'hikaye' ? 70 : 62) + 'px ' + F; sar(x, v.baslik, gen).slice(0, 3).forEach(function (s) { X.fillText(s, P, y + 60); y += (bicim === 'hikaye' ? 84 : 74); }); y += 18; }
+      if (v.baslik && !v.alinti) { X.fillStyle = '#fff'; X.font = '800 ' + (bicim === 'hikaye' ? 70 : 62) + 'px ' + F; sar(x, v.baslik, gen).slice(0, 3).forEach(function (s) { X.fillText(s, P, y + 60); y += (bicim === 'hikaye' ? 84 : 74); }); y += 18; }
+      if (v.gorsel) { var gc = v.gorsel, gw = gen, gh = gc.height * gen / gc.width, mh = alan - y - (v.not ? 90 : 20); if (gh > mh) { gh = mh; gw = gc.width * mh / gc.height; } var gx = P + (gen - gw) / 2;
+        if (ciz) { x.save(); yuvarlak(x, gx, y, gw, gh, 24); x.clip(); x.fillStyle = '#fff'; x.fillRect(gx, y, gw, gh); x.drawImage(gc, gx, y, gw, gh); x.restore(); yuvarlak(x, gx, y, gw, gh, 24); x.strokeStyle = 'rgba(255,255,255,.15)'; x.lineWidth = 3; x.stroke(); }
+        y += gh + 30; }
+      if (v.alinti) { var bo = v.alinti.length, fs = bo < 80 ? 76 : bo < 160 ? 62 : bo < 280 ? 50 : 42; if (bicim !== 'hikaye') fs = Math.round(fs * .85);
+        X.font = '900 ' + (fs * 2.2) + 'px Georgia, serif'; X.fillStyle = renk; X.fillText('“', P - 6, y + fs * 1.6); y += fs * 1.2;
+        X.font = '700 ' + fs + 'px ' + F; X.fillStyle = '#fff'; var sat = sar(x, v.alinti, gen), mx = Math.floor((alan - y - 160) / (fs * 1.3));
+        if (sat.length > mx) { sat = sat.slice(0, mx); sat[mx - 1] += '…'; }
+        sat.forEach(function (t) { X.fillText(t, P, y + fs); y += fs * 1.3; }); y += 30; }
+      if (v.alinti && v.baslik) { X.font = '600 38px ' + F; X.fillStyle = renk; sar(x, '— ' + v.baslik, gen).slice(0, 2).forEach(function (t) { X.fillText(t, P, y + 38); y += 50; }); y += 20; }
       if (v.buyuk) { var bs = v.buyuk.length > 18 ? (bicim === 'hikaye' ? 92 : 80) : (bicim === 'hikaye' ? 132 : 112); X.font = '900 ' + bs + 'px ' + F; X.fillStyle = renk; sar(x, v.buyuk, gen).slice(0, 2).forEach(function (s) { X.fillText(s, P, y + bs * .85); y += bs * 1.05; }); y += 14; }
       if (v.alt) { var ab = v.altBuyuk ? (bicim === 'hikaye' ? 58 : 50) : 40, al = v.altBuyuk ? 6 : 3; X.font = (v.altBuyuk ? '700 ' : '500 ') + ab + 'px ' + F; X.fillStyle = v.altBuyuk ? '#fff' : 'rgba(255,255,255,.82)'; sar(x, v.alt, gen).slice(0, al).forEach(function (s) { X.fillText(s, P, y + ab); y += ab * 1.35; }); y += 26; }
       var S = (v.satirlar || []).slice(0, bicim === 'hikaye' ? 9 : 5);
@@ -100,6 +109,7 @@
       var k = o.konum || 'after'; if (k === 'append') h.appendChild(b); else if (k === 'before') h.parentNode.insertBefore(b, h); else h.parentNode.insertBefore(b, h.nextSibling);
       return b;
     },
-    ciz: ciz
+    ciz: ciz,
+    goster: function (v) { stilEkle(); ac({ veri: function () { return v; } }); }
   };
 })();
