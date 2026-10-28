@@ -8,71 +8,98 @@
   function sar(ctx, metin, gen) { var k = String(metin).split(' '), s = [], c = ''; k.forEach(function (w) { var d = c ? c + ' ' + w : w; if (ctx.measureText(d).width > gen && c) { s.push(c); c = w; } else c = d; }); if (c) s.push(c); return s; }
   function yuvarlak(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
   var logo = new Image(); logo.src = '/icon-192.png';
+  var VARSAYILAN_FOTO = '/img/mg-20260327-wa0089-jr5dl3yv.webp';
+  var fontlar = null;
+  function fontYukle() {
+    if (fontlar) return fontlar;
+    var L = 'U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD', E = 'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F';
+    var ff = [new FontFace('KartSerif', 'url(/fonts/instrument-italic-latin.woff2)', { style: 'italic', unicodeRange: L }), new FontFace('KartSerif', 'url(/fonts/instrument-italic-latin-ext.woff2)', { style: 'italic', unicodeRange: E }),
+      new FontFace('KartSans', 'url(/fonts/bricolage-latin.woff2)', { weight: '200 800', unicodeRange: L }), new FontFace('KartSans', 'url(/fonts/bricolage-latin-ext.woff2)', { weight: '200 800', unicodeRange: E })];
+    fontlar = Promise.all(ff.map(function (f) { return f.load().then(function (x) { document.fonts.add(x); }).catch(function () {}); }));
+    return fontlar;
+  }
+  var fotoOnbellek = {};
+  function fotoYukle(u) { if (fotoOnbellek[u]) return fotoOnbellek[u]; fotoOnbellek[u] = new Promise(function (ok) { var i = new Image(); i.onload = function () { ok(i); }; i.onerror = function () { ok(null); }; i.src = u; }); return fotoOnbellek[u]; }
   function ciz(v, bicim) {
-    var W = 1080, H = bicim === 'hikaye' ? 1920 : 1350, P = 84, renk = v.renk || '#3ddb8a';
+    var W = 1080, H = bicim === 'hikaye' ? 1920 : 1350, P = 96, renk = v.renk || '#e7c77b', ALTIN = '#e7c77b';
     var c = document.createElement('canvas'); c.width = W; c.height = H; var x = c.getContext('2d');
-    var F = 'Inter, "Segoe UI", system-ui, -apple-system, Roboto, sans-serif';
-    var g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#123826'); g.addColorStop(.55, MAVI); g.addColorStop(1, '#050f09'); x.fillStyle = g; x.fillRect(0, 0, W, H);
-    var r = x.createRadialGradient(W * .85, 120, 10, W * .85, 120, 700); r.addColorStop(0, renk + '55'); r.addColorStop(1, renk + '00'); x.fillStyle = r; x.fillRect(0, 0, W, H);
-    // dağ silueti
-    x.fillStyle = 'rgba(255,255,255,.035)'; x.beginPath(); x.moveTo(0, H); [[0, H - 260], [160, H - 420], [300, H - 300], [470, H - 520], [640, H - 330], [800, H - 470], [960, H - 310], [W, H - 380], [W, H]].forEach(function (p) { x.lineTo(p[0], p[1]); }); x.fill();
-    // çapraz filigran
-    x.save(); x.translate(W / 2, H / 2); x.rotate(-Math.PI / 7); x.font = '700 46px ' + F; x.fillStyle = 'rgba(255,255,255,.035)'; x.textAlign = 'center';
-    for (var yy = -H; yy < H; yy += 230) for (var xx = -W; xx < W * 1.2; xx += 620) x.fillText('artvinrehber.com', xx + (yy / 230 % 2 ? 310 : 0), yy); x.restore();
-    var y = P + 10;
-    // başlık şeridi
-    if (logo.complete && logo.naturalWidth) { x.save(); x.beginPath(); x.arc(P + 44, y + 44, 44, 0, Math.PI * 2); x.clip(); x.drawImage(logo, P, y, 88, 88); x.restore(); }
-    x.fillStyle = '#fff'; x.font = '800 40px ' + F; x.textBaseline = 'middle'; x.fillText('ARTVİN REHBERİ', P + 112, y + 30);
-    x.fillStyle = 'rgba(255,255,255,.55)'; x.font = '500 28px ' + F; x.fillText('artvinrehber.com', P + 112, y + 70);
-    y += 150; x.textBaseline = 'alphabetic';
-    // kategori çipi
-    if (v.kat) { x.font = '800 32px ' + F; var kw = x.measureText(v.kat).width + 56; yuvarlak(x, P, y, kw, 66, 33); x.fillStyle = renk + '2a'; x.fill(); x.strokeStyle = renk + '88'; x.lineWidth = 2; x.stroke(); x.fillStyle = renk; x.fillText(v.kat, P + 28, y + 45); y += 112; }
-    var gen = W - 2 * P, bas = y, alan = H - P - 190;
+    var SANS = 'KartSans, "Segoe UI", system-ui, sans-serif', SERIF = 'KartSerif, Georgia, serif';
+    x.fillStyle = '#0b1510'; x.fillRect(0, 0, W, H);
+    // fotoğraf
+    var fh = Math.round(H * (bicim === 'hikaye' ? .44 : .38)), img = v._foto;
+    if (img) { var o = Math.max(W / img.width, fh / img.height), iw = img.width * o, ih = img.height * o; x.globalAlpha = .92; x.drawImage(img, (W - iw) / 2, (fh - ih) / 2, iw, ih); x.globalAlpha = 1; }
+    var g = x.createLinearGradient(0, 0, 0, fh + 4); g.addColorStop(0, 'rgba(11,21,16,.55)'); g.addColorStop(.35, 'rgba(11,21,16,.15)'); g.addColorStop(.78, 'rgba(11,21,16,.78)'); g.addColorStop(1, '#0b1510'); x.fillStyle = g; x.fillRect(0, 0, W, fh + 4);
+    // kontur çizgileri (topografya)
+    x.save(); x.strokeStyle = 'rgba(231,199,123,.06)'; x.lineWidth = 2;
+    for (var k = 0; k < 14; k++) { x.beginPath(); var by = fh + 60 + k * ((H - fh) / 14); for (var xx = 0; xx <= W; xx += 20) { var yy = by + Math.sin(xx / 140 + k * .7) * 18 + Math.sin(xx / 53 + k) * 6; xx ? x.lineTo(xx, yy) : x.moveTo(xx, yy); } x.stroke(); }
+    x.restore();
+    // vinyet
+    var vg = x.createRadialGradient(W / 2, H * .55, H * .2, W / 2, H * .55, H * .8); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.45)'); x.fillStyle = vg; x.fillRect(0, 0, W, H);
+    // vurgu ışığı
+    var r = x.createRadialGradient(W * .9, fh, 10, W * .9, fh, 620); r.addColorStop(0, renk + '30'); r.addColorStop(1, renk + '00'); x.fillStyle = r; x.fillRect(0, 0, W, H);
+    // altın çerçeve
+    x.strokeStyle = 'rgba(231,199,123,.55)'; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
+    x.strokeStyle = 'rgba(231,199,123,.18)'; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
+    // dikey filigran
+    x.save(); x.translate(W - 20, H / 2); x.rotate(Math.PI / 2); x.font = '600 18px ' + SANS; x.fillStyle = 'rgba(231,199,123,.55)'; x.textAlign = 'center'; if ('letterSpacing' in x) x.letterSpacing = '8px'; x.fillText('ARTVINREHBER.COM', 0, 6); x.restore();
+    if ('letterSpacing' in x) x.letterSpacing = '0px';
+    // üst bilgi
+    var y = P + 4;
+    if (logo.complete && logo.naturalWidth) { x.save(); x.beginPath(); x.arc(P + 36, y + 36, 36, 0, Math.PI * 2); x.clip(); x.drawImage(logo, P, y, 72, 72); x.restore(); x.beginPath(); x.arc(P + 36, y + 36, 38, 0, Math.PI * 2); x.strokeStyle = ALTIN; x.lineWidth = 2.5; x.stroke(); }
+    x.textBaseline = 'middle'; x.fillStyle = '#fff'; x.font = '700 26px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '7px'; x.fillText('ARTVİN REHBERİ', P + 96, y + 36);
+    var kat = String(v.kat || '').replace(/^[^A-Za-zÇĞİÖŞÜçğıöşü0-9]+/, '').trim().toLocaleUpperCase('tr');
+    if (kat) { x.font = '700 22px ' + SANS; x.fillStyle = ALTIN; x.textAlign = 'right'; x.fillText(kat, W - P, y + 36); x.textAlign = 'left'; }
+    if ('letterSpacing' in x) x.letterSpacing = '0px'; x.textBaseline = 'alphabetic';
+    var gen = W - 2 * P, alan = H - P - 170;
+    var t = new Date(), AY = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'], GN = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+    var tarih = (t.getDate() + ' ' + AY[t.getMonth()] + ' ' + t.getFullYear() + ' · ' + GN[t.getDay()] + (v.saat === false ? '' : ' · ' + String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0'))).toLocaleUpperCase('tr');
     function icerikCiz(y, ciz) {
-      var x2 = ciz ? x : { fillText: function () {}, measureText: x.measureText.bind(x), set font(v) { x.font = v; }, get font() { return x.font; }, set fillStyle(v) {}, set strokeStyle(v) {}, set lineWidth(v) {}, set textAlign(v) {}, fill: function () {}, stroke: function () {}, fillRect: function () {}, beginPath: function () {}, moveTo: function () {}, arcTo: function () {}, closePath: function () {} };
-      var X = x2;
-      if (v.baslik && !v.alinti) { X.fillStyle = '#fff'; X.font = '800 ' + (bicim === 'hikaye' ? 70 : 62) + 'px ' + F; sar(x, v.baslik, gen).slice(0, 3).forEach(function (s) { X.fillText(s, P, y + 60); y += (bicim === 'hikaye' ? 84 : 74); }); y += 18; }
+      var Q = ciz ? x : null;
+      function yaz(t, X2, Y2) { if (Q) Q.fillText(t, X2, Y2); }
+      // tarih satırı
+      x.font = '600 24px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '5px'; if (Q) { x.fillStyle = ALTIN; } yaz(tarih, P, y + 24); if ('letterSpacing' in x) x.letterSpacing = '0px'; y += 64;
+      if (v.baslik && !v.alinti) { var bs = bicim === 'hikaye' ? 88 : 76; x.font = 'italic 400 ' + bs + 'px ' + SERIF; if (Q) x.fillStyle = '#fff'; sar(x, v.baslik, gen).slice(0, 3).forEach(function (s) { yaz(s, P, y + bs * .82); y += bs * 1.04; }); y += 18;
+        if (Q) { x.fillStyle = ALTIN; x.fillRect(P, y, 84, 3); } y += 40; }
       if (v.gorsel) { var gc = v.gorsel, gw = gen, gh = gc.height * gen / gc.width, mh = alan - y - (v.not ? 90 : 20); if (gh > mh) { gh = mh; gw = gc.width * mh / gc.height; } var gx = P + (gen - gw) / 2;
-        if (ciz) { x.save(); yuvarlak(x, gx, y, gw, gh, 24); x.clip(); x.fillStyle = '#fff'; x.fillRect(gx, y, gw, gh); x.drawImage(gc, gx, y, gw, gh); x.restore(); yuvarlak(x, gx, y, gw, gh, 24); x.strokeStyle = 'rgba(255,255,255,.15)'; x.lineWidth = 3; x.stroke(); }
-        y += gh + 30; }
-      if (v.alinti) { var bo = v.alinti.length, fs = bo < 80 ? 76 : bo < 160 ? 62 : bo < 280 ? 50 : 42; if (bicim !== 'hikaye') fs = Math.round(fs * .85);
-        X.font = '900 ' + (fs * 2.2) + 'px Georgia, serif'; X.fillStyle = renk; X.fillText('“', P - 6, y + fs * 1.6); y += fs * 1.2;
-        X.font = '700 ' + fs + 'px ' + F; X.fillStyle = '#fff'; var sat = sar(x, v.alinti, gen), mx = Math.floor((alan - y - 160) / (fs * 1.3));
+        if (Q) { x.save(); x.shadowColor = 'rgba(0,0,0,.5)'; x.shadowBlur = 40; x.shadowOffsetY = 16; yuvarlak(x, gx, y, gw, gh, 18); x.fillStyle = '#fff'; x.fill(); x.restore(); x.save(); yuvarlak(x, gx, y, gw, gh, 18); x.clip(); x.drawImage(gc, gx, y, gw, gh); x.restore(); yuvarlak(x, gx, y, gw, gh, 18); x.strokeStyle = 'rgba(231,199,123,.6)'; x.lineWidth = 2; x.stroke(); }
+        y += gh + 40; }
+      if (v.alinti) { var bo = v.alinti.length, fs = bo < 80 ? 84 : bo < 160 ? 70 : bo < 280 ? 56 : 46; if (bicim !== 'hikaye') fs = Math.round(fs * .85);
+        x.font = 'italic 400 ' + Math.round(fs * 2.6) + 'px ' + SERIF; if (Q) x.fillStyle = ALTIN; yaz('“', P - 8, y + fs * 1.9); y += fs * 1.35;
+        x.font = 'italic 400 ' + fs + 'px ' + SERIF; if (Q) x.fillStyle = '#fff'; var sat = sar(x, v.alinti, gen), mx = Math.max(2, Math.floor((alan - y - 170) / (fs * 1.22)));
         if (sat.length > mx) { sat = sat.slice(0, mx); sat[mx - 1] += '…'; }
-        sat.forEach(function (t) { X.fillText(t, P, y + fs); y += fs * 1.3; }); y += 30; }
-      if (v.alinti && v.baslik) { X.font = '600 38px ' + F; X.fillStyle = renk; sar(x, '— ' + v.baslik, gen).slice(0, 2).forEach(function (t) { X.fillText(t, P, y + 38); y += 50; }); y += 20; }
-      if (v.buyuk) { var bs = v.buyuk.length > 18 ? (bicim === 'hikaye' ? 92 : 80) : (bicim === 'hikaye' ? 132 : 112); X.font = '900 ' + bs + 'px ' + F; X.fillStyle = renk; sar(x, v.buyuk, gen).slice(0, 2).forEach(function (s) { X.fillText(s, P, y + bs * .85); y += bs * 1.05; }); y += 14; }
-      if (v.alt) { var ab = v.altBuyuk ? (bicim === 'hikaye' ? 58 : 50) : 40, al = v.altBuyuk ? 6 : 3; X.font = (v.altBuyuk ? '700 ' : '500 ') + ab + 'px ' + F; X.fillStyle = v.altBuyuk ? '#fff' : 'rgba(255,255,255,.82)'; sar(x, v.alt, gen).slice(0, al).forEach(function (s) { X.fillText(s, P, y + ab); y += ab * 1.35; }); y += 26; }
+        sat.forEach(function (s) { yaz(s, P, y + fs); y += fs * 1.22; }); y += 36;
+        if (v.baslik) { if (Q) { x.fillStyle = ALTIN; x.fillRect(P, y, 60, 3); } y += 30; x.font = '600 32px ' + SANS; if (Q) x.fillStyle = 'rgba(255,255,255,.85)'; sar(x, v.baslik, gen).slice(0, 2).forEach(function (s) { yaz(s, P, y + 32); y += 44; }); y += 16; } }
+      if (v.buyuk) { var bb = v.buyuk.length > 18 ? (bicim === 'hikaye' ? 96 : 84) : (bicim === 'hikaye' ? 140 : 118); x.font = '800 ' + bb + 'px ' + SANS; if (Q) x.fillStyle = renk; sar(x, v.buyuk, gen).slice(0, 2).forEach(function (s) { yaz(s, P - 4, y + bb * .8); y += bb * .98; }); y += 22; }
+      if (v.alt) { var ab = v.altBuyuk ? (bicim === 'hikaye' ? 62 : 54) : 38, al = v.altBuyuk ? 6 : 3; x.font = v.altBuyuk ? 'italic 400 ' + ab + 'px ' + SERIF : '400 ' + ab + 'px ' + SANS; if (Q) x.fillStyle = v.altBuyuk ? '#fff' : 'rgba(255,255,255,.78)'; sar(x, v.alt, gen).slice(0, al).forEach(function (s) { yaz(s, P, y + ab); y += ab * 1.32; }); y += 30; }
       var S = (v.satirlar || []).slice(0, bicim === 'hikaye' ? 9 : 5);
       if (S.length) {
-        var yuks = S.map(function (s) { if (s[3] !== 'blok') return 92; X.font = '800 36px ' + F; return 70 + Math.min(2, sar(x, String(s[1]), gen - 64).length) * 46; }), ph = yuks.reduce(function (a, b) { return a + b; }, 0) + 24;
-        yuvarlak(X, P, y, gen, ph, 28); X.fillStyle = 'rgba(0,0,0,.28)'; X.fill(); X.strokeStyle = 'rgba(255,255,255,.08)'; X.lineWidth = 2; X.stroke();
-        var sy = y + 12;
-        S.forEach(function (s, i) {
-          if (i) { X.fillStyle = 'rgba(255,255,255,.07)'; X.fillRect(P + 28, sy, gen - 56, 2); }
+        if (Q) { x.fillStyle = 'rgba(231,199,123,.35)'; x.fillRect(P, y, gen, 1.5); }
+        S.forEach(function (s) {
           if (s[3] === 'blok') {
-            X.font = '600 30px ' + F; X.fillStyle = 'rgba(255,255,255,.6)'; X.fillText(s[0], P + 32, sy + 46);
-            X.font = '800 36px ' + F; X.fillStyle = s[2] || '#fff'; sar(x, String(s[1]), gen - 64).slice(0, 2).forEach(function (t, j) { X.fillText(t, P + 32, sy + 96 + j * 46); });
+            x.font = '600 26px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '3px'; if (Q) x.fillStyle = ALTIN; yaz(String(s[0]).toLocaleUpperCase('tr'), P, y + 50); if ('letterSpacing' in x) x.letterSpacing = '0px';
+            x.font = '700 36px ' + SANS; if (Q) x.fillStyle = s[2] || '#fff'; var l = sar(x, String(s[1]), gen).slice(0, 2); l.forEach(function (tt, j) { yaz(tt, P, y + 102 + j * 46); }); y += 70 + l.length * 46 + 14;
           } else {
-            X.font = '500 36px ' + F; X.fillStyle = 'rgba(255,255,255,.62)'; var sol = s[0]; while (x.measureText(sol).width > gen * .5 && sol.length > 4) sol = sol.slice(0, -2) + '…'; X.fillText(sol, P + 32, sy + 58);
-            X.font = '800 38px ' + F; X.fillStyle = s[2] || '#fff'; X.textAlign = 'right'; var sag = String(s[1]); while (x.measureText(sag).width > gen * .46 && sag.length > 4) sag = sag.slice(0, -2) + '…'; X.fillText(sag, W - P - 32, sy + 58); X.textAlign = 'left';
+            x.font = '400 34px ' + SANS; if (Q) x.fillStyle = 'rgba(255,255,255,.66)'; var sol = String(s[0]); while (x.measureText(sol).width > gen * .52 && sol.length > 4) sol = sol.slice(0, -2) + '…'; yaz(sol, P, y + 62);
+            x.font = '700 36px ' + SANS; if (Q) { x.fillStyle = s[2] || '#fff'; x.textAlign = 'right'; } var sag = String(s[1]); while (x.measureText(sag).width > gen * .46 && sag.length > 4) sag = sag.slice(0, -2) + '…'; yaz(sag, W - P, y + 62); if (Q) x.textAlign = 'left';
+            y += 96;
           }
-          sy += yuks[i];
+          if (Q) { x.fillStyle = 'rgba(231,199,123,.16)'; x.fillRect(P, y, gen, 1); }
         });
-        y += ph + 30;
+        y += 34;
       }
-      if (v.not) { X.font = '500 30px ' + F; X.fillStyle = 'rgba(255,255,255,.5)'; sar(x, v.not, gen).slice(0, 3).forEach(function (s) { X.fillText(s, P, y + 30); y += 42; }); }
+      if (v.not) { x.font = '400 28px ' + SANS; if (Q) x.fillStyle = 'rgba(255,255,255,.5)'; sar(x, v.not, gen).slice(0, 3).forEach(function (s) { yaz(s, P, y + 28); y += 40; }); }
       return y;
     }
-    var son = icerikCiz(bas, false), bos = alan - son;
-    icerikCiz(bas + (bicim === 'hikaye' && bos > 0 ? Math.min(bos * .42, 260) : 0), true);
+    var bas = Math.max(y + 60, fh - (bicim === 'hikaye' ? 230 : 170));
+    var son = icerikCiz(bas, false);
+    if (son > alan) bas = Math.max(y + 60, bas - (son - alan));
+    icerikCiz(bas, true);
     // alt bilgi
-    var t = new Date(), ay = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-    var ts = t.getDate() + ' ' + ay[t.getMonth()] + ' ' + t.getFullYear() + (v.saat === false ? '' : ' · ' + String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0'));
-    var fy = H - P - 70; yuvarlak(x, P, fy - 20, gen, 108, 54); x.fillStyle = renk; x.fill();
-    x.fillStyle = '#06130c'; x.font = '900 38px ' + F; x.fillText('artvinrehber.com', P + 40, fy + 47);
-    x.font = '700 30px ' + F; x.textAlign = 'right'; x.fillText('@artvinrehber', W - P - 40, fy + 46); x.textAlign = 'left';
-    x.fillStyle = 'rgba(255,255,255,.5)'; x.font = '500 28px ' + F; x.fillText(ts, P, fy - 46);
+    var fy = H - P - 70; x.fillStyle = 'rgba(231,199,123,.55)'; x.fillRect(P, fy, gen, 1.5);
+    x.font = '700 34px ' + SANS; x.fillStyle = '#fff'; x.fillText('artvinrehber.com', P, fy + 62);
+    x.font = '600 30px ' + SANS; x.fillStyle = ALTIN; x.textAlign = 'right'; x.fillText('@artvinrehber', W - P, fy + 61); x.textAlign = 'left';
+    // film dokusu
+    var tane = x.getImageData(0, 0, W, H), d = tane.data; for (var i = 0; i < d.length; i += 4) { var n = (Math.random() - .5) * 14; d[i] += n; d[i + 1] += n; d[i + 2] += n; } x.putImageData(tane, 0, 0);
     return c;
   }
   var stil = false;
@@ -98,7 +125,7 @@
     ov.querySelector('.kap').onclick = function () { ov.remove(); };
     ov.addEventListener('click', function (e) { if (e.target === ov) ov.remove(); });
     document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { ov.remove(); document.removeEventListener('keydown', k); } });
-    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { if (logo.complete) yap(); else { logo.onload = logo.onerror = yap; } });
+    Promise.all([fontYukle(), fotoYukle(v.foto || VARSAYILAN_FOTO), new Promise(function (ok) { if (logo.complete) ok(); else { logo.onload = logo.onerror = ok; } })]).then(function (r) { v._foto = r[1]; yap(); });
   }
   window.KartUret = {
     ekle: function (o) {

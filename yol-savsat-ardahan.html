@@ -188,7 +188,7 @@ footer a{color:var(--vivid);text-decoration:none;font-weight:700}
  var S=N.map(function(n){var rk=n.querySelector('.bz-ac b');var nad=n.querySelector('.bz-ad').childNodes[0].textContent;return [nad.length<18?nad+' ('+n.querySelector('.bz-ad small').textContent+')':nad,n.querySelector('.bz-t').textContent+' · '+rk.textContent,rk.style.color];});
  var dk=(document.getElementById('dkDurum')||{}).textContent||'';
  if(dk&&!/Yükleniyor|Yüklenemedi/.test(dk)) S.unshift(['Halk bildirimi',dk.trim()]);
- return {kat:'🧊 Yol ve Buzlanma',baslik:document.querySelector('h1').textContent.replace(/\s+/g,' ').trim(),buyuk:'Buzlanma riski '+r[0],alt:b,satirlar:S,
+ var fi=document.querySelector('.yol-foto img');return {foto:fi?fi.getAttribute('src').replace('-640.webp','.webp'):undefined,kat:'🧊 Yol ve Buzlanma',baslik:document.querySelector('h1').textContent.replace(/\s+/g,' ').trim(),buyuk:'Buzlanma riski '+r[0],alt:b,satirlar:S,
   not:'Hava verisine göre otomatik hesaplanır. Resmi yol durumu: e-Devlet Trafiğe Kapalı Yol Sorgulama.',renk:r[1],dosya:'yol-durumu'};}});}});</script>
 <script src="/kart-sec.js" defer></script>
 </body>

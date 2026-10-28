@@ -892,7 +892,7 @@ window.GOK = (function(){
  var d=document.getElementById('anaDerece').textContent.trim(); if(!d||d.indexOf('—')>-1) return null;
  var S=[].slice.call(document.querySelectorAll('#gunler .gun')).slice(0,6).map(function(g){var a=g.querySelector('.gun-ad');a=a?a.childNodes[0].textContent:'';
    return [(g.querySelector('.gun-ikon')||{}).textContent+' '+a,(g.querySelector('.min')||{}).textContent+' / '+(g.querySelector('.max')||{}).textContent];});
- return {kat:'🌤️ Hava Durumu',baslik:document.getElementById('yerAd').textContent.replace(' 📍',''),buyuk:d+' · '+document.getElementById('anaDurum').textContent.trim(),
+ var ay=new Date().getMonth();return {foto:(ay>=10||ay<=2)?'/img/2022025133857803192202517172673622025121833895manset-1140-56-0rgpjfdx.webp':undefined,kat:'🌤️ Hava Durumu',baslik:document.getElementById('yerAd').textContent.replace(' 📍',''),buyuk:d+' · '+document.getElementById('anaDurum').textContent.trim(),
   alt:document.getElementById('anaHis').textContent.trim(),satirlar:S,renk:'#5bb3ff',dosya:'artvin-hava-durumu'};}});}});</script>
 <script src="/kart-sec.js" defer></script>
 </body>
