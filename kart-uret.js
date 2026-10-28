@@ -50,7 +50,7 @@
     var kat = String(v.kat || '').replace(/^[^A-Za-zÇĞİÖŞÜçğıöşü0-9]+/, '').trim().toLocaleUpperCase('tr');
     if (kat) { x.font = '700 22px ' + SANS; x.fillStyle = ALTIN; x.textAlign = 'right'; x.fillText(kat, W - P, y + 36); x.textAlign = 'left'; }
     if ('letterSpacing' in x) x.letterSpacing = '0px'; x.textBaseline = 'alphabetic';
-    var gen = W - 2 * P, alan = H - P - 170;
+    var gen = W - 2 * P, alan = H - P - 260;
     var t = new Date(), AY = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'], GN = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
     var tarih = (t.getDate() + ' ' + AY[t.getMonth()] + ' ' + t.getFullYear() + ' · ' + GN[t.getDay()] + (v.saat === false ? '' : ' · ' + String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0'))).toLocaleUpperCase('tr');
     function icerikCiz(y, ciz) {
@@ -94,6 +94,12 @@
     var son = icerikCiz(bas, false);
     if (son > alan) bas = Math.max(y + 60, bas - (son - alan));
     icerikCiz(bas, true);
+    // Google Play rozeti
+    var py = H - P - 170, pt = 'Uygulama Google Play\'de: Artvin Rehber';
+    x.font = '600 28px ' + SANS; var pw = x.measureText(pt).width + 110;
+    yuvarlak(x, P, py, pw, 70, 35); x.fillStyle = 'rgba(231,199,123,.1)'; x.fill(); x.strokeStyle = 'rgba(231,199,123,.55)'; x.lineWidth = 1.5; x.stroke();
+    x.beginPath(); x.moveTo(P + 34, py + 20); x.lineTo(P + 34, py + 50); x.lineTo(P + 60, py + 35); x.closePath(); x.fillStyle = ALTIN; x.fill();
+    x.fillStyle = '#fff'; x.fillText(pt, P + 80, py + 45);
     // alt bilgi
     var fy = H - P - 70; x.fillStyle = 'rgba(231,199,123,.55)'; x.fillRect(P, fy, gen, 1.5);
     x.font = '700 34px ' + SANS; x.fillStyle = '#fff'; x.fillText('artvinrehber.com', P, fy + 62);
