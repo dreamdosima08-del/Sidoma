@@ -24,33 +24,9 @@
     var W = 1080, H = bicim === 'hikaye' ? 1920 : 1350, P = 96, renk = v.renk || '#e7c77b', ALTIN = '#e7c77b';
     var c = document.createElement('canvas'); c.width = W; c.height = H; var x = c.getContext('2d');
     var SANS = 'KartSans, "Segoe UI", system-ui, sans-serif', SERIF = 'KartSerif, Georgia, serif';
-    x.fillStyle = '#0b1510'; x.fillRect(0, 0, W, H);
-    // fotoğraf
-    var fh = Math.round(H * (bicim === 'hikaye' ? .44 : .38)), img = v._foto;
-    if (img) { var o = Math.max(W / img.width, fh / img.height), iw = img.width * o, ih = img.height * o; x.globalAlpha = .92; x.drawImage(img, (W - iw) / 2, (fh - ih) / 2, iw, ih); x.globalAlpha = 1; }
-    var g = x.createLinearGradient(0, 0, 0, fh + 4); g.addColorStop(0, 'rgba(11,21,16,.55)'); g.addColorStop(.35, 'rgba(11,21,16,.15)'); g.addColorStop(.78, 'rgba(11,21,16,.78)'); g.addColorStop(1, '#0b1510'); x.fillStyle = g; x.fillRect(0, 0, W, fh + 4);
-    // kontur çizgileri (topografya)
-    x.save(); x.strokeStyle = 'rgba(231,199,123,.06)'; x.lineWidth = 2;
-    for (var k = 0; k < 14; k++) { x.beginPath(); var by = fh + 60 + k * ((H - fh) / 14); for (var xx = 0; xx <= W; xx += 20) { var yy = by + Math.sin(xx / 140 + k * .7) * 18 + Math.sin(xx / 53 + k) * 6; xx ? x.lineTo(xx, yy) : x.moveTo(xx, yy); } x.stroke(); }
-    x.restore();
-    // vinyet
-    var vg = x.createRadialGradient(W / 2, H * .55, H * .2, W / 2, H * .55, H * .8); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.45)'); x.fillStyle = vg; x.fillRect(0, 0, W, H);
-    // vurgu ışığı
-    var r = x.createRadialGradient(W * .9, fh, 10, W * .9, fh, 620); r.addColorStop(0, renk + '30'); r.addColorStop(1, renk + '00'); x.fillStyle = r; x.fillRect(0, 0, W, H);
-    // altın çerçeve
-    x.strokeStyle = 'rgba(231,199,123,.55)'; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
-    x.strokeStyle = 'rgba(231,199,123,.18)'; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
-    // dikey filigran
-    x.save(); x.translate(W - 20, H / 2); x.rotate(Math.PI / 2); x.font = '600 18px ' + SANS; x.fillStyle = 'rgba(231,199,123,.55)'; x.textAlign = 'center'; if ('letterSpacing' in x) x.letterSpacing = '8px'; x.fillText('ARTVINREHBER.COM', 0, 6); x.restore();
-    if ('letterSpacing' in x) x.letterSpacing = '0px';
-    // üst bilgi
+    var fh0 = Math.round(H * (bicim === 'hikaye' ? .44 : .38));
     var y = P + 4;
-    if (logo.complete && logo.naturalWidth) { x.save(); x.beginPath(); x.arc(P + 36, y + 36, 36, 0, Math.PI * 2); x.clip(); x.drawImage(logo, P, y, 72, 72); x.restore(); x.beginPath(); x.arc(P + 36, y + 36, 38, 0, Math.PI * 2); x.strokeStyle = ALTIN; x.lineWidth = 2.5; x.stroke(); }
-    x.textBaseline = 'middle'; x.fillStyle = '#fff'; x.font = '700 26px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '7px'; x.fillText('ARTVİN REHBERİ', P + 96, y + 36);
-    var kat = String(v.kat || '').replace(/^[^A-Za-zÇĞİÖŞÜçğıöşü0-9]+/, '').trim().toLocaleUpperCase('tr');
-    if (kat) { x.font = '700 22px ' + SANS; x.fillStyle = ALTIN; x.textAlign = 'right'; x.fillText(kat, W - P, y + 36); x.textAlign = 'left'; }
-    if ('letterSpacing' in x) x.letterSpacing = '0px'; x.textBaseline = 'alphabetic';
-    var gen = W - 2 * P, alan = H - P - 260;
+    var gen = W - 2 * P, alan = H - P - 196;
     var t = new Date(), AY = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'], GN = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
     var tarih = (t.getDate() + ' ' + AY[t.getMonth()] + ' ' + t.getFullYear() + ' · ' + GN[t.getDay()] + (v.saat === false ? '' : ' · ' + String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0'))).toLocaleUpperCase('tr');
     function icerikCiz(y, ciz) {
@@ -71,14 +47,15 @@
         if (v.baslik) { if (Q) { x.fillStyle = ALTIN; x.fillRect(P, y, 60, 3); } y += 30; x.font = '600 32px ' + SANS; if (Q) x.fillStyle = 'rgba(255,255,255,.85)'; sar(x, v.baslik, gen).slice(0, 2).forEach(function (s) { yaz(s, P, y + 32); y += 44; }); y += 16; } }
       if (v.buyuk) { var bb = v.buyuk.length > 18 ? (bicim === 'hikaye' ? 96 : 84) : (bicim === 'hikaye' ? 140 : 118); x.font = '800 ' + bb + 'px ' + SANS; if (Q) x.fillStyle = renk; sar(x, v.buyuk, gen).slice(0, 2).forEach(function (s) { yaz(s, P - 4, y + bb * .8); y += bb * .98; }); y += 22; }
       if (v.alt) { var ab = v.altBuyuk ? (bicim === 'hikaye' ? 62 : 54) : 38, al = v.altBuyuk ? 6 : 3; x.font = v.altBuyuk ? 'italic 400 ' + ab + 'px ' + SERIF : '400 ' + ab + 'px ' + SANS; if (Q) x.fillStyle = v.altBuyuk ? '#fff' : 'rgba(255,255,255,.78)'; sar(x, v.alt, gen).slice(0, al).forEach(function (s) { yaz(s, P, y + ab); y += ab * 1.32; }); y += 30; }
-      var S = (v.satirlar || []).slice(0, bicim === 'hikaye' ? 9 : 5);
+      var S = (v.satirlar || []).slice(0, Math.min(bicim === 'hikaye' ? 9 : (v.gonderiSatir || 5), satirLim));
       if (S.length) {
+        if (v.listeBaslik) { x.font = '600 24px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '4px'; if (Q) x.fillStyle = ALTIN; yaz(String(v.listeBaslik).toLocaleUpperCase('tr'), P, y + 26); if ('letterSpacing' in x) x.letterSpacing = '0px'; y += 50; }
         if (Q) { x.fillStyle = 'rgba(231,199,123,.35)'; x.fillRect(P, y, gen, 1.5); }
         S.forEach(function (s) {
           if (s[3] === 'madde') {
             if (Q) { x.fillStyle = ALTIN; x.save(); x.translate(P + 9, y + 50); x.rotate(Math.PI / 4); x.fillRect(-6, -6, 12, 12); x.restore(); }
-            x.font = '500 34px ' + SANS; if (Q) x.fillStyle = '#fff'; var md = String(s[0]); while (x.measureText(md).width > gen - 44 && md.length > 4) md = md.slice(0, -2) + '…'; yaz(md, P + 44, y + 62);
-            y += 92;
+            x.font = '500 33px ' + SANS; if (Q) x.fillStyle = '#fff'; var ml = sar(x, String(s[0]), gen - 44).slice(0, 2); ml.forEach(function (tt, j) { yaz(tt, P + 44, y + 60 + j * 42); });
+            y += 84 + (ml.length - 1) * 42;
           } else if (s[3] === 'blok') {
             x.font = '600 26px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '3px'; if (Q) x.fillStyle = ALTIN; yaz(String(s[0]).toLocaleUpperCase('tr'), P, y + 50); if ('letterSpacing' in x) x.letterSpacing = '0px';
             x.font = '700 36px ' + SANS; if (Q) x.fillStyle = s[2] || '#fff'; var l = sar(x, String(s[1]), gen).slice(0, 2); l.forEach(function (tt, j) { yaz(tt, P, y + 102 + j * 46); }); y += 70 + l.length * 46 + 14;
@@ -94,9 +71,38 @@
       if (v.not) { x.font = '400 28px ' + SANS; if (Q) x.fillStyle = 'rgba(255,255,255,.5)'; sar(x, v.not, gen).slice(0, 3).forEach(function (s) { yaz(s, P, y + 28); y += 40; }); }
       return y;
     }
-    var bas = Math.max(y + 60, fh - (bicim === 'hikaye' ? 230 : 170));
-    var son = icerikCiz(bas, false);
-    if (son > alan) bas = Math.max(y + 60, bas - (son - alan));
+    var ofs = bicim === 'hikaye' ? 230 : 170, satirLim = 99, tumS = (v.satirlar || []).length;
+    function yerles() { var b = Math.max(y + 110, fh0 - ofs), h = icerikCiz(b, false) - b; if (b + h > alan) b = Math.max(y + 110, alan - h); return b; }
+    var bas = yerles();
+    if (tumS > 2) { satirLim = tumS; while (icerikCiz(bas, false) > alan && satirLim > 2) { satirLim--; bas = yerles(); } }
+    var fh = Math.min(fh0, bas + ofs);
+    (function () {
+    x.fillStyle = '#0b1510'; x.fillRect(0, 0, W, H);
+    // fotoğraf
+    var img = v._foto;
+    if (img) { var o = Math.max(W / img.width, fh / img.height), iw = img.width * o, ih = img.height * o; x.save(); x.beginPath(); x.rect(0, 0, W, fh); x.clip(); x.globalAlpha = .92; x.drawImage(img, (W - iw) / 2, (fh - ih) / 2, iw, ih); x.restore(); }
+    var g = x.createLinearGradient(0, 0, 0, fh + 4); g.addColorStop(0, 'rgba(11,21,16,.55)'); g.addColorStop(.35, 'rgba(11,21,16,.15)'); g.addColorStop(.78, 'rgba(11,21,16,.78)'); g.addColorStop(1, '#0b1510'); x.fillStyle = g; x.fillRect(0, 0, W, fh + 4);
+    // kontur çizgileri (topografya)
+    x.save(); x.strokeStyle = 'rgba(231,199,123,.06)'; x.lineWidth = 2;
+    for (var k = 0; k < 14; k++) { x.beginPath(); var by = fh + 60 + k * ((H - fh) / 14); for (var xx = 0; xx <= W; xx += 20) { var yy = by + Math.sin(xx / 140 + k * .7) * 18 + Math.sin(xx / 53 + k) * 6; xx ? x.lineTo(xx, yy) : x.moveTo(xx, yy); } x.stroke(); }
+    x.restore();
+    // vinyet
+    var vg = x.createRadialGradient(W / 2, H * .55, H * .2, W / 2, H * .55, H * .8); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.45)'); x.fillStyle = vg; x.fillRect(0, 0, W, H);
+    // vurgu ışığı
+    var r = x.createRadialGradient(W * .9, fh, 10, W * .9, fh, 620); r.addColorStop(0, renk + '30'); r.addColorStop(1, renk + '00'); x.fillStyle = r; x.fillRect(0, 0, W, H);
+    // altın çerçeve
+    x.strokeStyle = 'rgba(231,199,123,.55)'; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
+    x.strokeStyle = 'rgba(231,199,123,.18)'; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
+    // dikey filigran
+    x.save(); x.translate(W - 20, H / 2); x.rotate(Math.PI / 2); x.font = '600 18px ' + SANS; x.fillStyle = 'rgba(231,199,123,.55)'; x.textAlign = 'center'; if ('letterSpacing' in x) x.letterSpacing = '8px'; x.fillText('ARTVINREHBER.COM', 0, 6); x.restore();
+    if ('letterSpacing' in x) x.letterSpacing = '0px';
+    })();
+    // üst bilgi
+    if (logo.complete && logo.naturalWidth) { x.save(); x.beginPath(); x.arc(P + 36, y + 36, 36, 0, Math.PI * 2); x.clip(); x.drawImage(logo, P, y, 72, 72); x.restore(); x.beginPath(); x.arc(P + 36, y + 36, 38, 0, Math.PI * 2); x.strokeStyle = ALTIN; x.lineWidth = 2.5; x.stroke(); }
+    x.textBaseline = 'middle'; x.fillStyle = '#fff'; x.font = '700 26px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '7px'; x.fillText('ARTVİN REHBERİ', P + 96, y + 36);
+    var kat = String(v.kat || '').replace(/^[^A-Za-zÇĞİÖŞÜçğıöşü0-9]+/, '').trim().toLocaleUpperCase('tr');
+    if (kat) { x.font = '700 22px ' + SANS; x.fillStyle = ALTIN; x.textAlign = 'right'; x.fillText(kat, W - P, y + 36); x.textAlign = 'left'; }
+    if ('letterSpacing' in x) x.letterSpacing = '0px'; x.textBaseline = 'alphabetic';
     icerikCiz(bas, true);
     // Google Play rozeti
     var py = H - P - 170, pt = 'Uygulama Google Play\'de: Artvin Rehber';
