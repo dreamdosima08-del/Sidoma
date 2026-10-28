@@ -30,6 +30,48 @@
     }, 250);
   });
 
+  /* Blog yazısı tanıtım kartı: herkese yazı sonunda düğme; kart modunda ayrıca 📣 FAB (foto değiştirme) */
+  var blogMu = /^blog\d/.test(yol) && !!document.querySelector('h1'), fotoSira = 0;
+  function tanitim(yonetici) {
+      var h1 = document.querySelector('h1'), bas = h1.innerText.replace(/\s+/g, ' ').trim();
+      var md = document.querySelector('meta[name="description"]'), acik = md ? md.content.trim() : '';
+      if (acik.length > 150) { var cm = acik.match(/.+?[.!?](?=\s|$)/g) || [acik], k = ''; for (var i = 0; i < cm.length && (k + cm[i]).length <= 150; i++) k += cm[i]; acik = (k || acik.slice(0, 140).replace(/[\s,;:]+\S*$/, '') + '…').trim(); }
+      var kok = document.querySelector('article') || document.querySelector('main') || document.body;
+      var kelime = (kok.innerText || '').split(/\s+/).length, dk = Math.max(2, Math.round(kelime / 200));
+      var temiz = function (t) { return t.replace(/\s+/g, ' ').replace(/^[^0-9A-Za-zÇĞİÖŞÜçğıöşü"'(]+/, '').trim(); };
+      var basliklar = [].slice.call(kok.querySelectorAll('h2')).map(function (h) { return temiz(h.innerText); })
+        .filter(function (t) { return t && !/sık sorulan|ilgili|kaynak|benzer|diğer yazı|okumaya devam|paylaş/i.test(t); }).slice(0, 5);
+      var fotolar = [], ekle = function (src) { try { var u = new URL(src, location.href); if (/artvinrehber\.com$/.test(u.hostname) || u.origin === location.origin) { var pth = u.pathname; if (fotolar.indexOf(pth) < 0 && !/icon|logo|\.svg$/i.test(pth)) fotolar.push(pth); } } catch (e) {} };
+      var og = document.querySelector('meta[property="og:image"]'); if (og) ekle(og.content);
+      [].slice.call(kok.querySelectorAll('img')).forEach(function (im) { if (im.naturalWidth >= 500 || !im.complete) ekle(im.currentSrc || im.src); });
+      fotolar.push('');
+      var foto = fotolar[fotoSira % fotolar.length]; fotoSira++;
+      hazir(function () { KartUret.goster({ kat: 'Blog · ' + dk + ' dk okuma', baslik: bas, alt: acik, foto: foto || undefined,
+        satirlar: basliklar.map(function (t) { return [t, '', '', 'madde']; }), renk: '#e7c77b', dosya: 'tanitim-' + yol, saat: false,
+        not: 'Yazının tamamı: artvinrehber.com/' + yol, paylasMetni: bas + ' → artvinrehber.com/' + yol });
+        if (yonetici && fotolar.length > 1) { var ts = document.createElement('div'); ts.className = 'ks-ipucu'; ts.style.zIndex = 2147483647; ts.innerHTML = '<span>Fotoğraf ' + ((fotoSira - 1) % fotolar.length + 1) + '/' + fotolar.length + ' · beğenmezsen kartı kapat, 📣 tekrar bas</span>'; document.body.appendChild(ts); setTimeout(function () { ts.remove(); }, 3500); } });
+  }
+  if (blogMu) {
+    var pst = document.createElement('style');
+    pst.textContent = '.ks-paylas{margin:28px auto;width:calc(100% - 24px);max-width:720px;box-sizing:border-box;background:linear-gradient(135deg,#0f2a1c,#0a1a12);border:1px solid rgba(231,199,123,.55);border-radius:18px;padding:18px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;color:#fff;font-family:system-ui,sans-serif;text-align:left}' +
+      '.ks-paylas b{display:block;font:700 17px/1.3 system-ui,sans-serif;color:#e7c77b;margin:0 0 4px;letter-spacing:0}.ks-paylas span{display:block;font:400 14px/1.45 system-ui,sans-serif;color:rgba(255,255,255,.78);letter-spacing:0}.ks-paylas div{flex:1 1 220px}' +
+      '.ks-paylas button{flex:0 0 auto;font:700 15px system-ui,sans-serif;color:#0a1a12;background:#e7c77b;border:0;border-radius:999px;padding:13px 20px;cursor:pointer}.ks-paylas button:focus-visible{outline:3px solid #fff;outline-offset:2px}';
+    document.head.appendChild(pst);
+    var kutu = document.createElement('aside'); kutu.className = 'ks-paylas'; kutu.setAttribute('aria-label', 'Yazıyı paylaş');
+    kutu.innerHTML = '<div><b>Bu yazıyı paylaş</b><span>Instagram hikâyene ya da gönderine hazır görsel olsun: başlık, özet ve yazının adresi içinde.</span></div><button type="button">📣 Paylaşım görseli oluştur</button>';
+    kutu.querySelector('button').onclick = function () { tanitim(false); };
+    var yerlestir = function () {
+      var aday = [].slice.call(document.querySelectorAll('h2')).filter(function (h) { return /sık sorulan|faydalı bağlantı|devamını oku|kaynak|ilgili|benzer yazı|diğer yazı|bunlar da ilgini/i.test(h.innerText); })
+        .concat([].slice.call(document.querySelectorAll('#yorumlar,.tavsiye-bolum,.yazar-kutu,.post-tags,.blog-paylasim,.blog-nav')));
+      aday.sort(function (x, y) { return x.compareDocumentPosition(y) & 4 ? -1 : 1; });
+      var h1 = document.querySelector('h1'), ilk = aday.filter(function (e) { return h1.compareDocumentPosition(e) & 4; })[0];
+      if (ilk) { ilk.parentNode.insertBefore(kutu, ilk); return; }
+      var ps = [].slice.call(document.querySelectorAll('p')).filter(function (p) { return p.innerText.trim().length > 40 && !p.closest('footer,nav,aside,header,#yorumlar,.kart-ov,[class*="footer"],[class*="menu"]'); });
+      var son = ps[ps.length - 1]; if (son) son.parentNode.insertBefore(kutu, son.nextSibling);
+    };
+    if (document.readyState === 'complete') yerlestir(); else window.addEventListener('load', yerlestir);
+  }
+
   /* 2) Kart modu: kutu seç */
   var q = new URLSearchParams(location.search).get('kart');
   try { if (q === '1') localStorage.setItem('kartModu', '1'); if (q === '0') localStorage.removeItem('kartModu'); } catch (e) {}
@@ -50,30 +92,9 @@
   function tikla(e) { if (!modda || (ipucu && ipucu.contains(e.target)) || e.target === fab) return; e.preventDefault(); e.stopPropagation(); isaretle(uygun(e.target)); }
   function kapat() { modda = false; if (secim) secim.classList.remove('ks-isaret'); secim = null; if (ipucu) { ipucu.remove(); ipucu = null; } document.removeEventListener('click', tikla, true); }
   fab.onclick = function () { if (modda) { kapat(); return; } modda = true; ipucuYaz(); setTimeout(function () { document.addEventListener('click', tikla, true); }, 50); };
-  /* Blog yazısı tanıtım kartı (yalnız kart modunda) */
-  if (/^blog\d/.test(yol) && document.querySelector('h1')) {
+  if (blogMu) {
     var tf = document.createElement('button'); tf.type = 'button'; tf.className = 'ks-fab'; tf.style.bottom = 'calc(214px + env(safe-area-inset-bottom))'; tf.title = 'Bu yazının tanıtım kartı'; tf.textContent = '📣';
-    document.body.appendChild(tf);
-    var fotoSira = 0;
-    tf.onclick = function () {
-      var h1 = document.querySelector('h1'), bas = h1.innerText.replace(/\s+/g, ' ').trim();
-      var md = document.querySelector('meta[name="description"]'), acik = md ? md.content.trim() : '';
-      if (acik.length > 150) { var cm = acik.match(/.+?[.!?](?=\s|$)/g) || [acik], k = ''; for (var i = 0; i < cm.length && (k + cm[i]).length <= 150; i++) k += cm[i]; acik = (k || acik.slice(0, 140).replace(/[\s,;:]+\S*$/, '') + '…').trim(); }
-      var kok = document.querySelector('article') || document.querySelector('main') || document.body;
-      var kelime = (kok.innerText || '').split(/\s+/).length, dk = Math.max(2, Math.round(kelime / 200));
-      var temiz = function (t) { return t.replace(/\s+/g, ' ').replace(/^[^0-9A-Za-zÇĞİÖŞÜçğıöşü"'(]+/, '').trim(); };
-      var basliklar = [].slice.call(kok.querySelectorAll('h2')).map(function (h) { return temiz(h.innerText); })
-        .filter(function (t) { return t && !/sık sorulan|ilgili|kaynak|benzer|diğer yazı|okumaya devam|paylaş/i.test(t); }).slice(0, 5);
-      var fotolar = [], ekle = function (src) { try { var u = new URL(src, location.href); if (/artvinrehber\.com$/.test(u.hostname) || u.origin === location.origin) { var pth = u.pathname; if (fotolar.indexOf(pth) < 0 && !/icon|logo|\.svg$/i.test(pth)) fotolar.push(pth); } } catch (e) {} };
-      var og = document.querySelector('meta[property="og:image"]'); if (og) ekle(og.content);
-      [].slice.call(kok.querySelectorAll('img')).forEach(function (im) { if (im.naturalWidth >= 500 || !im.complete) ekle(im.currentSrc || im.src); });
-      fotolar.push('');
-      var foto = fotolar[fotoSira % fotolar.length]; fotoSira++;
-      hazir(function () { KartUret.goster({ kat: 'Blog · ' + dk + ' dk okuma', baslik: bas, alt: acik, foto: foto || undefined,
-        satirlar: basliklar.map(function (t) { return [t, '', '', 'madde']; }), renk: '#e7c77b', dosya: 'tanitim-' + yol, saat: false,
-        not: 'Yazının tamamı: artvinrehber.com/' + yol, paylasMetni: bas + ' → artvinrehber.com/' + yol });
-        if (fotolar.length > 1) { var ts = document.createElement('div'); ts.className = 'ks-ipucu'; ts.style.zIndex = 2147483647; ts.innerHTML = '<span>Fotoğraf ' + ((fotoSira - 1) % fotolar.length + 1) + '/' + fotolar.length + ' · beğenmezsen kartı kapat, 📣 tekrar bas</span>'; document.body.appendChild(ts); setTimeout(function () { ts.remove(); }, 3500); } });
-    };
+    tf.onclick = function () { tanitim(true); }; document.body.appendChild(tf);
   }
   function yap() {
     var el = secim; if (!el) return; el.classList.remove('ks-isaret'); ipucu.innerHTML = '<span>Kart hazırlanıyor…</span>';
