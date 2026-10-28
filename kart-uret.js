@@ -75,7 +75,11 @@
       if (S.length) {
         if (Q) { x.fillStyle = 'rgba(231,199,123,.35)'; x.fillRect(P, y, gen, 1.5); }
         S.forEach(function (s) {
-          if (s[3] === 'blok') {
+          if (s[3] === 'madde') {
+            if (Q) { x.fillStyle = ALTIN; x.save(); x.translate(P + 9, y + 50); x.rotate(Math.PI / 4); x.fillRect(-6, -6, 12, 12); x.restore(); }
+            x.font = '500 34px ' + SANS; if (Q) x.fillStyle = '#fff'; var md = String(s[0]); while (x.measureText(md).width > gen - 44 && md.length > 4) md = md.slice(0, -2) + '…'; yaz(md, P + 44, y + 62);
+            y += 92;
+          } else if (s[3] === 'blok') {
             x.font = '600 26px ' + SANS; if ('letterSpacing' in x) x.letterSpacing = '3px'; if (Q) x.fillStyle = ALTIN; yaz(String(s[0]).toLocaleUpperCase('tr'), P, y + 50); if ('letterSpacing' in x) x.letterSpacing = '0px';
             x.font = '700 36px ' + SANS; if (Q) x.fillStyle = s[2] || '#fff'; var l = sar(x, String(s[1]), gen).slice(0, 2); l.forEach(function (tt, j) { yaz(tt, P, y + 102 + j * 46); }); y += 70 + l.length * 46 + 14;
           } else {

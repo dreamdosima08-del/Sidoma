@@ -585,10 +585,7 @@ function yorumGonder(e) {
   e.preventDefault();
   var metin = document.getElementById('yorumMetin').value.trim();
   if(!metin) return;
-  var wp = 'https://wa.me/905434290908?text=' + encodeURIComponent('Blog37 Yorum:
-' + metin + '
-
-https://www.artvinrehber.com/blog37.html');
+  var wp = 'https://wa.me/905434290908?text=' + encodeURIComponent('Blog37 Yorum:\n' + metin + '\n\nhttps://www.artvinrehber.com/blog37.html');
   window.open(wp, '_blank');
 }
 </script>
