@@ -77,34 +77,6 @@ if deg:
     s = re.sub(r'(Son güncelleme: <time datetime=")[^"]*(">)[^<]*', lambda mm: mm.group(1) + bugun.isoformat() + mm.group(2) + tarih_yazi, s)
     s = re.sub(r'(<meta name="description" content="[^"]*?)(?: Saatler \d+ \S+ \d{4} tarihinde güncellendi\.)?(">)',
                lambda mm: mm.group(1) + f' Saatler {tarih_yazi} tarihinde güncellendi.' + mm.group(2), s, count=1)
-# 3b) Gün gün saatler (Havaş saatleri güne göre değişiyor) — Worker ?hafta=1
-GUN = ['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar']
-def hafta_html(h):
-    gunler = sorted(g for g in h if g >= bugun.isoformat())
-    if not gunler: return None
-    ref = h.get(bugun.isoformat()) or h[gunler[0]]
-    cip, pan = '', ''
-    for i, g in enumerate(gunler):
-        d = datetime.date.fromisoformat(g); ad = GUN[d.weekday()]; tz = f'{d.day} {AY[d.month-1]}'
-        akt = '' if i else ' aktif'
-        cip += f'<button type="button" class="hvh-gun{akt}" data-g="{g}" aria-pressed="{"false" if i else "true"}">{ad}<small>{tz}</small></button>'
-        pan += f'<div class="hvh-panel{akt}" data-g="{g}"><h3>{tz} {ad} — havalimanına gidiş</h3>'
-        for k in ANA:
-            dd = h[g].get(k) or {}; r = (ref.get(k) or {}).get('saatler') or []
-            ss = [t for t in (dd.get('saatler') or []) if re.fullmatch(r'\d\d:\d\d', t)]
-            ic = ''.join(f'<b{" class=\"fark\"" if i and t not in r else ""}>{t}</b>' for t in ss) or '<span class="hvh-yok">Sefer yok / bilgi alınamadı</span>'
-            pan += f'<div class="hvh-satir"><span class="hvh-durak">{AD[k]}</span><span class="hvh-saatler">{ic}</span></div>'
-        pan += '</div>'
-    return f'<div class="hvh-gunler">{cip}</div>{pan}'
-try:
-    if len(sys.argv) > 2: hj = json.load(open(sys.argv[2]))
-    else:
-        req = urllib.request.Request(URL + '?hafta=1', headers={'Origin': 'https://www.artvinrehber.com', 'User-Agent': 'artvinrehber-guncelleyici'})
-        hj = json.load(urllib.request.urlopen(req, timeout=60))
-    hh = hafta_html(hj['hafta'])
-    if hh: s = re.sub(r'<!--HV-HAFTA-->.*?<!--/HV-HAFTA-->', lambda mm: '<!--HV-HAFTA-->' + hh + '<!--/HV-HAFTA-->', s, count=1, flags=re.S)
-except Exception as e:
-    print('Haftalık saatler alınamadı, o bölüm olduğu gibi kaldı:', e)
 # 4) Eski/yeni saat kutusu kaldırıldı (Sana'nın isteği); işaretçi boş tutulur
 kutu = ''
 s = re.sub(r'<!--HV-DEGISIKLIK-->.*?<!--/HV-DEGISIKLIK-->', lambda mm: '<!--HV-DEGISIKLIK-->' + kutu + '<!--/HV-DEGISIKLIK-->', s, count=1, flags=re.S)
