@@ -44,7 +44,7 @@ for k in ANA:
     s = s.replace(km.group(0), f"{k}: [\n{blok}\n  ]", 1)
     metin_degistir(eski, yeni)
 # saat-grid'ler sayfadaki sırayla artvin, borcka, hopa, arhavi
-gridler = list(re.finditer(r'(<div class="saat-grid">)(.*?)(\n      </div>\n      <a class="maps-btn")', s, re.S))
+gridler = list(re.finditer(r'(<div class="saat-grid">)(.*?)(\n      </div>\n      (?:<p class="hv-kaynak">.*?</p>\n      )?<a class="maps-btn")', s, re.S))
 for k, gm in reversed(list(zip(ANA, gridler))):
     d = g[k]
     if not uygun(d): continue
