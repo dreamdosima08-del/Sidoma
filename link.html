@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artvin Rehber | Linkler</title>
+<meta name="description" content="Artvin Rehber: Artvin'i keşfet. Uygulama, rehber yazıları, oyunlar ve sosyal medya hesapları tek sayfada.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --bg1:#0f3d2e; --bg2:#1d6b4f; --card:#ffffff14; --card-h:#ffffff26;
+  --text:#f4fff9; --muted:#b9e4d0; --accent:#ffd166;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color:var(--text); background:linear-gradient(160deg,var(--bg1),var(--bg2));
+  display:flex; justify-content:center; padding:32px 16px 48px;
+}
+main{width:100%; max-width:440px; text-align:center}
+.logo{
+  width:96px;height:96px;border-radius:50%;margin:0 auto 14px;
+  background:radial-gradient(circle at 30% 30%,#3fbf8a,#14573f);
+  border:3px solid var(--accent); display:grid; place-items:center; font-size:44px;
+}
+h1{font-size:1.5rem}
+.sub{color:var(--muted);margin:6px 0 24px;font-size:.95rem}
+.link{
+  display:flex; align-items:center; gap:14px; text-align:left;
+  background:var(--card); border:1px solid #ffffff26; border-radius:16px;
+  padding:14px 16px; margin-bottom:12px; color:var(--text); text-decoration:none;
+  transition:transform .15s, background .15s;
+}
+.link:hover,.link:focus-visible{background:var(--card-h);transform:translateY(-2px);outline:none}
+.link .ic{font-size:1.6rem;width:36px;text-align:center}
+.link b{display:block;font-size:1rem}
+.link small{color:var(--muted)}
+.link.primary{background:var(--accent);color:#1a2b20;border-color:var(--accent)}
+.link.primary small{color:#3d4d3f}
+.link.primary:hover{background:#ffdd8a}
+.hidden{display:none}
+footer{margin-top:26px;color:var(--muted);font-size:.8rem}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo" aria-hidden="true">🏔️</div>
+  <h1>Artvin Rehber</h1>
+  <p class="sub">Artvin'i keşfet: rehber, uygulama ve oyunlar</p>
+
+  <a class="link primary" id="play" href="#" data-ph="PLAY_LINK">
+    <span class="ic">📲</span>
+    <span><b>Google Play'den İndir</b><small>Ücretsiz Artvin rehberi uygulaması</small></span>
+  </a>
+
+  <a class="link" href="https://artvinrehber.com/">
+    <span class="ic">🧭</span>
+    <span><b>Artvin Rehber Sitesi</b><small>Gezilecek yerler, kültür, yöresel lezzetler</small></span>
+  </a>
+
+  <a class="link" href="https://artvinrehber.com/">
+    <span class="ic">🎮</span>
+    <span><b>Oyunlar</b><small>Artvin temalı oyunlar, hemen oyna</small></span>
+  </a>
+
+  <a class="link" href="https://www.instagram.com/artvinrehber/">
+    <span class="ic">📸</span>
+    <span><b>Instagram</b><small>@artvinrehber</small></span>
+  </a>
+
+  <a class="link" id="tiktok" href="#" data-ph="TIKTOK_LINK">
+    <span class="ic">🎵</span>
+    <span><b>TikTok</b><small>Kısa videolar</small></span>
+  </a>
+
+  <footer>© Artvin Rehber</footer>
+</main>
+
+<script>
+/* ====== BURAYI DOLDUR ======
+   Play Store linkini ve TikTok hesabını yaz.
+   Boş bırakılan buton sayfada otomatik gizlenir. */
+var LINKS = {
+  play:   "https://play.google.com/store/apps/details?id=com.artvinrehber.mobil",
+  tiktok: "https://www.tiktok.com/@artvinrehber"
+};
+/* ============================ */
+
+(function(){
+  var p = new URLSearchParams(location.search);
+  var utm = ["utm_source","utm_medium","utm_campaign"].filter(function(k){return p.get(k)});
+
+  function addUtm(url){
+    try{
+      var u = new URL(url);
+      var host = u.hostname;
+      if(host.indexOf("artvinrehber.com")===-1) return url;       // sadece kendi sitemize ekle
+      utm.forEach(function(k){u.searchParams.set(k,p.get(k))});
+      return u.toString();
+    }catch(e){return url}
+  }
+
+  function setLink(id,url){
+    var el=document.getElementById(id);
+    if(!url){el.classList.add("hidden");return}
+    if(id==="play" && p.get("utm_source")){
+      try{
+        var u=new URL(url);
+        u.searchParams.set("referrer","utm_source="+encodeURIComponent(p.get("utm_source"))+"&utm_medium="+encodeURIComponent(p.get("utm_medium")||"social"));
+        url=u.toString();
+      }catch(e){}
+    }
+    el.href=url; el.target="_blank"; el.rel="noopener";
+  }
+  setLink("play",LINKS.play);
+  setLink("tiktok",LINKS.tiktok);
+
+  document.querySelectorAll("a.link").forEach(function(a){
+    if(a.getAttribute("href")!=="#") a.href=addUtm(a.href);
+  });
+})();
+</script>
+</body>
+</html>
