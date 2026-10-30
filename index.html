@@ -36,7 +36,7 @@ function linkKopyala(b){navigator.clipboard&&navigator.clipboard.writeText('http
 <link rel="preload" as="image" href="/img/mg-20260327-wa0089-jr5dl3yv.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 html,body{overflow-x:hidden !important;max-width:100%}
 
@@ -1201,14 +1201,27 @@ border-radius:20px;}
 
 
 <!-- DÖVİZ + SAAT BANDI -->
-<div id="dovizBant" style="position:absolute;top:.2rem;left:0;right:0;padding:0 1rem;z-index:51;display:flex;align-items:center;justify-content:space-between;pointer-events:none;">
-  <div style="display:flex;align-items:center;gap:.75rem;">
-    <span id="dolarGoster" style="font-size:.78rem;font-weight:700;color:rgba(232,184,75,.85);letter-spacing:.05em;transition:opacity .4s;">$ --</span>
-    <span id="euroGoster" style="font-size:.78rem;font-weight:700;color:rgba(232,184,75,.85);letter-spacing:.05em;transition:opacity .4s;">€ --</span>
-    <span id="altinGoster" style="font-size:.78rem;font-weight:700;color:rgba(232,184,75,.85);letter-spacing:.05em;transition:opacity .4s;">🥇 --</span>
+<div id="dovizBant" style="position:absolute;top:.2rem;left:0;right:0;padding:0 1rem;z-index:51;display:flex;align-items:center;justify-content:space-between;gap:.5rem;pointer-events:none;">
+  <div class="kur-sira">
+    <span class="kur" id="dolarGoster"><i>USD</i><b>--</b></span>
+    <span class="kur" id="euroGoster"><i>EUR</i><b>--</b></span>
+    <span class="kur" id="altinGoster"><i>ALTIN</i><b>--</b></span>
+    <span class="kur" id="btcGoster"><i>BTC</i><b>--</b></span>
   </div>
-  <div id="saatGoster" style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;color:rgba(232,184,75,.75);"></div>
+  <div id="saatGoster"></div>
 </div>
+<style>
+.kur-sira{display:flex;align-items:baseline;gap:.7rem;min-width:0}
+.kur{display:inline-flex;align-items:baseline;gap:.22rem;white-space:nowrap;font:600 .74rem/1 "DM Sans",system-ui,sans-serif;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.01em;transition:opacity .4s}
+.kur i{font-style:normal;font-size:.56rem;font-weight:700;letter-spacing:.09em;color:rgba(231,199,123,.85)}
+#saatGoster{font:700 .82rem/1 "DM Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.06em;color:rgba(231,199,123,.9)}
+@media(max-width:379px){.kur-sira{gap:.5rem}.kur{font-size:.68rem}#saatGoster{display:none}}
+/* arama çubuğu: ana sayfa kartlarıyla aynı dil */
+.arama-ic{background:linear-gradient(160deg,rgba(20,44,32,.94),rgba(9,22,16,.95))!important;border:1px solid rgba(231,199,123,.42)!important;box-shadow:0 10px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12)!important}
+.arama-input,.arama-input::placeholder{font-family:"DM Sans",system-ui,sans-serif!important;font-weight:500}
+.arama-input::placeholder{color:rgba(232,237,233,.55)}
+.arama-ic:focus-within{border-color:rgba(240,192,64,.85)!important;box-shadow:0 10px 24px rgba(0,0,0,.45),0 0 0 3px rgba(240,192,64,.18)!important}
+</style>
 
 <div class="arama-wrap" style="top:1.75rem;pointer-events:none;">
   <div class="arama-ic">
@@ -2371,14 +2384,24 @@ saatiGuncelle();
 setInterval(saatiGuncelle, 1000);
 
 // DÖVİZ - TCMB RSS üzerinden
+function kurYaz(id, deger){ var el=document.getElementById(id); if(el){ el.querySelector('b').textContent=deger; el.style.display=''; } }
+// Bitcoin: Binance BTC/USDT (dolar karşılığı), ulaşılamazsa CoinGecko
+function btcCek(){
+  fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT').then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(d){ return +d.price; })
+    .catch(function(){ return fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd').then(function(r){ return r.json(); }).then(function(d){ return d.bitcoin.usd; }); })
+    .then(function(f){ if(f>0) kurYaz('btcGoster', '$' + Math.round(f).toLocaleString('tr-TR')); else throw 0; })
+    .catch(function(){ var el=document.getElementById('btcGoster'); if(el) el.style.display='none'; });
+}
+btcCek(); setInterval(btcCek, 120000);
 function dovizCek() {
   fetch('https://api.exchangerate-api.com/v4/latest/TRY')
     .then(function(r){ return r.json(); })
     .then(function(d) {
       var usdTry = d.rates && d.rates.USD ? (1/d.rates.USD) : null;
       var eurTry = d.rates && d.rates.EUR ? (1/d.rates.EUR) : null;
-      if (usdTry) document.getElementById('dolarGoster').textContent = '$ ' + usdTry.toFixed(2);
-      if (eurTry) document.getElementById('euroGoster').textContent = '€ ' + eurTry.toFixed(2);
+      if (usdTry) kurYaz('dolarGoster', usdTry.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}));
+      if (eurTry) kurYaz('euroGoster', eurTry.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}));
       // Gram altin: uluslararasi ons altin / 31.1035 * USD/TRY
       if (usdTry) {
         fetch('https://api.gold-api.com/price/XAU')
@@ -2386,7 +2409,7 @@ function dovizCek() {
           .then(function(g) {
             if (g && g.price) {
               var gramAltinTry = (g.price / 31.1035) * usdTry;
-              document.getElementById('altinGoster').textContent = '🥇 Gr ' + Math.round(gramAltinTry).toLocaleString('tr-TR') + '₺';
+              kurYaz('altinGoster', Math.round(gramAltinTry).toLocaleString('tr-TR') + ' ₺');
             }
           })
           .catch(function(){
@@ -2397,8 +2420,7 @@ function dovizCek() {
     })
     .catch(function() {
       // API çalışmazsa gizle
-      var b = document.getElementById('dovizBant');
-      if (b) b.style.display = 'none';
+      ['dolarGoster','euroGoster','altinGoster'].forEach(function(id){ var e=document.getElementById(id); if(e) e.style.display='none'; });
     });
 }
 dovizCek();
@@ -2620,7 +2642,7 @@ window.addEventListener('load', function(){
   }
 })();
 </script>
-<script src="/hikaye.js?v=4" defer></script>
+<script src="/hikaye.js?v=5" defer></script>
 <script src="/kopya-kaynak.js" defer></script>
 <script src="/uygulama-serit.js" defer></script>
 <script src="/kart-sec.js" defer></script>

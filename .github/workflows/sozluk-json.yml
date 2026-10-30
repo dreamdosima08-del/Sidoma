@@ -1,0 +1,18 @@
+name: Sözlük kelime listesi (ana sayfa günün kelimesi)
+on:
+  push:
+    paths: ['artvin-sozluk.html','araclar/sozluk_json.py','.github/workflows/sozluk-json.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 araclar/sozluk_json.py
+      - run: |
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add veri/sozluk.json
+          git commit -m "Sözlük: kelime listesi güncellendi" || exit 0
+          git pull --rebase origin main && git push
