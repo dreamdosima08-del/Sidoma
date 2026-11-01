@@ -42,7 +42,7 @@ function escMenu(e){ if(e.key==='Escape') kapatMenu({target:document.body}); }
 
 /* Bugün Artvin'de paneli: hikâye halkalarının verisini kullanır */
 var SATIR=[[0,'Hava','hava'],[2,'Sıradaki Havaş','havas'],[1,'Nöbetçi eczane','eczane'],[3,'Son haber','haber'],[4,'Günün kelimesi','kelime']];
-var BOS={0:'Artvin merkez hava durumu yükleniyor…',1:'Bugün açık olan eczane yükleniyor…',2:'Artvin Otogar seferleri yükleniyor…',3:'Artvin\'den son haberler yükleniyor…',4:'Artvin ağzından bir kelime'};
+var BOS={0:'Artvin merkez, saatlik tahmin',1:'Merkez ve ilçelerde nöbetçi eczaneler',2:'Artvin Otogar ve diğer duraklar',3:'Artvin\'den son haberler',4:'Artvin ağzından bir kelime'};
 function panelCiz(){
   var p=document.getElementById('muPanel'); if(!p) return;
   var L=(window.ARHikaye&&window.ARHikaye.liste())||[];
