@@ -24,7 +24,7 @@ function eczaneYukle(){
     if(!k)throw 0;
     var kr=[{renk:'#7f1d1d,#1c0606',img:IK+'eczane.webp',ust:erken?'Şu an nöbette · 08:00\'e kadar':'Bugün nöbetçi · '+k.saat,baslik:k.ad,metin:k.tel+' · Artvin Merkez',link:'tel:'+k.tel.replace(/\s/g,''),dugme:'Hemen ara'}];
     if(ky)kr.push({renk:'#7f1d1d,#1c0606',img:IK+'eczane.webp',ust:(erken?'Bugün':'Yarın')+' nöbetçi · '+ky.saat,baslik:ky.ad,metin:ky.tel,link:'/eczane-rehber.html',dugme:'Tüm nöbet listesi'});
-    return {id:'eczane-'+g,ad:'Eczane',img:IK+'eczane.webp',r:'239,43,51',kareler:kr};
+    return {id:'eczane-'+g,ad:'Eczane',img:IK+'eczane.webp',r:'239,43,51',kareler:kr,ozet:k.ad+' · '+k.tel,rozet:'AÇIK'};
   });
 }
 function havasYukle(){
@@ -36,13 +36,13 @@ function havasYukle(){
     var diger=['borcka','hopa','arhavi'].filter(function(k){return g[k]&&g[k].saatler&&g[k].saatler.length;}).map(function(k){return {borcka:'Borçka',hopa:'Hopa',arhavi:'Arhavi'}[k]+': '+g[k].saatler.join(' · ');}).join('\n');
     var kr=[{renk:'#1e3a8a,#0b1020',img:IK+'havas.webp',ust:'Bugün Artvin Otogar\'dan',baslik:a.saatler.join(' · '),metin:sira?'Sıradaki sefer '+sira.t+' · '+kalan:'Bugünkü Artvin seferleri bitti.',link:'/havas.html',dugme:'Tüm duraklar'}];
     if(diger)kr.push({renk:'#1e3a8a,#0b1020',img:IK+'havas.webp',ust:'Bugün diğer duraklar',baslik:'Borçka · Hopa · Arhavi',metin:diger,link:'/havas.html',dugme:'Saatleri gör'});
-    return {id:'havas-'+trGun()+'-'+a.saatler.join(''),ad:'Havaş',img:IK+'havas.webp',r:'59,130,246',kareler:kr};
+    return {id:'havas-'+trGun()+'-'+a.saatler.join(''),ad:'Havaş',img:IK+'havas.webp',r:'59,130,246',kareler:kr,ozet:sira?'Artvin Otogar · '+kalan:'Bugünkü seferler bitti',deger:sira?sira.t:a.saatler[0]};
   });
 }
 function haberYukle(){
   return fetch('https://artvinhaber.dreamdosima08.workers.dev/').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
     var h=(j.haberler||[]).filter(function(x){return x&&x.baslik;}).slice(0,5); if(!h.length)throw 0;
-    return {id:'haber-'+trGun()+'-'+String(h[0].baslik).length+'-'+String(h[0].link||'').slice(-12),ad:'Haberler',img:IK+'haber.webp',r:'148,163,184',kareler:h.map(function(x){
+    return {ozet:h[0].baslik,rozet:'YENİ',id:'haber-'+trGun()+'-'+String(h[0].baslik).length+'-'+String(h[0].link||'').slice(-12),ad:'Haberler',img:IK+'haber.webp',r:'148,163,184',kareler:h.map(function(x){
       return {renk:'#334155,#0b1020',img:IK+'haber.webp',ust:[x.ilce,x.kaynak].filter(Boolean).join(' · ')||'Artvin',baslik:x.baslik,link:'/haberler.html',dugme:'Tüm haberler'};})};
   });
 }
@@ -50,7 +50,7 @@ function kelimeYukle(){
   return fetch('/veri/sozluk.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
     var k=j.k||[]; if(!k.length)throw 0;
     var d=new Date(),g=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5),m=k[(g*7919)%k.length];   // sözlük sayfasıyla aynı seçim
-    return {id:'kelime-'+trGun()+'-'+m[2],ad:'Kelime',img:IK+'kelime.webp',r:'236,72,153',kareler:[{renk:'#831843,#1a0612',img:IK+'kelime.webp',ust:'Günün kelimesi · '+tarihYaz(trGun()),baslik:m[0],metin:m[1],link:'/artvin-sozluk.html#'+m[2],dugme:'Sözlükte aç'}]};
+    return {ozet:m[0]+': '+m[1],id:'kelime-'+trGun()+'-'+m[2],ad:'Kelime',img:IK+'kelime.webp',r:'236,72,153',kareler:[{renk:'#831843,#1a0612',img:IK+'kelime.webp',ust:'Günün kelimesi · '+tarihYaz(trGun()),baslik:m[0],metin:m[1],link:'/artvin-sozluk.html#'+m[2],dugme:'Sözlükte aç'}]};
   });
 }
 
@@ -126,7 +126,7 @@ function havaYukle(){
     for(var i=1;i<dy.time.length;i++){var g=wmo(dy.weather_code[i],1),dt=new Date(dy.time[i]+'T12:00:00');
       gunler+='<div><span>'+(i===1?'Yarın':GUN[dt.getDay()])+' · '+R(dy.temperature_2m_max[i])+'° / '+R(dy.temperature_2m_min[i])+'°</span><em>'+g.i+'</em><span>'+esc(g.t)+(dy.precipitation_probability_max[i]!=null?' · yağış %'+dy.precipitation_probability_max[i]:'')+'</span></div>';}
     var y=wmo(dy.weather_code[1],1);
-    return {id:'hava-'+bugun,ad:'Hava '+R(c.temperature_2m)+'°',ikon:w.i,metinHalka:R(c.temperature_2m)+'°',renk:w.r,kareler:[
+    return {id:'hava-'+bugun,ad:'Hava '+R(c.temperature_2m)+'°',ozet:w.t+' · Hissedilen '+R(c.apparent_temperature)+'°',deger:R(c.temperature_2m)+'°',ikon:w.i,metinHalka:R(c.temperature_2m)+'°',renk:w.r,kareler:[
       {renk:w.r,ust:'Artvin Merkez · şimdi',hava:'<div class="bi">'+w.i+'</div><div class="bd">'+R(c.temperature_2m)+'°</div><div class="bt">'+esc(w.t)+'</div><div class="bm">Hissedilen '+R(c.apparent_temperature)+'° · Bugün en yüksek '+R(dy.temperature_2m_max[0])+'°, en düşük '+R(dy.temperature_2m_min[0])+'°'+(dy.precipitation_probability_max[0]!=null?' · Yağış ihtimali %'+dy.precipitation_probability_max[0]:'')+'</div>',link:'/hava.html',dugme:'İlçe ilçe hava'},
       {renk:y.r,ust:'Önümüzdeki günler',hava:'<div class="hk-gun">'+gunler+'</div>',link:'/hava.html',dugme:'Saatlik tahmin'}
     ]};
@@ -233,7 +233,10 @@ function geri(){if(ki>0){ki--;kare();}else if(hi>0){hi--;ki=LISTE[hi].kareler.le
 /* ───── Başlat ───── */
 var yerHava={id:'hava-yukleniyor',ad:'Hava',ikon:'🌤️',renk:'#0ea5e9,#0f766e',kareler:[{renk:'#0ea5e9,#0f766e',ust:'Artvin',hava:'<div class="bi">🌤️</div><div class="bt">Hava durumu yükleniyor…</div>',link:'/hava.html',dugme:'Hava durumu'}]};
 LISTE=[yerHava,YER.eczane,YER.havas,YER.haber,YER.kelime];ciz();
-function koy(i,p){p.then(function(h){if(!h)return;LISTE[i]=h;if(!ov)ciz();}).catch(function(){});}
+window.ARHikaye={liste:function(){return LISTE;},ac:function(i){ac(i,0);}};
+function haber_(){try{document.dispatchEvent(new CustomEvent('hikaye-guncel'));}catch(e){}}
+function koy(i,p){p.then(function(h){if(!h)return;LISTE[i]=h;if(!ov)ciz();haber_();}).catch(function(){});}
+haber_();
 koy(0,havaYukle());koy(1,eczaneYukle());koy(2,havasYukle());koy(4,kelimeYukle());
 // haberler biraz sonra (sayfa açılışını yavaşlatmasın)
 setTimeout(function(){koy(3,haberYukle());},1200);
