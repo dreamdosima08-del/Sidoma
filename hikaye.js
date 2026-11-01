@@ -67,6 +67,14 @@ var css=''+
 '.hk-i b{font:800 min(1.05rem,4vw) "DM Sans",system-ui,sans-serif;color:#fff;font-variant-numeric:tabular-nums}.hk-i em{font-style:normal;font-size:1.15rem}'+
 '.hk-a{display:block;font:600 min(.7rem,2.9vw)/1.15 "DM Sans",system-ui,sans-serif;color:#fff;margin-top:.32rem;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
 '.hk.gor .hk-a{color:rgba(255,255,255,.72)}.hk:focus-visible{outline:2px solid #f0c040;outline-offset:3px;border-radius:12px}'+
+'.hk-saat .hk-h{background:conic-gradient(from 200deg,#f6dc95,#e0a82e,#b9862a,#f6dc95,#e7c77b,#f6dc95)!important;box-shadow:0 6px 16px rgba(0,0,0,.35)!important}'+
+'.hk-kadran{background:#05130b!important;padding:0}.hk-kadran svg{width:100%;height:100%;display:block}'+
+'.hk-kadran .ck{stroke:#f0c040;stroke-width:2.6;stroke-linecap:round}.hk-kadran .cb{stroke:#efe6c8;stroke-width:1.8;stroke-linecap:round}.hk-kadran .cd{stroke:rgba(239,230,200,.28);stroke-width:.9}'+
+'.hk-kadran .hs{stroke:#f6efd9;stroke-width:5;stroke-linecap:round}.hk-kadran .hd{stroke:#f6efd9;stroke-width:3.2;stroke-linecap:round}'+
+'.hk-kadran .hn{stroke:#f0c040;stroke-width:1.4;stroke-linecap:round}.hk-kadran .hnk{fill:#f0c040}.hk-kadran .mk{fill:#f0c040}'+
+'.hk-kadran svg{filter:drop-shadow(0 1px 0 rgba(0,0,0,.3))}'+
+'.hk-dj{display:flex;align-items:baseline;justify-content:center;gap:.06rem;margin-top:.26rem;font:400 min(1.08rem,4.4vw)/1 "Bebas Neue",Impact,sans-serif;letter-spacing:.07em;color:#f6dc95;text-shadow:0 0 10px rgba(240,192,64,.35);font-variant-numeric:tabular-nums}'+
+'.hk-dj b{font-weight:400;min-width:1.05em;text-align:center}.hk-dj i{font-style:normal;opacity:.25;transition:opacity .25s;transform:translateY(-.06em)}.hk-dj i.sn{opacity:1}'+
 '.hk-buyuk{width:150px;height:150px;object-fit:contain;filter:drop-shadow(0 14px 22px rgba(0,0,0,.55));margin-bottom:6px}'+
 '.hk-ic p{white-space:pre-line}'+
 '.hk-ov{position:fixed;inset:0;z-index:2147483000;background:#000;display:flex;align-items:center;justify-content:center;touch-action:none}'+
@@ -186,8 +194,44 @@ function ciz(){
   sira.innerHTML=LISTE.map(function(h,i){
     var ic=h.metinHalka?'<em>'+h.ikon+'</em><b>'+esc(h.metinHalka)+'</b>':(h.img?'<img src="'+esc(h.img)+'" alt="" width="40" height="40">':(h.kapak?'':'<em>'+h.ikon+'</em>'));
     var bg=h.kapak?' style="background-image:url(\''+h.kapak.replace(/'/g,'%27')+'\')"':(h.renk?' style="background:linear-gradient(160deg,'+h.renk+')"':(h.r?' style="--r:'+h.r+'"':''));
+    if(i===SAAT_I) return saatHalka();
     return '<button class="hk'+(g[h.id]?' gor':'')+'" data-i="'+i+'" role="listitem" aria-label="'+esc(h.ad)+' hikâyesini aç"><span class="hk-h"><span class="hk-i"'+bg+'>'+ic+'</span></span><span class="hk-a">'+esc(h.ad)+'</span></button>';
   }).join('');
+  saatBagla();
+}
+
+/* ───── Ortadaki halka: analog saat + altında dijital saat (Türkiye saati). Dokununca Havaş hikâyesi açılır. ───── */
+var SAAT_I=2, sr=null, rafId=0;
+function saatHalka(){
+  var t='';
+  for(var k=0;k<60;k++){ var b=k%5===0, a=k*6, r1=b?(k%15===0?35:37):41.5;
+    t+='<line x1="50" y1="'+(50-r1)+'" x2="50" y2="'+(50-44.5)+'" transform="rotate('+a+' 50 50)" class="'+(b?(k%15===0?'ck':'cb'):'cd')+'"/>'; }
+  return '<button class="hk hk-saat" data-i="'+SAAT_I+'" role="listitem" aria-label="Saat, sıradaki Havaş seferini gör"><span class="hk-h"><span class="hk-i hk-kadran">'+
+    '<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="hkKad" cx="50%" cy="38%" r="65%"><stop offset="0" stop-color="#1f5c3d"/><stop offset=".7" stop-color="#0b2618"/><stop offset="1" stop-color="#05130b"/></radialGradient></defs>'+
+    '<circle cx="50" cy="50" r="48" fill="url(#hkKad)"/>'+t+
+    '<g class="ya"><line x1="50" y1="56" x2="50" y2="27" class="hs"/></g>'+
+    '<g class="yd"><line x1="50" y1="58" x2="50" y2="15" class="hd"/></g>'+
+    '<g class="yn"><line x1="50" y1="62" x2="50" y2="9" class="hn"/><circle cx="50" cy="62" r="2.6" class="hnk"/></g>'+
+    '<circle cx="50" cy="50" r="4" class="mk"/><circle cx="50" cy="50" r="1.6" fill="#0b2618"/></svg>'+
+    '</span></span><span class="hk-dj" aria-hidden="true"><b>--</b><i>:</i><b>--</b></span></button>';
+}
+function saatBagla(){
+  var b=sira.querySelector('.hk-saat');
+  sr=b?{a:b.querySelector('.ya'),d:b.querySelector('.yd'),n:b.querySelector('.yn'),s:b.querySelectorAll('.hk-dj b'),c:b.querySelector('.hk-dj i'),btn:b,son:''}:null;
+  if(sr&&!rafId) rafId=requestAnimationFrame(saatAk);
+}
+var HAREKETSIZ=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function saatAk(){
+  rafId=0; if(!sr||!sr.btn.isConnected) return;
+  var t=(Date.now()+3*36e5)%864e5, sn=t/1000, dk=sn/60, sa=dk/60;
+  if(HAREKETSIZ) sn=Math.floor(sn);
+  sr.a.setAttribute('transform','rotate('+((sa%12)*30)+' 50 50)');
+  sr.d.setAttribute('transform','rotate('+((dk%60)*6)+' 50 50)');
+  sr.n.setAttribute('transform','rotate('+((sn%60)*6)+' 50 50)');
+  var hh=String(Math.floor(sa)).padStart(2,'0'), mm=String(Math.floor(dk%60)).padStart(2,'0');
+  if(sr.son!==hh+mm){ sr.son=hh+mm; sr.s[0].textContent=hh; sr.s[1].textContent=mm; sr.btn.setAttribute('aria-label','Saat '+hh+':'+mm+', sıradaki Havaş seferini gör'); }
+  sr.c.classList.toggle('sn',Math.floor(sn)%2===0);
+  rafId=requestAnimationFrame(saatAk);
 }
 sira.addEventListener('click',function(e){var b=e.target.closest('.hk');if(b)ac(+b.getAttribute('data-i'),0);});
 

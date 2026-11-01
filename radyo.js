@@ -35,17 +35,22 @@ var css=''+
 '.rd-dur{border:0;background:rgba(255,255,255,.08);color:#f3efe2;border-radius:8px;padding:.35rem .6rem;font:700 .74rem "DM Sans",sans-serif;cursor:pointer}'+
 '.rd-not{font-size:.68rem;color:rgba(243,239,226,.45);margin:.35rem .45rem .1rem;line-height:1.4}'+
 '.rd-hata{color:#ff9b9b}'+
+'html.mu .rd-k{display:inline-flex;align-items:center}'+
 'html.mu .rd-b{font-size:.84rem;padding:.55rem .9rem .55rem .75rem;border-radius:10px;gap:.45rem}html.mu .rd-b svg{width:15px;height:15px}'+
 '#dovizBant .rd{margin-left:auto;flex:none}'+
-'#dovizBant .rd-y{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}'+
-'#dovizBant .rd-b{width:26px;height:26px;padding:0;justify-content:center;border-radius:50%}'+
+'#dovizBant .rd-b{height:26px;padding:0 .6rem 0 .2rem;gap:.35rem;font-size:.72rem;background:linear-gradient(160deg,rgba(20,44,32,.95),rgba(9,22,16,.95));border-color:rgba(240,192,64,.7);color:#f6dc95;box-shadow:0 3px 10px rgba(0,0,0,.35)}'+
+'#dovizBant .rd-k{width:20px;height:20px;border-radius:50%;background:#f0c040;color:#1a1405;display:grid;place-items:center;flex:none}'+
+'#dovizBant .rd-k svg{width:12px;height:12px}'+
+'#dovizBant .rd.cal .rd-b{background:#f0c040;color:#1a1405}#dovizBant .rd.cal .rd-k{background:#1a1405;color:#f0c040}'+
+'@media(max-width:391px){#dovizBant .rd-dn{display:none}}'+
+'@media(max-width:359px){#dovizBant .rd-y{display:none}#dovizBant .rd-b{padding:0 .22rem}}'+
 'html.rd-acik #floatShare,html.rd-acik #scroll-nav{visibility:hidden}'+
 '@media(prefers-reduced-motion:reduce){.rd-eq i{animation:none;height:8px}}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 
 var RENK={r08:'#0f766e',trtfm:'#1d4ed8',joy:'#be185d'};
 var kok=document.createElement('div');kok.className='rd';
-kok.innerHTML='<button type="button" class="rd-b" aria-haspopup="true" aria-expanded="false"><svg class="rd-ik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2.5"/><path d="M7 8 17 3"/><circle cx="15.5" cy="14" r="2.6"/><path d="M6.5 12.5h4M6.5 15.5h4"/></svg><span class="rd-eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="rd-y">Radyo</span></button>'+
+kok.innerHTML='<button type="button" class="rd-b" aria-haspopup="true" aria-expanded="false"><span class="rd-k"><svg class="rd-ik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2.5"/><path d="M7 8 17 3"/><circle cx="15.5" cy="14" r="2.6"/><path d="M6.5 12.5h4M6.5 15.5h4"/></svg><span class="rd-eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="rd-y">Radyo<span class="rd-dn"> dinle</span></span></button>'+
  '<div class="rd-p" role="dialog" aria-label="Radyo dinle"><h4>Tek tıkla dinle</h4>'+
  IST.map(function(s,i){return '<button type="button" class="rd-s" data-i="'+i+'" aria-pressed="false"><span class="rd-l" style="background:'+RENK[s.k]+'">'+s.lg+'</span><span><b>'+s.ad+'</b><small>'+s.alt+'</small></span><em></em></button>';}).join('')+
  '<div class="rd-alt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(243,239,226,.6)" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg><input type="range" min="0" max="100" aria-label="Ses düzeyi"><button type="button" class="rd-dur">Durdur</button></div>'+
@@ -60,7 +65,7 @@ ses.addEventListener('input',function(){ sesAyarla(); yaz('rdSes',ses.value); })
 function durum(){
   kok.classList.toggle('cal',simdi>=0);
   satir.forEach(function(b,i){ b.setAttribute('aria-pressed',i===simdi?'true':'false'); b.querySelector('em').textContent=i===simdi?'ÇALIYOR':''; });
-  yazi.textContent=simdi>=0?IST[simdi].ad:'Radyo';
+  yazi.innerHTML=simdi>=0?IST[simdi].ad:'Radyo<span class="rd-dn"> dinle</span>';
   btn.setAttribute('aria-label',simdi>=0?IST[simdi].ad+' çalıyor, radyo menüsünü aç':'Radyo dinle');
 }
 function durdur(){ if(au){ au.pause(); au.removeAttribute('src'); try{au.load();}catch(e){} } simdi=-1; kok.classList.remove('yuk'); durum(); }
