@@ -28,15 +28,21 @@ function eczaneYukle(){
   });
 }
 function havasYukle(){
-  return fetch('https://havas-saat.dreamdosima08.workers.dev/').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
-    var g=j.gidis||{},a=g.artvin; if(!a||!a.saatler||!a.saatler.length)throw 0;
+  return fetch('https://havas-saat.dreamdosima08.workers.dev/?hafta=1').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
+    var H=j.hafta||{},g=H[trGun()]||{},a=g.artvin; if(!a||!a.saatler||!a.saatler.length)throw 0;
     var sim=new Date(Date.now()+3*36e5),dk=sim.getUTCHours()*60+sim.getUTCMinutes(),sira=null;
     a.saatler.forEach(function(t){var p=t.split(':'),m=+p[0]*60+ +p[1];if(sira===null&&m>dk)sira={t:t,f:m-dk};});
     var kalan=sira?(sira.f>=60?Math.floor(sira.f/60)+' sa '+(sira.f%60)+' dk sonra':sira.f+' dk sonra'):'';
+    var y=H[trGun(1)]&&H[trGun(1)].artvin, yIlk=y&&y.saatler&&y.saatler[0], yGun=GUN[new Date(trGun(1)+'T12:00:00Z').getUTCDay()];
+    var say={},olagan=null; Object.keys(H).forEach(function(d){var x=H[d].artvin;if(x&&x.saatler&&x.saatler[0]){say[x.saatler[0]]=(say[x.saatler[0]]||0)+1;if(!olagan||say[x.saatler[0]]>say[olagan])olagan=x.saatler[0];}});
+    var erken=yIlk&&olagan&&yIlk!==olagan?' (her zamankinden farklı, dikkat!)':'';
     var diger=['borcka','hopa','arhavi'].filter(function(k){return g[k]&&g[k].saatler&&g[k].saatler.length;}).map(function(k){return {borcka:'Borçka',hopa:'Hopa',arhavi:'Arhavi'}[k]+': '+g[k].saatler.join(' · ');}).join('\n');
-    var kr=[{renk:'#1e3a8a,#0b1020',img:IK+'havas.webp',ust:'Bugün Artvin Otogar\'dan',baslik:a.saatler.join(' · '),metin:sira?'Sıradaki sefer '+sira.t+' · '+kalan:'Bugünkü Artvin seferleri bitti.',link:'/havas.html',dugme:'Tüm duraklar'}];
+    var metin=sira?'Sıradaki sefer '+sira.t+' · '+kalan:'Bugünkü Artvin seferleri bitti.'+(yIlk?' Yarın ('+yGun+') ilk sefer '+yIlk+erken:'');
+    var kr=[{renk:'#1e3a8a,#0b1020',img:IK+'havas.webp',ust:'Bugün Artvin Otogar\'dan',baslik:a.saatler.join(' · '),metin:metin,link:'/havas.html',dugme:'Tüm duraklar'}];
+    if(!sira&&y&&y.saatler&&y.saatler.length)kr.push({renk:'#1e3a8a,#0b1020',img:IK+'havas.webp',ust:'Yarın ('+yGun+') Artvin Otogar\'dan',baslik:y.saatler.join(' · '),metin:erken?'İlk sefer '+yIlk+': normal günlerden farklı saatte.':'Yarının seferleri.',link:'/havas.html',dugme:'Tüm duraklar'});
     if(diger)kr.push({renk:'#1e3a8a,#0b1020',img:IK+'havas.webp',ust:'Bugün diğer duraklar',baslik:'Borçka · Hopa · Arhavi',metin:diger,link:'/havas.html',dugme:'Saatleri gör'});
-    return {id:'havas-'+trGun()+'-'+a.saatler.join(''),ad:'Havaş',img:IK+'havas.webp',r:'59,130,246',kareler:kr,ozet:sira?'Artvin Otogar · '+kalan:'Bugünkü seferler bitti',deger:sira?sira.t:a.saatler[0]};
+    return {id:'havas-'+trGun()+'-'+a.saatler.join('')+(sira?'':'-y'),ad:'Havaş',img:IK+'havas.webp',r:'59,130,246',kareler:kr,
+      ozet:sira?'Artvin Otogar · '+kalan:(yIlk?'Yarın ('+yGun+') ilk sefer · Artvin Otogar':'Bugünkü seferler bitti'),deger:sira?sira.t:(yIlk||'—')};
   });
 }
 function haberYukle(){
