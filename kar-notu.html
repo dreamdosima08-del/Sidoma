@@ -101,9 +101,15 @@ auth.onAuthStateChanged(function(u){
   if(u&&!yon) dur('girisDurum','Bu hesapla ('+u.email+') not yazılamaz. Çıkış yapıp doğru hesapla gir.',1);
   if(yon){ yukle(); if(window.KarVeri) KarVeri.tahmin().then(function(L){ $('tahmin').innerHTML=L.map(function(x){ return '<div><span>'+x.ad+'</span><b>'+x.ozet+'</b></div>'; }).join(''); }).catch(function(){ $('tahmin').innerHTML='<div><span>Tahmin alınamadı.</span></div>'; }); }
 });
+var UA=navigator.userAgent||'', UYGULAMA_ICI=/; wv\)|Instagram|FBAN|FBAV|Line\/|WhatsApp|GSA\//.test(UA);
+if(UYGULAMA_ICI) dur('girisDurum','Bu sayfa bir uygulamanın içinden açılmış. Google girişi burada çalışmaz: sağ üstteki ⋮ menüden "Chrome\'da aç" de ya da adresi Chrome\'a yapıştır: artvinrehber.com/kar-notu.html',1);
+var HATA={'auth/popup-blocked':'Tarayıcı Google penceresini engelledi. Chrome\'da açıp tekrar dene.','auth/popup-closed-by-user':'Google penceresi kapandı, tekrar dene.','auth/cancelled-popup-request':'Tekrar dene.',
+  'auth/operation-not-supported-in-this-environment':'Bu tarayıcı Google girişini desteklemiyor. Chrome\'da aç.','auth/unauthorized-domain':'Alan adı Firebase\'de izinli değil (Authentication > Settings > Authorized domains).','auth/network-request-failed':'İnternet bağlantısını kontrol et.'};
 $('giris').onclick=function(){
   if(auth.currentUser){ auth.signOut(); return; }
-  auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){ dur('girisDurum','Giriş yapılamadı: '+(e.code||e.message),1); });
+  var b=this; b.disabled=true; b.textContent='Google açılıyor…'; dur('girisDurum','');
+  auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){ dur('girisDurum',(HATA[e.code]||'Giriş yapılamadı')+' ('+(e.code||e.message)+')',1); })
+   .then(function(){ b.disabled=false; b.textContent='Google ile giriş yap'; });
 };
 $('cik').onclick=function(){ auth.signOut(); };
 $('kaydet').onclick=function(){
