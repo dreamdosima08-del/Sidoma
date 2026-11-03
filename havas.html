@@ -138,6 +138,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .durak-adres{font-size:.73rem;color:var(--gray2);margin-bottom:.65rem;line-height:1.6;}
 
 /* SAAT GRİD */
+.hv-gun{font-size:.66rem;color:var(--gray2);margin:.1rem 0 .4rem;line-height:1.5}.hv-gun b{color:#e8ede9;font-weight:700}.hv-gun.yarin{color:#fbbf24}.hv-gun.yarin b{color:#fde68a}.hv-gun span{display:inline-block;margin-left:.35rem;background:rgba(251,191,36,.15);color:#fbbf24;border-radius:6px;padding:.05rem .4rem;font-weight:700}
 .saat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem;margin-bottom:.75rem;}
 .saat-kart{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:.55rem .4rem;text-align:center;backdrop-filter:blur(8px);}
 .saat-label{font-size:.52rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray2);margin-bottom:.2rem;}
@@ -1022,6 +1023,7 @@ function canliUygula(j){
     el.innerHTML = d.saatler.join(' · ') + (d.fiyat ? ' · <b style="color:#34d399">' + d.fiyat + ' ₺</b>' : '');
   });
   sayacGuncelle(); if (typeof hatirlaticiCiz === 'function') hatirlaticiCiz();
+  if (typeof hvGridGuncelle === 'function') { [].forEach.call(document.querySelectorAll('.saat-grid[data-gun]'), function(g){ g.removeAttribute('data-gun'); }); hvGridGuncelle(); }
   var z = new Date(j.guncelleme), e = document.getElementById('hvCanli');
   if (e && !isNaN(z)) { e.textContent = '✓ Saatler Havaş\'tan otomatik alındı · ' + z.toLocaleString('tr-TR',{timeZone:'Europe/Istanbul',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'}); e.style.display = 'block'; }
 }
@@ -1051,7 +1053,29 @@ function hvSonrakiYaz(durak){
   }
   return false;
 }
-fetch('https://havas-saat.dreamdosima08.workers.dev/?hafta=1').then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (!j || !j.hafta) return; HV_HAFTA = j; sayacGuncelle(); }).catch(function(){});
+// Kutucuklar: bir durağın günün son seferi geçince, gece yarısını beklemeden ertesi günün saatlerine geçer.
+function hvGridGuncelle(){
+  if (!HV_HAFTA || !HV_HAFTA.hafta) return;
+  var simdi = Date.now(), bugun = hvTrBugun(), yarin = hvTrBugun(1), kartlar = document.querySelectorAll('.durak-wrap .durak');
+  ['artvin','borcka','hopa','arhavi'].forEach(function(k,i){
+    var kart = kartlar[i]; if (!kart) return;
+    var grid = kart.querySelector('.saat-grid'); if (!grid) return;
+    var b = HV_HAFTA.hafta[bugun] && HV_HAFTA.hafta[bugun][k], y = HV_HAFTA.hafta[yarin] && HV_HAFTA.hafta[yarin][k];
+    if (!b || !b.saatler || !b.saatler.length) return;
+    var son = Date.parse(bugun + 'T' + b.saatler[b.saatler.length-1] + ':00+03:00');
+    var yarinMi = simdi > son && y && y.saatler && y.saatler.length;
+    var liste = yarinMi ? y.saatler : b.saatler, gun = yarinMi ? yarin : bugun;
+    var anahtar = gun + '|' + liste.join(',');
+    if (grid.getAttribute('data-gun') === anahtar) return;
+    grid.setAttribute('data-gun', anahtar); grid.innerHTML = saatKartlari(liste);
+    var et = kart.querySelector('.hv-gun'); if (!et) { et = document.createElement('div'); et.className = 'hv-gun'; grid.parentNode.insertBefore(et, grid); }
+    var farkli = yarinMi && b.saatler[0] !== y.saatler[0];
+    et.className = 'hv-gun' + (yarinMi ? ' yarin' : '');
+    et.innerHTML = (yarinMi ? '🌙 Bugünkü seferler bitti · <b>Yarın (' + hvGunAdi(yarin) + ', ' + hvTarih(yarin) + ')</b> saatleri' : '<b>Bugün (' + hvGunAdi(bugun) + ', ' + hvTarih(bugun) + ')</b> saatleri') + (farkli ? '<span>Dikkat: ilk sefer ' + y.saatler[0] + '</span>' : '');
+  });
+}
+fetch('https://havas-saat.dreamdosima08.workers.dev/?hafta=1').then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (!j || !j.hafta) return; HV_HAFTA = j; sayacGuncelle(); hvGridGuncelle(); }).catch(function(){});
+setInterval(hvGridGuncelle, 30000);
 
 
 // HAVA DURUMU - Open-Meteo (ücretsiz, API key yok)
