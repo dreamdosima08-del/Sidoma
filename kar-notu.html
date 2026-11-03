@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kar Notu · Artvin Rehberi</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b2418">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<style>
+:root{--zemin:#061710;--kart:#0d2219;--cizgi:rgba(240,192,64,.25);--altin:#f0c040;--krem:#f3efe2;--dim:rgba(243,239,226,.62)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--zemin);color:var(--krem);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;padding:1rem;padding-bottom:3rem}
+.ic{max-width:560px;margin:0 auto}
+h1{font-size:1.35rem;color:var(--altin);margin:.4rem 0 .2rem}
+.alt{font-size:.85rem;color:var(--dim);margin-bottom:1rem}
+.kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;padding:1rem;margin-bottom:.8rem}
+label{display:block;font-weight:700;font-size:.88rem;margin-bottom:.4rem}
+textarea{width:100%;min-height:190px;font:inherit;font-size:1rem;line-height:1.6;color:var(--krem);background:#081a12;border:1.5px solid rgba(255,255,255,.15);border-radius:12px;padding:.75rem}
+textarea:focus{outline:none;border-color:var(--altin)}
+.say{font-size:.75rem;color:var(--dim);text-align:right;margin-top:.25rem}
+button{font:700 .95rem system-ui,sans-serif;border:0;border-radius:12px;padding:.8rem 1rem;cursor:pointer}
+.ana{background:var(--altin);color:#1a1405;width:100%}
+.ikinci{background:rgba(255,255,255,.08);color:var(--krem)}
+button:disabled{opacity:.5}
+.durum{font-size:.85rem;margin-top:.6rem;min-height:1.2em}
+.ornek{font-size:.8rem;color:var(--dim);line-height:1.6}
+.ornek b{color:var(--krem)}
+.tahmin div{display:flex;justify-content:space-between;gap:.6rem;font-size:.84rem;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.tahmin div:last-child{border:0}
+.tahmin b{color:var(--altin);white-space:nowrap}
+.onizle{white-space:pre-line;font-size:.92rem;line-height:1.7}
+a{color:var(--altin)}
+</style>
+</head>
+<body>
+<div class="ic">
+  <h1>❄️ Kar notu</h1>
+  <p class="alt">"Artvin'e kar ne zaman yağacak?" sorusunun cevabı. Kaydettiğin anda <a href="/artvin-kar-ne-zaman-yagacak.html">kar sayfasında</a> ve hava sayfasında görünür, birkaç saat içinde Google'ın okuduğu metne de işlenir.</p>
+
+  <div class="kart" id="girisKart">
+    <button type="button" class="ana" id="giris">Google ile giriş yap</button>
+    <p class="durum" id="girisDurum"></p>
+  </div>
+
+  <div id="yonet" hidden>
+    <div class="kart">
+      <label for="metin">Notun</label>
+      <textarea id="metin" maxlength="3000" placeholder="Örn: Bu hafta şehir merkezinde kar beklenmiyor. Kafkasör ve Atabarı'na Cumartesi gecesi ilk kar düşebilir, yaylaya çıkacaklar zincir bulundursun."></textarea>
+      <div class="say" id="say">0 / 3000</div>
+      <button type="button" class="ana" id="kaydet" style="margin-top:.6rem">Kaydet ve yayınla</button>
+      <p class="durum" id="durum"></p>
+      <p class="ornek" id="son"></p>
+    </div>
+
+    <div class="kart">
+      <label>Otomatik tahmin (yazarken bakman için)</label>
+      <div class="tahmin" id="tahmin"><div><span>Yükleniyor…</span></div></div>
+      <p class="ornek" style="margin-top:.5rem">Kaynak: Open-Meteo, 16 günlük tahmin. Bu tablo sayfada senin notunun altında kendiliğinden görünür, ayrıca yazmana gerek yok.</p>
+    </div>
+
+    <div class="kart">
+      <label>Önizleme</label>
+      <p class="onizle" id="onizle"></p>
+    </div>
+
+    <div class="kart ornek">
+      <b>İpuçları</b><br>
+      • Kısa ve net yaz: <b>nerede</b>, <b>ne zaman</b>, <b>ne kadar</b>.<br>
+      • Merkez, Kafkasör ve Şavşat'ı ayrı ayrı söylemek işe yarar; insanlar rakıma göre soruyor.<br>
+      • Yol uyarısı varsa ekle (Sahara Geçidi, Atabarı yolu).<br>
+      • Boş bırakıp kaydedersen sayfada sadece otomatik tahmin görünür.
+    </div>
+    <button type="button" class="ikinci" id="cik">Çıkış yap</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="/kar-veri.js?v=1"></script>
+<script>
+(function(){
+'use strict';
+var YON='dreamdosima08@gmail.com'; // yalnızca arayüz için; asıl yetki Firestore kurallarında
+function $(i){return document.getElementById(i);}
+function dur(id,m,h){ var e=$(id); e.textContent=m; e.style.color=h?'#ffb4a8':''; }
+if(typeof firebase==='undefined'){ dur('girisDurum','Bağlantı kurulamadı, sayfayı yenile.',1); return; }
+firebase.initializeApp({apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",authDomain:"artvin-imece.firebaseapp.com",projectId:"artvin-imece",storageBucket:"artvin-imece.firebasestorage.app",messagingSenderId:"30297800879",appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"});
+var auth=firebase.auth(), db=firebase.firestore(), ref=db.collection('site_notlar').doc('kar');
+function saat(z){ return new Date(z).toLocaleString('tr-TR',{timeZone:'Europe/Istanbul',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'}); }
+function guncelle(){ var v=$('metin').value; $('say').textContent=v.length+' / 3000'; $('onizle').textContent=v||'(Not boş: sayfada sadece otomatik tahmin görünecek.)'; }
+$('metin').addEventListener('input',guncelle);
+function yukle(){
+  ref.get().then(function(d){ if(d.exists){ var v=d.data(); $('metin').value=v.metin||''; $('son').textContent='Son kayıt: '+saat(v.zaman); } guncelle(); })
+   .catch(function(e){ dur('durum','Not okunamadı: '+(e.code||e.message),1); });
+}
+auth.onAuthStateChanged(function(u){
+  var yon=!!u&&u.email===YON;
+  $('girisKart').hidden=yon; $('yonet').hidden=!yon;
+  if(u&&!yon) dur('girisDurum','Bu hesapla ('+u.email+') not yazılamaz. Çıkış yapıp doğru hesapla gir.',1);
+  if(yon){ yukle(); if(window.KarVeri) KarVeri.tahmin().then(function(L){ $('tahmin').innerHTML=L.map(function(x){ return '<div><span>'+x.ad+'</span><b>'+x.ozet+'</b></div>'; }).join(''); }).catch(function(){ $('tahmin').innerHTML='<div><span>Tahmin alınamadı.</span></div>'; }); }
+});
+$('giris').onclick=function(){
+  if(auth.currentUser){ auth.signOut(); return; }
+  auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){ dur('girisDurum','Giriş yapılamadı: '+(e.code||e.message),1); });
+};
+$('cik').onclick=function(){ auth.signOut(); };
+$('kaydet').onclick=function(){
+  var b=this; b.disabled=true; dur('durum','Kaydediliyor…');
+  ref.set({metin:$('metin').value.trim().slice(0,3000), zaman:Date.now()})
+   .then(function(){ dur('durum','✓ Yayınlandı. Kar sayfasında hemen görünür; Google için birkaç saat içinde işlenir.'); $('son').textContent='Son kayıt: '+saat(Date.now()); })
+   .catch(function(e){ dur('durum','Kaydedilemedi: '+(e.code||e.message),1); })
+   .then(function(){ b.disabled=false; });
+};
+})();
+</script>
+</body>
+</html>

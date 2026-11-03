@@ -1,0 +1,23 @@
+name: Kar sayfası
+on:
+  schedule:
+    - cron: '37 */3 * * *'   # 3 saatte bir
+  push:
+    paths: ['araclar/kar_sayfa.py', '.github/workflows/kar-sayfa.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: kar-sayfa
+jobs:
+  kar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 araclar/kar_sayfa.py
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add artvin-kar-ne-zaman-yagacak.html hava.html
+          git commit -m "Kar sayfası: tahmin ve not güncellendi" || exit 0
+          git pull --rebase origin main && git push
