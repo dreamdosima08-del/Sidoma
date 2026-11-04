@@ -38,6 +38,14 @@ var css=''+
 'html.mu .rd-k{display:inline-flex;align-items:center}'+
 'html.mu .rd-b{font-size:.84rem;padding:.55rem .9rem .55rem .75rem;border-radius:10px;gap:.45rem}html.mu .rd-b svg{width:15px;height:15px}'+
 '#dovizBant .rd{margin-left:auto;flex:none}'+
+'.rd.yuzen{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:950;display:none}'+
+'.rd.yuzen.gor{display:block}'+
+'.rd.yuzen .rd-b{height:40px;padding:0 .9rem 0 .35rem;gap:.45rem;font-size:.82rem;background:linear-gradient(160deg,rgba(20,44,32,.97),rgba(9,22,16,.98));border:1px solid rgba(240,192,64,.7);color:#f6dc95;box-shadow:0 8px 22px rgba(0,0,0,.45)}'+
+'.rd.yuzen .rd-k{width:28px;height:28px;border-radius:50%;background:#f0c040;color:#1a1405;display:grid;place-items:center}'+
+'.rd.yuzen .rd-k svg{width:15px;height:15px}'+
+'.rd.yuzen.cal .rd-b{background:#f0c040;color:#1a1405}.rd.yuzen.cal .rd-k{background:#1a1405;color:#f0c040}'+
+'.rd.bekle .rd-b{animation:rdNabiz 1.6s ease-in-out infinite}'+
+'@keyframes rdNabiz{0%,100%{box-shadow:0 0 0 0 rgba(240,192,64,.55)}50%{box-shadow:0 0 0 8px rgba(240,192,64,0)}}'+
 '#dovizBant .rd-b{height:26px;padding:0 .6rem 0 .2rem;gap:.35rem;font-size:.72rem;background:linear-gradient(160deg,rgba(20,44,32,.95),rgba(9,22,16,.95));border-color:rgba(240,192,64,.7);color:#f6dc95;box-shadow:0 3px 10px rgba(0,0,0,.35)}'+
 '#dovizBant .rd-k{width:20px;height:20px;border-radius:50%;background:#f0c040;color:#1a1405;display:grid;place-items:center;flex:none}'+
 '#dovizBant .rd-k svg{width:12px;height:12px}'+
@@ -63,12 +71,12 @@ ses.value=oku('rdSes','35');
 function sesAyarla(){ if(au) au.volume=Math.max(0,Math.min(1,ses.value/100)); }
 ses.addEventListener('input',function(){ sesAyarla(); yaz('rdSes',ses.value); });
 function durum(){
-  kok.classList.toggle('cal',simdi>=0);
+  kok.classList.toggle('cal',simdi>=0); if(simdi>=0) kok.classList.add('gor');
   satir.forEach(function(b,i){ b.setAttribute('aria-pressed',i===simdi?'true':'false'); b.querySelector('em').textContent=i===simdi?'ÇALIYOR':''; });
   yazi.innerHTML=simdi>=0?IST[simdi].ad:'Radyo<span class="rd-dn"> dinle</span>';
   btn.setAttribute('aria-label',simdi>=0?IST[simdi].ad+' çalıyor, radyo menüsünü aç':'Radyo dinle');
 }
-function durdur(){ if(au){ au.pause(); au.removeAttribute('src'); try{au.load();}catch(e){} } simdi=-1; kok.classList.remove('yuk'); durum(); }
+function durdur(){ if(au){ au.pause(); au.removeAttribute('src'); try{au.load();}catch(e){} } simdi=-1; bekleyen=-1; kok.classList.remove('yuk','bekle'); if(kok.classList.contains('yuzen')) kok.classList.remove('gor'); sil(); durum(); }
 function kaynaklar(s){ var a=s.src.slice(); if(s.hls&&document.createElement('audio').canPlayType('application/vnd.apple.mpegurl')) a.push(s.hls); return a; }
 function cal(i,k){
   var s=IST[i],l=kaynaklar(s); k=k||0;
@@ -80,12 +88,35 @@ function cal(i,k){
   }
   simdi=i; kaynak=k; not.classList.remove('rd-hata'); not.textContent='Yayınlar radyoların kendi canlı yayınıdır.';
   au.src=l[k]; sesAyarla(); kok.classList.add('yuk'); durum();
-  var p=au.play(); if(p&&p.catch) p.catch(function(e){ if(e&&e.name==='NotAllowedError'){ durdur(); } else if(simdi===i) cal(i,k+1); });
+  var p=au.play(); if(p&&p.catch) p.catch(function(e){ if(e&&e.name==='NotAllowedError'){ if(devamMi){ beklet(i); } else durdur(); } else if(simdi===i) cal(i,k+1); });
+  if(p&&p.then) p.then(function(){ devamMi=false; kok.classList.remove('bekle'); kaydet(); medya(i); },function(){});
   yaz('rdSon',s.k);
 }
+/* ── sayfa değişince devam ── */
+var devamMi=false, bekleyen=-1;
+function kaydet(){ if(simdi>=0) yaz('rdDurum',JSON.stringify({i:simdi,t:Date.now()})); }
+function sil(){ try{localStorage.removeItem('rdDurum');}catch(e){} }
+setInterval(function(){ if(simdi>=0&&au&&!au.paused) kaydet(); },4000);
+addEventListener('pagehide',function(){ if(simdi>=0&&au&&!au.paused) kaydet(); });
+function beklet(i){
+  // tarayıcı otomatik çalmaya izin vermedi: ilk dokunuşta devam et
+  simdi=-1; bekleyen=i; kok.classList.remove('yuk'); kok.classList.add('bekle','gor'); durum();
+  yazi.textContent='▶ '+IST[i].ad+' devam';
+  btn.setAttribute('aria-label',IST[i].ad+' yayınına devam et');
+  function ilk(e){ if(bekleyen<0) return; if(pn.contains(e.target)) return; var j=bekleyen; bekleyen=-1; temizle(); kok.classList.remove('bekle'); devamMi=false; cal(j,0); if(btn.contains(e.target)) e.stopPropagation(); }
+  function temizle(){ ['pointerdown','keydown','touchend'].forEach(function(t){ document.removeEventListener(t,ilk,true); }); }
+  ['pointerdown','keydown','touchend'].forEach(function(t){ document.addEventListener(t,ilk,true); });
+}
+function medya(i){
+  if(!('mediaSession' in navigator)) return;
+  try{ navigator.mediaSession.metadata=new MediaMetadata({title:IST[i].ad,artist:'Artvin Rehberi · canlı yayın',artwork:[{src:'/icon-192.png',sizes:'192x192',type:'image/png'},{src:'/icon-512.png',sizes:'512x512',type:'image/png'}]});
+    navigator.mediaSession.setActionHandler('pause',function(){ durdur(); });
+    navigator.mediaSession.setActionHandler('stop',function(){ durdur(); });
+    navigator.mediaSession.setActionHandler('play',function(){ cal(i,0); });
+  }catch(e){} }
 satir.forEach(function(b){ b.addEventListener('click',function(){ var i=+b.getAttribute('data-i'); if(i===simdi) durdur(); else cal(i,0); }); });
 pn.querySelector('.rd-dur').addEventListener('click',durdur);
-function konum(){ var r=btn.getBoundingClientRect(), w=pn.offsetWidth||270, x=Math.min(Math.max(10,r.right-w),window.innerWidth-w-10); pn.style.left=x+'px'; pn.style.top=(r.bottom+8)+'px'; }
+function konum(){ var r=btn.getBoundingClientRect(), w=pn.offsetWidth||270, h=pn.offsetHeight||300, x=kok.classList.contains('yuzen')?Math.max(10,Math.min(r.left+r.width/2-w/2,window.innerWidth-w-10)):Math.min(Math.max(10,r.right-w),window.innerWidth-w-10); pn.style.left=x+'px'; pn.style.top=(r.top>window.innerHeight/2?Math.max(10,r.top-h-8):r.bottom+8)+'px'; }
 function panel(ac){ document.documentElement.classList.toggle('rd-acik',ac); pn.classList.toggle('acik',ac); kok.classList.toggle('acik',ac); btn.setAttribute('aria-expanded',ac?'true':'false'); if(ac) konum(); }
 window.addEventListener('scroll',function(){ if(pn.classList.contains('acik')) konum(); },{passive:true});
 window.addEventListener('resize',function(){ if(pn.classList.contains('acik')) konum(); });
@@ -99,8 +130,13 @@ function yerles(){
   var ust=document.getElementById('muUst');
   if(document.documentElement.classList.contains('mu')&&ust){ var p=ust.querySelector('.mu-play'); if(kok.parentNode!==ust) ust.insertBefore(kok,p||null); return; }
   var bant=document.getElementById('dovizBant'), saat=document.getElementById('saatGoster');
-  if(bant){ var hedef=saat&&saat.parentNode===bant?saat:null; if(kok.parentNode!==bant||kok.nextSibling!==hedef) bant.insertBefore(kok,hedef); }
+  if(bant){ kok.classList.remove('yuzen'); var hedef=saat&&saat.parentNode===bant?saat:null; if(kok.parentNode!==bant||kok.nextSibling!==hedef) bant.insertBefore(kok,hedef); return; }
+  kok.classList.add('yuzen'); if(kok.parentNode!==document.body) document.body.appendChild(kok);
 }
 yerles();
 new MutationObserver(yerles).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+(function(){ var d=null; try{ d=JSON.parse(oku('rdDurum','null')); }catch(e){}
+  if(!d||!(d.i>=0)||!IST[d.i]||Date.now()-d.t>120000){ sil(); return; }
+  devamMi=true; cal(d.i,0);
+})();
 })();

@@ -325,5 +325,6 @@ $('lEkle').onclick=function(){var ad=$('lAd').value.trim();if(ad.length<2){mesaj
   db.collection('futbol_lig').doc(slug(ad)).set({ad:ad,sezon:$('lSezon').value.trim(),sira:D.ligler.length+1,tamLig:$('lTam').checked}).then(function(){$('lAd').value='';$('lTam').checked=false;mesaj('Lig eklendi');return yukle()}).catch(function(e){mesaj('Eklenemedi: '+(e.code||e.message),true)})};
 })();
 </script>
+<script src="/radyo.js?v=3" defer></script>
 </body>
 </html>
