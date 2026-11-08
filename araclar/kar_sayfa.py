@@ -40,7 +40,8 @@ except Exception as ex:
     print('Tahmin alınamadı, sayfaya dokunulmadı:', ex); sys.exit(0)
 L = []
 for (k, ad, la, lo, m), a in zip(YER, A):
-    d = a['daily']; gunler = [dict(t=t, cm=d['snowfall_sum'][i] or 0, mn=d['temperature_2m_min'][i]) for i, t in enumerate(d['time'])]
+    d = a['daily']; gunler = [dict(t=t, cm=d['snowfall_sum'][i] or 0, mn=d['temperature_2m_min'][i]) for i, t in enumerate(d['time'])
+              if d['temperature_2m_min'][i] is not None]  # tahminin son günleri bazen boş gelir; o günler atlanır
     ilk = next((g for g in gunler if g['cm'] >= ESIK), None)
     L.append(dict(k=k, ad=ad, m=m, gunler=gunler, ilk=ilk, top=sum(g['cm'] for g in gunler)))
 

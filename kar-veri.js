@@ -24,7 +24,7 @@ function tahmin(){
   return fetch(u).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(j){
     var A=Array.isArray(j)?j:[j];
     var v=YER.map(function(y,i){
-      var d=A[i].daily, gunler=d.time.map(function(t,n){ return {t:t,cm:d.snowfall_sum[n]||0,min:d.temperature_2m_min[n],max:d.temperature_2m_max[n],olas:d.precipitation_probability_max[n]}; });
+      var d=A[i].daily, gunler=d.time.map(function(t,n){ return {t:t,cm:d.snowfall_sum[n]||0,min:d.temperature_2m_min[n],max:d.temperature_2m_max[n],olas:d.precipitation_probability_max[n]}; }).filter(function(g){ return g.min!=null; });
       var ilk=null,top=0; gunler.forEach(function(g){ top+=g.cm; if(!ilk&&g.cm>=ESIK) ilk=g; });
       return {k:y.k,ad:y.ad,m:y.m,gunler:gunler,ilk:ilk,toplam:top,
         ozet:ilk?gunYaz(ilk.t)+' · ~'+cm(ilk.cm)+' cm':'16 günde kar yok'};
