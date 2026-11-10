@@ -297,7 +297,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 .hh-nok{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:hhNabiz 1.8s infinite}
 @keyframes hhNabiz{70%{box-shadow:0 0 0 6px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
 .hh-serit{position:relative;height:84px;margin:.35rem 0 .1rem}
-.hh-cizgi,.hh-dolu{position:absolute;top:44px;height:4px;border-radius:4px;left:5%;width:90%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 8px,transparent 8px 13px)}
+.hh-cizgi,.hh-dolu{position:absolute;top:44px;height:4px;border-radius:4px;left:6%;width:88%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 8px,transparent 8px 13px)}
 .hh-dolu{width:0;background:linear-gradient(90deg,#2563eb,#60a5fa);transition:width .8s ease,left .8s ease;box-shadow:0 0 10px rgba(96,165,250,.5)}
 .hh-d{position:absolute;top:0;height:84px;width:46px;margin-left:-23px;background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit}
 .hh-d i{position:absolute;left:50%;top:39px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#0f172a;border:2.5px solid #60a5fa;font-style:normal}
@@ -321,6 +321,15 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 .hh-kay input{flex:1;accent-color:#f0c040;height:22px}
 .hh-not{font-size:.56rem;color:var(--gray2);margin-top:.2rem;line-height:1.45}
 .hh-havas{display:grid;grid-template-columns:1.5fr 1fr;gap:.4rem;margin-top:.5rem}.hh-havas a{display:flex;align-items:center;justify-content:center;text-align:center;font:800 .7rem/1.2 'Inter',sans-serif;text-decoration:none;border-radius:10px;padding:.55rem .4rem}.hh-havas a:first-child{background:linear-gradient(135deg,#f0c040,#e0a82e);color:#1a1206}.hh-havas a:last-child{background:rgba(255,255,255,.07);border:1px solid rgba(240,192,64,.4);color:#ffd968}
+.hv-yarin{margin:0 0 .5rem;border-radius:12px;padding:.55rem .75rem;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.25);font-size:.72rem;line-height:1.5;color:var(--gray1)}
+.hv-yarin b{color:#fff}
+.hv-yarin.dikkat{background:linear-gradient(135deg,rgba(251,191,36,.16),rgba(251,146,60,.08));border:1.5px solid rgba(251,191,36,.6)}
+.hy-bas{font-weight:800;color:#fbbf24;font-size:.8rem;margin-bottom:.15rem}.hy-fark{color:#fde68a;line-height:1.7}.hy-fark small{color:var(--gray2);font-size:.66rem}.hy-fark b{color:#fbbf24;font-size:.82rem}
+.sayac-kart.yarin{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}.sayac-kart.yarin .sayac-sefer{color:#fbbf24;font-weight:700}
+.hh-saat{font:700 .62rem 'Inter',sans-serif;color:var(--gray2)}
+.hh-serit .hh-d{pointer-events:none}
+span.hh-o{position:absolute;top:12px;margin-left:-15px;width:30px;height:24px;border-radius:8px;background:linear-gradient(135deg,#f0c040,#e0a82e);box-shadow:0 3px 10px rgba(240,192,64,.45);font-size:.85rem;line-height:24px;text-align:center;transition:left .8s ease;z-index:2}
+.hh-serit{height:78px}.hh-ad{top:60px}
 @media (prefers-reduced-motion:reduce){.hh-o,.hh-dolu{transition:none}.hh-nok{animation:none}}
 
 /* durak kartları: sıkı */
@@ -466,10 +475,10 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 <!-- FİYAT ŞERİDİ (4 durak tek bakışta) -->
 <div class="fiyat-banner">
   <div class="ucret-serit">
-    <div><span>Artvin</span><b data-ucret="artvin">600 ₺</b><small>113 km · ~140 dk</small></div>
-    <div><span>Borçka</span><b data-ucret="borcka">490 ₺</b><small>84 km · ~100 dk</small></div>
-    <div><span>Hopa</span><b data-ucret="hopa">320 ₺</b><small>58 km · ~60 dk</small></div>
-    <div><span>Arhavi</span><b data-ucret="arhavi">300 ₺</b><small>47 km · ~45 dk</small></div>
+    <div><span>Artvin · Otogar</span><b data-ucret="artvin">600 ₺</b><small>113 km · ~140 dk</small></div>
+    <div><span>Borçka · Arifağaoğlu</span><b data-ucret="borcka">490 ₺</b><small>84 km · ~100 dk</small></div>
+    <div><span>Hopa · Maliye Önü</span><b data-ucret="hopa">320 ₺</b><small>58 km · ~60 dk</small></div>
+    <div><span>Arhavi · Atatürk Blv.</span><b data-ucret="arhavi">300 ₺</b><small>47 km · ~45 dk</small></div>
   </div>
   <div class="ucret-alt">Havalimanı ↔ durak, iki yön aynı ücret · <a href="https://havas.net/otobus-hizmetleri" target="_blank" rel="noopener">havas.net'te teyit et →</a></div>
 </div>
@@ -488,6 +497,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
 <div id="sayac-bolum"></div>
 <div class="sayac-bolum">
   <div class="sayac-baslik">⏱ Bir Sonraki Sefer</div>
+  <div class="hv-yarin" id="hvYarin" hidden></div>
   <div class="sayac-grid" id="sayacGrid">
     <div class="sayac-kart" id="s-artvin">
       <div>
@@ -498,7 +508,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
     </div>
     <div class="sayac-kart" id="s-borcka">
       <div>
-        <div class="sayac-durak">Borçka</div>
+        <div class="sayac-durak">Borçka — Arifağaoğlu Petrol</div>
         <div class="sayac-sefer" id="sf-borcka">Hesaplanıyor...</div>
       </div>
       <div class="sayac-zaman" id="sz-borcka">--:--</div>
@@ -512,7 +522,7 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
     </div>
     <div class="sayac-kart" id="s-arhavi">
       <div>
-        <div class="sayac-durak">Arhavi</div>
+        <div class="sayac-durak">Arhavi — Atatürk Bulvarı</div>
         <div class="sayac-sefer" id="sf-arhavi">Hesaplanıyor...</div>
       </div>
       <div class="sayac-zaman" id="sz-arhavi">--:--</div>
@@ -645,12 +655,12 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
   <div class="durak">
     <div class="durak-ust">
       <div class="durak-no">Durak 4 · En Yakın</div>
-      <div class="durak-isim">Arhavi Durağı</div>
+      <div class="durak-isim">Arhavi — Atatürk Bulvarı</div>
       <div class="durak-mesafe">✈️ Rize-Artvin Havalimanı'na <strong style="color:var(--mavi)">47 km</strong></div>
       <div class="durak-sure-fiyat"><span class="sure-badge">⏱ 45 dk</span><span class="fiyat-badge">💰 300 ₺</span></div>
     </div>
     <div class="durak-adres-wrap">
-      <div class="durak-adres">📍 Arhavi · Havalimanına en yakın durak</div>
+      <div class="durak-adres">📍 Atatürk Bulvarı, Arhavi · Havalimanına en yakın durak</div>
       <div class="saat-grid">
         <div class="saat-kart">
           <div class="saat-label">1. Sefer</div>
@@ -737,9 +747,9 @@ footer a{color:var(--mavi-acik);text-decoration:none;}
         <div class="plan-label">Kalkış Durağın</div>
         <select class="plan-input" id="planDurak">
           <option value="artvin">Artvin Otogar</option>
-          <option value="borcka">Borçka</option>
+          <option value="borcka">Borçka — Arifağaoğlu Petrol</option>
           <option value="hopa">Hopa</option>
-          <option value="arhavi">Arhavi</option>
+          <option value="arhavi">Arhavi — Atatürk Bulvarı</option>
         </select>
       </div>
     </div>
@@ -1122,7 +1132,8 @@ function sayacGuncelle() {
     if (sonraki) {
       var etiket = sonraki.gecici ? '⭐ Geçici · ' : '';
       zEl.textContent = formatSure(enAz);
-      sfEl.textContent = etiket + (yarin ? 'Yarın ' : '') + sonraki.ad + ' — Saat ' + sonraki.saat;
+      if (yarin) { zEl.textContent = '—'; sfEl.textContent = 'Bugünkü seferler bitti · yarının saati: havas.net'; kartEl.classList.remove('aktif-sefer'); return; }
+      sfEl.textContent = etiket + sonraki.ad + ' — Saat ' + sonraki.saat;
       if (enAz <= 1800) {
         kartEl.classList.add('aktif-sefer');
       } else {
@@ -1141,6 +1152,8 @@ setInterval(sayacGuncelle, 1000);
 function saatKartlari(liste){ return liste.map(function(t,n){ return '<div class="saat-kart"><div class="saat-label">'+(n+1)+'. Sefer</div><div class="saat-deger">'+t+'</div></div>'; }).join(''); }
 function canliUygula(j){
   if(!j || !j.gidis) return;
+  // Worker Havaş'a ulaşamayınca eski günün verisini döndürebilir: başka günün saatleri bugüne yazılmaz (haftalık desen geçerli kalır)
+  var gz = j.guncelleme ? new Date(Date.parse(j.guncelleme) + 3*3600e3).toISOString().slice(0,10) : ''; if (gz !== hvTrBugun()) return;
   var g = j.gidis, kartlar = document.querySelectorAll('.durak-wrap .durak'), degisti = false;
   ['artvin','borcka','hopa','arhavi'].forEach(function(k,i){
     var d = g[k]; if(!d || !d.hizmet || !d.saatler || !d.saatler.length) return;
@@ -1157,6 +1170,7 @@ function canliUygula(j){
     el.innerHTML = d.saatler.join(' · ') + (d.fiyat ? ' · <b style="color:#34d399">' + d.fiyat + ' ₺</b>' : '');
   });
   if (window.hvHatVeri) window.hvHatVeri(g); else window.HV_GIDIS = g;
+  if (HV_HAFTA && HV_HAFTA.desen) { var bg = HV_HAFTA.hafta[hvTrBugun()]; if (bg) ['artvin','borcka','hopa','arhavi'].forEach(function(k){ if (g[k] && g[k].saatler && g[k].saatler.length) bg[k] = {hizmet:true, saatler:g[k].saatler.slice(), fiyat:g[k].fiyat}; }); }
   sayacGuncelle(); if (typeof hatirlaticiCiz === 'function') hatirlaticiCiz();
   if (typeof hvGridGuncelle === 'function') { [].forEach.call(document.querySelectorAll('.saat-grid[data-gun]'), function(g){ g.removeAttribute('data-gun'); }); hvGridGuncelle(); }
   var z = new Date(j.guncelleme), e = document.getElementById('hvCanli');
@@ -1164,6 +1178,10 @@ function canliUygula(j){
 }
 fetch('https://havas-saat.dreamdosima08.workers.dev/').then(function(r){ return r.ok ? r.json() : null; }).then(canliUygula).catch(function(){});
 // Geri sayım için 7 günlük tarife (Worker ?hafta=1): Havaş saatleri güne göre değiştiği için sonraki sefer doğru günden hesaplanır.
+// Havaş'ın gün gün saatleri (bekçinin son okuduğu desen). Worker'a ulaşılamazsa YARIN saatleri buradan gelir;
+// bugünün saatleri yarına asla kopyalanmaz (Salı 04:45, diğer günler 06:15 gibi farklar için).
+var HV_DESEN = {"Perşembe":{"artvin":["06:15","13:15","15:15","18:30"],"borcka":["06:45","13:45","15:45","19:00"],"hopa":["07:15","08:15","14:30","16:30","18:15","19:45","21:00"],"arhavi":["07:30","08:30","14:45","16:45","18:30","20:00","21:15"]},"Cuma":{"artvin":["06:15","13:15","15:15","18:30"],"borcka":["06:45","13:45","15:45","19:00"],"hopa":["07:15","08:15","14:30","16:15","18:15","19:45","21:00"],"arhavi":["07:30","08:30","14:45","16:30","18:30","20:00","21:15"]},"Cumartesi":{"artvin":["06:15","13:15","15:15","18:30"],"borcka":["06:45","13:45","15:45","19:00"],"hopa":["07:15","08:15","14:30","16:30","18:15","19:45","21:00"],"arhavi":["07:30","08:30","14:45","16:45","18:30","20:00","21:15"]},"Pazar":{"artvin":["06:15","13:15","15:15","18:30"],"borcka":["06:45","13:45","15:45","19:00"],"hopa":["07:15","08:15","14:30","16:30","18:15","19:45","21:00"],"arhavi":["07:30","08:30","14:45","16:45","18:30","20:00","21:15"]},"Pazartesi":{"artvin":["06:15","13:15","15:15","18:30"],"borcka":["06:45","13:45","15:45","19:00"],"hopa":["07:15","08:15","14:30","16:30","18:15","19:45"],"arhavi":["07:30","08:30","14:45","16:45","18:30","20:00"]},"Salı":{"artvin":["04:45","13:15","15:15","18:30"],"borcka":["05:15","13:45","15:45","19:00"],"hopa":["05:45","07:15","08:15","14:30","16:30","18:15","19:45","21:00"],"arhavi":["06:00","07:30","08:30","14:45","16:45","18:30","20:00","21:15"]},"Çarşamba":{"artvin":["06:15","13:15","15:15","18:30"],"borcka":["06:45","13:45","15:45","19:00"],"hopa":["07:15","08:15","14:30","16:30","18:15","19:45","21:00"],"arhavi":["07:30","08:30","14:45","16:45","18:30","20:00","21:15"]}};
+function hvDesenHafta(){ var h = {}; for (var i = 0; i < 7; i++) { var g = hvTrBugun(i), d = HV_DESEN[hvGunAdi(g)]; if (!d) continue; h[g] = {}; Object.keys(d).forEach(function(k){ h[g][k] = {hizmet:true, saatler:d[k].slice()}; }); } return {hafta:h, desen:true}; }
 var HV_HAFTA = null, HV_AD = {artvin:'Artvin Otogar', borcka:'Borçka', hopa:'Hopa', arhavi:'Arhavi'};
 var HV_GUN = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'], HV_AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 function hvTrBugun(ek){ return new Date(Date.now() + 3*3600e3 + (ek||0)*864e5).toISOString().slice(0,10); }
@@ -1179,8 +1197,9 @@ function hvSonrakiYaz(durak){
       if (t > simdi) {
         var fark = Math.floor((t - simdi) / 1000), z = document.getElementById('sz-' + durak), sf = document.getElementById('sf-' + durak), k = document.getElementById('s-' + durak);
         if (!z || !sf) return true;
-        var gunYazi = gunler[i] === bugun ? '' : gunler[i] === yarin ? 'Yarın ' : hvGunAdi(gunler[i]) + ' ';
+        var gunYazi = gunler[i] === bugun ? '' : gunler[i] === yarin ? '🌙 Yarın (' + hvGunAdi(yarin) + ') ' : hvGunAdi(gunler[i]) + ' ';
         z.textContent = formatSure(fark); sf.textContent = gunYazi + (n + 1) + '. Sefer — Saat ' + d.saatler[n];
+        if (k) k.classList.toggle('yarin', gunler[i] !== bugun);
         if (k) k.classList.toggle('aktif-sefer', fark <= 1800);
         return true;
       }
@@ -1188,9 +1207,28 @@ function hvSonrakiYaz(durak){
   }
   return false;
 }
+// Yarın kutusu: yarının ilk seferleri; bugünden farklıysa büyük uyarı. Akşam 16:00'dan sonra ya da saatler farklıysa görünür.
+function hvYarinYaz(){
+  var e = document.getElementById('hvYarin'); if (!e || !HV_HAFTA || !HV_HAFTA.hafta) return;
+  var bugun = hvTrBugun(), yarin = hvTrBugun(1), B = HV_HAFTA.hafta[bugun] || {}, Y = HV_HAFTA.hafta[yarin];
+  if (!Y) { e.hidden = true; return; }
+  var ad = {artvin:'Artvin', borcka:'Borçka', hopa:'Hopa', arhavi:'Arhavi'}, farkli = [], ilk = [];
+  Object.keys(ad).forEach(function(k){
+    var y = Y[k] && Y[k].saatler && Y[k].saatler[0], b = B[k] && B[k].saatler && B[k].saatler[0];
+    if (!y) return; ilk.push(ad[k] + ' <b>' + y + '</b>');
+    if (b && b !== y) farkli.push(ad[k] + ': yarın ilk sefer <b>' + y + '</b> <small>(bugün ' + b + ')</small>');
+  });
+  var saat = new Date(Date.now() + 3*3600e3).getUTCHours();
+  if (!ilk.length || (!farkli.length && saat < 16)) { e.hidden = true; return; }
+  e.hidden = false; e.className = 'hv-yarin' + (farkli.length ? ' dikkat' : '');
+  e.innerHTML = farkli.length
+    ? '<div class="hy-bas">⚠️ Yarın (' + hvGunAdi(yarin) + ') sabah saatler bugünden FARKLI</div><div class="hy-fark">' + farkli.join('<br>') + '</div>'
+    : '<div class="hy-ilk">🌙 Yarın (' + hvGunAdi(yarin) + ', ' + hvTarih(yarin) + ') ilk seferler: ' + ilk.join(' · ') + '</div>';
+}
 // Kutucuklar: bir durağın günün son seferi geçince, gece yarısını beklemeden ertesi günün saatlerine geçer.
 function hvGridGuncelle(){
   if (!HV_HAFTA || !HV_HAFTA.hafta) return;
+  hvYarinYaz();
   var simdi = Date.now(), bugun = hvTrBugun(), yarin = hvTrBugun(1), kartlar = document.querySelectorAll('.durak-wrap .durak');
   ['artvin','borcka','hopa','arhavi'].forEach(function(k,i){
     var kart = kartlar[i]; if (!kart) return;
@@ -1209,7 +1247,15 @@ function hvGridGuncelle(){
     et.innerHTML = (yarinMi ? '🌙 Bugünkü seferler bitti · <b>Yarın (' + hvGunAdi(yarin) + ', ' + hvTarih(yarin) + ')</b> saatleri' : '<b>Bugün (' + hvGunAdi(bugun) + ', ' + hvTarih(bugun) + ')</b> saatleri') + (farkli ? '<span>Dikkat: ilk sefer ' + y.saatler[0] + '</span>' : '');
   });
 }
-fetch('https://havas-saat.dreamdosima08.workers.dev/?hafta=1').then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (!j || !j.hafta) return; HV_HAFTA = j; sayacGuncelle(); hvGridGuncelle(); }).catch(function(){});
+HV_HAFTA = hvDesenHafta();
+(function(){ var b = HV_HAFTA.hafta[hvTrBugun()]; if (b) window.HV_GIDIS = b; })();
+fetch('https://havas-saat.dreamdosima08.workers.dev/?hafta=1').then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+  if (!j || !j.hafta) return;
+  var eski = HV_HAFTA && HV_HAFTA.hafta || {};
+  Object.keys(eski).forEach(function(g){ if (!j.hafta[g] || Object.keys(j.hafta[g]).length < 2) j.hafta[g] = eski[g]; }); // eksik günleri desenle doldur
+  HV_HAFTA = j; sayacGuncelle(); [].forEach.call(document.querySelectorAll('.saat-grid[data-gun]'), function(g){ g.removeAttribute('data-gun'); }); hvGridGuncelle();
+}).catch(function(){});
+sayacGuncelle(); hvGridGuncelle();
 setInterval(hvGridGuncelle, 30000);
 
 
@@ -1271,7 +1317,7 @@ havaDurumuGetir();
           <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">600 ₺</td>
         </tr>
         <tr style="border-bottom:1px solid var(--kart-border);">
-          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Borçka</td>
+          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Borçka Arifağaoğlu Petrol</td>
           <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">84 km</td>
           <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">100 dk</td>
           <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">490 ₺</td>
@@ -1283,7 +1329,7 @@ havaDurumuGetir();
           <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">320 ₺</td>
         </tr>
         <tr>
-          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Arhavi</td>
+          <td style="padding:.65rem .85rem;font-size:.82rem;font-weight:700;color:#fff;">Arhavi Atatürk Bulvarı</td>
           <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--gray1);">47 km</td>
           <td style="padding:.65rem .5rem;text-align:center;font-size:.78rem;color:var(--mavi-acik);font-weight:600;">45 dk</td>
           <td style="padding:.65rem .85rem;text-align:right;font-family:'Bebas Neue';font-size:.95rem;color:#34d399;letter-spacing:.04em;">300 ₺</td>
@@ -1326,7 +1372,7 @@ havaDurumuGetir();
 // Planlayıcı, üstteki SEFERLER listesini kullanır (tek kaynak)
 function dkHesapla(s){ var p=s.saat.split(':'); return +p[0]*60 + +p[1]; }
 
-var DURAK_ISIMLERI = {artvin:'Artvin Otogar', borcka:'Borçka', hopa:'Hopa', arhavi:'Arhavi'};
+var DURAK_ISIMLERI = {artvin:'Artvin Otogar', borcka:'Borçka (Arifağaoğlu Petrol)', hopa:'Hopa (Maliye Önü)', arhavi:'Arhavi (Atatürk Bulvarı)'};
 
 // Havalimanına yolculuk süresi (dakika)
 var SURE = {artvin:140, borcka:100, hopa:60, arhavi:45}; // durak kartlarıyla aynı
@@ -1389,7 +1435,7 @@ function bildirimKur(durak, saatStr) {
   if (d.getTime() < tr.getTime()) d = new Date(d.getTime() + 86400000);
   function f(x){ return x.getUTCFullYear()+('0'+(x.getUTCMonth()+1)).slice(-2)+('0'+x.getUTCDate()).slice(-2)+'T'+('0'+x.getUTCHours()).slice(-2)+('0'+x.getUTCMinutes()).slice(-2)+'00'; }
   var bitis = new Date(d.getTime() + 30*60000);
-  var ad = {artvin:'Artvin Otogar', borcka:'Borçka', hopa:'Hopa Maliye Önü', arhavi:'Arhavi'}[durak];
+  var ad = {artvin:'Artvin Otogar', borcka:'Borçka Arifağaoğlu Petrol', hopa:'Hopa Maliye Önü', arhavi:'Arhavi Atatürk Bulvarı'}[durak];
   var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     + '&text=' + encodeURIComponent('🚌 Havaş ' + ad + ' ' + saatStr)
     + '&dates=' + f(d) + '/' + f(bitis) + '&ctz=Europe/Istanbul'
@@ -1401,7 +1447,7 @@ function bildirimKur(durak, saatStr) {
   m.style.color = '#4ade80'; m.style.display = 'block';
 }
 
-var DURAK_ISIMLERI = {artvin:'Artvin Otogar', borcka:'Borçka', hopa:'Hopa', arhavi:'Arhavi'};
+var DURAK_ISIMLERI = {artvin:'Artvin Otogar', borcka:'Borçka (Arifağaoğlu Petrol)', hopa:'Hopa (Maliye Önü)', arhavi:'Arhavi (Atatürk Bulvarı)'};
 </script>
 
 
@@ -1435,7 +1481,7 @@ window.addEventListener('scroll', function() {
 <script src="/kopya-kaynak.js" defer></script>
 <script src="/uygulama-serit.js?v=2" defer></script>
 <script>document.querySelectorAll('.katla').forEach(function(k){var b=document.createElement('button');b.type='button';b.className='katla-btn';b.textContent='Devamını oku ↓';b.onclick=function(){k.classList.add('acik');};k.appendChild(b);});</script>
-<script src="/havas-hat.js?v=2" defer></script>
+<script src="/havas-hat.js?v=3" defer></script>
 <script src="/kart-uret.js" defer></script>
 <script>document.addEventListener("DOMContentLoaded",function(){if(window.KartUret){KartUret.ekle({hedef:'.durak-wrap',konum:'before',yazi:'📸 Havaş saatleri kartı üret',veri:function(){
  if(typeof SEFERLER==='undefined') return null; var ad={artvin:'Artvin Otogar',borcka:'Borçka',hopa:'Hopa',arhavi:'Arhavi'};
