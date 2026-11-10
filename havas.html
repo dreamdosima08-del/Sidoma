@@ -1252,7 +1252,8 @@ HV_HAFTA = hvDesenHafta();
 fetch('https://havas-saat.dreamdosima08.workers.dev/?hafta=1').then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
   if (!j || !j.hafta) return;
   var eski = HV_HAFTA && HV_HAFTA.hafta || {};
-  Object.keys(eski).forEach(function(g){ if (!j.hafta[g] || Object.keys(j.hafta[g]).length < 2) j.hafta[g] = eski[g]; }); // eksik günleri desenle doldur
+  // Havaş bazı sorgulara cevap vermeyebiliyor: eksik gün ya da DURAK, desenden (bugün için canlı veriden) tamamlanır
+  Object.keys(eski).forEach(function(g){ j.hafta[g] = j.hafta[g] || {}; Object.keys(eski[g]).forEach(function(k){ var d = j.hafta[g][k]; if (!d || !d.saatler || !d.saatler.length) j.hafta[g][k] = eski[g][k]; }); });
   HV_HAFTA = j; sayacGuncelle(); [].forEach.call(document.querySelectorAll('.saat-grid[data-gun]'), function(g){ g.removeAttribute('data-gun'); }); hvGridGuncelle();
 }).catch(function(){});
 sayacGuncelle(); hvGridGuncelle();
