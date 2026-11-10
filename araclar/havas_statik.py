@@ -20,7 +20,32 @@ try:
     assert g and all(g.get(k, {}).get('saatler') for k in ANA)
 except Exception as e:
     print('Worker okunamadı, dokunulmadı:', e); sys.exit(0)
+# Havaş saatleri güne göre değişebiliyor (ör. Salı ilk sefer 04:45, diğer günler 06:15).
+# Google'ın gördüğü sabit metne o günün değil HAFTANIN EN SIK saatleri yazılır; günlük fark sayfadaki
+# HV_DESEN (gün gün tablo) ile tarayıcıda gösterilir. Haftalık veri alınamazsa bugünkü veriyle devam edilir.
+from collections import Counter
+GUNAD = ['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar']
+desen = None
+if len(sys.argv) <= 1:
+    try:
+        hr = urllib.request.Request(URL + '?hafta=1', headers={'Origin': 'https://www.artvinrehber.com', 'User-Agent': 'artvinrehber-guncelleyici'})
+        hafta = json.load(urllib.request.urlopen(hr, timeout=120)).get('hafta') or {}
+        desen = {}
+        for gun, v in hafta.items():
+            ad = GUNAD[datetime.date.fromisoformat(gun).weekday()]
+            gd = {k: v[k]['saatler'] for k in ANA  if isinstance(v.get(k), dict) and v[k].get('hizmet') and v[k].get('saatler')}
+            if len(gd) == 4: desen[ad] = gd
+        for k in ANA:
+            c = Counter(tuple(d[k]) for d in desen.values())
+            if c and g.get(k): g[k] = dict(g[k], saatler=list(c.most_common(1)[0][0]))
+    except Exception as e:
+        print('Haftalık veri alınamadı, bugünkü saatler kullanılıyor:', e); desen = None
 s = open(SAYFA, encoding='utf-8').read(); bas = s
+if desen:
+    m0 = re.search(r'var HV_DESEN = (\{.*?\});', s)
+    if m0:
+        eskid = json.loads(m0.group(1)); eskid.update({a: {k: v for k, v in d.items()} for a, d in desen.items()})
+        s = s[:m0.start(1)] + json.dumps(eskid, ensure_ascii=False, separators=(',', ':')) + s[m0.end(1):]
 deg = []  # (ad, eski, yeni)
 def uygun(d): return d and d.get('hizmet') and d.get('saatler') and all(re.fullmatch(r'\d\d:\d\d', t) for t in d['saatler'])
 def metin_degistir(eski, yeni):
