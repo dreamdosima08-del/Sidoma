@@ -29,19 +29,23 @@
   function simdiDk() { var d = new Date(Date.now() + 3 * 3600e3); return d.getUTCHours() * 60 + d.getUTCMinutes() + d.getUTCSeconds() / 60; }
   function x(i) { return 5 + i * (90 / N); } // yüzde
 
-  /* Durak saatlerini seferlere zincirle: her durakta bir sonraki durağın 5–55 dk sonraki ilk boş saati aynı otobüs sayılır */
+  /* Durak saatlerini seferlere zincirle. Bir sonraki durakta, iki durak arasındaki beklenen süreye
+     (Havaş'ın havalimanına süre farkı) EN YAKIN boş saat aynı otobüs sayılır; makul aralıkta saat yoksa o durak atlanır.
+     Böylece ek sefer ya da saat değişikliği olsa bile otobüsler birbirine karışmaz. */
+  function bek(a, b) { return Math.max(10, (SURE[DUR[a].k] || 0) - (SURE[DUR[b].k] || 0)); }
   function zincirle() {
     var kul = {}, L = DUR.map(function (d) { return (SAAT[d.k] || []).map(dk).sort(function (a, b) { return a - b; }); });
     SEFER = [];
     for (var i = 0; i < N; i++) {
       L[i].forEach(function (t, n) {
         if (kul[i + '-' + n]) return;
-        var s = [{ i: i, t: t }], son = t, atla = 1;
+        kul[i + '-' + n] = 1;
+        var s = [{ i: i, t: t }], son = t, sonI = i;
         for (var j = i + 1; j < N; j++) {
-          var bul = -1;
-          for (var m = 0; m < L[j].length; m++) { var f = L[j][m] - son; if (!kul[j + '-' + m] && f >= 5 && f <= 55 * atla) { bul = m; break; } }
-          if (bul < 0) { atla++; continue; }
-          kul[j + '-' + bul] = 1; son = L[j][bul]; atla = 1; s.push({ i: j, t: son });
+          var e = bek(sonI, j), alt = Math.max(5, e * 0.5), ust = e * 1.6 + 10, bul = -1, en = 1e9;
+          for (var m = 0; m < L[j].length; m++) { var f = L[j][m] - son; if (!kul[j + '-' + m] && f >= alt && f <= ust && Math.abs(f - e) < en) { en = Math.abs(f - e); bul = m; } }
+          if (bul < 0) continue;
+          kul[j + '-' + bul] = 1; son = L[j][bul]; sonI = j; s.push({ i: j, t: son });
         }
         var sn = s[s.length - 1];
         s.push({ i: N, t: sn.t + (SURE[DUR[sn.i].k] || 15) });
@@ -79,7 +83,8 @@
     '<div id="hhOto"></div></div>' +
     '<div class="hh-bilgi" id="hhBilgi"></div>' +
     '<div class="hh-kay"><span id="hhKs">04:00</span><input type="range" id="hhRange" min="240" max="1425" step="5" aria-label="Saati kaydır: otobüslerin o saatteki yerini gör"><span>23:45</span></div>' +
-    '<p class="hh-not">Saatlere göre <b>tahmini</b> konumdur, GPS değildir. Kaydırıcıyla günün herhangi bir saatine bak; otobüse ya da durağa dokun.</p>';
+    '<p class="hh-not">Otobüsün Havaş saat tablosuna göre <b>olması gereken yeri</b>dir; GPS değildir, trafik ve havaya göre birkaç dakika sapabilir. Kaydırıcıyla günün herhangi bir saatine bak; otobüse ya da durağa dokun.</p>' +
+    '<div class="hh-havas"><a href="https://www.havas.net/otobus-hizmetleri" target="_blank" rel="noopener">🚌 havas.net — resmi sefer saatleri ↗</a><a href="tel:08502220487">📞 0850 222 0 487</a></div>';
 
   var $ = function (i) { return document.getElementById(i); };
   var oto = $('hhOto'), bilgi = $('hhBilgi'), rng = $('hhRange'), canliBtn = $('hhCanli');
@@ -150,6 +155,7 @@
     DUR.forEach(function (d) { var v = g[d.k]; if (v && v.hizmet !== false && v.saatler && v.saatler.length) { SAAT[d.k] = v.saatler.slice(); deg = true; } var m = v && v.sure && parseInt(v.sure, 10); if (m) SURE[d.k] = m; });
     if (deg) { secili = null; zincirle(); ciz(); }
   };
+  window.hvHatSeferler = function () { return SEFER.map(function (z) { return z.map(function (a) { return (DUR[a.i] ? DUR[a.i].ad : 'HL') + ' ' + yaz(a.t); }).join(' > '); }); };
   zincirle(); ciz();
   if (window.HV_GIDIS) window.hvHatVeri(window.HV_GIDIS);
   zaman = setInterval(function () { if (!document.hidden) ciz(); }, 15000);
