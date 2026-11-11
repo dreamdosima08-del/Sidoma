@@ -1,6 +1,6 @@
 /* Android tarayıcıdan gelenlere Artvin Rehber uygulaması önerisi.
    Uygulamanın içinde, iPhone'da, masaüstünde ve kapatanlara gösterilmez.
-   Üstten iner, ara ara kendini gösterir. × 3 gün, Yükle 14 gün gizler. */
+   Üstten iner, ara ara kendini gösterir (ziyaret başına en fazla 3 kez, tüm sitede). × 3 gün, Yükle 14 gün gizler. */
 (function () {
   try {
     var ua = navigator.userAgent || '';
@@ -35,7 +35,10 @@
     d.innerHTML = '<img src="/icon-192.png" alt="" onerror="this.remove()"><div class="m"><b>' + mesaj + '</b>Ücretsiz · Google Play</div>' +
       '<a href="' + url + '" rel="noopener">Yükle</a><button aria-label="Kapat">×</button>';
     /* Üstten iner, 9 sn kalır, çekilir; 30 sn sonra tekrar. Bir sayfada en fazla 3 kez. */
+    /* Site genelinde: bir ziyarette (oturum) toplam en fazla 3 kez görünür; sayfa değiştirince sayaç sıfırlanmaz. */
     var KALIS = 9000, ARA = 30000, ENCOK = 3, kez = 0, bitti = false, z1, z2;
+    function oturum(n) { try { if (n != null) sessionStorage.setItem('ar_uyg_kez', n); return +sessionStorage.getItem('ar_uyg_kez') || 0; } catch (e) { return kez; } }
+    if (oturum() >= ENCOK) return;
     function kaydet(gun) { try { localStorage.setItem(K, Date.now() - 1000 * 60 * 60 * 24 * (14 - gun)); } catch (e) {} }
     function bitir() { bitti = true; clearTimeout(z1); clearTimeout(z2); d.classList.remove('ac'); setTimeout(function () { d.remove(); }, 600); }
     d.querySelector('button').onclick = function () { kaydet(3); bitir(); };
@@ -45,8 +48,9 @@
       if (bitti) return;
       if (mesgul()) { z1 = setTimeout(goster, 5000); return; }
       if (!d.parentNode) document.body.appendChild(d);
-      kez++; setTimeout(function () { d.classList.add('ac'); }, 50);
-      z2 = setTimeout(function () { d.classList.remove('ac'); if (kez < ENCOK) z1 = setTimeout(goster, ARA); }, KALIS);
+      if (oturum() >= ENCOK) { bitti = true; return; }
+      kez++; oturum(oturum() + 1); setTimeout(function () { d.classList.add('ac'); }, 50);
+      z2 = setTimeout(function () { d.classList.remove('ac'); if (oturum() < ENCOK) z1 = setTimeout(goster, ARA); }, KALIS);
     }
     z1 = setTimeout(goster, 6000);
   } catch (x) {}
