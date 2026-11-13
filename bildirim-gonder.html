@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bildirim Gönder · Artvin Rehberi</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b2418">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<style>
+:root{--zemin:#061710;--kart:#0d2219;--cizgi:rgba(240,192,64,.25);--altin:#f0c040;--krem:#f3efe2;--dim:rgba(243,239,226,.62)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--zemin);color:var(--krem);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;padding:1rem;padding-bottom:3rem}
+.ic{max-width:560px;margin:0 auto}
+h1{font-size:1.35rem;color:var(--altin);margin:.4rem 0 .2rem}
+.alt{font-size:.85rem;color:var(--dim);margin-bottom:1rem}
+.kart{background:var(--kart);border:1px solid var(--cizgi);border-radius:16px;padding:1rem;margin-bottom:.8rem}
+label{display:block;font-weight:700;font-size:.88rem;margin-bottom:.4rem}
+textarea{width:100%;min-height:190px;font:inherit;font-size:1rem;line-height:1.6;color:var(--krem);background:#081a12;border:1.5px solid rgba(255,255,255,.15);border-radius:12px;padding:.75rem}
+textarea:focus{outline:none;border-color:var(--altin)}
+.say{font-size:.75rem;color:var(--dim);text-align:right;margin-top:.25rem}
+button{font:700 .95rem system-ui,sans-serif;border:0;border-radius:12px;padding:.8rem 1rem;cursor:pointer}
+.ana{background:var(--altin);color:#1a1405;width:100%}
+.ikinci{background:rgba(255,255,255,.08);color:var(--krem)}
+button:disabled{opacity:.5}
+.durum{font-size:.85rem;margin-top:.6rem;min-height:1.2em}
+.ornek{font-size:.8rem;color:var(--dim);line-height:1.6}
+.ornek b{color:var(--krem)}
+.tahmin div{display:flex;justify-content:space-between;gap:.6rem;font-size:.84rem;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.tahmin div:last-child{border:0}
+.tahmin b{color:var(--altin);white-space:nowrap}
+.onizle{white-space:pre-line;font-size:.92rem;line-height:1.7}
+a{color:var(--altin)}
+
+input[type=text],select{width:100%;font:inherit;font-size:1rem;color:var(--krem);background:#081a12;border:1.5px solid rgba(255,255,255,.15);border-radius:12px;padding:.7rem .75rem;margin-bottom:.15rem}
+input:focus,select:focus{outline:none;border-color:var(--altin)}
+textarea{min-height:110px}
+.alan{margin-bottom:.8rem}
+.tel{background:#1b1f24;border-radius:18px;padding:.8rem;margin-top:.3rem}
+.bld{background:#2a2f36;border-radius:14px;padding:.65rem .75rem;display:flex;gap:.6rem}
+.bld .ik{width:30px;height:30px;border-radius:50%;background:#f0c040;color:#1a1206;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex:none}
+.bld b{display:block;color:#fff;font-size:.88rem}.bld span{display:block;color:#c9ced6;font-size:.8rem;line-height:1.4;white-space:pre-line}
+.bld small{color:#8a929c;font-size:.68rem}
+.liste div{display:flex;justify-content:space-between;gap:.6rem;font-size:.8rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.liste em{font-style:normal;white-space:nowrap}
+.uyari{font-size:.78rem;color:var(--dim);line-height:1.55}
+</style>
+</head>
+<body>
+<div class="ic">
+  <h1>🔔 Bildirim gönder</h1>
+  <p class="alt">Artvin Rehber uygulamasında bu konuyu açmış herkese gider. Kaydettiğin bildirim en geç 30 dakika içinde (07:00–23:30 arası) gönderilir.</p>
+
+  <div class="kart" id="testKart" hidden>
+      <label>Bu telefonu test listesine ekle</label>
+      <p class="uyari">Bu sayfayı Artvin Rehber uygulamasının içinden açtıysan aşağıdaki düğme bu telefonu "test" listesine ekler. Sonra "Sadece test telefonları" seçip kendine deneme gönderebilirsin.</p>
+      <button type="button" class="ikinci" id="testBtn" style="margin-top:.5rem;width:100%">📱 Bu telefonu test listesine ekle</button>
+    <p class="durum" id="testDurum"></p>
+    </div>
+
+
+  <div class="kart" id="girisKart">
+    <button type="button" class="ana" id="giris">Google ile giriş yap</button>
+    <p class="durum" id="girisDurum"></p>
+  </div>
+
+  <div id="yonet" hidden>
+    <div class="kart">
+      <div class="alan"><label for="konu">Kime gidecek?</label>
+        <select id="konu">
+          <option value="test">🧪 Sadece test telefonları (önce kendine dene)</option>
+          <option value="duyuru" selected>📣 Önemli duyurular</option>
+          <option value="hava_yol">❄️ Kar, yol ve hava</option>
+          <option value="havas">🚌 Havaş saatleri</option>
+          <option value="hafta_sonu">🗺️ Hafta sonu önerisi</option>
+          <option value="vefat">🕊️ Vefat duyuruları</option>
+        </select></div>
+      <div class="alan"><label for="baslik">Başlık</label><input type="text" id="baslik" maxlength="80" placeholder="Örn: ❄️ Kafkasör yolu bugün kapalı olabilir"><div class="say" id="sb">0 / 80</div></div>
+      <div class="alan"><label for="metin">Metin</label><textarea id="metin" maxlength="240" placeholder="Kısa ve yumuşak bir dille: ne oldu, kimi ilgilendiriyor, ne yapmalı."></textarea><div class="say" id="sm">0 / 240</div></div>
+      <div class="alan"><label for="sayfa">Dokununca açılacak sayfa</label>
+        <select id="sayfa">
+          <option value="/">Ana sayfa</option>
+          <option value="/havas.html">Havaş</option>
+          <option value="/yol-durumu.html">Yol durumu</option>
+          <option value="/hava.html">Hava durumu</option>
+          <option value="/artvin-kar-ne-zaman-yagacak.html">Kar tahmini</option>
+          <option value="/eczane-rehber.html">Nöbetçi eczane</option>
+          <option value="/gezi.html">Gezilecek yerler</option>
+          <option value="/artvin-vefat.html">Vefat duyuruları</option>
+          <option value="/etkinlik.html">Etkinlikler</option>
+          <option value="ozel">Başka bir sayfa (adresi yaz)…</option>
+        </select>
+        <input type="text" id="ozel" placeholder="https://www.artvinrehber.com/..." hidden></div>
+      <label>Telefonda böyle görünecek</label>
+      <div class="tel"><div class="bld"><div class="ik">⛰</div><div><small>Artvin Rehber · şimdi</small><b id="ob">Başlık</b><span id="om">Metin</span></div></div></div>
+      <button type="button" class="ana" id="gonder" style="margin-top:.9rem">Gönderim sırasına ekle</button>
+      <p class="durum" id="durum"></p>
+    </div>
+
+    <div class="kart">
+      <label>Son bildirimler</label>
+      <div class="liste" id="liste"><div><span>Yükleniyor…</span></div></div>
+    </div>
+
+    <div class="kart uyari">
+      <b style="color:var(--krem)">İpuçları</b><br>
+      • Haftada 1–2 elle duyuru yeterli; fazlası uygulamayı sildirebilir.<br>
+      • Kesin olmayan bilgiyi kesin gibi yazma: "kapalı olabilir", "görünüyor", "teyit etmeni öneririz".<br>
+      • Otomatik bildirimler (Havaş, kar, Cuma önerisi, vefat) zaten kendiliğinden gidiyor; aynı konuyu ayrıca göndermene gerek yok.
+    </div>
+    <button type="button" class="ikinci" id="cik">Çıkış yap</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+'use strict';
+var YON='dreamdosima08@gmail.com'; // yalnızca arayüz için; asıl yetki Firestore kurallarında
+function $(i){return document.getElementById(i);}
+function dur(id,m,h){ var e=$(id); e.textContent=m; e.style.color=h?'#ffb4a8':''; }
+if(typeof firebase==='undefined'){ dur('girisDurum','Bağlantı kurulamadı, sayfayı yenile.',1); return; }
+firebase.initializeApp({apiKey:"AIzaSyDPPh1T_PLdfbuQdYbP-HXrnc3a5Nb1nzI",authDomain:"artvin-imece.firebaseapp.com",projectId:"artvin-imece",storageBucket:"artvin-imece.firebasestorage.app",messagingSenderId:"30297800879",appId:"1:30297800879:web:a36f3b4ad6ba54d8bed45a"});
+var auth=firebase.auth(), db=firebase.firestore(), K=db.collection('bildirim_kuyruk');
+var KONU={test:'🧪 Test',duyuru:'📣 Duyuru',hava_yol:'❄️ Kar-yol',havas:'🚌 Havaş',hafta_sonu:'🗺️ Hafta sonu',vefat:'🕊️ Vefat'};
+var APP=/ArtvinRehberApp/.test(navigator.userAgent||'');
+if(APP){ $('testKart').hidden=false; }
+function saat(z){ return new Date(z).toLocaleString('tr-TR',{timeZone:'Europe/Istanbul',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}); }
+function onizle(){ var b=$('baslik').value, m=$('metin').value; $('sb').textContent=b.length+' / 80'; $('sm').textContent=m.length+' / 240'; $('ob').textContent=b||'Başlık'; $('om').textContent=m||'Metin'; }
+['baslik','metin'].forEach(function(i){ $(i).addEventListener('input',onizle); });
+$('sayfa').onchange=function(){ $('ozel').hidden=this.value!=='ozel'; };
+function url(){ var v=$('sayfa').value; if(v==='ozel'){ v=$('ozel').value.trim(); return /^https:\/\/(www\.)?artvinrehber\.com\//.test(v)?v:null; } return 'https://www.artvinrehber.com'+v; }
+function listele(){
+  K.orderBy('zaman','desc').limit(12).get().then(function(s){
+    $('liste').innerHTML = s.empty ? '<div><span>Henüz bildirim yok.</span></div>' : s.docs.map(function(d){ var v=d.data(), dr=v.durum==='gonderildi'?'✅ gitti':v.durum==='hata'?'⚠️ hata':'⏳ sırada';
+      return '<div><span>'+(KONU[v.konu]||v.konu)+' · '+String(v.baslik).replace(/</g,'&lt;')+'<br><small style="color:var(--dim)">'+saat(v.zaman)+'</small></span><em>'+dr+'</em></div>'; }).join('');
+  }).catch(function(e){ $('liste').innerHTML='<div><span>Liste okunamadı: '+(e.code||e.message)+'</span></div>'; });
+}
+auth.getRedirectResult().catch(function(e){ dur('girisDurum','Giriş yapılamadı ('+(e.code||e.message)+')',1); });
+auth.onAuthStateChanged(function(u){
+  var yon=!!u&&u.email===YON;
+  $('girisKart').hidden=yon; $('yonet').hidden=!yon;
+  if(u&&!yon) dur('girisDurum','Bu hesapla ('+u.email+') bildirim gönderilemez. Çıkış yapıp doğru hesapla gir.',1);
+  if(yon) listele();
+});
+$('giris').onclick=function(){
+  if(APP) return dur('girisDurum','Google, uygulama içinden girişe izin vermiyor. Bildirim göndermek için bu sayfayı Chrome\'da aç: artvinrehber.com/bildirim-gonder.html',1);
+  var b=this; b.disabled=true; b.textContent='Google açılıyor…'; dur('girisDurum','');
+  var p=new firebase.auth.GoogleAuthProvider();
+  (APP?auth.signInWithRedirect(p):auth.signInWithPopup(p)).catch(function(e){ dur('girisDurum','Giriş yapılamadı ('+(e.code||e.message)+'). Olmazsa sayfayı Chrome\'da aç.',1); })
+   .then(function(){ b.disabled=false; b.textContent='Google ile giriş yap'; });
+};
+$('cik').onclick=function(){ auth.signOut(); };
+$('testBtn').onclick=function(){
+  if(window.ArtvinApp && ArtvinApp.postMessage){ ArtvinApp.postMessage('test-abone'); dur('testDurum','Telefon test listesine ekleniyor…'); }
+  else dur('testDurum','Bu düğme yalnızca Artvin Rehber uygulamasının içinde (sürüm 2.1 ve sonrası) çalışır.',1);
+};
+$('gonder').onclick=function(){
+  var b=$('baslik').value.trim(), m=$('metin').value.trim(), u=url(), k=$('konu').value;
+  if(b.length<3||m.length<5) return dur('durum','Başlık ve metin biraz daha uzun olmalı.',1);
+  if(!u) return dur('durum','Sayfa adresi artvinrehber.com ile başlamalı.',1);
+  if(k!=='test' && !confirm('"'+KONU[k]+'" konusunu açmış herkese gidecek. Gönderilsin mi?')) return;
+  var btn=this; btn.disabled=true; dur('durum','Kaydediliyor…');
+  K.add({baslik:b, metin:m, url:u, konu:k, durum:'bekliyor', zaman:Date.now()})
+   .then(function(){ dur('durum','✓ Sıraya eklendi. En geç 30 dakika içinde gönderilir.'); $('baslik').value=''; $('metin').value=''; onizle(); listele(); })
+   .catch(function(e){ dur('durum','Kaydedilemedi: '+(e.code||e.message),1); })
+   .then(function(){ btn.disabled=false; });
+};
+onizle();
+})();
+</script>
+</body>
+</html>
