@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Artvin'den Diğer İllere Mesafe 2026 — 81 İl Tam Liste</title>
-<meta name="description" content="Artvin'den Türkiye'nin 81 iline karayolu mesafesi 2026. İstanbul, Ankara, Trabzon, Erzurum ve tüm iller. Mesafe hesaplama aracı ve tam km listesi.">
+<title>Artvin'den Diğer İllere ve İlçeler Arası Mesafe 2026 — 81 İl Tam Liste</title>
+<meta name="description" content="Artvin'den Türkiye'nin 81 iline karayolu mesafesi 2026. İstanbul, Ankara, Trabzon, Erzurum ve tüm iller. Artvin ilçeleri arası mesafe hesaplama aracı ve tam km listesi.">
 <meta name="keywords" content="artvin mesafe, artvin istanbul mesafe, artvin ankara mesafe, artvin trabzon mesafe, artvin erzurum mesafe, artvin kaç km, artvin diğer iller mesafe, artvin 81 il mesafe, artvin yol mesafe 2026, artvin km hesaplama, artvin rize mesafe, artvin ardahan mesafe, artvin kars mesafe, artvin izmir mesafe">
 <meta name="robots" content="index,follow, max-image-preview:large">
 <meta name="author" content="Artvin Rehberi">
@@ -25,7 +25,7 @@
   "name": "Artvin'den Diğer İllere Mesafe 2026",
   "url": "https://www.artvinrehber.com/artvin-mesafe.html",
   "datePublished": "2026-01-01",
-  "dateModified": "2026-05-17",
+  "dateModified": "2026-11-18",
   "publisher": {"@type": "Organization", "name": "Artvin Rehberi", "url": "https://www.artvinrehber.com"}
 }
 </script>
@@ -35,7 +35,7 @@
   "@type": "Article",
   "headline": "Artvin'den Diğer İllere Mesafe 2026 — 81 İl Tam Liste",
   "datePublished": "2026-01-01",
-  "dateModified": "2026-05-17",
+  "dateModified": "2026-11-18",
   "author": {"@type": "Person", "name": "Artvin Rehberi"},
   "publisher": {"@type": "Organization", "name": "Artvin Rehberi"}
 }
@@ -184,7 +184,7 @@ footer a{color:var(--vivid);text-decoration:none;font-weight:600}
 
 <div class="guncelleme">
   <span>✅ Mayıs 2026 Güncellendi</span>
-  <small>· Son güncelleme: 17.05.2026</small>
+  <small>· Son güncelleme: 18.11.2026</small>
 </div>
 
 <div class="hero">
@@ -219,6 +219,35 @@ footer a{color:var(--vivid);text-decoration:none;font-weight:600}
     <div class="hesap-sonuc-il" id="sonucIl"></div>
   </div>
 </div>
+
+<!-- İLÇELER ARASI MESAFE -->
+<div class="hesap-wrap" id="ilceMesafe">
+  <h2 class="hesap-h" style="font-size:.9rem;margin-bottom:.4rem">🚗 Artvin İlçeleri Arası Mesafe: Artvin Ardanuç, Yusufeli Artvin, Hopa Arhavi arası kaç km?</h2>
+  <p style="font-size:.82rem;color:var(--dim);margin-bottom:.7rem">Artvin'in 9 ilçesi arasında karayolu mesafesini ve araçla yolculuk süresini öğren: iki ilçeyi seç ya da aşağıdan bir ikili seç.</p>
+  <div class="hesap-row" style="flex-wrap:wrap">
+    <select class="hesap-sel" id="ilceSec1" aria-label="Nereden"><option value="0">Artvin Merkez</option><option value="1">Ardanuç</option><option value="2">Arhavi</option><option value="3">Borçka</option><option value="4">Hopa</option><option value="5">Kemalpaşa</option><option value="6">Murgul</option><option value="7">Şavşat</option><option value="8">Yusufeli</option></select>
+    <select class="hesap-sel" id="ilceSec2" aria-label="Nereye"><option value="0">Artvin Merkez</option><option value="1">Ardanuç</option><option value="2">Arhavi</option><option value="3">Borçka</option><option value="4">Hopa</option><option value="5">Kemalpaşa</option><option value="6">Murgul</option><option value="7">Şavşat</option><option value="8">Yusufeli</option></select>
+    <button class="hesap-btn" type="button" onclick="ilceHesapla()">Göster</button>
+  </div>
+  <div class="hesap-sonuc" id="ilceSonuc" data-nosnippet>
+    <div class="hesap-sonuc-km" id="ilceKm"></div>
+    <div class="hesap-sonuc-il" id="ilceBilgi"></div>
+  </div>
+  <div class="ic-liste"><button class="ic-btn" type="button" onclick="ilceCift(0,1)">Artvin – Ardanuç</button><button class="ic-btn" type="button" onclick="ilceCift(0,2)">Artvin – Arhavi</button><button class="ic-btn" type="button" onclick="ilceCift(0,3)">Artvin – Borçka</button><button class="ic-btn" type="button" onclick="ilceCift(0,4)">Artvin – Hopa</button><button class="ic-btn" type="button" onclick="ilceCift(0,5)">Artvin – Kemalpaşa</button><button class="ic-btn" type="button" onclick="ilceCift(0,6)">Artvin – Murgul</button><button class="ic-btn" type="button" onclick="ilceCift(0,7)">Artvin – Şavşat</button><button class="ic-btn" type="button" onclick="ilceCift(0,8)">Artvin – Yusufeli</button><button class="ic-btn" type="button" onclick="ilceCift(1,2)">Ardanuç – Arhavi</button><button class="ic-btn" type="button" onclick="ilceCift(1,3)">Ardanuç – Borçka</button><button class="ic-btn" type="button" onclick="ilceCift(1,4)">Ardanuç – Hopa</button><button class="ic-btn" type="button" onclick="ilceCift(1,5)">Ardanuç – Kemalpaşa</button><button class="ic-btn" type="button" onclick="ilceCift(1,6)">Ardanuç – Murgul</button><button class="ic-btn" type="button" onclick="ilceCift(1,7)">Ardanuç – Şavşat</button><button class="ic-btn" type="button" onclick="ilceCift(1,8)">Ardanuç – Yusufeli</button><button class="ic-btn" type="button" onclick="ilceCift(2,3)">Arhavi – Borçka</button><button class="ic-btn" type="button" onclick="ilceCift(2,4)">Arhavi – Hopa</button><button class="ic-btn" type="button" onclick="ilceCift(2,5)">Arhavi – Kemalpaşa</button><button class="ic-btn" type="button" onclick="ilceCift(2,6)">Arhavi – Murgul</button><button class="ic-btn" type="button" onclick="ilceCift(2,7)">Arhavi – Şavşat</button><button class="ic-btn" type="button" onclick="ilceCift(2,8)">Arhavi – Yusufeli</button><button class="ic-btn" type="button" onclick="ilceCift(3,4)">Borçka – Hopa</button><button class="ic-btn" type="button" onclick="ilceCift(3,5)">Borçka – Kemalpaşa</button><button class="ic-btn" type="button" onclick="ilceCift(3,6)">Borçka – Murgul</button><button class="ic-btn" type="button" onclick="ilceCift(3,7)">Borçka – Şavşat</button><button class="ic-btn" type="button" onclick="ilceCift(3,8)">Borçka – Yusufeli</button><button class="ic-btn" type="button" onclick="ilceCift(4,5)">Hopa – Kemalpaşa</button><button class="ic-btn" type="button" onclick="ilceCift(4,6)">Hopa – Murgul</button><button class="ic-btn" type="button" onclick="ilceCift(4,7)">Hopa – Şavşat</button><button class="ic-btn" type="button" onclick="ilceCift(4,8)">Hopa – Yusufeli</button><button class="ic-btn" type="button" onclick="ilceCift(5,6)">Kemalpaşa – Murgul</button><button class="ic-btn" type="button" onclick="ilceCift(5,7)">Kemalpaşa – Şavşat</button><button class="ic-btn" type="button" onclick="ilceCift(5,8)">Kemalpaşa – Yusufeli</button><button class="ic-btn" type="button" onclick="ilceCift(6,7)">Murgul – Şavşat</button><button class="ic-btn" type="button" onclick="ilceCift(6,8)">Murgul – Yusufeli</button><button class="ic-btn" type="button" onclick="ilceCift(7,8)">Şavşat – Yusufeli</button></div>
+  <p style="font-size:.74rem;color:var(--dim);margin-top:.7rem" data-nosnippet>Mesafe ve süreler, OpenStreetMap yol ağı üzerinden ilçe merkezleri arasında hesaplanmış yaklaşık değerlerdir (13 Kasım 2026). Yol çalışması, kar, heyelan ve trafik süreyi değiştirir; güncel yol bilgisi için <a href="/yol-durumu.html">yol durumu sayfamıza</a> bak.</p>
+</div>
+<style>.ic-liste{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.8rem}.ic-btn{background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:.35rem .7rem;font-size:.74rem;font-family:inherit;cursor:pointer;color:var(--text)}.ic-btn:active{background:var(--light)}</style>
+<script>
+(function(){var AD=["Artvin Merkez", "Ardanuç", "Arhavi", "Borçka", "Hopa", "Kemalpaşa", "Murgul", "Şavşat", "Yusufeli"],KM=[[0, 39, 67, 32, 56, 71, 47, 68, 73], [39, 0, 101, 66, 90, 104, 81, 54, 104], [67, 101, 0, 36, 12, 25, 52, 130, 134], [32, 66, 36, 0, 26, 40, 17, 95, 99], [57, 90, 12, 25, 0, 15, 42, 120, 124], [74, 108, 28, 42, 18, 0, 59, 137, 141], [47, 81, 52, 17, 42, 56, 0, 111, 115], [68, 54, 130, 95, 120, 134, 111, 0, 134], [73, 104, 135, 99, 124, 138, 115, 134, 0]],DK=[[0, 41, 60, 32, 52, 62, 49, 66, 74], [41, 0, 91, 63, 83, 94, 80, 53, 104], [58, 90, 0, 28, 9, 18, 46, 116, 124], [32, 63, 30, 0, 22, 33, 19, 89, 97], [51, 83, 10, 20, 0, 12, 38, 109, 117], [63, 95, 21, 33, 14, 0, 51, 121, 129], [49, 81, 47, 19, 39, 50, 0, 106, 114], [66, 54, 117, 89, 109, 120, 106, 0, 130], [75, 105, 126, 98, 118, 128, 115, 131, 0]],SL=["merkez", "ardanuc", "arhavi", "borcka", "hopa", "kemalpasa", "murgul", "savsat", "yusufeli"];
+function sure(d){var h=Math.floor(d/60),m=d%60;return h?(m?h+' saat '+m+' dakika':h+' saat'):d+' dakika'}
+window.ilceCift=function(a,b){document.getElementById('ilceSec1').value=a;document.getElementById('ilceSec2').value=b;ilceHesapla(true)};
+window.ilceHesapla=function(){var a=+document.getElementById('ilceSec1').value,b=+document.getElementById('ilceSec2').value,k=document.getElementById('ilceKm'),i=document.getElementById('ilceBilgi'),r=document.getElementById('ilceSonuc');
+if(a===b){k.textContent='İki farklı ilçe seç';i.textContent='';r.style.display='block';return}
+k.textContent=KM[a][b]+' km';i.textContent=AD[a]+' → '+AD[b]+' · araçla yaklaşık '+sure(DK[a][b]);r.style.display='block';
+try{if(window.gtag)gtag('event','ilce_mesafe',{cift:SL[a]+'-'+SL[b]});history.replaceState(null,'','#'+SL[a]+'-'+SL[b])}catch(e){}};
+var h=(location.hash||'').slice(1).split('-');if(h.length===2){var a=SL.indexOf(h[0]),b=SL.indexOf(h[1]);if(a>-1&&b>-1&&a!==b)ilceCift(a,b)}else{document.getElementById('ilceSec2').value=1}
+})();
+</script>
 
 <!-- SIRALAMA -->
 <div class="liste-wrap">
