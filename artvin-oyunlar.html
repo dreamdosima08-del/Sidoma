@@ -43,7 +43,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Artvin oyunları nelerdir?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin Rehber'de Çoruh Yolu (Artvin kelime oyunu), Artvin Kelime Avı, Hangi Artvin İlçesisin testi, Artvin Numeroloji, Artvin Doğru-Yanlış ve Artvin Bilgi Yarışması gibi eğlenceli ve öğretici oyunlar bulunmaktadır."}},
+    {"@type": "Question", "name": "Artvin oyunları nelerdir?", "acceptedAnswer": {"@type": "Answer", "text": "Artvin Rehber'de Artvin'i Keşfet (Artvin kelime oyunu), Artvin Kelime Avı, Hangi Artvin İlçesisin testi, Artvin Numeroloji, Artvin Doğru-Yanlış ve Artvin Bilgi Yarışması gibi eğlenceli ve öğretici oyunlar bulunmaktadır."}},
     {"@type": "Question", "name": "Artvin oyunları ücretsiz mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet, tüm Artvin temalı oyunlar tamamen ücretsizdir. Üyelik gerektirmez, doğrudan tarayıcıdan oynayabilirsiniz."}},
     {"@type": "Question", "name": "Artvin oyunları neyi öğretir?", "acceptedAnswer": {"@type": "Answer", "text": "Bu oyunlar eğlenirken Artvin'in coğrafyası, tarihi, kültürü, ilçeleri ve yöresel özellikleri hakkında bilgi edinmenizi sağlar. Hem yerel halk hem de Artvin'i merak edenler için tasarlanmıştır."}}
   ]
@@ -53,43 +53,58 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-:root{--bg:#0a1a12;--bg2:#0f2418;--gold:#f0c040;--yesil:#3ddb8a;--border:rgba(255,255,255,.08);--gri:rgba(255,255,255,.55);--gri2:rgba(255,255,255,.3)}
+<style>:root{--bg:#f5f7ff;--ink:#0f172a;--sub:#64748b;--cizgi:#e2e8f0;--gold:#d97706;--yesil:#16a34a}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:#e8e8f0;font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh}
+body{background:linear-gradient(180deg,#f5f7ff 0%,#eefcf9 50%,#fff7ed 100%);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh}
 a{color:inherit;text-decoration:none}
-
-nav{position:sticky;top:0;z-index:100;background:rgba(10,26,18,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;color:var(--gold)}
-.nav-geri{font-size:.7rem;color:var(--gri2)}
-
-.hero{background:linear-gradient(150deg,rgba(15,36,24,.85),rgba(10,26,18,.95)),url('/img/headline-1-9kqjsmhq.webp') center/cover;padding:2rem 1.25rem;text-align:center;border-bottom:1px solid var(--border)}
-.hero-label{font-size:.6rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--yesil);margin-bottom:.4rem}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;letter-spacing:.03em;color:#fff;line-height:1.05}
-.hero-sub{font-size:.82rem;color:var(--gri);margin-top:.5rem;line-height:1.5;max-width:420px;margin-left:auto;margin-right:auto}
-
-.w{max-width:560px;margin:0 auto;padding:1.25rem 1rem 2rem}
-
-.giris-metin{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:1.1rem;margin-bottom:1.5rem;font-size:.85rem;color:var(--gri);line-height:1.7}
-.giris-metin strong{color:var(--gold)}
-
-.oyun-grid{display:grid;gap:.85rem}
-.oyun-kart{display:flex;align-items:center;gap:1rem;background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid var(--border);border-radius:16px;padding:1.1rem;transition:.18s;position:relative;overflow:hidden}
-.oyun-kart:active{transform:scale(.98)}
-.oyun-ikon{font-size:2.2rem;flex-shrink:0;width:54px;height:54px;display:flex;align-items:center;justify-content:center;background:rgba(240,192,64,.1);border-radius:14px}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--cizgi);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.05em;background:linear-gradient(90deg,#0ea5a4,#3b82f6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-geri{font-size:.75rem;color:var(--sub);font-weight:700}
+.hero{padding:1.8rem 1.25rem 1rem;text-align:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-60% -30% auto auto;width:380px;height:380px;background:radial-gradient(circle,rgba(20,184,166,.22),transparent 60%)}
+.hero:after{content:"";position:absolute;inset:auto auto -70% -30%;width:380px;height:380px;background:radial-gradient(circle,rgba(139,92,246,.18),transparent 60%)}
+.hero>*{position:relative}
+.hero-label{display:inline-block;font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#f97316,#fb7185);padding:.3rem .8rem;border-radius:99px;margin-bottom:.6rem}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;letter-spacing:.03em;line-height:1;background:linear-gradient(90deg,#0ea5a4,#3b82f6 50%,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:.88rem;color:var(--sub);margin-top:.5rem;line-height:1.5;max-width:420px;margin-left:auto;margin-right:auto}
+.w{max-width:560px;margin:0 auto;padding:.5rem 1rem 2rem}
+.giris-metin{background:#fff;border-radius:18px;padding:1.1rem;margin-bottom:1.2rem;font-size:.86rem;color:var(--sub);line-height:1.7;box-shadow:0 6px 20px -12px rgba(15,23,42,.3)}
+.giris-metin strong{color:#0ea5a4}
+.vitrin{display:block;border-radius:26px;padding:1.2rem;margin-bottom:1rem;color:#fff;background:linear-gradient(135deg,#14b8a6,#3b82f6 55%,#8b5cf6);box-shadow:0 18px 40px -18px rgba(59,130,246,.6);position:relative;overflow:hidden}
+.vitrin:after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.12)}
+.vitrin .r{display:inline-block;background:#facc15;color:#422006;font-size:.7rem;font-weight:900;padding:.3rem .7rem;border-radius:99px;margin-bottom:.6rem}
+.vitrin h2{font-size:1.7rem;font-weight:900;line-height:1.1}
+.vitrin p{font-size:.86rem;opacity:.95;margin:.35rem 0 .8rem;line-height:1.45}
+.harfler{display:flex;gap:5px;flex-wrap:wrap}
+.harfler i{font-style:normal;width:34px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.05rem;background:rgba(255,255,255,.85);color:#1e293b;box-shadow:0 3px 0 rgba(15,23,42,.15);animation:zip .5s both}
+.harfler i.d{background:#22c55e;color:#fff}.harfler i.k{background:#f59e0b;color:#fff}
+.harfler i:nth-child(2){animation-delay:.08s}.harfler i:nth-child(3){animation-delay:.16s}.harfler i:nth-child(4){animation-delay:.24s}.harfler i:nth-child(5){animation-delay:.32s}.harfler i:nth-child(6){animation-delay:.4s}
+@keyframes zip{from{transform:rotateX(90deg)}to{transform:none}}
+.vitrin .btn{display:inline-block;margin-top:.9rem;background:#fff;color:#4c1d95;font-weight:900;padding:.6rem 1.1rem;border-radius:14px;box-shadow:0 4px 0 rgba(15,23,42,.15)}
+.oyun-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.oyun-kart{display:flex;flex-direction:column;gap:.5rem;border-radius:20px;padding:1rem;transition:.18s;position:relative;overflow:hidden;color:#fff;min-height:150px;box-shadow:0 10px 24px -14px rgba(15,23,42,.5)}
+.oyun-kart:active{transform:scale(.97)}
+.oyun-kart:nth-child(8n+1){background:linear-gradient(135deg,#f97316,#fb7185)}
+.oyun-kart:nth-child(8n+2){background:linear-gradient(135deg,#8b5cf6,#6366f1)}
+.oyun-kart:nth-child(8n+3){background:linear-gradient(135deg,#14b8a6,#0ea5e9)}
+.oyun-kart:nth-child(8n+4){background:linear-gradient(135deg,#22c55e,#14b8a6)}
+.oyun-kart:nth-child(8n+5){background:linear-gradient(135deg,#ec4899,#8b5cf6)}
+.oyun-kart:nth-child(8n+6){background:linear-gradient(135deg,#f59e0b,#f97316)}
+.oyun-kart:nth-child(8n+7){background:linear-gradient(135deg,#3b82f6,#06b6d4)}
+.oyun-kart:nth-child(8n+8){background:linear-gradient(135deg,#ef4444,#f97316)}
+.oyun-ikon{font-size:1.8rem;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.25);border-radius:14px}
 .oyun-ic{flex:1;min-width:0}
-.oyun-ad{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.2rem}
-.oyun-aciklama{font-size:.72rem;color:var(--gri);line-height:1.5}
-.oyun-ok{color:var(--gold);font-weight:800;font-size:1rem;flex-shrink:0}
-.oyun-rozet{position:absolute;top:.7rem;right:.7rem;font-size:.52rem;font-weight:800;letter-spacing:.05em;padding:.18rem .45rem;border-radius:20px;text-transform:uppercase}
-.rozet-yeni{background:rgba(61,219,138,.15);color:var(--yesil);border:1px solid rgba(61,219,138,.3)}
-.rozet-populer{background:rgba(240,192,64,.15);color:var(--gold);border:1px solid rgba(240,192,64,.3)}
-
-.alt-metin{margin-top:2rem}
-.alt-metin h2{font-size:1.05rem;font-weight:800;color:var(--gold);margin:1.5rem 0 .5rem}
-.alt-metin p{font-size:.82rem;color:var(--gri);line-height:1.7;margin-bottom:.85rem}
-
-footer{border-top:1px solid var(--border);padding:1.5rem 1rem;text-align:center;font-size:.65rem;color:var(--gri2);line-height:1.8}
+.oyun-ad{font-size:.95rem;font-weight:900;margin-bottom:.2rem;line-height:1.2}
+.oyun-aciklama{font-size:.72rem;opacity:.92;line-height:1.45}
+.oyun-ok{display:none}
+.oyun-rozet{position:absolute;top:.7rem;right:.7rem;font-size:.55rem;font-weight:900;letter-spacing:.05em;padding:.2rem .5rem;border-radius:20px;text-transform:uppercase;background:#facc15;color:#422006}
+.rozet-yeni,.rozet-populer{border:0}
+.alt-metin{margin-top:2rem;background:#fff;border-radius:18px;padding:1rem 1.1rem;box-shadow:0 6px 20px -12px rgba(15,23,42,.3)}
+.alt-metin h2{font-size:1.05rem;font-weight:800;color:#0ea5a4;margin:1.2rem 0 .5rem}
+.alt-metin h2:first-child{margin-top:0}
+.alt-metin p{font-size:.84rem;color:var(--sub);line-height:1.7;margin-bottom:.85rem}
+footer{border-top:1px solid var(--cizgi);padding:1.5rem 1rem;text-align:center;font-size:.7rem;color:var(--sub);line-height:1.8}
+@media(max-width:360px){.oyun-grid{grid-template-columns:1fr}}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -125,17 +140,8 @@ footer{border-top:1px solid var(--border);padding:1.5rem 1rem;text-align:center;
     <strong>Artvin'i ne kadar tanıyorsun?</strong> Bu sayfada Artvin'e özel hazırlanmış eğlenceli oyunları bir araya getirdik. İster kelime avına çık, ister hangi ilçeye benzediğini öğren, ister bilgini sına. Her oyun hem eğlendirir hem de Artvin'in kültürünü, coğrafyasını ve tarihini öğretir. Üyelik yok, ücret yok — sadece dokun ve oyna!
   </div>
 
-  <div class="oyun-grid">
-
-    <a href="/wordle.html" class="oyun-kart">
-      <div class="oyun-rozet rozet-populer">Popüler</div>
-      <div class="oyun-ikon">🟩</div>
-      <div class="oyun-ic">
-        <div class="oyun-ad">Çoruh Yolu</div>
-        <div class="oyun-aciklama">Artvin kelime oyunu: günün kelimesi ve 70 seviye. Bul, öğren, haritada keşfet.</div>
-      </div>
-      <div class="oyun-ok">→</div>
-    </a>
+  <a href="/wordle.html" class="vitrin"><span class="r">⭐ ÖNE ÇIKAN</span><h2>Artvin'i Keşfet</h2><p>Artvin'in kelime oyunu: günün kelimesini bul, 70 seviyeyi geç, her kelimede Artvin'i tanı.</p><div class="harfler" aria-hidden="true"><i class="d">A</i><i>R</i><i class="k">T</i><i class="d">V</i><i>İ</i><i class="k">N</i></div><span class="btn">▶ Hemen oyna</span></a>
+<div class="oyun-grid">
 
     <a href="/artvin-ilce-testleri.html" class="oyun-kart">
       <div class="oyun-rozet rozet-populer">Yeni</div>

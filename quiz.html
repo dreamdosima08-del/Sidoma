@@ -19,15 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0a1a12;
-  --card:var(--bg);
-  --border:rgba(255,255,255,.1);
-  --gold:#f0c040;
-  --vivid:#3ddb8a;
-  --off:#e8ede9;
-  --red:#ff6b6b;
-}
+:root{--bg:#f5f7ff;--card:#ffffff;--border:#e2e8f0;--gold:#d97706;--vivid:#16a34a;--off:#0f172a;--red:#ef4444;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{
   background:var(--bg);
@@ -54,7 +46,7 @@ body{
 }
 .nav-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:1rem;letter-spacing:.1em;color:rgba(255,255,255,.5);
+  font-size:1rem;letter-spacing:.1em;color:rgba(15,23,42,.75);
 }
 
 /* WRAPPER */
@@ -70,14 +62,14 @@ body{
 .quiz-baslik{
   font-family:'Bebas Neue',sans-serif;
   font-size:clamp(2rem,8vw,3rem);
-  letter-spacing:.1em;color:#fff;line-height:1.1;
+  letter-spacing:.1em;color:#0f172a;line-height:1.1;
 }
 .quiz-baslik span{color:var(--gold)}
 h1.quiz-baslik{font-weight:400}
-.quiz-alt{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:400px}
+.quiz-alt{font-size:.95rem;color:rgba(15,23,42,.75);line-height:1.7;max-width:400px}
 .quiz-info{
   display:flex;gap:1.5rem;
-  background:rgba(255,255,255,.04);
+  background:rgba(15,23,42,.04);
   border:1px solid var(--border);
   border-radius:10px;padding:.85rem 1.5rem;
 }
@@ -86,10 +78,10 @@ h1.quiz-baslik{font-weight:400}
   font-family:'Bebas Neue',sans-serif;
   font-size:1.6rem;color:var(--vivid);display:block;
 }
-.qi-lbl{font-size:.62rem;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase}
+.qi-lbl{font-size:.62rem;color:rgba(15,23,42,.35);letter-spacing:.08em;text-transform:uppercase}
 .btn-baslat{
   background:linear-gradient(135deg,var(--vivid),#2bc478);
-  color:var(--bg);border:none;
+  color:#fff;border:none;
   padding:1rem 2.5rem;border-radius:50px;
   font-family:'Bebas Neue',sans-serif;
   font-size:1.3rem;letter-spacing:.15em;
@@ -109,14 +101,14 @@ h1.quiz-baslik{font-weight:400}
 }
 .ilerleme-no{
   font-family:'Bebas Neue',sans-serif;
-  font-size:.85rem;letter-spacing:.1em;color:rgba(255,255,255,.4);
+  font-size:.85rem;letter-spacing:.1em;color:rgba(15,23,42,.4);
 }
 .ilerleme-puan{
   font-family:'Bebas Neue',sans-serif;
   font-size:.85rem;letter-spacing:.1em;color:var(--gold);
 }
 .ilerleme-bar{
-  height:5px;background:rgba(255,255,255,.08);
+  height:5px;background:rgba(15,23,42,.08);
   border-radius:3px;overflow:hidden;
 }
 .ilerleme-ic{
@@ -139,7 +131,7 @@ h1.quiz-baslik{font-weight:400}
 }
 .soru-metin{
   font-size:1.05rem;font-weight:700;
-  color:#fff;line-height:1.5;
+  color:#0f172a;line-height:1.5;
   min-height:60px;
 }
 .soru-emoji{font-size:1.4rem;margin-right:.5rem}
@@ -147,45 +139,45 @@ h1.quiz-baslik{font-weight:400}
 /* ŞIKLAR */
 .siklar{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
 .sik{
-  background:rgba(255,255,255,.04);
-  border:2px solid rgba(255,255,255,.09);
+  background:rgba(15,23,42,.04);
+  border:2px solid rgba(15,23,42,.09);
   border-radius:10px;
   padding:.85rem 1.1rem;
   cursor:pointer;
   transition:.15s;
   display:flex;align-items:center;gap:.75rem;
   font-size:.92rem;font-weight:600;
-  color:rgba(255,255,255,.8);
+  color:rgba(15,23,42,.75);
   text-align:left;width:100%;
 }
 .sik:hover:not(:disabled){
   background:rgba(61,219,138,.07);
   border-color:rgba(61,219,138,.3);
-  color:#fff;
+  color:#0f172a;
 }
 .sik:active:not(:disabled){transform:scale(.98)}
 .sik-harf{
   width:28px;height:28px;
   border-radius:50%;
-  background:rgba(255,255,255,.08);
+  background:rgba(15,23,42,.08);
   display:flex;align-items:center;justify-content:center;
   font-family:'Bebas Neue',sans-serif;
   font-size:.85rem;letter-spacing:.05em;
-  flex-shrink:0;color:rgba(255,255,255,.5);
+  flex-shrink:0;color:rgba(15,23,42,.75);
   transition:.15s;
 }
 .sik.dogru{
   background:rgba(61,219,138,.12);
   border-color:var(--vivid);
-  color:#fff;
+  color:#0f172a;
 }
 .sik.dogru .sik-harf{background:var(--vivid);color:var(--bg)}
 .sik.yanlis{
   background:rgba(255,107,107,.08);
   border-color:var(--red);
-  color:rgba(255,255,255,.5);
+  color:rgba(15,23,42,.75);
 }
-.sik.yanlis .sik-harf{background:var(--red);color:#fff}
+.sik.yanlis .sik-harf{background:var(--red);color:#0f172a}
 .sik.gri{opacity:.4}
 .sik:disabled{cursor:default}
 
@@ -197,7 +189,7 @@ h1.quiz-baslik{font-weight:400}
   padding:.85rem 1rem;
   margin-top:.75rem;
   font-size:.82rem;
-  color:rgba(255,255,255,.65);
+  color:rgba(15,23,42,.75);
   line-height:1.65;
   display:none;
 }
@@ -208,17 +200,17 @@ h1.quiz-baslik{font-weight:400}
 /* İLERLE BUTONU */
 .btn-ileri{
   width:100%;padding:.85rem;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.14);
+  background:rgba(15,23,42,.07);
+  border:1px solid rgba(15,23,42,.14);
   border-radius:10px;
-  color:#fff;
+  color:#0f172a;
   font-family:'Bebas Neue',sans-serif;
   font-size:1rem;letter-spacing:.12em;
   cursor:pointer;transition:.15s;
   display:none;margin-top:.5rem;
 }
 .btn-ileri.on{display:block}
-.btn-ileri:hover{background:rgba(255,255,255,.12)}
+.btn-ileri:hover{background:rgba(15,23,42,.12)}
 
 /* SONUÇ EKRANI */
 .ekran-sonuc{display:none;text-align:center;padding:2rem 0;gap:1.25rem;flex-direction:column;align-items:center}
@@ -239,20 +231,20 @@ h1.quiz-baslik{font-weight:400}
   font-family:'Bebas Neue',sans-serif;
   font-size:3.5rem;letter-spacing:.1em;display:block;line-height:1;
 }
-.sonuc-puan-lbl{font-size:.7rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase}
+.sonuc-puan-lbl{font-size:.7rem;color:rgba(15,23,42,.35);letter-spacing:.1em;text-transform:uppercase}
 .sonuc-unvan{
   font-family:'Bebas Neue',sans-serif;
-  font-size:1.5rem;letter-spacing:.08em;color:#fff;
+  font-size:1.5rem;letter-spacing:.08em;color:#0f172a;
 }
 .sonuc-mesaj{
-  font-size:.9rem;color:rgba(255,255,255,.6);
+  font-size:.9rem;color:rgba(15,23,42,.75);
   line-height:1.7;max-width:400px;
 }
 .sonuc-istatistik{
   display:flex;gap:1rem;width:100%;
 }
 .si{
-  flex:1;background:rgba(255,255,255,.04);
+  flex:1;background:rgba(15,23,42,.04);
   border:1px solid var(--border);border-radius:10px;
   padding:.85rem .5rem;text-align:center;
 }
@@ -260,12 +252,12 @@ h1.quiz-baslik{font-weight:400}
   font-family:'Bebas Neue',sans-serif;
   font-size:1.8rem;display:block;letter-spacing:.05em;
 }
-.si-lbl{font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
+.si-lbl{font-size:.58rem;color:rgba(15,23,42,.3);letter-spacing:.08em;text-transform:uppercase}
 .paylasim-metin{
-  background:rgba(255,255,255,.04);
+  background:rgba(15,23,42,.04);
   border:1px solid var(--border);
   border-radius:10px;padding:1rem;
-  font-size:.78rem;color:rgba(255,255,255,.6);
+  font-size:.78rem;color:rgba(15,23,42,.75);
   line-height:1.7;width:100%;text-align:left;
   font-family:'Nunito',sans-serif;
   white-space:pre-wrap;
@@ -279,8 +271,8 @@ h1.quiz-baslik{font-weight:400}
   display:flex;align-items:center;justify-content:center;gap:.5rem;
   border:none;width:100%;
 }
-.btn-paylasWP{background:#25D366;color:#fff}
-.btn-paylasX{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff}
+.btn-paylasWP{background:#25D366;color:#0f172a}
+.btn-paylasX{background:rgba(15,23,42,.07);border:1px solid rgba(15,23,42,.14);color:#0f172a}
 .btn-tekrar{background:rgba(61,219,138,.1);border:1px solid rgba(61,219,138,.25);color:var(--vivid)}
 .btn-wordle{background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.25);color:var(--gold)}
 .btn:hover{opacity:.85;transform:translateY(-1px)}
@@ -290,10 +282,10 @@ h1.quiz-baslik{font-weight:400}
 .alt-paylasim{
   width:100%;max-width:600px;
   padding:.6rem 1.25rem .4rem;
-  border-top:1px solid rgba(255,255,255,.07);
+  border-top:1px solid rgba(15,23,42,.07);
   display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
 }
-.alt-p-lbl{font-size:.6rem;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.25);text-transform:uppercase;flex-shrink:0}
+.alt-p-lbl{font-size:.6rem;font-weight:800;letter-spacing:.1em;color:rgba(15,23,42,.25);text-transform:uppercase;flex-shrink:0}
 .alt-p-btn{
   display:flex;align-items:center;gap:.3rem;
   padding:.3rem .65rem;border-radius:5px;
@@ -301,10 +293,31 @@ h1.quiz-baslik{font-weight:400}
   text-decoration:none;border:none;transition:.15s;
 }
 .alt-p-btn:active{transform:scale(.93)}
-.apb-wp{background:#25D366;color:#fff}
-.apb-x{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff}
-.apb-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff}
-.apb-kopyala{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6)}
+.apb-wp{background:#25D366;color:#0f172a}
+.apb-x{background:rgba(15,23,42,.08);border:1px solid rgba(15,23,42,.14);color:#0f172a}
+.apb-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#0f172a}
+.apb-kopyala{background:rgba(15,23,42,.07);border:1px solid rgba(15,23,42,.12);color:rgba(15,23,42,.75)}
+
+/* aydınlık, renkli */
+body{background:linear-gradient(180deg,#f5f7ff 0%,#eefcf9 55%,#fff7ed 100%) fixed}
+.nav{background:rgba(255,255,255,.8);backdrop-filter:blur(16px);position:sticky;top:0;z-index:20}
+.nav-logo{background:linear-gradient(90deg,#0ea5a4,#3b82f6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.quiz-baslik{color:#0f172a}
+.quiz-baslik span{background:linear-gradient(90deg,#f97316,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.quiz-info{background:#fff;border:0;box-shadow:0 6px 20px -12px rgba(15,23,42,.3);border-radius:18px}
+.btn-baslat{background:linear-gradient(135deg,#f97316,#fb7185 55%,#8b5cf6);box-shadow:0 14px 30px -10px rgba(249,115,22,.55);color:#fff}
+.soru-kart{border:0;box-shadow:0 8px 24px -14px rgba(15,23,42,.35);border-radius:20px}
+.soru-kategori{color:#0ea5a4}
+.sik{background:#fff;border-color:#e2e8f0;color:#0f172a;box-shadow:0 3px 10px -8px rgba(15,23,42,.4)}
+.sik:hover:not(:disabled){background:#f0fdfa;border-color:#14b8a6;color:#0f172a}
+.sik.dogru{background:#dcfce7;border-color:#22c55e;color:#14532d}
+.sik.dogru .sik-harf{background:#22c55e;color:#fff}
+.sik.yanlis{background:#fee2e2;border-color:#ef4444;color:#7f1d1d}
+.sik.yanlis .sik-harf{background:#ef4444;color:#fff}
+.ilerleme-bar{background:#e0e7ff}
+.ilerleme-ic{background:linear-gradient(90deg,#14b8a6,#3b82f6,#8b5cf6)}
+.btn-ileri{background:linear-gradient(135deg,#14b8a6,#3b82f6);color:#fff;border:0}.btn-ileri:hover{background:linear-gradient(135deg,#0d9488,#2563eb)}
+.ses-btn{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:30;width:44px;height:44px;border-radius:14px;border:0;background:#fff;box-shadow:0 6px 18px -8px rgba(15,23,42,.4);font-size:1.1rem;cursor:pointer}
 </style><meta name="geo.region" content="TR-08">
 <meta name="geo.placename" content="Artvin, Türkiye">
 <meta name="geo.position" content="41.1833;41.8167">
@@ -346,8 +359,8 @@ h1.quiz-baslik{font-weight:400}
 </nav>
 <!-- SEO AÇIKLAMA BÖLÜMÜ -->
 <div style="max-width:600px;margin:.5rem auto 0;padding:0 1rem;">
-  <div style="background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.1);border-radius:10px;padding:.85rem 1.1rem;font-family:'DM Sans',sans-serif;font-size:.78rem;color:rgba(232,237,233,.5);line-height:1.7;">
-    <strong style="color:rgba(232,237,233,.75)">Ne Kadar Artvinlisin?</strong> — Artvin'in yemeklerini, yöresel şivesini, doğal güzelliklerini ve tarihini test eden 21 soruluk quiz.
+  <div style="background:#fff;border-radius:16px;padding:.85rem 1.1rem;font-family:'DM Sans',sans-serif;font-size:.8rem;color:#475569;line-height:1.7;box-shadow:0 6px 20px -12px rgba(15,23,42,.3)">
+    <strong style="color:#0f172a">Ne Kadar Artvinlisin?</strong> — Artvin'in yemeklerini, yöresel şivesini, doğal güzelliklerini ve tarihini test eden 21 soruluk quiz.
     Puanına göre Artvin bağın ortaya çıkıyor. Sonucu paylaş, arkadaşlarınla kıyasla!
     <span style="display:inline-flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap;">
       <a href="/wordle.html" style="color:var(--gold);text-decoration:none;">🔤 Kelime Oyunu</a>
@@ -412,7 +425,7 @@ h1.quiz-baslik{font-weight:400}
       <button class="btn btn-paylasX" onclick="paylasX()">𝕏 X'te Paylaş</button>
       <button class="btn btn-paylasX" onclick="paylasIG()" style="background:linear-gradient(135deg,rgba(131,58,180,.3),rgba(253,29,29,.2),rgba(252,176,69,.2));border-color:rgba(131,58,180,.4)">📸 Instagram'a Kopyala</button>
       <button class="btn btn-paylasX" onclick="kopyala()">📋 Kopyala</button>
-      <button class="btn btn-wordle" onclick="window.location.href='/wordle.html'">🎮 Çoruh Yolu'nu Dene!</button>
+      <button class="btn btn-wordle" onclick="window.location.href='/wordle.html'">🎮 Artvin'i Keşfet'i Dene!</button>
       <button class="btn btn-tekrar" onclick="tekrar()">🔄 Tekrar Oyna</button>
     </div>
   </div>
@@ -426,7 +439,7 @@ const SORULAR = [
     soru: "Artvin'in ilçelerinden hangisi Türkiye'nin en yüksek konumdaki ilçelerinden biridir?",
     siklar: ["Ardanuç", "Şavşat", "Arhavi", "Murgul"],
     dogru: 1,
-    aciklama: "Şavşat, deniz seviyesinden yaklaşık 1.215 metre yüksekte kurulu olup Artvin'in en yüksek ilçelerinden biridir."
+    aciklama: "Şavşat, deniz seviyesinden yaklaşık 1.100 metre yüksekte kurulu olup Artvin'in en yüksek ilçelerinden biridir."
   },
   {
     kategori: "🌊 Artvin Doğası",
@@ -440,7 +453,7 @@ const SORULAR = [
     soru: "Artvin'in coğrafi işaretli, tescilli yemeği hangisidir?",
     siklar: ["Puçuko", "Silor", "Muhlama", "Hinkal"],
     dogru: 0,
-    aciklama: "Puçuko, 2017'de Türk Patent Kurumu tarafından tescillenen, kurutulmuş fasulyeden yapılan geleneksel bir Artvin yemeğidir."
+    aciklama: "Puçuko, 2017'de Türk Patent ve Marka Kurumu tarafından coğrafi işaret olarak tescillenen geleneksel bir Artvin lezzetidir."
   },
   {
     kategori: "😄 Artvinli Refleksleri",
@@ -454,21 +467,21 @@ const SORULAR = [
     soru: "Kafkasör'de her yıl hangi gelenek yaşatılır?",
     siklar: ["Geleneksel boğa güreşleri", "Horon festivali", "Çay hasadı şenliği", "Yağlı güreş"],
     dogru: 0,
-    aciklama: "Kafkasör Festivali, her yıl Haziran ayında düzenlenen ve geleneksel boğa güreşlerinin öne çıktığı Artvin'in en ünlü şenliğidir."
+    aciklama: "Kafkasör Kültür, Turizm ve Sanat Festivali her yaz düzenlenir; 200 yılı aşkın geçmişi olan boğa güreşleri festivalin en ünlü etkinliğidir."
   },
   {
     kategori: "⚡ Artvin & Enerji",
-    soru: "Dünyanın 6. en yüksek barajı Artvin'in hangi ilçesindedir?",
+    soru: "Türkiye'nin en yüksek ikinci barajı Deriner, Artvin'in hangi ilçesindedir?",
     siklar: ["Yusufeli", "Artvin Merkez", "Borçka", "Ardanuç"],
     dogru: 1,
-    aciklama: "Deriner Barajı, 249 metre yüksekliğiyle Artvin Merkez ilçesi sınırları içinde, Çoruh Nehri üzerinde yer alır."
+    aciklama: "Deriner Barajı, 249 metre yüksekliğiyle Yusufeli Barajı'ndan sonra Türkiye'nin en yüksek ikinci barajıdır; Artvin Merkez ilçesinde, Çoruh Nehri üzerindedir."
   },
   {
     kategori: "🗣️ Artvin Şivesi",
     soru: "Badya kelimesi Artvin'de ne anlama gelir?",
-    siklar: ["Küçük çocuk", "Büyük toprak testi veya kap", "Eski bina", "Dağ keçisi"],
+    siklar: ["Küçük çocuk", "Büyük su kabı, kova", "Eski bina", "Dağ keçisi"],
     dogru: 1,
-    aciklama: "Badya, Artvin ve çevresinde büyük toprak kaplar için kullanılan yerel bir kelimedir. Köylerde hâlâ kullanılır."
+    aciklama: "Badya, büyük su kabı ya da kova demektir; Artvin köylerinde hâlâ kullanılır."
   },
   {
     kategori: "🏔️ Artvin Coğrafyası",
@@ -486,24 +499,24 @@ const SORULAR = [
   },
   {
     kategori: "🍲 Artvin Mutfağı",
-    soru: "Demirkent köyü hangi yemeğiyle meşhurdur?",
-    siklar: ["Puçuko", "Kavurmalı hinkal", "Silor", "Muhlama"],
+    soru: "Yusufeli'nin Demirkent köyü hangi meyvesiyle bilinir?",
+    siklar: ["Kivi", "Trabzon hurması (Laz hurması)", "Muz", "Mandalina"],
     dogru: 1,
-    aciklama: "Demirkent'in kavurmalı hinkali, Artvin'e gelenlerin mutlaka tatması gereken bir lezzettir. Yöresel kavurma ile servis edilir."
+    aciklama: "Kültür ve Turizm Bakanlığı'nın GoTürkiye sayfasına göre Trabzon hurması (Laz hurması) Yusufeli'nin Demirkent, Esenyaka ve Yarbaşı köylerinde yetişir."
   },
   {
     kategori: "🏛️ Artvin Tarihi",
     soru: "Artvin'in eski tarihsel adı nedir?",
     siklar: ["Çoruheli", "Livane", "Lazistan", "Gürcistan"],
     dogru: 1,
-    aciklama: "Livane, Artvin'in Osmanlı dönemindeki tarihsel adıdır. 1921'de Kars Antlaşması ile Türkiye'ye katılmış ve adı Artvin olmuştur."
+    aciklama: "Osmanlı döneminde Artvin, Batum sancağına bağlı Livane kazasının merkeziydi. 1878-1921 arasında Rus yönetiminde kalan Artvin, 1921'de anavatana katıldı; Moskova Antlaşması bunu kesinleştirdi."
   },
   {
     kategori: "⚡ Artvin & Enerji",
-    soru: "Yusufeli Barajı dünyanın kaçıncı en yüksek barajıdır?",
+    soru: "Yusufeli Barajı Türkiye'nin kaçıncı en yüksek barajıdır?",
     siklar: ["1.", "2.", "3.", "4."],
-    dogru: 2,
-    aciklama: "275 metre yüksekliğiyle Yusufeli Barajı, Türkiye'nin en yüksek, dünyanın 3. en yüksek barajıdır."
+    dogru: 0,
+    aciklama: "275 metre yüksekliğiyle Yusufeli Barajı Türkiye'nin en yüksek barajıdır. İkinci sırada yine Artvin'deki Deriner Barajı (249 m) var."
   },
   {
     kategori: "🌿 Yayla Kültürü",
@@ -524,7 +537,7 @@ const SORULAR = [
     soru: "Artvin'in Gürcistan'a açılan sınır kapısı hangi köydedir?",
     siklar: ["Sarp", "Balcı", "Köprücü", "Uğur"],
     dogru: 0,
-    aciklama: "Sarp Sınır Kapısı, Hopa ilçesine bağlı Sarp köyünde bulunur. Türkiye'nin Gürcistan'a açılan en önemli karayolu kapısıdır."
+    aciklama: "Sarp Sınır Kapısı, Kemalpaşa ilçesine bağlı Sarp köyünde bulunur. Türkiye'nin Gürcistan'a açılan en önemli karayolu kapısıdır."
   },
   {
     kategori: "😄 Artvinli Refleksleri",
@@ -535,10 +548,10 @@ const SORULAR = [
   },
   {
     kategori: "🌿 Doğa & Çevre",
-    soru: "Dünyanın 100 biyosfer rezerv alanından biri Artvin'de hangisidir?",
+    soru: "Artvin'deki UNESCO biyosfer rezerv alanı hangisidir?",
     siklar: ["Sahara", "Hatila Vadisi", "Karçal Dağları", "Macahel (Camili)"],
     dogru: 3,
-    aciklama: "Macahel (Camili), 2005'te UNESCO tarafından biyosfer rezervi ilan edilmiştir. 1.000'den fazla bitki türüne ev sahipliği yapar."
+    aciklama: "Macahel (Camili), 29 Haziran 2005'te UNESCO biyosfer rezervi ilan edildi; Türkiye'nin ilk ve tek biyosfer rezervidir. Havzada 23'ü endemik 990 bitki türü tespit edildi."
   },
   {
     kategori: "🍲 Artvin Mutfağı",
@@ -552,7 +565,7 @@ const SORULAR = [
     soru: "Artvin'in Kaçkar'dan sonra ikinci en yüksek dağı hangisidir?",
     siklar: ["Karçal Dağları", "Yalnızçam Dağları", "Mescit Dağı", "Karadağ"],
     dogru: 0,
-    aciklama: "Karçal Dağları, 3.428 metre ile Artvin'in ikinci en yüksek noktasıdır ve Gürcistan sınırına kadar uzanır."
+    aciklama: "AA'ya göre Karçal Dağları'nın yüksekliği 3.450 metreyi bulur; dağlar Gürcistan sınırına kadar uzanır."
   },
   {
     kategori: "🌿 Yayla Kültürü",
@@ -587,7 +600,7 @@ function soruGoster(){
   cevaplandi=false;
   const s = SORULAR[mevcutSoru];
 
-  document.getElementById('ilerlemeNo').textContent = 'Soru '+(mevcutSoru+1)+' / '+(SORULAR.length-1);
+  document.getElementById('ilerlemeNo').textContent = 'Soru '+(mevcutSoru+1)+' / '+SORULAR.length;
   document.getElementById('ilerlemePuan').textContent = puan+' puan';
   document.getElementById('ilerlemeIc').style.width = ((mevcutSoru/SORULAR.length)*100)+'%';
   document.getElementById('soruKategori').textContent = s.kategori;
@@ -608,6 +621,14 @@ function soruGoster(){
   });
 }
 
+
+var _AC=null,_SES=(function(){try{return localStorage.getItem('quizSes')!=='0'}catch(e){return true}})();
+function _ton(f,d,t,g){if(!_SES)return;try{_AC=_AC||new (window.AudioContext||window.webkitAudioContext)();if(_AC.state==='suspended')_AC.resume();var o=_AC.createOscillator(),v=_AC.createGain(),n=_AC.currentTime+(t||0);o.type='sine';o.frequency.setValueAtTime(f,n);v.gain.setValueAtTime(g||.12,n);v.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(v);v.connect(_AC.destination);o.start(n);o.stop(n+d)}catch(e){}}
+function sesDogru(){_ton(660,.12);_ton(880,.18,.1)}
+function sesYanlis(){_ton(220,.25,0,.1);_ton(170,.3,.12,.08)}
+function sesBitti(){[523,659,784,1047].forEach(function(f,i){_ton(f,.2,i*.12)})}
+function sesTik(){_ton(520,.05,0,.06)}
+function sesDegis(b){_SES=!_SES;try{localStorage.setItem('quizSes',_SES?'1':'0')}catch(e){}b.textContent=_SES?'🔊':'🔇';if(_SES)sesTik()}
 function cevapSec(idx, btn){
   if(cevaplandi) return;
   cevaplandi=true;
@@ -621,9 +642,9 @@ function cevapSec(idx, btn){
     // Yorum sorusu — puan yok
   } else if(idx===s.dogru){
     btn.classList.add('dogru');
-    puan+=5; dogru++;
+    puan+=5; dogru++; sesDogru();
   } else {
-    btn.classList.add('yanlis');
+    btn.classList.add('yanlis'); sesYanlis();
     tumSiklar[s.dogru].classList.add('dogru');
     tumSiklar.forEach(function(b,i){
       if(i!==idx && i!==s.dogru) b.classList.add('gri');
@@ -652,6 +673,7 @@ function sonraki(){
 }
 
 function sonucGoster(){
+  sesBitti();
   document.getElementById('ekranSoru').style.display='none';
   const sonuc = document.getElementById('ekranSonuc');
   sonuc.style.display='flex';
@@ -692,14 +714,14 @@ function sonucGoster(){
   document.getElementById('sonucMesaj').textContent=mesaj;
   document.getElementById('siDogru').textContent=dogru;
   document.getElementById('siDogru').style.color='var(--vivid)';
-  document.getElementById('siYanlis').textContent=(SORULAR.length-dogru);
+  document.getElementById('siYanlis').textContent=(SORULAR.length-1-dogru);
   document.getElementById('siYanlis').style.color='var(--red)';
   document.getElementById('siYuzde').textContent='%'+yuzde;
 
   const paylasimTxt = '🏔️ "Ne Kadar Artvinlisin?" quizini çözdüm!\n\n'+
     rozet+' '+unvan+'\n'+
     '📊 Puan: '+puan+'/100 (%'+yuzde+')\n'+
-    '✅ Doğru: '+dogru+'/'+SORULAR.length+'\n\n'+
+    '✅ Doğru: '+dogru+'/'+(SORULAR.length-1)+'\n\n'+
     'Sen de dene 👇\nartvinrehber.com/quiz.html';
   document.getElementById('paylasimMetin').textContent=paylasimTxt;
 }
@@ -749,5 +771,6 @@ function linkKopyala(){
 <script src="/kart-sec.js" defer></script>
 <script src="/radyo.js?v=3" defer></script>
 <script src="/uygulama-serit.js?v=3" defer></script>
+<button class="ses-btn" type="button" aria-label="Sesi aç/kapat" onclick="sesDegis(this)">🔊</button><script>try{if(localStorage.getItem('quizSes')==='0')document.querySelector('.ses-btn').textContent='🔇'}catch(e){}</script>
 </body>
 </html>
