@@ -446,6 +446,7 @@ body::before{
   gtag('js', new Date());
   gtag('config', 'G-TX994TW4PJ');
 </script>
+<script src="/uygulama-odul.js" data-banner="gizle"></script>
 </head>
 <body>
 <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Artvin Kelime Avı — Artvin Temalı Bulmaca Oyunu 2026</h1>
@@ -665,7 +666,7 @@ let aktifSev  = 1;
 let oyunAktif = false;
 let gKelimeler= [], bulunanlar = [];
 let skor=0, combo=0, ardSeri=0;
-let kalan=SURE_SN, sureTimer=null;
+let kalan=SURE_SN, sureTimer=null, ekSure=0;
 let ipKalan=IP_HAK;
 let satir=8, kolon=8;
 let GRID=[], yerlesimler=[];
@@ -856,7 +857,7 @@ function gridOlustur(sat,kol,kelimeler){
    SEVİYE BAŞLAT
 ═══════════════════════════════════════════════════════════ */
 function baslat(n){
-  durdur();
+  durdur(); ekSure=0;
   document.querySelectorAll('.ovr').forEach(o=>o.classList.remove('on'));
   ekranGec('oEkran');
 
@@ -1083,7 +1084,7 @@ function durumGun(){
   document.getElementById('skorN').textContent=skor.toLocaleString('tr');
   document.getElementById('kalanN').textContent=gKelimeler.length-bulunanlar.length;
   document.getElementById('ipSay').textContent=ipKalan;
-  document.getElementById('ipBtn').disabled=ipKalan<=0;
+  document.getElementById('ipBtn').disabled=ipKalan<=0&&!odulVar();
   const cb=document.getElementById('cbChip');
   if(combo>=2){cb.textContent=`×${combo} COMBO!`;cb.classList.add('on');}
   else cb.classList.remove('on');
@@ -1108,6 +1109,11 @@ function durdur(){oyunAktif=false;clearInterval(sureTimer);}
 function sureBitti(){
   durdur();
   if(buOyunGunluk){ gunlukKaydet(false); buOyunGunluk=false; gunlukSonucGoster(); return; }
+  if(odulVar()&&!ekSure&&bulunanlar.length<gKelimeler.length){ ekSure=1;
+    ArtvinOdul.teklif({e:'⏰',baslik:'Süre doldu!',metin:'Kısa bir reklam izle, 60 saniye daha kazan ve kaldığın yerden devam et.',dugme:'İzle, +60 saniye',tur:'sure',
+      odul:function(){kalan=60;oyunAktif=true;clearInterval(sureTimer);sureTimer=setInterval(sureTik,1000);ArtvinOdul.tost('+60 saniye! Devam');},
+      vaz:function(){document.getElementById('sureBitAlt').textContent=`${bulunanlar.length}/${gKelimeler.length} kelime buldun.`;document.getElementById('sureBittiOvr').classList.add('on');}});
+    return; }
   document.getElementById('sureBitAlt').textContent=
     `${bulunanlar.length}/${gKelimeler.length} kelime buldun.`;
   document.getElementById('sureBittiOvr').classList.add('on');
@@ -1166,8 +1172,12 @@ function sonrakiSev(){
 /* ═══════════════════════════════════════════════════════════
    İPUCU
 ═══════════════════════════════════════════════════════════ */
+function odulVar(){return !!(window.ArtvinOdul&&ArtvinOdul.var());}
 function ipucuKullan(){
-  if(ipKalan<=0||!oyunAktif) return;
+  if(!oyunAktif) return;
+  if(ipKalan<=0){
+    if(odulVar())ArtvinOdul.teklif({e:'💡',baslik:'İpucun bitti',metin:'Kısa bir reklam izle, 1 ipucu daha kazan.',dugme:'İzle, +1 ipucu',tur:'ipucu',odul:function(){ipKalan++;durumGun();ipucuKullan();}});
+    return;}
   const gizli=gKelimeler.filter(h=>!h.bulundu);
   if(!gizli.length) return;
   const h=gizli[Math.floor(Math.random()*gizli.length)];

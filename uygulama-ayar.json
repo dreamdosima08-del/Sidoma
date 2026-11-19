@@ -1,0 +1,12 @@
+{
+  "_not": "Artvin Rehber Android uygulamasının uzaktan ayarları. odul: AdMob ödüllü reklam birimi (boşsa ödüllü teklifler görünmez).",
+  "odul": "",
+  "odulGunluk": 20,
+  "banner": true,
+  "gecisSayfa": 5,
+  "gecisAraSn": 180,
+  "gecisIlkSn": 90,
+  "bannerGizle": ["/wordle.html", "/kelime-avi.html", "/reflex.html", "/quiz.html", "/artvin-dogru-yanlis.html", "/artvin-ilce-testi.html",
+    "/ne-kadar-ardanuclusun.html", "/ne-kadar-arhavilisin.html", "/ne-kadar-artvin-merkezlisin.html", "/ne-kadar-borckalisin.html", "/ne-kadar-hopalisin.html",
+    "/ne-kadar-kemalpasalisin.html", "/ne-kadar-murgullusun.html", "/ne-kadar-savsatlisin.html", "/ne-kadar-yusufelilisin.html"]
+}

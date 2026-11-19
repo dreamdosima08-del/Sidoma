@@ -226,6 +226,8 @@ html,body{background:linear-gradient(180deg,#f5f7ff 0%,#eefcf9 55%,#fff7ed 100%)
   gtag('js', new Date());
   gtag('config', 'G-TX994TW4PJ');
 </script>
+<script src="/uygulama-odul.js" data-banner="gizle"></script>
+<style>.odulkart{display:block;width:100%;border:0;cursor:pointer;margin:0 0 12px;padding:13px 14px;border-radius:16px;color:#fff;font:inherit;font-weight:700;font-size:.95rem;text-align:left;background:linear-gradient(135deg,#14b8a6,#0f766e);box-shadow:0 6px 16px -10px rgba(0,0,0,.5)}.odulkart.kirmizi{background:linear-gradient(135deg,#fb7185,#be123c)}.odulkart b{white-space:nowrap}.btn.x2{background:linear-gradient(135deg,#f59e0b,#ea580c);color:#fff;border:0}</style>
 </head>
 <body>
 <main id="cy" aria-live="off"></main>
@@ -254,7 +256,7 @@ function yukle(){var o=null;try{o=JSON.parse(localStorage.getItem(KEY));}catch(e
 function kaydet(){try{localStorage.setItem(KEY,JSON.stringify(K));}catch(e){}}
 yukle();
 function seriGuncelle(){var t=bugun();if(K.sonGun===t)return;var f=K.sonGun?gunNo(t)-gunNo(K.sonGun):0;
-  if(!K.sonGun||f>2||(f===2&&!K.kalkan))K.seri=1;
+  if(!K.sonGun||f>2||(f===2&&!K.kalkan)){if(K.sonGun&&K.seri>=2)K.kayip={s:K.seri,t:t};K.seri=1;}
   else if(f===2){K.kalkan--;K.seri++;tost('🛡️ Seri kalkanı kullanıldı, serin korundu');}
   else K.seri++;
   if(K.seri%7===0)K.kalkan=Math.min(2,K.kalkan+1);
@@ -318,6 +320,7 @@ function ana(){G=null;kapat();seriGuncelle();
   var h='<div class="ust"><a class="geri" href="/">← Artvin Rehber</a><div class="ikonlar"><button class="ib" data-act="ses" aria-label="Sesi aç veya kapat" aria-pressed="'+(ses()?'true':'false')+'">'+(ses()?'🔊':'🔇')+'</button><button class="ib" data-act="yardim" aria-label="Nasıl oynanır">?</button></div></div>'+
   '<div class="logo"><div class="dalga" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M3 30c6-8 10 4 16-3s10-12 18-4" fill="none" stroke="#38bdf8" stroke-width="3.4" stroke-linecap="round"/><path d="M5 17l7-9 5 6 4-5 6 8" fill="none" stroke="#eef3ef" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></svg></div><div><h1>Artvin&#39;i <span>Keşfet</span></h1><small>Artvin\'in kelime oyunu: bul, öğren, keşfet</small></div></div>'+
   '<div class="cipler"><div><b>'+(s?s.id:Q.length)+'</b><span>Seviye</span></div><div><b>'+K.xp.toLocaleString('tr-TR')+'</b><span>XP</span></div><div><b>🔥 '+K.seri+'</b><span>Seri</span></div><div><b>🪙 '+K.jt+'</b><span>Jeton</span></div></div>';
+  h+='<div id="odulKartlar">'+odulKartlar()+'</div>';
   if(s)h+='<button class="oyna" data-act="oyna">▶ OYNA<small>Seviye '+s.id+' · '+MODAD[s.m]+' · '+BOL[s.b][0]+'</small></button>';
   else h+='<div class="kart" style="text-align:center"><b>🏆 Bütün seviyeleri geçtin!</b><p style="color:var(--dim);margin-top:4px;font-size:.9rem">Günün kelimesi her gün yenileniyor, bölümlerden istediğini tekrar oynayabilirsin.</p></div>';
   h+='<button class="gun" data-act="gunluk"><div class="k" aria-hidden="true">'+harf(gq.k).map(function(c,i){return '<i class="'+(gd&&gd.b?'d':'')+'">'+(gd&&gd.b?H(c):(i===0?'?':''))+'</i>';}).join('')+'</div><b>☀️ Günün kelimesi · '+harf(gq.k).length+' harf</b><p>'+(gd?(gd.b?'Bugün çözdün. Sonucunu paylaş.':'Bugünün kelimesi: '+H(gq.k)):'Herkes aynı kelimeyi çözüyor, 6 deneme hakkın var.')+'</p><span class="rozet'+(gd?' bitti':'')+'">'+(gd?'Sonucu gör':'Oyna')+'</span></button>';
@@ -394,7 +397,7 @@ function gonder(){var t=[],i;for(i=0;i<G.n;i++)t.push(G.ac[i]?G.h[i]:G.cur[i]);
   var ok=d.every(function(x){return x==='d';});if(ok||G.tah.length>=G.hak)G.bitti=true;
   oyunCiz();
   if(ok){var s=document.getElementById('sat'+(G.tah.length-1));setTimeout(function(){[].forEach.call(s.children,function(k,j){setTimeout(function(){k.classList.add('zipla');},j*80);});},G.n*120+150);setTimeout(function(){bitir(true);},G.n*120+900);}
-  else if(G.bitti)setTimeout(function(){bitir(false);},G.n*120+500);}
+  else if(G.bitti)setTimeout(function(){sonHak(function(){bitir(false);});},G.n*120+500);}
 /* karışık harfler */
 function karCiz(){var s='<div class="hak" aria-label="Kalan hak">'+'❤️'.repeat(G.hak-G.tah.length)+'🤍'.repeat(G.tah.length)+'</div>';
   s+='<div class="izgara"><div class="sat" id="sat0" style="grid-template-columns:repeat('+G.n+',1fr);max-width:'+(G.n*56)+'px">'+G.yer.map(function(y,i){return '<div class="hc yuva'+(y!=null?' dolu':'')+(G.ac[i]?' kilit':'')+'" data-y="'+i+'" role="button" tabindex="0" aria-label="'+(i+1)+'. harf '+(y!=null?G.kar[y].c:'boş')+'">'+(y!=null?H(G.kar[y].c):'')+'</div>';}).join('')+'</div></div>';
@@ -405,7 +408,7 @@ function karGeri(y){if(G.bitti||G.ac[y]||G.yer[y]==null)return;SES.sil();G.yer[y
 function karKontrol(){var t=G.yer.map(function(i){return G.kar[i].c;});
   if(t.join('')===G.q.k){G.bitti=true;var s=document.getElementById('sat0');[].forEach.call(s.children,function(k,i){k.className='hc d';k.style.animationDelay=(i*.08)+'s';});SES.kazan();setTimeout(function(){bitir(true);},G.n*80+700);return;}
   G.tah.push(t);document.getElementById('sat0').classList.add('titre');SES.hata();
-  if(G.tah.length>=G.hak){G.bitti=true;setTimeout(function(){bitir(false);},500);return;}
+  if(G.tah.length>=G.hak){G.bitti=true;setTimeout(function(){sonHak(function(){bitir(false);});},500);return;}
   setTimeout(function(){G.yer=G.yer.map(function(v,i){return G.ac[i]?v:null;});oyunCiz();tost('Olmadı, '+(G.hak-G.tah.length)+' hakkın kaldı');},450);}
 /* seçmeli */
 function secCiz(){return '<div class="secenek">'+G.sec.map(function(s){return '<button data-s="'+H(s)+'" class="'+(G.elenenler&&G.elenenler.indexOf(s)>=0?'el':'')+'">'+H(s)+'</button>';}).join('')+'</div>';}
@@ -413,17 +416,30 @@ function secCevap(b){if(G.bitti)return;G.bitti=true;var ok=b.getAttribute('data-
   APP.querySelectorAll('[data-s]').forEach(function(x){if(x.getAttribute('data-s')===G.q.k)x.className='d';});if(!ok)b.className='y';
   G.tah.push(1);ok?SES.kazan():SES.hata();setTimeout(function(){bitir(ok);},750);}
 /* ipuçları */
-function harcama(ucret){var h=ipHakki();if(h>0){K.ipHak--;return true;}if(K.jt>=ucret){K.jt-=ucret;return true;}tost('Yeterli jetonun yok · seviye çözerek jeton kazan');return false;}
+/* ── uygulama: ödüllü reklam (yalnızca Artvin Rehber uygulamasında; sitede görünmez) */
+var AO=window.ArtvinOdul||null,SONJT=0;
+function odulVar(){return !!(AO&&AO.var());}
+function sonHak(devam){if(!odulVar()||!G||G.gunluk||G.ekHak||G.m==='s'){devam();return;}
+  AO.teklif({e:'❤️',baslik:'Az kaldı!',metin:'Kısa bir reklam izle, bir tahmin hakkı daha kazan.',dugme:'İzle, +1 hak',tur:'hak',vaz:devam,
+    odul:function(){G.ekHak=1;G.hak++;G.bitti=false;if(G.m==='r')G.yer=G.yer.map(function(v,i){return G.ac[i]?v:null;});oyunCiz();tost('+1 hak! Hadi bul şunu');}});}
+function odulKartlar(){if(!odulVar())return '';var h='',t=bugun();
+  if(K.kayip&&K.kayip.t===t)h+='<button class="odulkart kirmizi" data-act="serikurtar">💔 '+K.kayip.s+' günlük serin bozuldu! <b>🎬 Reklam izle, serini kurtar →</b></button>';
+  var n=K.rj&&K.rj.g===t?K.rj.n:0;if(n<3)h+='<button class="odulkart" data-act="bedavajeton">🎁 Bedava jeton: reklam izle, <b>+25 🪙</b> kazan · bugün '+(3-n)+' hak</button>';
+  return h;}
+window.addEventListener('artvin-odul',function(){var d=document.getElementById('odulKartlar');if(d)d.innerHTML=odulKartlar();});
+function harcama(ucret,tekrar){var h=ipHakki();if(h>0){K.ipHak--;return true;}if(K.jt>=ucret){K.jt-=ucret;return true;}
+  if(odulVar()&&tekrar){AO.teklif({e:'💡',baslik:'İpucu hakkın bitti',metin:'Kısa bir reklam izle, bu ipucu bedava olsun.',dugme:'İzle, ipucunu aç',tur:'ipucu',odul:function(){K.ipHak++;kaydet();tekrar();}});return false;}
+  tost('Yeterli jetonun yok · seviye çözerek jeton kazan');return false;}
 function ipucu(n){if(!G||G.bitti)return;
   if(n===1){G.ip=Math.max(G.ip,1);G.ipler.push(G.q.i);}
   else if(n===2){var ac=[];for(var i=0;i<G.n;i++)if(!G.ac[i])ac.push(i);if(ac.length<=1){tost('Açılacak başka harf kalmadı');return;}
-    if(!harcama(25))return;var p=ac[rnd(ac.length)];G.ac[p]=1;G.ip=2;
+    if(!harcama(25,function(){ipucu(2);}))return;var p=ac[rnd(ac.length)];G.ac[p]=1;G.ip=2;
     if(G.m==='r'){var j=-1,cur=G.yer[p];if(cur!=null&&G.kar[cur].c===G.h[p]){}else{if(cur!=null)G.yer[p]=null;
         G.kar.forEach(function(x,ix){if(j<0&&x.c===G.h[p]&&G.yer.indexOf(ix)<0)j=ix;});
         if(j<0){for(var k=0;k<G.n;k++){if(G.yer[k]!=null&&!G.ac[k]&&G.kar[G.yer[k]].c===G.h[p]){j=G.yer[k];G.yer[k]=null;break;}}}
         G.yer[p]=j;}}
     G.ipler.push((p+1)+'. harf: '+G.h[p]);}
-  else if(n===3){if(G.elen)return;if(!harcama(15))return;var yan=G.sec.filter(function(s){return s!==G.q.k;});G.elenenler=karistir(yan).slice(0,2);G.elen=true;G.ip=2;}
+  else if(n===3){if(G.elen)return;if(!harcama(15,function(){ipucu(3);}))return;var yan=G.sec.filter(function(s){return s!==G.q.k;});G.elenenler=karistir(yan).slice(0,2);G.elen=true;G.ip=2;}
   kaydet();SES.ip();ev('cy_ipucu',{seviye:G.gunluk?'gunluk':G.q.id,ip:n});oyunCiz();}
 /* ── bitiş */
 function bitir(ok){var q=G.q,t=bugun(),oduller=[],xp=0,jt=0,yildiz=0,ipS=G.ip>0;
@@ -442,7 +458,7 @@ function bitir(ok){var q=G.q,t=bugun(),oduller=[],xp=0,jt=0,yildiz=0,ipS=G.ip>0;
   var link=q.g?'/gezi.html#'+q.g:q.u;
   var sonraki=G.gunluk?null:siradaki();
   var h='<h3>'+(ok?'Doğru! 🎉':'Olmadı bu sefer')+'</h3><div class="alt">'+(ok?(G.gunluk?'Günün kelimesini çözdün':BOL[q.b][0]+' · seviye '+q.id):'Cevap aşağıda, bilgiyi okuyup tekrar deneyebilirsin')+'</div>'+cevap+
-  '<div class="bilgi"><b>Bunu biliyor muydun?</b>'+H(q.a)+'</div>'+(od?'<div class="oduller">'+od+'</div>':'')+
+  '<div class="bilgi"><b>Bunu biliyor muydun?</b>'+H(q.a)+'</div>'+(od?'<div class="oduller">'+od+'</div>':'')+(ok&&jt>0&&odulVar()?(SONJT=jt,'<button class="btn x2" data-act="x2">🎬 Reklam izle, jetonunu 2 katına çıkar (+'+jt+' 🪙)</button>'):'')+
   (link?'<a class="rehlink" href="'+H(link)+'">Rehberde oku →</a>':'')+
   '<div class="btnler">'+
    (G.gunluk?'<button class="btn mav" data-act="paylas">📤 Sonucu paylaş</button><button class="btn" data-act="ana">Ana ekran</button>':
@@ -501,6 +517,9 @@ document.addEventListener('click',function(e){
   else if(act==='yardim')yardim();
   else if(act==='kapat')kapat();
   else if(act==='ses'){K.ses=ses()?0:1;kaydet();a.textContent=ses()?'🔊':'🔇';a.setAttribute('aria-pressed',ses()?'true':'false');}
+  else if(act==='x2'){AO.iste('x2',function(){K.jt+=SONJT;kaydet();a.textContent='✓ +'+SONJT+' 🪙 eklendi';a.disabled=true;});}
+  else if(act==='serikurtar'){AO.iste('seri',function(){K.seri=K.kayip.s+1;K.enSeri=Math.max(K.enSeri,K.seri);delete K.kayip;kaydet();tost('🔥 Serin kurtarıldı: '+K.seri+' gün!');ana();});}
+  else if(act==='bedavajeton'){AO.iste('jeton',function(){var n=K.rj&&K.rj.g===bugun()?K.rj.n:0;K.rj={g:bugun(),n:n+1};K.jt+=25;kaydet();tost('+25 🪙 eklendi');ana();});}
   else if(act==='ip1')ipucu(1);else if(act==='ip2')ipucu(2);else if(act==='ip3')ipucu(3);
 });
 document.addEventListener('keydown',function(e){
