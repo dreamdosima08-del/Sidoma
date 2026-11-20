@@ -72,6 +72,12 @@ a{color:var(--cor)}
 
 .filters{display:flex;align-items:center;gap:6px;padding:12px 18px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
 .filters::-webkit-scrollbar{display:none}
+.filters{flex-wrap:wrap;overflow:visible}
+.yon{display:flex;flex-direction:column;gap:3px;margin:10px 0 8px;padding:10px 12px;border-radius:12px;background:linear-gradient(135deg,var(--cor),var(--cor-d));color:#fff}
+.yon b{font:800 13px/1.2 Figtree;letter-spacing:.08em}.yon span{font-size:12.5px;line-height:1.45;opacity:.95}
+.yon-not{font-size:13.5px;line-height:1.5;margin-bottom:6px}
+.tatil{margin-top:10px;padding:10px 12px;border-radius:12px;background:#FFF4D6;border:1px solid #F1C76A;color:#6B4A00;font-size:13.5px;line-height:1.5}
+#igFloat.gizli{opacity:0;pointer-events:none;transform:scale(.6)}
 .flbl{flex:0 0 auto;font:700 10.5px/1 Figtree;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);padding-right:3px}
 .fbtn{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--mut);font:600 12.5px/1 Figtree;padding:8px 12px;border-radius:999px;cursor:pointer;transition:.15s}
 .fbtn:hover{border-color:var(--cor)}
@@ -358,12 +364,15 @@ footer a{font-weight:600;text-decoration:none}
   <section class="board" aria-labelledby="canli">
     <div class="board-hd">
       <h2 id="canli">🚐 Sıradaki Dolmuş</h2>
-      <p><strong>Yukarı yön:</strong> Terminal'den mahallelere çıkış. 6 durak tüm seferlerde ortak — merkeze gidiyorsan ilk gelen dolmuşa bin. Haritadaki saatler <strong>senin durağına gelecek dolmuşun</strong> yolculuğudur.</p>
+      <div class="yon" role="note"><b>⬆️ YUKARI YÖN</b><span>Terminal → Üst Geçit → Sigorta → Gökorman → AVM → Öğretmenevi → mahalleler</span></div>
+      <p class="yon-not">⚠️ Bu saatler <strong>yukarı çıkan</strong> dolmuşlar içindir. Terminal'e <strong>iniş</strong> saatleri belediye tablosunda yer almıyor.</p>
+      <p>6 durak tüm seferlerde ortak — merkeze gidiyorsan ilk gelen dolmuşa bin. Haritadaki saatler <strong>senin durağına gelecek dolmuşun</strong> yolculuğudur.</p>
+      <div class="tatil" id="tatil" hidden>📅 <b>Bugün <span id="tatilAd">hafta sonu</span>.</b> Saatler hafta içi tarifesine göre gösteriliyor; bugün farklı olabilir.</div>
     </div>
 
     <div class="filters" role="group" aria-label="Nereye kadar gideceksin">
       <span class="flbl">Nereye kadar?</span>
-      <button class="fbtn" data-f="*" aria-pressed="true">Merkez / çarşı</button>
+      <button class="fbtn" data-f="*" aria-pressed="true">Tümü · merkez/çarşı</button>
       <button class="fbtn" data-f="ORKÖY" aria-pressed="false">ORKÖY</button>
       <button class="fbtn" data-f="İSKEBE" aria-pressed="false">İSKEBE</button>
       <button class="fbtn" data-f="BALCIOĞLU" aria-pressed="false">BALCIOĞLU</button>
@@ -530,6 +539,20 @@ function trNow(){
   return d.getHours()*3600 + d.getMinutes()*60 + d.getSeconds();
 }
 function pad(n){ return (n<10?"0":"")+n; }
+/* uzun beklemeleri saat+dakika yaz (357 dk yerine 5 sa 57 dk) */
+function sure(dk){ return dk >= 60 ? Math.floor(dk/60) + " sa" + (dk%60 ? " " + (dk%60) + " dk" : "") : dk + " dk"; }
+/* hafta sonu ve sabit tarihli resmî tatiller: tarife farklı olabilir uyarısı */
+var TATIL = {"01-01":"Yılbaşı","04-23":"23 Nisan","05-01":"1 Mayıs","05-19":"19 Mayıs","07-15":"15 Temmuz","08-30":"30 Ağustos","10-29":"29 Ekim"};
+var gfmt = null;
+try { gfmt = new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Istanbul",year:"numeric",month:"2-digit",day:"2-digit"}); } catch(e){}
+function tatilKontrol(){
+  var el = document.getElementById("tatil"); if(!el) return;
+  var g = gfmt ? gfmt.format(new Date()) : new Date().toISOString().slice(0,10);
+  var p = g.split("-"), gun = new Date(Date.UTC(+p[0], +p[1]-1, +p[2])).getUTCDay();
+  var ad = TATIL[p[1]+"-"+p[2]] ? "resmî tatil (" + TATIL[p[1]+"-"+p[2]] + ")" : (gun === 6 ? "cumartesi" : gun === 0 ? "pazar" : "");
+  el.hidden = !ad;
+  if(ad) document.getElementById("tatilAd").textContent = ad;
+}
 function hhmm(m){ return pad(Math.floor(m/60)%24)+":"+pad(m%60); }
 
 function aktifSeferler(){
@@ -598,8 +621,8 @@ function ciz(){
     if(next){
       var a = next[0]+o, kal = Math.floor(a - dkNow);
       tEl.textContent = hhmm(a);
-      if(kal < 0){ mEl.textContent = "geçti"; el.classList.add("gecti"); }
-      else mEl.textContent = kal <= 0 ? "şimdi" : kal + " dk";
+      if(a < dkNow){ mEl.textContent = "geçti"; el.classList.add("gecti"); }
+      else { kal = Math.ceil(a - dkNow); mEl.textContent = kal <= 0 ? "şimdi" : sure(kal); }
     } else {
       tEl.textContent = "—"; mEl.textContent = "bitti"; el.classList.add("gecti");
     }
@@ -607,14 +630,16 @@ function ciz(){
 
   if(next){
     var kalanS = Math.round((next[0]+ofs)*60 - sn);
-    var dkK = Math.floor(kalanS/60), snK = kalanS%60;
+    var dkK = Math.ceil(kalanS/60), snK = kalanS%60;
     cd.classList.remove("done");
     /* "8:00" gibi bir gosterim saat sanilabilir -> hep birimli yaz */
     if(kalanS <= 0){ cd.textContent = "Şimdi"; cd.classList.add("soon"); }
-    else if(dkK < 1){ cd.textContent = snK + " sn"; cd.classList.add("soon"); }
+    else if(kalanS < 60){ cd.textContent = kalanS + " sn"; cd.classList.add("soon"); }
     else if(dkK < 10){ cd.textContent = dkK + " dk"; cd.classList.add("soon"); }
-    else { cd.textContent = dkK + " dk"; cd.classList.remove("soon"); }
-    to.innerHTML = "sonra <strong>" + hhmm(next[0]+ofs) + "</strong> dolmuşu · <strong>" + next[1] + "</strong> yönüne";
+    else if(dkK < 60){ cd.textContent = dkK + " dk"; cd.classList.remove("soon"); }
+    else { cd.textContent = hhmm(next[0]+ofs); cd.classList.remove("soon"); }
+    if(dkK >= 60) to.innerHTML = (prev ? "" : "Günün ilk dolmuşu · ") + sure(dkK) + " sonra · <strong>" + next[1] + "</strong> yönüne";
+    else to.innerHTML = "sonra <strong>" + hhmm(next[0]+ofs) + "</strong> dolmuşu · <strong>" + next[1] + "</strong> yönüne";
     var g2 = dkNow - next[0];
     if(g2 >= 0){
       var yer = DURAK[0][0];
@@ -633,7 +658,7 @@ function ciz(){
     cd.className = "cd done";
     var ilk = list.length ? list[0] : null;
     to.innerHTML = ilk
-      ? "İlk dolmuş yarın <strong>" + hhmm(ilk[0]+ofs) + "</strong> · <strong>" + ilk[1] + "</strong> yönüne"
+      ? "Yarın ilk dolmuş bu durakta: <strong>" + hhmm(ilk[0]+ofs) + "</strong> · <strong>" + ilk[1] + "</strong> yönüne (Terminal kalkışı " + hhmm(ilk[0]) + ")"
       : "Bu yöne sefer bulunamadı";
     bar.style.width = "100%";
   }
@@ -662,14 +687,15 @@ function ciz(){
   for(var m=0;m<list.length && say<5;m++){
     var ar = list[m][0]+ofs;
     if(ar < dkNow) continue;
-    var kal = Math.floor(ar - dkNow);
+    var kal = Math.ceil(ar - dkNow);
     var sl = {"ORKÖY":"orkoy","İSKEBE":"iskebe","BALCIOĞLU":"balcioglu","M.E.LOJ":"meloj"}[list[m][1]];
     out += '<li><span class="t">'+hhmm(ar)+'</span><span class="dot d-'+sl+'"></span>'+
            '<span class="d">'+list[m][1]+'</span>'+
-           '<span class="r">'+(kal<=0?"şimdi":kal+" dk sonra")+'</span></li>';
+           '<span class="r">'+(kal<=0?"şimdi":sure(kal)+" sonra")+'</span></li>';
     say++;
   }
-  upList.innerHTML = out || '<li><span class="d" style="color:var(--mut);font-weight:600">Bugünkü seferler sona erdi. İlk dolmuş yarın 07:00\'da Terminal\'den kalkıyor.</span></li>';
+  var ilkS = list.length ? list[0] : null;
+  upList.innerHTML = out || '<li><span class="d" style="color:var(--mut);font-weight:600">Bugünkü seferler sona erdi.' + (ilkS ? ' Yarın ilk dolmuş bu durakta: ' + hhmm(ilkS[0]+ofs) + ' (Terminal kalkışı ' + hhmm(ilkS[0]) + ').' : '') + '</span></li>';
 }
 
 /* ---- filtreler ---- */
@@ -700,7 +726,16 @@ cb.addEventListener("click", function(){
 
 hatKur();
 ciz();
+tatilKontrol();
 setInterval(ciz, 1000);
+setInterval(tatilKontrol, 60000);
+/* Instagram düğmesi hat haritasının üstüne binmesin: harita ekrandayken gizle */
+window.addEventListener("DOMContentLoaded", function(){ try {
+  var ig = document.getElementById("igFloat"), brd = document.querySelector(".board");
+  if(ig && brd && "IntersectionObserver" in window){
+    new IntersectionObserver(function(e){ ig.classList.toggle("gizli", e[0].isIntersecting); }).observe(brd);
+  }
+} catch(e){} });
 })();
 </script>
 
