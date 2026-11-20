@@ -5,6 +5,7 @@
 'use strict';
 if(window.__nbzDavet) return; window.__nbzDavet=1;
 if(/bugun-artvin/.test(location.pathname)) return;
+if(/(sehirici-dolmus|\/dolmus)(\.html)?$/.test(location.pathname)) return;   // saat bakılan sayfalarda tarife ve haritanın üstüne binmesin
 if(location.pathname==='/'||/\/index\.html$/.test(location.pathname)) return;   // ana sayfada kart zaten var
 function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
 function p2(x){ return String(x).padStart(2,'0'); }
