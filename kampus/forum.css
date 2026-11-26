@@ -177,3 +177,8 @@ footer.alt a{color:var(--dim)}
 .ks.sb{padding:.6rem 1rem;background:linear-gradient(90deg,#fff8ef,#fff)}
 .ks.sb .ik{width:32px;height:32px;flex-basis:32px;font-size:1rem;border-radius:9px}
 .ks.sb h3{font-size:.93rem}.ks.sb p{display:none}.ks.sb .mt{margin-top:.15rem}
+.ed-et{display:inline-block;font-size:.68rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:999px;padding:.08rem .5rem;vertical-align:middle;margin-left:.2rem}
+.yf-kut{position:relative}.yf-not{font-size:.78rem;color:var(--soft);margin:.4rem .2rem 0}
+.rumuz-c{font-size:.8rem;font-weight:700;color:var(--brand);background:#e6f4f2;border-radius:999px;padding:.35rem .75rem;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.ks .mt .ed{color:var(--brand);font-weight:800}
+@media(max-width:560px){.rumuz-c{display:none!important}}

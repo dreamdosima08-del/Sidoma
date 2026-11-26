@@ -8,10 +8,7 @@ import path from 'node:path';
 
 const KOK = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const SITE = 'https://www.artvinrehber.com';
-const API = 'AIzaSyBCUemvYsklmdfHqhgq7D5hZwquKDUZVC0';
-const DOCS = 'https://firestore.googleapis.com/v1/projects/acu-kampus/databases/(default)/documents';
 const CEVRIMDISI = process.argv.includes('--cevrimdisi');
-const SIK_LIMIT = 3;
 
 const ODALAR = [
   { k: 'soru', ad: 'Soru ve yardım', ik: '❓', c: 'var(--c-soru)', ac: 'Ders kaydı, yurt, burs, sınav; aklına takılan her şey' },
@@ -31,6 +28,7 @@ function oda(k) {
 }
 
 /* ── yardımcılar ── */
+const metinHtml = s => esc(s).replace(/https:\/\/(www\.artvinrehber\.com|drive\.google\.com|docs\.google\.com)\/[^\s<]{1,300}/g, u => { const x = u.replace(/[.,;:!?)]+$/, ''); return `<a href="${x}"${/artvinrehber/.test(x) ? '' : ' rel="noopener nofollow ugc" target="_blank"'}>${x.length > 60 ? x.slice(0, 57) + '…' : x}</a>${u.slice(x.length)}`; });
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const hue = s => { let n = 0; s = String(s || ''); for (const ch of s) n = (n * 31 + ch.charCodeAt(0)) % 360; return n; };
 function ayir(m) {
@@ -49,35 +47,14 @@ const AYLAR = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağus
 function tarih(d) { if (!d) return ''; const x = new Date(new Date(d).getTime() + 3 * 3600e3); return `${x.getUTCDate()} ${AYLAR[x.getUTCMonth()]} ${x.getUTCFullYear()}`; }
 const kisalt = (s, n) => { s = String(s || '').replace(/\s+/g, ' ').trim(); return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…' : s; };
 
-/* ── Firestore okuma ── */
-function fv(f) { if (!f) return null; if ('stringValue' in f) return f.stringValue; if ('integerValue' in f) return Number(f.integerValue); if ('doubleValue' in f) return f.doubleValue; if ('booleanValue' in f) return f.booleanValue; if ('timestampValue' in f) return f.timestampValue; return null; }
-function dobj(d) { const o = { id: d.name.split('/').pop() }; for (const [k, v] of Object.entries(d.fields || {})) o[k] = fv(v); return o; }
-async function sorgu(parent, sq) {
-  const r = await fetch(`${DOCS}${parent ? '/' + parent : ''}:runQuery?key=${API}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ structuredQuery: sq }) });
-  const a = await r.json();
-  if (!r.ok || (Array.isArray(a) ? a.some(x => x.error) : a.error)) throw new Error('Firestore: ' + JSON.stringify(a).slice(0, 300));
-  return a.filter(x => x.document).map(x => dobj(x.document));
-}
+/* ── forum verisi (Cloudflare Worker) ── */
+const API = 'https://acukampus.dreamdosima08.workers.dev';
 async function konulariOku() {
-  const t = [];
-  let imlec = null;
-  for (let s = 0; s < 40; s++) {
-    const sq = { from: [{ collectionId: 'acukampus' }], where: { fieldFilter: { field: { fieldPath: 'durum' }, op: 'EQUAL', value: { stringValue: 'aktif' } } }, orderBy: [{ field: { fieldPath: 'olusturma' }, direction: 'DESCENDING' }], limit: 200 };
-    if (imlec) sq.startAt = { values: [{ timestampValue: imlec }], before: false };
-    const a = await sorgu('', sq);
-    t.push(...a);
-    if (a.length < 200) break;
-    imlec = a[a.length - 1].olusturma;
-  }
-  const temiz = t.filter(d => !d.id.startsWith('__') && d.metin && oda(d.kategori) && !((d.bildirim || 0) >= SIK_LIMIT));
-  for (const d of temiz) {
-    d.yorumlar = [];
-    if ((d.yorumSayi || 0) > 0) {
-      const y = await sorgu(`acukampus/${d.id}`, { from: [{ collectionId: 'yorumlar' }], orderBy: [{ field: { fieldPath: 'olusturma' }, direction: 'ASCENDING' }], limit: 300 });
-      d.yorumlar = y.filter(x => x.durum !== 'gizli' && x.durum !== 'bekliyor' && x.metin);
-    }
-  }
-  return temiz;
+  const r = await fetch(`${API}/api/disa`, { headers: { 'user-agent': 'kampus-uret' } });
+  if (!r.ok) throw new Error('API ' + r.status);
+  const j = await r.json();
+  if (!Array.isArray(j.konular)) throw new Error('API yanıtı beklenmedik');
+  return j.konular.filter(d => oda(d.oda));
 }
 
 /* ── sayfa kabuğu ── */
@@ -130,10 +107,8 @@ function cubuk() {
 <a class="mark" href="/acukampus.html" aria-label="AÇÜ Kampüs Forum ana sayfa">AÇÜ</a>
 <a class="ad" href="/acukampus.html">AÇÜ Kampüs<small>Artvin Çoruh Üniversitesi öğrenci forumu</small></a>
 <span class="sp"></span>
+<span class="rumuz-c" id="btnRumuz" style="display:none"></span>
 <button class="nbtn p" id="btnYeni" type="button" onclick="KF.yazAc(window.KF_ODA||'')">＋ Konu aç</button>
-<button class="nbtn" id="btnGiris" type="button">Giriş</button>
-<button class="avb" id="btnAv" type="button" aria-label="Hesabım"></button>
-<div class="menu" id="menu"><a id="mNick" href="/acukampus.html" style="font-weight:800"></a><a href="/acu-ders-notu.html">Ders notu arşivi</a><a href="/acu-tercih-rehberi.html">Tercih rehberi</a><button id="mCikis" type="button">Çıkış yap</button></div>
 </div></header>`;
 }
 function altBilgi() {
@@ -147,15 +122,17 @@ AÇÜ Kampüs, Artvin Çoruh Üniversitesi ile resmi bağlantısı olmayan bağ�
 /* ── parçalar ── */
 function satir(k) {
   const r = oda(k.kategori);
-  return `<a class="ks${k.sabit ? ' sb' : ''}" href="${k.url}" style="--rc:${r.c}"><span class="ik">${k.sabit ? '📌' : r.ik}</span><span class="ic"><h3>${k.sabit ? '<span class="pin">Rehber ·</span>' : ''}${esc(k.baslik)}</h3>${k.ozet ? `<p>${esc(k.ozet)}</p>` : ''}<span class="mt"><span class="oc">${esc(r.ad)}</span><span>${k.sabit ? '<b>Artvin Rehberi</b>' : '@' + esc(k.nick)}</span>${k.tarih ? `<time datetime="${esc(k.tarihIso)}">${esc(k.tarih)}</time>` : ''}</span></span>${k.sabit ? '' : `<span class="say${k.yanit ? '' : ' yok'}"><b>${k.yanit}</b><small>yanıt</small></span>`}</a>`;
+  return `<a class="ks${k.sabit ? ' sb' : ''}" href="${k.url}" style="--rc:${r.c}"><span class="ik">${k.sabit ? '📌' : r.ik}</span><span class="ic"><h3>${k.sabit ? '<span class="pin">Rehber ·</span>' : ''}${esc(k.baslik)}</h3>${k.ozet ? `<p>${esc(k.ozet)}</p>` : ''}<span class="mt"><span class="oc">${esc(r.ad)}</span>${k.sabit || k.editor ? '<span class="ed">Artvin Rehberi</span>' : '<span>@' + esc(k.nick) + '</span>'}${k.tarih ? `<time datetime="${esc(k.tarihIso)}">${esc(k.tarih)}</time>` : ''}</span></span>${k.sabit ? '' : `<span class="say${k.yanit ? '' : ' yok'}"><b>${k.yanit}</b><small>yanıt</small></span>`}</a>`;
 }
 function konuGovde(k) {
   const r = oda(k.kategori);
-  const Y = k.yorumlar.map(y => `<div class="yo"><span class="av" style="--h:${hue(y.nick || 'Anonim')}">${esc((y.nick || 'A').charAt(0).toLocaleUpperCase('tr'))}</span><div class="ic"><b>${esc(y.nick || 'Anonim')}</b><time datetime="${esc(y.olusturma || '')}">${esc(tarih(y.olusturma))}</time><p>${esc(y.metin)}</p></div></div>`).join('');
+  const av = (n, ed) => ed ? '<span class="av ed">AR</span>' : `<span class="av" style="--h:${hue(n)}">${esc(n.charAt(0).toLocaleUpperCase('tr'))}</span>`;
+  const kim = (n, ed) => ed ? '<b>Artvin Rehberi</b> <span class="ed-et">Editör</span>' : `<b>${esc(n)}</b>`;
+  const Y = k.yorumlar.map(y => `<div class="yo">${av(y.nick, y.editor)}<div class="ic">${kim(y.nick, y.editor)}<time datetime="${esc(y.olusturma || '')}">${esc(tarih(y.olusturma))}</time><p>${metinHtml(y.metin)}</p></div></div>`).join('');
   const link = (k.link && /^https:\/\/(drive|docs)\.google\.com\//.test(k.link)) ? `<a class="lnk" href="${esc(k.link)}" target="_blank" rel="noopener nofollow ugc"><span>📎</span><span>Google Drive dosyası<small>${esc(k.link.replace(/^https:\/\//, '').slice(0, 60))}</small></span></a>` : '';
   return `<article class="konu" style="--rc:${r.c}"><a class="oda-et" href="/kampus/oda/${k.kategori}.html">${r.ik} ${esc(r.ad)}</a><h1>${esc(k.baslik)}</h1>
-<div class="yazar"><span class="av" style="--h:${hue(k.nick)}">${esc(k.nick.charAt(0).toLocaleUpperCase('tr'))}</span><span><b>${esc(k.nick)}</b><br><time datetime="${esc(k.tarihIso)}">${esc(k.tarih)}</time></span></div>
-${k.govde ? `<div class="govde">${esc(k.govde)}</div>` : ''}${link}</article>
+<div class="yazar">${av(k.nick, k.editor)}<span>${kim(k.nick, k.editor)}<br><time datetime="${esc(k.tarihIso)}">${esc(k.tarih)}</time></span></div>
+${k.govde ? `<div class="govde">${metinHtml(k.govde)}</div>` : ''}${link}</article>
 <section class="yanitlar"><h2>${k.yorumlar.length ? k.yorumlar.length + ' yanıt' : 'Henüz yanıt yok'}</h2>${Y || '<p style="color:var(--dim);font-size:.92rem">İlk yanıtı sen yaz; bildiklerin başka bir öğrencinin işine yarar.</p>'}</section>`;
 }
 function yol(parcalar) { return `<nav class="yol" aria-label="Konum">${parcalar.map((p, i) => i < parcalar.length - 1 ? `<a href="${p[1]}">${esc(p[0])}</a><span>›</span>` : `<span>${esc(p[0])}</span>`).join('')}</nav>`; }
@@ -171,13 +148,13 @@ async function main() {
   const veriArg = process.argv.find(a => a.startsWith('--veri='));
   if (veriArg) ham = JSON.parse(fs.readFileSync(veriArg.slice(7), 'utf8')); // yalnızca yerel deneme için
   else if (!CEVRIMDISI) ham = await konulariOku(); // hata olursa süreç durur ve hiçbir dosya silinmez
+  const iso = ms => ms ? new Date(ms).toISOString() : '';
   const K = ham.map(d => {
-    const t = ayir(d.metin), nick = d.nick || 'Anonim';
-    const url = `/kampus/konu/${slug(t.b)}-${d.id}.html`;
-    const uz = (t.b + t.g).length + d.yorumlar.reduce((a, y) => a + y.metin.length, 0);
-    return { id: d.id, url, kategori: d.kategori, baslik: t.b, govde: t.g, ozet: kisalt(t.g, 150), nick, link: d.link || '', begeni: d.begeni || 0, yanit: d.yorumlar.length, yorumlar: d.yorumlar,
-      tarih: tarih(d.olusturma), tarihIso: d.olusturma || '', son: d.yorumlar.length ? d.yorumlar[d.yorumlar.length - 1].olusturma : d.olusturma,
-      noindex: d.kategori === 'itiraf' || uz < 100 };
+    const y = (d.yanitlar || []).map(x => ({ metin: x.metin, olusturma: iso(x.olusturma), nick: x.editor ? 'Artvin Rehberi' : (x.rumuz || 'Anonim'), editor: !!x.editor }));
+    const url = `/kampus/konu/${slug(d.baslik)}-${d.id}.html`;
+    const uz = (d.baslik + (d.metin || '')).length + y.reduce((a, c) => a + c.metin.length, 0);
+    return { id: d.id, url, kategori: d.oda, baslik: d.baslik, govde: d.metin || '', ozet: kisalt(d.metin, 150), nick: d.editor ? 'Artvin Rehberi' : (d.rumuz || 'Anonim'), editor: !!d.editor, link: d.link || '', begeni: d.begeni || 0, yanit: y.length, yorumlar: y,
+      tarih: tarih(d.olusturma), tarihIso: iso(d.olusturma), son: iso(d.son || d.olusturma), noindex: d.oda === 'itiraf' || uz < 100 };
   });
   const S = sabitler.map(s => ({ ...s, sabit: true, url: `/kampus/konu/${slug(s.baslik)}.html`, ozet: kisalt(s.metin, 150), nick: 'Artvin Rehberi', yanit: 0, yorumlar: [], tarih: '', tarihIso: '' }));
 
@@ -191,11 +168,11 @@ async function main() {
     const r = oda(k.kategori), y = [['Artvin Rehberi', '/'], ['AÇÜ Kampüs', '/acukampus.html'], [r.ad, `/kampus/oda/${k.kategori}.html`], [k.baslik, k.url]];
     const ilgili = K.filter(x => x.kategori === k.kategori && x.id !== k.id).slice(0, 5);
     const ld = [yolLd(y), { '@context': 'https://schema.org', '@type': 'DiscussionForumPosting', headline: k.baslik, text: (k.baslik + (k.govde ? '\n' + k.govde : '')).slice(0, 5000), url: SITE + k.url, datePublished: k.tarihIso, inLanguage: 'tr',
-      author: { '@type': 'Person', name: k.nick, url: SITE + '/acukampus.html' }, isPartOf: { '@type': 'WebPage', name: 'AÇÜ Kampüs Forum', url: SITE + '/acukampus.html' },
+      author: k.editor ? { '@type': 'Organization', name: 'Artvin Rehberi', url: SITE + '/' } : { '@type': 'Person', name: k.nick }, isPartOf: { '@type': 'WebPage', name: 'AÇÜ Kampüs Forum', url: SITE + '/acukampus.html' },
       interactionStatistic: [{ '@type': 'InteractionCounter', interactionType: 'https://schema.org/CommentAction', userInteractionCount: k.yanit }, { '@type': 'InteractionCounter', interactionType: 'https://schema.org/LikeAction', userInteractionCount: k.begeni }],
-      comment: k.yorumlar.map(c => ({ '@type': 'Comment', text: c.metin, datePublished: c.olusturma, author: { '@type': 'Person', name: c.nick || 'Anonim' } })) }];
+      comment: k.yorumlar.map(c => ({ '@type': 'Comment', text: c.metin, datePublished: c.olusturma, author: c.editor ? { '@type': 'Organization', name: 'Artvin Rehberi', url: SITE + '/' } : { '@type': 'Person', name: c.nick || 'Anonim' } })) }];
     const govde = `${yol(y)}<div class="shell"><div><div id="konuKap">${konuGovde(k)}</div>${cagri(k.kategori)}${ilgili.length ? `<div class="kutu" style="margin-top:1rem"><div class="kutu-b"><h2>${esc(r.ad)} odasından</h2><a href="/kampus/oda/${k.kategori}.html">Tümü →</a></div>${ilgili.map(satir).join('')}</div>` : ''}</div>${yanSutun()}</div>`;
-    const js = `window.KF_ODA=${JSON.stringify(k.kategori)};Promise.all([KF.konuGetir(${JSON.stringify(k.id)}),KF.yorumlarGetir(${JSON.stringify(k.id)})]).then(function(a){if(!a[0]||a[0].durum!=='aktif'){if(a[0]===null){document.getElementById('konuKap').insertAdjacentHTML('afterbegin','<p class="uy">Bu konu kaldırılmış.</p>');}return;}KF.konuBagla(document.getElementById('konuKap'),a[0],a[1],{url:${JSON.stringify(SITE + k.url)}});}).catch(function(){});`;
+    const js = `window.KF_ODA=${JSON.stringify(k.kategori)};KF.konuGetir(${k.id}).then(function(j){if(!j||!j.konu){if(j&&j.hata==='Konu bulunamadı')document.getElementById('konuKap').insertAdjacentHTML('afterbegin','<p class="uy">Bu konu kaldırılmış ya da incelemede.</p>');return;}KF.konuBagla(document.getElementById('konuKap'),j.konu,j.yanitlar,{url:${JSON.stringify(SITE + k.url)}});});`;
     yaz(k.url, kabuk({ baslik: `${k.baslik} — AÇÜ Kampüs`, aciklama: kisalt(k.govde ? `${k.baslik}. ${k.govde}` : `${k.baslik}. AÇÜ öğrencilerinin ${r.ad} odasında ${k.yanit ? k.yanit + ' yanıtlı' : 'yanıt bekleyen'} konu.`, 155), url: k.url, govde, ld, noindex: k.noindex, js }));
     if (!k.noindex) harita.push([k.url, (k.son || k.tarihIso || '').slice(0, 10)]);
   }
